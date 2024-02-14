@@ -11,17 +11,16 @@ public:
     bool labOrNot = 0;
     std::string building;
     std::vector<std::vector<bool>> timeTable;//when room is free. 0 for free 1 for occupiued.
-    int timeTableName[days][periods];//what class the rooms is holding. changes done by program, not taken from user.
+    std::vector<std::vector<unsigned>> timeTableName;//what class the rooms is holding. changes done by program, not taken from user.
     bool readData(std::string inp);
     void showTimeTable();
     std::string convertToString();
     room() {
         std::vector<bool> a(periods);
+        std::vector<unsigned> b(periods, 0);
         for (int i = 0; i < days; i++) {
             timeTable.push_back(a);
-            for (int j = 0; j < periods; j++) {
-                timeTableName[i][j] = 0;
-            }
+            timeTableName.push_back(b);
         }
     }//initialise all classes to zero.
 };
