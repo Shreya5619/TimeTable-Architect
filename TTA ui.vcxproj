@@ -142,6 +142,7 @@
     <ClInclude Include="MyUserControl.h">
       <FileType>CppControl</FileType>
     </ClInclude>
+    <ClInclude Include="section.h" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MyForm.resx">
