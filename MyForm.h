@@ -24,13 +24,12 @@ namespace TTA_ui {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		MyForm()
 		{
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
 			//
-
 		}
 
         void deptcsvgen(DataGridView^ dataGridView1, const string filePath) {
@@ -1379,6 +1378,7 @@ private: System::Windows::Forms::Label^ label107;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ csubject;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ cteacher;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn6;
+private: System::Windows::Forms::PictureBox^ pictureBox13;
 
     protected:
 	private:
@@ -1888,6 +1888,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubjecteleteacher = (gcnew System::Windows::Forms::DataGridView());
             this->dataGridViewComboBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn9 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->pictureBox13 = (gcnew System::Windows::Forms::PictureBox());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sldataGridView))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown5))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bfactorupdown))->BeginInit();
@@ -1932,6 +1933,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectcredit))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectlabteachers))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjecteleteacher))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->BeginInit();
             this->SuspendLayout();
             // 
             // label45
@@ -4304,6 +4306,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->pictureBox9->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox9->TabIndex = 2;
             this->pictureBox9->TabStop = false;
+            this->pictureBox9->Click += gcnew System::EventHandler(this, &MyForm::pictureBox9_Click);
             this->pictureBox9->MouseEnter += gcnew System::EventHandler(this, &MyForm::pictureBox9_MouseEnter);
             this->pictureBox9->MouseLeave += gcnew System::EventHandler(this, &MyForm::pictureBox9_MouseLeave);
             // 
@@ -4323,7 +4326,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             // pictureBox11
             // 
             this->pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
-            this->pictureBox11->Location = System::Drawing::Point(1673, 55);
+            this->pictureBox11->Location = System::Drawing::Point(1609, 53);
             this->pictureBox11->Name = L"pictureBox11";
             this->pictureBox11->Size = System::Drawing::Size(39, 41);
             this->pictureBox11->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -4349,6 +4352,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             // panel4
             // 
             this->panel4->BackColor = System::Drawing::Color::White;
+            this->panel4->Controls->Add(this->pictureBox13);
             this->panel4->Controls->Add(this->label15);
             this->panel4->Controls->Add(this->pictureBox12);
             this->panel4->Controls->Add(this->pictureBox11);
@@ -8499,6 +8503,17 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->dataGridViewButtonColumn9->Text = L"Delete";
             this->dataGridViewButtonColumn9->UseColumnTextForButtonValue = true;
             // 
+            // pictureBox13
+            // 
+            this->pictureBox13->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox13.Image")));
+            this->pictureBox13->Location = System::Drawing::Point(1682, 53);
+            this->pictureBox13->Name = L"pictureBox13";
+            this->pictureBox13->Size = System::Drawing::Size(39, 41);
+            this->pictureBox13->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox13->TabIndex = 7;
+            this->pictureBox13->TabStop = false;
+            this->pictureBox13->Click += gcnew System::EventHandler(this, &MyForm::pictureBox13_Click);
+            // 
             // MyForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(144, 144);
@@ -8584,6 +8599,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectcredit))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectlabteachers))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjecteleteacher))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->EndInit();
             this->ResumeLayout(false);
 
         }
@@ -8631,7 +8647,8 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
 
     DisplayCSVInComboBox(dataGridView2,"details/dept_file.csv");
     
-     //  pictureBox12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pictureBox1_Paint);
+       pictureBox12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pictureBox1_Paint);
+
        }
 private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
     if (button4->Visible == false)
@@ -8696,7 +8713,7 @@ private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e
     panel3->Top = button6->Top;
     addclassroompanel->BringToFront();
     DisplayCSVInComboBox1("details/dept_file.csv", comboBox2);
-    button5->BackColor = Color::FromArgb(0, 0, 128);
+    button5->BackColor = Color::FromArgb(0, 0, 90);
     button4->BackColor = Color::FromArgb(0, 0, 77);
     button7->BackColor = Color::FromArgb(0, 0, 77);
     button8->BackColor = Color::FromArgb(0, 0, 77);
@@ -8770,7 +8787,7 @@ private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e
     panel3->Top = button9->Top;
     addteacherpanel->BringToFront();
     DisplayCSVInComboBox1("details/dept_file.csv",comboBox1);
-    button8->BackColor = Color::FromArgb(0, 0, 128);
+    button8->BackColor = Color::FromArgb(0, 0, 90);
     button4->BackColor = Color::FromArgb(0, 0, 77);
     button7->BackColor = Color::FromArgb(0, 0, 77);
     button5->BackColor = Color::FromArgb(0, 0, 77);
@@ -9053,7 +9070,7 @@ private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ 
     Teacher_Name->DataSource = CreateDataTableFromCSV2(fileName);
     Teacher_Name->DisplayMember = "Teacher_Name"; // Update to the correct column name
     Teacher_Name->ValueMember = "Teacher_Name";
-    button11->BackColor = Color::FromArgb(0, 0, 128);
+    button11->BackColor = Color::FromArgb(0, 0, 90);
     button4->BackColor = Color::FromArgb(0, 0, 77);
     button7->BackColor = Color::FromArgb(0, 0, 77);
     button8->BackColor = Color::FromArgb(0, 0, 77);
@@ -9218,31 +9235,62 @@ private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ 
 
 }
 private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ e) {
-   section obj;
-    obj.name=10;
-    allteachersfunction("details/teacher_file.csv", obj);
-    allroomsfunction("details/classroom.csv",obj);
-    //alloting core teacher and subjects
-    loadcore(obj);
-    //alloting default rooms
-    defaultroomallot(obj);
-    labcreate("details/Labo.csv", obj);
+   //section obj;
+   // obj.name=10;
+   // allteachersfunction("details/teacher_file.csv", obj);
+   // allroomsfunction("details/classroom.csv",obj);
+   // //alloting core teacher and subjects
+   // loadcore(obj);
+   // //alloting default rooms
+   // defaultroomallot(obj);
+   // labcreate("details/Labo.csv", obj);
 
-    obj.makeTIMETABLE();
-    ofstream file;
-    file.open("details/timetable.csv");
-    string output;
-    for (int i = 0; i < days; i++)
+   // obj.makeTIMETABLE();
+   // ofstream file;
+   // file.open("details/timetable.csv");
+   // string output;
+   // for (int i = 0; i < days; i++)
+   // {
+   //     for (int j = 0; j < periods; j++)
+   //     {
+   //         output += obj.timeTable[i][j]+",";
+   //     }
+   //   
+   //     output += "\n";
+   // }
+   // file << output;
+   // file.close();
+    extern vector<section>allsections;
+    if (allsections.size() == 0)
     {
-        for (int j = 0; j < periods; j++)
-        {
-            output += obj.timeTable[i][j]+",";
-        }
-      
-        output += "\n";
+        section obj;
+        obj.name = 10;
+         allteachersfunction("details/teacher_file.csv", obj);
+        allroomsfunction("details/classroom.csv",obj);
+         //alloting default rooms
+         defaultroomallot(obj);
+         //alloting core teacher and subjects
+         loadcore(obj);
+         labcreate("details/Labo.csv", obj);
+
+         obj.makeTIMETABLE();
+        allsections.push_back(obj);
     }
-    file << output;
-    file.close();
+    else
+    {
+        section obj;
+        obj.name = 5;
+        obj.allTeachers = allsections[allsections.size() - 1].allTeachers;
+        obj.allRooms = allsections[allsections.size() - 1].allRooms;
+        defaultroomallot(obj);
+        //alloting core teacher and subjects
+        loadcore(obj);
+        labcreate("details/Labo.csv", obj);
+
+        obj.makeTIMETABLE();
+        allsections.push_back(obj);
+    }
+ 
 }
 
 private: System::Void textBox16_TextChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -9256,7 +9304,7 @@ private: System::Void button7_Click_1(System::Object^ sender, System::EventArgs^
     panel3->Height = button9->Height;
     panel3->Top = button9->Top;
     editteacherpanel->BringToFront();
-    button7->BackColor = Color::FromArgb(0, 0, 128);
+    button7->BackColor = Color::FromArgb(0, 0, 90);
     button4->BackColor = Color::FromArgb(0, 0, 77);
     button5->BackColor = Color::FromArgb(0, 0, 77);
     button8->BackColor = Color::FromArgb(0, 0, 77);
@@ -9515,7 +9563,7 @@ private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^
     editroompanel->BringToFront();
     panel3->Height = button6->Height;
     panel3 -> Top = button6->Top;
-    button4->BackColor = Color::FromArgb(0, 0, 128);
+    button4->BackColor = Color::FromArgb(0, 0, 90);
     button5->BackColor = Color::FromArgb(0, 0, 77);
     button7->BackColor = Color::FromArgb(0, 0, 77);
     button8->BackColor = Color::FromArgb(0, 0, 77);
@@ -9583,7 +9631,7 @@ private: System::Void button10_Click_1(System::Object^ sender, System::EventArgs
     panel3->Height = button12->Height;
     panel3->Top = button12->Top;
     editsubjectpanel->BringToFront();
-    button10->BackColor = Color::FromArgb(0, 0, 128);
+    button10->BackColor = Color::FromArgb(0, 0, 90);
     button4->BackColor = Color::FromArgb(0, 0, 77);
     button7->BackColor = Color::FromArgb(0, 0, 77);
     button8->BackColor = Color::FromArgb(0, 0, 77);
@@ -9647,6 +9695,12 @@ private: System::Void button15_MouseEnter(System::Object^ sender, System::EventA
 private: System::Void button15_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
     button15->Height -= 3;
     button15->Width -= 3;
+}
+private: System::Void pictureBox9_Click(System::Object^ sender, System::EventArgs^ e) {
+    this->WindowState = FormWindowState::Minimized;
+}
+private: System::Void pictureBox13_Click(System::Object^ sender, System::EventArgs^ e) {
+    this->WindowState = FormWindowState::Maximized;
 }
 };
 }
