@@ -958,60 +958,60 @@ private: System::Windows::Forms::RadioButton^ radioButton2;
 private: System::Windows::Forms::RadioButton^ radioButton1;
 private: System::Windows::Forms::Panel^ addclassroompanel;
 private: System::Windows::Forms::Panel^ Homepanel;
-private: System::Windows::Forms::Label^ label14;
-private: System::Windows::Forms::Label^ label1;
-private: System::Windows::Forms::Button^ buttons36;
-private: System::Windows::Forms::Button^ buttons30;
-private: System::Windows::Forms::Button^ button38;
-private: System::Windows::Forms::Button^ button37;
-private: System::Windows::Forms::TextBox^ textBox2;
-private: System::Windows::Forms::Label^ label2;
-private: System::Windows::Forms::ComboBox^ comboBox1;
-private: System::Windows::Forms::Label^ label3;
-private: System::Windows::Forms::Button^ buttons1;
-private: System::Windows::Forms::Button^ buttons2;
-private: System::Windows::Forms::Button^ buttons3;
-private: System::Windows::Forms::Button^ buttons4;
-private: System::Windows::Forms::Button^ buttons5;
-private: System::Windows::Forms::Button^ buttons6;
-private: System::Windows::Forms::Button^ buttons7;
-private: System::Windows::Forms::Button^ buttons8;
-private: System::Windows::Forms::Button^ buttons9;
-private: System::Windows::Forms::Button^ buttons10;
-private: System::Windows::Forms::Button^ buttons11;
-private: System::Windows::Forms::Button^ buttons12;
-private: System::Windows::Forms::Button^ buttons13;
-private: System::Windows::Forms::Button^ buttons14;
-private: System::Windows::Forms::Button^ buttons15;
-private: System::Windows::Forms::Button^ buttons16;
-private: System::Windows::Forms::Button^ buttons17;
-private: System::Windows::Forms::Button^ buttons18;
-private: System::Windows::Forms::Button^ buttons19;
-private: System::Windows::Forms::Button^ buttons20;
-private: System::Windows::Forms::Button^ buttons21;
-private: System::Windows::Forms::Button^ buttons22;
-private: System::Windows::Forms::Button^ buttons23;
-private: System::Windows::Forms::Button^ buttons24;
-private: System::Windows::Forms::Button^ buttons25;
-private: System::Windows::Forms::Button^ buttons26;
-private: System::Windows::Forms::Button^ buttons27;
-private: System::Windows::Forms::Button^ buttons28;
-private: System::Windows::Forms::Button^ buttons29;
-private: System::Windows::Forms::Button^ buttons31;
-private: System::Windows::Forms::Button^ buttons32;
-private: System::Windows::Forms::Button^ buttons33;
-private: System::Windows::Forms::Button^ buttons34;
-private: System::Windows::Forms::Button^ buttons35;
-private: System::Windows::Forms::Label^ label5;
-private: System::Windows::Forms::Label^ label6;
-private: System::Windows::Forms::Label^ label7;
-private: System::Windows::Forms::Label^ label8;
-private: System::Windows::Forms::Label^ label9;
-private: System::Windows::Forms::Label^ label10;
-private: System::Windows::Forms::Label^ label4;
-private: System::Windows::Forms::Label^ label11;
-private: System::Windows::Forms::Label^ label12;
-private: System::Windows::Forms::Panel^ addteacherpanel;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 private: System::Windows::Forms::Panel^ panel2;
 private: System::Windows::Forms::Button^ button2;
@@ -1086,8 +1086,8 @@ private: System::Windows::Forms::Label^ textBox10;
 private: System::Windows::Forms::Panel^ editteacherpanel;
 private: System::Windows::Forms::Label^ label39;
 private: System::Windows::Forms::RichTextBox^ teachersearch;
-private: System::Windows::Forms::Label^ label50;
-private: System::Windows::Forms::Label^ label40;
+
+
 private: System::Windows::Forms::Label^ label51;
 private: System::Windows::Forms::Label^ label52;
 private: System::Windows::Forms::Label^ label53;
@@ -1380,6 +1380,65 @@ private: System::Windows::Forms::DataGridViewComboBoxColumn^ cteacher;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn6;
 private: System::Windows::Forms::PictureBox^ pictureBox13;
 
+private: System::Windows::Forms::Panel^ addteacherpanel;
+private: System::Windows::Forms::Label^ label50;
+private: System::Windows::Forms::Label^ label40;
+private: System::Windows::Forms::Label^ label12;
+private: System::Windows::Forms::Label^ label11;
+private: System::Windows::Forms::Label^ label4;
+private: System::Windows::Forms::Label^ label10;
+private: System::Windows::Forms::Label^ label9;
+private: System::Windows::Forms::Label^ label8;
+private: System::Windows::Forms::Label^ label7;
+private: System::Windows::Forms::Label^ label6;
+private: System::Windows::Forms::Label^ label5;
+private: System::Windows::Forms::Button^ buttons35;
+private: System::Windows::Forms::Button^ buttons34;
+private: System::Windows::Forms::Button^ buttons33;
+private: System::Windows::Forms::Button^ buttons32;
+private: System::Windows::Forms::Button^ buttons31;
+private: System::Windows::Forms::Button^ buttons29;
+private: System::Windows::Forms::Button^ buttons28;
+private: System::Windows::Forms::Button^ buttons27;
+private: System::Windows::Forms::Button^ buttons26;
+private: System::Windows::Forms::Button^ buttons25;
+private: System::Windows::Forms::Button^ buttons24;
+private: System::Windows::Forms::Button^ buttons23;
+private: System::Windows::Forms::Button^ buttons22;
+private: System::Windows::Forms::Button^ buttons21;
+private: System::Windows::Forms::Button^ buttons20;
+private: System::Windows::Forms::Button^ buttons19;
+private: System::Windows::Forms::Button^ buttons18;
+private: System::Windows::Forms::Button^ buttons17;
+private: System::Windows::Forms::Button^ buttons16;
+private: System::Windows::Forms::Button^ buttons15;
+private: System::Windows::Forms::Button^ buttons14;
+private: System::Windows::Forms::Button^ buttons13;
+private: System::Windows::Forms::Button^ buttons12;
+private: System::Windows::Forms::Button^ buttons11;
+private: System::Windows::Forms::Button^ buttons10;
+private: System::Windows::Forms::Button^ buttons9;
+private: System::Windows::Forms::Button^ buttons8;
+private: System::Windows::Forms::Button^ buttons7;
+private: System::Windows::Forms::Button^ buttons6;
+private: System::Windows::Forms::Button^ buttons5;
+private: System::Windows::Forms::Button^ buttons4;
+private: System::Windows::Forms::Button^ buttons3;
+private: System::Windows::Forms::Button^ buttons2;
+private: System::Windows::Forms::Button^ buttons1;
+private: System::Windows::Forms::Label^ label3;
+private: System::Windows::Forms::ComboBox^ comboBox1;
+private: System::Windows::Forms::Label^ label2;
+private: System::Windows::Forms::TextBox^ textBox2;
+private: System::Windows::Forms::Button^ button37;
+private: System::Windows::Forms::Button^ button38;
+private: System::Windows::Forms::Button^ buttons30;
+private: System::Windows::Forms::Button^ buttons36;
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::Label^ label14;
+
+
+
     protected:
 	private:
 		/// <summary>
@@ -1544,62 +1603,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->radioButton1 = (gcnew System::Windows::Forms::RadioButton());
             this->addclassroompanel = (gcnew System::Windows::Forms::Panel());
             this->Homepanel = (gcnew System::Windows::Forms::Panel());
-            this->label14 = (gcnew System::Windows::Forms::Label());
-            this->label1 = (gcnew System::Windows::Forms::Label());
-            this->buttons36 = (gcnew System::Windows::Forms::Button());
-            this->buttons30 = (gcnew System::Windows::Forms::Button());
-            this->button38 = (gcnew System::Windows::Forms::Button());
-            this->button37 = (gcnew System::Windows::Forms::Button());
-            this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-            this->label2 = (gcnew System::Windows::Forms::Label());
-            this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-            this->label3 = (gcnew System::Windows::Forms::Label());
-            this->buttons1 = (gcnew System::Windows::Forms::Button());
-            this->buttons2 = (gcnew System::Windows::Forms::Button());
-            this->buttons3 = (gcnew System::Windows::Forms::Button());
-            this->buttons4 = (gcnew System::Windows::Forms::Button());
-            this->buttons5 = (gcnew System::Windows::Forms::Button());
-            this->buttons6 = (gcnew System::Windows::Forms::Button());
-            this->buttons7 = (gcnew System::Windows::Forms::Button());
-            this->buttons8 = (gcnew System::Windows::Forms::Button());
-            this->buttons9 = (gcnew System::Windows::Forms::Button());
-            this->buttons10 = (gcnew System::Windows::Forms::Button());
-            this->buttons11 = (gcnew System::Windows::Forms::Button());
-            this->buttons12 = (gcnew System::Windows::Forms::Button());
-            this->buttons13 = (gcnew System::Windows::Forms::Button());
-            this->buttons14 = (gcnew System::Windows::Forms::Button());
-            this->buttons15 = (gcnew System::Windows::Forms::Button());
-            this->buttons16 = (gcnew System::Windows::Forms::Button());
-            this->buttons17 = (gcnew System::Windows::Forms::Button());
-            this->buttons18 = (gcnew System::Windows::Forms::Button());
-            this->buttons19 = (gcnew System::Windows::Forms::Button());
-            this->buttons20 = (gcnew System::Windows::Forms::Button());
-            this->buttons21 = (gcnew System::Windows::Forms::Button());
-            this->buttons22 = (gcnew System::Windows::Forms::Button());
-            this->buttons23 = (gcnew System::Windows::Forms::Button());
-            this->buttons24 = (gcnew System::Windows::Forms::Button());
-            this->buttons25 = (gcnew System::Windows::Forms::Button());
-            this->buttons26 = (gcnew System::Windows::Forms::Button());
-            this->buttons27 = (gcnew System::Windows::Forms::Button());
-            this->buttons28 = (gcnew System::Windows::Forms::Button());
-            this->buttons29 = (gcnew System::Windows::Forms::Button());
-            this->buttons31 = (gcnew System::Windows::Forms::Button());
-            this->buttons32 = (gcnew System::Windows::Forms::Button());
-            this->buttons33 = (gcnew System::Windows::Forms::Button());
-            this->buttons34 = (gcnew System::Windows::Forms::Button());
-            this->buttons35 = (gcnew System::Windows::Forms::Button());
-            this->label5 = (gcnew System::Windows::Forms::Label());
-            this->label6 = (gcnew System::Windows::Forms::Label());
-            this->label7 = (gcnew System::Windows::Forms::Label());
-            this->label8 = (gcnew System::Windows::Forms::Label());
-            this->label9 = (gcnew System::Windows::Forms::Label());
-            this->label10 = (gcnew System::Windows::Forms::Label());
-            this->label4 = (gcnew System::Windows::Forms::Label());
-            this->label11 = (gcnew System::Windows::Forms::Label());
-            this->label12 = (gcnew System::Windows::Forms::Label());
-            this->addteacherpanel = (gcnew System::Windows::Forms::Panel());
-            this->label50 = (gcnew System::Windows::Forms::Label());
-            this->label40 = (gcnew System::Windows::Forms::Label());
             this->panel2 = (gcnew System::Windows::Forms::Panel());
             this->button2 = (gcnew System::Windows::Forms::Button());
             this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
@@ -1613,6 +1616,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
             this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
             this->panel4 = (gcnew System::Windows::Forms::Panel());
+            this->pictureBox13 = (gcnew System::Windows::Forms::PictureBox());
             this->label15 = (gcnew System::Windows::Forms::Label());
             this->label38 = (gcnew System::Windows::Forms::Label());
             this->maskedTextBox2 = (gcnew System::Windows::Forms::MaskedTextBox());
@@ -1888,7 +1892,62 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->editsubjecteleteacher = (gcnew System::Windows::Forms::DataGridView());
             this->dataGridViewComboBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn9 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
-            this->pictureBox13 = (gcnew System::Windows::Forms::PictureBox());
+            this->addteacherpanel = (gcnew System::Windows::Forms::Panel());
+            this->label50 = (gcnew System::Windows::Forms::Label());
+            this->label40 = (gcnew System::Windows::Forms::Label());
+            this->label12 = (gcnew System::Windows::Forms::Label());
+            this->label11 = (gcnew System::Windows::Forms::Label());
+            this->label4 = (gcnew System::Windows::Forms::Label());
+            this->label10 = (gcnew System::Windows::Forms::Label());
+            this->label9 = (gcnew System::Windows::Forms::Label());
+            this->label8 = (gcnew System::Windows::Forms::Label());
+            this->label7 = (gcnew System::Windows::Forms::Label());
+            this->label6 = (gcnew System::Windows::Forms::Label());
+            this->label5 = (gcnew System::Windows::Forms::Label());
+            this->buttons35 = (gcnew System::Windows::Forms::Button());
+            this->buttons34 = (gcnew System::Windows::Forms::Button());
+            this->buttons33 = (gcnew System::Windows::Forms::Button());
+            this->buttons32 = (gcnew System::Windows::Forms::Button());
+            this->buttons31 = (gcnew System::Windows::Forms::Button());
+            this->buttons29 = (gcnew System::Windows::Forms::Button());
+            this->buttons28 = (gcnew System::Windows::Forms::Button());
+            this->buttons27 = (gcnew System::Windows::Forms::Button());
+            this->buttons26 = (gcnew System::Windows::Forms::Button());
+            this->buttons25 = (gcnew System::Windows::Forms::Button());
+            this->buttons24 = (gcnew System::Windows::Forms::Button());
+            this->buttons23 = (gcnew System::Windows::Forms::Button());
+            this->buttons22 = (gcnew System::Windows::Forms::Button());
+            this->buttons21 = (gcnew System::Windows::Forms::Button());
+            this->buttons20 = (gcnew System::Windows::Forms::Button());
+            this->buttons19 = (gcnew System::Windows::Forms::Button());
+            this->buttons18 = (gcnew System::Windows::Forms::Button());
+            this->buttons17 = (gcnew System::Windows::Forms::Button());
+            this->buttons16 = (gcnew System::Windows::Forms::Button());
+            this->buttons15 = (gcnew System::Windows::Forms::Button());
+            this->buttons14 = (gcnew System::Windows::Forms::Button());
+            this->buttons13 = (gcnew System::Windows::Forms::Button());
+            this->buttons12 = (gcnew System::Windows::Forms::Button());
+            this->buttons11 = (gcnew System::Windows::Forms::Button());
+            this->buttons10 = (gcnew System::Windows::Forms::Button());
+            this->buttons9 = (gcnew System::Windows::Forms::Button());
+            this->buttons8 = (gcnew System::Windows::Forms::Button());
+            this->buttons7 = (gcnew System::Windows::Forms::Button());
+            this->buttons6 = (gcnew System::Windows::Forms::Button());
+            this->buttons5 = (gcnew System::Windows::Forms::Button());
+            this->buttons4 = (gcnew System::Windows::Forms::Button());
+            this->buttons3 = (gcnew System::Windows::Forms::Button());
+            this->buttons2 = (gcnew System::Windows::Forms::Button());
+            this->buttons1 = (gcnew System::Windows::Forms::Button());
+            this->label3 = (gcnew System::Windows::Forms::Label());
+            this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+            this->label2 = (gcnew System::Windows::Forms::Label());
+            this->textBox2 = (gcnew System::Windows::Forms::TextBox());
+            this->button37 = (gcnew System::Windows::Forms::Button());
+            this->button38 = (gcnew System::Windows::Forms::Button());
+            this->buttons30 = (gcnew System::Windows::Forms::Button());
+            this->buttons36 = (gcnew System::Windows::Forms::Button());
+            this->label1 = (gcnew System::Windows::Forms::Label());
+            this->label14 = (gcnew System::Windows::Forms::Label());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sldataGridView))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown5))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bfactorupdown))->BeginInit();
@@ -1899,7 +1958,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown1))->BeginInit();
             this->groupBox1->SuspendLayout();
             this->addclassroompanel->SuspendLayout();
-            this->addteacherpanel->SuspendLayout();
             this->panel2->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
@@ -1909,6 +1967,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->BeginInit();
             this->panel4->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
@@ -1933,7 +1992,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectcredit))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectlabteachers))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjecteleteacher))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->BeginInit();
+            this->addteacherpanel->SuspendLayout();
             this->SuspendLayout();
             // 
             // label45
@@ -3345,796 +3404,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->Homepanel->Size = System::Drawing::Size(1946, 1106);
             this->Homepanel->TabIndex = 258;
             // 
-            // label14
-            // 
-            this->label14->AutoSize = true;
-            this->label14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label14->Location = System::Drawing::Point(1116, 510);
-            this->label14->Name = L"label14";
-            this->label14->Size = System::Drawing::Size(94, 28);
-            this->label14->TabIndex = 228;
-            this->label14->Text = L"2:30-3:30";
-            // 
-            // label1
-            // 
-            this->label1->AutoSize = true;
-            this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label1->Location = System::Drawing::Point(337, 156);
-            this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(179, 28);
-            this->label1->TabIndex = 175;
-            this->label1->Text = L"Enter teacher name";
-            // 
-            // buttons36
-            // 
-            this->buttons36->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons36->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons36->Location = System::Drawing::Point(1263, 877);
-            this->buttons36->Name = L"buttons36";
-            this->buttons36->Size = System::Drawing::Size(138, 54);
-            this->buttons36->TabIndex = 215;
-            this->buttons36->Text = L"free";
-            this->buttons36->UseVisualStyleBackColor = false;
-            this->buttons36->Click += gcnew System::EventHandler(this, &MyForm::buttons36_Click);
-            // 
-            // buttons30
-            // 
-            this->buttons30->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons30->Location = System::Drawing::Point(1263, 816);
-            this->buttons30->Name = L"buttons30";
-            this->buttons30->Size = System::Drawing::Size(138, 55);
-            this->buttons30->TabIndex = 209;
-            this->buttons30->Text = L"free";
-            this->buttons30->UseVisualStyleBackColor = false;
-            this->buttons30->Click += gcnew System::EventHandler(this, &MyForm::buttons30_Click);
-            // 
-            // button38
-            // 
-            this->button38->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button38->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button38->Location = System::Drawing::Point(1211, 1006);
-            this->button38->Name = L"button38";
-            this->button38->Size = System::Drawing::Size(121, 45);
-            this->button38->TabIndex = 216;
-            this->button38->Text = L"Add New";
-            this->button38->UseVisualStyleBackColor = false;
-            this->button38->Click += gcnew System::EventHandler(this, &MyForm::button38_Click_1);
-            // 
-            // button37
-            // 
-            this->button37->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button37->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button37->Location = System::Drawing::Point(1041, 1006);
-            this->button37->Name = L"button37";
-            this->button37->Size = System::Drawing::Size(121, 45);
-            this->button37->TabIndex = 217;
-            this->button37->Text = L"Save";
-            this->button37->UseVisualStyleBackColor = false;
-            this->button37->Click += gcnew System::EventHandler(this, &MyForm::button37_Click_1);
-            // 
-            // textBox2
-            // 
-            this->textBox2->AcceptsTab = true;
-            this->textBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->textBox2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->textBox2->ForeColor = System::Drawing::Color::Black;
-            this->textBox2->Location = System::Drawing::Point(341, 202);
-            this->textBox2->Name = L"textBox2";
-            this->textBox2->Size = System::Drawing::Size(361, 27);
-            this->textBox2->TabIndex = 176;
-            // 
-            // label2
-            // 
-            this->label2->AutoSize = true;
-            this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label2->Location = System::Drawing::Point(342, 283);
-            this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(198, 28);
-            this->label2->TabIndex = 177;
-            this->label2->Text = L"Enter the department";
-            // 
-            // comboBox1
-            // 
-            this->comboBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->comboBox1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->comboBox1->FormattingEnabled = true;
-            this->comboBox1->Location = System::Drawing::Point(341, 328);
-            this->comboBox1->Name = L"comboBox1";
-            this->comboBox1->Size = System::Drawing::Size(362, 36);
-            this->comboBox1->TabIndex = 178;
-            // 
-            // label3
-            // 
-            this->label3->AutoSize = true;
-            this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label3->Location = System::Drawing::Point(337, 425);
-            this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label3->Name = L"label3";
-            this->label3->Size = System::Drawing::Size(161, 28);
-            this->label3->TabIndex = 179;
-            this->label3->Text = L"Teacher Schedule";
-            // 
-            // buttons1
-            // 
-            this->buttons1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons1->Location = System::Drawing::Point(482, 572);
-            this->buttons1->Name = L"buttons1";
-            this->buttons1->Size = System::Drawing::Size(138, 55);
-            this->buttons1->TabIndex = 180;
-            this->buttons1->Text = L"free";
-            this->buttons1->UseVisualStyleBackColor = false;
-            this->buttons1->Click += gcnew System::EventHandler(this, &MyForm::buttons1_Click);
-            // 
-            // buttons2
-            // 
-            this->buttons2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons2->Location = System::Drawing::Point(637, 572);
-            this->buttons2->Name = L"buttons2";
-            this->buttons2->Size = System::Drawing::Size(138, 55);
-            this->buttons2->TabIndex = 181;
-            this->buttons2->Text = L"free";
-            this->buttons2->UseVisualStyleBackColor = false;
-            this->buttons2->Click += gcnew System::EventHandler(this, &MyForm::buttons2_Click);
-            // 
-            // buttons3
-            // 
-            this->buttons3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons3->Location = System::Drawing::Point(796, 572);
-            this->buttons3->Name = L"buttons3";
-            this->buttons3->Size = System::Drawing::Size(138, 55);
-            this->buttons3->TabIndex = 182;
-            this->buttons3->Text = L"free";
-            this->buttons3->UseVisualStyleBackColor = false;
-            this->buttons3->Click += gcnew System::EventHandler(this, &MyForm::buttons3_Click);
-            // 
-            // buttons4
-            // 
-            this->buttons4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons4->Location = System::Drawing::Point(949, 572);
-            this->buttons4->Name = L"buttons4";
-            this->buttons4->Size = System::Drawing::Size(138, 55);
-            this->buttons4->TabIndex = 183;
-            this->buttons4->Text = L"free";
-            this->buttons4->UseVisualStyleBackColor = false;
-            this->buttons4->Click += gcnew System::EventHandler(this, &MyForm::buttons4_Click);
-            // 
-            // buttons5
-            // 
-            this->buttons5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons5->Location = System::Drawing::Point(1108, 572);
-            this->buttons5->Name = L"buttons5";
-            this->buttons5->Size = System::Drawing::Size(138, 55);
-            this->buttons5->TabIndex = 184;
-            this->buttons5->Text = L"free";
-            this->buttons5->UseVisualStyleBackColor = false;
-            this->buttons5->Click += gcnew System::EventHandler(this, &MyForm::buttons5_Click);
-            // 
-            // buttons6
-            // 
-            this->buttons6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons6->Location = System::Drawing::Point(1263, 572);
-            this->buttons6->Name = L"buttons6";
-            this->buttons6->Size = System::Drawing::Size(138, 55);
-            this->buttons6->TabIndex = 185;
-            this->buttons6->Text = L"free";
-            this->buttons6->UseVisualStyleBackColor = false;
-            this->buttons6->Click += gcnew System::EventHandler(this, &MyForm::buttons6_Click);
-            // 
-            // buttons7
-            // 
-            this->buttons7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons7->Location = System::Drawing::Point(482, 632);
-            this->buttons7->Name = L"buttons7";
-            this->buttons7->Size = System::Drawing::Size(138, 55);
-            this->buttons7->TabIndex = 186;
-            this->buttons7->Text = L"free";
-            this->buttons7->UseVisualStyleBackColor = false;
-            this->buttons7->Click += gcnew System::EventHandler(this, &MyForm::buttons7_Click);
-            // 
-            // buttons8
-            // 
-            this->buttons8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons8->Location = System::Drawing::Point(637, 632);
-            this->buttons8->Name = L"buttons8";
-            this->buttons8->Size = System::Drawing::Size(138, 55);
-            this->buttons8->TabIndex = 187;
-            this->buttons8->Text = L"free";
-            this->buttons8->UseVisualStyleBackColor = false;
-            this->buttons8->Click += gcnew System::EventHandler(this, &MyForm::buttons8_Click);
-            // 
-            // buttons9
-            // 
-            this->buttons9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons9->Location = System::Drawing::Point(796, 632);
-            this->buttons9->Name = L"buttons9";
-            this->buttons9->Size = System::Drawing::Size(138, 55);
-            this->buttons9->TabIndex = 188;
-            this->buttons9->Text = L"free";
-            this->buttons9->UseVisualStyleBackColor = false;
-            this->buttons9->Click += gcnew System::EventHandler(this, &MyForm::buttons9_Click);
-            // 
-            // buttons10
-            // 
-            this->buttons10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons10->Location = System::Drawing::Point(949, 632);
-            this->buttons10->Name = L"buttons10";
-            this->buttons10->Size = System::Drawing::Size(138, 55);
-            this->buttons10->TabIndex = 189;
-            this->buttons10->Text = L"free";
-            this->buttons10->UseVisualStyleBackColor = false;
-            this->buttons10->Click += gcnew System::EventHandler(this, &MyForm::buttons10_Click);
-            // 
-            // buttons11
-            // 
-            this->buttons11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons11->Location = System::Drawing::Point(1108, 632);
-            this->buttons11->Name = L"buttons11";
-            this->buttons11->Size = System::Drawing::Size(138, 55);
-            this->buttons11->TabIndex = 190;
-            this->buttons11->Text = L"free";
-            this->buttons11->UseVisualStyleBackColor = false;
-            this->buttons11->Click += gcnew System::EventHandler(this, &MyForm::buttons11_Click);
-            // 
-            // buttons12
-            // 
-            this->buttons12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons12->Location = System::Drawing::Point(1263, 632);
-            this->buttons12->Name = L"buttons12";
-            this->buttons12->Size = System::Drawing::Size(138, 55);
-            this->buttons12->TabIndex = 191;
-            this->buttons12->Text = L"free";
-            this->buttons12->UseVisualStyleBackColor = false;
-            this->buttons12->Click += gcnew System::EventHandler(this, &MyForm::buttons12_Click);
-            // 
-            // buttons13
-            // 
-            this->buttons13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons13->Location = System::Drawing::Point(482, 693);
-            this->buttons13->Name = L"buttons13";
-            this->buttons13->Size = System::Drawing::Size(138, 55);
-            this->buttons13->TabIndex = 192;
-            this->buttons13->Text = L"free";
-            this->buttons13->UseVisualStyleBackColor = false;
-            this->buttons13->Click += gcnew System::EventHandler(this, &MyForm::buttons13_Click);
-            // 
-            // buttons14
-            // 
-            this->buttons14->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons14->Location = System::Drawing::Point(637, 693);
-            this->buttons14->Name = L"buttons14";
-            this->buttons14->Size = System::Drawing::Size(138, 55);
-            this->buttons14->TabIndex = 193;
-            this->buttons14->Text = L"free";
-            this->buttons14->UseVisualStyleBackColor = false;
-            this->buttons14->Click += gcnew System::EventHandler(this, &MyForm::buttons14_Click);
-            // 
-            // buttons15
-            // 
-            this->buttons15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons15->Location = System::Drawing::Point(796, 693);
-            this->buttons15->Name = L"buttons15";
-            this->buttons15->Size = System::Drawing::Size(138, 55);
-            this->buttons15->TabIndex = 194;
-            this->buttons15->Text = L"free";
-            this->buttons15->UseVisualStyleBackColor = false;
-            this->buttons15->Click += gcnew System::EventHandler(this, &MyForm::buttons15_Click);
-            // 
-            // buttons16
-            // 
-            this->buttons16->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons16->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons16->Location = System::Drawing::Point(949, 693);
-            this->buttons16->Name = L"buttons16";
-            this->buttons16->Size = System::Drawing::Size(138, 55);
-            this->buttons16->TabIndex = 195;
-            this->buttons16->Text = L"free";
-            this->buttons16->UseVisualStyleBackColor = false;
-            this->buttons16->Click += gcnew System::EventHandler(this, &MyForm::buttons16_Click);
-            // 
-            // buttons17
-            // 
-            this->buttons17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons17->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons17->Location = System::Drawing::Point(1108, 693);
-            this->buttons17->Name = L"buttons17";
-            this->buttons17->Size = System::Drawing::Size(138, 55);
-            this->buttons17->TabIndex = 196;
-            this->buttons17->Text = L"free";
-            this->buttons17->UseVisualStyleBackColor = false;
-            this->buttons17->Click += gcnew System::EventHandler(this, &MyForm::buttons17_Click);
-            // 
-            // buttons18
-            // 
-            this->buttons18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons18->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons18->Location = System::Drawing::Point(1263, 696);
-            this->buttons18->Name = L"buttons18";
-            this->buttons18->Size = System::Drawing::Size(138, 55);
-            this->buttons18->TabIndex = 197;
-            this->buttons18->Text = L"free";
-            this->buttons18->UseVisualStyleBackColor = false;
-            this->buttons18->Click += gcnew System::EventHandler(this, &MyForm::buttons18_Click);
-            // 
-            // buttons19
-            // 
-            this->buttons19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons19->Location = System::Drawing::Point(482, 753);
-            this->buttons19->Name = L"buttons19";
-            this->buttons19->Size = System::Drawing::Size(138, 55);
-            this->buttons19->TabIndex = 198;
-            this->buttons19->Text = L"free";
-            this->buttons19->UseVisualStyleBackColor = false;
-            this->buttons19->Click += gcnew System::EventHandler(this, &MyForm::buttons19_Click);
-            // 
-            // buttons20
-            // 
-            this->buttons20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons20->Location = System::Drawing::Point(637, 754);
-            this->buttons20->Name = L"buttons20";
-            this->buttons20->Size = System::Drawing::Size(138, 55);
-            this->buttons20->TabIndex = 199;
-            this->buttons20->Text = L"free";
-            this->buttons20->UseVisualStyleBackColor = false;
-            this->buttons20->Click += gcnew System::EventHandler(this, &MyForm::buttons20_Click);
-            // 
-            // buttons21
-            // 
-            this->buttons21->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons21->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons21->Location = System::Drawing::Point(796, 754);
-            this->buttons21->Name = L"buttons21";
-            this->buttons21->Size = System::Drawing::Size(138, 55);
-            this->buttons21->TabIndex = 200;
-            this->buttons21->Text = L"free";
-            this->buttons21->UseVisualStyleBackColor = false;
-            this->buttons21->Click += gcnew System::EventHandler(this, &MyForm::buttons21_Click);
-            // 
-            // buttons22
-            // 
-            this->buttons22->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons22->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons22->Location = System::Drawing::Point(949, 753);
-            this->buttons22->Name = L"buttons22";
-            this->buttons22->Size = System::Drawing::Size(138, 55);
-            this->buttons22->TabIndex = 201;
-            this->buttons22->Text = L"free";
-            this->buttons22->UseVisualStyleBackColor = false;
-            this->buttons22->Click += gcnew System::EventHandler(this, &MyForm::buttons22_Click);
-            // 
-            // buttons23
-            // 
-            this->buttons23->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons23->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons23->Location = System::Drawing::Point(1108, 754);
-            this->buttons23->Name = L"buttons23";
-            this->buttons23->Size = System::Drawing::Size(138, 55);
-            this->buttons23->TabIndex = 202;
-            this->buttons23->Text = L"free";
-            this->buttons23->UseVisualStyleBackColor = false;
-            this->buttons23->Click += gcnew System::EventHandler(this, &MyForm::buttons23_Click);
-            // 
-            // buttons24
-            // 
-            this->buttons24->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons24->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons24->Location = System::Drawing::Point(1263, 753);
-            this->buttons24->Name = L"buttons24";
-            this->buttons24->Size = System::Drawing::Size(138, 55);
-            this->buttons24->TabIndex = 203;
-            this->buttons24->Text = L"free";
-            this->buttons24->UseVisualStyleBackColor = false;
-            this->buttons24->Click += gcnew System::EventHandler(this, &MyForm::buttons24_Click);
-            // 
-            // buttons25
-            // 
-            this->buttons25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons25->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons25->Location = System::Drawing::Point(482, 816);
-            this->buttons25->Name = L"buttons25";
-            this->buttons25->Size = System::Drawing::Size(138, 55);
-            this->buttons25->TabIndex = 204;
-            this->buttons25->Text = L"free";
-            this->buttons25->UseVisualStyleBackColor = false;
-            this->buttons25->Click += gcnew System::EventHandler(this, &MyForm::buttons25_Click);
-            // 
-            // buttons26
-            // 
-            this->buttons26->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons26->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons26->Location = System::Drawing::Point(637, 816);
-            this->buttons26->Name = L"buttons26";
-            this->buttons26->Size = System::Drawing::Size(138, 55);
-            this->buttons26->TabIndex = 205;
-            this->buttons26->Text = L"free";
-            this->buttons26->UseVisualStyleBackColor = false;
-            this->buttons26->Click += gcnew System::EventHandler(this, &MyForm::buttons26_Click);
-            // 
-            // buttons27
-            // 
-            this->buttons27->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons27->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons27->Location = System::Drawing::Point(796, 816);
-            this->buttons27->Name = L"buttons27";
-            this->buttons27->Size = System::Drawing::Size(138, 55);
-            this->buttons27->TabIndex = 206;
-            this->buttons27->Text = L"free";
-            this->buttons27->UseVisualStyleBackColor = false;
-            this->buttons27->Click += gcnew System::EventHandler(this, &MyForm::buttons27_Click);
-            // 
-            // buttons28
-            // 
-            this->buttons28->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons28->Location = System::Drawing::Point(949, 816);
-            this->buttons28->Name = L"buttons28";
-            this->buttons28->Size = System::Drawing::Size(138, 55);
-            this->buttons28->TabIndex = 207;
-            this->buttons28->Text = L"free";
-            this->buttons28->UseVisualStyleBackColor = false;
-            this->buttons28->Click += gcnew System::EventHandler(this, &MyForm::buttons28_Click);
-            // 
-            // buttons29
-            // 
-            this->buttons29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons29->Location = System::Drawing::Point(1108, 816);
-            this->buttons29->Name = L"buttons29";
-            this->buttons29->Size = System::Drawing::Size(138, 55);
-            this->buttons29->TabIndex = 208;
-            this->buttons29->Text = L"free";
-            this->buttons29->UseVisualStyleBackColor = false;
-            this->buttons29->Click += gcnew System::EventHandler(this, &MyForm::buttons29_Click);
-            // 
-            // buttons31
-            // 
-            this->buttons31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons31->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons31->Location = System::Drawing::Point(482, 877);
-            this->buttons31->Name = L"buttons31";
-            this->buttons31->Size = System::Drawing::Size(138, 54);
-            this->buttons31->TabIndex = 210;
-            this->buttons31->Text = L"free";
-            this->buttons31->UseVisualStyleBackColor = false;
-            this->buttons31->Click += gcnew System::EventHandler(this, &MyForm::buttons31_Click);
-            // 
-            // buttons32
-            // 
-            this->buttons32->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons32->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons32->Location = System::Drawing::Point(637, 877);
-            this->buttons32->Name = L"buttons32";
-            this->buttons32->Size = System::Drawing::Size(138, 54);
-            this->buttons32->TabIndex = 211;
-            this->buttons32->Text = L"free";
-            this->buttons32->UseVisualStyleBackColor = false;
-            this->buttons32->Click += gcnew System::EventHandler(this, &MyForm::buttons32_Click);
-            // 
-            // buttons33
-            // 
-            this->buttons33->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons33->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons33->Location = System::Drawing::Point(796, 877);
-            this->buttons33->Name = L"buttons33";
-            this->buttons33->Size = System::Drawing::Size(138, 54);
-            this->buttons33->TabIndex = 212;
-            this->buttons33->Text = L"free";
-            this->buttons33->UseVisualStyleBackColor = false;
-            this->buttons33->Click += gcnew System::EventHandler(this, &MyForm::buttons33_Click);
-            // 
-            // buttons34
-            // 
-            this->buttons34->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons34->Location = System::Drawing::Point(949, 877);
-            this->buttons34->Name = L"buttons34";
-            this->buttons34->Size = System::Drawing::Size(138, 54);
-            this->buttons34->TabIndex = 213;
-            this->buttons34->Text = L"free";
-            this->buttons34->UseVisualStyleBackColor = false;
-            this->buttons34->Click += gcnew System::EventHandler(this, &MyForm::buttons34_Click);
-            // 
-            // buttons35
-            // 
-            this->buttons35->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons35->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons35->Location = System::Drawing::Point(1108, 877);
-            this->buttons35->Name = L"buttons35";
-            this->buttons35->Size = System::Drawing::Size(138, 54);
-            this->buttons35->TabIndex = 214;
-            this->buttons35->Text = L"free";
-            this->buttons35->UseVisualStyleBackColor = false;
-            this->buttons35->Click += gcnew System::EventHandler(this, &MyForm::buttons35_Click);
-            // 
-            // label5
-            // 
-            this->label5->AutoSize = true;
-            this->label5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label5->Location = System::Drawing::Point(345, 580);
-            this->label5->Name = L"label5";
-            this->label5->Size = System::Drawing::Size(85, 28);
-            this->label5->TabIndex = 218;
-            this->label5->Text = L"Monday";
-            // 
-            // label6
-            // 
-            this->label6->AutoSize = true;
-            this->label6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label6->Location = System::Drawing::Point(348, 884);
-            this->label6->Name = L"label6";
-            this->label6->Size = System::Drawing::Size(90, 28);
-            this->label6->TabIndex = 219;
-            this->label6->Text = L"Saturday";
-            // 
-            // label7
-            // 
-            this->label7->AutoSize = true;
-            this->label7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label7->Location = System::Drawing::Point(362, 829);
-            this->label7->Name = L"label7";
-            this->label7->Size = System::Drawing::Size(66, 28);
-            this->label7->TabIndex = 220;
-            this->label7->Text = L"Friday";
-            // 
-            // label8
-            // 
-            this->label8->AutoSize = true;
-            this->label8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label8->Location = System::Drawing::Point(341, 767);
-            this->label8->Name = L"label8";
-            this->label8->Size = System::Drawing::Size(91, 28);
-            this->label8->TabIndex = 221;
-            this->label8->Text = L"Thursday";
-            // 
-            // label9
-            // 
-            this->label9->AutoSize = true;
-            this->label9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label9->Location = System::Drawing::Point(331, 706);
-            this->label9->Name = L"label9";
-            this->label9->Size = System::Drawing::Size(113, 28);
-            this->label9->TabIndex = 222;
-            this->label9->Text = L"Wednesday";
-            // 
-            // label10
-            // 
-            this->label10->AutoSize = true;
-            this->label10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label10->Location = System::Drawing::Point(345, 637);
-            this->label10->Name = L"label10";
-            this->label10->Size = System::Drawing::Size(83, 28);
-            this->label10->TabIndex = 223;
-            this->label10->Text = L"Tuesday";
-            // 
-            // label4
-            // 
-            this->label4->AutoSize = true;
-            this->label4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label4->Location = System::Drawing::Point(500, 510);
-            this->label4->Name = L"label4";
-            this->label4->Size = System::Drawing::Size(105, 28);
-            this->label4->TabIndex = 224;
-            this->label4->Text = L"9:00-10:00";
-            // 
-            // label11
-            // 
-            this->label11->AutoSize = true;
-            this->label11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label11->Location = System::Drawing::Point(641, 510);
-            this->label11->Name = L"label11";
-            this->label11->Size = System::Drawing::Size(116, 28);
-            this->label11->TabIndex = 225;
-            this->label11->Text = L"10:00-11:00";
-            // 
-            // label12
-            // 
-            this->label12->AutoSize = true;
-            this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label12->Location = System::Drawing::Point(781, 510);
-            this->label12->Name = L"label12";
-            this->label12->Size = System::Drawing::Size(116, 28);
-            this->label12->TabIndex = 226;
-            this->label12->Text = L"11:30-12:30";
-            // 
-            // addteacherpanel
-            // 
-            this->addteacherpanel->AutoScroll = true;
-            this->addteacherpanel->Controls->Add(this->label50);
-            this->addteacherpanel->Controls->Add(this->label40);
-            this->addteacherpanel->Controls->Add(this->label12);
-            this->addteacherpanel->Controls->Add(this->label11);
-            this->addteacherpanel->Controls->Add(this->label4);
-            this->addteacherpanel->Controls->Add(this->label10);
-            this->addteacherpanel->Controls->Add(this->label9);
-            this->addteacherpanel->Controls->Add(this->label8);
-            this->addteacherpanel->Controls->Add(this->label7);
-            this->addteacherpanel->Controls->Add(this->label6);
-            this->addteacherpanel->Controls->Add(this->label5);
-            this->addteacherpanel->Controls->Add(this->buttons35);
-            this->addteacherpanel->Controls->Add(this->buttons34);
-            this->addteacherpanel->Controls->Add(this->buttons33);
-            this->addteacherpanel->Controls->Add(this->buttons32);
-            this->addteacherpanel->Controls->Add(this->buttons31);
-            this->addteacherpanel->Controls->Add(this->buttons29);
-            this->addteacherpanel->Controls->Add(this->buttons28);
-            this->addteacherpanel->Controls->Add(this->buttons27);
-            this->addteacherpanel->Controls->Add(this->buttons26);
-            this->addteacherpanel->Controls->Add(this->buttons25);
-            this->addteacherpanel->Controls->Add(this->buttons24);
-            this->addteacherpanel->Controls->Add(this->buttons23);
-            this->addteacherpanel->Controls->Add(this->buttons22);
-            this->addteacherpanel->Controls->Add(this->buttons21);
-            this->addteacherpanel->Controls->Add(this->buttons20);
-            this->addteacherpanel->Controls->Add(this->buttons19);
-            this->addteacherpanel->Controls->Add(this->buttons18);
-            this->addteacherpanel->Controls->Add(this->buttons17);
-            this->addteacherpanel->Controls->Add(this->buttons16);
-            this->addteacherpanel->Controls->Add(this->buttons15);
-            this->addteacherpanel->Controls->Add(this->buttons14);
-            this->addteacherpanel->Controls->Add(this->buttons13);
-            this->addteacherpanel->Controls->Add(this->buttons12);
-            this->addteacherpanel->Controls->Add(this->buttons11);
-            this->addteacherpanel->Controls->Add(this->buttons10);
-            this->addteacherpanel->Controls->Add(this->buttons9);
-            this->addteacherpanel->Controls->Add(this->buttons8);
-            this->addteacherpanel->Controls->Add(this->buttons7);
-            this->addteacherpanel->Controls->Add(this->buttons6);
-            this->addteacherpanel->Controls->Add(this->buttons5);
-            this->addteacherpanel->Controls->Add(this->buttons4);
-            this->addteacherpanel->Controls->Add(this->buttons3);
-            this->addteacherpanel->Controls->Add(this->buttons2);
-            this->addteacherpanel->Controls->Add(this->buttons1);
-            this->addteacherpanel->Controls->Add(this->label3);
-            this->addteacherpanel->Controls->Add(this->comboBox1);
-            this->addteacherpanel->Controls->Add(this->label2);
-            this->addteacherpanel->Controls->Add(this->textBox2);
-            this->addteacherpanel->Controls->Add(this->button37);
-            this->addteacherpanel->Controls->Add(this->button38);
-            this->addteacherpanel->Controls->Add(this->buttons30);
-            this->addteacherpanel->Controls->Add(this->buttons36);
-            this->addteacherpanel->Controls->Add(this->label1);
-            this->addteacherpanel->Controls->Add(this->label14);
-            this->addteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->addteacherpanel->Location = System::Drawing::Point(0, 0);
-            this->addteacherpanel->Name = L"addteacherpanel";
-            this->addteacherpanel->Size = System::Drawing::Size(1946, 1106);
-            this->addteacherpanel->TabIndex = 175;
-            this->addteacherpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint);
-            // 
-            // label50
-            // 
-            this->label50->AutoSize = true;
-            this->label50->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label50->Location = System::Drawing::Point(1270, 511);
-            this->label50->Name = L"label50";
-            this->label50->Size = System::Drawing::Size(94, 28);
-            this->label50->TabIndex = 230;
-            this->label50->Text = L"3:30-4:30";
-            // 
-            // label40
-            // 
-            this->label40->AutoSize = true;
-            this->label40->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label40->Location = System::Drawing::Point(959, 510);
-            this->label40->Name = L"label40";
-            this->label40->Size = System::Drawing::Size(116, 28);
-            this->label40->TabIndex = 229;
-            this->label40->Text = L"12:30-11:30";
-            // 
             // panel2
             // 
             this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
@@ -4300,7 +3569,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             // pictureBox9
             // 
             this->pictureBox9->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox9.Image")));
-            this->pictureBox9->Location = System::Drawing::Point(1753, 53);
+            this->pictureBox9->Location = System::Drawing::Point(1689, 54);
             this->pictureBox9->Name = L"pictureBox9";
             this->pictureBox9->Size = System::Drawing::Size(39, 41);
             this->pictureBox9->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -4313,7 +3582,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             // pictureBox10
             // 
             this->pictureBox10->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox10.Image")));
-            this->pictureBox10->Location = System::Drawing::Point(1827, 53);
+            this->pictureBox10->Location = System::Drawing::Point(1846, 54);
             this->pictureBox10->Name = L"pictureBox10";
             this->pictureBox10->Size = System::Drawing::Size(39, 41);
             this->pictureBox10->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -4367,6 +3636,17 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->panel4->Size = System::Drawing::Size(1946, 134);
             this->panel4->TabIndex = 2;
             this->panel4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel4_Paint);
+            // 
+            // pictureBox13
+            // 
+            this->pictureBox13->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox13.Image")));
+            this->pictureBox13->Location = System::Drawing::Point(1768, 54);
+            this->pictureBox13->Name = L"pictureBox13";
+            this->pictureBox13->Size = System::Drawing::Size(39, 41);
+            this->pictureBox13->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox13->TabIndex = 7;
+            this->pictureBox13->TabStop = false;
+            this->pictureBox13->Click += gcnew System::EventHandler(this, &MyForm::pictureBox13_Click);
             // 
             // label15
             // 
@@ -8503,16 +7783,793 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->dataGridViewButtonColumn9->Text = L"Delete";
             this->dataGridViewButtonColumn9->UseColumnTextForButtonValue = true;
             // 
-            // pictureBox13
+            // addteacherpanel
             // 
-            this->pictureBox13->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox13.Image")));
-            this->pictureBox13->Location = System::Drawing::Point(1682, 53);
-            this->pictureBox13->Name = L"pictureBox13";
-            this->pictureBox13->Size = System::Drawing::Size(39, 41);
-            this->pictureBox13->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-            this->pictureBox13->TabIndex = 7;
-            this->pictureBox13->TabStop = false;
-            this->pictureBox13->Click += gcnew System::EventHandler(this, &MyForm::pictureBox13_Click);
+            this->addteacherpanel->AutoScroll = true;
+            this->addteacherpanel->Controls->Add(this->label50);
+            this->addteacherpanel->Controls->Add(this->label40);
+            this->addteacherpanel->Controls->Add(this->label12);
+            this->addteacherpanel->Controls->Add(this->label11);
+            this->addteacherpanel->Controls->Add(this->label4);
+            this->addteacherpanel->Controls->Add(this->label10);
+            this->addteacherpanel->Controls->Add(this->label9);
+            this->addteacherpanel->Controls->Add(this->label8);
+            this->addteacherpanel->Controls->Add(this->label7);
+            this->addteacherpanel->Controls->Add(this->label6);
+            this->addteacherpanel->Controls->Add(this->label5);
+            this->addteacherpanel->Controls->Add(this->buttons35);
+            this->addteacherpanel->Controls->Add(this->buttons34);
+            this->addteacherpanel->Controls->Add(this->buttons33);
+            this->addteacherpanel->Controls->Add(this->buttons32);
+            this->addteacherpanel->Controls->Add(this->buttons31);
+            this->addteacherpanel->Controls->Add(this->buttons29);
+            this->addteacherpanel->Controls->Add(this->buttons28);
+            this->addteacherpanel->Controls->Add(this->buttons27);
+            this->addteacherpanel->Controls->Add(this->buttons26);
+            this->addteacherpanel->Controls->Add(this->buttons25);
+            this->addteacherpanel->Controls->Add(this->buttons24);
+            this->addteacherpanel->Controls->Add(this->buttons23);
+            this->addteacherpanel->Controls->Add(this->buttons22);
+            this->addteacherpanel->Controls->Add(this->buttons21);
+            this->addteacherpanel->Controls->Add(this->buttons20);
+            this->addteacherpanel->Controls->Add(this->buttons19);
+            this->addteacherpanel->Controls->Add(this->buttons18);
+            this->addteacherpanel->Controls->Add(this->buttons17);
+            this->addteacherpanel->Controls->Add(this->buttons16);
+            this->addteacherpanel->Controls->Add(this->buttons15);
+            this->addteacherpanel->Controls->Add(this->buttons14);
+            this->addteacherpanel->Controls->Add(this->buttons13);
+            this->addteacherpanel->Controls->Add(this->buttons12);
+            this->addteacherpanel->Controls->Add(this->buttons11);
+            this->addteacherpanel->Controls->Add(this->buttons10);
+            this->addteacherpanel->Controls->Add(this->buttons9);
+            this->addteacherpanel->Controls->Add(this->buttons8);
+            this->addteacherpanel->Controls->Add(this->buttons7);
+            this->addteacherpanel->Controls->Add(this->buttons6);
+            this->addteacherpanel->Controls->Add(this->buttons5);
+            this->addteacherpanel->Controls->Add(this->buttons4);
+            this->addteacherpanel->Controls->Add(this->buttons3);
+            this->addteacherpanel->Controls->Add(this->buttons2);
+            this->addteacherpanel->Controls->Add(this->buttons1);
+            this->addteacherpanel->Controls->Add(this->label3);
+            this->addteacherpanel->Controls->Add(this->comboBox1);
+            this->addteacherpanel->Controls->Add(this->label2);
+            this->addteacherpanel->Controls->Add(this->textBox2);
+            this->addteacherpanel->Controls->Add(this->button37);
+            this->addteacherpanel->Controls->Add(this->button38);
+            this->addteacherpanel->Controls->Add(this->buttons30);
+            this->addteacherpanel->Controls->Add(this->buttons36);
+            this->addteacherpanel->Controls->Add(this->label1);
+            this->addteacherpanel->Controls->Add(this->label14);
+            this->addteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->addteacherpanel->Location = System::Drawing::Point(0, 0);
+            this->addteacherpanel->Name = L"addteacherpanel";
+            this->addteacherpanel->Size = System::Drawing::Size(1946, 1106);
+            this->addteacherpanel->TabIndex = 293;
+            // 
+            // label50
+            // 
+            this->label50->AutoSize = true;
+            this->label50->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label50->Location = System::Drawing::Point(1266, 502);
+            this->label50->Name = L"label50";
+            this->label50->Size = System::Drawing::Size(94, 28);
+            this->label50->TabIndex = 285;
+            this->label50->Text = L"3:30-4:30";
+            // 
+            // label40
+            // 
+            this->label40->AutoSize = true;
+            this->label40->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label40->Location = System::Drawing::Point(955, 501);
+            this->label40->Name = L"label40";
+            this->label40->Size = System::Drawing::Size(116, 28);
+            this->label40->TabIndex = 284;
+            this->label40->Text = L"12:30-11:30";
+            // 
+            // label12
+            // 
+            this->label12->AutoSize = true;
+            this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label12->Location = System::Drawing::Point(777, 501);
+            this->label12->Name = L"label12";
+            this->label12->Size = System::Drawing::Size(116, 28);
+            this->label12->TabIndex = 282;
+            this->label12->Text = L"11:30-12:30";
+            // 
+            // label11
+            // 
+            this->label11->AutoSize = true;
+            this->label11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label11->Location = System::Drawing::Point(637, 501);
+            this->label11->Name = L"label11";
+            this->label11->Size = System::Drawing::Size(116, 28);
+            this->label11->TabIndex = 281;
+            this->label11->Text = L"10:00-11:00";
+            // 
+            // label4
+            // 
+            this->label4->AutoSize = true;
+            this->label4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label4->Location = System::Drawing::Point(496, 501);
+            this->label4->Name = L"label4";
+            this->label4->Size = System::Drawing::Size(105, 28);
+            this->label4->TabIndex = 280;
+            this->label4->Text = L"9:00-10:00";
+            // 
+            // label10
+            // 
+            this->label10->AutoSize = true;
+            this->label10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label10->Location = System::Drawing::Point(341, 628);
+            this->label10->Name = L"label10";
+            this->label10->Size = System::Drawing::Size(83, 28);
+            this->label10->TabIndex = 279;
+            this->label10->Text = L"Tuesday";
+            // 
+            // label9
+            // 
+            this->label9->AutoSize = true;
+            this->label9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label9->Location = System::Drawing::Point(327, 697);
+            this->label9->Name = L"label9";
+            this->label9->Size = System::Drawing::Size(113, 28);
+            this->label9->TabIndex = 278;
+            this->label9->Text = L"Wednesday";
+            // 
+            // label8
+            // 
+            this->label8->AutoSize = true;
+            this->label8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label8->Location = System::Drawing::Point(337, 758);
+            this->label8->Name = L"label8";
+            this->label8->Size = System::Drawing::Size(91, 28);
+            this->label8->TabIndex = 277;
+            this->label8->Text = L"Thursday";
+            // 
+            // label7
+            // 
+            this->label7->AutoSize = true;
+            this->label7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label7->Location = System::Drawing::Point(358, 820);
+            this->label7->Name = L"label7";
+            this->label7->Size = System::Drawing::Size(66, 28);
+            this->label7->TabIndex = 276;
+            this->label7->Text = L"Friday";
+            // 
+            // label6
+            // 
+            this->label6->AutoSize = true;
+            this->label6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label6->Location = System::Drawing::Point(344, 875);
+            this->label6->Name = L"label6";
+            this->label6->Size = System::Drawing::Size(90, 28);
+            this->label6->TabIndex = 275;
+            this->label6->Text = L"Saturday";
+            // 
+            // label5
+            // 
+            this->label5->AutoSize = true;
+            this->label5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label5->Location = System::Drawing::Point(341, 571);
+            this->label5->Name = L"label5";
+            this->label5->Size = System::Drawing::Size(85, 28);
+            this->label5->TabIndex = 274;
+            this->label5->Text = L"Monday";
+            // 
+            // buttons35
+            // 
+            this->buttons35->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons35->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons35->Location = System::Drawing::Point(1104, 868);
+            this->buttons35->Name = L"buttons35";
+            this->buttons35->Size = System::Drawing::Size(138, 54);
+            this->buttons35->TabIndex = 270;
+            this->buttons35->Text = L"free";
+            this->buttons35->UseVisualStyleBackColor = false;
+            this->buttons35->Click += gcnew System::EventHandler(this, &MyForm::buttons35_Click);
+            // 
+            // buttons34
+            // 
+            this->buttons34->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons34->Location = System::Drawing::Point(945, 868);
+            this->buttons34->Name = L"buttons34";
+            this->buttons34->Size = System::Drawing::Size(138, 54);
+            this->buttons34->TabIndex = 269;
+            this->buttons34->Text = L"free";
+            this->buttons34->UseVisualStyleBackColor = false;
+            this->buttons34->Click += gcnew System::EventHandler(this, &MyForm::buttons34_Click);
+            // 
+            // buttons33
+            // 
+            this->buttons33->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons33->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons33->Location = System::Drawing::Point(792, 868);
+            this->buttons33->Name = L"buttons33";
+            this->buttons33->Size = System::Drawing::Size(138, 54);
+            this->buttons33->TabIndex = 268;
+            this->buttons33->Text = L"free";
+            this->buttons33->UseVisualStyleBackColor = false;
+            this->buttons33->Click += gcnew System::EventHandler(this, &MyForm::buttons33_Click);
+            // 
+            // buttons32
+            // 
+            this->buttons32->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons32->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons32->Location = System::Drawing::Point(633, 868);
+            this->buttons32->Name = L"buttons32";
+            this->buttons32->Size = System::Drawing::Size(138, 54);
+            this->buttons32->TabIndex = 267;
+            this->buttons32->Text = L"free";
+            this->buttons32->UseVisualStyleBackColor = false;
+            this->buttons32->Click += gcnew System::EventHandler(this, &MyForm::buttons32_Click);
+            // 
+            // buttons31
+            // 
+            this->buttons31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons31->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons31->Location = System::Drawing::Point(478, 868);
+            this->buttons31->Name = L"buttons31";
+            this->buttons31->Size = System::Drawing::Size(138, 54);
+            this->buttons31->TabIndex = 266;
+            this->buttons31->Text = L"free";
+            this->buttons31->UseVisualStyleBackColor = false;
+            this->buttons31->Click += gcnew System::EventHandler(this, &MyForm::buttons31_Click);
+            // 
+            // buttons29
+            // 
+            this->buttons29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons29->Location = System::Drawing::Point(1104, 807);
+            this->buttons29->Name = L"buttons29";
+            this->buttons29->Size = System::Drawing::Size(138, 55);
+            this->buttons29->TabIndex = 264;
+            this->buttons29->Text = L"free";
+            this->buttons29->UseVisualStyleBackColor = false;
+            this->buttons29->Click += gcnew System::EventHandler(this, &MyForm::buttons29_Click);
+            // 
+            // buttons28
+            // 
+            this->buttons28->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons28->Location = System::Drawing::Point(945, 807);
+            this->buttons28->Name = L"buttons28";
+            this->buttons28->Size = System::Drawing::Size(138, 55);
+            this->buttons28->TabIndex = 263;
+            this->buttons28->Text = L"free";
+            this->buttons28->UseVisualStyleBackColor = false;
+            this->buttons28->Click += gcnew System::EventHandler(this, &MyForm::buttons28_Click);
+            // 
+            // buttons27
+            // 
+            this->buttons27->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons27->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons27->Location = System::Drawing::Point(792, 807);
+            this->buttons27->Name = L"buttons27";
+            this->buttons27->Size = System::Drawing::Size(138, 55);
+            this->buttons27->TabIndex = 262;
+            this->buttons27->Text = L"free";
+            this->buttons27->UseVisualStyleBackColor = false;
+            this->buttons27->Click += gcnew System::EventHandler(this, &MyForm::buttons27_Click);
+            // 
+            // buttons26
+            // 
+            this->buttons26->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons26->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons26->Location = System::Drawing::Point(633, 807);
+            this->buttons26->Name = L"buttons26";
+            this->buttons26->Size = System::Drawing::Size(138, 55);
+            this->buttons26->TabIndex = 261;
+            this->buttons26->Text = L"free";
+            this->buttons26->UseVisualStyleBackColor = false;
+            this->buttons26->Click += gcnew System::EventHandler(this, &MyForm::buttons26_Click);
+            // 
+            // buttons25
+            // 
+            this->buttons25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons25->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons25->Location = System::Drawing::Point(478, 807);
+            this->buttons25->Name = L"buttons25";
+            this->buttons25->Size = System::Drawing::Size(138, 55);
+            this->buttons25->TabIndex = 260;
+            this->buttons25->Text = L"free";
+            this->buttons25->UseVisualStyleBackColor = false;
+            this->buttons25->Click += gcnew System::EventHandler(this, &MyForm::buttons25_Click);
+            // 
+            // buttons24
+            // 
+            this->buttons24->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons24->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons24->Location = System::Drawing::Point(1259, 744);
+            this->buttons24->Name = L"buttons24";
+            this->buttons24->Size = System::Drawing::Size(138, 55);
+            this->buttons24->TabIndex = 259;
+            this->buttons24->Text = L"free";
+            this->buttons24->UseVisualStyleBackColor = false;
+            this->buttons24->Click += gcnew System::EventHandler(this, &MyForm::buttons24_Click);
+            // 
+            // buttons23
+            // 
+            this->buttons23->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons23->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons23->Location = System::Drawing::Point(1104, 745);
+            this->buttons23->Name = L"buttons23";
+            this->buttons23->Size = System::Drawing::Size(138, 55);
+            this->buttons23->TabIndex = 258;
+            this->buttons23->Text = L"free";
+            this->buttons23->UseVisualStyleBackColor = false;
+            this->buttons23->Click += gcnew System::EventHandler(this, &MyForm::buttons23_Click);
+            // 
+            // buttons22
+            // 
+            this->buttons22->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons22->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons22->Location = System::Drawing::Point(945, 744);
+            this->buttons22->Name = L"buttons22";
+            this->buttons22->Size = System::Drawing::Size(138, 55);
+            this->buttons22->TabIndex = 257;
+            this->buttons22->Text = L"free";
+            this->buttons22->UseVisualStyleBackColor = false;
+            this->buttons22->Click += gcnew System::EventHandler(this, &MyForm::buttons22_Click);
+            // 
+            // buttons21
+            // 
+            this->buttons21->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons21->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons21->Location = System::Drawing::Point(792, 745);
+            this->buttons21->Name = L"buttons21";
+            this->buttons21->Size = System::Drawing::Size(138, 55);
+            this->buttons21->TabIndex = 256;
+            this->buttons21->Text = L"free";
+            this->buttons21->UseVisualStyleBackColor = false;
+            this->buttons21->Click += gcnew System::EventHandler(this, &MyForm::buttons21_Click);
+            // 
+            // buttons20
+            // 
+            this->buttons20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons20->Location = System::Drawing::Point(633, 745);
+            this->buttons20->Name = L"buttons20";
+            this->buttons20->Size = System::Drawing::Size(138, 55);
+            this->buttons20->TabIndex = 255;
+            this->buttons20->Text = L"free";
+            this->buttons20->UseVisualStyleBackColor = false;
+            this->buttons20->Click += gcnew System::EventHandler(this, &MyForm::buttons20_Click);
+            // 
+            // buttons19
+            // 
+            this->buttons19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons19->Location = System::Drawing::Point(478, 744);
+            this->buttons19->Name = L"buttons19";
+            this->buttons19->Size = System::Drawing::Size(138, 55);
+            this->buttons19->TabIndex = 254;
+            this->buttons19->Text = L"free";
+            this->buttons19->UseVisualStyleBackColor = false;
+            this->buttons19->Click += gcnew System::EventHandler(this, &MyForm::buttons19_Click);
+            // 
+            // buttons18
+            // 
+            this->buttons18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons18->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons18->Location = System::Drawing::Point(1259, 687);
+            this->buttons18->Name = L"buttons18";
+            this->buttons18->Size = System::Drawing::Size(138, 55);
+            this->buttons18->TabIndex = 253;
+            this->buttons18->Text = L"free";
+            this->buttons18->UseVisualStyleBackColor = false;
+            this->buttons18->Click += gcnew System::EventHandler(this, &MyForm::buttons18_Click);
+            // 
+            // buttons17
+            // 
+            this->buttons17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons17->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons17->Location = System::Drawing::Point(1104, 684);
+            this->buttons17->Name = L"buttons17";
+            this->buttons17->Size = System::Drawing::Size(138, 55);
+            this->buttons17->TabIndex = 252;
+            this->buttons17->Text = L"free";
+            this->buttons17->UseVisualStyleBackColor = false;
+            this->buttons17->Click += gcnew System::EventHandler(this, &MyForm::buttons17_Click);
+            // 
+            // buttons16
+            // 
+            this->buttons16->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons16->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons16->Location = System::Drawing::Point(945, 684);
+            this->buttons16->Name = L"buttons16";
+            this->buttons16->Size = System::Drawing::Size(138, 55);
+            this->buttons16->TabIndex = 251;
+            this->buttons16->Text = L"free";
+            this->buttons16->UseVisualStyleBackColor = false;
+            this->buttons16->Click += gcnew System::EventHandler(this, &MyForm::buttons16_Click);
+            // 
+            // buttons15
+            // 
+            this->buttons15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons15->Location = System::Drawing::Point(792, 684);
+            this->buttons15->Name = L"buttons15";
+            this->buttons15->Size = System::Drawing::Size(138, 55);
+            this->buttons15->TabIndex = 250;
+            this->buttons15->Text = L"free";
+            this->buttons15->UseVisualStyleBackColor = false;
+            this->buttons15->Click += gcnew System::EventHandler(this, &MyForm::buttons15_Click);
+            // 
+            // buttons14
+            // 
+            this->buttons14->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons14->Location = System::Drawing::Point(633, 684);
+            this->buttons14->Name = L"buttons14";
+            this->buttons14->Size = System::Drawing::Size(138, 55);
+            this->buttons14->TabIndex = 249;
+            this->buttons14->Text = L"free";
+            this->buttons14->UseVisualStyleBackColor = false;
+            this->buttons14->Click += gcnew System::EventHandler(this, &MyForm::buttons14_Click);
+            // 
+            // buttons13
+            // 
+            this->buttons13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons13->Location = System::Drawing::Point(478, 684);
+            this->buttons13->Name = L"buttons13";
+            this->buttons13->Size = System::Drawing::Size(138, 55);
+            this->buttons13->TabIndex = 248;
+            this->buttons13->Text = L"free";
+            this->buttons13->UseVisualStyleBackColor = false;
+            this->buttons13->Click += gcnew System::EventHandler(this, &MyForm::buttons13_Click);
+            // 
+            // buttons12
+            // 
+            this->buttons12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons12->Location = System::Drawing::Point(1259, 623);
+            this->buttons12->Name = L"buttons12";
+            this->buttons12->Size = System::Drawing::Size(138, 55);
+            this->buttons12->TabIndex = 247;
+            this->buttons12->Text = L"free";
+            this->buttons12->UseVisualStyleBackColor = false;
+            this->buttons12->Click += gcnew System::EventHandler(this, &MyForm::buttons12_Click);
+            // 
+            // buttons11
+            // 
+            this->buttons11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons11->Location = System::Drawing::Point(1104, 623);
+            this->buttons11->Name = L"buttons11";
+            this->buttons11->Size = System::Drawing::Size(138, 55);
+            this->buttons11->TabIndex = 246;
+            this->buttons11->Text = L"free";
+            this->buttons11->UseVisualStyleBackColor = false;
+            this->buttons11->Click += gcnew System::EventHandler(this, &MyForm::buttons11_Click);
+            // 
+            // buttons10
+            // 
+            this->buttons10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons10->Location = System::Drawing::Point(945, 623);
+            this->buttons10->Name = L"buttons10";
+            this->buttons10->Size = System::Drawing::Size(138, 55);
+            this->buttons10->TabIndex = 245;
+            this->buttons10->Text = L"free";
+            this->buttons10->UseVisualStyleBackColor = false;
+            this->buttons10->Click += gcnew System::EventHandler(this, &MyForm::buttons10_Click);
+            // 
+            // buttons9
+            // 
+            this->buttons9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons9->Location = System::Drawing::Point(792, 623);
+            this->buttons9->Name = L"buttons9";
+            this->buttons9->Size = System::Drawing::Size(138, 55);
+            this->buttons9->TabIndex = 244;
+            this->buttons9->Text = L"free";
+            this->buttons9->UseVisualStyleBackColor = false;
+            this->buttons9->Click += gcnew System::EventHandler(this, &MyForm::buttons9_Click);
+            // 
+            // buttons8
+            // 
+            this->buttons8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons8->Location = System::Drawing::Point(633, 623);
+            this->buttons8->Name = L"buttons8";
+            this->buttons8->Size = System::Drawing::Size(138, 55);
+            this->buttons8->TabIndex = 243;
+            this->buttons8->Text = L"free";
+            this->buttons8->UseVisualStyleBackColor = false;
+            this->buttons8->Click += gcnew System::EventHandler(this, &MyForm::buttons8_Click);
+            // 
+            // buttons7
+            // 
+            this->buttons7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons7->Location = System::Drawing::Point(478, 623);
+            this->buttons7->Name = L"buttons7";
+            this->buttons7->Size = System::Drawing::Size(138, 55);
+            this->buttons7->TabIndex = 242;
+            this->buttons7->Text = L"free";
+            this->buttons7->UseVisualStyleBackColor = false;
+            this->buttons7->Click += gcnew System::EventHandler(this, &MyForm::buttons7_Click);
+            // 
+            // buttons6
+            // 
+            this->buttons6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons6->Location = System::Drawing::Point(1259, 563);
+            this->buttons6->Name = L"buttons6";
+            this->buttons6->Size = System::Drawing::Size(138, 55);
+            this->buttons6->TabIndex = 241;
+            this->buttons6->Text = L"free";
+            this->buttons6->UseVisualStyleBackColor = false;
+            this->buttons6->Click += gcnew System::EventHandler(this, &MyForm::buttons6_Click);
+            // 
+            // buttons5
+            // 
+            this->buttons5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons5->Location = System::Drawing::Point(1104, 563);
+            this->buttons5->Name = L"buttons5";
+            this->buttons5->Size = System::Drawing::Size(138, 55);
+            this->buttons5->TabIndex = 240;
+            this->buttons5->Text = L"free";
+            this->buttons5->UseVisualStyleBackColor = false;
+            this->buttons5->Click += gcnew System::EventHandler(this, &MyForm::buttons5_Click);
+            // 
+            // buttons4
+            // 
+            this->buttons4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons4->Location = System::Drawing::Point(945, 563);
+            this->buttons4->Name = L"buttons4";
+            this->buttons4->Size = System::Drawing::Size(138, 55);
+            this->buttons4->TabIndex = 239;
+            this->buttons4->Text = L"free";
+            this->buttons4->UseVisualStyleBackColor = false;
+            this->buttons4->Click += gcnew System::EventHandler(this, &MyForm::buttons4_Click);
+            // 
+            // buttons3
+            // 
+            this->buttons3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons3->Location = System::Drawing::Point(792, 563);
+            this->buttons3->Name = L"buttons3";
+            this->buttons3->Size = System::Drawing::Size(138, 55);
+            this->buttons3->TabIndex = 238;
+            this->buttons3->Text = L"free";
+            this->buttons3->UseVisualStyleBackColor = false;
+            this->buttons3->Click += gcnew System::EventHandler(this, &MyForm::buttons3_Click);
+            // 
+            // buttons2
+            // 
+            this->buttons2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons2->Location = System::Drawing::Point(633, 563);
+            this->buttons2->Name = L"buttons2";
+            this->buttons2->Size = System::Drawing::Size(138, 55);
+            this->buttons2->TabIndex = 237;
+            this->buttons2->Text = L"free";
+            this->buttons2->UseVisualStyleBackColor = false;
+            this->buttons2->Click += gcnew System::EventHandler(this, &MyForm::buttons2_Click);
+            // 
+            // buttons1
+            // 
+            this->buttons1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons1->Location = System::Drawing::Point(478, 563);
+            this->buttons1->Name = L"buttons1";
+            this->buttons1->Size = System::Drawing::Size(138, 55);
+            this->buttons1->TabIndex = 236;
+            this->buttons1->Text = L"free";
+            this->buttons1->UseVisualStyleBackColor = false;
+            this->buttons1->Click += gcnew System::EventHandler(this, &MyForm::buttons1_Click);
+            // 
+            // label3
+            // 
+            this->label3->AutoSize = true;
+            this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label3->Location = System::Drawing::Point(333, 416);
+            this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+            this->label3->Name = L"label3";
+            this->label3->Size = System::Drawing::Size(161, 28);
+            this->label3->TabIndex = 235;
+            this->label3->Text = L"Teacher Schedule";
+            // 
+            // comboBox1
+            // 
+            this->comboBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->comboBox1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->comboBox1->FormattingEnabled = true;
+            this->comboBox1->Location = System::Drawing::Point(337, 319);
+            this->comboBox1->Name = L"comboBox1";
+            this->comboBox1->Size = System::Drawing::Size(362, 36);
+            this->comboBox1->TabIndex = 234;
+            // 
+            // label2
+            // 
+            this->label2->AutoSize = true;
+            this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label2->Location = System::Drawing::Point(338, 274);
+            this->label2->Name = L"label2";
+            this->label2->Size = System::Drawing::Size(198, 28);
+            this->label2->TabIndex = 233;
+            this->label2->Text = L"Enter the department";
+            // 
+            // textBox2
+            // 
+            this->textBox2->AcceptsTab = true;
+            this->textBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->textBox2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->textBox2->ForeColor = System::Drawing::Color::Black;
+            this->textBox2->Location = System::Drawing::Point(337, 193);
+            this->textBox2->Name = L"textBox2";
+            this->textBox2->Size = System::Drawing::Size(361, 27);
+            this->textBox2->TabIndex = 232;
+            // 
+            // button37
+            // 
+            this->button37->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->button37->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->button37->Location = System::Drawing::Point(1037, 997);
+            this->button37->Name = L"button37";
+            this->button37->Size = System::Drawing::Size(121, 45);
+            this->button37->TabIndex = 273;
+            this->button37->Text = L"Save";
+            this->button37->UseVisualStyleBackColor = false;
+            this->button37->Click += gcnew System::EventHandler(this, &MyForm::button37_Click);
+            // 
+            // button38
+            // 
+            this->button38->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->button38->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->button38->Location = System::Drawing::Point(1207, 997);
+            this->button38->Name = L"button38";
+            this->button38->Size = System::Drawing::Size(121, 45);
+            this->button38->TabIndex = 272;
+            this->button38->Text = L"Add New";
+            this->button38->UseVisualStyleBackColor = false;
+            // 
+            // buttons30
+            // 
+            this->buttons30->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons30->Location = System::Drawing::Point(1259, 807);
+            this->buttons30->Name = L"buttons30";
+            this->buttons30->Size = System::Drawing::Size(138, 55);
+            this->buttons30->TabIndex = 265;
+            this->buttons30->Text = L"free";
+            this->buttons30->UseVisualStyleBackColor = false;
+            this->buttons30->Click += gcnew System::EventHandler(this, &MyForm::buttons30_Click);
+            // 
+            // buttons36
+            // 
+            this->buttons36->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->buttons36->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->buttons36->Location = System::Drawing::Point(1259, 868);
+            this->buttons36->Name = L"buttons36";
+            this->buttons36->Size = System::Drawing::Size(138, 54);
+            this->buttons36->TabIndex = 271;
+            this->buttons36->Text = L"free";
+            this->buttons36->UseVisualStyleBackColor = false;
+            this->buttons36->Click += gcnew System::EventHandler(this, &MyForm::buttons36_Click);
+            // 
+            // label1
+            // 
+            this->label1->AutoSize = true;
+            this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label1->Location = System::Drawing::Point(333, 147);
+            this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+            this->label1->Name = L"label1";
+            this->label1->Size = System::Drawing::Size(179, 28);
+            this->label1->TabIndex = 231;
+            this->label1->Text = L"Enter teacher name";
+            // 
+            // label14
+            // 
+            this->label14->AutoSize = true;
+            this->label14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label14->Location = System::Drawing::Point(1112, 501);
+            this->label14->Name = L"label14";
+            this->label14->Size = System::Drawing::Size(94, 28);
+            this->label14->TabIndex = 283;
+            this->label14->Text = L"2:30-3:30";
             // 
             // MyForm
             // 
@@ -8534,7 +8591,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
-            this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
             this->Text = L"MyForm";
             this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
             this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -8553,8 +8609,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             this->groupBox1->PerformLayout();
             this->addclassroompanel->ResumeLayout(false);
             this->addclassroompanel->PerformLayout();
-            this->addteacherpanel->ResumeLayout(false);
-            this->addteacherpanel->PerformLayout();
             this->panel2->ResumeLayout(false);
             this->panel2->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
@@ -8566,6 +8620,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->EndInit();
             this->panel4->ResumeLayout(false);
             this->panel4->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView3))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->EndInit();
@@ -8599,7 +8654,8 @@ private: System::Windows::Forms::PictureBox^ pictureBox13;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectcredit))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectlabteachers))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjecteleteacher))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->EndInit();
+            this->addteacherpanel->ResumeLayout(false);
+            this->addteacherpanel->PerformLayout();
             this->ResumeLayout(false);
 
         }
@@ -9641,66 +9697,69 @@ private: System::Void button10_Click_1(System::Object^ sender, System::EventArgs
 private: System::Void pictureBox12_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void pictureBox12_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    pictureBox12->Height += 5;
-    pictureBox12->Width += 5;
+    pictureBox12->Height += 2;
+    pictureBox12->Width += 2;
 }
 private: System::Void pictureBox12_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    pictureBox12->Height -= 5;
-    pictureBox12->Width -= 5;
+    pictureBox12->Height -= 2;
+    pictureBox12->Width -= 2;
 }
 private: System::Void Homebutton1_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    Homebutton1->Height += 3;
-    Homebutton1->Width += 3;
+    Homebutton1->Height += 1;
+    Homebutton1->Width += 1;
 }
 private: System::Void Homebutton1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    Homebutton1->Height -= 3;
-    Homebutton1->Width -= 3;
+    Homebutton1->Height -= 1;
+    Homebutton1->Width -= 1;
 }
 private: System::Void button1_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    button1->Height += 3;
-    button1->Width += 3;
+    button1->Height += 1;
+    button1->Width += 1;
 }
 private: System::Void button1_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    button1->Height -= 3;
-    button1->Width -= 3;
+    button1->Height -= 1;
+    button1->Width -= 1;
 }
 private: System::Void button6_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    button6->Height += 3;
-    button6->Width += 3;
+    button6->Height += 1;
+    button6->Width += 1;
 }
 private: System::Void button6_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    button6->Height -= 3;
-    button6->Width -= 3;
+    button6->Height -= 1;
+    button6->Width -= 1;
 }
 private: System::Void button9_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    button9->Height += 3;
-    button9->Width += 3;
+    button9->Height += 1;
+    button9->Width += 1;
 }
 private: System::Void button9_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    button9->Height -= 3;
-    button9->Width -= 3;
+    button9->Height -= 1;
+    button9->Width -= 1;
 }
 private: System::Void button12_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    button12->Height += 3;
-    button12->Width += 3;
+    button12->Height +=1;
+    button12->Width += 1;
 }
 private: System::Void button12_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    button12->Height -= 3;
-    button12->Width -= 3;
+    button12->Height -= 1;
+    button12->Width -= 1;
 }
 private: System::Void button15_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-    button15->Height += 3;
-    button15->Width += 3;
+    button15->Height += 1;
+    button15->Width += 1;
 }
 private: System::Void button15_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-    button15->Height -= 3;
-    button15->Width -= 3;
+    button15->Height -= 1;
+    button15->Width -= 1;
 }
 private: System::Void pictureBox9_Click(System::Object^ sender, System::EventArgs^ e) {
     this->WindowState = FormWindowState::Minimized;
 }
 private: System::Void pictureBox13_Click(System::Object^ sender, System::EventArgs^ e) {
     this->WindowState = FormWindowState::Maximized;
+}
+private: System::Void button37_Click(System::Object^ sender, System::EventArgs^ e) {
+    addnamecsvgen("details/teacher_file.csv");
 }
 };
 }
