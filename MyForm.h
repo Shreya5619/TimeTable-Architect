@@ -32,6 +32,58 @@ namespace TTA_ui {
 			//TODO: Add the constructor code here
 			//
 		}
+        void textBox_KeyDown(Object^ sender, KeyEventArgs^ e)
+        {
+            // Check if the Enter key was pressed
+            if (e->KeyCode == Keys::Enter)
+            {
+                // Perform the desired action (e.g., process the input)
+                ComboBox^ textBox = dynamic_cast<ComboBox^>(sender);
+                if (textBox != nullptr)
+                {
+                    string find = msclr::interop::marshal_as<string>(teachersearch->Text);
+
+                    vector<vector<string>>data = ReadCSVFile("details/teacher_file.csv");
+                    {
+                        for (auto& row : data)
+                        {
+                            string str;
+                            for (char& c : find) {
+                                c = std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
+                            }
+                            for (char& c : row[0]) {
+                                str += std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
+                            }
+                            textBox1->Text = msclr::interop::marshal_as<String^>(str);
+                            if (find == str)
+                            {
+                                editteachername->Text = msclr::interop::marshal_as<String^>(row[0]);
+                                editteacherdepartment->Text = msclr::interop::marshal_as<String^>(row[1]);
+
+                                for (int i = 2; i < row.size(); i += 2)
+                                {
+                                    int x = i / 2;
+                                    String^ tagValue = x.ToString();
+                                    Button^ button = dynamic_cast<Button^>(editteacherpanel->Controls[String::Format("buttont{0}", tagValue)]);
+                                    textBox1->Text = button->Name;
+                                    if (row[i] == "1")
+                                    {
+                                        button->Text = "busy";
+                                        button->BackColor = Color::FromArgb(102, 255, 204);
+                                    }
+                                    else
+                                    {
+                                        button->Text = "free";
+                                        button->BackColor = Color::FromArgb(179, 255, 230);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         void OnSearchBoxFocus(Object^ sender, EventArgs^ e)
         {
@@ -1173,7 +1225,7 @@ private: System::Windows::Forms::Label^ label15;
 
 private: System::Windows::Forms::Panel^ editteacherpanel;
 private: System::Windows::Forms::Label^ label39;
-private: System::Windows::Forms::RichTextBox^ teachersearch;
+
 
 
 private: System::Windows::Forms::Label^ label51;
@@ -1566,6 +1618,10 @@ private: System::Windows::Forms::Label^ textBox11;
 private: System::Windows::Forms::Label^ textBox9;
 private: System::Windows::Forms::Label^ textBox7;
 private: System::Windows::Forms::Panel^ panel1;
+private: System::Windows::Forms::ComboBox^ teachersearch;
+
+
+
 private: System::ComponentModel::IContainer^ components;
 
 
@@ -1835,8 +1891,8 @@ private: System::ComponentModel::IContainer^ components;
             this->buttont36 = (gcnew System::Windows::Forms::Button());
             this->label64 = (gcnew System::Windows::Forms::Label());
             this->label65 = (gcnew System::Windows::Forms::Label());
-            this->teachersearch = (gcnew System::Windows::Forms::RichTextBox());
             this->label39 = (gcnew System::Windows::Forms::Label());
+            this->teachersearch = (gcnew System::Windows::Forms::ComboBox());
             this->editroompanel = (gcnew System::Windows::Forms::Panel());
             this->editroomsearchbutton = (gcnew System::Windows::Forms::Button());
             this->editroomsearch = (gcnew System::Windows::Forms::RichTextBox());
@@ -4419,8 +4475,8 @@ private: System::ComponentModel::IContainer^ components;
             this->editteacherpanel->Controls->Add(this->buttont36);
             this->editteacherpanel->Controls->Add(this->label64);
             this->editteacherpanel->Controls->Add(this->label65);
-            this->editteacherpanel->Controls->Add(this->teachersearch);
             this->editteacherpanel->Controls->Add(this->label39);
+            this->editteacherpanel->Controls->Add(this->teachersearch);
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editteacherpanel->Location = System::Drawing::Point(0, 0);
             this->editteacherpanel->Name = L"editteacherpanel";
@@ -4444,13 +4500,13 @@ private: System::ComponentModel::IContainer^ components;
             // 
             // button18
             // 
-            this->button18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->button18->BackColor = System::Drawing::Color::WhiteSmoke;
             this->button18->FlatAppearance->BorderColor = System::Drawing::Color::FloralWhite;
             this->button18->FlatAppearance->BorderSize = 0;
-            this->button18->Location = System::Drawing::Point(959, 287);
+            this->button18->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button18->Location = System::Drawing::Point(1001, 275);
             this->button18->Name = L"button18";
-            this->button18->Size = System::Drawing::Size(56, 30);
+            this->button18->Size = System::Drawing::Size(30, 38);
             this->button18->TabIndex = 289;
             this->button18->Text = L"🔍\r\n";
             this->button18->UseVisualStyleBackColor = false;
@@ -5174,22 +5230,6 @@ private: System::ComponentModel::IContainer^ components;
             this->label65->TabIndex = 283;
             this->label65->Text = L"2:30-3:30";
             // 
-            // teachersearch
-            // 
-            this->teachersearch->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-            this->teachersearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0), true));
-            this->teachersearch->Location = System::Drawing::Point(657, 279);
-            this->teachersearch->Multiline = false;
-            this->teachersearch->Name = L"teachersearch";
-            this->teachersearch->ScrollBars = System::Windows::Forms::RichTextBoxScrollBars::None;
-            this->teachersearch->ShowSelectionMargin = true;
-            this->teachersearch->Size = System::Drawing::Size(361, 45);
-            this->teachersearch->TabIndex = 1;
-            this->teachersearch->Text = L"Search";
-            this->teachersearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocus);
-            this->teachersearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocus);
-            // 
             // label39
             // 
             this->label39->AutoSize = true;
@@ -5200,6 +5240,23 @@ private: System::ComponentModel::IContainer^ components;
             this->label39->Size = System::Drawing::Size(242, 30);
             this->label39->TabIndex = 0;
             this->label39->Text = L"Enter the teacher Name";
+            // 
+            // teachersearch
+            // 
+            this->teachersearch->BackColor = System::Drawing::Color::White;
+            this->teachersearch->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->teachersearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->teachersearch->FormattingEnabled = true;
+            this->teachersearch->ImeMode = System::Windows::Forms::ImeMode::Off;
+            this->teachersearch->Location = System::Drawing::Point(669, 275);
+            this->teachersearch->Name = L"teachersearch";
+            this->teachersearch->Size = System::Drawing::Size(362, 36);
+            this->teachersearch->TabIndex = 100;
+            this->teachersearch->Text = L"Search";
+            this->teachersearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocus);
+            this->teachersearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDown);
+            this->teachersearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocus);
             // 
             // editroompanel
             // 
@@ -8938,7 +8995,6 @@ private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) 
     DisplayCSVInComboBox(dataGridView2,"details/dept_file.csv");
     
        pictureBox12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pictureBox1_Paint);
-       button18->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::button1_Paint);
        }
 private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
     if (button4->Visible == false)
