@@ -84,6 +84,62 @@ namespace TTA_ui {
                 }
             }
         }
+        
+        void textBox_KeyDownRoom(Object^ sender, KeyEventArgs^ e)
+        {
+            if (e->KeyCode == Keys::Enter)
+            {
+                ComboBox^ textBox = dynamic_cast<ComboBox^>(sender);
+                if (textBox != nullptr)
+                {
+                    string find = msclr::interop::marshal_as<string>(editroomsearch->Text);
+
+                    vector<vector<string>>data = ReadCSVFile("details/classroom.csv");
+                    for (auto& row : data)
+                    {
+                        string str;
+                        for (char& r : find)
+                        {
+                            r = toupper(static_cast<unsigned char>(r));
+                        }
+                        for (char& r : row[0])
+                        {
+                            str += toupper(static_cast<unsigned char>(r));
+                        }
+                        if (find == str) {
+                            editroomname->Text = msclr::interop::marshal_as<String^>(row[0]);
+                            editroomcapacity->Text = msclr::interop::marshal_as<String^>(row[1]);
+                            if (row[2] == "0")
+                            {
+                                editroomlabno->Checked;
+                            }
+                            else
+                            {
+                                editroomlabyes->Checked;
+                            }
+                            editroomdepartment->Text = msclr::interop::marshal_as<String^>(row[3]);
+
+                            for (int i = 4; i < row.size(); i += 2)
+                            {
+                                int x = (i / 2) - 1;
+                                String^ tagValue = x.ToString();
+                                Button^ button = dynamic_cast<Button^>(editroompanel->Controls[String::Format("buttonr{0}", tagValue)]);
+                                if (row[i] == "1")
+                                {
+                                    button->Text = "busy";
+                                    button->BackColor = Color::FromArgb(102, 255, 204);
+                                }
+                                else
+                                {
+                                    button->Text = "free";
+                                    button->BackColor = Color::FromArgb(179, 255, 230);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         void OnSearchBoxFocus(Object^ sender, EventArgs^ e)
         {
@@ -102,6 +158,26 @@ namespace TTA_ui {
             {
                 teachersearch->Text = "Search";
                 teachersearch->ForeColor = Color::Gray; // Change text color to gray when unfocused
+            }
+        }
+
+        void OnSearchBoxFocusRoom(Object^ sender, EventArgs^ e)
+        {
+            // Clear placeholder text and change text color
+            if (editroomsearch->Text == "Search")
+            {
+                editroomsearch->Text = "";
+                editroomsearch->ForeColor = Color::Black; // Change text color to black when focused
+            }
+        }
+
+        void OnSearchBoxLostFocusRoom(Object^ sender, EventArgs^ e)
+        {
+            // Restore placeholder text if search box is empty
+            if (String::IsNullOrEmpty(editroomsearch->Text))
+            {
+                editroomsearch->Text = "Search";
+                editroomsearch->ForeColor = Color::Gray; // Change text color to gray when unfocused
             }
         }
   
@@ -1352,7 +1428,7 @@ private: System::Windows::Forms::Button^ editroomsave;
 
 private: System::Windows::Forms::Panel^ panel6;
 private: System::Windows::Forms::Button^ editroomsearchbutton;
-private: System::Windows::Forms::RichTextBox^ editroomsearch;
+
 private: System::Windows::Forms::Label^ label82;
 private: System::Windows::Forms::Panel^ editsubjectpanel;
 private: System::Windows::Forms::Panel^ panel9;
@@ -1559,6 +1635,9 @@ private: System::Windows::Forms::Label^ textBox9;
 private: System::Windows::Forms::Label^ textBox7;
 private: System::Windows::Forms::Panel^ panel1;
 private: System::Windows::Forms::ComboBox^ teachersearch;
+private: System::Windows::Forms::ComboBox^ editroomsearch;
+
+
 
 
 
@@ -1835,7 +1914,6 @@ private: System::ComponentModel::IContainer^ components;
             this->teachersearch = (gcnew System::Windows::Forms::ComboBox());
             this->editroompanel = (gcnew System::Windows::Forms::Panel());
             this->editroomsearchbutton = (gcnew System::Windows::Forms::Button());
-            this->editroomsearch = (gcnew System::Windows::Forms::RichTextBox());
             this->label82 = (gcnew System::Windows::Forms::Label());
             this->panel6 = (gcnew System::Windows::Forms::Panel());
             this->editroomlabyes = (gcnew System::Windows::Forms::RadioButton());
@@ -1897,6 +1975,7 @@ private: System::ComponentModel::IContainer^ components;
             this->editroomname = (gcnew System::Windows::Forms::TextBox());
             this->label81 = (gcnew System::Windows::Forms::Label());
             this->editroomsave = (gcnew System::Windows::Forms::Button());
+            this->editroomsearch = (gcnew System::Windows::Forms::ComboBox());
             this->editsubjectpanel = (gcnew System::Windows::Forms::Panel());
             this->panel10 = (gcnew System::Windows::Forms::Panel());
             this->button22 = (gcnew System::Windows::Forms::Button());
@@ -5202,7 +5281,6 @@ private: System::ComponentModel::IContainer^ components;
             // 
             this->editroompanel->AutoScroll = true;
             this->editroompanel->Controls->Add(this->editroomsearchbutton);
-            this->editroompanel->Controls->Add(this->editroomsearch);
             this->editroompanel->Controls->Add(this->label82);
             this->editroompanel->Controls->Add(this->panel6);
             this->editroompanel->Controls->Add(this->editroomdelete);
@@ -5262,6 +5340,7 @@ private: System::ComponentModel::IContainer^ components;
             this->editroompanel->Controls->Add(this->editroomname);
             this->editroompanel->Controls->Add(this->label81);
             this->editroompanel->Controls->Add(this->editroomsave);
+            this->editroompanel->Controls->Add(this->editroomsearch);
             this->editroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editroompanel->Location = System::Drawing::Point(0, 0);
             this->editroompanel->Name = L"editroompanel";
@@ -5270,29 +5349,23 @@ private: System::ComponentModel::IContainer^ components;
             // 
             // editroomsearchbutton
             // 
-            this->editroomsearchbutton->Location = System::Drawing::Point(1237, 289);
+            this->editroomsearchbutton->BackColor = System::Drawing::Color::White;
+            this->editroomsearchbutton->FlatAppearance->BorderSize = 0;
+            this->editroomsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->editroomsearchbutton->Location = System::Drawing::Point(847, 162);
             this->editroomsearchbutton->Name = L"editroomsearchbutton";
-            this->editroomsearchbutton->Size = System::Drawing::Size(132, 30);
+            this->editroomsearchbutton->Size = System::Drawing::Size(30, 32);
             this->editroomsearchbutton->TabIndex = 292;
-            this->editroomsearchbutton->Text = L"search";
-            this->editroomsearchbutton->UseVisualStyleBackColor = true;
+            this->editroomsearchbutton->Text = L"🔍";
+            this->editroomsearchbutton->UseVisualStyleBackColor = false;
             this->editroomsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editroomsearchbutton_Click);
-            // 
-            // editroomsearch
-            // 
-            this->editroomsearch->Location = System::Drawing::Point(865, 289);
-            this->editroomsearch->Multiline = false;
-            this->editroomsearch->Name = L"editroomsearch";
-            this->editroomsearch->Size = System::Drawing::Size(361, 30);
-            this->editroomsearch->TabIndex = 291;
-            this->editroomsearch->Text = L"";
             // 
             // label82
             // 
             this->label82->AutoSize = true;
             this->label82->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label82->Location = System::Drawing::Point(930, 228);
+            this->label82->Location = System::Drawing::Point(557, 109);
             this->label82->Name = L"label82";
             this->label82->Size = System::Drawing::Size(271, 30);
             this->label82->TabIndex = 290;
@@ -5302,7 +5375,7 @@ private: System::ComponentModel::IContainer^ components;
             // 
             this->panel6->Controls->Add(this->editroomlabyes);
             this->panel6->Controls->Add(this->editroomlabno);
-            this->panel6->Location = System::Drawing::Point(399, 675);
+            this->panel6->Location = System::Drawing::Point(284, 561);
             this->panel6->Name = L"panel6";
             this->panel6->Size = System::Drawing::Size(207, 63);
             this->panel6->TabIndex = 182;
@@ -5336,7 +5409,7 @@ private: System::ComponentModel::IContainer^ components;
             this->editroomdelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editroomdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->editroomdelete->Location = System::Drawing::Point(1349, 1430);
+            this->editroomdelete->Location = System::Drawing::Point(1234, 1316);
             this->editroomdelete->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomdelete->Name = L"editroomdelete";
             this->editroomdelete->Size = System::Drawing::Size(138, 54);
@@ -5350,7 +5423,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label66->AutoSize = true;
             this->label66->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label66->Location = System::Drawing::Point(561, 864);
+            this->label66->Location = System::Drawing::Point(446, 750);
             this->label66->Name = L"label66";
             this->label66->Size = System::Drawing::Size(105, 28);
             this->label66->TabIndex = 179;
@@ -5361,7 +5434,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label67->AutoSize = true;
             this->label67->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label67->Location = System::Drawing::Point(724, 864);
+            this->label67->Location = System::Drawing::Point(609, 750);
             this->label67->Name = L"label67";
             this->label67->Size = System::Drawing::Size(116, 28);
             this->label67->TabIndex = 178;
@@ -5372,7 +5445,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label68->AutoSize = true;
             this->label68->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label68->Location = System::Drawing::Point(876, 864);
+            this->label68->Location = System::Drawing::Point(761, 750);
             this->label68->Name = L"label68";
             this->label68->Size = System::Drawing::Size(116, 28);
             this->label68->TabIndex = 177;
@@ -5383,7 +5456,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label69->AutoSize = true;
             this->label69->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label69->Location = System::Drawing::Point(1036, 864);
+            this->label69->Location = System::Drawing::Point(921, 750);
             this->label69->Name = L"label69";
             this->label69->Size = System::Drawing::Size(105, 28);
             this->label69->TabIndex = 176;
@@ -5394,7 +5467,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label70->AutoSize = true;
             this->label70->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label70->Location = System::Drawing::Point(1199, 864);
+            this->label70->Location = System::Drawing::Point(1084, 750);
             this->label70->Name = L"label70";
             this->label70->Size = System::Drawing::Size(94, 28);
             this->label70->TabIndex = 175;
@@ -5405,7 +5478,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label71->AutoSize = true;
             this->label71->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label71->Location = System::Drawing::Point(1344, 864);
+            this->label71->Location = System::Drawing::Point(1229, 750);
             this->label71->Name = L"label71";
             this->label71->Size = System::Drawing::Size(94, 28);
             this->label71->TabIndex = 174;
@@ -5416,7 +5489,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label72->AutoSize = true;
             this->label72->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label72->Location = System::Drawing::Point(413, 938);
+            this->label72->Location = System::Drawing::Point(298, 824);
             this->label72->Name = L"label72";
             this->label72->Size = System::Drawing::Size(85, 28);
             this->label72->TabIndex = 173;
@@ -5427,7 +5500,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label73->AutoSize = true;
             this->label73->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label73->Location = System::Drawing::Point(418, 999);
+            this->label73->Location = System::Drawing::Point(303, 885);
             this->label73->Name = L"label73";
             this->label73->Size = System::Drawing::Size(83, 28);
             this->label73->TabIndex = 172;
@@ -5438,7 +5511,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label74->AutoSize = true;
             this->label74->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label74->Location = System::Drawing::Point(405, 1061);
+            this->label74->Location = System::Drawing::Point(290, 947);
             this->label74->Name = L"label74";
             this->label74->Size = System::Drawing::Size(113, 28);
             this->label74->TabIndex = 171;
@@ -5449,7 +5522,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label75->AutoSize = true;
             this->label75->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label75->Location = System::Drawing::Point(405, 1124);
+            this->label75->Location = System::Drawing::Point(290, 1010);
             this->label75->Name = L"label75";
             this->label75->Size = System::Drawing::Size(91, 28);
             this->label75->TabIndex = 170;
@@ -5460,7 +5533,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label76->AutoSize = true;
             this->label76->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label76->Location = System::Drawing::Point(421, 1181);
+            this->label76->Location = System::Drawing::Point(306, 1067);
             this->label76->Name = L"label76";
             this->label76->Size = System::Drawing::Size(66, 28);
             this->label76->TabIndex = 169;
@@ -5471,7 +5544,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label77->AutoSize = true;
             this->label77->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label77->Location = System::Drawing::Point(413, 1239);
+            this->label77->Location = System::Drawing::Point(298, 1125);
             this->label77->Name = L"label77";
             this->label77->Size = System::Drawing::Size(90, 28);
             this->label77->TabIndex = 168;
@@ -5483,7 +5556,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr36->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr36->Location = System::Drawing::Point(1339, 1235);
+            this->buttonr36->Location = System::Drawing::Point(1224, 1121);
             this->buttonr36->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr36->Name = L"buttonr36";
             this->buttonr36->Size = System::Drawing::Size(138, 54);
@@ -5498,7 +5571,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr35->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr35->Location = System::Drawing::Point(1179, 1234);
+            this->buttonr35->Location = System::Drawing::Point(1064, 1120);
             this->buttonr35->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr35->Name = L"buttonr35";
             this->buttonr35->Size = System::Drawing::Size(138, 54);
@@ -5513,7 +5586,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr34->Location = System::Drawing::Point(1021, 1234);
+            this->buttonr34->Location = System::Drawing::Point(906, 1120);
             this->buttonr34->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr34->Name = L"buttonr34";
             this->buttonr34->Size = System::Drawing::Size(138, 54);
@@ -5528,7 +5601,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr33->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr33->Location = System::Drawing::Point(860, 1234);
+            this->buttonr33->Location = System::Drawing::Point(745, 1120);
             this->buttonr33->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr33->Name = L"buttonr33";
             this->buttonr33->Size = System::Drawing::Size(138, 54);
@@ -5543,7 +5616,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr32->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr32->Location = System::Drawing::Point(706, 1235);
+            this->buttonr32->Location = System::Drawing::Point(591, 1121);
             this->buttonr32->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr32->Name = L"buttonr32";
             this->buttonr32->Size = System::Drawing::Size(138, 54);
@@ -5558,7 +5631,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr31->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr31->Location = System::Drawing::Point(548, 1235);
+            this->buttonr31->Location = System::Drawing::Point(433, 1121);
             this->buttonr31->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr31->Name = L"buttonr31";
             this->buttonr31->Size = System::Drawing::Size(138, 54);
@@ -5573,7 +5646,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr30->Location = System::Drawing::Point(1339, 1173);
+            this->buttonr30->Location = System::Drawing::Point(1224, 1059);
             this->buttonr30->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr30->Name = L"buttonr30";
             this->buttonr30->Size = System::Drawing::Size(138, 54);
@@ -5588,7 +5661,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr29->Location = System::Drawing::Point(1179, 1168);
+            this->buttonr29->Location = System::Drawing::Point(1064, 1054);
             this->buttonr29->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr29->Name = L"buttonr29";
             this->buttonr29->Size = System::Drawing::Size(138, 54);
@@ -5603,7 +5676,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr28->Location = System::Drawing::Point(1021, 1168);
+            this->buttonr28->Location = System::Drawing::Point(906, 1054);
             this->buttonr28->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr28->Name = L"buttonr28";
             this->buttonr28->Size = System::Drawing::Size(138, 54);
@@ -5618,7 +5691,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr27->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr27->Location = System::Drawing::Point(860, 1168);
+            this->buttonr27->Location = System::Drawing::Point(745, 1054);
             this->buttonr27->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr27->Name = L"buttonr27";
             this->buttonr27->Size = System::Drawing::Size(138, 54);
@@ -5633,7 +5706,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr26->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr26->Location = System::Drawing::Point(706, 1169);
+            this->buttonr26->Location = System::Drawing::Point(591, 1055);
             this->buttonr26->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr26->Name = L"buttonr26";
             this->buttonr26->Size = System::Drawing::Size(138, 54);
@@ -5648,7 +5721,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr25->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr25->Location = System::Drawing::Point(548, 1169);
+            this->buttonr25->Location = System::Drawing::Point(433, 1055);
             this->buttonr25->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr25->Name = L"buttonr25";
             this->buttonr25->Size = System::Drawing::Size(138, 54);
@@ -5663,7 +5736,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr24->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr24->Location = System::Drawing::Point(1339, 1111);
+            this->buttonr24->Location = System::Drawing::Point(1224, 997);
             this->buttonr24->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr24->Name = L"buttonr24";
             this->buttonr24->Size = System::Drawing::Size(138, 54);
@@ -5678,7 +5751,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr23->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr23->Location = System::Drawing::Point(1179, 1110);
+            this->buttonr23->Location = System::Drawing::Point(1064, 996);
             this->buttonr23->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr23->Name = L"buttonr23";
             this->buttonr23->Size = System::Drawing::Size(138, 54);
@@ -5693,7 +5766,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr22->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr22->Location = System::Drawing::Point(1021, 1110);
+            this->buttonr22->Location = System::Drawing::Point(906, 996);
             this->buttonr22->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr22->Name = L"buttonr22";
             this->buttonr22->Size = System::Drawing::Size(138, 54);
@@ -5708,7 +5781,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr21->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr21->Location = System::Drawing::Point(860, 1110);
+            this->buttonr21->Location = System::Drawing::Point(745, 996);
             this->buttonr21->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr21->Name = L"buttonr21";
             this->buttonr21->Size = System::Drawing::Size(138, 54);
@@ -5723,7 +5796,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr20->Location = System::Drawing::Point(706, 1111);
+            this->buttonr20->Location = System::Drawing::Point(591, 997);
             this->buttonr20->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr20->Name = L"buttonr20";
             this->buttonr20->Size = System::Drawing::Size(138, 54);
@@ -5738,7 +5811,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr19->Location = System::Drawing::Point(547, 1111);
+            this->buttonr19->Location = System::Drawing::Point(432, 997);
             this->buttonr19->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr19->Name = L"buttonr19";
             this->buttonr19->Size = System::Drawing::Size(138, 54);
@@ -5753,7 +5826,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr18->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr18->Location = System::Drawing::Point(1339, 1049);
+            this->buttonr18->Location = System::Drawing::Point(1224, 935);
             this->buttonr18->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr18->Name = L"buttonr18";
             this->buttonr18->Size = System::Drawing::Size(138, 54);
@@ -5768,7 +5841,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr17->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr17->Location = System::Drawing::Point(1179, 1048);
+            this->buttonr17->Location = System::Drawing::Point(1064, 934);
             this->buttonr17->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr17->Name = L"buttonr17";
             this->buttonr17->Size = System::Drawing::Size(138, 54);
@@ -5783,7 +5856,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr16->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr16->Location = System::Drawing::Point(1021, 1048);
+            this->buttonr16->Location = System::Drawing::Point(906, 934);
             this->buttonr16->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr16->Name = L"buttonr16";
             this->buttonr16->Size = System::Drawing::Size(138, 54);
@@ -5798,7 +5871,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr15->Location = System::Drawing::Point(860, 1048);
+            this->buttonr15->Location = System::Drawing::Point(745, 934);
             this->buttonr15->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr15->Name = L"buttonr15";
             this->buttonr15->Size = System::Drawing::Size(138, 54);
@@ -5813,7 +5886,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr14->Location = System::Drawing::Point(706, 1049);
+            this->buttonr14->Location = System::Drawing::Point(591, 935);
             this->buttonr14->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr14->Name = L"buttonr14";
             this->buttonr14->Size = System::Drawing::Size(138, 54);
@@ -5828,7 +5901,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr13->Location = System::Drawing::Point(547, 1049);
+            this->buttonr13->Location = System::Drawing::Point(432, 935);
             this->buttonr13->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr13->Name = L"buttonr13";
             this->buttonr13->Size = System::Drawing::Size(138, 54);
@@ -5843,7 +5916,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr12->Location = System::Drawing::Point(1339, 987);
+            this->buttonr12->Location = System::Drawing::Point(1224, 873);
             this->buttonr12->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr12->Name = L"buttonr12";
             this->buttonr12->Size = System::Drawing::Size(138, 54);
@@ -5858,7 +5931,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr11->Location = System::Drawing::Point(1179, 986);
+            this->buttonr11->Location = System::Drawing::Point(1064, 872);
             this->buttonr11->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr11->Name = L"buttonr11";
             this->buttonr11->Size = System::Drawing::Size(138, 54);
@@ -5873,7 +5946,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr10->Location = System::Drawing::Point(1021, 986);
+            this->buttonr10->Location = System::Drawing::Point(906, 872);
             this->buttonr10->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr10->Name = L"buttonr10";
             this->buttonr10->Size = System::Drawing::Size(138, 54);
@@ -5888,7 +5961,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr9->Location = System::Drawing::Point(860, 986);
+            this->buttonr9->Location = System::Drawing::Point(745, 872);
             this->buttonr9->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr9->Name = L"buttonr9";
             this->buttonr9->Size = System::Drawing::Size(138, 54);
@@ -5903,7 +5976,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr8->Location = System::Drawing::Point(706, 987);
+            this->buttonr8->Location = System::Drawing::Point(591, 873);
             this->buttonr8->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr8->Name = L"buttonr8";
             this->buttonr8->Size = System::Drawing::Size(138, 54);
@@ -5918,7 +5991,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr7->Location = System::Drawing::Point(548, 987);
+            this->buttonr7->Location = System::Drawing::Point(433, 873);
             this->buttonr7->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr7->Name = L"buttonr7";
             this->buttonr7->Size = System::Drawing::Size(138, 54);
@@ -5933,7 +6006,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr6->Location = System::Drawing::Point(1339, 927);
+            this->buttonr6->Location = System::Drawing::Point(1224, 813);
             this->buttonr6->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr6->Name = L"buttonr6";
             this->buttonr6->Size = System::Drawing::Size(138, 54);
@@ -5948,7 +6021,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr5->Location = System::Drawing::Point(1179, 926);
+            this->buttonr5->Location = System::Drawing::Point(1064, 812);
             this->buttonr5->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr5->Name = L"buttonr5";
             this->buttonr5->Size = System::Drawing::Size(138, 54);
@@ -5963,7 +6036,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr4->Location = System::Drawing::Point(1021, 926);
+            this->buttonr4->Location = System::Drawing::Point(906, 812);
             this->buttonr4->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr4->Name = L"buttonr4";
             this->buttonr4->Size = System::Drawing::Size(138, 54);
@@ -5978,7 +6051,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr3->Location = System::Drawing::Point(860, 926);
+            this->buttonr3->Location = System::Drawing::Point(745, 812);
             this->buttonr3->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr3->Name = L"buttonr3";
             this->buttonr3->Size = System::Drawing::Size(138, 54);
@@ -5993,7 +6066,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr2->Location = System::Drawing::Point(706, 925);
+            this->buttonr2->Location = System::Drawing::Point(591, 811);
             this->buttonr2->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr2->Name = L"buttonr2";
             this->buttonr2->Size = System::Drawing::Size(138, 54);
@@ -6008,7 +6081,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->buttonr1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttonr1->Location = System::Drawing::Point(547, 925);
+            this->buttonr1->Location = System::Drawing::Point(432, 811);
             this->buttonr1->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->buttonr1->Name = L"buttonr1";
             this->buttonr1->Size = System::Drawing::Size(138, 54);
@@ -6024,7 +6097,7 @@ private: System::ComponentModel::IContainer^ components;
             this->editroomdepartment->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editroomdepartment->FormattingEnabled = true;
-            this->editroomdepartment->Location = System::Drawing::Point(396, 792);
+            this->editroomdepartment->Location = System::Drawing::Point(281, 678);
             this->editroomdepartment->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomdepartment->Name = L"editroomdepartment";
             this->editroomdepartment->Size = System::Drawing::Size(294, 36);
@@ -6035,7 +6108,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label78->AutoSize = true;
             this->label78->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label78->Location = System::Drawing::Point(393, 753);
+            this->label78->Location = System::Drawing::Point(278, 639);
             this->label78->Name = L"label78";
             this->label78->Size = System::Drawing::Size(117, 28);
             this->label78->TabIndex = 130;
@@ -6046,7 +6119,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label79->AutoSize = true;
             this->label79->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label79->Location = System::Drawing::Point(399, 633);
+            this->label79->Location = System::Drawing::Point(284, 519);
             this->label79->Name = L"label79";
             this->label79->Size = System::Drawing::Size(98, 28);
             this->label79->TabIndex = 129;
@@ -6057,7 +6130,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label80->AutoSize = true;
             this->label80->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label80->Location = System::Drawing::Point(399, 519);
+            this->label80->Location = System::Drawing::Point(284, 405);
             this->label80->Name = L"label80";
             this->label80->Size = System::Drawing::Size(158, 28);
             this->label80->TabIndex = 128;
@@ -6069,7 +6142,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editroomcapacity->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editroomcapacity->Location = System::Drawing::Point(403, 568);
+            this->editroomcapacity->Location = System::Drawing::Point(288, 454);
             this->editroomcapacity->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomcapacity->Name = L"editroomcapacity";
             this->editroomcapacity->Size = System::Drawing::Size(300, 34);
@@ -6081,7 +6154,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editroomname->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editroomname->Location = System::Drawing::Point(398, 458);
+            this->editroomname->Location = System::Drawing::Point(283, 344);
             this->editroomname->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomname->Name = L"editroomname";
             this->editroomname->Size = System::Drawing::Size(295, 34);
@@ -6092,7 +6165,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label81->AutoSize = true;
             this->label81->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label81->Location = System::Drawing::Point(394, 397);
+            this->label81->Location = System::Drawing::Point(279, 283);
             this->label81->Name = L"label81";
             this->label81->Size = System::Drawing::Size(164, 28);
             this->label81->TabIndex = 125;
@@ -6103,7 +6176,7 @@ private: System::ComponentModel::IContainer^ components;
             this->editroomsave->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editroomsave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->editroomsave->Location = System::Drawing::Point(1086, 1429);
+            this->editroomsave->Location = System::Drawing::Point(971, 1315);
             this->editroomsave->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomsave->Name = L"editroomsave";
             this->editroomsave->Size = System::Drawing::Size(138, 54);
@@ -6111,6 +6184,24 @@ private: System::ComponentModel::IContainer^ components;
             this->editroomsave->Text = L"Save";
             this->editroomsave->UseVisualStyleBackColor = false;
             this->editroomsave->Click += gcnew System::EventHandler(this, &MyForm::editroomsave_Click);
+            // 
+            // editroomsearch
+            // 
+            this->editroomsearch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editroomsearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->editroomsearch->ForeColor = System::Drawing::SystemColors::WindowFrame;
+            this->editroomsearch->FormattingEnabled = true;
+            this->editroomsearch->Location = System::Drawing::Point(520, 160);
+            this->editroomsearch->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+            this->editroomsearch->Name = L"editroomsearch";
+            this->editroomsearch->Size = System::Drawing::Size(360, 36);
+            this->editroomsearch->TabIndex = 293;
+            this->editroomsearch->Text = L"Search";
+            this->editroomsearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocusRoom);
+            this->editroomsearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownRoom);
+            this->editroomsearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocusRoom);
             // 
             // editsubjectpanel
             // 
