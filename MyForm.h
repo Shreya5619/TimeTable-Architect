@@ -41,46 +41,7 @@ namespace TTA_ui {
                 ComboBox^ textBox = dynamic_cast<ComboBox^>(sender);
                 if (textBox != nullptr)
                 {
-                    string find = msclr::interop::marshal_as<string>(teachersearch->Text);
-
-                    vector<vector<string>>data = ReadCSVFile("details/teacher_file.csv");
-                    {
-                        for (auto& row : data)
-                        {
-                            string str;
-                            for (char& c : find) {
-                                c = std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
-                            }
-                            for (char& c : row[0]) {
-                                str += std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
-                            }
-                            textBox1->Text = msclr::interop::marshal_as<String^>(str);
-                            if (find == str)
-                            {
-                                editteachername->Text = msclr::interop::marshal_as<String^>(row[0]);
-                                editteacherdepartment->Text = msclr::interop::marshal_as<String^>(row[1]);
-
-                                for (int i = 2; i < row.size(); i += 2)
-                                {
-                                    int x = i / 2;
-                                    String^ tagValue = x.ToString();
-                                    Button^ button = dynamic_cast<Button^>(editteacherpanel->Controls[String::Format("buttont{0}", tagValue)]);
-                                    textBox1->Text = button->Name;
-                                    if (row[i] == "1")
-                                    {
-                                        button->Text = "busy";
-                                        button->BackColor = Color::FromArgb(102, 255, 204);
-                                    }
-                                    else
-                                    {
-                                        button->Text = "free";
-                                        button->BackColor = Color::FromArgb(179, 255, 230);
-                                    }
-                                }
-
-                            }
-                        }
-                    }
+                    editteachercsvshow("details/teacher_file.csv");
                 }
             }
         }
@@ -92,51 +53,20 @@ namespace TTA_ui {
                 ComboBox^ textBox = dynamic_cast<ComboBox^>(sender);
                 if (textBox != nullptr)
                 {
-                    string find = msclr::interop::marshal_as<string>(editroomsearch->Text);
+                    editroomcsvshow("details/classroom.csv");
+                }
+            }
+        }
 
-                    vector<vector<string>>data = ReadCSVFile("details/classroom.csv");
-                    for (auto& row : data)
-                    {
-                        string str;
-                        for (char& r : find)
-                        {
-                            r = toupper(static_cast<unsigned char>(r));
-                        }
-                        for (char& r : row[0])
-                        {
-                            str += toupper(static_cast<unsigned char>(r));
-                        }
-                        if (find == str) {
-                            editroomname->Text = msclr::interop::marshal_as<String^>(row[0]);
-                            editroomcapacity->Text = msclr::interop::marshal_as<String^>(row[1]);
-                            if (row[2] == "0")
-                            {
-                                editroomlabno->Checked;
-                            }
-                            else
-                            {
-                                editroomlabyes->Checked;
-                            }
-                            editroomdepartment->Text = msclr::interop::marshal_as<String^>(row[3]);
-
-                            for (int i = 4; i < row.size(); i += 2)
-                            {
-                                int x = (i / 2) - 1;
-                                String^ tagValue = x.ToString();
-                                Button^ button = dynamic_cast<Button^>(editroompanel->Controls[String::Format("buttonr{0}", tagValue)]);
-                                if (row[i] == "1")
-                                {
-                                    button->Text = "busy";
-                                    button->BackColor = Color::FromArgb(102, 255, 204);
-                                }
-                                else
-                                {
-                                    button->Text = "free";
-                                    button->BackColor = Color::FromArgb(179, 255, 230);
-                                }
-                            }
-                        }
-                    }
+        void textBox_KeyDownsubject(Object^ sender, KeyEventArgs^ e)
+        {
+            if (e->KeyCode == Keys::Enter)
+            {
+                ComboBox^ textBox = dynamic_cast<ComboBox^>(sender);
+                if (textBox != nullptr)
+                {
+                    editsubjectcsvshow();
+                    
                 }
             }
         }
@@ -178,6 +108,26 @@ namespace TTA_ui {
             {
                 editroomsearch->Text = "Search";
                 editroomsearch->ForeColor = Color::Gray; // Change text color to gray when unfocused
+            }
+        }
+
+        void OnSearchBoxFocusSub(Object^ sender, EventArgs^ e)
+        {
+            // Clear placeholder text and change text color
+            if (editsubsearch->Text == "Search")
+            {
+                editsubsearch->Text = "";
+                editsubsearch->ForeColor = Color::Black; // Change text color to black when focused
+            }
+        }
+
+        void OnSearchBoxLostFocusSub(Object^ sender, EventArgs^ e)
+        {
+            // Restore placeholder text if search box is empty
+            if (String::IsNullOrEmpty(editsubsearch->Text))
+            {
+                editsubsearch->Text = "Search";
+                editsubsearch->ForeColor = Color::Gray; // Change text color to gray when unfocused
             }
         }
   
@@ -507,6 +457,118 @@ namespace TTA_ui {
                 MessageBox::Show("Error saving Data\nTry Closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
             }
         }
+
+        void editcsvelectivee(const string filePath)
+        {
+            try
+            {
+                string find = msclr::interop::marshal_as<string>(editsubsearch->Text);
+
+                vector<vector<string>>data = ReadCSVFile(filePath);
+                ofstream outputFile(filePath);
+                
+                {
+                    for (const auto& row : data)
+                    {
+                        if (find == row[0])
+                        {
+                            System::String^ name = editsubname->Text->ToString();
+                            std::string Name = replacewhitespace(msclr::interop::marshal_as<string>(name));
+                            outputFile << Name << ",";
+                            System::String^ elename = editsubelename->Text->ToString();
+                            std::string eleName = replacewhitespace(msclr::interop::marshal_as<string>(elename));
+                            outputFile << eleName << ",";
+                            for (int i = 0; i < editsubeleteacher->RowCount - 1; ++i)
+                            {
+                                if (editsubeleteacher->Rows[i]->Cells[0]->Value != nullptr)
+                                {
+                                    System::String^ cellvalue = editsubeleteacher->Rows[i]->Cells[0]->Value->ToString();
+                                    std::string CellValue = msclr::interop::marshal_as<string>(cellvalue);
+                                    outputFile << CellValue << ",";
+                                }
+
+                            }
+                            outputFile << "\n";
+                        }
+                        else
+                        {
+                        
+                                   for (int i = 0; i < row.size() - 1; i++)
+                                   {
+                                       outputFile << row[i] + ",";
+                                   }
+                                   outputFile << row[row.size() - 1] << "\n";
+                   
+                        }
+                    }
+                    outputFile.close();
+                }
+                
+            }
+            catch (...)
+            {
+                MessageBox::Show("Error saving Data\nTry Closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+            }
+        }
+
+       /* void editcsvlab(string filePath)
+        {
+            try
+            {
+                string find = msclr::interop::marshal_as<string>(editsubsearch->Text);
+
+                vector<vector<string>>data = ReadCSVFile(filePath);
+                ofstream outputFile(filePath);
+
+                {
+                    for (const auto& row : data)
+                    {
+                        if (find == row[0])
+                        {
+                            std::ofstream outputFile;
+                            outputFile.open((msclr::interop::marshal_as<std::string>(filePath)), ios::app);
+                            {
+                                System::String^ name = editsubname->Text->ToString();
+                                std::string Name = replacewhitespace(msclr::interop::marshal_as<string>(name));
+                                outputFile << Name << ",";
+                                if (editsublabteacher->Rows[0]->Cells[0]->Value != nullptr)
+                                    outputFile << msclr::interop::marshal_as<string>(editsublabteacher->Rows[0]->Cells[0]->Value->ToString());
+                                for (int i = 1; i < editsublabteacher->RowCount; ++i)
+                                {
+
+                                    if (editsublabteacher->Rows[i]->Cells[0]->Value != nullptr)
+                                    {
+                                        System::String^ cellvalue = editsublabteacher->Rows[i]->Cells[0]->Value->ToString();
+                                        std::string CellValue = msclr::interop::marshal_as<string>(cellvalue);
+                                        outputFile << "," << CellValue;
+
+
+                                    }
+                                }
+
+                            }
+                                outputFile << "\n";
+                        }
+                        else
+                        {
+
+                            for (int i = 0; i < row.size() - 1; i++)
+                            {
+                                outputFile << row[i] + ",";
+                            }
+                            outputFile << row[row.size() - 1] << "\n";
+
+                        }
+                    }
+                    outputFile.close();
+                }
+
+            }
+            catch (...)
+            {
+                MessageBox::Show("Error saving Data\nTry Closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+            }
+        }*/
         
         void csvlab(System::String^ filePath)
         {
@@ -1099,7 +1161,7 @@ public:
                        {
                            editsubelename->Text = msclr::interop::marshal_as<String^>(rows[1]);
                            
-                           
+                           editsubeleteacher->Rows->Clear();
                                for (int i = 2; i < rows.size(); i++)
                                {
                                    editsubeleteacher->Rows->Add();
@@ -1136,6 +1198,7 @@ public:
                        }
                        if (rows[0] == find)
                        {
+                           editsublabteacher->Rows->Clear();
                            for (int i = 1; i < rows.size(); i++)
                            {
                                editsublabteacher->Rows->Add();
@@ -1215,8 +1278,8 @@ public:
                            String^ ele = editsubelename->Text->ToString();
                            string Ele = replacewhitespace(msclr::interop::marshal_as<string>(ele));
                            file << Ele << ",";
-                           String^ FilePath = "details/Elective.csv";
-                           csvelective(FilePath);
+                           string FilePath = "details/Elective.csv";
+                           editcsvelectivee(FilePath);
                        }
                        else
                        {
@@ -6443,7 +6506,10 @@ private: System::ComponentModel::IContainer^ components;
             this->editsubsearch->Name = L"editsubsearch";
             this->editsubsearch->Size = System::Drawing::Size(360, 36);
             this->editsubsearch->TabIndex = 312;
-            this->editsubsearch->Text = L"Search";
+            this->editsubsearch->Text = L"Search";  
+            this->editsubsearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocusSub);
+            this->editsubsearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownsubject);
+            this->editsubsearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocusSub);
             // 
             // editsubdelete
             // 
