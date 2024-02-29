@@ -4,21 +4,21 @@
 #include<fstream>
 #include"includes.h"
 #include"initializer_list"
-using namespace std;
+// using namespace std;
 class section {
 public:
     int name;
     std::vector<teacher> allTeachers;
-    std::vector<string> coreTeachers;
+    std::vector<std::string> coreTeachers;
     std::vector<subject> coreSubjects;
-    void addCore(string Teacher, subject Subject);
+    void addCore(std::string Teacher, subject Subject);
 
 
-    std::vector<std::vector<string>> labTeachers;
+    std::vector<std::vector<std::string>> labTeachers;
     std::vector<subject> labSubjects;
     std::vector<int> noOfLabs;
     std::vector<int> noTeachersPerLab;
-    void addLab(vector<string> teacherList, subject Subject, int noLabs, int noTeachersLab);
+    void addLab(std::vector<std::string> teacherList, subject Subject, int noLabs, int noTeachersLab);
     //make a vector type list of the names of teachers who can take the subject. then pass a subject object to the function
     //third parameter is how many lab rooms do you need per session Last is how many teachers you need per lab
 
@@ -34,8 +34,8 @@ public:
     void showTeacherTable();
     void showRoomTable();
     section() {
-        vector<string> deff = { "f","f","f","f","f","f" };
-        vector<string> defNA = { "NA","NA","NA","NA","NA","NA" };
+        std::vector<std::string> deff = { "f","f","f","f","f","f" };
+        std::vector<std::string> defNA = { "NA","NA","NA","NA","NA","NA" };
         for (int i = 0; i < days; i++) {
             timeTable.push_back(deff);
             teacherTable.push_back(deff);
@@ -45,22 +45,22 @@ public:
     }
 
     bool error_;
-    string errorMessage;
+    std::string errorMessage;
     int _intersections;// a variable reserved for th enext function. the fucntion will alter this number 
     //and change it to how many intersections it has found
     //returns a vector of vector of bools. 0 represents all the timetables are free at that period,day. 
     //1 represents not all are free
 private:
-    vector<int> bfactor;
-    vector<vector<string>> returnCombinations(vector<string> comb, int required);
-    vector<vector<bool>> findIntersection(std::vector<vector<vector<bool>>> inputs, std::vector<std::vector<std::string>> def = {});
+    std::vector<int> bfactor;
+    std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
+    std::vector<std::vector<bool>> findIntersection(std::vector<std::vector<std::vector<bool>>> inputs, std::vector<std::vector<std::string>> def = {});
     room& returnRoom(std::string name);
     teacher& returnTeacher(std::string inp);
     subject& returnSubject(std::string inp);
-    vector<vector<int>> findWeightageLab(vector < vector<bool>> inp, vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
-    vector<vector<int>> findWeightageCore(vector < vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
+    std::vector<std::vector<int>> findWeightageLab(std::vector < std::vector<bool>> inp, std::vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
+    std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
 };
-void section::addCore(string Teacher, subject Subject) {
+void section::addCore(std::string Teacher, subject Subject) {
     coreTeachers.push_back(Teacher);
     coreSubjects.push_back(Subject);
 }
@@ -105,33 +105,33 @@ subject& section::returnSubject(std::string inp) {
 }
 
 void section::showTimeTable() {
-    cout << "\ntimetable:\n ";
+    std::cout << "\ntimetable:\n ";
     for (auto a : timeTable) {
         for (auto period : a) {
-            cout << period << "   ";
+            std::cout << period << "   ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 void section::showTeacherTable() {
-    cout << "\ntachertable:\n ";
+    std::cout << "\ntachertable:\n ";
     for (auto a : teacherTable) {
         for (auto period : a) {
-            cout << period << "   ";
+            std::cout << period << "   ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
 void section::showRoomTable() {
-    cout << "\RoomTable:\n ";
+    std::cout << "\RoomTable:\n ";
     for (auto a : roomTable) {
         for (auto period : a) {
-            cout << period << "   ";
+            std::cout << period << "   ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 }
-void section::addLab(vector<string> teacherList, subject Subject, int noLabs, int noTeachersLab) {
+void section::addLab(std::vector<std::string> teacherList, subject Subject, int noLabs, int noTeachersLab) {
     labTeachers.push_back(teacherList);
     labSubjects.push_back(Subject);
     noOfLabs.push_back(noLabs);
@@ -139,19 +139,19 @@ void section::addLab(vector<string> teacherList, subject Subject, int noLabs, in
 }
 
 //pass parameters as findInttersection({t1,t2,t3,t4},timeTableofStrings);t1 t2 t3 t4 are boolean datatype timetables. last paramm is optional
-vector<vector<bool>> section::findIntersection(std::vector<vector<vector<bool>>> inputs, std::vector<std::vector<std::string>> def) {
+std::vector<std::vector<bool>> section::findIntersection(std::vector<std::vector<std::vector<bool>>> inputs, std::vector<std::vector<std::string>> def) {
     std::vector<std::vector<bool>> output;//return type is a vector of vector of booleans
     std::vector<std::vector<int>> temp;//tempetrory vector that stores number of intersections
     _intersections = 0;
     for (int i = 0; i < days; i++) {//making a days*periods matrix
-        vector<int>tempp;
+        std::vector<int>tempp;
         for (int j = 0; j < periods; j++) {
             tempp.push_back(0);
         }
         temp.push_back(tempp);
     }
 
-    for (vector<vector<bool>> each : inputs) {//incrementing when timetable free
+    for (std::vector<std::vector<bool>> each : inputs) {//incrementing when timetable free
         for (int i = 0; i < each.size(); i++) {
             for (int j = 0; j < each[i].size(); j++) {
                 temp[i][j] += !each[i][j];
@@ -160,7 +160,7 @@ vector<vector<bool>> section::findIntersection(std::vector<vector<vector<bool>>>
     }
 
     for (int i = 0; i < days; i++) {
-        vector<bool>tempp;
+        std::vector<bool>tempp;
         bool alloted = 0;
         for (int j = 0; j < periods; j++) {
             tempp.push_back(!(temp[i][j] / (inputs.size())));
@@ -192,9 +192,9 @@ vector<vector<bool>> section::findIntersection(std::vector<vector<vector<bool>>>
 }
 
 //a function that returns all possible 'required' number of combinations from the vector of teacghers. designed for finding all possible lab allotments.
-vector<vector<string>> section::returnCombinations(vector<string> comb, int required) {
-    vector<vector<string>> sols;
-    vector<int>ptrs;
+std::vector<std::vector<std::string>> section::returnCombinations(std::vector<std::string> comb, int required) {
+    std::vector<std::vector<std::string>> sols;
+    std::vector<int>ptrs;
     //making the inital state of the ptrs array. 
     for (int i = 0; i < required; i++) {
         ptrs.push_back(i);
@@ -202,7 +202,7 @@ vector<vector<string>> section::returnCombinations(vector<string> comb, int requ
     bool trigger = 1;
     while (trigger) {
         //this part is adding the combination to the total liost of combination
-        vector<string> temp;
+        std::vector<std::string> temp;
         temp.push_back(comb[ptrs[0]]);
         for (int i = 1; i < required; i++) {
             temp.push_back(comb[ptrs[i]]);
@@ -235,14 +235,14 @@ vector<vector<string>> section::returnCombinations(vector<string> comb, int requ
     return sols;
 }
 //a function that scores each period based on how free a teacher is on that particular time.
-vector<vector<int>> section::findWeightageLab(vector<vector<bool>> inp, vector<teacher> teachers) {
+std::vector<std::vector<int>> section::findWeightageLab(std::vector<std::vector<bool>> inp, std::vector<teacher> teachers) {
     int busyFactor = 10;
     int freeFactor = 25;//2 factors that determine the score alloted to subject. busy factor is addded if teacher is either busy before or after the period. freefactor if teacher is free
-    vector<vector<int>> ans;
+    std::vector<std::vector<int>> ans;
     int baseFactor = 5;//this factor is added to all the subjects, it helps in choosing teachers that are already free over the others.
     //make a days*periods empty matrix
     for (int i = 0; i < days; i++) {
-        vector<int> temp;
+        std::vector<int> temp;
         for (int j = 0; j < periods; j++) {
             temp.push_back(0);
         }
@@ -312,10 +312,10 @@ vector<vector<int>> section::findWeightageLab(vector<vector<bool>> inp, vector<t
     }
     return ans;
 }
-vector<vector<int>> section::findWeightageCore(vector<vector<bool>> inp, teacher teachers) {
+std::vector<std::vector<int>> section::findWeightageCore(std::vector<std::vector<bool>> inp, teacher teachers) {
     int busyFactor = 10;
     int freeFactor = 25;//2 factors that determine the score alloted to subject. busy factor is addded if teacher is either busy before or after the period. freefactor if teacher is free
-    vector<vector<int>> ans(6, vector<int>(6, 0));
+    std::vector<std::vector<int>> ans(6, std::vector<int>(6, 0));
     int baseFactor = 5;//this factor is added to all the subjects, it helps in choosing teachers that are already free over the others.
 
     int base = 0;
@@ -368,15 +368,15 @@ vector<vector<int>> section::findWeightageCore(vector<vector<bool>> inp, teacher
 void section::makeTIMETABLE() {
     //alloting labs
     for (int i = 0; i < labTeachers.size(); i++) {
-        vector<vector<string>> allCombsTeachers = returnCombinations(labTeachers[i], noOfLabs[i] * noTeachersPerLab[i]);
-        vector<vector<string>> allCombsRooms = returnCombinations(labSubjects[i].rooms, noOfLabs[i]);
-        vector<vector<vector<string>>> allCombs;
-        vector<vector<vector<int>>> interSectionList;
-        vector<int> score;
+        std::vector<std::vector<std::string>> allCombsTeachers = returnCombinations(labTeachers[i], noOfLabs[i] * noTeachersPerLab[i]);
+        std::vector<std::vector<std::string>> allCombsRooms = returnCombinations(labSubjects[i].rooms, noOfLabs[i]);
+        std::vector<std::vector<std::vector<std::string>>> allCombs;
+        std::vector<std::vector<std::vector<int>>> interSectionList;
+        std::vector<int> score;
         //make all possible combinations of teachers, rooms. allCombs is a vector of vector of vector of strings. it holds in a format like: [[[teacher combination1],[roomcombination1]],[[teacher combination2],[roomcombination2]]...]
         for (auto a : allCombsTeachers) {
             for (auto b : allCombsRooms) {
-                vector<vector<string>> temp;
+                std::vector<std::vector<std::string>> temp;
                 temp.push_back(a);
                 temp.push_back(b);
                 allCombs.push_back(temp);
@@ -384,9 +384,9 @@ void section::makeTIMETABLE() {
         }
         //pushing all the intersections of timetables in order
         for (auto comb : allCombs) {
-            vector<teacher> teachers;
-            vector<room> rooms;
-            vector<vector<vector<bool>>> timeTables;
+            std::vector<teacher> teachers;
+            std::vector<room> rooms;
+            std::vector<std::vector<std::vector<bool>>> timeTables;
             for (auto teachersString : comb[0]) {
                 teachers.push_back(returnTeacher(teachersString));
                 timeTables.push_back(teachers[teachers.size() - 1].timeTable);
@@ -395,13 +395,13 @@ void section::makeTIMETABLE() {
                 rooms.push_back(returnRoom(roomsString));
                 timeTables.push_back(rooms[rooms.size() - 1].timeTable);
             }
-            vector<vector<bool>> intersection = findIntersection(timeTables, timeTable);
+            std::vector<std::vector<bool>> intersection = findIntersection(timeTables, timeTable);
             int intersectionCount = 0;
             for (auto day : intersection) {
                 for (auto period : day) {
-                    cout << period << "  ";
+                    std::cout << period << "  ";
                 }
-                cout << "\n";
+                std::cout << "\n";
             }
             for (auto day : intersection) {
                 for (int k = 0; k < day.size(); k += 2) {
@@ -411,12 +411,12 @@ void section::makeTIMETABLE() {
                     }
                 }
             }
-            cout << "\n";
+            std::cout << "\n";
             if (intersectionCount >= labSubjects[i].credits) {
-                vector<vector<int>> intersectionScore = findWeightageLab(intersection, teachers);
+                std::vector<std::vector<int>> intersectionScore = findWeightageLab(intersection, teachers);
                 interSectionList.push_back(intersectionScore);
                 //search best credits number of scores.
-                vector<int> tops(labSubjects[i].credits, 0);
+                std::vector<int> tops(labSubjects[i].credits, 0);
                 for (int f = 0; f < days; f++) {
                     for (int g = 0; g < periods; g++) {
                         for (int l = tops.size() - 1; l >= 0; l--) {
@@ -435,8 +435,8 @@ void section::makeTIMETABLE() {
             }
             //intersections less than credits
             else {
-                vector<int> temp(6, 1);
-                vector<vector<int>> ans(6, vector<int>(6, 1));
+                std::vector<int> temp(6, 1);
+                std::vector<std::vector<int>> ans(6, std::vector<int>(6, 1));
                 //make a days*periods empty matrix
                 interSectionList.push_back(ans);
                 score.push_back(-1);
@@ -451,7 +451,7 @@ void section::makeTIMETABLE() {
                 index = f;
             }
         }
-        cout << "index: " << index << " indexscore " << indexScore << "\n";
+        std::cout << "index: " << index << " indexscore " << indexScore << "\n";
         //if credits satisfied
         if (indexScore != -1) {
             //here allotment starts
@@ -459,7 +459,7 @@ void section::makeTIMETABLE() {
             //coming back here if credits not satisfied
         repeatLt:
             //find best credits number of intersections
-            vector<int> tops(credCount, 0);
+            std::vector<int> tops(credCount, 0);
             for (int f = 0; f < days; f++) {
                 for (int g = 0; g < periods; g++) {
                     if (interSectionList[index][f][g] == -1) {
@@ -495,8 +495,8 @@ void section::makeTIMETABLE() {
                     //assgign timetable name
                     timeTable[k][highestindex] = labSubjects[i].name;
                     timeTable[k][highestindex + 1] = labSubjects[i].name;
-                    string teacherString;
-                    string roomString;
+                    std::string teacherString;
+                    std::string roomString;
                     //making teacher and room string a,b,c,d format
                     for (auto teachers : allCombs[index][0]) {
                         teacherString += teachers + " , ";
@@ -544,7 +544,7 @@ void section::makeTIMETABLE() {
         }
     }
     //find preferred clasroom
-    vector<int> scoreRoom;
+    std::vector<int> scoreRoom;
     for (auto currClass : defaultRooms) {
         int score = 0;
         room curr = returnRoom(currClass);
@@ -570,34 +570,34 @@ void section::makeTIMETABLE() {
     for (int subjects = 0; subjects < coreSubjects.size(); subjects++) {
         teacher& currTeacher = returnTeacher(coreTeachers[subjects]);
         subject currSubject = coreSubjects[subjects];
-        cout << "\ncurrent: " << currSubject.name << "\n";
-        vector<string>currDefaultRooms = defaultRooms;
+        std::cout << "\ncurrent: " << currSubject.name << "\n";
+        std::vector<std::string>currDefaultRooms = defaultRooms;
         if (currSubject.rooms[0] == "0") {//check if subject has defult rooms
             if (highestindexR != -1) {//checking if room is alloted
                 defaultRoom = defaultRoomP;
             rep:
-                vector<vector<vector<bool>>> temp = { currTeacher.timeTable,defaultRoom.timeTable };
-                vector<vector<bool>> intersectionTable = findIntersection(temp, timeTable);
+                std::vector<std::vector<std::vector<bool>>> temp = { currTeacher.timeTable,defaultRoom.timeTable };
+                std::vector<std::vector<bool>> intersectionTable = findIntersection(temp, timeTable);
                 for (auto d : intersectionTable) {
                     for (auto p : d) {
-                        cout << p << "   ";
+                        std::cout << p << "   ";
                     }
-                    cout << "\n";
+                    std::cout << "\n";
                 }
                 if (_intersections >= currSubject.credits) {
-                    vector<vector<int>> scoredTable = findWeightageCore(intersectionTable, currTeacher);//get scored table to choose optimal period
+                    std::vector<std::vector<int>> scoredTable = findWeightageCore(intersectionTable, currTeacher);//get scored table to choose optimal period
                     int credCount = currSubject.credits;
                     //coming back here if credits not satisfied
                 repeatCt:
                     //find best credits number of intersections
-                    cout << endl;
+                    std::cout << std::endl;
                     for (auto a : scoredTable) {
                         for (auto v : a) {
-                            cout << v << "   ";
+                            std::cout << v << "   ";
                         }
-                        cout << "\n";
+                        std::cout << "\n";
                     }
-                    vector<int> tops(credCount, 0);
+                    std::vector<int> tops(credCount, 0);
                     for (int f = 0; f < days; f++) {
                         for (int g = 0; g < periods; g++) {
                             if (scoredTable[f][g] == -1) {
@@ -653,15 +653,15 @@ void section::makeTIMETABLE() {
                 }
                 //collision handleing
                 else {
-                    cout << "collision!";
-                    vector<vector<vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
+                    std::cout << "collision!";
+                    std::vector<std::vector<std::vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
                     findIntersection(temp, timeTable);
                     if (_intersections >= coreSubjects[subjects].credits) {
                         //single room cant hold everything
                         //fist stage. allot as much as possible in defaulroom
                         temp.push_back(defaultRoom.timeTable);
                         int credCount = currSubject.credits;
-                        vector<vector<bool>> primarys = findIntersection(temp, timeTable);
+                        std::vector<std::vector<bool>> primarys = findIntersection(temp, timeTable);
                         for (int day = 0; day < primarys.size(); day++) {
                             for (int period = 0; period < periods; period++) {
                                 if (!primarys[day][period]) {
@@ -678,9 +678,9 @@ void section::makeTIMETABLE() {
                             }
                         }
                         for (auto rooms : defaultRooms) {
-                            vector<vector<vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
+                            std::vector<std::vector<std::vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
                             temp.push_back(returnRoom(rooms).timeTable);
-                            vector<vector<bool>> primarys = findIntersection(temp, timeTable);
+                            std::vector<std::vector<bool>> primarys = findIntersection(temp, timeTable);
                             for (int day = 0; day < primarys.size(); day++) {
                                 bool alloted = false;
                                 for (int period = 0; period < periods; period++) {
@@ -707,8 +707,8 @@ void section::makeTIMETABLE() {
                         }
                         if (credCount) {
                             errorMessage += "Couldnt allot all rooms for subject:" + currSubject.name;
-                            vector<vector<vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
-                            vector<vector<bool>> primarys = findIntersection(temp, timeTable);
+                            std::vector<std::vector<std::vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
+                            std::vector<std::vector<bool>> primarys = findIntersection(temp, timeTable);
                             for (int day = 0; day < primarys.size(); day++) {
                                 bool alloted = false;
                                 for (int period = 0; period < periods; period++) {
@@ -737,9 +737,9 @@ void section::makeTIMETABLE() {
                     else {
                         //teachers allocation has collision.
                         int credCount = currSubject.credits;
-                        vector<vector<vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
-                        vector<vector<bool>> primarys = findIntersection(temp, timeTable);
-                        vector<vector<int>> scoredTable = findWeightageCore(primarys, currTeacher);
+                        std::vector<std::vector<std::vector<bool>>> temp = { returnTeacher(coreTeachers[subjects]).timeTable };
+                        std::vector<std::vector<bool>> primarys = findIntersection(temp, timeTable);
+                        std::vector<std::vector<int>> scoredTable = findWeightageCore(primarys, currTeacher);
                         //alloting to the maxiumum extent possible.
                         int d = -1;//lazy to change the code
                         for (auto day : scoredTable) {
@@ -796,7 +796,7 @@ void section::makeTIMETABLE() {
                             }
                         }
                         //check all the other times the teacher is free and sub hasnt been alloted that day
-                        vector<vector<int>> teacherTt = findWeightageCore(currTeacher.timeTable, currTeacher);
+                        std::vector<std::vector<int>> teacherTt = findWeightageCore(currTeacher.timeTable, currTeacher);
                         for (int i = 0; i < days; i++) {
                             bool found = false;
                             for (int j = 0; j < periods; j++) {
@@ -836,9 +836,9 @@ void section::makeTIMETABLE() {
                                             if (!found) {
                                                 //means not already alloted on that day.
                                                 // preoceed to allot teacher there and change the timetable.
-                                                vector<vector<vector<bool>>> temp; temp.push_back(curTeach.timeTable);
-                                                vector < vector<bool >>Instersections = findIntersection(temp, timeTable);
-                                                vector<int> teacherScored = findWeightageCore(Instersections, curTeach)[d];//LIST OF AVAILABLE SLOTS
+                                                std::vector<std::vector<std::vector<bool>>> temp; temp.push_back(curTeach.timeTable);
+                                                std::vector < std::vector<bool >>Instersections = findIntersection(temp, timeTable);
+                                                std::vector<int> teacherScored = findWeightageCore(Instersections, curTeach)[d];//LIST OF AVAILABLE SLOTS
                                                 int indexs = 0, indexsindex = -1;
                                                 //find highest on that particualr day
                                                 for (int q = 0; q < periods; q++) {
@@ -904,8 +904,8 @@ void section::makeTIMETABLE() {
         }
         else {
             currDefaultRooms = currSubject.rooms;
-            cout << "defaults untu";
-            vector<int> scoreRoom;
+            std::cout << "defaults untu";
+            std::vector<int> scoreRoom;
             for (auto currClass : currDefaultRooms) {
                 int score = 0;
                 room& curr = returnRoom(currClass);
@@ -931,64 +931,9 @@ void section::makeTIMETABLE() {
             }
             else {
                 errorMessage += "check default rooms.  \n";
-                cout << "no classroom found in defaults";
+                std::cout << "no classroom found in defaults";
             }
         }
     }
 }
-//
-//int main() {
-//    fstream fileio;
-//    section s;
-//    fileio.open("storage/room.csv");
-//    if (fileio.is_open()) {
-//        cout << "open";
-//        while (!fileio.eof()) {
-//            room temp;
-//            string inp;
-//            fileio >> inp;
-//            temp.readData(inp);
-//            s.allRooms.push_back(temp);
-//        }
-//    }
-//    else {
-//        cout << "error1";
-//    }
-//    fileio.close();
-//    fileio.open("storage/teacher.csv");
-//    if (fileio.is_open()) {
-//        cout << "\nopen";
-//        while (!fileio.eof()) {
-//            teacher temp;
-//            string inp;
-//            fileio >> inp;
-//            temp.readData(inp);
-//            s.allTeachers.push_back(temp);
-//        }
-//    }
-//    else {
-//        cout << "error2";
-//    }
-//    fileio.close();
-//    fileio.open("storage/subject.csv");
-//    if (fileio.is_open()) {
-//        cout << "open";
-//        subject t, t2;
-//        string inp;
-//        fileio >> inp;
-//        fileio >> inp;
-//        t.readData(inp);
-//        s.defaultRooms.push_back(s.allRooms[0].name);
-//        s.addCore(s.allTeachers[0].name, t);
-//        fileio >> inp;
-//        t2.readData(inp);
-//        s.defaultRooms.push_back(s.allRooms[1].name);
-//        s.addCore(s.allTeachers[1].name, t2);
-//    }
-//    fileio.close();
-//    s.name = 12345;
-//    s.makeTIMETABLE();
-//    s.showTimeTable();
-//    s.showTeacherTable();
-//    s.showRoomTable();
-//}
+

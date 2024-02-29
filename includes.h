@@ -2,6 +2,7 @@
 #include<string>
 #include<vector>
 #include"configs.cpp"
+
 class subject {
 public:
     std::string name;

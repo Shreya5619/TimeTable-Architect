@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeTable Architect</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #1f1f1f;
+            color: #ddd;
+        }
+
+        h1, h2, h3 {
+            color: #78c7ad;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #233b30; /* Dark green border */
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #354f45; /* Dark green heading background */
+            color: #ddd;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- RVCE College Logo -->
+    <img src="path/to/rvce_logo.png" alt="RVCE College Logo" style="width: 100px; height: auto;">
+
+    <h1>TimeTable Architect</h1>
+    <p>Created by Vineeth Rao and Shreya Prasad</p>
+
+    <!-- Teacher Class Section -->
+    <section>
+        <h2>C++ Class: teacher</h2>
+
+        <table>
+            <tr>
+                <th>Data Member</th>
+                <th>Data Type</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>std::string</td>
+                <td>Represents the name of the teacher.</td>
+            </tr>
+            <tr>
+                <td>branch</td>
+                <td>std::string</td>
+                <td>Represents the branch of the teacher.</td>
+            </tr>
+            <tr>
+                <td>timeTable</td>
+                <td>std::vector&ltstd::vector&ltbool&gt&gt</td>
+                <td>2D array indicating when the teacher is free (1 for free, 0 for occupied).</td>
+            </tr>
+            <tr>
+                <td>timeTableName</td>
+                <td>std::vector&ltstd::vector&ltunsigned&gt&gt</td>
+                <td>2D array indicating what the teacher is teaching when occupied. Changes done by the program, not taken from the user.</td>
+            </tr>
+        </table>
+
+        <h3>Public Member Functions:</h3>
+        <ul>
+            <li><code>readData(std::string inp) - bool</code>: Reads data from a string (`inp`) and initializes the object's data members accordingly. Returns a boolean indicating the success of the operation.</li>
+            <li><code>convertToString() - std::string</code>: Converts the object's data into a string format.</li>
+            <li><code>showTimeTable() - void</code>: Prints the teacher's timetable to the console.</li>
+        </ul>
+
+        <h3>Constructor:</h3>
+        <ul>
+            <li><code>teacher()</code>: Default constructor that initializes the `timeTableName` 2D array, setting all values to 0.</li>
+        </ul>
+
+    </section>
+    <section>
+        <h2>C++ Class: room</h2>
+
+        <table class="section-table">
+            <tr>
+                <th>Data Member</th>
+                <th>Data Type</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>std::string</td>
+                <td>Represents the name of the room.</td>
+            </tr>
+            <tr>
+                <td>capacity</td>
+                <td>int</td>
+                <td>Indicates the capacity or seating capacity of the room.</td>
+            </tr>
+            <tr>
+                <td>labOrNot</td>
+                <td>bool</td>
+                <td>A boolean flag (true or false) indicating whether the room is a laboratory.</td>
+            </tr>
+            <tr>
+                <td>building</td>
+                <td>std::string</td>
+                <td>Represents the building where the room is located.</td>
+            </tr>
+            <tr>
+                <td>timeTable</td>
+                <td>std::vector&lt;std::vector&lt;bool&gt;&gt;</td>
+                <td>A 2D vector representing the availability of the room over a timetable. false indicates the room is free, and true indicates it is occupied.</td>
+            </tr>
+            <tr>
+                <td>timeTableName</td>
+                <td>std::vector&lt;std::vector&lt;unsigned&gt;&gt;</td>
+                <td>A 2D vector representing what class the room is holding when occupied. Changes are done programmatically, not taken from the user.</td>
+            </tr>
+        </table>
+
+        <h3>Member Functions:</h3>
+        <ul>
+            <li><code>readData(std::string inp) - bool</code>: Reads data from the input string and possibly modifies the object's data members accordingly. Returns a boolean indicating the success of the operation.</li>
+            <li><code>showTimeTable() - void</code>: Displays the timetable for the room.</li>
+            <li><code>convertToString() - std::string</code>: Converts the object's data into a string format.</li>
+        </ul>
+
+        <h3>Constructor:</h3>
+        <ul>
+            <li><code>room()</code>: Default constructor that initializes the data members of the room class.</li>
+        </ul>
+    </section>
+    <section>
+        <h2>C++ Class: subject</h2>
+
+        <table class="section-table">
+            <tr>
+                <th>Data Member</th>
+                <th>Data Type</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>std::string</td>
+                <td>Represents the name of the subject.</td>
+            </tr>
+            <tr>
+                <td>elective</td>
+                <td>std::string</td>
+                <td>Stores the name of the elective subject. "0" if not an elective.</td>
+            </tr>
+            <tr>
+                <td>lab</td>
+                <td>bool</td>
+                <td>Indicates whether the subject is a lab-based course.</td>
+            </tr>
+            <tr>
+                <td>credits</td>
+                <td>int</td>
+                <td>Stores the credit value of the subject.</td>
+            </tr>
+            <tr>
+                <td>hoursPerCredit</td>
+                <td>int</td>
+                <td>Specifies the number of hours per credit for the subject.</td>
+            </tr>
+            <tr>
+                <td>bFactor</td>
+                <td>unsigned short int</td>
+                <td>Represents the factor indicating how much the subject exhausts the mind.</td>
+            </tr>
+            <tr>
+                <td>rooms</td>
+                <td>std::vector&lt;std::string&gt;</td>
+                <td>Vector containing the names of rooms assigned to the subject.</td>
+            </tr>
+        </table>
+
+        <h3>Member Functions:</h3>
+        <ul>
+            <li><code>readData(std::string inp) - bool</code>: Reads data from the input string and modifies the object's data members accordingly. Returns a boolean indicating the success of the operation.</li>
+            <li><code>convertToString() - std::string</code>: Converts the object's data into a string format.</li>
+        </ul>
+
+        <h3>Constructor:</h3>
+        <ul>
+            <li><code>subject()</code>: Default constructor that initializes the data members of the subject class.</li>
+        </ul>
+    </section>
+    <!-- Section Class Section --><section>
+    <h2>C++ Class: section</h2>
+
+    <table class="section-table">
+        <tr>
+            <th>Data Member</th>
+            <th>Data Type</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>int</td>
+            <td>Represents the name of the section.</td>
+        </tr>
+        <tr>
+            <td>allTeachers</td>
+            <td>std::vector&lt;teacher&gt;</td>
+            <td>Vector containing all the teachers associated with the section.</td>
+        </tr>
+        <tr>
+            <td>coreTeachers</td>
+            <td>std::vector&lt;std::string&gt;</td>
+            <td>Vector containing the names of core teachers associated with the section.</td>
+        </tr>
+        <tr>
+            <td>coreSubjects</td>
+            <td>std::vector&lt;subject&gt;</td>
+            <td>Vector containing all the core subjects associated with the section.</td>
+        </tr>
+        <tr>
+            <td>labTeachers</td>
+            <td>std::vector&lt;std::vector&lt;std::string&gt;&gt;</td>
+            <td>2D vector containing the names of lab teachers associated with the section.</td>
+        </tr>
+        <tr>
+            <td>labSubjects</td>
+            <td>std::vector&lt;subject&gt;</td>
+            <td>Vector containing all the lab subjects associated with the section.</td>
+        </tr>
+        <tr>
+            <td>noOfLabs</td>
+            <td>std::vector&lt;int&gt;</td>
+            <td>Vector containing the number of labs required for each session.</td>
+        </tr>
+        <tr>
+            <td>noTeachersPerLab</td>
+            <td>std::vector&lt;int&gt;</td>
+            <td>Vector containing the number of teachers required per lab.</td>
+        </tr>
+        <tr>
+            <td>allRooms</td>
+            <td>std::vector&lt;room&gt;</td>
+            <td>Vector containing all the rooms associated with the section.</td>
+        </tr>
+        <tr>
+            <td>defaultRooms</td>
+            <td>std::vector&lt;std::string&gt;</td>
+            <td>Vector containing the default rooms for allotting subjects with no explicitly specified rooms.</td>
+        </tr>
+        <tr>
+            <td>timeTable</td>
+            <td>std::vector&lt;std::vector&lt;std::string&gt;&gt;</td>
+            <td>2D vector representing the timetable for the section.</td>
+        </tr>
+        <tr>
+            <td>teacherTable</td>
+            <td>std::vector&lt;std::vector&lt;std::string&gt;&gt;</td>
+            <td>2D vector representing the teacher table for the section.</td>
+        </tr>
+        <tr>
+            <td>roomTable</td>
+            <td>std::vector&lt;std::vector&lt;std::string&gt;&gt;</td>
+            <td>2D vector representing the room table for the section.</td>
+        </tr>
+    </table>
+
+    <h3>Member Functions:</h3>
+    <ul>
+        <li><code>addCore(std::string Teacher, subject Subject) - void</code>: Adds core teacher and subject to the section.</li>
+        <li><code>addLab(std::vector&lt;std::string&gt; teacherList, subject Subject, int noLabs, int noTeachersLab) - void</code>: Adds lab teachers, lab subject, and related information to the section.</li>
+        <li><code>block(int i, int j, std::string Teacher, std::string Subject) - void</code>: Blocks a particular time slot for a teacher and subject.</li>
+        <li><code>makeTIMETABLE() - void</code>: Generates the timetable for the section.</li>
+        <li><code>showTimeTable() - void</code>: Displays the timetable for the section.</li>
+        <li><code>showTeacherTable() - void</code>: Displays the teacher table for the section.</li>
+        <li><code>showRoomTable() - void</code>: Displays the room table for the section.</li>
+    </ul>
+
+    <h3>Constructor:</h3>
+    <ul>
+        <li><code>section()</code>: Default constructor that initializes the data members of the section class.</li>
+    </ul>
+
+    <h3>Private Member Functions:</h3>
+    <ul>
+        <li><code>returnCombinations(std::vector&lt;std::string&gt; comb, int required) - std::vector&lt;std::vector&lt;std::string&gt;&gt;</code>: Returns combinations of strings based on the specified requirements.</li>
+        <li><code>findIntersection(std::vector&lt;std::vector&lt;std::vector&lt;bool&gt;&gt;&gt; inputs, std::vector&lt;std::vector&lt;std::string&gt;&gt; def = {}) - std::vector&lt;std::vector&lt;bool&gt;&gt;</code>: Finds intersections of timetable data.</li>
+        <li><code>returnRoom(std::string name) - room&amp;</code>: Returns a room object based on the room name.</li>
+        <li><code>returnTeacher(std::string inp) - teacher&amp;</code>: Returns a teacher object based on the input.</li>
+        <li><code>returnSubject(std::string inp) - subject&amp;</code>: Returns a subject object based on the input.</li>
+        <li><code>findWeightageLab(std::vector&lt;std::vector&lt;bool&gt;&gt; inp, std::vector&lt;teacher&gt; teachers) - std::vector&lt;std::vector&lt;int&gt;&gt;</code>: Finds weightage for lab sessions based on teacher availability.</li>
+        <li><code>findWeightageCore(std::vector&lt;std::vector&lt;bool&gt;&gt; inp, teacher teachers) - std::vector&lt;std::vector&lt;int&gt;&gt;</code>: Finds weightage for core sessions based on teacher availability.</li>
+    </ul>
+</section>
+
+    <footer>
+        &copy; 2024 TimeTable Architect. All rights reserved.
+    </footer>
+
+</body>
+
+</html>
