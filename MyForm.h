@@ -392,8 +392,6 @@ namespace TTA_ui {
             }
         }
 
-      
-//functions for subject.h
         void subcsvgen(String^ filePath)
         {
             try{
@@ -506,7 +504,8 @@ namespace TTA_ui {
             }
             catch (...)
             {
-            }                MessageBox::Show("Error saving Data\nTry Closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                MessageBox::Show("Error saving Data\nTry Closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+            }
         }
         
         void csvlab(System::String^ filePath)
@@ -538,9 +537,10 @@ namespace TTA_ui {
                     outputFile << "\n";
                 }outputFile.close();
             }
-            catch(...)
+            catch (...)
             {
-            }                MessageBox::Show("Error saving Data\nTry closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                MessageBox::Show("Error saving Data\nTry closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+            }
         }
 
         System::Data::DataTable^ CreateDataTableFromCSV1(const std::string filePath) {
@@ -594,6 +594,34 @@ namespace TTA_ui {
                     // Display only the first word before the comma
                     String^ cteacher = msclr::interop::marshal_as<String^>(row[0]);
                     dataTable->Rows->Add(cteacher);
+                }
+            }
+            return dataTable;
+        }
+
+        System::Data::DataTable^ CreateDataTableFromCSV5(const std::string filePath) {
+            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
+            dataTable->Columns->Add("editsubeleteachercombo");
+            vector<vector<string>> data = ReadCSVFile(filePath);
+            for (const auto& row : data) {
+                if (!row.empty()) {
+                    // Display only the first word before the comma
+                    String^ teacherName = msclr::interop::marshal_as<String^>(row[0]);
+                    dataTable->Rows->Add(teacherName);
+                }
+            }
+            return dataTable;
+        }
+
+        System::Data::DataTable^ CreateDataTableFromCSV6(const std::string filePath) {
+            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
+            dataTable->Columns->Add("editsublabteachercombo");
+            vector<vector<string>> data = ReadCSVFile(filePath);
+            for (const auto& row : data) {
+                if (!row.empty()) {
+                    // Display only the first word before the comma
+                    String^ teacher_Name = msclr::interop::marshal_as<String^>(row[0]);
+                    dataTable->Rows->Add(teacher_Name);
                 }
             }
             return dataTable;
@@ -997,7 +1025,7 @@ public:
        }
        catch (...)
        {
-           MessageBox::Show("Error displaying data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+           MessageBox::Show("Error Saving data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
        }
    }
 
@@ -1012,6 +1040,263 @@ public:
            {
                if (find == row[0]) {
                  
+               }
+               else
+               {
+                   for (int i = 0; i < row.size() - 1; i++)
+                   {
+                       file << row[i] + ",";
+                   }
+                   file << row[row.size() - 1] << "\n";
+               }
+           }
+       }file.close();
+   }
+
+   void editsubjectcsvshow()
+   {
+       string find = msclr::interop::marshal_as<string>(editsubsearch->Text);
+
+       vector<vector<string>>data = ReadCSVFile("details/subject_file.csv");
+       for (auto& row : data)
+       {
+           string str;
+           for (char& a : row[0])
+           {
+               str += toupper(static_cast<unsigned char>(a));
+           }
+           for (char& a : find)
+           {
+               a = toupper(static_cast<unsigned char>(a));
+           }
+           if (str == find)
+           {
+               editsubname->Text = msclr::interop::marshal_as<String^>(row[0]);
+               if (row[1] == "0")
+               {
+                   editsubeleno->Checked=true;
+                   editsubeleteacher->Rows->Clear();
+               }
+               else
+               {
+                   editsubeleyes->Checked=true;
+                   fstream file;
+                   file.open("details/elective.csv");
+                   string line;
+                   while (getline(file, line))
+                   {
+                       stringstream lineStream(line);
+                       vector<string> rows;
+                       string cell;
+                       while (getline(lineStream, cell, ',')) {
+                           rows.push_back(cell);
+                       }
+                       for (char& a : rows[0])
+                       {
+                           a = toupper(static_cast<unsigned char>(a));
+                       }
+                       if (rows[0] == find)
+                       {
+                           editsubelename->Text = msclr::interop::marshal_as<String^>(rows[1]);
+                           
+                           
+                               for (int i = 2; i < rows.size(); i++)
+                               {
+                                   editsubeleteacher->Rows->Add();
+                                   editsubeleteacher->Rows[i-2]->Cells[0]->Value = (msclr::interop::marshal_as<String^>(rows[i]));
+                               }
+                               break;
+                       }
+                       
+                   }
+                   file.close();
+                   
+               }
+               if (row[2] == "0")
+               {
+                   editsublabno->Checked=true;
+               }
+               else
+               {
+                   editsublabyes->Checked=true;
+                   fstream file;
+                   file.open("details/Labo.csv");
+                   string line;
+                   while (getline(file, line))
+                   {
+                       stringstream lineStream(line);
+                       vector<string> rows;
+                       string cell;
+                       while (getline(lineStream, cell, ',')) {
+                           rows.push_back(cell);
+                       }
+                       for (char& a : rows[0])
+                       {
+                           a = toupper(static_cast<unsigned char>(a));
+                       }
+                       if (rows[0] == find)
+                       {
+                           for (int i = 1; i < rows.size(); i++)
+                           {
+                               editsublabteacher->Rows->Add();
+                               editsublabteacher->Rows[i - 1]->Cells[0]->Value = (msclr::interop::marshal_as<String^>(rows[i]));
+                           }
+                           break;
+                       }
+
+                   }
+
+               }
+               editsubcredits->Text= msclr::interop::marshal_as<String^>(row[3]);
+               editsubbfactor->Text= msclr::interop::marshal_as<String^>(row[5]);
+                   if (!row[6].empty()) {
+                      String^ y = msclr::interop::marshal_as<String^>( row[6].erase(0, 1));
+                       for (int i = 0; i < editsubroomlist->Items->Count; i++)
+                       {
+
+                           String^ item = editsubroomlist->Items[i]->ToString();
+                           if (item == y)
+                           {
+                               editsubroomlist->SetItemChecked(i, true);
+                               break;
+                           }
+                       }
+                    
+                   }
+                   if (row.size() > 7)
+                   {
+                      for (int j = 7; j < row.size()-1; j++)
+                      { 
+                               String^ searchString = msclr::interop::marshal_as<String^>(row[j]);
+                               for (int i = 0; i < editsubroomlist->Items->Count; i++)
+                               {
+
+                                       String^ item = editsubroomlist->Items[i]->ToString();
+                                       if (item == searchString)
+                                       {
+                                           editsubroomlist->SetItemChecked(i, true);
+                                           break;
+                                       }
+                               }
+                      }
+                      
+                      String^ searchString = msclr::interop::marshal_as<String^>(row[row.size() - 1].substr(0, row[row.size()-1].length() - 1));
+                      for (int i = 0; i < editsubroomlist->Items->Count; i++)
+                      {
+
+                          String^ item = editsubroomlist->Items[i]->ToString();
+                          if (item == searchString)
+                          {
+                              editsubroomlist->SetItemChecked(i, true);
+                              break;
+                          }
+                      }
+
+                   }
+
+           }
+       }
+   }
+
+   void editsubcsvsave(const string filename)
+   {
+       try {
+           string find = msclr::interop::marshal_as<string>(editsubsearch->Text);
+
+           vector<vector<string>>data = ReadCSVFile(filename);
+           ofstream file(filename);
+           {
+               for (const auto& row : data)
+               {
+                   if (find == row[0]) {
+                       file << msclr::interop::marshal_as<string>(editsubname->Text) << ",";
+                       if (editsubeleyes->Checked)
+                       {
+                           String^ ele = editsubelename->Text->ToString();
+                           string Ele = replacewhitespace(msclr::interop::marshal_as<string>(ele));
+                           file << Ele << ",";
+                           String^ FilePath = "details/Elective.csv";
+                           csvelective(FilePath);
+                       }
+                       else
+                       {
+                           file << "0,";
+                       }
+
+                       {if (editsublabyes->Checked)
+                       {
+                           file << "1,";
+                           {
+                               String^ filepath = "details/Labo.csv";
+                               csvlab(filepath);
+                           }
+                       }
+                       else
+                       {
+                           file << "0,";
+                       }
+                       }
+                       System::String^ credits = editsubcredits->Text->ToString();
+                       std::string Credits = msclr::interop::marshal_as<string>(credits);
+                       file << Credits << ",";
+                       if (editsublabyes->Checked)
+                       {
+                           file << "2,";
+                       }
+                       else
+                       {
+                           file << "1,";
+                       }
+                       System::String^ bfactor = editsubbfactor->Text->ToString();
+                       std::string Bfactor = msclr::interop::marshal_as<string>(bfactor);
+                       file << Bfactor << ",";
+                       //code to add roomlist
+                       file << "[";
+                       bool x = true;
+                       for (int i = 0; i < editsubroomlist->CheckedItems->Count; ++i) {
+                           String^ value = editsubroomlist->CheckedItems[i]->ToString();
+                           std::string Value = msclr::interop::marshal_as<string>(value);
+                           file << Value;
+                           x = false;
+                           if (i < editsubroomlist->CheckedItems->Count - 1) {
+                               file << ",";// Add a comma after each value, except the last one
+                           }
+                       }
+                       if (x)
+                       {
+                           file << "0";
+                       }
+                       file << "]\n";
+                   }
+                   else
+                   {
+                       for (int i = 0; i < row.size() - 1; i++)
+                       {
+                           file << row[i] + ",";
+                       }
+                       file << row[row.size() - 1] << "\n";
+                   }
+               }
+           }file.close();
+           MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+       }
+       catch (...)
+       {
+           MessageBox::Show("Error Saving data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+       }
+   }
+
+   void editsubcsvdelete(const string filename)
+   {
+       string find = msclr::interop::marshal_as<string>(editsubsearch->Text);
+
+       vector<vector<string>>data = ReadCSVFile(filename);
+       ofstream file(filename);
+       {
+           for (const auto& row : data)
+           {
+               if (find == row[0]) {
+
                }
                else
                {
@@ -1091,6 +1376,7 @@ public:
        }
        obj.defaultRooms = drooms;
    }
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -1431,106 +1717,7 @@ private: System::Windows::Forms::Button^ editroomsearchbutton;
 
 private: System::Windows::Forms::Label^ label82;
 private: System::Windows::Forms::Panel^ editsubjectpanel;
-private: System::Windows::Forms::Panel^ panel9;
-private: System::Windows::Forms::Button^ editsubjectsearchbutton;
-private: System::Windows::Forms::RichTextBox^ editsubjectsearch;
-private: System::Windows::Forms::Label^ label108;
-private: System::Windows::Forms::Panel^ panel7;
-private: System::Windows::Forms::RadioButton^ editsubjecteleyes;
-private: System::Windows::Forms::RadioButton^ editsubjecteleno;
-private: System::Windows::Forms::Panel^ panel8;
-private: System::Windows::Forms::RadioButton^ editsubjectlabyes;
-private: System::Windows::Forms::RadioButton^ editsubjectlabno;
 
-
-private: System::Windows::Forms::Button^ button20;
-private: System::Windows::Forms::TextBox^ textBox18;
-private: System::Windows::Forms::CheckedListBox^ editsubjectroom;
-
-private: System::Windows::Forms::Label^ label83;
-private: System::Windows::Forms::Button^ button21;
-private: System::Windows::Forms::NumericUpDown^ editsubjectbfactor;
-
-private: System::Windows::Forms::TextBox^ editsubjectelename;
-private: System::Windows::Forms::Label^ label84;
-private: System::Windows::Forms::Label^ label85;
-private: System::Windows::Forms::Label^ label86;
-private: System::Windows::Forms::Label^ label87;
-private: System::Windows::Forms::Label^ label88;
-private: System::Windows::Forms::TextBox^ editsubjectname;
-private: System::Windows::Forms::NumericUpDown^ editsubjectcredit;
-
-private: System::Windows::Forms::DataGridView^ editsubjectlabteachers;
-
-private: System::Windows::Forms::DataGridViewComboBoxColumn^ dataGridViewComboBoxColumn1;
-private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn7;
-private: System::Windows::Forms::Label^ label89;
-private: System::Windows::Forms::Label^ label91;
-private: System::Windows::Forms::Label^ label90;
-private: System::Windows::Forms::DataGridView^ editsubjecteleteacher;
-
-private: System::Windows::Forms::DataGridViewComboBoxColumn^ dataGridViewComboBoxColumn2;
-private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn9;
-private: System::Windows::Forms::Panel^ panel10;
-private: System::Windows::Forms::Button^ button22;
-private: System::Windows::Forms::Button^ button23;
-private: System::Windows::Forms::TextBox^ textBox19;
-private: System::Windows::Forms::Label^ label92;
-private: System::Windows::Forms::Label^ label93;
-private: System::Windows::Forms::Label^ label94;
-private: System::Windows::Forms::Label^ label95;
-private: System::Windows::Forms::Label^ label96;
-private: System::Windows::Forms::Label^ label97;
-private: System::Windows::Forms::Label^ label98;
-private: System::Windows::Forms::Label^ label99;
-private: System::Windows::Forms::Label^ label100;
-private: System::Windows::Forms::Label^ label101;
-private: System::Windows::Forms::Label^ label102;
-private: System::Windows::Forms::Button^ button24;
-private: System::Windows::Forms::Button^ button25;
-private: System::Windows::Forms::Button^ button26;
-private: System::Windows::Forms::Button^ button27;
-private: System::Windows::Forms::Button^ button28;
-private: System::Windows::Forms::Button^ button29;
-private: System::Windows::Forms::Button^ button30;
-private: System::Windows::Forms::Button^ button31;
-private: System::Windows::Forms::Button^ button32;
-private: System::Windows::Forms::Button^ button33;
-private: System::Windows::Forms::Button^ button34;
-private: System::Windows::Forms::Button^ button35;
-private: System::Windows::Forms::Button^ button36;
-private: System::Windows::Forms::Button^ button39;
-private: System::Windows::Forms::Button^ button40;
-private: System::Windows::Forms::Button^ button41;
-private: System::Windows::Forms::Button^ button42;
-private: System::Windows::Forms::Button^ button43;
-private: System::Windows::Forms::Button^ button44;
-private: System::Windows::Forms::Button^ button45;
-private: System::Windows::Forms::Button^ button46;
-private: System::Windows::Forms::Button^ button47;
-private: System::Windows::Forms::Button^ button48;
-private: System::Windows::Forms::Button^ button49;
-private: System::Windows::Forms::Button^ button50;
-private: System::Windows::Forms::Button^ button51;
-private: System::Windows::Forms::Button^ button52;
-private: System::Windows::Forms::Button^ button53;
-private: System::Windows::Forms::Button^ button54;
-private: System::Windows::Forms::Button^ button55;
-private: System::Windows::Forms::Button^ button56;
-private: System::Windows::Forms::Button^ button57;
-private: System::Windows::Forms::Button^ button58;
-private: System::Windows::Forms::Button^ button59;
-private: System::Windows::Forms::Label^ label103;
-private: System::Windows::Forms::ComboBox^ comboBox4;
-private: System::Windows::Forms::Label^ label104;
-private: System::Windows::Forms::TextBox^ textBox20;
-private: System::Windows::Forms::Button^ button60;
-private: System::Windows::Forms::Button^ button61;
-private: System::Windows::Forms::Button^ button62;
-private: System::Windows::Forms::Label^ label105;
-private: System::Windows::Forms::Label^ label106;
-private: System::Windows::Forms::RichTextBox^ richTextBox1;
-private: System::Windows::Forms::Label^ label107;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ csubject;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ cteacher;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn6;
@@ -1636,8 +1823,55 @@ private: System::Windows::Forms::Label^ textBox7;
 private: System::Windows::Forms::Panel^ panel1;
 private: System::Windows::Forms::ComboBox^ teachersearch;
 private: System::Windows::Forms::ComboBox^ editroomsearch;
+private: System::Windows::Forms::Panel^ panel10;
+private: System::Windows::Forms::RadioButton^ editsubeleyes;
+private: System::Windows::Forms::RadioButton^ editsubeleno;
 
 
+private: System::Windows::Forms::Label^ label92;
+private: System::Windows::Forms::TextBox^ editsubname;
+
+private: System::Windows::Forms::Label^ label93;
+private: System::Windows::Forms::Label^ label94;
+private: System::Windows::Forms::TextBox^ editsubelename;
+
+private: System::Windows::Forms::Label^ label95;
+private: System::Windows::Forms::DataGridView^ editsubeleteacher;
+
+
+
+private: System::Windows::Forms::Panel^ panel13;
+private: System::Windows::Forms::RadioButton^ editsublabyes;
+private: System::Windows::Forms::RadioButton^ editsublabno;
+private: System::Windows::Forms::CheckedListBox^ editsubroomlist;
+
+
+
+private: System::Windows::Forms::Label^ label96;
+private: System::Windows::Forms::Label^ label97;
+private: System::Windows::Forms::NumericUpDown^ editsubcredits;
+
+private: System::Windows::Forms::DataGridView^ editsublabteacher;
+
+
+
+private: System::Windows::Forms::Label^ label98;
+private: System::Windows::Forms::Label^ label99;
+private: System::Windows::Forms::Button^ editsubdelete;
+
+private: System::Windows::Forms::Button^ editsubsave;
+
+private: System::Windows::Forms::NumericUpDown^ editsubbfactor;
+
+private: System::Windows::Forms::Label^ label100;
+private: System::Windows::Forms::Button^ editsubsearchbutton;
+
+private: System::Windows::Forms::Label^ label101;
+private: System::Windows::Forms::ComboBox^ editsubsearch;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsubeleteachercombo;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn10;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsublabteachercombo;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn11;
 
 
 
@@ -1977,99 +2211,37 @@ private: System::ComponentModel::IContainer^ components;
             this->editroomsave = (gcnew System::Windows::Forms::Button());
             this->editroomsearch = (gcnew System::Windows::Forms::ComboBox());
             this->editsubjectpanel = (gcnew System::Windows::Forms::Panel());
-            this->panel10 = (gcnew System::Windows::Forms::Panel());
-            this->button22 = (gcnew System::Windows::Forms::Button());
-            this->button23 = (gcnew System::Windows::Forms::Button());
-            this->textBox19 = (gcnew System::Windows::Forms::TextBox());
-            this->label92 = (gcnew System::Windows::Forms::Label());
-            this->label93 = (gcnew System::Windows::Forms::Label());
-            this->label94 = (gcnew System::Windows::Forms::Label());
-            this->label95 = (gcnew System::Windows::Forms::Label());
+            this->editsubsearchbutton = (gcnew System::Windows::Forms::Button());
+            this->label101 = (gcnew System::Windows::Forms::Label());
+            this->editsubsearch = (gcnew System::Windows::Forms::ComboBox());
+            this->editsubdelete = (gcnew System::Windows::Forms::Button());
+            this->editsubsave = (gcnew System::Windows::Forms::Button());
+            this->editsubbfactor = (gcnew System::Windows::Forms::NumericUpDown());
+            this->label100 = (gcnew System::Windows::Forms::Label());
+            this->panel13 = (gcnew System::Windows::Forms::Panel());
+            this->editsublabyes = (gcnew System::Windows::Forms::RadioButton());
+            this->editsublabno = (gcnew System::Windows::Forms::RadioButton());
+            this->editsubroomlist = (gcnew System::Windows::Forms::CheckedListBox());
             this->label96 = (gcnew System::Windows::Forms::Label());
             this->label97 = (gcnew System::Windows::Forms::Label());
+            this->editsubcredits = (gcnew System::Windows::Forms::NumericUpDown());
+            this->editsublabteacher = (gcnew System::Windows::Forms::DataGridView());
+            this->editsublabteachercombo = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
+            this->dataGridViewButtonColumn11 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->label98 = (gcnew System::Windows::Forms::Label());
             this->label99 = (gcnew System::Windows::Forms::Label());
-            this->label100 = (gcnew System::Windows::Forms::Label());
-            this->label101 = (gcnew System::Windows::Forms::Label());
-            this->label102 = (gcnew System::Windows::Forms::Label());
-            this->button24 = (gcnew System::Windows::Forms::Button());
-            this->button25 = (gcnew System::Windows::Forms::Button());
-            this->button26 = (gcnew System::Windows::Forms::Button());
-            this->button27 = (gcnew System::Windows::Forms::Button());
-            this->button28 = (gcnew System::Windows::Forms::Button());
-            this->button29 = (gcnew System::Windows::Forms::Button());
-            this->button30 = (gcnew System::Windows::Forms::Button());
-            this->button31 = (gcnew System::Windows::Forms::Button());
-            this->button32 = (gcnew System::Windows::Forms::Button());
-            this->button33 = (gcnew System::Windows::Forms::Button());
-            this->button34 = (gcnew System::Windows::Forms::Button());
-            this->button35 = (gcnew System::Windows::Forms::Button());
-            this->button36 = (gcnew System::Windows::Forms::Button());
-            this->button39 = (gcnew System::Windows::Forms::Button());
-            this->button40 = (gcnew System::Windows::Forms::Button());
-            this->button41 = (gcnew System::Windows::Forms::Button());
-            this->button42 = (gcnew System::Windows::Forms::Button());
-            this->button43 = (gcnew System::Windows::Forms::Button());
-            this->button44 = (gcnew System::Windows::Forms::Button());
-            this->button45 = (gcnew System::Windows::Forms::Button());
-            this->button46 = (gcnew System::Windows::Forms::Button());
-            this->button47 = (gcnew System::Windows::Forms::Button());
-            this->button48 = (gcnew System::Windows::Forms::Button());
-            this->button49 = (gcnew System::Windows::Forms::Button());
-            this->button50 = (gcnew System::Windows::Forms::Button());
-            this->button51 = (gcnew System::Windows::Forms::Button());
-            this->button52 = (gcnew System::Windows::Forms::Button());
-            this->button53 = (gcnew System::Windows::Forms::Button());
-            this->button54 = (gcnew System::Windows::Forms::Button());
-            this->button55 = (gcnew System::Windows::Forms::Button());
-            this->button56 = (gcnew System::Windows::Forms::Button());
-            this->button57 = (gcnew System::Windows::Forms::Button());
-            this->button58 = (gcnew System::Windows::Forms::Button());
-            this->button59 = (gcnew System::Windows::Forms::Button());
-            this->label103 = (gcnew System::Windows::Forms::Label());
-            this->comboBox4 = (gcnew System::Windows::Forms::ComboBox());
-            this->label104 = (gcnew System::Windows::Forms::Label());
-            this->textBox20 = (gcnew System::Windows::Forms::TextBox());
-            this->button60 = (gcnew System::Windows::Forms::Button());
-            this->button61 = (gcnew System::Windows::Forms::Button());
-            this->button62 = (gcnew System::Windows::Forms::Button());
-            this->label105 = (gcnew System::Windows::Forms::Label());
-            this->label106 = (gcnew System::Windows::Forms::Label());
-            this->richTextBox1 = (gcnew System::Windows::Forms::RichTextBox());
-            this->label107 = (gcnew System::Windows::Forms::Label());
-            this->panel9 = (gcnew System::Windows::Forms::Panel());
-            this->editsubjectsearchbutton = (gcnew System::Windows::Forms::Button());
-            this->editsubjectsearch = (gcnew System::Windows::Forms::RichTextBox());
-            this->label108 = (gcnew System::Windows::Forms::Label());
-            this->panel7 = (gcnew System::Windows::Forms::Panel());
-            this->editsubjecteleyes = (gcnew System::Windows::Forms::RadioButton());
-            this->editsubjecteleno = (gcnew System::Windows::Forms::RadioButton());
-            this->panel8 = (gcnew System::Windows::Forms::Panel());
-            this->editsubjectlabyes = (gcnew System::Windows::Forms::RadioButton());
-            this->editsubjectlabno = (gcnew System::Windows::Forms::RadioButton());
-            this->button20 = (gcnew System::Windows::Forms::Button());
-            this->textBox18 = (gcnew System::Windows::Forms::TextBox());
-            this->editsubjectroom = (gcnew System::Windows::Forms::CheckedListBox());
-            this->label83 = (gcnew System::Windows::Forms::Label());
-            this->button21 = (gcnew System::Windows::Forms::Button());
-            this->editsubjectbfactor = (gcnew System::Windows::Forms::NumericUpDown());
-            this->editsubjectelename = (gcnew System::Windows::Forms::TextBox());
-            this->label84 = (gcnew System::Windows::Forms::Label());
-            this->label85 = (gcnew System::Windows::Forms::Label());
-            this->label86 = (gcnew System::Windows::Forms::Label());
-            this->label87 = (gcnew System::Windows::Forms::Label());
-            this->label88 = (gcnew System::Windows::Forms::Label());
-            this->editsubjectname = (gcnew System::Windows::Forms::TextBox());
-            this->editsubjectcredit = (gcnew System::Windows::Forms::NumericUpDown());
-            this->editsubjectlabteachers = (gcnew System::Windows::Forms::DataGridView());
-            this->dataGridViewComboBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
-            this->dataGridViewButtonColumn7 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
-            this->label89 = (gcnew System::Windows::Forms::Label());
-            this->label91 = (gcnew System::Windows::Forms::Label());
-            this->label90 = (gcnew System::Windows::Forms::Label());
-            this->editsubjecteleteacher = (gcnew System::Windows::Forms::DataGridView());
-            this->dataGridViewComboBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
-            this->dataGridViewButtonColumn9 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->label94 = (gcnew System::Windows::Forms::Label());
+            this->panel10 = (gcnew System::Windows::Forms::Panel());
+            this->editsubeleyes = (gcnew System::Windows::Forms::RadioButton());
+            this->editsubeleno = (gcnew System::Windows::Forms::RadioButton());
+            this->editsubelename = (gcnew System::Windows::Forms::TextBox());
+            this->label92 = (gcnew System::Windows::Forms::Label());
+            this->label95 = (gcnew System::Windows::Forms::Label());
+            this->editsubeleteacher = (gcnew System::Windows::Forms::DataGridView());
+            this->editsubeleteachercombo = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
+            this->dataGridViewButtonColumn10 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->editsubname = (gcnew System::Windows::Forms::TextBox());
+            this->label93 = (gcnew System::Windows::Forms::Label());
             this->addteacherpanel = (gcnew System::Windows::Forms::Panel());
             this->label50 = (gcnew System::Windows::Forms::Label());
             this->label40 = (gcnew System::Windows::Forms::Label());
@@ -2191,14 +2363,12 @@ private: System::ComponentModel::IContainer^ components;
             this->panel6->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editroomcapacity))->BeginInit();
             this->editsubjectpanel->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->BeginInit();
+            this->panel13->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsublabteacher))->BeginInit();
             this->panel10->SuspendLayout();
-            this->panel9->SuspendLayout();
-            this->panel7->SuspendLayout();
-            this->panel8->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectbfactor))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectcredit))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectlabteachers))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjecteleteacher))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->BeginInit();
             this->addteacherpanel->SuspendLayout();
             this->settingspanel->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
@@ -6205,7 +6375,30 @@ private: System::ComponentModel::IContainer^ components;
             // 
             // editsubjectpanel
             // 
+            this->editsubjectpanel->AutoScroll = true;
+            this->editsubjectpanel->Controls->Add(this->editsubsearchbutton);
+            this->editsubjectpanel->Controls->Add(this->label101);
+            this->editsubjectpanel->Controls->Add(this->editsubsearch);
+            this->editsubjectpanel->Controls->Add(this->editsubdelete);
+            this->editsubjectpanel->Controls->Add(this->editsubsave);
+            this->editsubjectpanel->Controls->Add(this->editsubbfactor);
+            this->editsubjectpanel->Controls->Add(this->label100);
+            this->editsubjectpanel->Controls->Add(this->panel13);
+            this->editsubjectpanel->Controls->Add(this->editsubroomlist);
+            this->editsubjectpanel->Controls->Add(this->label96);
+            this->editsubjectpanel->Controls->Add(this->label97);
+            this->editsubjectpanel->Controls->Add(this->editsubcredits);
+            this->editsubjectpanel->Controls->Add(this->editsublabteacher);
+            this->editsubjectpanel->Controls->Add(this->label98);
+            this->editsubjectpanel->Controls->Add(this->label99);
+            this->editsubjectpanel->Controls->Add(this->label94);
             this->editsubjectpanel->Controls->Add(this->panel10);
+            this->editsubjectpanel->Controls->Add(this->editsubelename);
+            this->editsubjectpanel->Controls->Add(this->label92);
+            this->editsubjectpanel->Controls->Add(this->label95);
+            this->editsubjectpanel->Controls->Add(this->editsubeleteacher);
+            this->editsubjectpanel->Controls->Add(this->editsubname);
+            this->editsubjectpanel->Controls->Add(this->label93);
             this->editsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->editsubjectpanel->Name = L"editsubjectpanel";
@@ -6213,1102 +6406,191 @@ private: System::ComponentModel::IContainer^ components;
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
             // 
-            // panel10
+            // editsubsearchbutton
             // 
-            this->panel10->AutoScroll = true;
-            this->panel10->Controls->Add(this->button22);
-            this->panel10->Controls->Add(this->button23);
-            this->panel10->Controls->Add(this->textBox19);
-            this->panel10->Controls->Add(this->label92);
-            this->panel10->Controls->Add(this->label93);
-            this->panel10->Controls->Add(this->label94);
-            this->panel10->Controls->Add(this->label95);
-            this->panel10->Controls->Add(this->label96);
-            this->panel10->Controls->Add(this->label97);
-            this->panel10->Controls->Add(this->label98);
-            this->panel10->Controls->Add(this->label99);
-            this->panel10->Controls->Add(this->label100);
-            this->panel10->Controls->Add(this->label101);
-            this->panel10->Controls->Add(this->label102);
-            this->panel10->Controls->Add(this->button24);
-            this->panel10->Controls->Add(this->button25);
-            this->panel10->Controls->Add(this->button26);
-            this->panel10->Controls->Add(this->button27);
-            this->panel10->Controls->Add(this->button28);
-            this->panel10->Controls->Add(this->button29);
-            this->panel10->Controls->Add(this->button30);
-            this->panel10->Controls->Add(this->button31);
-            this->panel10->Controls->Add(this->button32);
-            this->panel10->Controls->Add(this->button33);
-            this->panel10->Controls->Add(this->button34);
-            this->panel10->Controls->Add(this->button35);
-            this->panel10->Controls->Add(this->button36);
-            this->panel10->Controls->Add(this->button39);
-            this->panel10->Controls->Add(this->button40);
-            this->panel10->Controls->Add(this->button41);
-            this->panel10->Controls->Add(this->button42);
-            this->panel10->Controls->Add(this->button43);
-            this->panel10->Controls->Add(this->button44);
-            this->panel10->Controls->Add(this->button45);
-            this->panel10->Controls->Add(this->button46);
-            this->panel10->Controls->Add(this->button47);
-            this->panel10->Controls->Add(this->button48);
-            this->panel10->Controls->Add(this->button49);
-            this->panel10->Controls->Add(this->button50);
-            this->panel10->Controls->Add(this->button51);
-            this->panel10->Controls->Add(this->button52);
-            this->panel10->Controls->Add(this->button53);
-            this->panel10->Controls->Add(this->button54);
-            this->panel10->Controls->Add(this->button55);
-            this->panel10->Controls->Add(this->button56);
-            this->panel10->Controls->Add(this->button57);
-            this->panel10->Controls->Add(this->button58);
-            this->panel10->Controls->Add(this->button59);
-            this->panel10->Controls->Add(this->label103);
-            this->panel10->Controls->Add(this->comboBox4);
-            this->panel10->Controls->Add(this->label104);
-            this->panel10->Controls->Add(this->textBox20);
-            this->panel10->Controls->Add(this->button60);
-            this->panel10->Controls->Add(this->button61);
-            this->panel10->Controls->Add(this->button62);
-            this->panel10->Controls->Add(this->label105);
-            this->panel10->Controls->Add(this->label106);
-            this->panel10->Controls->Add(this->richTextBox1);
-            this->panel10->Controls->Add(this->label107);
-            this->panel10->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->panel10->Location = System::Drawing::Point(0, 0);
-            this->panel10->Name = L"panel10";
-            this->panel10->Size = System::Drawing::Size(1946, 1106);
-            this->panel10->TabIndex = 266;
+            this->editsubsearchbutton->BackColor = System::Drawing::Color::White;
+            this->editsubsearchbutton->FlatAppearance->BorderSize = 0;
+            this->editsubsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->editsubsearchbutton->Location = System::Drawing::Point(966, 250);
+            this->editsubsearchbutton->Name = L"editsubsearchbutton";
+            this->editsubsearchbutton->Size = System::Drawing::Size(30, 32);
+            this->editsubsearchbutton->TabIndex = 311;
+            this->editsubsearchbutton->Text = L"🔍";
+            this->editsubsearchbutton->UseVisualStyleBackColor = false;
+            this->editsubsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editsubsearchbutton_Click);
             // 
-            // button22
+            // label101
             // 
-            this->button22->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->label101->AutoSize = true;
+            this->label101->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label101->Location = System::Drawing::Point(676, 197);
+            this->label101->Name = L"label101";
+            this->label101->Size = System::Drawing::Size(241, 30);
+            this->label101->TabIndex = 310;
+            this->label101->Text = L"Enter the Subject Name";
+            // 
+            // editsubsearch
+            // 
+            this->editsubsearch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button22->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->editsubsearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button22->Location = System::Drawing::Point(1457, 1275);
-            this->button22->Name = L"button22";
-            this->button22->Size = System::Drawing::Size(121, 45);
-            this->button22->TabIndex = 290;
-            this->button22->Text = L"Delete";
-            this->button22->UseVisualStyleBackColor = false;
+            this->editsubsearch->ForeColor = System::Drawing::SystemColors::WindowFrame;
+            this->editsubsearch->FormattingEnabled = true;
+            this->editsubsearch->Location = System::Drawing::Point(639, 248);
+            this->editsubsearch->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+            this->editsubsearch->Name = L"editsubsearch";
+            this->editsubsearch->Size = System::Drawing::Size(360, 36);
+            this->editsubsearch->TabIndex = 312;
+            this->editsubsearch->Text = L"Search";
             // 
-            // button23
+            // editsubdelete
             // 
-            this->button23->Location = System::Drawing::Point(1030, 285);
-            this->button23->Name = L"button23";
-            this->button23->Size = System::Drawing::Size(132, 30);
-            this->button23->TabIndex = 289;
-            this->button23->Text = L"search";
-            this->button23->UseVisualStyleBackColor = true;
-            // 
-            // textBox19
-            // 
-            this->textBox19->Location = System::Drawing::Point(1115, 589);
-            this->textBox19->Name = L"textBox19";
-            this->textBox19->Size = System::Drawing::Size(124, 26);
-            this->textBox19->TabIndex = 286;
-            // 
-            // label92
-            // 
-            this->label92->AutoSize = true;
-            this->label92->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubdelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editsubdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label92->Location = System::Drawing::Point(1267, 780);
-            this->label92->Name = L"label92";
-            this->label92->Size = System::Drawing::Size(94, 28);
-            this->label92->TabIndex = 285;
-            this->label92->Text = L"3:30-4:30";
+            this->editsubdelete->Location = System::Drawing::Point(1230, 2210);
+            this->editsubdelete->Name = L"editsubdelete";
+            this->editsubdelete->Size = System::Drawing::Size(116, 54);
+            this->editsubdelete->TabIndex = 309;
+            this->editsubdelete->Text = L"Delete";
+            this->editsubdelete->UseVisualStyleBackColor = false;
+            this->editsubdelete->Click += gcnew System::EventHandler(this, &MyForm::editsubdelete_Click);
             // 
-            // label93
+            // editsubsave
             // 
-            this->label93->AutoSize = true;
-            this->label93->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubsave->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label93->Location = System::Drawing::Point(956, 779);
-            this->label93->Name = L"label93";
-            this->label93->Size = System::Drawing::Size(116, 28);
-            this->label93->TabIndex = 284;
-            this->label93->Text = L"12:30-11:30";
+            this->editsubsave->Location = System::Drawing::Point(1011, 2210);
+            this->editsubsave->Name = L"editsubsave";
+            this->editsubsave->Size = System::Drawing::Size(116, 54);
+            this->editsubsave->TabIndex = 308;
+            this->editsubsave->Text = L"Save";
+            this->editsubsave->UseVisualStyleBackColor = false;
+            this->editsubsave->Click += gcnew System::EventHandler(this, &MyForm::editsubsave_Click);
             // 
-            // label94
+            // editsubbfactor
             // 
-            this->label94->AutoSize = true;
-            this->label94->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubbfactor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)));
+            this->editsubbfactor->DecimalPlaces = 2;
+            this->editsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label94->Location = System::Drawing::Point(778, 779);
-            this->label94->Name = L"label94";
-            this->label94->Size = System::Drawing::Size(116, 28);
-            this->label94->TabIndex = 282;
-            this->label94->Text = L"11:30-12:30";
-            // 
-            // label95
-            // 
-            this->label95->AutoSize = true;
-            this->label95->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label95->Location = System::Drawing::Point(638, 779);
-            this->label95->Name = L"label95";
-            this->label95->Size = System::Drawing::Size(116, 28);
-            this->label95->TabIndex = 281;
-            this->label95->Text = L"10:00-11:00";
-            // 
-            // label96
-            // 
-            this->label96->AutoSize = true;
-            this->label96->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label96->Location = System::Drawing::Point(497, 779);
-            this->label96->Name = L"label96";
-            this->label96->Size = System::Drawing::Size(105, 28);
-            this->label96->TabIndex = 280;
-            this->label96->Text = L"9:00-10:00";
-            // 
-            // label97
-            // 
-            this->label97->AutoSize = true;
-            this->label97->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label97->Location = System::Drawing::Point(342, 906);
-            this->label97->Name = L"label97";
-            this->label97->Size = System::Drawing::Size(83, 28);
-            this->label97->TabIndex = 279;
-            this->label97->Text = L"Tuesday";
-            // 
-            // label98
-            // 
-            this->label98->AutoSize = true;
-            this->label98->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label98->Location = System::Drawing::Point(328, 975);
-            this->label98->Name = L"label98";
-            this->label98->Size = System::Drawing::Size(113, 28);
-            this->label98->TabIndex = 278;
-            this->label98->Text = L"Wednesday";
-            // 
-            // label99
-            // 
-            this->label99->AutoSize = true;
-            this->label99->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label99->Location = System::Drawing::Point(338, 1036);
-            this->label99->Name = L"label99";
-            this->label99->Size = System::Drawing::Size(91, 28);
-            this->label99->TabIndex = 277;
-            this->label99->Text = L"Thursday";
+            this->editsubbfactor->Location = System::Drawing::Point(389, 2091);
+            this->editsubbfactor->Name = L"editsubbfactor";
+            this->editsubbfactor->Size = System::Drawing::Size(170, 34);
+            this->editsubbfactor->TabIndex = 307;
             // 
             // label100
             // 
             this->label100->AutoSize = true;
             this->label100->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label100->Location = System::Drawing::Point(359, 1098);
+            this->label100->Location = System::Drawing::Point(398, 2037);
             this->label100->Name = L"label100";
-            this->label100->Size = System::Drawing::Size(66, 28);
-            this->label100->TabIndex = 276;
-            this->label100->Text = L"Friday";
-            // 
-            // label101
-            // 
-            this->label101->AutoSize = true;
-            this->label101->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label101->Location = System::Drawing::Point(345, 1153);
-            this->label101->Name = L"label101";
-            this->label101->Size = System::Drawing::Size(90, 28);
-            this->label101->TabIndex = 275;
-            this->label101->Text = L"Saturday";
-            // 
-            // label102
-            // 
-            this->label102->AutoSize = true;
-            this->label102->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label102->Location = System::Drawing::Point(342, 849);
-            this->label102->Name = L"label102";
-            this->label102->Size = System::Drawing::Size(85, 28);
-            this->label102->TabIndex = 274;
-            this->label102->Text = L"Monday";
-            // 
-            // button24
-            // 
-            this->button24->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button24->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button24->Location = System::Drawing::Point(1105, 1146);
-            this->button24->Name = L"button24";
-            this->button24->Size = System::Drawing::Size(138, 54);
-            this->button24->TabIndex = 270;
-            this->button24->Text = L"free";
-            this->button24->UseVisualStyleBackColor = false;
-            // 
-            // button25
-            // 
-            this->button25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button25->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button25->Location = System::Drawing::Point(946, 1146);
-            this->button25->Name = L"button25";
-            this->button25->Size = System::Drawing::Size(138, 54);
-            this->button25->TabIndex = 269;
-            this->button25->Text = L"free";
-            this->button25->UseVisualStyleBackColor = false;
-            // 
-            // button26
-            // 
-            this->button26->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button26->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button26->Location = System::Drawing::Point(793, 1146);
-            this->button26->Name = L"button26";
-            this->button26->Size = System::Drawing::Size(138, 54);
-            this->button26->TabIndex = 268;
-            this->button26->Text = L"free";
-            this->button26->UseVisualStyleBackColor = false;
-            // 
-            // button27
-            // 
-            this->button27->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button27->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button27->Location = System::Drawing::Point(634, 1146);
-            this->button27->Name = L"button27";
-            this->button27->Size = System::Drawing::Size(138, 54);
-            this->button27->TabIndex = 267;
-            this->button27->Text = L"free";
-            this->button27->UseVisualStyleBackColor = false;
-            // 
-            // button28
-            // 
-            this->button28->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button28->Location = System::Drawing::Point(479, 1146);
-            this->button28->Name = L"button28";
-            this->button28->Size = System::Drawing::Size(138, 54);
-            this->button28->TabIndex = 266;
-            this->button28->Text = L"free";
-            this->button28->UseVisualStyleBackColor = false;
-            // 
-            // button29
-            // 
-            this->button29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button29->Location = System::Drawing::Point(1105, 1085);
-            this->button29->Name = L"button29";
-            this->button29->Size = System::Drawing::Size(138, 55);
-            this->button29->TabIndex = 264;
-            this->button29->Text = L"free";
-            this->button29->UseVisualStyleBackColor = false;
-            // 
-            // button30
-            // 
-            this->button30->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button30->Location = System::Drawing::Point(946, 1085);
-            this->button30->Name = L"button30";
-            this->button30->Size = System::Drawing::Size(138, 55);
-            this->button30->TabIndex = 263;
-            this->button30->Text = L"free";
-            this->button30->UseVisualStyleBackColor = false;
-            // 
-            // button31
-            // 
-            this->button31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button31->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button31->Location = System::Drawing::Point(793, 1085);
-            this->button31->Name = L"button31";
-            this->button31->Size = System::Drawing::Size(138, 55);
-            this->button31->TabIndex = 262;
-            this->button31->Text = L"free";
-            this->button31->UseVisualStyleBackColor = false;
-            // 
-            // button32
-            // 
-            this->button32->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button32->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button32->Location = System::Drawing::Point(634, 1085);
-            this->button32->Name = L"button32";
-            this->button32->Size = System::Drawing::Size(138, 55);
-            this->button32->TabIndex = 261;
-            this->button32->Text = L"free";
-            this->button32->UseVisualStyleBackColor = false;
-            // 
-            // button33
-            // 
-            this->button33->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button33->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button33->Location = System::Drawing::Point(479, 1085);
-            this->button33->Name = L"button33";
-            this->button33->Size = System::Drawing::Size(138, 55);
-            this->button33->TabIndex = 260;
-            this->button33->Text = L"free";
-            this->button33->UseVisualStyleBackColor = false;
-            // 
-            // button34
-            // 
-            this->button34->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button34->Location = System::Drawing::Point(1260, 1022);
-            this->button34->Name = L"button34";
-            this->button34->Size = System::Drawing::Size(138, 55);
-            this->button34->TabIndex = 259;
-            this->button34->Text = L"free";
-            this->button34->UseVisualStyleBackColor = false;
-            // 
-            // button35
-            // 
-            this->button35->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button35->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button35->Location = System::Drawing::Point(1105, 1023);
-            this->button35->Name = L"button35";
-            this->button35->Size = System::Drawing::Size(138, 55);
-            this->button35->TabIndex = 258;
-            this->button35->Text = L"free";
-            this->button35->UseVisualStyleBackColor = false;
-            // 
-            // button36
-            // 
-            this->button36->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button36->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button36->Location = System::Drawing::Point(946, 1022);
-            this->button36->Name = L"button36";
-            this->button36->Size = System::Drawing::Size(138, 55);
-            this->button36->TabIndex = 257;
-            this->button36->Text = L"free";
-            this->button36->UseVisualStyleBackColor = false;
-            // 
-            // button39
-            // 
-            this->button39->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button39->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button39->Location = System::Drawing::Point(793, 1023);
-            this->button39->Name = L"button39";
-            this->button39->Size = System::Drawing::Size(138, 55);
-            this->button39->TabIndex = 256;
-            this->button39->Text = L"free";
-            this->button39->UseVisualStyleBackColor = false;
-            // 
-            // button40
-            // 
-            this->button40->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button40->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button40->Location = System::Drawing::Point(634, 1023);
-            this->button40->Name = L"button40";
-            this->button40->Size = System::Drawing::Size(138, 55);
-            this->button40->TabIndex = 255;
-            this->button40->Text = L"free";
-            this->button40->UseVisualStyleBackColor = false;
-            // 
-            // button41
-            // 
-            this->button41->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button41->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button41->Location = System::Drawing::Point(479, 1022);
-            this->button41->Name = L"button41";
-            this->button41->Size = System::Drawing::Size(138, 55);
-            this->button41->TabIndex = 254;
-            this->button41->Text = L"free";
-            this->button41->UseVisualStyleBackColor = false;
-            // 
-            // button42
-            // 
-            this->button42->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button42->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button42->Location = System::Drawing::Point(1260, 965);
-            this->button42->Name = L"button42";
-            this->button42->Size = System::Drawing::Size(138, 55);
-            this->button42->TabIndex = 253;
-            this->button42->Text = L"free";
-            this->button42->UseVisualStyleBackColor = false;
-            // 
-            // button43
-            // 
-            this->button43->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button43->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button43->Location = System::Drawing::Point(1105, 962);
-            this->button43->Name = L"button43";
-            this->button43->Size = System::Drawing::Size(138, 55);
-            this->button43->TabIndex = 252;
-            this->button43->Text = L"free";
-            this->button43->UseVisualStyleBackColor = false;
-            // 
-            // button44
-            // 
-            this->button44->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button44->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button44->Location = System::Drawing::Point(946, 962);
-            this->button44->Name = L"button44";
-            this->button44->Size = System::Drawing::Size(138, 55);
-            this->button44->TabIndex = 251;
-            this->button44->Text = L"free";
-            this->button44->UseVisualStyleBackColor = false;
-            // 
-            // button45
-            // 
-            this->button45->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button45->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button45->Location = System::Drawing::Point(793, 962);
-            this->button45->Name = L"button45";
-            this->button45->Size = System::Drawing::Size(138, 55);
-            this->button45->TabIndex = 250;
-            this->button45->Text = L"free";
-            this->button45->UseVisualStyleBackColor = false;
-            // 
-            // button46
-            // 
-            this->button46->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button46->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button46->Location = System::Drawing::Point(634, 962);
-            this->button46->Name = L"button46";
-            this->button46->Size = System::Drawing::Size(138, 55);
-            this->button46->TabIndex = 249;
-            this->button46->Text = L"free";
-            this->button46->UseVisualStyleBackColor = false;
-            // 
-            // button47
-            // 
-            this->button47->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button47->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button47->Location = System::Drawing::Point(479, 962);
-            this->button47->Name = L"button47";
-            this->button47->Size = System::Drawing::Size(138, 55);
-            this->button47->TabIndex = 248;
-            this->button47->Text = L"free";
-            this->button47->UseVisualStyleBackColor = false;
-            // 
-            // button48
-            // 
-            this->button48->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button48->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button48->Location = System::Drawing::Point(1260, 901);
-            this->button48->Name = L"button48";
-            this->button48->Size = System::Drawing::Size(138, 55);
-            this->button48->TabIndex = 247;
-            this->button48->Text = L"free";
-            this->button48->UseVisualStyleBackColor = false;
-            // 
-            // button49
-            // 
-            this->button49->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button49->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button49->Location = System::Drawing::Point(1105, 901);
-            this->button49->Name = L"button49";
-            this->button49->Size = System::Drawing::Size(138, 55);
-            this->button49->TabIndex = 246;
-            this->button49->Text = L"free";
-            this->button49->UseVisualStyleBackColor = false;
-            // 
-            // button50
-            // 
-            this->button50->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button50->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button50->Location = System::Drawing::Point(946, 901);
-            this->button50->Name = L"button50";
-            this->button50->Size = System::Drawing::Size(138, 55);
-            this->button50->TabIndex = 245;
-            this->button50->Text = L"free";
-            this->button50->UseVisualStyleBackColor = false;
-            // 
-            // button51
-            // 
-            this->button51->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button51->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button51->Location = System::Drawing::Point(793, 901);
-            this->button51->Name = L"button51";
-            this->button51->Size = System::Drawing::Size(138, 55);
-            this->button51->TabIndex = 244;
-            this->button51->Text = L"free";
-            this->button51->UseVisualStyleBackColor = false;
-            // 
-            // button52
-            // 
-            this->button52->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button52->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button52->Location = System::Drawing::Point(634, 901);
-            this->button52->Name = L"button52";
-            this->button52->Size = System::Drawing::Size(138, 55);
-            this->button52->TabIndex = 243;
-            this->button52->Text = L"free";
-            this->button52->UseVisualStyleBackColor = false;
-            // 
-            // button53
-            // 
-            this->button53->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button53->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button53->Location = System::Drawing::Point(479, 901);
-            this->button53->Name = L"button53";
-            this->button53->Size = System::Drawing::Size(138, 55);
-            this->button53->TabIndex = 242;
-            this->button53->Text = L"free";
-            this->button53->UseVisualStyleBackColor = false;
-            // 
-            // button54
-            // 
-            this->button54->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button54->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button54->Location = System::Drawing::Point(1260, 841);
-            this->button54->Name = L"button54";
-            this->button54->Size = System::Drawing::Size(138, 55);
-            this->button54->TabIndex = 241;
-            this->button54->Text = L"free";
-            this->button54->UseVisualStyleBackColor = false;
-            // 
-            // button55
-            // 
-            this->button55->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button55->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button55->Location = System::Drawing::Point(1105, 841);
-            this->button55->Name = L"button55";
-            this->button55->Size = System::Drawing::Size(138, 55);
-            this->button55->TabIndex = 240;
-            this->button55->Text = L"free";
-            this->button55->UseVisualStyleBackColor = false;
-            // 
-            // button56
-            // 
-            this->button56->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button56->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button56->Location = System::Drawing::Point(946, 841);
-            this->button56->Name = L"button56";
-            this->button56->Size = System::Drawing::Size(138, 55);
-            this->button56->TabIndex = 239;
-            this->button56->Text = L"free";
-            this->button56->UseVisualStyleBackColor = false;
-            // 
-            // button57
-            // 
-            this->button57->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button57->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button57->Location = System::Drawing::Point(793, 841);
-            this->button57->Name = L"button57";
-            this->button57->Size = System::Drawing::Size(138, 55);
-            this->button57->TabIndex = 238;
-            this->button57->Text = L"free";
-            this->button57->UseVisualStyleBackColor = false;
-            // 
-            // button58
-            // 
-            this->button58->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button58->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button58->Location = System::Drawing::Point(634, 841);
-            this->button58->Name = L"button58";
-            this->button58->Size = System::Drawing::Size(138, 55);
-            this->button58->TabIndex = 237;
-            this->button58->Text = L"free";
-            this->button58->UseVisualStyleBackColor = false;
-            // 
-            // button59
-            // 
-            this->button59->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button59->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button59->Location = System::Drawing::Point(479, 841);
-            this->button59->Name = L"button59";
-            this->button59->Size = System::Drawing::Size(138, 55);
-            this->button59->TabIndex = 236;
-            this->button59->Text = L"free";
-            this->button59->UseVisualStyleBackColor = false;
-            // 
-            // label103
-            // 
-            this->label103->AutoSize = true;
-            this->label103->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label103->Location = System::Drawing::Point(334, 694);
-            this->label103->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label103->Name = L"label103";
-            this->label103->Size = System::Drawing::Size(161, 28);
-            this->label103->TabIndex = 235;
-            this->label103->Text = L"Teacher Schedule";
-            // 
-            // comboBox4
-            // 
-            this->comboBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->comboBox4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->comboBox4->FormattingEnabled = true;
-            this->comboBox4->Location = System::Drawing::Point(338, 597);
-            this->comboBox4->Name = L"comboBox4";
-            this->comboBox4->Size = System::Drawing::Size(362, 36);
-            this->comboBox4->TabIndex = 234;
-            // 
-            // label104
-            // 
-            this->label104->AutoSize = true;
-            this->label104->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label104->Location = System::Drawing::Point(339, 552);
-            this->label104->Name = L"label104";
-            this->label104->Size = System::Drawing::Size(198, 28);
-            this->label104->TabIndex = 233;
-            this->label104->Text = L"Enter the department";
-            // 
-            // textBox20
-            // 
-            this->textBox20->AcceptsTab = true;
-            this->textBox20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->textBox20->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->textBox20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->textBox20->ForeColor = System::Drawing::Color::Black;
-            this->textBox20->Location = System::Drawing::Point(338, 471);
-            this->textBox20->Name = L"textBox20";
-            this->textBox20->Size = System::Drawing::Size(361, 27);
-            this->textBox20->TabIndex = 232;
-            // 
-            // button60
-            // 
-            this->button60->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button60->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button60->Location = System::Drawing::Point(1277, 1275);
-            this->button60->Name = L"button60";
-            this->button60->Size = System::Drawing::Size(121, 45);
-            this->button60->TabIndex = 273;
-            this->button60->Text = L"Save";
-            this->button60->UseVisualStyleBackColor = false;
-            // 
-            // button61
-            // 
-            this->button61->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button61->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button61->Location = System::Drawing::Point(1260, 1085);
-            this->button61->Name = L"button61";
-            this->button61->Size = System::Drawing::Size(138, 55);
-            this->button61->TabIndex = 265;
-            this->button61->Text = L"free";
-            this->button61->UseVisualStyleBackColor = false;
-            // 
-            // button62
-            // 
-            this->button62->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button62->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button62->Location = System::Drawing::Point(1260, 1146);
-            this->button62->Name = L"button62";
-            this->button62->Size = System::Drawing::Size(138, 54);
-            this->button62->TabIndex = 271;
-            this->button62->Text = L"free";
-            this->button62->UseVisualStyleBackColor = false;
-            // 
-            // label105
-            // 
-            this->label105->AutoSize = true;
-            this->label105->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label105->Location = System::Drawing::Point(334, 425);
-            this->label105->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label105->Name = L"label105";
-            this->label105->Size = System::Drawing::Size(179, 28);
-            this->label105->TabIndex = 231;
-            this->label105->Text = L"Enter teacher name";
-            // 
-            // label106
-            // 
-            this->label106->AutoSize = true;
-            this->label106->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label106->Location = System::Drawing::Point(1113, 779);
-            this->label106->Name = L"label106";
-            this->label106->Size = System::Drawing::Size(94, 28);
-            this->label106->TabIndex = 283;
-            this->label106->Text = L"2:30-3:30";
-            // 
-            // richTextBox1
-            // 
-            this->richTextBox1->Location = System::Drawing::Point(658, 285);
-            this->richTextBox1->Multiline = false;
-            this->richTextBox1->Name = L"richTextBox1";
-            this->richTextBox1->Size = System::Drawing::Size(361, 30);
-            this->richTextBox1->TabIndex = 1;
-            this->richTextBox1->Text = L"";
-            // 
-            // label107
-            // 
-            this->label107->AutoSize = true;
-            this->label107->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label107->Location = System::Drawing::Point(723, 224);
-            this->label107->Name = L"label107";
-            this->label107->Size = System::Drawing::Size(242, 30);
-            this->label107->TabIndex = 0;
-            this->label107->Text = L"Enter the teacher Name";
-            // 
-            // panel9
-            // 
-            this->panel9->AutoScroll = true;
-            this->panel9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->label100->Size = System::Drawing::Size(75, 28);
+            this->label100->TabIndex = 306;
+            this->label100->Text = L"bfactor";
+            // 
+            // panel13
+            // 
+            this->panel13->Controls->Add(this->editsublabyes);
+            this->panel13->Controls->Add(this->editsublabno);
+            this->panel13->ForeColor = System::Drawing::Color::Black;
+            this->panel13->Location = System::Drawing::Point(367, 1233);
+            this->panel13->Name = L"panel13";
+            this->panel13->Size = System::Drawing::Size(219, 48);
+            this->panel13->TabIndex = 305;
+            // 
+            // editsublabyes
+            // 
+            this->editsublabyes->AutoSize = true;
+            this->editsublabyes->Location = System::Drawing::Point(23, 14);
+            this->editsublabyes->Name = L"editsublabyes";
+            this->editsublabyes->Size = System::Drawing::Size(62, 24);
+            this->editsublabyes->TabIndex = 10;
+            this->editsublabyes->TabStop = true;
+            this->editsublabyes->Text = L"Yes";
+            this->editsublabyes->UseVisualStyleBackColor = true;
+            // 
+            // editsublabno
+            // 
+            this->editsublabno->AutoSize = true;
+            this->editsublabno->Location = System::Drawing::Point(148, 14);
+            this->editsublabno->Name = L"editsublabno";
+            this->editsublabno->Size = System::Drawing::Size(54, 24);
+            this->editsublabno->TabIndex = 11;
+            this->editsublabno->TabStop = true;
+            this->editsublabno->Text = L"No";
+            this->editsublabno->UseVisualStyleBackColor = true;
+            // 
+            // editsubroomlist
+            // 
+            this->editsubroomlist->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->panel9->Controls->Add(this->editsubjectsearchbutton);
-            this->panel9->Controls->Add(this->editsubjectsearch);
-            this->panel9->Controls->Add(this->label108);
-            this->panel9->Controls->Add(this->panel7);
-            this->panel9->Controls->Add(this->panel8);
-            this->panel9->Controls->Add(this->button20);
-            this->panel9->Controls->Add(this->textBox18);
-            this->panel9->Controls->Add(this->editsubjectroom);
-            this->panel9->Controls->Add(this->label83);
-            this->panel9->Controls->Add(this->button21);
-            this->panel9->Controls->Add(this->editsubjectbfactor);
-            this->panel9->Controls->Add(this->editsubjectelename);
-            this->panel9->Controls->Add(this->label84);
-            this->panel9->Controls->Add(this->label85);
-            this->panel9->Controls->Add(this->label86);
-            this->panel9->Controls->Add(this->label87);
-            this->panel9->Controls->Add(this->label88);
-            this->panel9->Controls->Add(this->editsubjectname);
-            this->panel9->Controls->Add(this->editsubjectcredit);
-            this->panel9->Controls->Add(this->editsubjectlabteachers);
-            this->panel9->Controls->Add(this->label89);
-            this->panel9->Controls->Add(this->label91);
-            this->panel9->Controls->Add(this->label90);
-            this->panel9->Controls->Add(this->editsubjecteleteacher);
-            this->panel9->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->panel9->Location = System::Drawing::Point(0, 0);
-            this->panel9->Name = L"panel9";
-            this->panel9->Size = System::Drawing::Size(1946, 1106);
-            this->panel9->TabIndex = 265;
-            this->panel9->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel9_Paint);
-            // 
-            // editsubjectsearchbutton
-            // 
-            this->editsubjectsearchbutton->Location = System::Drawing::Point(1031, 263);
-            this->editsubjectsearchbutton->Name = L"editsubjectsearchbutton";
-            this->editsubjectsearchbutton->Size = System::Drawing::Size(132, 30);
-            this->editsubjectsearchbutton->TabIndex = 292;
-            this->editsubjectsearchbutton->Text = L"search";
-            this->editsubjectsearchbutton->UseVisualStyleBackColor = true;
-            // 
-            // editsubjectsearch
-            // 
-            this->editsubjectsearch->Location = System::Drawing::Point(659, 263);
-            this->editsubjectsearch->Multiline = false;
-            this->editsubjectsearch->Name = L"editsubjectsearch";
-            this->editsubjectsearch->Size = System::Drawing::Size(361, 30);
-            this->editsubjectsearch->TabIndex = 291;
-            this->editsubjectsearch->Text = L"";
-            // 
-            // label108
-            // 
-            this->label108->AutoSize = true;
-            this->label108->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubroomlist->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->editsubroomlist->CheckOnClick = true;
+            this->editsubroomlist->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label108->Location = System::Drawing::Point(724, 202);
-            this->label108->Name = L"label108";
-            this->label108->Size = System::Drawing::Size(241, 30);
-            this->label108->TabIndex = 290;
-            this->label108->Text = L"Enter the Subject Name";
+            this->editsubroomlist->FormattingEnabled = true;
+            this->editsubroomlist->Location = System::Drawing::Point(393, 1799);
+            this->editsubroomlist->Name = L"editsubroomlist";
+            this->editsubroomlist->Size = System::Drawing::Size(224, 186);
+            this->editsubroomlist->Sorted = true;
+            this->editsubroomlist->TabIndex = 304;
+            this->editsubroomlist->ThreeDCheckBoxes = true;
             // 
-            // panel7
+            // label96
             // 
-            this->panel7->Controls->Add(this->editsubjecteleyes);
-            this->panel7->Controls->Add(this->editsubjecteleno);
-            this->panel7->ForeColor = System::Drawing::Color::Black;
-            this->panel7->Location = System::Drawing::Point(402, 560);
-            this->panel7->Name = L"panel7";
-            this->panel7->Size = System::Drawing::Size(220, 56);
-            this->panel7->TabIndex = 263;
-            // 
-            // editsubjecteleyes
-            // 
-            this->editsubjecteleyes->AutoSize = true;
-            this->editsubjecteleyes->Location = System::Drawing::Point(5, 21);
-            this->editsubjecteleyes->Name = L"editsubjecteleyes";
-            this->editsubjecteleyes->Size = System::Drawing::Size(62, 24);
-            this->editsubjecteleyes->TabIndex = 2;
-            this->editsubjecteleyes->TabStop = true;
-            this->editsubjecteleyes->Text = L"Yes";
-            this->editsubjecteleyes->UseVisualStyleBackColor = true;
-            // 
-            // editsubjecteleno
-            // 
-            this->editsubjecteleno->AutoSize = true;
-            this->editsubjecteleno->Location = System::Drawing::Point(139, 21);
-            this->editsubjecteleno->Name = L"editsubjecteleno";
-            this->editsubjecteleno->Size = System::Drawing::Size(54, 24);
-            this->editsubjecteleno->TabIndex = 3;
-            this->editsubjecteleno->TabStop = true;
-            this->editsubjecteleno->Text = L"No";
-            this->editsubjecteleno->UseVisualStyleBackColor = true;
-            // 
-            // panel8
-            // 
-            this->panel8->Controls->Add(this->editsubjectlabyes);
-            this->panel8->Controls->Add(this->editsubjectlabno);
-            this->panel8->ForeColor = System::Drawing::Color::Black;
-            this->panel8->Location = System::Drawing::Point(411, 1145);
-            this->panel8->Name = L"panel8";
-            this->panel8->Size = System::Drawing::Size(219, 48);
-            this->panel8->TabIndex = 262;
-            // 
-            // editsubjectlabyes
-            // 
-            this->editsubjectlabyes->AutoSize = true;
-            this->editsubjectlabyes->Location = System::Drawing::Point(23, 14);
-            this->editsubjectlabyes->Name = L"editsubjectlabyes";
-            this->editsubjectlabyes->Size = System::Drawing::Size(62, 24);
-            this->editsubjectlabyes->TabIndex = 10;
-            this->editsubjectlabyes->TabStop = true;
-            this->editsubjectlabyes->Text = L"Yes";
-            this->editsubjectlabyes->UseVisualStyleBackColor = true;
-            // 
-            // editsubjectlabno
-            // 
-            this->editsubjectlabno->AutoSize = true;
-            this->editsubjectlabno->Location = System::Drawing::Point(148, 14);
-            this->editsubjectlabno->Name = L"editsubjectlabno";
-            this->editsubjectlabno->Size = System::Drawing::Size(54, 24);
-            this->editsubjectlabno->TabIndex = 11;
-            this->editsubjectlabno->TabStop = true;
-            this->editsubjectlabno->Text = L"No";
-            this->editsubjectlabno->UseVisualStyleBackColor = true;
-            // 
-            // button20
-            // 
-            this->button20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label96->AutoSize = true;
+            this->label96->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button20->Location = System::Drawing::Point(1266, 2070);
-            this->button20->Name = L"button20";
-            this->button20->Size = System::Drawing::Size(116, 54);
-            this->button20->TabIndex = 247;
-            this->button20->Text = L" Add New";
-            this->button20->UseVisualStyleBackColor = false;
+            this->label96->Location = System::Drawing::Point(384, 1753);
+            this->label96->Name = L"label96";
+            this->label96->Size = System::Drawing::Size(255, 28);
+            this->label96->TabIndex = 303;
+            this->label96->Text = L"Rooms to be used(optional)";
             // 
-            // textBox18
+            // label97
             // 
-            this->textBox18->Location = System::Drawing::Point(1019, 510);
-            this->textBox18->Name = L"textBox18";
-            this->textBox18->Size = System::Drawing::Size(154, 26);
-            this->textBox18->TabIndex = 248;
-            // 
-            // editsubjectroom
-            // 
-            this->editsubjectroom->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubjectroom->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->editsubjectroom->CheckOnClick = true;
-            this->editsubjectroom->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label97->AutoSize = true;
+            this->label97->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubjectroom->FormattingEnabled = true;
-            this->editsubjectroom->Location = System::Drawing::Point(426, 1699);
-            this->editsubjectroom->Name = L"editsubjectroom";
-            this->editsubjectroom->Size = System::Drawing::Size(224, 186);
-            this->editsubjectroom->Sorted = true;
-            this->editsubjectroom->TabIndex = 246;
-            this->editsubjectroom->ThreeDCheckBoxes = true;
+            this->label97->Location = System::Drawing::Point(390, 1625);
+            this->label97->Name = L"label97";
+            this->label97->Size = System::Drawing::Size(125, 28);
+            this->label97->TabIndex = 302;
+            this->label97->Text = L"No of credits";
             // 
-            // label83
+            // editsubcredits
             // 
-            this->label83->AutoSize = true;
-            this->label83->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubcredits->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)));
+            this->editsubcredits->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label83->Location = System::Drawing::Point(373, 817);
-            this->label83->Name = L"label83";
-            this->label83->Size = System::Drawing::Size(330, 28);
-            this->label83->TabIndex = 235;
-            this->label83->Text = L"Teacher handling the elective subject";
+            this->editsubcredits->Location = System::Drawing::Point(393, 1669);
+            this->editsubcredits->Name = L"editsubcredits";
+            this->editsubcredits->Size = System::Drawing::Size(170, 34);
+            this->editsubcredits->TabIndex = 301;
             // 
-            // button21
+            // editsublabteacher
             // 
-            this->button21->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button21->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button21->Location = System::Drawing::Point(1047, 2070);
-            this->button21->Name = L"button21";
-            this->button21->Size = System::Drawing::Size(116, 54);
-            this->button21->TabIndex = 245;
-            this->button21->Text = L"Save";
-            this->button21->UseVisualStyleBackColor = false;
-            // 
-            // editsubjectbfactor
-            // 
-            this->editsubjectbfactor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)),
-                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)));
-            this->editsubjectbfactor->DecimalPlaces = 2;
-            this->editsubjectbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->editsubjectbfactor->Location = System::Drawing::Point(425, 1951);
-            this->editsubjectbfactor->Name = L"editsubjectbfactor";
-            this->editsubjectbfactor->Size = System::Drawing::Size(170, 34);
-            this->editsubjectbfactor->TabIndex = 244;
-            // 
-            // editsubjectelename
-            // 
-            this->editsubjectelename->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->editsubjectelename->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->editsubjectelename->ForeColor = System::Drawing::Color::Black;
-            this->editsubjectelename->Location = System::Drawing::Point(378, 713);
-            this->editsubjectelename->Name = L"editsubjectelename";
-            this->editsubjectelename->Size = System::Drawing::Size(482, 34);
-            this->editsubjectelename->TabIndex = 25;
-            // 
-            // label84
-            // 
-            this->label84->AutoSize = true;
-            this->label84->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label84->Location = System::Drawing::Point(417, 1653);
-            this->label84->Name = L"label84";
-            this->label84->Size = System::Drawing::Size(255, 28);
-            this->label84->TabIndex = 242;
-            this->label84->Text = L"Rooms to be used(optional)";
-            // 
-            // label85
-            // 
-            this->label85->AutoSize = true;
-            this->label85->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label85->Location = System::Drawing::Point(374, 659);
-            this->label85->Name = L"label85";
-            this->label85->Size = System::Drawing::Size(158, 28);
-            this->label85->TabIndex = 24;
-            this->label85->Text = L"Name of elective";
-            // 
-            // label86
-            // 
-            this->label86->AutoSize = true;
-            this->label86->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label86->Location = System::Drawing::Point(434, 1897);
-            this->label86->Name = L"label86";
-            this->label86->Size = System::Drawing::Size(75, 28);
-            this->label86->TabIndex = 243;
-            this->label86->Text = L"bfactor";
-            // 
-            // label87
-            // 
-            this->label87->AutoSize = true;
-            this->label87->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label87->Location = System::Drawing::Point(374, 508);
-            this->label87->Name = L"label87";
-            this->label87->Size = System::Drawing::Size(148, 28);
-            this->label87->TabIndex = 23;
-            this->label87->Text = L"Is it an elective\?";
-            // 
-            // label88
-            // 
-            this->label88->AutoSize = true;
-            this->label88->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label88->Location = System::Drawing::Point(423, 1525);
-            this->label88->Name = L"label88";
-            this->label88->Size = System::Drawing::Size(125, 28);
-            this->label88->TabIndex = 241;
-            this->label88->Text = L"No of credits";
-            // 
-            // editsubjectname
-            // 
-            this->editsubjectname->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->editsubjectname->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->editsubjectname->ForeColor = System::Drawing::Color::Black;
-            this->editsubjectname->Location = System::Drawing::Point(385, 421);
-            this->editsubjectname->Name = L"editsubjectname";
-            this->editsubjectname->Size = System::Drawing::Size(480, 34);
-            this->editsubjectname->TabIndex = 3;
-            // 
-            // editsubjectcredit
-            // 
-            this->editsubjectcredit->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)),
-                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)));
-            this->editsubjectcredit->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->editsubjectcredit->Location = System::Drawing::Point(426, 1569);
-            this->editsubjectcredit->Name = L"editsubjectcredit";
-            this->editsubjectcredit->Size = System::Drawing::Size(170, 34);
-            this->editsubjectcredit->TabIndex = 240;
-            // 
-            // editsubjectlabteachers
-            // 
-            this->editsubjectlabteachers->AllowUserToOrderColumns = true;
+            this->editsublabteacher->AllowUserToOrderColumns = true;
             dataGridViewCellStyle44->BackColor = System::Drawing::Color::White;
             dataGridViewCellStyle44->ForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle44->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle44->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubjectlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle44;
-            this->editsubjectlabteachers->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+            this->editsublabteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle44;
+            this->editsublabteacher->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubjectlabteachers->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->editsubjectlabteachers->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
-            this->editsubjectlabteachers->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+            this->editsublabteacher->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->editsublabteacher->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
+            this->editsublabteacher->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
             dataGridViewCellStyle45->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle45->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
@@ -7318,12 +6600,12 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
             dataGridViewCellStyle45->SelectionForeColor = System::Drawing::SystemColors::ControlLightLight;
             dataGridViewCellStyle45->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->editsubjectlabteachers->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle45;
-            this->editsubjectlabteachers->ColumnHeadersHeight = 40;
-            this->editsubjectlabteachers->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
-            this->editsubjectlabteachers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
-                this->dataGridViewComboBoxColumn1,
-                    this->dataGridViewButtonColumn7
+            this->editsublabteacher->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle45;
+            this->editsublabteacher->ColumnHeadersHeight = 40;
+            this->editsublabteacher->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
+            this->editsublabteacher->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+                this->editsublabteachercombo,
+                    this->dataGridViewButtonColumn11
             });
             dataGridViewCellStyle48->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle48->BackColor = System::Drawing::Color::White;
@@ -7334,12 +6616,12 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle48->SelectionForeColor = System::Drawing::SystemColors::Desktop;
             dataGridViewCellStyle48->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-            this->editsubjectlabteachers->DefaultCellStyle = dataGridViewCellStyle48;
-            this->editsubjectlabteachers->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
+            this->editsublabteacher->DefaultCellStyle = dataGridViewCellStyle48;
+            this->editsublabteacher->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubjectlabteachers->Location = System::Drawing::Point(428, 1277);
-            this->editsubjectlabteachers->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
-            this->editsubjectlabteachers->Name = L"editsubjectlabteachers";
+            this->editsublabteacher->Location = System::Drawing::Point(395, 1377);
+            this->editsublabteacher->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
+            this->editsublabteacher->Name = L"editsublabteacher";
             dataGridViewCellStyle49->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle49->BackColor = System::Drawing::Color::White;
             dataGridViewCellStyle49->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -7349,21 +6631,21 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle49->SelectionForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle49->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->editsubjectlabteachers->RowHeadersDefaultCellStyle = dataGridViewCellStyle49;
-            this->editsubjectlabteachers->RowHeadersVisible = false;
-            this->editsubjectlabteachers->RowHeadersWidth = 62;
+            this->editsublabteacher->RowHeadersDefaultCellStyle = dataGridViewCellStyle49;
+            this->editsublabteacher->RowHeadersVisible = false;
+            this->editsublabteacher->RowHeadersWidth = 62;
             dataGridViewCellStyle50->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             dataGridViewCellStyle50->ForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle50->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(187)));
             dataGridViewCellStyle50->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubjectlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle50;
-            this->editsubjectlabteachers->RowTemplate->Height = 28;
-            this->editsubjectlabteachers->Size = System::Drawing::Size(735, 226);
-            this->editsubjectlabteachers->TabIndex = 239;
+            this->editsublabteacher->RowsDefaultCellStyle = dataGridViewCellStyle50;
+            this->editsublabteacher->RowTemplate->Height = 28;
+            this->editsublabteacher->Size = System::Drawing::Size(735, 226);
+            this->editsublabteacher->TabIndex = 300;
             // 
-            // dataGridViewComboBoxColumn1
+            // editsublabteachercombo
             // 
             dataGridViewCellStyle46->BackColor = System::Drawing::Color::White;
             dataGridViewCellStyle46->ForeColor = System::Drawing::Color::Black;
@@ -7372,18 +6654,18 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle46->SelectionForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle46->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->dataGridViewComboBoxColumn1->DefaultCellStyle = dataGridViewCellStyle46;
-            this->dataGridViewComboBoxColumn1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->dataGridViewComboBoxColumn1->HeaderText = L"Teacher Name";
-            this->dataGridViewComboBoxColumn1->MinimumWidth = 30;
-            this->dataGridViewComboBoxColumn1->Name = L"dataGridViewComboBoxColumn1";
-            this->dataGridViewComboBoxColumn1->Resizable = System::Windows::Forms::DataGridViewTriState::True;
-            this->dataGridViewComboBoxColumn1->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
-            this->dataGridViewComboBoxColumn1->Width = 350;
+            this->editsublabteachercombo->DefaultCellStyle = dataGridViewCellStyle46;
+            this->editsublabteachercombo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->editsublabteachercombo->HeaderText = L"Teacher Name";
+            this->editsublabteachercombo->MinimumWidth = 30;
+            this->editsublabteachercombo->Name = L"editsublabteachercombo";
+            this->editsublabteachercombo->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+            this->editsublabteachercombo->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
+            this->editsublabteachercombo->Width = 350;
             // 
-            // dataGridViewButtonColumn7
+            // dataGridViewButtonColumn11
             // 
-            this->dataGridViewButtonColumn7->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+            this->dataGridViewButtonColumn11->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
             dataGridViewCellStyle47->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
             dataGridViewCellStyle47->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
@@ -7391,63 +6673,129 @@ private: System::ComponentModel::IContainer^ components;
             dataGridViewCellStyle47->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)),
                 static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             dataGridViewCellStyle47->SelectionForeColor = System::Drawing::Color::Black;
-            this->dataGridViewButtonColumn7->DefaultCellStyle = dataGridViewCellStyle47;
-            this->dataGridViewButtonColumn7->DividerWidth = 1;
-            this->dataGridViewButtonColumn7->HeaderText = L"";
-            this->dataGridViewButtonColumn7->MinimumWidth = 100;
-            this->dataGridViewButtonColumn7->Name = L"dataGridViewButtonColumn7";
-            this->dataGridViewButtonColumn7->ReadOnly = true;
-            this->dataGridViewButtonColumn7->Text = L"Delete";
-            this->dataGridViewButtonColumn7->UseColumnTextForButtonValue = true;
+            this->dataGridViewButtonColumn11->DefaultCellStyle = dataGridViewCellStyle47;
+            this->dataGridViewButtonColumn11->DividerWidth = 1;
+            this->dataGridViewButtonColumn11->HeaderText = L"";
+            this->dataGridViewButtonColumn11->MinimumWidth = 100;
+            this->dataGridViewButtonColumn11->Name = L"dataGridViewButtonColumn11";
+            this->dataGridViewButtonColumn11->ReadOnly = true;
+            this->dataGridViewButtonColumn11->Text = L"Delete";
+            this->dataGridViewButtonColumn11->UseColumnTextForButtonValue = true;
             // 
-            // label89
+            // label98
             // 
-            this->label89->AutoSize = true;
-            this->label89->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label98->AutoSize = true;
+            this->label98->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label89->Location = System::Drawing::Point(392, 1237);
-            this->label89->Name = L"label89";
-            this->label89->Size = System::Drawing::Size(299, 28);
-            this->label89->TabIndex = 238;
-            this->label89->Text = L"Teachers handling the lab subject";
+            this->label98->Location = System::Drawing::Point(359, 1337);
+            this->label98->Name = L"label98";
+            this->label98->Size = System::Drawing::Size(299, 28);
+            this->label98->TabIndex = 299;
+            this->label98->Text = L"Teachers handling the lab subject";
             // 
-            // label91
+            // label99
             // 
-            this->label91->AutoSize = true;
-            this->label91->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label99->AutoSize = true;
+            this->label99->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label91->Location = System::Drawing::Point(391, 1100);
-            this->label91->Name = L"label91";
-            this->label91->Size = System::Drawing::Size(98, 28);
-            this->label91->TabIndex = 236;
-            this->label91->Text = L"Is it a lab\?";
+            this->label99->Location = System::Drawing::Point(361, 1181);
+            this->label99->Name = L"label99";
+            this->label99->Size = System::Drawing::Size(98, 28);
+            this->label99->TabIndex = 298;
+            this->label99->Text = L"Is it a lab\?";
+            this->label99->Click += gcnew System::EventHandler(this, &MyForm::label99_Click);
             // 
-            // label90
+            // label94
             // 
-            this->label90->AutoSize = true;
-            this->label90->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label94->AutoSize = true;
+            this->label94->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label90->ForeColor = System::Drawing::Color::Black;
-            this->label90->Location = System::Drawing::Point(380, 371);
-            this->label90->Name = L"label90";
-            this->label90->Size = System::Drawing::Size(134, 28);
-            this->label90->TabIndex = 2;
-            this->label90->Text = L"Subject Name";
+            this->label94->Location = System::Drawing::Point(332, 839);
+            this->label94->Name = L"label94";
+            this->label94->Size = System::Drawing::Size(330, 28);
+            this->label94->TabIndex = 297;
+            this->label94->Text = L"Teacher handling the elective subject";
             // 
-            // editsubjecteleteacher
+            // panel10
             // 
-            this->editsubjecteleteacher->AllowUserToOrderColumns = true;
+            this->panel10->Controls->Add(this->editsubeleyes);
+            this->panel10->Controls->Add(this->editsubeleno);
+            this->panel10->ForeColor = System::Drawing::Color::Black;
+            this->panel10->Location = System::Drawing::Point(350, 570);
+            this->panel10->Name = L"panel10";
+            this->panel10->Size = System::Drawing::Size(220, 56);
+            this->panel10->TabIndex = 267;
+            // 
+            // editsubeleyes
+            // 
+            this->editsubeleyes->AutoSize = true;
+            this->editsubeleyes->Location = System::Drawing::Point(5, 21);
+            this->editsubeleyes->Name = L"editsubeleyes";
+            this->editsubeleyes->Size = System::Drawing::Size(62, 24);
+            this->editsubeleyes->TabIndex = 2;
+            this->editsubeleyes->TabStop = true;
+            this->editsubeleyes->Text = L"Yes";
+            this->editsubeleyes->UseVisualStyleBackColor = true;
+            // 
+            // editsubeleno
+            // 
+            this->editsubeleno->AutoSize = true;
+            this->editsubeleno->Location = System::Drawing::Point(139, 21);
+            this->editsubeleno->Name = L"editsubeleno";
+            this->editsubeleno->Size = System::Drawing::Size(54, 24);
+            this->editsubeleno->TabIndex = 3;
+            this->editsubeleno->TabStop = true;
+            this->editsubeleno->Text = L"No";
+            this->editsubeleno->UseVisualStyleBackColor = true;
+            // 
+            // editsubelename
+            // 
+            this->editsubelename->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editsubelename->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->editsubelename->ForeColor = System::Drawing::Color::Black;
+            this->editsubelename->Location = System::Drawing::Point(337, 735);
+            this->editsubelename->Name = L"editsubelename";
+            this->editsubelename->Size = System::Drawing::Size(482, 34);
+            this->editsubelename->TabIndex = 295;
+            // 
+            // label92
+            // 
+            this->label92->AutoSize = true;
+            this->label92->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label92->Location = System::Drawing::Point(322, 518);
+            this->label92->Name = L"label92";
+            this->label92->Size = System::Drawing::Size(148, 28);
+            this->label92->TabIndex = 266;
+            this->label92->Text = L"Is it an elective\?";
+            // 
+            // label95
+            // 
+            this->label95->AutoSize = true;
+            this->label95->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label95->Location = System::Drawing::Point(333, 681);
+            this->label95->Name = L"label95";
+            this->label95->Size = System::Drawing::Size(158, 28);
+            this->label95->TabIndex = 294;
+            this->label95->Text = L"Name of elective";
+            // 
+            // editsubeleteacher
+            // 
+            this->editsubeleteacher->AllowUserToOrderColumns = true;
             dataGridViewCellStyle51->BackColor = System::Drawing::Color::White;
             dataGridViewCellStyle51->ForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle51->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle51->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubjecteleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle51;
-            this->editsubjecteleteacher->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+            this->editsubeleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle51;
+            this->editsubeleteacher->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubjecteleteacher->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->editsubjecteleteacher->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
-            this->editsubjecteleteacher->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+            this->editsubeleteacher->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->editsubeleteacher->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
+            this->editsubeleteacher->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
             dataGridViewCellStyle52->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle52->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
@@ -7457,12 +6805,12 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
             dataGridViewCellStyle52->SelectionForeColor = System::Drawing::SystemColors::ControlLightLight;
             dataGridViewCellStyle52->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->editsubjecteleteacher->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
-            this->editsubjecteleteacher->ColumnHeadersHeight = 40;
-            this->editsubjecteleteacher->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
-            this->editsubjecteleteacher->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
-                this->dataGridViewComboBoxColumn2,
-                    this->dataGridViewButtonColumn9
+            this->editsubeleteacher->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle52;
+            this->editsubeleteacher->ColumnHeadersHeight = 40;
+            this->editsubeleteacher->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
+            this->editsubeleteacher->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+                this->editsubeleteachercombo,
+                    this->dataGridViewButtonColumn10
             });
             dataGridViewCellStyle55->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle55->BackColor = System::Drawing::Color::White;
@@ -7473,12 +6821,12 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle55->SelectionForeColor = System::Drawing::SystemColors::Desktop;
             dataGridViewCellStyle55->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
-            this->editsubjecteleteacher->DefaultCellStyle = dataGridViewCellStyle55;
-            this->editsubjecteleteacher->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
+            this->editsubeleteacher->DefaultCellStyle = dataGridViewCellStyle55;
+            this->editsubeleteacher->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubjecteleteacher->Location = System::Drawing::Point(390, 871);
-            this->editsubjecteleteacher->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
-            this->editsubjecteleteacher->Name = L"editsubjecteleteacher";
+            this->editsubeleteacher->Location = System::Drawing::Point(342, 892);
+            this->editsubeleteacher->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
+            this->editsubeleteacher->Name = L"editsubeleteacher";
             dataGridViewCellStyle56->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle56->BackColor = System::Drawing::Color::White;
             dataGridViewCellStyle56->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -7488,21 +6836,21 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle56->SelectionForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle56->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->editsubjecteleteacher->RowHeadersDefaultCellStyle = dataGridViewCellStyle56;
-            this->editsubjecteleteacher->RowHeadersVisible = false;
-            this->editsubjecteleteacher->RowHeadersWidth = 62;
+            this->editsubeleteacher->RowHeadersDefaultCellStyle = dataGridViewCellStyle56;
+            this->editsubeleteacher->RowHeadersVisible = false;
+            this->editsubeleteacher->RowHeadersWidth = 62;
             dataGridViewCellStyle57->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             dataGridViewCellStyle57->ForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle57->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(187)));
             dataGridViewCellStyle57->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubjecteleteacher->RowsDefaultCellStyle = dataGridViewCellStyle57;
-            this->editsubjecteleteacher->RowTemplate->Height = 28;
-            this->editsubjecteleteacher->Size = System::Drawing::Size(735, 226);
-            this->editsubjecteleteacher->TabIndex = 234;
+            this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle57;
+            this->editsubeleteacher->RowTemplate->Height = 28;
+            this->editsubeleteacher->Size = System::Drawing::Size(735, 226);
+            this->editsubeleteacher->TabIndex = 296;
             // 
-            // dataGridViewComboBoxColumn2
+            // editsubeleteachercombo
             // 
             dataGridViewCellStyle53->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
@@ -7512,17 +6860,17 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(194)));
             dataGridViewCellStyle53->SelectionForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle53->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->dataGridViewComboBoxColumn2->DefaultCellStyle = dataGridViewCellStyle53;
-            this->dataGridViewComboBoxColumn2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->dataGridViewComboBoxColumn2->HeaderText = L"Teacher Name";
-            this->dataGridViewComboBoxColumn2->MinimumWidth = 30;
-            this->dataGridViewComboBoxColumn2->Name = L"dataGridViewComboBoxColumn2";
-            this->dataGridViewComboBoxColumn2->Resizable = System::Windows::Forms::DataGridViewTriState::True;
-            this->dataGridViewComboBoxColumn2->Width = 350;
+            this->editsubeleteachercombo->DefaultCellStyle = dataGridViewCellStyle53;
+            this->editsubeleteachercombo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->editsubeleteachercombo->HeaderText = L"Teacher Name";
+            this->editsubeleteachercombo->MinimumWidth = 30;
+            this->editsubeleteachercombo->Name = L"editsubeleteachercombo";
+            this->editsubeleteachercombo->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+            this->editsubeleteachercombo->Width = 350;
             // 
-            // dataGridViewButtonColumn9
+            // dataGridViewButtonColumn10
             // 
-            this->dataGridViewButtonColumn9->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+            this->dataGridViewButtonColumn10->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
             dataGridViewCellStyle54->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
             dataGridViewCellStyle54->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
@@ -7530,14 +6878,38 @@ private: System::ComponentModel::IContainer^ components;
             dataGridViewCellStyle54->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)),
                 static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             dataGridViewCellStyle54->SelectionForeColor = System::Drawing::Color::Black;
-            this->dataGridViewButtonColumn9->DefaultCellStyle = dataGridViewCellStyle54;
-            this->dataGridViewButtonColumn9->DividerWidth = 1;
-            this->dataGridViewButtonColumn9->HeaderText = L"";
-            this->dataGridViewButtonColumn9->MinimumWidth = 100;
-            this->dataGridViewButtonColumn9->Name = L"dataGridViewButtonColumn9";
-            this->dataGridViewButtonColumn9->ReadOnly = true;
-            this->dataGridViewButtonColumn9->Text = L"Delete";
-            this->dataGridViewButtonColumn9->UseColumnTextForButtonValue = true;
+            this->dataGridViewButtonColumn10->DefaultCellStyle = dataGridViewCellStyle54;
+            this->dataGridViewButtonColumn10->DividerWidth = 1;
+            this->dataGridViewButtonColumn10->HeaderText = L"";
+            this->dataGridViewButtonColumn10->MinimumWidth = 100;
+            this->dataGridViewButtonColumn10->Name = L"dataGridViewButtonColumn10";
+            this->dataGridViewButtonColumn10->ReadOnly = true;
+            this->dataGridViewButtonColumn10->Text = L"Delete";
+            this->dataGridViewButtonColumn10->UseColumnTextForButtonValue = true;
+            // 
+            // editsubname
+            // 
+            this->editsubname->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editsubname->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->editsubname->ForeColor = System::Drawing::Color::Black;
+            this->editsubname->Location = System::Drawing::Point(333, 431);
+            this->editsubname->Name = L"editsubname";
+            this->editsubname->Size = System::Drawing::Size(480, 34);
+            this->editsubname->TabIndex = 265;
+            // 
+            // label93
+            // 
+            this->label93->AutoSize = true;
+            this->label93->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label93->ForeColor = System::Drawing::Color::Black;
+            this->label93->Location = System::Drawing::Point(328, 370);
+            this->label93->Name = L"label93";
+            this->label93->Size = System::Drawing::Size(134, 28);
+            this->label93->TabIndex = 264;
+            this->label93->Text = L"Subject Name";
             // 
             // addteacherpanel
             // 
@@ -8897,15 +8269,16 @@ private: System::ComponentModel::IContainer^ components;
             this->ClientSize = System::Drawing::Size(1946, 1106);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
-            this->Controls->Add(this->editroompanel);
+            this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
             this->Controls->Add(this->panel5);
             this->Controls->Add(this->editteacherpanel);
-            this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->panel2);
             this->Controls->Add(this->settingspanel);
             this->Controls->Add(this->addteacherpanel);
+            this->Controls->Add(this->addsubjectpanel);
+            this->Controls->Add(this->editroompanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -8952,18 +8325,15 @@ private: System::ComponentModel::IContainer^ components;
             this->panel6->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editroomcapacity))->EndInit();
             this->editsubjectpanel->ResumeLayout(false);
+            this->editsubjectpanel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->EndInit();
+            this->panel13->ResumeLayout(false);
+            this->panel13->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsublabteacher))->EndInit();
             this->panel10->ResumeLayout(false);
             this->panel10->PerformLayout();
-            this->panel9->ResumeLayout(false);
-            this->panel9->PerformLayout();
-            this->panel7->ResumeLayout(false);
-            this->panel7->PerformLayout();
-            this->panel8->ResumeLayout(false);
-            this->panel8->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectbfactor))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectcredit))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjectlabteachers))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubjecteleteacher))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->EndInit();
             this->addteacherpanel->ResumeLayout(false);
             this->addteacherpanel->PerformLayout();
             this->settingspanel->ResumeLayout(false);
@@ -9463,7 +8833,7 @@ private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs
             flag = false;
         }
         if (sedataGridView->RowCount==1)
-        {if(sedataGridView->Rows[1]->Cells[0]->Value==nullptr)
+        {if(sedataGridView->Rows[0]->Cells[0]->Value==nullptr)
             MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
@@ -9477,7 +8847,7 @@ private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs
      {
          if (sldataGridView->RowCount == 1)
          {
-             if (sldataGridView->Rows[1]->Cells[0]->Value == nullptr)
+             if (sldataGridView->Rows[0]->Cells[0]->Value == nullptr)
                  MessageBox::Show("Lab teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
              flag = false;
          }
@@ -9573,10 +8943,6 @@ private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ 
     button11->Visible = false;
     textBox8->Visible = false;
     textBox9->Visible = true;
-}
-private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
-    panel3->Height = button12->Height;
-    panel3->Top = button12->Top;
 }
 private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
     panel3->Height = button9->Height;
@@ -9996,6 +9362,13 @@ private: System::Void editsubjectpanel_Paint(System::Object^ sender, System::Win
 private: System::Void panel9_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 private: System::Void button10_Click_1(System::Object^ sender, System::EventArgs^ e) {
+    editsubeleteachercombo->DataSource = CreateDataTableFromCSV5("details/teacher_file.csv");
+    editsubeleteachercombo->DisplayMember = "editsubeleteachercombo"; // Update to the correct column name
+    editsubeleteachercombo->ValueMember = "editsubeleteachercombo";
+    editsublabteachercombo->DataSource = CreateDataTableFromCSV6("details/teacher_file.csv");
+    editsublabteachercombo->DisplayMember = "editsublabteachercombo"; // Update to the correct column name
+    editsublabteachercombo->ValueMember = "editsublabteachercombo";
+    DisplayCSVInListBox("details/classroom.csv",editsubroomlist);
     panel3->Height = button12->Height;
     panel3->Top = button12->Top;
     editsubjectpanel->BringToFront();
@@ -10091,6 +9464,69 @@ private: System::Void addteachernew_Click(System::Object^ sender, System::EventA
     addteacherdepartment->Text = "";
 }
 
+private: System::Void panel10_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button60_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void editsubsearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
+    editsubjectcsvshow();
+}
+private: System::Void label99_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void editsubsave_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool  flag = true;
+    if (String::IsNullOrEmpty(editsubname->Text))
+    {
+        MessageBox::Show("Subject Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if ((!editsubeleyes->Checked) && (!editsubeleno->Checked))
+    {
+        MessageBox::Show("Select whether it is a elective or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (editsubeleyes->Checked)
+    {
+        if (String::IsNullOrEmpty(editsubelename->Text))
+        {
+            MessageBox::Show("Elective name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            flag = false;
+        }
+        if (editsubeleteacher->RowCount == 1)
+        {
+            if (editsubeleteacher->Rows[0]->Cells[0]->Value == nullptr)
+                MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            flag = false;
+        }
+    }
+    if ((!editsublabyes->Checked) && (!editsublabno->Checked))
+    {
+        MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (editsublabyes->Checked)
+    {
+        if (editsublabteacher->RowCount == 1)
+        {
+            if (editsublabteacher->Rows[0]->Cells[0]->Value == nullptr)
+                MessageBox::Show("Lab teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            flag = false;
+        }
+    }
+    if (editsubbfactor->Value <= 1)
+    {
+        MessageBox::Show("Invalid bfactor Value", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (flag)
+    {
+        string filePath = "details/subject_file.csv";
+        editsubcsvsave(filePath);
+    }
+}
+private: System::Void editsubdelete_Click(System::Object^ sender, System::EventArgs^ e) {
+    editsubcsvdelete("details/subject_file.csv");
+}
 };
 }
 

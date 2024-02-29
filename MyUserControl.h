@@ -39,62 +39,93 @@ namespace TTA_ui {
 				delete components;
 			}
 		}
-    private: System::Windows::Forms::Label^ label50;
+    private: System::Windows::Forms::Panel^ panel12;
     protected:
-    private: System::Windows::Forms::Label^ label40;
-    private: System::Windows::Forms::Label^ label12;
-    private: System::Windows::Forms::Label^ label11;
-    private: System::Windows::Forms::Label^ label4;
-    private: System::Windows::Forms::Label^ label10;
-    private: System::Windows::Forms::Label^ label9;
-    private: System::Windows::Forms::Label^ label8;
-    private: System::Windows::Forms::Label^ label7;
-    private: System::Windows::Forms::Label^ label6;
-    private: System::Windows::Forms::Label^ label5;
-    private: System::Windows::Forms::Button^ buttons35;
-    private: System::Windows::Forms::Button^ buttons34;
-    private: System::Windows::Forms::Button^ buttons33;
-    private: System::Windows::Forms::Button^ buttons32;
-    private: System::Windows::Forms::Button^ buttons31;
-    private: System::Windows::Forms::Button^ buttons29;
-    private: System::Windows::Forms::Button^ buttons28;
-    private: System::Windows::Forms::Button^ buttons27;
-    private: System::Windows::Forms::Button^ buttons26;
-    private: System::Windows::Forms::Button^ buttons25;
-    private: System::Windows::Forms::Button^ buttons24;
-    private: System::Windows::Forms::Button^ buttons23;
-    private: System::Windows::Forms::Button^ buttons22;
-    private: System::Windows::Forms::Button^ buttons21;
-    private: System::Windows::Forms::Button^ buttons20;
-    private: System::Windows::Forms::Button^ buttons19;
-    private: System::Windows::Forms::Button^ buttons18;
-    private: System::Windows::Forms::Button^ buttons17;
-    private: System::Windows::Forms::Button^ buttons16;
-    private: System::Windows::Forms::Button^ buttons15;
-    private: System::Windows::Forms::Button^ buttons14;
-    private: System::Windows::Forms::Button^ buttons13;
-    private: System::Windows::Forms::Button^ buttons12;
-    private: System::Windows::Forms::Button^ buttons11;
-    private: System::Windows::Forms::Button^ buttons10;
-    private: System::Windows::Forms::Button^ buttons9;
-    private: System::Windows::Forms::Button^ buttons8;
-    private: System::Windows::Forms::Button^ buttons7;
-    private: System::Windows::Forms::Button^ buttons6;
-    private: System::Windows::Forms::Button^ buttons5;
-    private: System::Windows::Forms::Button^ buttons4;
-    private: System::Windows::Forms::Button^ buttons3;
-    private: System::Windows::Forms::Button^ buttons2;
-    private: System::Windows::Forms::Button^ buttons1;
-    private: System::Windows::Forms::Label^ label3;
-    private: System::Windows::Forms::ComboBox^ comboBox1;
-    private: System::Windows::Forms::Label^ label2;
-    private: System::Windows::Forms::TextBox^ textBox2;
-    private: System::Windows::Forms::Button^ button37;
-    private: System::Windows::Forms::Button^ button38;
-    private: System::Windows::Forms::Button^ buttons30;
-    private: System::Windows::Forms::Button^ buttons36;
-    private: System::Windows::Forms::Label^ label1;
-    private: System::Windows::Forms::Label^ label14;
+    private: System::Windows::Forms::RadioButton^ radioButton10;
+    private: System::Windows::Forms::RadioButton^ radioButton9;
+    private: System::Windows::Forms::Label^ label46;
+    private: System::Windows::Forms::TextBox^ textBox15;
+    private: System::Windows::Forms::Label^ label47;
+    private: System::Windows::Forms::Label^ label48;
+    private: System::Windows::Forms::TextBox^ textBox16;
+    private: System::Windows::Forms::NumericUpDown^ numericUpDown5;
+    private: System::Windows::Forms::Panel^ addsubjectpanel;
+    private: System::Windows::Forms::Panel^ panel11;
+    private: System::Windows::Forms::RadioButton^ radioButton8;
+    private: System::Windows::Forms::RadioButton^ radioButton7;
+    private: System::Windows::Forms::Button^ newaddsub;
+    private: System::Windows::Forms::TextBox^ textBox13;
+    private: System::Windows::Forms::CheckedListBox^ checkedListBox2;
+    private: System::Windows::Forms::Button^ addsubsave;
+    private: System::Windows::Forms::NumericUpDown^ bfactorupdown;
+    private: System::Windows::Forms::Label^ label41;
+    private: System::Windows::Forms::Label^ label42;
+    private: System::Windows::Forms::Label^ label43;
+    private: System::Windows::Forms::DataGridView^ sldataGridView;
+    private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher_Name;
+    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn4;
+    private: System::Windows::Forms::Label^ label44;
+    private: System::Windows::Forms::Label^ label45;
+    private: System::Windows::Forms::Label^ label49;
+    private: System::Windows::Forms::DataGridView^ sedataGridView;
+    private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
+    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn5;
+
+    protected:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	protected:
 
@@ -199,749 +230,560 @@ namespace TTA_ui {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-            this->label50 = (gcnew System::Windows::Forms::Label());
-            this->label40 = (gcnew System::Windows::Forms::Label());
-            this->label12 = (gcnew System::Windows::Forms::Label());
-            this->label11 = (gcnew System::Windows::Forms::Label());
-            this->label4 = (gcnew System::Windows::Forms::Label());
-            this->label10 = (gcnew System::Windows::Forms::Label());
-            this->label9 = (gcnew System::Windows::Forms::Label());
-            this->label8 = (gcnew System::Windows::Forms::Label());
-            this->label7 = (gcnew System::Windows::Forms::Label());
-            this->label6 = (gcnew System::Windows::Forms::Label());
-            this->label5 = (gcnew System::Windows::Forms::Label());
-            this->buttons35 = (gcnew System::Windows::Forms::Button());
-            this->buttons34 = (gcnew System::Windows::Forms::Button());
-            this->buttons33 = (gcnew System::Windows::Forms::Button());
-            this->buttons32 = (gcnew System::Windows::Forms::Button());
-            this->buttons31 = (gcnew System::Windows::Forms::Button());
-            this->buttons29 = (gcnew System::Windows::Forms::Button());
-            this->buttons28 = (gcnew System::Windows::Forms::Button());
-            this->buttons27 = (gcnew System::Windows::Forms::Button());
-            this->buttons26 = (gcnew System::Windows::Forms::Button());
-            this->buttons25 = (gcnew System::Windows::Forms::Button());
-            this->buttons24 = (gcnew System::Windows::Forms::Button());
-            this->buttons23 = (gcnew System::Windows::Forms::Button());
-            this->buttons22 = (gcnew System::Windows::Forms::Button());
-            this->buttons21 = (gcnew System::Windows::Forms::Button());
-            this->buttons20 = (gcnew System::Windows::Forms::Button());
-            this->buttons19 = (gcnew System::Windows::Forms::Button());
-            this->buttons18 = (gcnew System::Windows::Forms::Button());
-            this->buttons17 = (gcnew System::Windows::Forms::Button());
-            this->buttons16 = (gcnew System::Windows::Forms::Button());
-            this->buttons15 = (gcnew System::Windows::Forms::Button());
-            this->buttons14 = (gcnew System::Windows::Forms::Button());
-            this->buttons13 = (gcnew System::Windows::Forms::Button());
-            this->buttons12 = (gcnew System::Windows::Forms::Button());
-            this->buttons11 = (gcnew System::Windows::Forms::Button());
-            this->buttons10 = (gcnew System::Windows::Forms::Button());
-            this->buttons9 = (gcnew System::Windows::Forms::Button());
-            this->buttons8 = (gcnew System::Windows::Forms::Button());
-            this->buttons7 = (gcnew System::Windows::Forms::Button());
-            this->buttons6 = (gcnew System::Windows::Forms::Button());
-            this->buttons5 = (gcnew System::Windows::Forms::Button());
-            this->buttons4 = (gcnew System::Windows::Forms::Button());
-            this->buttons3 = (gcnew System::Windows::Forms::Button());
-            this->buttons2 = (gcnew System::Windows::Forms::Button());
-            this->buttons1 = (gcnew System::Windows::Forms::Button());
-            this->label3 = (gcnew System::Windows::Forms::Label());
-            this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
-            this->label2 = (gcnew System::Windows::Forms::Label());
-            this->textBox2 = (gcnew System::Windows::Forms::TextBox());
-            this->button37 = (gcnew System::Windows::Forms::Button());
-            this->button38 = (gcnew System::Windows::Forms::Button());
-            this->buttons30 = (gcnew System::Windows::Forms::Button());
-            this->buttons36 = (gcnew System::Windows::Forms::Button());
-            this->label1 = (gcnew System::Windows::Forms::Label());
-            this->label14 = (gcnew System::Windows::Forms::Label());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle13 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle14 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            this->panel12 = (gcnew System::Windows::Forms::Panel());
+            this->radioButton10 = (gcnew System::Windows::Forms::RadioButton());
+            this->radioButton9 = (gcnew System::Windows::Forms::RadioButton());
+            this->label46 = (gcnew System::Windows::Forms::Label());
+            this->textBox15 = (gcnew System::Windows::Forms::TextBox());
+            this->label47 = (gcnew System::Windows::Forms::Label());
+            this->label48 = (gcnew System::Windows::Forms::Label());
+            this->textBox16 = (gcnew System::Windows::Forms::TextBox());
+            this->numericUpDown5 = (gcnew System::Windows::Forms::NumericUpDown());
+            this->addsubjectpanel = (gcnew System::Windows::Forms::Panel());
+            this->panel11 = (gcnew System::Windows::Forms::Panel());
+            this->radioButton8 = (gcnew System::Windows::Forms::RadioButton());
+            this->radioButton7 = (gcnew System::Windows::Forms::RadioButton());
+            this->newaddsub = (gcnew System::Windows::Forms::Button());
+            this->textBox13 = (gcnew System::Windows::Forms::TextBox());
+            this->checkedListBox2 = (gcnew System::Windows::Forms::CheckedListBox());
+            this->addsubsave = (gcnew System::Windows::Forms::Button());
+            this->bfactorupdown = (gcnew System::Windows::Forms::NumericUpDown());
+            this->label41 = (gcnew System::Windows::Forms::Label());
+            this->label42 = (gcnew System::Windows::Forms::Label());
+            this->label43 = (gcnew System::Windows::Forms::Label());
+            this->sldataGridView = (gcnew System::Windows::Forms::DataGridView());
+            this->Teacher_Name = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
+            this->dataGridViewButtonColumn4 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->label44 = (gcnew System::Windows::Forms::Label());
+            this->label45 = (gcnew System::Windows::Forms::Label());
+            this->label49 = (gcnew System::Windows::Forms::Label());
+            this->sedataGridView = (gcnew System::Windows::Forms::DataGridView());
+            this->TeacherName = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
+            this->dataGridViewButtonColumn5 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->panel12->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown5))->BeginInit();
+            this->addsubjectpanel->SuspendLayout();
+            this->panel11->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bfactorupdown))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sldataGridView))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sedataGridView))->BeginInit();
             this->SuspendLayout();
             // 
-            // label50
+            // panel12
             // 
-            this->label50->AutoSize = true;
-            this->label50->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->panel12->Controls->Add(this->radioButton10);
+            this->panel12->Controls->Add(this->radioButton9);
+            this->panel12->ForeColor = System::Drawing::Color::Black;
+            this->panel12->Location = System::Drawing::Point(347, 326);
+            this->panel12->Name = L"panel12";
+            this->panel12->Size = System::Drawing::Size(220, 56);
+            this->panel12->TabIndex = 263;
+            // 
+            // radioButton10
+            // 
+            this->radioButton10->AutoSize = true;
+            this->radioButton10->Location = System::Drawing::Point(5, 21);
+            this->radioButton10->Name = L"radioButton10";
+            this->radioButton10->Size = System::Drawing::Size(62, 24);
+            this->radioButton10->TabIndex = 2;
+            this->radioButton10->TabStop = true;
+            this->radioButton10->Text = L"Yes";
+            this->radioButton10->UseVisualStyleBackColor = true;
+            // 
+            // radioButton9
+            // 
+            this->radioButton9->AutoSize = true;
+            this->radioButton9->Location = System::Drawing::Point(139, 21);
+            this->radioButton9->Name = L"radioButton9";
+            this->radioButton9->Size = System::Drawing::Size(54, 24);
+            this->radioButton9->TabIndex = 3;
+            this->radioButton9->TabStop = true;
+            this->radioButton9->Text = L"No";
+            this->radioButton9->UseVisualStyleBackColor = true;
+            // 
+            // label46
+            // 
+            this->label46->AutoSize = true;
+            this->label46->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label50->Location = System::Drawing::Point(1029, 450);
-            this->label50->Name = L"label50";
-            this->label50->Size = System::Drawing::Size(94, 28);
-            this->label50->TabIndex = 285;
-            this->label50->Text = L"3:30-4:30";
+            this->label46->Location = System::Drawing::Point(318, 583);
+            this->label46->Name = L"label46";
+            this->label46->Size = System::Drawing::Size(330, 28);
+            this->label46->TabIndex = 235;
+            this->label46->Text = L"Teacher handling the elective subject";
             // 
-            // label40
+            // textBox15
             // 
-            this->label40->AutoSize = true;
-            this->label40->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label40->Location = System::Drawing::Point(718, 449);
-            this->label40->Name = L"label40";
-            this->label40->Size = System::Drawing::Size(116, 28);
-            this->label40->TabIndex = 284;
-            this->label40->Text = L"12:30-11:30";
-            // 
-            // label12
-            // 
-            this->label12->AutoSize = true;
-            this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label12->Location = System::Drawing::Point(540, 449);
-            this->label12->Name = L"label12";
-            this->label12->Size = System::Drawing::Size(116, 28);
-            this->label12->TabIndex = 282;
-            this->label12->Text = L"11:30-12:30";
-            // 
-            // label11
-            // 
-            this->label11->AutoSize = true;
-            this->label11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label11->Location = System::Drawing::Point(400, 449);
-            this->label11->Name = L"label11";
-            this->label11->Size = System::Drawing::Size(116, 28);
-            this->label11->TabIndex = 281;
-            this->label11->Text = L"10:00-11:00";
-            // 
-            // label4
-            // 
-            this->label4->AutoSize = true;
-            this->label4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label4->Location = System::Drawing::Point(259, 449);
-            this->label4->Name = L"label4";
-            this->label4->Size = System::Drawing::Size(105, 28);
-            this->label4->TabIndex = 280;
-            this->label4->Text = L"9:00-10:00";
-            // 
-            // label10
-            // 
-            this->label10->AutoSize = true;
-            this->label10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label10->Location = System::Drawing::Point(104, 576);
-            this->label10->Name = L"label10";
-            this->label10->Size = System::Drawing::Size(83, 28);
-            this->label10->TabIndex = 279;
-            this->label10->Text = L"Tuesday";
-            // 
-            // label9
-            // 
-            this->label9->AutoSize = true;
-            this->label9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label9->Location = System::Drawing::Point(90, 645);
-            this->label9->Name = L"label9";
-            this->label9->Size = System::Drawing::Size(113, 28);
-            this->label9->TabIndex = 278;
-            this->label9->Text = L"Wednesday";
-            // 
-            // label8
-            // 
-            this->label8->AutoSize = true;
-            this->label8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label8->Location = System::Drawing::Point(100, 706);
-            this->label8->Name = L"label8";
-            this->label8->Size = System::Drawing::Size(91, 28);
-            this->label8->TabIndex = 277;
-            this->label8->Text = L"Thursday";
-            // 
-            // label7
-            // 
-            this->label7->AutoSize = true;
-            this->label7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label7->Location = System::Drawing::Point(121, 768);
-            this->label7->Name = L"label7";
-            this->label7->Size = System::Drawing::Size(66, 28);
-            this->label7->TabIndex = 276;
-            this->label7->Text = L"Friday";
-            // 
-            // label6
-            // 
-            this->label6->AutoSize = true;
-            this->label6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label6->Location = System::Drawing::Point(107, 823);
-            this->label6->Name = L"label6";
-            this->label6->Size = System::Drawing::Size(90, 28);
-            this->label6->TabIndex = 275;
-            this->label6->Text = L"Saturday";
-            // 
-            // label5
-            // 
-            this->label5->AutoSize = true;
-            this->label5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label5->Location = System::Drawing::Point(104, 519);
-            this->label5->Name = L"label5";
-            this->label5->Size = System::Drawing::Size(85, 28);
-            this->label5->TabIndex = 274;
-            this->label5->Text = L"Monday";
-            // 
-            // buttons35
-            // 
-            this->buttons35->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->textBox15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons35->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->textBox15->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons35->Location = System::Drawing::Point(867, 816);
-            this->buttons35->Name = L"buttons35";
-            this->buttons35->Size = System::Drawing::Size(138, 54);
-            this->buttons35->TabIndex = 270;
-            this->buttons35->Text = L"free";
-            this->buttons35->UseVisualStyleBackColor = false;
+            this->textBox15->ForeColor = System::Drawing::Color::Black;
+            this->textBox15->Location = System::Drawing::Point(323, 479);
+            this->textBox15->Name = L"textBox15";
+            this->textBox15->Size = System::Drawing::Size(482, 34);
+            this->textBox15->TabIndex = 25;
             // 
-            // buttons34
+            // label47
             // 
-            this->buttons34->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->label47->AutoSize = true;
+            this->label47->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label47->Location = System::Drawing::Point(319, 425);
+            this->label47->Name = L"label47";
+            this->label47->Size = System::Drawing::Size(158, 28);
+            this->label47->TabIndex = 24;
+            this->label47->Text = L"Name of elective";
+            // 
+            // label48
+            // 
+            this->label48->AutoSize = true;
+            this->label48->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label48->Location = System::Drawing::Point(319, 274);
+            this->label48->Name = L"label48";
+            this->label48->Size = System::Drawing::Size(148, 28);
+            this->label48->TabIndex = 23;
+            this->label48->Text = L"Is it an elective\?";
+            // 
+            // textBox16
+            // 
+            this->textBox16->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->textBox16->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons34->Location = System::Drawing::Point(708, 816);
-            this->buttons34->Name = L"buttons34";
-            this->buttons34->Size = System::Drawing::Size(138, 54);
-            this->buttons34->TabIndex = 269;
-            this->buttons34->Text = L"free";
-            this->buttons34->UseVisualStyleBackColor = false;
+            this->textBox16->ForeColor = System::Drawing::Color::Black;
+            this->textBox16->Location = System::Drawing::Point(330, 187);
+            this->textBox16->Name = L"textBox16";
+            this->textBox16->Size = System::Drawing::Size(480, 34);
+            this->textBox16->TabIndex = 3;
             // 
-            // buttons33
+            // numericUpDown5
             // 
-            this->buttons33->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->numericUpDown5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)));
+            this->numericUpDown5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->numericUpDown5->Location = System::Drawing::Point(371, 1335);
+            this->numericUpDown5->Name = L"numericUpDown5";
+            this->numericUpDown5->Size = System::Drawing::Size(170, 34);
+            this->numericUpDown5->TabIndex = 240;
+            // 
+            // addsubjectpanel
+            // 
+            this->addsubjectpanel->AutoScroll = true;
+            this->addsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addsubjectpanel->Controls->Add(this->panel12);
+            this->addsubjectpanel->Controls->Add(this->panel11);
+            this->addsubjectpanel->Controls->Add(this->newaddsub);
+            this->addsubjectpanel->Controls->Add(this->textBox13);
+            this->addsubjectpanel->Controls->Add(this->checkedListBox2);
+            this->addsubjectpanel->Controls->Add(this->label46);
+            this->addsubjectpanel->Controls->Add(this->addsubsave);
+            this->addsubjectpanel->Controls->Add(this->bfactorupdown);
+            this->addsubjectpanel->Controls->Add(this->textBox15);
+            this->addsubjectpanel->Controls->Add(this->label41);
+            this->addsubjectpanel->Controls->Add(this->label47);
+            this->addsubjectpanel->Controls->Add(this->label42);
+            this->addsubjectpanel->Controls->Add(this->label48);
+            this->addsubjectpanel->Controls->Add(this->label43);
+            this->addsubjectpanel->Controls->Add(this->textBox16);
+            this->addsubjectpanel->Controls->Add(this->numericUpDown5);
+            this->addsubjectpanel->Controls->Add(this->sldataGridView);
+            this->addsubjectpanel->Controls->Add(this->label44);
+            this->addsubjectpanel->Controls->Add(this->label45);
+            this->addsubjectpanel->Controls->Add(this->label49);
+            this->addsubjectpanel->Controls->Add(this->sedataGridView);
+            this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
+            this->addsubjectpanel->Name = L"addsubjectpanel";
+            this->addsubjectpanel->Size = System::Drawing::Size(1795, 1525);
+            this->addsubjectpanel->TabIndex = 125;
+            // 
+            // panel11
+            // 
+            this->panel11->Controls->Add(this->radioButton8);
+            this->panel11->Controls->Add(this->radioButton7);
+            this->panel11->ForeColor = System::Drawing::Color::Black;
+            this->panel11->Location = System::Drawing::Point(356, 911);
+            this->panel11->Name = L"panel11";
+            this->panel11->Size = System::Drawing::Size(219, 48);
+            this->panel11->TabIndex = 262;
+            // 
+            // radioButton8
+            // 
+            this->radioButton8->AutoSize = true;
+            this->radioButton8->Location = System::Drawing::Point(23, 14);
+            this->radioButton8->Name = L"radioButton8";
+            this->radioButton8->Size = System::Drawing::Size(62, 24);
+            this->radioButton8->TabIndex = 10;
+            this->radioButton8->TabStop = true;
+            this->radioButton8->Text = L"Yes";
+            this->radioButton8->UseVisualStyleBackColor = true;
+            // 
+            // radioButton7
+            // 
+            this->radioButton7->AutoSize = true;
+            this->radioButton7->Location = System::Drawing::Point(148, 14);
+            this->radioButton7->Name = L"radioButton7";
+            this->radioButton7->Size = System::Drawing::Size(54, 24);
+            this->radioButton7->TabIndex = 11;
+            this->radioButton7->TabStop = true;
+            this->radioButton7->Text = L"No";
+            this->radioButton7->UseVisualStyleBackColor = true;
+            // 
+            // newaddsub
+            // 
+            this->newaddsub->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons33->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->newaddsub->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons33->Location = System::Drawing::Point(555, 816);
-            this->buttons33->Name = L"buttons33";
-            this->buttons33->Size = System::Drawing::Size(138, 54);
-            this->buttons33->TabIndex = 268;
-            this->buttons33->Text = L"free";
-            this->buttons33->UseVisualStyleBackColor = false;
+            this->newaddsub->Location = System::Drawing::Point(1211, 1836);
+            this->newaddsub->Name = L"newaddsub";
+            this->newaddsub->Size = System::Drawing::Size(116, 54);
+            this->newaddsub->TabIndex = 247;
+            this->newaddsub->Text = L" Add New";
+            this->newaddsub->UseVisualStyleBackColor = false;
             // 
-            // buttons32
+            // textBox13
             // 
-            this->buttons32->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->textBox13->Location = System::Drawing::Point(964, 276);
+            this->textBox13->Name = L"textBox13";
+            this->textBox13->Size = System::Drawing::Size(154, 26);
+            this->textBox13->TabIndex = 248;
+            // 
+            // checkedListBox2
+            // 
+            this->checkedListBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->checkedListBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->checkedListBox2->CheckOnClick = true;
+            this->checkedListBox2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->checkedListBox2->FormattingEnabled = true;
+            this->checkedListBox2->Location = System::Drawing::Point(371, 1465);
+            this->checkedListBox2->Name = L"checkedListBox2";
+            this->checkedListBox2->Size = System::Drawing::Size(224, 186);
+            this->checkedListBox2->Sorted = true;
+            this->checkedListBox2->TabIndex = 246;
+            this->checkedListBox2->ThreeDCheckBoxes = true;
+            // 
+            // addsubsave
+            // 
+            this->addsubsave->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons32->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->addsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons32->Location = System::Drawing::Point(396, 816);
-            this->buttons32->Name = L"buttons32";
-            this->buttons32->Size = System::Drawing::Size(138, 54);
-            this->buttons32->TabIndex = 267;
-            this->buttons32->Text = L"free";
-            this->buttons32->UseVisualStyleBackColor = false;
+            this->addsubsave->Location = System::Drawing::Point(992, 1836);
+            this->addsubsave->Name = L"addsubsave";
+            this->addsubsave->Size = System::Drawing::Size(116, 54);
+            this->addsubsave->TabIndex = 245;
+            this->addsubsave->Text = L"Save";
+            this->addsubsave->UseVisualStyleBackColor = false;
             // 
-            // buttons31
+            // bfactorupdown
             // 
-            this->buttons31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons31->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->bfactorupdown->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)));
+            this->bfactorupdown->DecimalPlaces = 2;
+            this->bfactorupdown->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons31->Location = System::Drawing::Point(241, 816);
-            this->buttons31->Name = L"buttons31";
-            this->buttons31->Size = System::Drawing::Size(138, 54);
-            this->buttons31->TabIndex = 266;
-            this->buttons31->Text = L"free";
-            this->buttons31->UseVisualStyleBackColor = false;
+            this->bfactorupdown->Location = System::Drawing::Point(370, 1717);
+            this->bfactorupdown->Name = L"bfactorupdown";
+            this->bfactorupdown->Size = System::Drawing::Size(170, 34);
+            this->bfactorupdown->TabIndex = 244;
             // 
-            // buttons29
+            // label41
             // 
-            this->buttons29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label41->AutoSize = true;
+            this->label41->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons29->Location = System::Drawing::Point(867, 755);
-            this->buttons29->Name = L"buttons29";
-            this->buttons29->Size = System::Drawing::Size(138, 55);
-            this->buttons29->TabIndex = 264;
-            this->buttons29->Text = L"free";
-            this->buttons29->UseVisualStyleBackColor = false;
+            this->label41->Location = System::Drawing::Point(362, 1419);
+            this->label41->Name = L"label41";
+            this->label41->Size = System::Drawing::Size(255, 28);
+            this->label41->TabIndex = 242;
+            this->label41->Text = L"Rooms to be used(optional)";
             // 
-            // buttons28
+            // label42
             // 
-            this->buttons28->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label42->AutoSize = true;
+            this->label42->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons28->Location = System::Drawing::Point(708, 755);
-            this->buttons28->Name = L"buttons28";
-            this->buttons28->Size = System::Drawing::Size(138, 55);
-            this->buttons28->TabIndex = 263;
-            this->buttons28->Text = L"free";
-            this->buttons28->UseVisualStyleBackColor = false;
+            this->label42->Location = System::Drawing::Point(379, 1663);
+            this->label42->Name = L"label42";
+            this->label42->Size = System::Drawing::Size(75, 28);
+            this->label42->TabIndex = 243;
+            this->label42->Text = L"bfactor";
             // 
-            // buttons27
+            // label43
             // 
-            this->buttons27->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons27->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label43->AutoSize = true;
+            this->label43->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons27->Location = System::Drawing::Point(555, 755);
-            this->buttons27->Name = L"buttons27";
-            this->buttons27->Size = System::Drawing::Size(138, 55);
-            this->buttons27->TabIndex = 262;
-            this->buttons27->Text = L"free";
-            this->buttons27->UseVisualStyleBackColor = false;
+            this->label43->Location = System::Drawing::Point(368, 1291);
+            this->label43->Name = L"label43";
+            this->label43->Size = System::Drawing::Size(125, 28);
+            this->label43->TabIndex = 241;
+            this->label43->Text = L"No of credits";
             // 
-            // buttons26
+            // sldataGridView
             // 
-            this->buttons26->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons26->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->sldataGridView->AllowUserToOrderColumns = true;
+            dataGridViewCellStyle1->BackColor = System::Drawing::Color::White;
+            dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::Black;
+            this->sldataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this->sldataGridView->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->sldataGridView->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->sldataGridView->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
+            this->sldataGridView->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+            dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Segoe UI Variable Display Semib", 10, System::Drawing::FontStyle::Bold));
+            dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::Window;
+            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::ControlLightLight;
+            dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->sldataGridView->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this->sldataGridView->ColumnHeadersHeight = 40;
+            this->sldataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
+            this->sldataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+                this->Teacher_Name,
+                    this->dataGridViewButtonColumn4
+            });
+            dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle5->BackColor = System::Drawing::Color::White;
+            dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons26->Location = System::Drawing::Point(396, 755);
-            this->buttons26->Name = L"buttons26";
-            this->buttons26->Size = System::Drawing::Size(138, 55);
-            this->buttons26->TabIndex = 261;
-            this->buttons26->Text = L"free";
-            this->buttons26->UseVisualStyleBackColor = false;
-            // 
-            // buttons25
-            // 
-            this->buttons25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons25->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle5->ForeColor = System::Drawing::SystemColors::ControlText;
+            dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::Desktop;
+            dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+            this->sldataGridView->DefaultCellStyle = dataGridViewCellStyle5;
+            this->sldataGridView->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)), static_cast<System::Int32>(static_cast<System::Byte>(211)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->sldataGridView->Location = System::Drawing::Point(373, 1043);
+            this->sldataGridView->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
+            this->sldataGridView->Name = L"sldataGridView";
+            dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle6->BackColor = System::Drawing::Color::White;
+            dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons25->Location = System::Drawing::Point(241, 755);
-            this->buttons25->Name = L"buttons25";
-            this->buttons25->Size = System::Drawing::Size(138, 55);
-            this->buttons25->TabIndex = 260;
-            this->buttons25->Text = L"free";
-            this->buttons25->UseVisualStyleBackColor = false;
+            dataGridViewCellStyle6->ForeColor = System::Drawing::SystemColors::WindowText;
+            dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->sldataGridView->RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this->sldataGridView->RowHeadersVisible = false;
+            this->sldataGridView->RowHeadersWidth = 62;
+            dataGridViewCellStyle7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
+            dataGridViewCellStyle7->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle7->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(187)));
+            dataGridViewCellStyle7->SelectionForeColor = System::Drawing::Color::Black;
+            this->sldataGridView->RowsDefaultCellStyle = dataGridViewCellStyle7;
+            this->sldataGridView->RowTemplate->Height = 28;
+            this->sldataGridView->Size = System::Drawing::Size(735, 226);
+            this->sldataGridView->TabIndex = 239;
             // 
-            // buttons24
+            // Teacher_Name
             // 
-            this->buttons24->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons24->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle3->BackColor = System::Drawing::Color::White;
+            dataGridViewCellStyle3->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle3->Padding = System::Windows::Forms::Padding(1);
+            dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle3->SelectionForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle3->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->Teacher_Name->DefaultCellStyle = dataGridViewCellStyle3;
+            this->Teacher_Name->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->Teacher_Name->HeaderText = L"Teacher Name";
+            this->Teacher_Name->MinimumWidth = 30;
+            this->Teacher_Name->Name = L"Teacher_Name";
+            this->Teacher_Name->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+            this->Teacher_Name->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
+            this->Teacher_Name->Width = 350;
+            // 
+            // dataGridViewButtonColumn4
+            // 
+            this->dataGridViewButtonColumn4->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+            dataGridViewCellStyle4->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+            dataGridViewCellStyle4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
+                static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle4->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)),
+                static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::Black;
+            this->dataGridViewButtonColumn4->DefaultCellStyle = dataGridViewCellStyle4;
+            this->dataGridViewButtonColumn4->DividerWidth = 1;
+            this->dataGridViewButtonColumn4->HeaderText = L"";
+            this->dataGridViewButtonColumn4->MinimumWidth = 100;
+            this->dataGridViewButtonColumn4->Name = L"dataGridViewButtonColumn4";
+            this->dataGridViewButtonColumn4->ReadOnly = true;
+            this->dataGridViewButtonColumn4->Text = L"Delete";
+            this->dataGridViewButtonColumn4->UseColumnTextForButtonValue = true;
+            // 
+            // label44
+            // 
+            this->label44->AutoSize = true;
+            this->label44->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons24->Location = System::Drawing::Point(1022, 692);
-            this->buttons24->Name = L"buttons24";
-            this->buttons24->Size = System::Drawing::Size(138, 55);
-            this->buttons24->TabIndex = 259;
-            this->buttons24->Text = L"free";
-            this->buttons24->UseVisualStyleBackColor = false;
+            this->label44->Location = System::Drawing::Point(337, 1003);
+            this->label44->Name = L"label44";
+            this->label44->Size = System::Drawing::Size(299, 28);
+            this->label44->TabIndex = 238;
+            this->label44->Text = L"Teachers handling the lab subject";
             // 
-            // buttons23
+            // label45
             // 
-            this->buttons23->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons23->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label45->AutoSize = true;
+            this->label45->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons23->Location = System::Drawing::Point(867, 693);
-            this->buttons23->Name = L"buttons23";
-            this->buttons23->Size = System::Drawing::Size(138, 55);
-            this->buttons23->TabIndex = 258;
-            this->buttons23->Text = L"free";
-            this->buttons23->UseVisualStyleBackColor = false;
+            this->label45->Location = System::Drawing::Point(336, 866);
+            this->label45->Name = L"label45";
+            this->label45->Size = System::Drawing::Size(98, 28);
+            this->label45->TabIndex = 236;
+            this->label45->Text = L"Is it a lab\?";
             // 
-            // buttons22
+            // label49
             // 
-            this->buttons22->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons22->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label49->AutoSize = true;
+            this->label49->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons22->Location = System::Drawing::Point(708, 692);
-            this->buttons22->Name = L"buttons22";
-            this->buttons22->Size = System::Drawing::Size(138, 55);
-            this->buttons22->TabIndex = 257;
-            this->buttons22->Text = L"free";
-            this->buttons22->UseVisualStyleBackColor = false;
+            this->label49->ForeColor = System::Drawing::Color::Black;
+            this->label49->Location = System::Drawing::Point(325, 137);
+            this->label49->Name = L"label49";
+            this->label49->Size = System::Drawing::Size(134, 28);
+            this->label49->TabIndex = 2;
+            this->label49->Text = L"Subject Name";
             // 
-            // buttons21
+            // sedataGridView
             // 
-            this->buttons21->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons21->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->sedataGridView->AllowUserToOrderColumns = true;
+            dataGridViewCellStyle8->BackColor = System::Drawing::Color::White;
+            dataGridViewCellStyle8->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle8->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle8->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
+            this->sedataGridView->BackgroundColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->sedataGridView->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->sedataGridView->CellBorderStyle = System::Windows::Forms::DataGridViewCellBorderStyle::None;
+            this->sedataGridView->ColumnHeadersBorderStyle = System::Windows::Forms::DataGridViewHeaderBorderStyle::None;
+            dataGridViewCellStyle9->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            dataGridViewCellStyle9->Font = (gcnew System::Drawing::Font(L"Segoe UI Variable Display Semib", 10, System::Drawing::FontStyle::Bold));
+            dataGridViewCellStyle9->ForeColor = System::Drawing::SystemColors::Window;
+            dataGridViewCellStyle9->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            dataGridViewCellStyle9->SelectionForeColor = System::Drawing::SystemColors::ControlLightLight;
+            dataGridViewCellStyle9->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->sedataGridView->ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this->sedataGridView->ColumnHeadersHeight = 40;
+            this->sedataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
+            this->sedataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+                this->TeacherName,
+                    this->dataGridViewButtonColumn5
+            });
+            dataGridViewCellStyle12->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle12->BackColor = System::Drawing::Color::White;
+            dataGridViewCellStyle12->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons21->Location = System::Drawing::Point(555, 693);
-            this->buttons21->Name = L"buttons21";
-            this->buttons21->Size = System::Drawing::Size(138, 55);
-            this->buttons21->TabIndex = 256;
-            this->buttons21->Text = L"free";
-            this->buttons21->UseVisualStyleBackColor = false;
-            // 
-            // buttons20
-            // 
-            this->buttons20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle12->ForeColor = System::Drawing::SystemColors::ControlText;
+            dataGridViewCellStyle12->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle12->SelectionForeColor = System::Drawing::SystemColors::Desktop;
+            dataGridViewCellStyle12->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
+            this->sedataGridView->DefaultCellStyle = dataGridViewCellStyle12;
+            this->sedataGridView->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)), static_cast<System::Int32>(static_cast<System::Byte>(211)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->sedataGridView->Location = System::Drawing::Point(335, 637);
+            this->sedataGridView->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
+            this->sedataGridView->Name = L"sedataGridView";
+            dataGridViewCellStyle13->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+            dataGridViewCellStyle13->BackColor = System::Drawing::Color::White;
+            dataGridViewCellStyle13->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->buttons20->Location = System::Drawing::Point(396, 693);
-            this->buttons20->Name = L"buttons20";
-            this->buttons20->Size = System::Drawing::Size(138, 55);
-            this->buttons20->TabIndex = 255;
-            this->buttons20->Text = L"free";
-            this->buttons20->UseVisualStyleBackColor = false;
+            dataGridViewCellStyle13->ForeColor = System::Drawing::SystemColors::WindowText;
+            dataGridViewCellStyle13->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle13->SelectionForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle13->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->sedataGridView->RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this->sedataGridView->RowHeadersVisible = false;
+            this->sedataGridView->RowHeadersWidth = 62;
+            dataGridViewCellStyle14->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
+            dataGridViewCellStyle14->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle14->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(187)));
+            dataGridViewCellStyle14->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->RowsDefaultCellStyle = dataGridViewCellStyle14;
+            this->sedataGridView->RowTemplate->Height = 28;
+            this->sedataGridView->Size = System::Drawing::Size(735, 226);
+            this->sedataGridView->TabIndex = 234;
             // 
-            // buttons19
+            // TeacherName
             // 
-            this->buttons19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons19->Location = System::Drawing::Point(241, 692);
-            this->buttons19->Name = L"buttons19";
-            this->buttons19->Size = System::Drawing::Size(138, 55);
-            this->buttons19->TabIndex = 254;
-            this->buttons19->Text = L"free";
-            this->buttons19->UseVisualStyleBackColor = false;
+            dataGridViewCellStyle10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            dataGridViewCellStyle10->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle10->Padding = System::Windows::Forms::Padding(1);
+            dataGridViewCellStyle10->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(194)));
+            dataGridViewCellStyle10->SelectionForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle10->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->TeacherName->DefaultCellStyle = dataGridViewCellStyle10;
+            this->TeacherName->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->TeacherName->HeaderText = L"Teacher Name";
+            this->TeacherName->MinimumWidth = 30;
+            this->TeacherName->Name = L"TeacherName";
+            this->TeacherName->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+            this->TeacherName->Width = 350;
             // 
-            // buttons18
+            // dataGridViewButtonColumn5
             // 
-            this->buttons18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons18->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons18->Location = System::Drawing::Point(1022, 635);
-            this->buttons18->Name = L"buttons18";
-            this->buttons18->Size = System::Drawing::Size(138, 55);
-            this->buttons18->TabIndex = 253;
-            this->buttons18->Text = L"free";
-            this->buttons18->UseVisualStyleBackColor = false;
-            // 
-            // buttons17
-            // 
-            this->buttons17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons17->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons17->Location = System::Drawing::Point(867, 632);
-            this->buttons17->Name = L"buttons17";
-            this->buttons17->Size = System::Drawing::Size(138, 55);
-            this->buttons17->TabIndex = 252;
-            this->buttons17->Text = L"free";
-            this->buttons17->UseVisualStyleBackColor = false;
-            // 
-            // buttons16
-            // 
-            this->buttons16->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons16->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons16->Location = System::Drawing::Point(708, 632);
-            this->buttons16->Name = L"buttons16";
-            this->buttons16->Size = System::Drawing::Size(138, 55);
-            this->buttons16->TabIndex = 251;
-            this->buttons16->Text = L"free";
-            this->buttons16->UseVisualStyleBackColor = false;
-            // 
-            // buttons15
-            // 
-            this->buttons15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons15->Location = System::Drawing::Point(555, 632);
-            this->buttons15->Name = L"buttons15";
-            this->buttons15->Size = System::Drawing::Size(138, 55);
-            this->buttons15->TabIndex = 250;
-            this->buttons15->Text = L"free";
-            this->buttons15->UseVisualStyleBackColor = false;
-            // 
-            // buttons14
-            // 
-            this->buttons14->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons14->Location = System::Drawing::Point(396, 632);
-            this->buttons14->Name = L"buttons14";
-            this->buttons14->Size = System::Drawing::Size(138, 55);
-            this->buttons14->TabIndex = 249;
-            this->buttons14->Text = L"free";
-            this->buttons14->UseVisualStyleBackColor = false;
-            // 
-            // buttons13
-            // 
-            this->buttons13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons13->Location = System::Drawing::Point(241, 632);
-            this->buttons13->Name = L"buttons13";
-            this->buttons13->Size = System::Drawing::Size(138, 55);
-            this->buttons13->TabIndex = 248;
-            this->buttons13->Text = L"free";
-            this->buttons13->UseVisualStyleBackColor = false;
-            // 
-            // buttons12
-            // 
-            this->buttons12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons12->Location = System::Drawing::Point(1022, 571);
-            this->buttons12->Name = L"buttons12";
-            this->buttons12->Size = System::Drawing::Size(138, 55);
-            this->buttons12->TabIndex = 247;
-            this->buttons12->Text = L"free";
-            this->buttons12->UseVisualStyleBackColor = false;
-            // 
-            // buttons11
-            // 
-            this->buttons11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons11->Location = System::Drawing::Point(867, 571);
-            this->buttons11->Name = L"buttons11";
-            this->buttons11->Size = System::Drawing::Size(138, 55);
-            this->buttons11->TabIndex = 246;
-            this->buttons11->Text = L"free";
-            this->buttons11->UseVisualStyleBackColor = false;
-            // 
-            // buttons10
-            // 
-            this->buttons10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons10->Location = System::Drawing::Point(708, 571);
-            this->buttons10->Name = L"buttons10";
-            this->buttons10->Size = System::Drawing::Size(138, 55);
-            this->buttons10->TabIndex = 245;
-            this->buttons10->Text = L"free";
-            this->buttons10->UseVisualStyleBackColor = false;
-            // 
-            // buttons9
-            // 
-            this->buttons9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons9->Location = System::Drawing::Point(555, 571);
-            this->buttons9->Name = L"buttons9";
-            this->buttons9->Size = System::Drawing::Size(138, 55);
-            this->buttons9->TabIndex = 244;
-            this->buttons9->Text = L"free";
-            this->buttons9->UseVisualStyleBackColor = false;
-            // 
-            // buttons8
-            // 
-            this->buttons8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons8->Location = System::Drawing::Point(396, 571);
-            this->buttons8->Name = L"buttons8";
-            this->buttons8->Size = System::Drawing::Size(138, 55);
-            this->buttons8->TabIndex = 243;
-            this->buttons8->Text = L"free";
-            this->buttons8->UseVisualStyleBackColor = false;
-            // 
-            // buttons7
-            // 
-            this->buttons7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons7->Location = System::Drawing::Point(241, 571);
-            this->buttons7->Name = L"buttons7";
-            this->buttons7->Size = System::Drawing::Size(138, 55);
-            this->buttons7->TabIndex = 242;
-            this->buttons7->Text = L"free";
-            this->buttons7->UseVisualStyleBackColor = false;
-            // 
-            // buttons6
-            // 
-            this->buttons6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons6->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons6->Location = System::Drawing::Point(1022, 511);
-            this->buttons6->Name = L"buttons6";
-            this->buttons6->Size = System::Drawing::Size(138, 55);
-            this->buttons6->TabIndex = 241;
-            this->buttons6->Text = L"free";
-            this->buttons6->UseVisualStyleBackColor = false;
-            // 
-            // buttons5
-            // 
-            this->buttons5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons5->Location = System::Drawing::Point(867, 511);
-            this->buttons5->Name = L"buttons5";
-            this->buttons5->Size = System::Drawing::Size(138, 55);
-            this->buttons5->TabIndex = 240;
-            this->buttons5->Text = L"free";
-            this->buttons5->UseVisualStyleBackColor = false;
-            // 
-            // buttons4
-            // 
-            this->buttons4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons4->Location = System::Drawing::Point(708, 511);
-            this->buttons4->Name = L"buttons4";
-            this->buttons4->Size = System::Drawing::Size(138, 55);
-            this->buttons4->TabIndex = 239;
-            this->buttons4->Text = L"free";
-            this->buttons4->UseVisualStyleBackColor = false;
-            // 
-            // buttons3
-            // 
-            this->buttons3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons3->Location = System::Drawing::Point(555, 511);
-            this->buttons3->Name = L"buttons3";
-            this->buttons3->Size = System::Drawing::Size(138, 55);
-            this->buttons3->TabIndex = 238;
-            this->buttons3->Text = L"free";
-            this->buttons3->UseVisualStyleBackColor = false;
-            // 
-            // buttons2
-            // 
-            this->buttons2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons2->Location = System::Drawing::Point(396, 511);
-            this->buttons2->Name = L"buttons2";
-            this->buttons2->Size = System::Drawing::Size(138, 55);
-            this->buttons2->TabIndex = 237;
-            this->buttons2->Text = L"free";
-            this->buttons2->UseVisualStyleBackColor = false;
-            // 
-            // buttons1
-            // 
-            this->buttons1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons1->Location = System::Drawing::Point(241, 511);
-            this->buttons1->Name = L"buttons1";
-            this->buttons1->Size = System::Drawing::Size(138, 55);
-            this->buttons1->TabIndex = 236;
-            this->buttons1->Text = L"free";
-            this->buttons1->UseVisualStyleBackColor = false;
-            // 
-            // label3
-            // 
-            this->label3->AutoSize = true;
-            this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label3->Location = System::Drawing::Point(96, 364);
-            this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label3->Name = L"label3";
-            this->label3->Size = System::Drawing::Size(161, 28);
-            this->label3->TabIndex = 235;
-            this->label3->Text = L"Teacher Schedule";
-            // 
-            // comboBox1
-            // 
-            this->comboBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->comboBox1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->comboBox1->FormattingEnabled = true;
-            this->comboBox1->Location = System::Drawing::Point(100, 267);
-            this->comboBox1->Name = L"comboBox1";
-            this->comboBox1->Size = System::Drawing::Size(362, 36);
-            this->comboBox1->TabIndex = 234;
-            // 
-            // label2
-            // 
-            this->label2->AutoSize = true;
-            this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label2->Location = System::Drawing::Point(101, 222);
-            this->label2->Name = L"label2";
-            this->label2->Size = System::Drawing::Size(198, 28);
-            this->label2->TabIndex = 233;
-            this->label2->Text = L"Enter the department";
-            // 
-            // textBox2
-            // 
-            this->textBox2->AcceptsTab = true;
-            this->textBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->textBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->textBox2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->textBox2->ForeColor = System::Drawing::Color::Black;
-            this->textBox2->Location = System::Drawing::Point(100, 141);
-            this->textBox2->Name = L"textBox2";
-            this->textBox2->Size = System::Drawing::Size(361, 27);
-            this->textBox2->TabIndex = 232;
-            // 
-            // button37
-            // 
-            this->button37->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button37->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button37->Location = System::Drawing::Point(800, 945);
-            this->button37->Name = L"button37";
-            this->button37->Size = System::Drawing::Size(121, 45);
-            this->button37->TabIndex = 273;
-            this->button37->Text = L"Save";
-            this->button37->UseVisualStyleBackColor = false;
-            // 
-            // button38
-            // 
-            this->button38->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button38->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->button38->Location = System::Drawing::Point(970, 945);
-            this->button38->Name = L"button38";
-            this->button38->Size = System::Drawing::Size(121, 45);
-            this->button38->TabIndex = 272;
-            this->button38->Text = L"Add New";
-            this->button38->UseVisualStyleBackColor = false;
-            // 
-            // buttons30
-            // 
-            this->buttons30->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons30->Location = System::Drawing::Point(1022, 755);
-            this->buttons30->Name = L"buttons30";
-            this->buttons30->Size = System::Drawing::Size(138, 55);
-            this->buttons30->TabIndex = 265;
-            this->buttons30->Text = L"free";
-            this->buttons30->UseVisualStyleBackColor = false;
-            // 
-            // buttons36
-            // 
-            this->buttons36->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->buttons36->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->buttons36->Location = System::Drawing::Point(1022, 816);
-            this->buttons36->Name = L"buttons36";
-            this->buttons36->Size = System::Drawing::Size(138, 54);
-            this->buttons36->TabIndex = 271;
-            this->buttons36->Text = L"free";
-            this->buttons36->UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this->label1->AutoSize = true;
-            this->label1->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label1->Location = System::Drawing::Point(96, 95);
-            this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label1->Name = L"label1";
-            this->label1->Size = System::Drawing::Size(179, 28);
-            this->label1->TabIndex = 231;
-            this->label1->Text = L"Enter teacher name";
-            // 
-            // label14
-            // 
-            this->label14->AutoSize = true;
-            this->label14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label14->Location = System::Drawing::Point(875, 449);
-            this->label14->Name = L"label14";
-            this->label14->Size = System::Drawing::Size(94, 28);
-            this->label14->TabIndex = 283;
-            this->label14->Text = L"2:30-3:30";
+            this->dataGridViewButtonColumn5->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+            dataGridViewCellStyle11->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+            dataGridViewCellStyle11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
+                static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle11->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle11->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)),
+                static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle11->SelectionForeColor = System::Drawing::Color::Black;
+            this->dataGridViewButtonColumn5->DefaultCellStyle = dataGridViewCellStyle11;
+            this->dataGridViewButtonColumn5->DividerWidth = 1;
+            this->dataGridViewButtonColumn5->HeaderText = L"";
+            this->dataGridViewButtonColumn5->MinimumWidth = 100;
+            this->dataGridViewButtonColumn5->Name = L"dataGridViewButtonColumn5";
+            this->dataGridViewButtonColumn5->ReadOnly = true;
+            this->dataGridViewButtonColumn5->Text = L"Delete";
+            this->dataGridViewButtonColumn5->UseColumnTextForButtonValue = true;
             // 
             // MyUserControl
             // 
@@ -950,72 +792,26 @@ namespace TTA_ui {
             this->AutoScroll = true;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->Controls->Add(this->label50);
-            this->Controls->Add(this->label40);
-            this->Controls->Add(this->label12);
-            this->Controls->Add(this->label11);
-            this->Controls->Add(this->label4);
-            this->Controls->Add(this->label10);
-            this->Controls->Add(this->label9);
-            this->Controls->Add(this->label8);
-            this->Controls->Add(this->label7);
-            this->Controls->Add(this->label6);
-            this->Controls->Add(this->label5);
-            this->Controls->Add(this->buttons35);
-            this->Controls->Add(this->buttons34);
-            this->Controls->Add(this->buttons33);
-            this->Controls->Add(this->buttons32);
-            this->Controls->Add(this->buttons31);
-            this->Controls->Add(this->buttons29);
-            this->Controls->Add(this->buttons28);
-            this->Controls->Add(this->buttons27);
-            this->Controls->Add(this->buttons26);
-            this->Controls->Add(this->buttons25);
-            this->Controls->Add(this->buttons24);
-            this->Controls->Add(this->buttons23);
-            this->Controls->Add(this->buttons22);
-            this->Controls->Add(this->buttons21);
-            this->Controls->Add(this->buttons20);
-            this->Controls->Add(this->buttons19);
-            this->Controls->Add(this->buttons18);
-            this->Controls->Add(this->buttons17);
-            this->Controls->Add(this->buttons16);
-            this->Controls->Add(this->buttons15);
-            this->Controls->Add(this->buttons14);
-            this->Controls->Add(this->buttons13);
-            this->Controls->Add(this->buttons12);
-            this->Controls->Add(this->buttons11);
-            this->Controls->Add(this->buttons10);
-            this->Controls->Add(this->buttons9);
-            this->Controls->Add(this->buttons8);
-            this->Controls->Add(this->buttons7);
-            this->Controls->Add(this->buttons6);
-            this->Controls->Add(this->buttons5);
-            this->Controls->Add(this->buttons4);
-            this->Controls->Add(this->buttons3);
-            this->Controls->Add(this->buttons2);
-            this->Controls->Add(this->buttons1);
-            this->Controls->Add(this->label3);
-            this->Controls->Add(this->comboBox1);
-            this->Controls->Add(this->label2);
-            this->Controls->Add(this->textBox2);
-            this->Controls->Add(this->button37);
-            this->Controls->Add(this->button38);
-            this->Controls->Add(this->buttons30);
-            this->Controls->Add(this->buttons36);
-            this->Controls->Add(this->label1);
-            this->Controls->Add(this->label14);
+            this->Controls->Add(this->addsubjectpanel);
             this->Name = L"MyUserControl";
             this->Size = System::Drawing::Size(1795, 1525);
             this->Load += gcnew System::EventHandler(this, &MyUserControl::MyUserControl_Load);
+            this->panel12->ResumeLayout(false);
+            this->panel12->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown5))->EndInit();
+            this->addsubjectpanel->ResumeLayout(false);
+            this->addsubjectpanel->PerformLayout();
+            this->panel11->ResumeLayout(false);
+            this->panel11->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bfactorupdown))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sldataGridView))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sedataGridView))->EndInit();
             this->ResumeLayout(false);
-            this->PerformLayout();
 
         }
 #pragma endregion
 
-private: System::Void sedataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
+
 private: System::Void MyUserControl_Load(System::Object^ sender, System::EventArgs^ e) {
 }
 };
