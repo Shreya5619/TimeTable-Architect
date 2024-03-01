@@ -3,6 +3,9 @@ using namespace System;
 using namespace System::Windows::Forms;
 
 std::vector<section> allsections;
+std::string searchteachername="";
+std::string searchroomname;
+std::string searchsubname;
 [STAThreadAttribute]
 
 void main(array<String^>^ args) {
