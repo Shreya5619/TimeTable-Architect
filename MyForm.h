@@ -6,7 +6,6 @@
 #include<sstream>
 #include<iostream>
 #include<algorithm>
-#include<cctype>
 #include "section.h"
 extern std::string searchteachername;
 extern std::string searchroomname;
@@ -391,8 +390,8 @@ namespace TTA_ui {
                                 teachers.push_back(CellValue);
                             }
                     }
-                    vector<vector<bool>> timeTable;
-                    electiveSubjectText(Name, Ele, teachers,timeTable);
+                  //  vector<vector<bool>> timeTable;
+                  //  electiveSubjectText(Name, Ele, teachers,timeTable);
                 }
                 else if (radioButton9->Checked)
                 {
@@ -1547,7 +1546,7 @@ public:
    }
 
    //convert into standard form
-   void electiveSubjectText(string electiveName, string clusterName, vector<string> teachers, vector<vector<bool>> timeTable) {
+ /*  void electiveSubjectText(string electiveName, string clusterName, vector<string> teachers, vector<vector<bool>> timeTable) {
        fstream file;
        file.open("details/electiveSubject.csv");
        string returnVal = electiveName + clusterName + ",[";
@@ -1566,9 +1565,9 @@ public:
        returnVal += to_string(timeTable[timeTable.size() - 1][timeTable[timeTable.size() - 1].size() - 1]);
        file<< returnVal<<"\n";
        file.close();
-   }
+   }*/
    
-    vector<vector<bool>> electivesearch()
+   /* vector<vector<bool>> electivesearch()
     {
        string searchname = msclr::interop::marshal_as<string>(textBox16->Text)+ msclr::interop::marshal_as<string>(textBox15->Text);
        vector<vector<string>>data = ReadCSVFile("details/electiveSubject.csv");
@@ -1600,7 +1599,7 @@ public:
            }
        }
        return tt;
-    }
+    }*/
 
    /* void electiveTimetable(string clustername,vector<vector<bool>> timeTable)
     {
@@ -2146,6 +2145,8 @@ private: System::Windows::Forms::ComboBox^ editsubelename;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn5;
 private: System::Windows::Forms::Panel^ panel7;
+private: System::Windows::Forms::Button^ button20;
+private: System::Windows::Forms::Panel^ optionPanel;
 
 
 
@@ -2608,6 +2609,8 @@ private: System::ComponentModel::IContainer^ components;
             this->textBox9 = (gcnew System::Windows::Forms::Label());
             this->textBox7 = (gcnew System::Windows::Forms::Label());
             this->panel1 = (gcnew System::Windows::Forms::Panel());
+            this->button20 = (gcnew System::Windows::Forms::Button());
+            this->optionPanel = (gcnew System::Windows::Forms::Panel());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sldataGridView))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown5))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bfactorupdown))->BeginInit();
@@ -2801,7 +2804,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
             this->numericUpDown5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->numericUpDown5->Location = System::Drawing::Point(371, 1335);
+            this->numericUpDown5->Location = System::Drawing::Point(377, 1438);
             this->numericUpDown5->Name = L"numericUpDown5";
             this->numericUpDown5->Size = System::Drawing::Size(170, 34);
             this->numericUpDown5->TabIndex = 240;
@@ -2811,7 +2814,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label43->AutoSize = true;
             this->label43->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label43->Location = System::Drawing::Point(368, 1291);
+            this->label43->Location = System::Drawing::Point(374, 1394);
             this->label43->Name = L"label43";
             this->label43->Size = System::Drawing::Size(125, 28);
             this->label43->TabIndex = 241;
@@ -2822,7 +2825,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label42->AutoSize = true;
             this->label42->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label42->Location = System::Drawing::Point(379, 1663);
+            this->label42->Location = System::Drawing::Point(385, 1766);
             this->label42->Name = L"label42";
             this->label42->Size = System::Drawing::Size(75, 28);
             this->label42->TabIndex = 243;
@@ -2833,7 +2836,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label41->AutoSize = true;
             this->label41->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label41->Location = System::Drawing::Point(362, 1419);
+            this->label41->Location = System::Drawing::Point(368, 1522);
             this->label41->Name = L"label41";
             this->label41->Size = System::Drawing::Size(255, 28);
             this->label41->TabIndex = 242;
@@ -2846,7 +2849,7 @@ private: System::ComponentModel::IContainer^ components;
             this->bfactorupdown->DecimalPlaces = 2;
             this->bfactorupdown->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->bfactorupdown->Location = System::Drawing::Point(370, 1717);
+            this->bfactorupdown->Location = System::Drawing::Point(376, 1820);
             this->bfactorupdown->Name = L"bfactorupdown";
             this->bfactorupdown->Size = System::Drawing::Size(170, 34);
             this->bfactorupdown->TabIndex = 244;
@@ -2857,7 +2860,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->addsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubsave->Location = System::Drawing::Point(992, 1836);
+            this->addsubsave->Location = System::Drawing::Point(998, 1939);
             this->addsubsave->Name = L"addsubsave";
             this->addsubsave->Size = System::Drawing::Size(116, 54);
             this->addsubsave->TabIndex = 245;
@@ -2874,7 +2877,7 @@ private: System::ComponentModel::IContainer^ components;
             this->checkedListBox2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->checkedListBox2->FormattingEnabled = true;
-            this->checkedListBox2->Location = System::Drawing::Point(371, 1465);
+            this->checkedListBox2->Location = System::Drawing::Point(377, 1568);
             this->checkedListBox2->Name = L"checkedListBox2";
             this->checkedListBox2->Size = System::Drawing::Size(224, 186);
             this->checkedListBox2->Sorted = true;
@@ -2887,7 +2890,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->newaddsub->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->newaddsub->Location = System::Drawing::Point(1211, 1836);
+            this->newaddsub->Location = System::Drawing::Point(1217, 1939);
             this->newaddsub->Name = L"newaddsub";
             this->newaddsub->Size = System::Drawing::Size(116, 54);
             this->newaddsub->TabIndex = 247;
@@ -2934,6 +2937,8 @@ private: System::ComponentModel::IContainer^ components;
             this->addsubjectpanel->AutoScroll = true;
             this->addsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addsubjectpanel->Controls->Add(this->optionPanel);
+            this->addsubjectpanel->Controls->Add(this->button20);
             this->addsubjectpanel->Controls->Add(this->textBox15);
             this->addsubjectpanel->Controls->Add(this->panel12);
             this->addsubjectpanel->Controls->Add(this->panel11);
@@ -8498,6 +8503,28 @@ private: System::ComponentModel::IContainer^ components;
             this->panel1->Name = L"panel1";
             this->panel1->Size = System::Drawing::Size(324, 972);
             this->panel1->TabIndex = 259;
+            // 
+            // button20
+            // 
+            this->button20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->button20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->button20->Location = System::Drawing::Point(847, 1290);
+            this->button20->Name = L"button20";
+            this->button20->Size = System::Drawing::Size(116, 42);
+            this->button20->TabIndex = 265;
+            this->button20->Text = L"Options";
+            this->button20->UseVisualStyleBackColor = false;
+            // 
+            // optionPanel
+            // 
+            this->optionPanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->optionPanel->Location = System::Drawing::Point(1021, 1168);
+            this->optionPanel->Name = L"optionPanel";
+            this->optionPanel->Size = System::Drawing::Size(238, 177);
+            this->optionPanel->TabIndex = 266;
             // 
             // MyForm
             // 
