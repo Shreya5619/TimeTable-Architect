@@ -238,7 +238,7 @@ namespace TTA_ui {
                 }
             }
             catch (...)
-            {
+                {
 
             }
         }
@@ -258,6 +258,17 @@ namespace TTA_ui {
                     clickedButton->Text = "Available";
                     clickedButton->BackColor = Color::FromArgb(179, 255, 230);
                 }
+                else if (clickedButton->Text == "free")
+                {
+                    clickedButton->Text = "busy";
+                    clickedButton->BackColor = Color::FromArgb(102, 255, 204);
+                }
+                else if (clickedButton->Text == "busy")
+                {
+                    clickedButton->Text = "free";
+                    clickedButton->BackColor = Color::FromArgb(179, 255, 230);
+                }
+                
             }
         }
         void change(Button^ clickedButton)
@@ -666,13 +677,14 @@ namespace TTA_ui {
                             System::String^ cellvalue = sldataGridView->Rows[i]->Cells[0]->Value->ToString();
                             std::string CellValue = msclr::interop::marshal_as<string>(cellvalue);
                             outputFile << "," << CellValue;
-
-
                         }
                     }
-
-
-                    outputFile << "\n";
+                    outputFile << "[";
+                    for each (Object ^ item in checkedListBox2->CheckedItems)
+                    {
+                        outputFile << msclr::interop::marshal_as<string>(item->ToString())<<",";
+                    }
+                    outputFile << "0]\n";
                 }outputFile.close();
             }
             catch (...)
@@ -3617,7 +3629,7 @@ private: System::ComponentModel::IContainer^ components;
             this->buttona2->TabIndex = 75;
             this->buttona2->Text = L"free";
             this->buttona2->UseVisualStyleBackColor = false;
-            this->buttona2->Click += gcnew System::EventHandler(this, &MyForm::Button_Click);
+            this->buttona2->Click += gcnew System::EventHandler(this, &MyForm::Button_click);
             // 
             // buttona3
             // 
@@ -5308,7 +5320,7 @@ private: System::ComponentModel::IContainer^ components;
             this->button18->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button18->Location = System::Drawing::Point(1017, 287);
             this->button18->Name = L"button18";
-            this->button18->Size = System::Drawing::Size(28, 35);
+            this->button18->Size = System::Drawing::Size(28, 30);
             this->button18->TabIndex = 289;
             this->button18->Text = L"🔍\r\n";
             this->button18->UseVisualStyleBackColor = false;
@@ -8892,16 +8904,16 @@ private: System::ComponentModel::IContainer^ components;
             this->ClientSize = System::Drawing::Size(1946, 1106);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
-            this->Controls->Add(this->panel5);
-            this->Controls->Add(this->editteacherpanel);
-            this->Controls->Add(this->panel2);
-            this->Controls->Add(this->settingspanel);
-            this->Controls->Add(this->addteacherpanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
             this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->panel5);
+            this->Controls->Add(this->editteacherpanel);
+            this->Controls->Add(this->panel2);
+            this->Controls->Add(this->settingspanel);
+            this->Controls->Add(this->addteacherpanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
