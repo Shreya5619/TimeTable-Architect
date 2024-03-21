@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+Dsa,f,f,f,f,f,
+LabSub,LabSub,Dsa,f,f,f,
+f,Dsa,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+PLC,PLC,f,f,ESC,ESC,
+
+
+TEACHERS
+SARASWATI,f,f,f,f,f,
+Krishna , Saraswati , shalini , Gopal[LabRoom1 , ,Krishna , Saraswati , shalini , Gopal[LabRoom1 , ,SARASWATI,f,f,f,
+f,SARASWATI,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+PLC,PLC,f,f,ESC,ESC,
+
+
+ROOM
+Cs102,NA,NA,NA,NA,NA,
+LabRoom1 , LabRoom2 , ,LabRoom1 , LabRoom2 , ,Cs102,NA,NA,NA,
+NA,Cs102,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+

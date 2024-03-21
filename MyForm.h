@@ -199,6 +199,7 @@ namespace TTA_ui {
 
         void DisplayCSVInComboBox1(const string& filename, ComboBox^ comboBox) {
             comboBox->Items->Clear();
+            vector<string> it;
             vector<vector<string>> data = ReadCSVFile(filename);
 
             for (const auto& row : data) {
@@ -206,8 +207,12 @@ namespace TTA_ui {
                 for (const auto& cell : row) {
                     rowString += cell;
                 }
-                String^ rowStringManaged = msclr::interop::marshal_as<String^>(rowString);
-                comboBox->Items->Add(rowStringManaged);
+                it.push_back(rowString);
+            }
+            std::sort(it.begin(), it.end());
+            for (int i = 0; i < it.size(); i++)
+            {
+                comboBox->Items->Add(msclr::interop::marshal_as<String^>(it[i]));
             }
         }
 
@@ -617,12 +622,12 @@ namespace TTA_ui {
             outputFile.open((msclr::interop::marshal_as<string>(filePath)), ios::app);
             if (outputFile.is_open())
             {
-                String^ name = textBox16->Text->ToString();
+                String^ name = addsubname->Text->ToString();
                 string Name = replacewhitespace(msclr::interop::marshal_as<string>(name));
                 outputFile << Name << ",";
-                {if (radioButton10->Checked)
+                {if (addsubeleyes->Checked)
                 {
-                    String^ ele = textBox15->Text->ToString();
+                    String^ ele = addsubcluster->Text->ToString();
                     string Ele = replacewhitespace(msclr::interop::marshal_as<string>(ele));
                     outputFile << Ele << ",";
 
@@ -637,11 +642,11 @@ namespace TTA_ui {
                             }
                     }
                 }
-                else if (radioButton9->Checked)
+                else if (addsubeleno->Checked)
                 {
                     outputFile << "0,";
                 }}
-                {if (radioButton8->Checked)
+                {if (addsublabyes->Checked)
                 {
                     outputFile << "1,";
                     {
@@ -653,10 +658,10 @@ namespace TTA_ui {
                 {
                     outputFile << "0,";
                 }}
-                System::String^ credits = numericUpDown5->Text->ToString();
+                System::String^ credits = addsubcredits->Text->ToString();
                 std::string Credits = msclr::interop::marshal_as<string>(credits);
                 outputFile << Credits << ",";
-                if (radioButton8->Checked)
+                if (addsublabyes->Checked)
                 {
                     outputFile << "2,";
                 }
@@ -664,18 +669,18 @@ namespace TTA_ui {
                 {
                     outputFile << "1,";
                 }
-                System::String^ bfactor = bfactorupdown->Text->ToString();
+                System::String^ bfactor = addsubbfactor->Text->ToString();
                 std::string Bfactor = msclr::interop::marshal_as<string>(bfactor);
                 outputFile << Bfactor << ",";
                 //code to add roomlist
                 outputFile << "[";
                 bool x = true;
-                for (int i = 0; i < checkedListBox2->CheckedItems->Count; ++i) {
-                    String^ value = checkedListBox2->CheckedItems[i]->ToString();
+                for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
+                    String^ value = addsubroomlist->CheckedItems[i]->ToString();
                     std::string Value = msclr::interop::marshal_as<string>(value);
                     outputFile << Value;
                     x = false;
-                    if (i < checkedListBox2->CheckedItems->Count - 1) {
+                    if (i < addsubroomlist->CheckedItems->Count - 1) {
                         outputFile << ",";// Add a comma after each value, except the last one
                     }
                 }
@@ -823,7 +828,7 @@ namespace TTA_ui {
                 std::ofstream outputFile;
                 outputFile.open((msclr::interop::marshal_as<std::string>(filePath)), ios::app);
                 {
-                    System::String^ name = textBox16->Text->ToString();
+                    System::String^ name = addsubname->Text->ToString();
                     std::string Name = replacewhitespace(msclr::interop::marshal_as<string>(name));
                     outputFile << Name << ",";
                     if (sldataGridView->Rows[0]->Cells[0]->Value != nullptr)
@@ -840,12 +845,12 @@ namespace TTA_ui {
                     }
                     outputFile << "[";
                     bool x = true;
-                    for (int i = 0; i < checkedListBox2->CheckedItems->Count; ++i) {
-                        String^ value = checkedListBox2->CheckedItems[i]->ToString();
+                    for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
+                        String^ value = addsubroomlist->CheckedItems[i]->ToString();
                         std::string Value = msclr::interop::marshal_as<string>(value);
                         outputFile << Value;
                         x = false;
-                        if (i < checkedListBox2->CheckedItems->Count - 1) {
+                        if (i < addsubroomlist->CheckedItems->Count - 1) {
                             outputFile << ",";// Add a comma after each value, except the last one
                         }
                     }
@@ -862,100 +867,21 @@ namespace TTA_ui {
             }
         }
 
-        System::Data::DataTable^ CreateDataTableFromCSV1(const std::string filePath) {
+        System::Data::DataTable^ CreateDataTableFromCSV1(const std::string filePath,String^ name) {
             System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
-            dataTable->Columns->Add("teacherName");
+            vector<string> it;
+            dataTable->Columns->Add(name);
             vector<vector<string>> data = ReadCSVFile(filePath);
             for (const auto& row : data) {
                 if (!row.empty()) {
                     // Display only the first word before the comma
-                    String^ teacherName = msclr::interop::marshal_as<String^>(row[0]);
-                    dataTable->Rows->Add(teacherName);
+                    it.push_back(row[0]);
                 }
             }
-            return dataTable;
-        }
-
-        System::Data::DataTable^ CreateDataTableFromCSV2(const std::string filePath) {
-            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
-            dataTable->Columns->Add("teacher_Name");
-            vector<vector<string>> data = ReadCSVFile(filePath);
-            for (const auto& row : data) {
-                if (!row.empty()) {
-                    // Display only the first word before the comma
-                    String^ teacher_Name = msclr::interop::marshal_as<String^>(row[0]);
-                    dataTable->Rows->Add(teacher_Name);
-                }
-            }
-            return dataTable;
-        }
-
-        System::Data::DataTable^ CreateDataTableFromCSV3(const std::string filePath) {
-            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
-            dataTable->Columns->Add("Core Subject");
-            vector<vector<string>> data = ReadCSVFile(filePath);
-            for (const auto& row : data) {
-                if (!row.empty()) {
-                    // Display only the first word before the comma
-                    String^ csubject = msclr::interop::marshal_as<String^>(row[0]);
-                    dataTable->Rows->Add(csubject);
-                }
-            }
-            return dataTable;
-        }
-
-        System::Data::DataTable^ CreateDataTableFromCSV4(const std::string filePath) {
-            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
-            dataTable->Columns->Add("cteacher");
-            vector<vector<string>> data = ReadCSVFile(filePath);
-            for (const auto& row : data) {
-                if (!row.empty()) {
-                    // Display only the first word before the comma
-                    String^ cteacher = msclr::interop::marshal_as<String^>(row[0]);
-                    dataTable->Rows->Add(cteacher);
-                }
-            }
-            return dataTable;
-        }
-
-        System::Data::DataTable^ CreateDataTableFromCSV5(const std::string filePath) {
-            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
-            dataTable->Columns->Add("editsubeleteachercombo");
-            vector<vector<string>> data = ReadCSVFile(filePath);
-            for (const auto& row : data) {
-                if (!row.empty()) {
-                    // Display only the first word before the comma
-                    String^ teacherName = msclr::interop::marshal_as<String^>(row[0]);
-                    dataTable->Rows->Add(teacherName);
-                }
-            }
-            return dataTable;
-        }
-
-        System::Data::DataTable^ CreateDataTableFromCSV6(const std::string filePath) {
-            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
-            dataTable->Columns->Add("editsublabteachercombo");
-            vector<vector<string>> data = ReadCSVFile(filePath);
-            for (const auto& row : data) {
-                if (!row.empty()) {
-                    // Display only the first word before the comma
-                    String^ teacher_Name = msclr::interop::marshal_as<String^>(row[0]);
-                    dataTable->Rows->Add(teacher_Name);
-                }
-            }
-            return dataTable;
-        }
-
-        System::Data::DataTable^ CreateDataTableFromCSV7(const std::string filePath) {
-            System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
-            dataTable->Columns->Add("eSubject");
-            vector<vector<string>> data = ReadCSVFile(filePath);
-            for (const auto& row : data) {
-                if (!row.empty()) {
-                    // Display only the first word before the comma
-                    String^ teacher_Name = msclr::interop::marshal_as<String^>(row[0]);
-                    dataTable->Rows->Add(teacher_Name);
-                }
+            std::sort(it.begin(), it.end());
+            for (int i = 0; i < it.size(); i++)
+            {
+                dataTable->Rows->Add(msclr::interop::marshal_as<String^>(replaceunderscore(it[i])));
             }
             return dataTable;
         }
@@ -1774,53 +1700,7 @@ public:
            }
        }
        file.close();
-   }
-
-    void electiveTimetable(string clustername,vector<vector<bool>> timeTable)
-    {
-        ofstream file("details/Electivetimetable.csv");
-        vector<vector<string>>data = ReadCSVFile("details/Electivetimetable.csv");
-        bool flag = true;
-        if (file.is_open())
-        {   for(auto &datarow:data)
-            {   
-                if(datarow[0]==clustername)
-                {
-                    flag = false;
-                    file << clustername;
-                    for (auto& row : timeTable)
-                    {
-                        for (auto& cell : row)
-                        {
-                            file << "," << cell;
-                        }
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < datarow.size() - 1; i++)
-                    {
-                        file << datarow[i] << ",";
-                    }
-                    file << datarow[datarow.size() - 1] << "\n";
-                }
-            }
-        if (flag)
-        {
- file << clustername;
-                    for (auto& row : timeTable)
-                    {
-                        for (auto& cell : row)
-                        {
-                            file << "," << cell;
-                        }
-                    }
-        }
-        }
-        file.close();
-
     }
-
     vector<vector<bool>> returntimetable(string clustername)
     {
         vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
@@ -1950,7 +1830,7 @@ public:
 
     void onOptionClick()
     {
-        string name = msclr::interop::marshal_as<string>(textBox15->Text);
+        string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
         vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
         vector<vector<vector<bool>>>tt = valuetimetable(name);
         vector<vector<bool>>intersecttt = intersectionElective(tt);
@@ -1971,6 +1851,7 @@ public:
                         button->Text = "Available";
                     }
                 }
+                
             }
         }
 
@@ -2084,17 +1965,55 @@ public:
         tableLayoutPanel->Controls->Clear();
         // Create buttons and add them to the TableLayoutPanel
 
+        for (int i = 0; i < 6; i++) 
+        {
+            for (int j = 0; j < 6; j++) 
+                {
+                    Button^ button = gcnew Button();
+                    button->Text = Texts;
+                    button->BackColor = Color::FromArgb(179, 255, 230);
+                    button->Dock = DockStyle::Fill;
+                    button->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                        static_cast<System::Byte>(0)));
+                    button->Name = String::Format("button" + s + "{0}", i * 6 + j + 1);
+                    tableLayoutPanel->Controls->Add(button, j, i);
+                    tableLayoutPanel->Controls->Add(button, j, i);
+                }
+        }
+    }
+
+
+    void InitializeMatrix3(TableLayoutPanel^ tableLayoutPanel, String^ s, String^ Texts) {
+
+        // Clear existing buttons if any
+        tableLayoutPanel->Controls->Clear();
+        // Create buttons and add them to the TableLayoutPanel
+
         for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 6; j++) {
-                Button^ button = gcnew Button();
-                button->Text = Texts;
-                button->BackColor = Color::FromArgb(179, 255, 230);
-                button->Dock = DockStyle::Fill;
-                button->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                    static_cast<System::Byte>(0)));
-                button->Name = String::Format("button" + s + "{0}", i * 6 + j + 1);
-                tableLayoutPanel->Controls->Add(button, j, i);
-                tableLayoutPanel->Controls->Add(button, j, i);
+            int count = 0;
+            for (int j = 0; j < 8; j++) {
+                if (j == 2 || j == 5)
+                {
+                    count++;
+                }
+                else
+                {
+                    Button^ button = gcnew Button();
+                    button->Text = Texts;
+                    button->BackColor = Color::FromArgb(179, 255, 230);
+                    button->Dock = DockStyle::Fill;
+                    button->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                        static_cast<System::Byte>(0)));
+                    if (count == 0)
+                        button->Name = String::Format("button" + s + "{0}", i * 6 + j + 1);
+                    else if (count == 1)
+                        button->Name = String::Format("button" + s + "{0}", i * 6 + j);
+                    else
+                        button->Name = String::Format("button" + s + "{0}", i * 6 + j - 1);
+                    tableLayoutPanel->Controls->Add(button, j, i);
+                    button->Click += gcnew EventHandler(this, &MyForm::Button_clickEle);
+                    tableLayoutPanel->Controls->Add(button, j, i);
+                }
             }
         }
     }
@@ -2160,26 +2079,34 @@ public:
         private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher_Name;
         private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn4;
         private: System::Windows::Forms::Label^ label49;
-        private: System::Windows::Forms::NumericUpDown^ numericUpDown5;
+private: System::Windows::Forms::NumericUpDown^ addsubcredits;
+
         private: System::Windows::Forms::Label^ label43;
         private: System::Windows::Forms::Label^ label42;
         private: System::Windows::Forms::Label^ label41;
-        private: System::Windows::Forms::NumericUpDown^ bfactorupdown;
+private: System::Windows::Forms::NumericUpDown^ addsubbfactor;
+
         private: System::Windows::Forms::Button^ addsubsave;
-        private: System::Windows::Forms::CheckedListBox^ checkedListBox2;
+private: System::Windows::Forms::CheckedListBox^ addsubroomlist;
+
         private: System::Windows::Forms::Button^ newaddsub;
         private: System::Windows::Forms::Panel^ panel11;
-        private: System::Windows::Forms::RadioButton^ radioButton8;
-        private: System::Windows::Forms::RadioButton^ radioButton7;
+private: System::Windows::Forms::RadioButton^ addsublabyes;
+private: System::Windows::Forms::RadioButton^ addsublabno;
+
+
         private: System::Windows::Forms::Panel^ addsubjectpanel;
         private: System::Windows::Forms::Panel^ panel12;
-        private: System::Windows::Forms::RadioButton^ radioButton10;
-        private: System::Windows::Forms::RadioButton^ radioButton9;
+private: System::Windows::Forms::RadioButton^ addsubeleyes;
+private: System::Windows::Forms::RadioButton^ addsubeleno;
+
+
 private: System::Windows::Forms::Label^ label46;
 private: System::Windows::Forms::DataGridView^ sedataGridView;
 private: System::Windows::Forms::Label^ label47;
 private: System::Windows::Forms::Label^ label48;
-private: System::Windows::Forms::TextBox^ textBox16;
+private: System::Windows::Forms::TextBox^ addsubname;
+
 private: System::Windows::Forms::Button^ saveroom;
 private: System::Windows::Forms::Label^ label31;
 private: System::Windows::Forms::TextBox^ roomname;
@@ -2211,14 +2138,10 @@ private: System::Windows::Forms::Panel^ editteacherpanel;
 private: System::Windows::Forms::Label^ label39;
 private: System::Windows::Forms::Label^ label62;
 private: System::Windows::Forms::ComboBox^ editteacherdepartment;
-
-
 private: System::Windows::Forms::Label^ label63;
 private: System::Windows::Forms::TextBox^ editteachername;
 private: System::Windows::Forms::Button^ editteachersave;
 private: System::Windows::Forms::Label^ label64;
-
-private: System::Windows::Forms::Button^ button18;
 private: System::Windows::Forms::Button^ editteacherdelete;
 private: System::Windows::Forms::Panel^ editroompanel;
 private: System::Windows::Forms::RadioButton^ editroomlabno;
@@ -2240,7 +2163,6 @@ private: System::Windows::Forms::Label^ label109;
 private: System::Windows::Forms::Panel^ settingspanel;
 private: System::Windows::Forms::TrackBar^ trackBar1;
 private: System::Windows::Forms::Label^ label110;
-
 private: System::Windows::Forms::Label^ label112;
 private: System::Windows::Forms::TrackBar^ trackBar2;
 private: System::Windows::Forms::Label^ label111;
@@ -2279,75 +2201,51 @@ private: System::Windows::Forms::ComboBox^ editroomsearch;
 private: System::Windows::Forms::Panel^ panel10;
 private: System::Windows::Forms::RadioButton^ editsubeleyes;
 private: System::Windows::Forms::RadioButton^ editsubeleno;
-
-
 private: System::Windows::Forms::Label^ label92;
 private: System::Windows::Forms::TextBox^ editsubname;
-
 private: System::Windows::Forms::Label^ label93;
 private: System::Windows::Forms::Label^ label94;
-
-
 private: System::Windows::Forms::Label^ label95;
 private: System::Windows::Forms::DataGridView^ editsubeleteacher;
-
-
-
 private: System::Windows::Forms::Panel^ panel13;
 private: System::Windows::Forms::RadioButton^ editsublabyes;
 private: System::Windows::Forms::RadioButton^ editsublabno;
 private: System::Windows::Forms::CheckedListBox^ editsubroomlist;
-
-
-
 private: System::Windows::Forms::Label^ label96;
 private: System::Windows::Forms::Label^ label97;
 private: System::Windows::Forms::NumericUpDown^ editsubcredits;
-
 private: System::Windows::Forms::DataGridView^ editsublabteacher;
-
-
-
 private: System::Windows::Forms::Label^ label98;
 private: System::Windows::Forms::Label^ label99;
 private: System::Windows::Forms::Button^ editsubdelete;
-
 private: System::Windows::Forms::Button^ editsubsave;
-
 private: System::Windows::Forms::NumericUpDown^ editsubbfactor;
-
 private: System::Windows::Forms::Label^ label100;
 private: System::Windows::Forms::Button^ editsubsearchbutton;
-
 private: System::Windows::Forms::Label^ label101;
 private: System::Windows::Forms::ComboBox^ editsubsearch;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsubeleteachercombo;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn10;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsublabteachercombo;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn11;
-private: System::Windows::Forms::ComboBox^ textBox15;
+private: System::Windows::Forms::ComboBox^ addsubcluster;
+
 private: System::Windows::Forms::ComboBox^ editsubelename;
-private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
-private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn5;
 private: System::Windows::Forms::Panel^ panel7;
-private: System::Windows::Forms::Button^ button20;
-private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
-private: System::Windows::Forms::Panel^ panel8;
+private: System::Windows::Forms::Button^ addsubclusteroptions;
+
+
+
+private: System::Windows::Forms::Panel^ panelsub;
 
 private: System::Windows::Forms::DataGridView^ dataGridView3;
-
-
 private: System::Windows::Forms::DataGridView^ dataGridView6;
-
-
-
 private: System::Windows::Forms::Label^ label38;
 private: System::Windows::Forms::MaskedTextBox^ maskedTextBox2;
 private: System::Windows::Forms::ComboBox^ comboBox3;
 private: System::Windows::Forms::Label^ label37;
 private: System::Windows::Forms::MaskedTextBox^ maskedTextBox1;
 private: System::Windows::Forms::Label^ label36;
-
 private: System::Windows::Forms::CheckedListBox^ checkedListBox1;
 private: System::Windows::Forms::Label^ label34;
 private: System::Windows::Forms::Button^ button19;
@@ -2359,36 +2257,16 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
 private: System::Windows::Forms::Label^ label33;
 private: System::Windows::Forms::Label^ label32;
 private: System::Windows::Forms::Label^ label13;
-
 private: System::Windows::Forms::Button^ button21;
-
-
 private: System::Windows::Forms::Panel^ panel5;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ eSubject;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn3;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ csubject;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ cteacher;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn6;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 private: System::Windows::Forms::Panel^ panel9;
 private: System::Windows::Forms::Button^ button22;
 private: System::Windows::Forms::Panel^ addroompanel;
-
-
 private: System::Windows::Forms::Label^ label103;
 private: System::Windows::Forms::Label^ label104;
 private: System::Windows::Forms::Label^ label105;
@@ -2473,20 +2351,42 @@ private: System::Windows::Forms::Label^ label61;
 private: System::Windows::Forms::Label^ label65;
 private: System::Windows::Forms::TableLayoutPanel^ classtablegen1;
 private: System::Windows::Forms::TableLayoutPanel^ classtablegen;
+private: System::Windows::Forms::Panel^ panel20;
+private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel2;
+private: System::Windows::Forms::Label^ label83;
+private: System::Windows::Forms::Label^ label84;
+private: System::Windows::Forms::Label^ label85;
+private: System::Windows::Forms::Label^ label86;
+private: System::Windows::Forms::Label^ label87;
+private: System::Windows::Forms::Label^ label88;
+private: System::Windows::Forms::Label^ label89;
+private: System::Windows::Forms::Label^ label90;
+private: System::Windows::Forms::Label^ label91;
+private: System::Windows::Forms::Label^ label102;
+private: System::Windows::Forms::Label^ label121;
+private: System::Windows::Forms::Label^ label122;
+private: System::Windows::Forms::Panel^ panel22;
+private: System::Windows::Forms::Panel^ panel21;
+private: System::Windows::Forms::Button^ button3;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn5;
+private: System::Windows::Forms::Panel^ addsubeletablepanel;
+private: System::Windows::Forms::Panel^ panel23;
+private: System::Windows::Forms::Panel^ panel24;
+private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+private: System::Windows::Forms::Label^ label123;
+private: System::Windows::Forms::Label^ label124;
+private: System::Windows::Forms::Label^ label125;
+private: System::Windows::Forms::Label^ label126;
+private: System::Windows::Forms::Label^ label127;
+private: System::Windows::Forms::Label^ label128;
+private: System::Windows::Forms::Label^ label129;
+private: System::Windows::Forms::Label^ label130;
+private: System::Windows::Forms::Label^ label131;
+private: System::Windows::Forms::Label^ label132;
+private: System::Windows::Forms::Label^ label133;
+private: System::Windows::Forms::Label^ label134;
 
 
 private: System::ComponentModel::IContainer^ components;
@@ -2511,6 +2411,7 @@ private: System::ComponentModel::IContainer^ components;
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
@@ -2525,7 +2426,6 @@ private: System::ComponentModel::IContainer^ components;
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle21 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle17 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle18 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle22 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle23 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle26 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
@@ -2568,32 +2468,47 @@ private: System::ComponentModel::IContainer^ components;
             this->Teacher_Name = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn4 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->label49 = (gcnew System::Windows::Forms::Label());
-            this->numericUpDown5 = (gcnew System::Windows::Forms::NumericUpDown());
+            this->addsubcredits = (gcnew System::Windows::Forms::NumericUpDown());
             this->label43 = (gcnew System::Windows::Forms::Label());
             this->label42 = (gcnew System::Windows::Forms::Label());
             this->label41 = (gcnew System::Windows::Forms::Label());
-            this->bfactorupdown = (gcnew System::Windows::Forms::NumericUpDown());
+            this->addsubbfactor = (gcnew System::Windows::Forms::NumericUpDown());
             this->addsubsave = (gcnew System::Windows::Forms::Button());
-            this->checkedListBox2 = (gcnew System::Windows::Forms::CheckedListBox());
+            this->addsubroomlist = (gcnew System::Windows::Forms::CheckedListBox());
             this->newaddsub = (gcnew System::Windows::Forms::Button());
             this->panel11 = (gcnew System::Windows::Forms::Panel());
-            this->radioButton8 = (gcnew System::Windows::Forms::RadioButton());
-            this->radioButton7 = (gcnew System::Windows::Forms::RadioButton());
+            this->addsublabyes = (gcnew System::Windows::Forms::RadioButton());
+            this->addsublabno = (gcnew System::Windows::Forms::RadioButton());
             this->addsubjectpanel = (gcnew System::Windows::Forms::Panel());
-            this->button20 = (gcnew System::Windows::Forms::Button());
-            this->textBox15 = (gcnew System::Windows::Forms::ComboBox());
+            this->addsubclusteroptions = (gcnew System::Windows::Forms::Button());
+            this->addsubeletablepanel = (gcnew System::Windows::Forms::Panel());
+            this->panel23 = (gcnew System::Windows::Forms::Panel());
+            this->panel24 = (gcnew System::Windows::Forms::Panel());
+            this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->label123 = (gcnew System::Windows::Forms::Label());
+            this->label124 = (gcnew System::Windows::Forms::Label());
+            this->label125 = (gcnew System::Windows::Forms::Label());
+            this->label126 = (gcnew System::Windows::Forms::Label());
+            this->label127 = (gcnew System::Windows::Forms::Label());
+            this->label128 = (gcnew System::Windows::Forms::Label());
+            this->label129 = (gcnew System::Windows::Forms::Label());
+            this->label130 = (gcnew System::Windows::Forms::Label());
+            this->label131 = (gcnew System::Windows::Forms::Label());
+            this->label132 = (gcnew System::Windows::Forms::Label());
+            this->label133 = (gcnew System::Windows::Forms::Label());
+            this->label134 = (gcnew System::Windows::Forms::Label());
+            this->addsubcluster = (gcnew System::Windows::Forms::ComboBox());
             this->panel12 = (gcnew System::Windows::Forms::Panel());
-            this->radioButton10 = (gcnew System::Windows::Forms::RadioButton());
-            this->radioButton9 = (gcnew System::Windows::Forms::RadioButton());
+            this->addsubeleyes = (gcnew System::Windows::Forms::RadioButton());
+            this->addsubeleno = (gcnew System::Windows::Forms::RadioButton());
             this->label46 = (gcnew System::Windows::Forms::Label());
             this->label47 = (gcnew System::Windows::Forms::Label());
             this->label48 = (gcnew System::Windows::Forms::Label());
-            this->textBox16 = (gcnew System::Windows::Forms::TextBox());
+            this->addsubname = (gcnew System::Windows::Forms::TextBox());
             this->sedataGridView = (gcnew System::Windows::Forms::DataGridView());
             this->TeacherName = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn5 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
-            this->panel8 = (gcnew System::Windows::Forms::Panel());
-            this->tableLayoutPanel1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->panelsub = (gcnew System::Windows::Forms::Panel());
             this->saveroom = (gcnew System::Windows::Forms::Button());
             this->label31 = (gcnew System::Windows::Forms::Label());
             this->roomname = (gcnew System::Windows::Forms::TextBox());
@@ -2641,6 +2556,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label109 = (gcnew System::Windows::Forms::Label());
             this->label15 = (gcnew System::Windows::Forms::Label());
             this->editteacherpanel = (gcnew System::Windows::Forms::Panel());
+            this->button3 = (gcnew System::Windows::Forms::Button());
             this->label51 = (gcnew System::Windows::Forms::Label());
             this->panel18 = (gcnew System::Windows::Forms::Panel());
             this->editteacherdelete = (gcnew System::Windows::Forms::Button());
@@ -2659,7 +2575,6 @@ private: System::ComponentModel::IContainer^ components;
             this->label119 = (gcnew System::Windows::Forms::Label());
             this->label120 = (gcnew System::Windows::Forms::Label());
             this->editteachertablepanel = (gcnew System::Windows::Forms::TableLayoutPanel());
-            this->button18 = (gcnew System::Windows::Forms::Button());
             this->editteacherdepartment = (gcnew System::Windows::Forms::ComboBox());
             this->label63 = (gcnew System::Windows::Forms::Label());
             this->editteachername = (gcnew System::Windows::Forms::TextBox());
@@ -2731,6 +2646,22 @@ private: System::ComponentModel::IContainer^ components;
             this->editsubname = (gcnew System::Windows::Forms::TextBox());
             this->label93 = (gcnew System::Windows::Forms::Label());
             this->settingspanel = (gcnew System::Windows::Forms::Panel());
+            this->panel20 = (gcnew System::Windows::Forms::Panel());
+            this->panel21 = (gcnew System::Windows::Forms::Panel());
+            this->panel22 = (gcnew System::Windows::Forms::Panel());
+            this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->label83 = (gcnew System::Windows::Forms::Label());
+            this->label84 = (gcnew System::Windows::Forms::Label());
+            this->label85 = (gcnew System::Windows::Forms::Label());
+            this->label86 = (gcnew System::Windows::Forms::Label());
+            this->label87 = (gcnew System::Windows::Forms::Label());
+            this->label88 = (gcnew System::Windows::Forms::Label());
+            this->label89 = (gcnew System::Windows::Forms::Label());
+            this->label90 = (gcnew System::Windows::Forms::Label());
+            this->label91 = (gcnew System::Windows::Forms::Label());
+            this->label102 = (gcnew System::Windows::Forms::Label());
+            this->label121 = (gcnew System::Windows::Forms::Label());
+            this->label122 = (gcnew System::Windows::Forms::Label());
             this->label112 = (gcnew System::Windows::Forms::Label());
             this->trackBar2 = (gcnew System::Windows::Forms::TrackBar());
             this->label111 = (gcnew System::Windows::Forms::Label());
@@ -2792,6 +2723,21 @@ private: System::ComponentModel::IContainer^ components;
             this->label13 = (gcnew System::Windows::Forms::Label());
             this->button21 = (gcnew System::Windows::Forms::Button());
             this->panel5 = (gcnew System::Windows::Forms::Panel());
+            this->finalttpanel = (gcnew System::Windows::Forms::Panel());
+            this->classtablegen1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->label35 = (gcnew System::Windows::Forms::Label());
+            this->label52 = (gcnew System::Windows::Forms::Label());
+            this->label53 = (gcnew System::Windows::Forms::Label());
+            this->label54 = (gcnew System::Windows::Forms::Label());
+            this->label55 = (gcnew System::Windows::Forms::Label());
+            this->label56 = (gcnew System::Windows::Forms::Label());
+            this->label57 = (gcnew System::Windows::Forms::Label());
+            this->label58 = (gcnew System::Windows::Forms::Label());
+            this->label59 = (gcnew System::Windows::Forms::Label());
+            this->label60 = (gcnew System::Windows::Forms::Label());
+            this->label61 = (gcnew System::Windows::Forms::Label());
+            this->label65 = (gcnew System::Windows::Forms::Label());
+            this->classtablegen = (gcnew System::Windows::Forms::TableLayoutPanel());
             this->label1 = (gcnew System::Windows::Forms::Label());
             this->addteachername = (gcnew System::Windows::Forms::TextBox());
             this->label2 = (gcnew System::Windows::Forms::Label());
@@ -2815,29 +2761,15 @@ private: System::ComponentModel::IContainer^ components;
             this->panel17 = (gcnew System::Windows::Forms::Panel());
             this->addteachersave = (gcnew System::Windows::Forms::Button());
             this->addteachernew = (gcnew System::Windows::Forms::Button());
-            this->finalttpanel = (gcnew System::Windows::Forms::Panel());
-            this->label35 = (gcnew System::Windows::Forms::Label());
-            this->label52 = (gcnew System::Windows::Forms::Label());
-            this->label53 = (gcnew System::Windows::Forms::Label());
-            this->label54 = (gcnew System::Windows::Forms::Label());
-            this->label55 = (gcnew System::Windows::Forms::Label());
-            this->label56 = (gcnew System::Windows::Forms::Label());
-            this->label57 = (gcnew System::Windows::Forms::Label());
-            this->label58 = (gcnew System::Windows::Forms::Label());
-            this->label59 = (gcnew System::Windows::Forms::Label());
-            this->label60 = (gcnew System::Windows::Forms::Label());
-            this->label61 = (gcnew System::Windows::Forms::Label());
-            this->label65 = (gcnew System::Windows::Forms::Label());
-            this->classtablegen1 = (gcnew System::Windows::Forms::TableLayoutPanel());
-            this->classtablegen = (gcnew System::Windows::Forms::TableLayoutPanel());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sldataGridView))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown5))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bfactorupdown))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->BeginInit();
             this->panel11->SuspendLayout();
             this->addsubjectpanel->SuspendLayout();
+            this->addsubeletablepanel->SuspendLayout();
             this->panel12->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sedataGridView))->BeginInit();
-            this->panel8->SuspendLayout();
+            this->panelsub->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomcapacity))->BeginInit();
             this->addclassroompanel->SuspendLayout();
             this->addroompanel->SuspendLayout();
@@ -2868,6 +2800,7 @@ private: System::ComponentModel::IContainer^ components;
             this->panel10->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->BeginInit();
             this->settingspanel->SuspendLayout();
+            this->panel20->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
@@ -2881,10 +2814,10 @@ private: System::ComponentModel::IContainer^ components;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView6))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
             this->panel5->SuspendLayout();
+            this->finalttpanel->SuspendLayout();
             this->panel16->SuspendLayout();
             this->addteacherpanel->SuspendLayout();
             this->panel17->SuspendLayout();
-            this->finalttpanel->SuspendLayout();
             this->SuspendLayout();
             // 
             // label45
@@ -2903,7 +2836,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label44->AutoSize = true;
             this->label44->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label44->Location = System::Drawing::Point(32, 135);
+            this->label44->Location = System::Drawing::Point(42, 162);
             this->label44->Name = L"label44";
             this->label44->Size = System::Drawing::Size(299, 28);
             this->label44->TabIndex = 238;
@@ -2912,6 +2845,8 @@ private: System::ComponentModel::IContainer^ components;
             // sldataGridView
             // 
             this->sldataGridView->AllowUserToOrderColumns = true;
+            this->sldataGridView->AllowUserToResizeColumns = false;
+            this->sldataGridView->AllowUserToResizeRows = false;
             dataGridViewCellStyle1->BackColor = System::Drawing::Color::White;
             dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
@@ -3021,22 +2956,22 @@ private: System::ComponentModel::IContainer^ components;
             this->label49->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label49->ForeColor = System::Drawing::Color::Black;
-            this->label49->Location = System::Drawing::Point(376, 86);
+            this->label49->Location = System::Drawing::Point(221, 100);
             this->label49->Name = L"label49";
             this->label49->Size = System::Drawing::Size(134, 28);
             this->label49->TabIndex = 2;
             this->label49->Text = L"Subject Name";
             // 
-            // numericUpDown5
+            // addsubcredits
             // 
-            this->numericUpDown5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+            this->addsubcredits->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
-            this->numericUpDown5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->addsubcredits->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->numericUpDown5->Location = System::Drawing::Point(47, 508);
-            this->numericUpDown5->Name = L"numericUpDown5";
-            this->numericUpDown5->Size = System::Drawing::Size(170, 34);
-            this->numericUpDown5->TabIndex = 240;
+            this->addsubcredits->Location = System::Drawing::Point(47, 508);
+            this->addsubcredits->Name = L"addsubcredits";
+            this->addsubcredits->Size = System::Drawing::Size(170, 34);
+            this->addsubcredits->TabIndex = 240;
             // 
             // label43
             // 
@@ -3071,17 +3006,17 @@ private: System::ComponentModel::IContainer^ components;
             this->label41->TabIndex = 242;
             this->label41->Text = L"Rooms to be used(optional)";
             // 
-            // bfactorupdown
+            // addsubbfactor
             // 
-            this->bfactorupdown->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+            this->addsubbfactor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
-            this->bfactorupdown->DecimalPlaces = 2;
-            this->bfactorupdown->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->addsubbfactor->DecimalPlaces = 2;
+            this->addsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->bfactorupdown->Location = System::Drawing::Point(50, 938);
-            this->bfactorupdown->Name = L"bfactorupdown";
-            this->bfactorupdown->Size = System::Drawing::Size(170, 34);
-            this->bfactorupdown->TabIndex = 244;
+            this->addsubbfactor->Location = System::Drawing::Point(50, 938);
+            this->addsubbfactor->Name = L"addsubbfactor";
+            this->addsubbfactor->Size = System::Drawing::Size(170, 34);
+            this->addsubbfactor->TabIndex = 244;
             // 
             // addsubsave
             // 
@@ -3097,21 +3032,21 @@ private: System::ComponentModel::IContainer^ components;
             this->addsubsave->UseVisualStyleBackColor = false;
             this->addsubsave->Click += gcnew System::EventHandler(this, &MyForm::addsubsave_Click);
             // 
-            // checkedListBox2
+            // addsubroomlist
             // 
-            this->checkedListBox2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->addsubroomlist->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->checkedListBox2->BorderStyle = System::Windows::Forms::BorderStyle::None;
-            this->checkedListBox2->CheckOnClick = true;
-            this->checkedListBox2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->addsubroomlist->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->addsubroomlist->CheckOnClick = true;
+            this->addsubroomlist->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->checkedListBox2->FormattingEnabled = true;
-            this->checkedListBox2->Location = System::Drawing::Point(51, 703);
-            this->checkedListBox2->Name = L"checkedListBox2";
-            this->checkedListBox2->Size = System::Drawing::Size(224, 155);
-            this->checkedListBox2->Sorted = true;
-            this->checkedListBox2->TabIndex = 246;
-            this->checkedListBox2->ThreeDCheckBoxes = true;
+            this->addsubroomlist->FormattingEnabled = true;
+            this->addsubroomlist->Location = System::Drawing::Point(51, 703);
+            this->addsubroomlist->Name = L"addsubroomlist";
+            this->addsubroomlist->Size = System::Drawing::Size(224, 155);
+            this->addsubroomlist->Sorted = true;
+            this->addsubroomlist->TabIndex = 246;
+            this->addsubroomlist->ThreeDCheckBoxes = true;
             // 
             // newaddsub
             // 
@@ -3129,54 +3064,54 @@ private: System::ComponentModel::IContainer^ components;
             // 
             // panel11
             // 
-            this->panel11->Controls->Add(this->radioButton8);
-            this->panel11->Controls->Add(this->radioButton7);
+            this->panel11->Controls->Add(this->addsublabyes);
+            this->panel11->Controls->Add(this->addsublabno);
             this->panel11->ForeColor = System::Drawing::Color::Black;
             this->panel11->Location = System::Drawing::Point(53, 69);
             this->panel11->Name = L"panel11";
             this->panel11->Size = System::Drawing::Size(219, 52);
             this->panel11->TabIndex = 262;
             // 
-            // radioButton8
+            // addsublabyes
             // 
-            this->radioButton8->AutoSize = true;
-            this->radioButton8->Location = System::Drawing::Point(23, 14);
-            this->radioButton8->Name = L"radioButton8";
-            this->radioButton8->Size = System::Drawing::Size(62, 24);
-            this->radioButton8->TabIndex = 10;
-            this->radioButton8->TabStop = true;
-            this->radioButton8->Text = L"Yes";
-            this->radioButton8->UseVisualStyleBackColor = true;
-            this->radioButton8->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton8_CheckedChanged);
+            this->addsublabyes->AutoSize = true;
+            this->addsublabyes->Location = System::Drawing::Point(23, 14);
+            this->addsublabyes->Name = L"addsublabyes";
+            this->addsublabyes->Size = System::Drawing::Size(62, 24);
+            this->addsublabyes->TabIndex = 10;
+            this->addsublabyes->TabStop = true;
+            this->addsublabyes->Text = L"Yes";
+            this->addsublabyes->UseVisualStyleBackColor = true;
+            this->addsublabyes->CheckedChanged += gcnew System::EventHandler(this, &MyForm::addsublabyes_CheckedChanged);
             // 
-            // radioButton7
+            // addsublabno
             // 
-            this->radioButton7->AutoSize = true;
-            this->radioButton7->Location = System::Drawing::Point(148, 14);
-            this->radioButton7->Name = L"radioButton7";
-            this->radioButton7->Size = System::Drawing::Size(54, 24);
-            this->radioButton7->TabIndex = 11;
-            this->radioButton7->TabStop = true;
-            this->radioButton7->Text = L"No";
-            this->radioButton7->UseVisualStyleBackColor = true;
-            this->radioButton7->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton7_CheckedChanged);
+            this->addsublabno->AutoSize = true;
+            this->addsublabno->Location = System::Drawing::Point(148, 14);
+            this->addsublabno->Name = L"addsublabno";
+            this->addsublabno->Size = System::Drawing::Size(54, 24);
+            this->addsublabno->TabIndex = 11;
+            this->addsublabno->TabStop = true;
+            this->addsublabno->Text = L"No";
+            this->addsublabno->UseVisualStyleBackColor = true;
+            this->addsublabno->CheckedChanged += gcnew System::EventHandler(this, &MyForm::addsublabno_CheckedChanged);
             // 
             // addsubjectpanel
             // 
             this->addsubjectpanel->AutoScroll = true;
             this->addsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->addsubjectpanel->Controls->Add(this->button20);
-            this->addsubjectpanel->Controls->Add(this->textBox15);
+            this->addsubjectpanel->Controls->Add(this->addsubclusteroptions);
+            this->addsubjectpanel->Controls->Add(this->addsubeletablepanel);
+            this->addsubjectpanel->Controls->Add(this->addsubcluster);
             this->addsubjectpanel->Controls->Add(this->panel12);
             this->addsubjectpanel->Controls->Add(this->label46);
             this->addsubjectpanel->Controls->Add(this->label47);
             this->addsubjectpanel->Controls->Add(this->label48);
-            this->addsubjectpanel->Controls->Add(this->textBox16);
+            this->addsubjectpanel->Controls->Add(this->addsubname);
             this->addsubjectpanel->Controls->Add(this->label49);
             this->addsubjectpanel->Controls->Add(this->sedataGridView);
-            this->addsubjectpanel->Controls->Add(this->panel8);
-            this->addsubjectpanel->Controls->Add(this->tableLayoutPanel1);
+            this->addsubjectpanel->Controls->Add(this->panelsub);
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->addsubjectpanel->Name = L"addsubjectpanel";
@@ -3184,75 +3119,277 @@ private: System::ComponentModel::IContainer^ components;
             this->addsubjectpanel->TabIndex = 124;
             this->addsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addsubjectpanel_Paint);
             // 
-            // button20
+            // addsubclusteroptions
             // 
-            this->button20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->button20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->addsubclusteroptions->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->addsubclusteroptions->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button20->Location = System::Drawing::Point(926, 786);
-            this->button20->Name = L"button20";
-            this->button20->Size = System::Drawing::Size(116, 46);
-            this->button20->TabIndex = 265;
-            this->button20->Text = L"Options";
-            this->button20->UseVisualStyleBackColor = false;
-            this->button20->Visible = false;
-            this->button20->Click += gcnew System::EventHandler(this, &MyForm::button20_Click);
+            this->addsubclusteroptions->Location = System::Drawing::Point(719, 829);
+            this->addsubclusteroptions->Name = L"addsubclusteroptions";
+            this->addsubclusteroptions->Size = System::Drawing::Size(116, 46);
+            this->addsubclusteroptions->TabIndex = 265;
+            this->addsubclusteroptions->Text = L"Options";
+            this->addsubclusteroptions->UseVisualStyleBackColor = false;
+            this->addsubclusteroptions->Click += gcnew System::EventHandler(this, &MyForm::addsubclusteroptions_Click);
             // 
-            // textBox15
+            // addsubeletablepanel
             // 
-            this->textBox15->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Suggest;
-            this->textBox15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->textBox15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->addsubeletablepanel->Controls->Add(this->panel23);
+            this->addsubeletablepanel->Controls->Add(this->panel24);
+            this->addsubeletablepanel->Controls->Add(this->tableLayoutPanel1);
+            this->addsubeletablepanel->Controls->Add(this->label123);
+            this->addsubeletablepanel->Controls->Add(this->label124);
+            this->addsubeletablepanel->Controls->Add(this->label125);
+            this->addsubeletablepanel->Controls->Add(this->label126);
+            this->addsubeletablepanel->Controls->Add(this->label127);
+            this->addsubeletablepanel->Controls->Add(this->label128);
+            this->addsubeletablepanel->Controls->Add(this->label129);
+            this->addsubeletablepanel->Controls->Add(this->label130);
+            this->addsubeletablepanel->Controls->Add(this->label131);
+            this->addsubeletablepanel->Controls->Add(this->label132);
+            this->addsubeletablepanel->Controls->Add(this->label133);
+            this->addsubeletablepanel->Controls->Add(this->label134);
+            this->addsubeletablepanel->Location = System::Drawing::Point(210, 891);
+            this->addsubeletablepanel->Name = L"addsubeletablepanel";
+            this->addsubeletablepanel->Size = System::Drawing::Size(1183, 621);
+            this->addsubeletablepanel->TabIndex = 301;
+            // 
+            // panel23
+            // 
+            this->panel23->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel23.BackgroundImage")));
+            this->panel23->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel23->Location = System::Drawing::Point(416, 112);
+            this->panel23->Name = L"panel23";
+            this->panel23->Size = System::Drawing::Size(44, 413);
+            this->panel23->TabIndex = 2;
+            // 
+            // panel24
+            // 
+            this->panel24->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel24.BackgroundImage")));
+            this->panel24->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel24->Location = System::Drawing::Point(757, 110);
+            this->panel24->Name = L"panel24";
+            this->panel24->Size = System::Drawing::Size(44, 436);
+            this->panel24->TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            this->tableLayoutPanel1->ColumnCount = 8;
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66743F)));
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66686F)));
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66887F)));
+            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66976F)));
+            this->tableLayoutPanel1->Location = System::Drawing::Point(140, 113);
+            this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
+            this->tableLayoutPanel1->RowCount = 6;
+            this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->tableLayoutPanel1->Size = System::Drawing::Size(949, 435);
+            this->tableLayoutPanel1->TabIndex = 260;
+            // 
+            // label123
+            // 
+            this->label123->AutoSize = true;
+            this->label123->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->textBox15->FormattingEnabled = true;
-            this->textBox15->Location = System::Drawing::Point(374, 426);
-            this->textBox15->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-            this->textBox15->Name = L"textBox15";
-            this->textBox15->Size = System::Drawing::Size(294, 36);
-            this->textBox15->TabIndex = 264;
+            this->label123->Location = System::Drawing::Point(158, 72);
+            this->label123->Name = L"label123";
+            this->label123->Size = System::Drawing::Size(105, 28);
+            this->label123->TabIndex = 294;
+            this->label123->Text = L"9:00-10:00";
+            // 
+            // label124
+            // 
+            this->label124->AutoSize = true;
+            this->label124->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label124->Location = System::Drawing::Point(294, 72);
+            this->label124->Name = L"label124";
+            this->label124->Size = System::Drawing::Size(116, 28);
+            this->label124->TabIndex = 295;
+            this->label124->Text = L"10:00-11:00";
+            // 
+            // label125
+            // 
+            this->label125->AutoSize = true;
+            this->label125->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label125->Location = System::Drawing::Point(480, 72);
+            this->label125->Name = L"label125";
+            this->label125->Size = System::Drawing::Size(116, 28);
+            this->label125->TabIndex = 296;
+            this->label125->Text = L"11:30-12:30";
+            // 
+            // label126
+            // 
+            this->label126->AutoSize = true;
+            this->label126->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label126->Location = System::Drawing::Point(635, 72);
+            this->label126->Name = L"label126";
+            this->label126->Size = System::Drawing::Size(105, 28);
+            this->label126->TabIndex = 297;
+            this->label126->Text = L"12:30-1:30";
+            // 
+            // label127
+            // 
+            this->label127->AutoSize = true;
+            this->label127->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label127->Location = System::Drawing::Point(828, 68);
+            this->label127->Name = L"label127";
+            this->label127->Size = System::Drawing::Size(94, 28);
+            this->label127->TabIndex = 298;
+            this->label127->Text = L"2:30-3:30";
+            // 
+            // label128
+            // 
+            this->label128->AutoSize = true;
+            this->label128->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label128->Location = System::Drawing::Point(958, 68);
+            this->label128->Name = L"label128";
+            this->label128->Size = System::Drawing::Size(94, 28);
+            this->label128->TabIndex = 299;
+            this->label128->Text = L"3:30-4:30";
+            // 
+            // label129
+            // 
+            this->label129->AutoSize = true;
+            this->label129->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label129->Location = System::Drawing::Point(43, 495);
+            this->label129->Name = L"label129";
+            this->label129->Size = System::Drawing::Size(90, 28);
+            this->label129->TabIndex = 266;
+            this->label129->Text = L"Saturday";
+            // 
+            // label130
+            // 
+            this->label130->AutoSize = true;
+            this->label130->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label130->Location = System::Drawing::Point(43, 418);
+            this->label130->Name = L"label130";
+            this->label130->Size = System::Drawing::Size(66, 28);
+            this->label130->TabIndex = 265;
+            this->label130->Text = L"Friday";
+            // 
+            // label131
+            // 
+            this->label131->AutoSize = true;
+            this->label131->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label131->Location = System::Drawing::Point(30, 342);
+            this->label131->Name = L"label131";
+            this->label131->Size = System::Drawing::Size(91, 28);
+            this->label131->TabIndex = 264;
+            this->label131->Text = L"Thursday";
+            // 
+            // label132
+            // 
+            this->label132->AutoSize = true;
+            this->label132->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label132->Location = System::Drawing::Point(20, 280);
+            this->label132->Name = L"label132";
+            this->label132->Size = System::Drawing::Size(113, 28);
+            this->label132->TabIndex = 263;
+            this->label132->Text = L"Wednesday";
+            // 
+            // label133
+            // 
+            this->label133->AutoSize = true;
+            this->label133->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label133->Location = System::Drawing::Point(47, 201);
+            this->label133->Name = L"label133";
+            this->label133->Size = System::Drawing::Size(83, 28);
+            this->label133->TabIndex = 262;
+            this->label133->Text = L"Tuesday";
+            // 
+            // label134
+            // 
+            this->label134->AutoSize = true;
+            this->label134->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label134->Location = System::Drawing::Point(41, 132);
+            this->label134->Name = L"label134";
+            this->label134->Size = System::Drawing::Size(85, 28);
+            this->label134->TabIndex = 261;
+            this->label134->Text = L"Monday";
+            // 
+            // addsubcluster
+            // 
+            this->addsubcluster->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Suggest;
+            this->addsubcluster->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->addsubcluster->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->addsubcluster->FormattingEnabled = true;
+            this->addsubcluster->Location = System::Drawing::Point(219, 440);
+            this->addsubcluster->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+            this->addsubcluster->Name = L"addsubcluster";
+            this->addsubcluster->Size = System::Drawing::Size(294, 36);
+            this->addsubcluster->TabIndex = 264;
             // 
             // panel12
             // 
-            this->panel12->Controls->Add(this->radioButton10);
-            this->panel12->Controls->Add(this->radioButton9);
+            this->panel12->Controls->Add(this->addsubeleyes);
+            this->panel12->Controls->Add(this->addsubeleno);
             this->panel12->ForeColor = System::Drawing::Color::Black;
-            this->panel12->Location = System::Drawing::Point(398, 285);
+            this->panel12->Location = System::Drawing::Point(238, 275);
             this->panel12->Name = L"panel12";
             this->panel12->Size = System::Drawing::Size(220, 60);
             this->panel12->TabIndex = 263;
             // 
-            // radioButton10
+            // addsubeleyes
             // 
-            this->radioButton10->AutoSize = true;
-            this->radioButton10->Location = System::Drawing::Point(5, 21);
-            this->radioButton10->Name = L"radioButton10";
-            this->radioButton10->Size = System::Drawing::Size(62, 24);
-            this->radioButton10->TabIndex = 2;
-            this->radioButton10->TabStop = true;
-            this->radioButton10->Text = L"Yes";
-            this->radioButton10->UseVisualStyleBackColor = true;
-            this->radioButton10->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton10_CheckedChanged);
+            this->addsubeleyes->AutoSize = true;
+            this->addsubeleyes->Location = System::Drawing::Point(5, 21);
+            this->addsubeleyes->Name = L"addsubeleyes";
+            this->addsubeleyes->Size = System::Drawing::Size(62, 24);
+            this->addsubeleyes->TabIndex = 2;
+            this->addsubeleyes->TabStop = true;
+            this->addsubeleyes->Text = L"Yes";
+            this->addsubeleyes->UseVisualStyleBackColor = true;
+            this->addsubeleyes->CheckedChanged += gcnew System::EventHandler(this, &MyForm::addsubeleyes_CheckedChanged);
             // 
-            // radioButton9
+            // addsubeleno
             // 
-            this->radioButton9->AutoSize = true;
-            this->radioButton9->Location = System::Drawing::Point(139, 21);
-            this->radioButton9->Name = L"radioButton9";
-            this->radioButton9->Size = System::Drawing::Size(54, 24);
-            this->radioButton9->TabIndex = 3;
-            this->radioButton9->TabStop = true;
-            this->radioButton9->Text = L"No";
-            this->radioButton9->UseVisualStyleBackColor = true;
-            this->radioButton9->CheckedChanged += gcnew System::EventHandler(this, &MyForm::radioButton9_CheckedChanged);
+            this->addsubeleno->AutoSize = true;
+            this->addsubeleno->Location = System::Drawing::Point(139, 21);
+            this->addsubeleno->Name = L"addsubeleno";
+            this->addsubeleno->Size = System::Drawing::Size(54, 24);
+            this->addsubeleno->TabIndex = 3;
+            this->addsubeleno->TabStop = true;
+            this->addsubeleno->Text = L"No";
+            this->addsubeleno->UseVisualStyleBackColor = true;
+            this->addsubeleno->CheckedChanged += gcnew System::EventHandler(this, &MyForm::addsubeleno_CheckedChanged);
             // 
             // label46
             // 
             this->label46->AutoSize = true;
             this->label46->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label46->Location = System::Drawing::Point(369, 532);
+            this->label46->Location = System::Drawing::Point(214, 546);
             this->label46->Name = L"label46";
             this->label46->Size = System::Drawing::Size(330, 28);
             this->label46->TabIndex = 235;
@@ -3263,7 +3400,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label47->AutoSize = true;
             this->label47->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label47->Location = System::Drawing::Point(370, 374);
+            this->label47->Location = System::Drawing::Point(215, 388);
             this->label47->Name = L"label47";
             this->label47->Size = System::Drawing::Size(152, 28);
             this->label47->TabIndex = 24;
@@ -3274,28 +3411,30 @@ private: System::ComponentModel::IContainer^ components;
             this->label48->AutoSize = true;
             this->label48->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label48->Location = System::Drawing::Point(370, 223);
+            this->label48->Location = System::Drawing::Point(215, 237);
             this->label48->Name = L"label48";
             this->label48->Size = System::Drawing::Size(148, 28);
             this->label48->TabIndex = 23;
             this->label48->Text = L"Is it an elective\?";
             // 
-            // textBox16
+            // addsubname
             // 
-            this->textBox16->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->addsubname->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->textBox16->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->addsubname->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->textBox16->ForeColor = System::Drawing::Color::Black;
-            this->textBox16->Location = System::Drawing::Point(381, 136);
-            this->textBox16->Name = L"textBox16";
-            this->textBox16->Size = System::Drawing::Size(480, 34);
-            this->textBox16->TabIndex = 3;
-            this->textBox16->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox16_TextChanged);
+            this->addsubname->ForeColor = System::Drawing::Color::Black;
+            this->addsubname->Location = System::Drawing::Point(226, 150);
+            this->addsubname->Name = L"addsubname";
+            this->addsubname->Size = System::Drawing::Size(480, 34);
+            this->addsubname->TabIndex = 3;
+            this->addsubname->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox16_TextChanged);
             // 
             // sedataGridView
             // 
             this->sedataGridView->AllowUserToOrderColumns = true;
+            this->sedataGridView->AllowUserToResizeColumns = false;
+            this->sedataGridView->AllowUserToResizeRows = false;
             dataGridViewCellStyle8->BackColor = System::Drawing::Color::White;
             dataGridViewCellStyle8->ForeColor = System::Drawing::Color::Black;
             dataGridViewCellStyle8->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
@@ -3335,7 +3474,7 @@ private: System::ComponentModel::IContainer^ components;
             this->sedataGridView->DefaultCellStyle = dataGridViewCellStyle12;
             this->sedataGridView->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)), static_cast<System::Int32>(static_cast<System::Byte>(211)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->sedataGridView->Location = System::Drawing::Point(386, 587);
+            this->sedataGridView->Location = System::Drawing::Point(231, 601);
             this->sedataGridView->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->sedataGridView->Name = L"sedataGridView";
             dataGridViewCellStyle13->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -3399,38 +3538,25 @@ private: System::ComponentModel::IContainer^ components;
             this->dataGridViewButtonColumn5->Text = L"Delete";
             this->dataGridViewButtonColumn5->UseColumnTextForButtonValue = true;
             // 
-            // panel8
+            // panelsub
             // 
-            this->panel8->Controls->Add(this->panel11);
-            this->panel8->Controls->Add(this->label41);
-            this->panel8->Controls->Add(this->label43);
-            this->panel8->Controls->Add(this->numericUpDown5);
-            this->panel8->Controls->Add(this->checkedListBox2);
-            this->panel8->Controls->Add(this->bfactorupdown);
-            this->panel8->Controls->Add(this->newaddsub);
-            this->panel8->Controls->Add(this->label44);
-            this->panel8->Controls->Add(this->label42);
-            this->panel8->Controls->Add(this->label45);
-            this->panel8->Controls->Add(this->sldataGridView);
-            this->panel8->Controls->Add(this->addsubsave);
-            this->panel8->Location = System::Drawing::Point(364, 863);
-            this->panel8->Name = L"panel8";
-            this->panel8->Size = System::Drawing::Size(1086, 1161);
-            this->panel8->TabIndex = 267;
-            // 
-            // tableLayoutPanel1
-            // 
-            this->tableLayoutPanel1->ColumnCount = 2;
-            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                50)));
-            this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                50)));
-            this->tableLayoutPanel1->Location = System::Drawing::Point(395, 863);
-            this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
-            this->tableLayoutPanel1->RowCount = 1;
-            this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-            this->tableLayoutPanel1->Size = System::Drawing::Size(437, 408);
-            this->tableLayoutPanel1->TabIndex = 266;
+            this->panelsub->Controls->Add(this->panel11);
+            this->panelsub->Controls->Add(this->label41);
+            this->panelsub->Controls->Add(this->label43);
+            this->panelsub->Controls->Add(this->addsubcredits);
+            this->panelsub->Controls->Add(this->addsubroomlist);
+            this->panelsub->Controls->Add(this->addsubbfactor);
+            this->panelsub->Controls->Add(this->newaddsub);
+            this->panelsub->Controls->Add(this->label44);
+            this->panelsub->Controls->Add(this->label42);
+            this->panelsub->Controls->Add(this->label45);
+            this->panelsub->Controls->Add(this->sldataGridView);
+            this->panelsub->Controls->Add(this->addsubsave);
+            this->panelsub->Location = System::Drawing::Point(187, 1536);
+            this->panelsub->Name = L"panelsub";
+            this->panelsub->Size = System::Drawing::Size(1086, 1161);
+            this->panelsub->TabIndex = 267;
+            this->panelsub->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panelsub_Paint);
             // 
             // saveroom
             // 
@@ -3451,7 +3577,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label31->AutoSize = true;
             this->label31->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label31->Location = System::Drawing::Point(237, 196);
+            this->label31->Location = System::Drawing::Point(237, -86);
             this->label31->Name = L"label31";
             this->label31->Size = System::Drawing::Size(164, 28);
             this->label31->TabIndex = 67;
@@ -3463,7 +3589,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->roomname->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->roomname->Location = System::Drawing::Point(241, 257);
+            this->roomname->Location = System::Drawing::Point(241, -25);
             this->roomname->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->roomname->Name = L"roomname";
             this->roomname->Size = System::Drawing::Size(295, 34);
@@ -3475,7 +3601,7 @@ private: System::ComponentModel::IContainer^ components;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->roomcapacity->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->roomcapacity->Location = System::Drawing::Point(246, 367);
+            this->roomcapacity->Location = System::Drawing::Point(246, 85);
             this->roomcapacity->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->roomcapacity->Name = L"roomcapacity";
             this->roomcapacity->Size = System::Drawing::Size(300, 34);
@@ -3486,7 +3612,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label30->AutoSize = true;
             this->label30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label30->Location = System::Drawing::Point(242, 318);
+            this->label30->Location = System::Drawing::Point(242, 36);
             this->label30->Name = L"label30";
             this->label30->Size = System::Drawing::Size(158, 28);
             this->label30->TabIndex = 70;
@@ -3497,7 +3623,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label29->AutoSize = true;
             this->label29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label29->Location = System::Drawing::Point(242, 432);
+            this->label29->Location = System::Drawing::Point(242, 150);
             this->label29->Name = L"label29";
             this->label29->Size = System::Drawing::Size(98, 28);
             this->label29->TabIndex = 71;
@@ -3508,7 +3634,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label28->AutoSize = true;
             this->label28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label28->Location = System::Drawing::Point(236, 552);
+            this->label28->Location = System::Drawing::Point(236, 270);
             this->label28->Name = L"label28";
             this->label28->Size = System::Drawing::Size(117, 28);
             this->label28->TabIndex = 72;
@@ -3521,7 +3647,7 @@ private: System::ComponentModel::IContainer^ components;
             this->roomdept->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->roomdept->FormattingEnabled = true;
-            this->roomdept->Location = System::Drawing::Point(239, 591);
+            this->roomdept->Location = System::Drawing::Point(239, 309);
             this->roomdept->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->roomdept->Name = L"roomdept";
             this->roomdept->Size = System::Drawing::Size(294, 36);
@@ -3532,7 +3658,7 @@ private: System::ComponentModel::IContainer^ components;
             this->clearroom->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->clearroom->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->clearroom->Location = System::Drawing::Point(291, 48);
+            this->clearroom->Location = System::Drawing::Point(227, 47);
             this->clearroom->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->clearroom->Name = L"clearroom";
             this->clearroom->Size = System::Drawing::Size(138, 58);
@@ -3590,7 +3716,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label5->AutoSize = true;
             this->label5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label5->Location = System::Drawing::Point(243, 661);
+            this->label5->Location = System::Drawing::Point(236, 396);
             this->label5->Name = L"label5";
             this->label5->Size = System::Drawing::Size(148, 28);
             this->label5->TabIndex = 263;
@@ -3611,7 +3737,7 @@ private: System::ComponentModel::IContainer^ components;
             this->addroompanel->Controls->Add(this->label117);
             this->addroompanel->Controls->Add(this->label118);
             this->addroompanel->Controls->Add(this->addroomtablepanel);
-            this->addroompanel->Location = System::Drawing::Point(230, 677);
+            this->addroompanel->Location = System::Drawing::Point(230, 426);
             this->addroompanel->Name = L"addroompanel";
             this->addroompanel->Size = System::Drawing::Size(1066, 542);
             this->addroompanel->TabIndex = 262;
@@ -3779,16 +3905,16 @@ private: System::ComponentModel::IContainer^ components;
             // 
             this->panel9->Controls->Add(this->clearroom);
             this->panel9->Controls->Add(this->saveroom);
-            this->panel9->Location = System::Drawing::Point(1129, 1245);
+            this->panel9->Location = System::Drawing::Point(1129, 963);
             this->panel9->Name = L"panel9";
-            this->panel9->Size = System::Drawing::Size(458, 156);
+            this->panel9->Size = System::Drawing::Size(376, 156);
             this->panel9->TabIndex = 124;
             // 
             // panel7
             // 
             this->panel7->Controls->Add(this->roomlabyes);
             this->panel7->Controls->Add(this->roomlabno);
-            this->panel7->Location = System::Drawing::Point(242, 468);
+            this->panel7->Location = System::Drawing::Point(242, 186);
             this->panel7->Name = L"panel7";
             this->panel7->Size = System::Drawing::Size(237, 58);
             this->panel7->TabIndex = 123;
@@ -4077,10 +4203,10 @@ private: System::ComponentModel::IContainer^ components;
             // editteacherpanel
             // 
             this->editteacherpanel->AutoScroll = true;
+            this->editteacherpanel->Controls->Add(this->button3);
             this->editteacherpanel->Controls->Add(this->label51);
             this->editteacherpanel->Controls->Add(this->panel18);
             this->editteacherpanel->Controls->Add(this->panel19);
-            this->editteacherpanel->Controls->Add(this->button18);
             this->editteacherpanel->Controls->Add(this->editteacherdepartment);
             this->editteacherpanel->Controls->Add(this->label63);
             this->editteacherpanel->Controls->Add(this->editteachername);
@@ -4094,12 +4220,24 @@ private: System::ComponentModel::IContainer^ components;
             this->editteacherpanel->TabIndex = 264;
             this->editteacherpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editteacherpanel_Paint);
             // 
+            // button3
+            // 
+            this->button3->BackColor = System::Drawing::Color::White;
+            this->button3->FlatAppearance->BorderSize = 0;
+            this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button3->Location = System::Drawing::Point(910, 148);
+            this->button3->Name = L"button3";
+            this->button3->Size = System::Drawing::Size(26, 29);
+            this->button3->TabIndex = 301;
+            this->button3->Text = L"🔍";
+            this->button3->UseVisualStyleBackColor = false;
+            // 
             // label51
             // 
             this->label51->AutoSize = true;
             this->label51->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label51->Location = System::Drawing::Point(221, 561);
+            this->label51->Location = System::Drawing::Point(227, 588);
             this->label51->Name = L"label51";
             this->label51->Size = System::Drawing::Size(161, 28);
             this->label51->TabIndex = 300;
@@ -4326,13 +4464,6 @@ private: System::ComponentModel::IContainer^ components;
                 16.66667F)));
             this->editteachertablepanel->Size = System::Drawing::Size(940, 426);
             this->editteachertablepanel->TabIndex = 260;
-            // 
-            // button18
-            // 
-            this->button18->Location = System::Drawing::Point(0, 0);
-            this->button18->Name = L"button18";
-            this->button18->Size = System::Drawing::Size(75, 23);
-            this->button18->TabIndex = 299;
             // 
             // editteacherdepartment
             // 
@@ -5371,6 +5502,7 @@ private: System::ComponentModel::IContainer^ components;
             // settingspanel
             // 
             this->settingspanel->AutoScroll = true;
+            this->settingspanel->Controls->Add(this->panel20);
             this->settingspanel->Controls->Add(this->label112);
             this->settingspanel->Controls->Add(this->trackBar2);
             this->settingspanel->Controls->Add(this->label111);
@@ -5382,10 +5514,214 @@ private: System::ComponentModel::IContainer^ components;
             this->settingspanel->Size = System::Drawing::Size(1946, 1106);
             this->settingspanel->TabIndex = 286;
             // 
+            // panel20
+            // 
+            this->panel20->Controls->Add(this->panel21);
+            this->panel20->Controls->Add(this->panel22);
+            this->panel20->Controls->Add(this->tableLayoutPanel2);
+            this->panel20->Controls->Add(this->label83);
+            this->panel20->Controls->Add(this->label84);
+            this->panel20->Controls->Add(this->label85);
+            this->panel20->Controls->Add(this->label86);
+            this->panel20->Controls->Add(this->label87);
+            this->panel20->Controls->Add(this->label88);
+            this->panel20->Controls->Add(this->label89);
+            this->panel20->Controls->Add(this->label90);
+            this->panel20->Controls->Add(this->label91);
+            this->panel20->Controls->Add(this->label102);
+            this->panel20->Controls->Add(this->label121);
+            this->panel20->Controls->Add(this->label122);
+            this->panel20->Location = System::Drawing::Point(350, 494);
+            this->panel20->Name = L"panel20";
+            this->panel20->Size = System::Drawing::Size(1183, 621);
+            this->panel20->TabIndex = 300;
+            // 
+            // panel21
+            // 
+            this->panel21->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel21.BackgroundImage")));
+            this->panel21->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel21->Location = System::Drawing::Point(416, 112);
+            this->panel21->Name = L"panel21";
+            this->panel21->Size = System::Drawing::Size(44, 413);
+            this->panel21->TabIndex = 2;
+            // 
+            // panel22
+            // 
+            this->panel22->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel22.BackgroundImage")));
+            this->panel22->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel22->Location = System::Drawing::Point(757, 110);
+            this->panel22->Name = L"panel22";
+            this->panel22->Size = System::Drawing::Size(44, 436);
+            this->panel22->TabIndex = 1;
+            // 
+            // tableLayoutPanel2
+            // 
+            this->tableLayoutPanel2->ColumnCount = 8;
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66743F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66686F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66887F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66976F)));
+            this->tableLayoutPanel2->Location = System::Drawing::Point(140, 113);
+            this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
+            this->tableLayoutPanel2->RowCount = 6;
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->tableLayoutPanel2->Size = System::Drawing::Size(949, 435);
+            this->tableLayoutPanel2->TabIndex = 260;
+            this->tableLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::tableLayoutPanel2_Paint);
+            // 
+            // label83
+            // 
+            this->label83->AutoSize = true;
+            this->label83->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label83->Location = System::Drawing::Point(158, 72);
+            this->label83->Name = L"label83";
+            this->label83->Size = System::Drawing::Size(105, 28);
+            this->label83->TabIndex = 294;
+            this->label83->Text = L"9:00-10:00";
+            // 
+            // label84
+            // 
+            this->label84->AutoSize = true;
+            this->label84->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label84->Location = System::Drawing::Point(294, 72);
+            this->label84->Name = L"label84";
+            this->label84->Size = System::Drawing::Size(116, 28);
+            this->label84->TabIndex = 295;
+            this->label84->Text = L"10:00-11:00";
+            // 
+            // label85
+            // 
+            this->label85->AutoSize = true;
+            this->label85->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label85->Location = System::Drawing::Point(480, 72);
+            this->label85->Name = L"label85";
+            this->label85->Size = System::Drawing::Size(116, 28);
+            this->label85->TabIndex = 296;
+            this->label85->Text = L"11:30-12:30";
+            // 
+            // label86
+            // 
+            this->label86->AutoSize = true;
+            this->label86->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label86->Location = System::Drawing::Point(635, 72);
+            this->label86->Name = L"label86";
+            this->label86->Size = System::Drawing::Size(105, 28);
+            this->label86->TabIndex = 297;
+            this->label86->Text = L"12:30-1:30";
+            // 
+            // label87
+            // 
+            this->label87->AutoSize = true;
+            this->label87->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label87->Location = System::Drawing::Point(828, 68);
+            this->label87->Name = L"label87";
+            this->label87->Size = System::Drawing::Size(94, 28);
+            this->label87->TabIndex = 298;
+            this->label87->Text = L"2:30-3:30";
+            // 
+            // label88
+            // 
+            this->label88->AutoSize = true;
+            this->label88->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label88->Location = System::Drawing::Point(958, 68);
+            this->label88->Name = L"label88";
+            this->label88->Size = System::Drawing::Size(94, 28);
+            this->label88->TabIndex = 299;
+            this->label88->Text = L"3:30-4:30";
+            // 
+            // label89
+            // 
+            this->label89->AutoSize = true;
+            this->label89->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label89->Location = System::Drawing::Point(43, 495);
+            this->label89->Name = L"label89";
+            this->label89->Size = System::Drawing::Size(90, 28);
+            this->label89->TabIndex = 266;
+            this->label89->Text = L"Saturday";
+            // 
+            // label90
+            // 
+            this->label90->AutoSize = true;
+            this->label90->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label90->Location = System::Drawing::Point(43, 418);
+            this->label90->Name = L"label90";
+            this->label90->Size = System::Drawing::Size(66, 28);
+            this->label90->TabIndex = 265;
+            this->label90->Text = L"Friday";
+            // 
+            // label91
+            // 
+            this->label91->AutoSize = true;
+            this->label91->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label91->Location = System::Drawing::Point(30, 342);
+            this->label91->Name = L"label91";
+            this->label91->Size = System::Drawing::Size(91, 28);
+            this->label91->TabIndex = 264;
+            this->label91->Text = L"Thursday";
+            // 
+            // label102
+            // 
+            this->label102->AutoSize = true;
+            this->label102->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label102->Location = System::Drawing::Point(20, 280);
+            this->label102->Name = L"label102";
+            this->label102->Size = System::Drawing::Size(113, 28);
+            this->label102->TabIndex = 263;
+            this->label102->Text = L"Wednesday";
+            // 
+            // label121
+            // 
+            this->label121->AutoSize = true;
+            this->label121->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label121->Location = System::Drawing::Point(47, 201);
+            this->label121->Name = L"label121";
+            this->label121->Size = System::Drawing::Size(83, 28);
+            this->label121->TabIndex = 262;
+            this->label121->Text = L"Tuesday";
+            // 
+            // label122
+            // 
+            this->label122->AutoSize = true;
+            this->label122->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label122->Location = System::Drawing::Point(41, 132);
+            this->label122->Name = L"label122";
+            this->label122->Size = System::Drawing::Size(85, 28);
+            this->label122->TabIndex = 261;
+            this->label122->Text = L"Monday";
+            // 
             // label112
             // 
             this->label112->AutoSize = true;
-            this->label112->Location = System::Drawing::Point(568, 593);
+            this->label112->Location = System::Drawing::Point(449, 454);
             this->label112->Name = L"label112";
             this->label112->Size = System::Drawing::Size(152, 20);
             this->label112->TabIndex = 4;
@@ -5393,7 +5729,7 @@ private: System::ComponentModel::IContainer^ components;
             // 
             // trackBar2
             // 
-            this->trackBar2->Location = System::Drawing::Point(556, 429);
+            this->trackBar2->Location = System::Drawing::Point(437, 290);
             this->trackBar2->Maximum = 7;
             this->trackBar2->Minimum = 1;
             this->trackBar2->Name = L"trackBar2";
@@ -5404,7 +5740,7 @@ private: System::ComponentModel::IContainer^ components;
             // label111
             // 
             this->label111->AutoSize = true;
-            this->label111->Location = System::Drawing::Point(568, 386);
+            this->label111->Location = System::Drawing::Point(449, 247);
             this->label111->Name = L"label111";
             this->label111->Size = System::Drawing::Size(265, 20);
             this->label111->TabIndex = 2;
@@ -5412,7 +5748,7 @@ private: System::ComponentModel::IContainer^ components;
             // 
             // trackBar1
             // 
-            this->trackBar1->Location = System::Drawing::Point(550, 275);
+            this->trackBar1->Location = System::Drawing::Point(431, 136);
             this->trackBar1->Maximum = 7;
             this->trackBar1->Minimum = 1;
             this->trackBar1->Name = L"trackBar1";
@@ -5423,7 +5759,7 @@ private: System::ComponentModel::IContainer^ components;
             // label110
             // 
             this->label110->AutoSize = true;
-            this->label110->Location = System::Drawing::Point(562, 232);
+            this->label110->Location = System::Drawing::Point(443, 93);
             this->label110->Name = L"label110";
             this->label110->Size = System::Drawing::Size(247, 20);
             this->label110->TabIndex = 0;
@@ -5668,6 +6004,7 @@ private: System::ComponentModel::IContainer^ components;
             this->button14->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
             this->button14->UseVisualStyleBackColor = false;
             this->button14->Visible = false;
+            this->button14->Click += gcnew System::EventHandler(this, &MyForm::button14_Click);
             // 
             // button13
             // 
@@ -6469,6 +6806,202 @@ private: System::ComponentModel::IContainer^ components;
             this->panel5->TabIndex = 230;
             this->panel5->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
+            // finalttpanel
+            // 
+            this->finalttpanel->Controls->Add(this->classtablegen1);
+            this->finalttpanel->Controls->Add(this->label35);
+            this->finalttpanel->Controls->Add(this->label52);
+            this->finalttpanel->Controls->Add(this->label53);
+            this->finalttpanel->Controls->Add(this->label54);
+            this->finalttpanel->Controls->Add(this->label55);
+            this->finalttpanel->Controls->Add(this->label56);
+            this->finalttpanel->Controls->Add(this->label57);
+            this->finalttpanel->Controls->Add(this->label58);
+            this->finalttpanel->Controls->Add(this->label59);
+            this->finalttpanel->Controls->Add(this->label60);
+            this->finalttpanel->Controls->Add(this->label61);
+            this->finalttpanel->Controls->Add(this->label65);
+            this->finalttpanel->Location = System::Drawing::Point(405, 1721);
+            this->finalttpanel->Name = L"finalttpanel";
+            this->finalttpanel->Size = System::Drawing::Size(1183, 621);
+            this->finalttpanel->TabIndex = 299;
+            // 
+            // classtablegen1
+            // 
+            this->classtablegen1->ColumnCount = 6;
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66466F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66856F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66467F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66467F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66799F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66944F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                20)));
+            this->classtablegen1->Location = System::Drawing::Point(140, 113);
+            this->classtablegen1->Name = L"classtablegen1";
+            this->classtablegen1->RowCount = 6;
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->classtablegen1->Size = System::Drawing::Size(940, 426);
+            this->classtablegen1->TabIndex = 260;
+            // 
+            // label35
+            // 
+            this->label35->AutoSize = true;
+            this->label35->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label35->Location = System::Drawing::Point(156, 60);
+            this->label35->Name = L"label35";
+            this->label35->Size = System::Drawing::Size(105, 28);
+            this->label35->TabIndex = 294;
+            this->label35->Text = L"9:00-10:00";
+            // 
+            // label52
+            // 
+            this->label52->AutoSize = true;
+            this->label52->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label52->Location = System::Drawing::Point(314, 60);
+            this->label52->Name = L"label52";
+            this->label52->Size = System::Drawing::Size(116, 28);
+            this->label52->TabIndex = 295;
+            this->label52->Text = L"10:00-11:00";
+            // 
+            // label53
+            // 
+            this->label53->AutoSize = true;
+            this->label53->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label53->Location = System::Drawing::Point(469, 60);
+            this->label53->Name = L"label53";
+            this->label53->Size = System::Drawing::Size(116, 28);
+            this->label53->TabIndex = 296;
+            this->label53->Text = L"11:30-12:30";
+            // 
+            // label54
+            // 
+            this->label54->AutoSize = true;
+            this->label54->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label54->Location = System::Drawing::Point(641, 60);
+            this->label54->Name = L"label54";
+            this->label54->Size = System::Drawing::Size(105, 28);
+            this->label54->TabIndex = 297;
+            this->label54->Text = L"12:30-1:30";
+            // 
+            // label55
+            // 
+            this->label55->AutoSize = true;
+            this->label55->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label55->Location = System::Drawing::Point(789, 60);
+            this->label55->Name = L"label55";
+            this->label55->Size = System::Drawing::Size(94, 28);
+            this->label55->TabIndex = 298;
+            this->label55->Text = L"2:30-3:30";
+            // 
+            // label56
+            // 
+            this->label56->AutoSize = true;
+            this->label56->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label56->Location = System::Drawing::Point(946, 60);
+            this->label56->Name = L"label56";
+            this->label56->Size = System::Drawing::Size(94, 28);
+            this->label56->TabIndex = 299;
+            this->label56->Text = L"3:30-4:30";
+            // 
+            // label57
+            // 
+            this->label57->AutoSize = true;
+            this->label57->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label57->Location = System::Drawing::Point(43, 495);
+            this->label57->Name = L"label57";
+            this->label57->Size = System::Drawing::Size(90, 28);
+            this->label57->TabIndex = 266;
+            this->label57->Text = L"Saturday";
+            // 
+            // label58
+            // 
+            this->label58->AutoSize = true;
+            this->label58->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label58->Location = System::Drawing::Point(43, 418);
+            this->label58->Name = L"label58";
+            this->label58->Size = System::Drawing::Size(66, 28);
+            this->label58->TabIndex = 265;
+            this->label58->Text = L"Friday";
+            // 
+            // label59
+            // 
+            this->label59->AutoSize = true;
+            this->label59->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label59->Location = System::Drawing::Point(30, 342);
+            this->label59->Name = L"label59";
+            this->label59->Size = System::Drawing::Size(91, 28);
+            this->label59->TabIndex = 264;
+            this->label59->Text = L"Thursday";
+            // 
+            // label60
+            // 
+            this->label60->AutoSize = true;
+            this->label60->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label60->Location = System::Drawing::Point(20, 280);
+            this->label60->Name = L"label60";
+            this->label60->Size = System::Drawing::Size(113, 28);
+            this->label60->TabIndex = 263;
+            this->label60->Text = L"Wednesday";
+            // 
+            // label61
+            // 
+            this->label61->AutoSize = true;
+            this->label61->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label61->Location = System::Drawing::Point(47, 201);
+            this->label61->Name = L"label61";
+            this->label61->Size = System::Drawing::Size(83, 28);
+            this->label61->TabIndex = 262;
+            this->label61->Text = L"Tuesday";
+            // 
+            // label65
+            // 
+            this->label65->AutoSize = true;
+            this->label65->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label65->Location = System::Drawing::Point(41, 132);
+            this->label65->Name = L"label65";
+            this->label65->Size = System::Drawing::Size(85, 28);
+            this->label65->TabIndex = 261;
+            this->label65->Text = L"Monday";
+            // 
+            // classtablegen
+            // 
+            this->classtablegen->ColumnCount = 2;
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                50)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                50)));
+            this->classtablegen->Location = System::Drawing::Point(398, 3464);
+            this->classtablegen->Name = L"classtablegen";
+            this->classtablegen->RowCount = 2;
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
+            this->classtablegen->Size = System::Drawing::Size(278, 246);
+            this->classtablegen->TabIndex = 259;
+            // 
             // label1
             // 
             this->label1->AutoSize = true;
@@ -6522,7 +7055,7 @@ private: System::ComponentModel::IContainer^ components;
             this->label3->AutoSize = true;
             this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label3->Location = System::Drawing::Point(196, 436);
+            this->label3->Location = System::Drawing::Point(201, 465);
             this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->label3->Name = L"label3";
             this->label3->Size = System::Drawing::Size(161, 28);
@@ -6745,7 +7278,7 @@ private: System::ComponentModel::IContainer^ components;
             this->addteachersave->TabIndex = 273;
             this->addteachersave->Text = L"Save";
             this->addteachersave->UseVisualStyleBackColor = false;
-            this->addteachersave->Click += gcnew System::EventHandler(this, &MyForm::button37_Click);
+            this->addteachersave->Click += gcnew System::EventHandler(this, &MyForm::addteachersave_Click);
             // 
             // addteachernew
             // 
@@ -6761,200 +7294,6 @@ private: System::ComponentModel::IContainer^ components;
             this->addteachernew->UseVisualStyleBackColor = false;
             this->addteachernew->Click += gcnew System::EventHandler(this, &MyForm::addteachernew_Click);
             // 
-            // finalttpanel
-            // 
-            this->finalttpanel->Controls->Add(this->label35);
-            this->finalttpanel->Controls->Add(this->label52);
-            this->finalttpanel->Controls->Add(this->label53);
-            this->finalttpanel->Controls->Add(this->label54);
-            this->finalttpanel->Controls->Add(this->label55);
-            this->finalttpanel->Controls->Add(this->label56);
-            this->finalttpanel->Controls->Add(this->label57);
-            this->finalttpanel->Controls->Add(this->label58);
-            this->finalttpanel->Controls->Add(this->label59);
-            this->finalttpanel->Controls->Add(this->label60);
-            this->finalttpanel->Controls->Add(this->label61);
-            this->finalttpanel->Controls->Add(this->label65);
-            this->finalttpanel->Controls->Add(this->classtablegen1);
-            this->finalttpanel->Location = System::Drawing::Point(405, 1721);
-            this->finalttpanel->Name = L"finalttpanel";
-            this->finalttpanel->Size = System::Drawing::Size(1183, 621);
-            this->finalttpanel->TabIndex = 299;
-            // 
-            // label35
-            // 
-            this->label35->AutoSize = true;
-            this->label35->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label35->Location = System::Drawing::Point(156, 60);
-            this->label35->Name = L"label35";
-            this->label35->Size = System::Drawing::Size(105, 28);
-            this->label35->TabIndex = 294;
-            this->label35->Text = L"9:00-10:00";
-            // 
-            // label52
-            // 
-            this->label52->AutoSize = true;
-            this->label52->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label52->Location = System::Drawing::Point(314, 60);
-            this->label52->Name = L"label52";
-            this->label52->Size = System::Drawing::Size(116, 28);
-            this->label52->TabIndex = 295;
-            this->label52->Text = L"10:00-11:00";
-            // 
-            // label53
-            // 
-            this->label53->AutoSize = true;
-            this->label53->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label53->Location = System::Drawing::Point(469, 60);
-            this->label53->Name = L"label53";
-            this->label53->Size = System::Drawing::Size(116, 28);
-            this->label53->TabIndex = 296;
-            this->label53->Text = L"11:30-12:30";
-            // 
-            // label54
-            // 
-            this->label54->AutoSize = true;
-            this->label54->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label54->Location = System::Drawing::Point(641, 60);
-            this->label54->Name = L"label54";
-            this->label54->Size = System::Drawing::Size(105, 28);
-            this->label54->TabIndex = 297;
-            this->label54->Text = L"12:30-1:30";
-            // 
-            // label55
-            // 
-            this->label55->AutoSize = true;
-            this->label55->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label55->Location = System::Drawing::Point(789, 60);
-            this->label55->Name = L"label55";
-            this->label55->Size = System::Drawing::Size(94, 28);
-            this->label55->TabIndex = 298;
-            this->label55->Text = L"2:30-3:30";
-            // 
-            // label56
-            // 
-            this->label56->AutoSize = true;
-            this->label56->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label56->Location = System::Drawing::Point(946, 60);
-            this->label56->Name = L"label56";
-            this->label56->Size = System::Drawing::Size(94, 28);
-            this->label56->TabIndex = 299;
-            this->label56->Text = L"3:30-4:30";
-            // 
-            // label57
-            // 
-            this->label57->AutoSize = true;
-            this->label57->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label57->Location = System::Drawing::Point(43, 495);
-            this->label57->Name = L"label57";
-            this->label57->Size = System::Drawing::Size(90, 28);
-            this->label57->TabIndex = 266;
-            this->label57->Text = L"Saturday";
-            // 
-            // label58
-            // 
-            this->label58->AutoSize = true;
-            this->label58->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label58->Location = System::Drawing::Point(43, 418);
-            this->label58->Name = L"label58";
-            this->label58->Size = System::Drawing::Size(66, 28);
-            this->label58->TabIndex = 265;
-            this->label58->Text = L"Friday";
-            // 
-            // label59
-            // 
-            this->label59->AutoSize = true;
-            this->label59->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label59->Location = System::Drawing::Point(30, 342);
-            this->label59->Name = L"label59";
-            this->label59->Size = System::Drawing::Size(91, 28);
-            this->label59->TabIndex = 264;
-            this->label59->Text = L"Thursday";
-            // 
-            // label60
-            // 
-            this->label60->AutoSize = true;
-            this->label60->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label60->Location = System::Drawing::Point(20, 280);
-            this->label60->Name = L"label60";
-            this->label60->Size = System::Drawing::Size(113, 28);
-            this->label60->TabIndex = 263;
-            this->label60->Text = L"Wednesday";
-            // 
-            // label61
-            // 
-            this->label61->AutoSize = true;
-            this->label61->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label61->Location = System::Drawing::Point(47, 201);
-            this->label61->Name = L"label61";
-            this->label61->Size = System::Drawing::Size(83, 28);
-            this->label61->TabIndex = 262;
-            this->label61->Text = L"Tuesday";
-            // 
-            // label65
-            // 
-            this->label65->AutoSize = true;
-            this->label65->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label65->Location = System::Drawing::Point(41, 132);
-            this->label65->Name = L"label65";
-            this->label65->Size = System::Drawing::Size(85, 28);
-            this->label65->TabIndex = 261;
-            this->label65->Text = L"Monday";
-            // 
-            // classtablegen1
-            // 
-            this->classtablegen1->ColumnCount = 6;
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66667F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66667F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66667F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66667F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66667F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66667F)));
-            this->classtablegen1->Location = System::Drawing::Point(140, 113);
-            this->classtablegen1->Name = L"classtablegen1";
-            this->classtablegen1->RowCount = 6;
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->Size = System::Drawing::Size(940, 426);
-            this->classtablegen1->TabIndex = 260;
-            // 
-            // classtablegen
-            // 
-            this->classtablegen->ColumnCount = 2;
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                50)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                50)));
-            this->classtablegen->Location = System::Drawing::Point(398, 1727);
-            this->classtablegen->Name = L"classtablegen";
-            this->classtablegen->RowCount = 2;
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 50)));
-            this->classtablegen->Size = System::Drawing::Size(278, 246);
-            this->classtablegen->TabIndex = 259;
-            // 
             // MyForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(144, 144);
@@ -6964,16 +7303,16 @@ private: System::ComponentModel::IContainer^ components;
             this->ClientSize = System::Drawing::Size(1946, 1106);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
-            this->Controls->Add(this->panel5);
-            this->Controls->Add(this->editteacherpanel);
-            this->Controls->Add(this->panel2);
-            this->Controls->Add(this->settingspanel);
-            this->Controls->Add(this->addteacherpanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
             this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->panel5);
+            this->Controls->Add(this->editteacherpanel);
+            this->Controls->Add(this->panel2);
+            this->Controls->Add(this->settingspanel);
+            this->Controls->Add(this->addteacherpanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -6981,17 +7320,19 @@ private: System::ComponentModel::IContainer^ components;
             this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
             this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sldataGridView))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->numericUpDown5))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->bfactorupdown))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->EndInit();
             this->panel11->ResumeLayout(false);
             this->panel11->PerformLayout();
             this->addsubjectpanel->ResumeLayout(false);
             this->addsubjectpanel->PerformLayout();
+            this->addsubeletablepanel->ResumeLayout(false);
+            this->addsubeletablepanel->PerformLayout();
             this->panel12->ResumeLayout(false);
             this->panel12->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sedataGridView))->EndInit();
-            this->panel8->ResumeLayout(false);
-            this->panel8->PerformLayout();
+            this->panelsub->ResumeLayout(false);
+            this->panelsub->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomcapacity))->EndInit();
             this->addclassroompanel->ResumeLayout(false);
             this->addclassroompanel->PerformLayout();
@@ -7036,6 +7377,8 @@ private: System::ComponentModel::IContainer^ components;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->EndInit();
             this->settingspanel->ResumeLayout(false);
             this->settingspanel->PerformLayout();
+            this->panel20->ResumeLayout(false);
+            this->panel20->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar1))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
@@ -7051,13 +7394,13 @@ private: System::ComponentModel::IContainer^ components;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
             this->panel5->ResumeLayout(false);
             this->panel5->PerformLayout();
+            this->finalttpanel->ResumeLayout(false);
+            this->finalttpanel->PerformLayout();
             this->panel16->ResumeLayout(false);
             this->panel16->PerformLayout();
             this->addteacherpanel->ResumeLayout(false);
             this->addteacherpanel->PerformLayout();
             this->panel17->ResumeLayout(false);
-            this->finalttpanel->ResumeLayout(false);
-            this->finalttpanel->PerformLayout();
             this->ResumeLayout(false);
 
         }
@@ -7088,22 +7431,6 @@ private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Form
 private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
     Homepanel->BringToFront();
     panel1->BringToFront();
-    String^ folderPath = "details"; //folder name
-    try
-    {
-        if (!Directory::Exists(folderPath))
-        {
-            Directory::CreateDirectory(folderPath);
-        }
-        else
-        {
-        }
-    }
-    catch (Exception^ ex)
-    {
-        MessageBox::Show("Error creating folder: " + ex->Message);
-    }
-
     DisplayCSVInComboBox(deptDataGridView,"details/dept_file.csv");
     pictureBox12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pictureBox1_Paint);
     InitializeMatrixfreebusy(addroomtablepanel, "room", "Free");
@@ -7263,8 +7590,22 @@ private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^
     string filePath = "details/dept_file.csv";
     deptcsvgen(deptDataGridView, filePath);
 }
-private: System::Void button37_Click_1(System::Object^ sender, System::EventArgs^ e) {
-    addnamecsvgen("details/teacher_file.csv");
+private: System::Void addteachersave_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool  flag = true;
+    if (String::IsNullOrEmpty(addteachername->Text))
+    {
+        MessageBox::Show("Teacher Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (String::IsNullOrEmpty(addteacherdepartment->Text))
+    {
+        MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (flag)
+    {
+        addnamecsvgen("details/teacher_file.csv");
+    }
 
 }
 private: System::Void saveroom_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -7307,26 +7648,13 @@ private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ 
     panel3->Top = button12->Top;
     addsubjectpanel->BringToFront();
     const std::string filePath = "details/classroom.csv";
-    DisplayCSVInListBox(filePath, checkedListBox2,0);
+    DisplayCSVInListBox(filePath, addsubroomlist,0);
     const std::string fileName = "details/teacher_file.csv";
-    TeacherName->DataSource = CreateDataTableFromCSV1(fileName);
+    TeacherName->DataSource = CreateDataTableFromCSV1(fileName,"teacherName");
     TeacherName->DisplayMember = "TeacherName"; // Update to the correct column name
     TeacherName->ValueMember = "TeacherName";
     list<string> itemsList;
-    //for each (Object ^ item in TeacherName->Items)
-    //{
-    //    if (!String::IsNullOrEmpty(item->ToString()))
-    //    {
-    //        itemsList.push_back(msclr::interop::marshal_as<string>(item->ToString()));
-    //    }
-    //}
-    //itemsList.sort();
-    //TeacherName->Items->Clear();
-    //for each (string sortedItem in itemsList)
-    //{
-    //    TeacherName->Items->Add(msclr::interop::marshal_as<String^>(sortedItem));
-    //}
-    Teacher_Name->DataSource = CreateDataTableFromCSV2(fileName);
+    Teacher_Name->DataSource = CreateDataTableFromCSV1(fileName,"Teacher_Name");
     Teacher_Name->DisplayMember = "Teacher_Name"; // Update to the correct column name
     Teacher_Name->ValueMember = "Teacher_Name";
     button11->BackColor = Color::FromArgb(0, 0, 100);
@@ -7335,43 +7663,45 @@ private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ 
     button8->BackColor = Color::FromArgb(0, 0, 77);
     button10->BackColor = Color::FromArgb(0, 0, 77);
     button5->BackColor = Color::FromArgb(0, 0, 77);
-    DisplayCluster("details/Electivetimetable.csv", textBox15);
-    InitializeMatrix(tableLayoutPanel1, addsubsave, "ele");
-    tableLayoutPanel1->Visible = false;
-    panel8->Top = tableLayoutPanel1->Top;
+    DisplayCluster("details/Electivetimetable.csv", addsubcluster);
+    InitializeMatrix3(tableLayoutPanel1, "ele", "Available");
+    addsubeletablepanel->Visible = false;
+    panelsub->Top = addsubeletablepanel ->Top;
 }
 private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs^ e) {
     
     bool  flag = true;
-    if(String::IsNullOrEmpty(textBox16->Text))
+    bool eleflag = true;
+    if(String::IsNullOrEmpty(addsubname->Text))
     {
         MessageBox::Show("Subject Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
         flag = false;
+        eleflag = false;
     }
-    if ((!radioButton10->Checked) && (!radioButton9->Checked))
+    if ((!addsubeleyes->Checked) && (!addsubeleno->Checked))
     {
         MessageBox::Show("Select whether it is a elective or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         flag = false;
     }
-     if(radioButton10->Checked)
+     if(addsubeleyes->Checked)
     {
-        if (String::IsNullOrEmpty(textBox15->Text))
+        if (String::IsNullOrEmpty(addsubcluster->Text))
         {
             MessageBox::Show("Elective name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
+            eleflag = false;
         }
         if (sedataGridView->RowCount==1)
         {if(sedataGridView->Rows[0]->Cells[0]->Value==nullptr)
             MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
+            eleflag = false;
         }
     }
-     if ((!radioButton8->Checked) && (!radioButton7->Checked))
+     if ((!addsublabyes->Checked) && (!addsublabno->Checked) && (!addsubeleyes->Checked))
      {
          MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
          flag = false;
      }
-     if (radioButton8->Checked)
+     if (addsublabyes->Checked)
      {
          if (sldataGridView->RowCount == 1)
          {
@@ -7379,206 +7709,267 @@ private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs
                  MessageBox::Show("Lab teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
              flag = false;
          }
-         if (checkedListBox2->CheckedItems->Count == 0)
+         if (addsubroomlist->CheckedItems->Count == 0)
          {
              MessageBox::Show("Select Default rooms for lab", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
              flag = false;
          }
      }
-     if (bfactorupdown->Value <= 1)
+     if (addsubbfactor->Value <= 0 &&  !addsubeleyes->Checked)
      {
          MessageBox::Show("Invalid bfactor Value", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
          flag = false;
      }
- if(flag)
- {
     String^ filePath = "details/subject_file.csv";
-    if (radioButton10->Checked)
+    if (addsubeleyes->Checked)
     {
-        vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
-        bool flag = false;
-        for (int i = 0; i < 6; i++)
+        if (eleflag)
         {
-            for (int j = 0; j < 6; j++)
+            vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
+            bool flag = false;
+            for (int i = 0; i < 6; i++)
             {
-                Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i * 6 + j + 1)]);
-                if (button != nullptr)
+                for (int j = 0; j < 6; j++)
                 {
-                    if (button->Text == "blocked")
-                        flag = true;
-                }
-            }
-         
-        }
-        if (!flag)
-        {
-            MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-        }
-        else
-        {
-            vector<vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            ofstream file("details/Electivetimetable.csv");
-            bool flags = true;
-            if (file.is_open())
-            {
-                for (const auto &row : data)
-                {
-                    if (row[0] == msclr::interop::marshal_as<string>(textBox15->Text))
+                    Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i * 6 + j + 1)]);
+                    if (button != nullptr)
                     {
-                        flags = false;
-                        file << row[0];
-                        for (int i = 1; i < 37; i++)
+                        if (button->Text == "blocked")
+                            flag = true;
+                    }
+                }
+
+            }
+            if (!flag)
+            {
+                MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            }
+            else
+            {
+                vector<vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
+                try {
+                    File::Copy("details/Electivetimetable.csv", "details/duplicate.csv", true);
+                }
+                catch (Exception^ e)
+                {
+                    MessageBox::Show("Other process is running in the background", "Message", MessageBoxButtons::OK, MessageBoxIcon::Error);
+                    goto a;
+                }
+                ofstream file("details/duplicate.csv");
+                bool flags = true;
+
+                if (file.is_open())
+                {
+                    for (const auto& row : data)
+                    {
+                        if (row[0] == msclr::interop::marshal_as<string>(addsubcluster->Text))
+                        {
+                            flags = false;
+                            file << row[0];
+                            for (int i = 1; i <= 36; i++)
+                            {
+                                Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i)]);
+                                if (button != nullptr)
+                                {
+                                    if (button->Text == "blocked")
+                                    {
+                                        file << "," << msclr::interop::marshal_as<string>(addsubname->Text);
+                                        for (int j = 0; j < sedataGridView->RowCount; j++)
+                                        {
+                                            if (sedataGridView->Rows[j]->Cells[0]->Value != nullptr)
+                                            {
+                                                for (auto& row : temp)
+                                                {
+                                                    string s = msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString());
+                                                    if (row[0] == s)
+                                                    {
+                                                        row[(2 * i)] = '1';
+                                                    }
+                                                    else
+                                                    {
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                        file << "," << row[i];
+                                }
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < row.size() - 1; i++)
+                            {
+                                file << row[i] << ",";
+                            }
+                            file << row[row.size() - 1] << "\n";
+                        }
+                    }
+                    if (flags)
+                    {
+                        file << msclr::interop::marshal_as<string>(addsubcluster->Text);
+                        for (int i = 1; i <= 36; i++)
                         {
                             Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i)]);
                             if (button != nullptr)
                             {
                                 if (button->Text == "blocked")
                                 {
-                                    file << "," << msclr::interop::marshal_as<string>(textBox16->Text);
-                                    for (int j= 0; j < sedataGridView->RowCount; j++)
+                                    file << "," << msclr::interop::marshal_as<string>(addsubname->Text);
+                                    for (int j = 0; j < sedataGridView->RowCount; j++)
                                     {
                                         if (sedataGridView->Rows[j]->Cells[0]->Value != nullptr)
                                         {
-                                            for (auto &row : temp)
+                                            for (auto& row : temp)
                                             {
-                                                if (row[0] == msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString()));
+                                                if (row[0] == msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString()))
                                                 {
-                                                    row[(2*i)] = '1';
+                                                    row[2 * i] = '1';
                                                 }
                                             }
                                         }
                                     }
-                                    
                                 }
                                 else
-                                    file << ","<<row[i];
+                                    file << ",0";
                             }
                         }
+
                     }
-                    else
-                    {
-                        for (int i = 0; i < row.size() - 1; i++)
-                        {
-                            file << row[i] << ",";
+                }
+                file.close();
+                File::Copy("details/duplicate.csv", "details/Electivetimetable.csv", true);
+                File::Delete("details/duplicate.csv");
+                ofstream tFile("details/teacher_file.csv");
+                if (tFile.is_open()) {
+                    for (const auto& t : temp) {
+                        for (int i = 0; i < t.size() - 1; i++) {
+                            tFile << t[i] << ",";
                         }
-                        file << row[row.size() - 1] << "\n";
+                        tFile << t[t.size() - 1] << "\n";
                     }
                 }
-                if (flags)
-                {
-                    file << msclr::interop::marshal_as<string>(textBox15->Text);
-                    for (int i = 1; i < 37; i++)
-                    {
-                        Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i)]);
-                        if (button != nullptr) 
-                        {
-                            if (button->Text == "blocked")
-                            {
-                                file << "," << msclr::interop::marshal_as<string>(textBox16->Text);
-                                for (int j = 0; j< sedataGridView->RowCount; j++)
-                                {
-                                    if (sedataGridView->Rows[j]->Cells[0]->Value != nullptr)
-                                    {
-                                        for (auto& row : temp)
-                                        {
-                                            if (row[0] == msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString()));
-                                            {
-                                                row[2*i] = '1';
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                                file << ",0";
-                        }
-                    }
-                   
-                }
+                tFile.close();
+                MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             }
-            file.close(); 
-            ofstream tFile("details/teacher_file.csv");
-            if (tFile.is_open()) {
-                for (const auto &t : temp) {
-                    for (int i = 0; i < t.size() - 1; i++) {
-                        tFile << t[i] << ",";
-                    }
-                    tFile << t[t.size() - 1] << "\n";
-                }
-            }
-            tFile.close();
-            MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         }
     }
-    else
+    else 
     {
+        if(flag)
         subcsvgen(filePath);
     }
-}
- DisplayCluster("details/Electivetimetable.csv", textBox15);
+a:
+    {}
+ DisplayCluster("details/Electivetimetable.csv", addsubcluster);
 }
 
 private: System::Void sldataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
     deletebutton(dataGridViewButtonColumn4, sldataGridView, sender, e);
 }
 private: System::Void newaddsub_Click(System::Object^ sender, System::EventArgs^ e) {
-    textBox16->Clear();
-    textBox15->Text = "";
-    radioButton10->Checked = false;
-    radioButton9->Checked = false;
-    radioButton8->Checked = false;
-    radioButton7->Checked = false;
+    addsubname->Clear();
+    addsubcluster->Text = "";
+    addsubeleyes->Checked = false;
+    addsubeleno->Checked = false;
+    addsubcluster->Cursor = Cursors::No;
+    sedataGridView->Rows->Clear();
+    sedataGridView->Cursor = Cursors::No;
+    sedataGridView->ReadOnly = true;
     sldataGridView->Rows->Clear();
     sedataGridView->Rows->Clear();
-    numericUpDown5->Value = 0;
-    bfactorupdown->Value = 0;
-    for (int i = 0; i < checkedListBox2->Items->Count; i++) {
-        checkedListBox2->SetItemChecked(i, false);
+    addsubcredits->Value = 0;
+    addsubbfactor->Value = 0;
+    for (int i = 0; i < addsubroomlist->Items->Count; i++) {
+        addsubroomlist->SetItemChecked(i, false);
     }
-    if (button20->Visible)
+    if (addsubeletablepanel->Visible)
     {
-        button20->Visible = false;
-        tableLayoutPanel1->Visible = false;
-        panel8->Top = tableLayoutPanel1->Top;
+        addsubeletablepanel->Visible = false;
+        panelsub->Top = addsubeletablepanel->Top;
     }
+    addsublabyes->Enabled = true;
+    addsublabno->Enabled = true;
+    sldataGridView->Cursor = Cursors::No;
+    addsublabyes->Cursor = Cursors::Arrow;
+    addsublabno->Cursor = Cursors::Arrow;
+    addsubcredits->ReadOnly = false;
+    addsubcredits->Cursor = Cursors::Arrow;
+    addsubroomlist->Cursor = Cursors::Arrow;
+    addsubroomlist->Enabled = true;
+    addsubbfactor->ReadOnly = false;
+    addsubbfactor->Cursor = Cursors::Arrow;
 }
 private: System::Void sedataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
     deletebutton(dataGridViewButtonColumn5, sedataGridView, sender, e);
 }
-private: System::Void radioButton9_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-    if (radioButton9->Checked)
+private: System::Void addsubeleno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (addsubeleno->Checked)
     {
         
-        textBox15->Text = "";
-        textBox15->Cursor = Cursors::No;
+        addsubcluster->Text = "";
+        addsubcluster->Cursor = Cursors::No;
         sedataGridView->Rows->Clear();
         sedataGridView->Cursor = Cursors::No;
         sedataGridView->ReadOnly = true;
-        if (button20->Visible)
+        addsubclusteroptions->Cursor = Cursors::No;
+        if (addsubeletablepanel->Visible)
         {
-            button20->Visible = false;
-            tableLayoutPanel1->Visible = false;
-            panel8->Top = tableLayoutPanel1->Top;
+            addsubeletablepanel->Visible = false;
+            panelsub->Top = addsubeletablepanel->Top;
         }
+        addsublabyes->Enabled = true;
+        addsublabno->Enabled = true;
+        sldataGridView->Rows->Clear();
+        sldataGridView->Cursor = Cursors::Arrow;
+        addsublabyes->Cursor = Cursors::Arrow;
+        addsublabno->Cursor = Cursors::Arrow;
+        sedataGridView->ReadOnly = false;
+        addsubcredits->Value = 0;
+        addsubcredits->ReadOnly = false;
+        addsubcredits->Cursor = Cursors::Arrow;
+        addsubroomlist->Cursor = Cursors::Arrow;
+        addsubroomlist->Enabled = true;
+        addsubbfactor->Value = 0;
+        addsubbfactor->ReadOnly = true;
+        addsubbfactor->Cursor = Cursors::Arrow;
     }
 }
-private: System::Void radioButton10_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-    if (radioButton10->Checked)
+private: System::Void addsubeleyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (addsubeleyes->Checked)
     {
-        textBox15->Text="";
+        addsubcluster->Text="";
         sedataGridView->Cursor = Cursors::Arrow;
         sedataGridView->ReadOnly = false;
-        textBox15->Cursor = Cursors::Arrow;
-        button20->Visible = true;
-        tableLayoutPanel1->Visible = true;
+        addsubcluster->Cursor = Cursors::Arrow;
+        addsubclusteroptions->Cursor = Cursors::Arrow;
+        addsubbfactor->Value = 0;
+        addsubbfactor->ReadOnly = true;
+        addsublabno->Checked = false;
+        addsublabyes->Checked = false;
+        addsublabyes->Enabled = false;
+        addsublabno->Enabled = false;
+        sldataGridView->Rows->Clear();
+        sldataGridView->ReadOnly = true;
+        sldataGridView->Cursor = Cursors::No;
+        addsublabyes->Cursor = Cursors::No;
+        addsublabno->Cursor = Cursors::No;
+        addsubbfactor->Cursor = Cursors::No;
+        addsubcredits->Cursor = Cursors::No;
+        addsubcredits->Value = 0;
+        addsubcredits->ReadOnly = true;
+        addsubroomlist->Cursor = Cursors::No;
+        addsubroomlist->Enabled = false;
     }
 }
-private: System::Void radioButton7_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void addsublabno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
     sldataGridView->Rows->Clear();
     sldataGridView->Cursor = Cursors::No;
-    sldataGridView->ReadOnly = true;;
+    sldataGridView->ReadOnly = true;
 }
-private: System::Void radioButton8_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void addsublabyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
     sldataGridView->Cursor = Cursors::Arrow;
     sldataGridView->ReadOnly = false;
 }
@@ -7598,13 +7989,13 @@ private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ 
     DisplayCSVInComboBox1("details/dept_file.csv", comboBox3);
     DisplayCSVInListBox("details/classroom.csv", checkedListBox1,3);
     displaylabs("details/subject_file.csv");
-    csubject->DataSource = CreateDataTableFromCSV3("details/subject_file.csv");
+    csubject->DataSource = CreateDataTableFromCSV1("details/subject_file.csv","Core Subject");
     csubject->DisplayMember = "Core Subject"; // Update to the correct column name
     csubject->ValueMember = "Core Subject";
-    cteacher->DataSource = CreateDataTableFromCSV4("details/teacher_file.csv");
+    cteacher->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv","cteacher");
     cteacher->DisplayMember = "cteacher"; // Update to the correct column name
     cteacher->ValueMember = "cteacher";
-    eSubject->DataSource = CreateDataTableFromCSV7("details/electivetimetable.csv");
+    eSubject->DataSource = CreateDataTableFromCSV1("details/electivetimetable.csv","esubject");
     eSubject->DisplayMember = "eSubject"; // Update to the correct column name
     eSubject->ValueMember = "eSubject";
     panel3->Height = button15->Height;
@@ -7634,11 +8025,11 @@ private: System::Void dataGridView3_CellContentClick(System::Object^ sender, Sys
 private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
     deletebutton(dataGridViewButtonColumn2, dataGridView1, sender, e);
 }
-private: System::Void textBox15_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void addsubcluster_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void addsubjectpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
-private: System::Void button20_Click_1(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void addsubclusteroptions_Click_1(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button21_Click(System::Object^ sender, System::EventArgs^ e) {
 
@@ -7860,7 +8251,8 @@ private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ 
                 file << tt;
                 file.close();
             }
-            ofstream files("details/teacher_file.csv");
+            File::Copy("details/teacher_file.csv","details/duplicate.csv",true);
+            ofstream files("details/duplicate.csv");
             if (files.is_open())
             {
                 for (auto t : allsections[allsections.size() - 1].allTeachers)
@@ -7870,6 +8262,8 @@ private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ 
 
             }
             files.close();
+            File::Copy("details/duplicate.csv", "details/teacher_file.csv",true);
+            File::Delete("details/duplicate.csv");
             ofstream fils("details/classroom.csv");
             if (fils.is_open())
             {
@@ -7888,6 +8282,10 @@ private: System::Void button17_Click(System::Object^ sender, System::EventArgs^ 
 private: System::Void textBox16_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void pictureBox10_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (File::Exists("details/duplicate.csv"))
+    {
+        MessageBox::Show("Data not saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Error);
+    }
     Application::Exit();
 }
 private: System::Void textBox11_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -7918,27 +8316,6 @@ private: System::Void editteacherdelete_Click(System::Object^ sender, System::Ev
         for (int i = 1; i <= 36; ++i)
         {
             String^ tagValue = i.ToString();
-            Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttonteditteacher{0}", tagValue)]);
-            if (button != nullptr)
-            {
-                button->Text = "Free";
-                button->BackColor = Color::FromArgb(179,255,230);
-            }
-        }
-        editteacherdepartment->Text = "";
-    }
- 
-}
-
-private: System::Void editteachersave_Click(System::Object^ sender, System::EventArgs^ e) {
-    if (MessageBox::Show("Are you sure you want to save the changes", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
-    {
-        editteachercsvsave("details/teacher_File.csv");
-
-        editteachername->Clear();
-        for (int i = 1; i <= 36; ++i)
-        {
-            String^ tagValue = i.ToString();
             Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
             if (button != nullptr)
             {
@@ -7947,6 +8324,41 @@ private: System::Void editteachersave_Click(System::Object^ sender, System::Even
             }
         }
         editteacherdepartment->Text = "";
+    }
+ 
+}
+
+private: System::Void editteachersave_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool flag = true;
+    if (String::IsNullOrEmpty(editteachername->Text))
+    {
+        MessageBox::Show("Teacher Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (String::IsNullOrEmpty(editteacherdepartment->Text))
+    {
+        MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (flag)
+    {
+        if (MessageBox::Show("Are you sure you want to save the changes", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
+        {
+            editteachercsvsave("details/teacher_File.csv");
+
+            editteachername->Clear();
+            for (int i = 1; i <= 36; ++i)
+            {
+                String^ tagValue = i.ToString();
+                Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
+                if (button != nullptr)
+                {
+                    button->Text = "Free";
+                    button->BackColor = Color::FromArgb(179, 255, 230);
+                }
+            }
+            editteacherdepartment->Text = "";
+        }
     }
 }
 private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^ e) {
@@ -8059,10 +8471,10 @@ private: System::Void editsubjectpanel_Paint(System::Object^ sender, System::Win
 private: System::Void panel9_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 private: System::Void button10_Click_1(System::Object^ sender, System::EventArgs^ e) {
-    editsubeleteachercombo->DataSource = CreateDataTableFromCSV5("details/teacher_file.csv");
+    editsubeleteachercombo->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv","editsubeleteachercombo");
     editsubeleteachercombo->DisplayMember = "editsubeleteachercombo"; // Update to the correct column name
     editsubeleteachercombo->ValueMember = "editsubeleteachercombo";
-    editsublabteachercombo->DataSource = CreateDataTableFromCSV6("details/teacher_file.csv");
+    editsublabteachercombo->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv","editsublabteachercombo");
     editsublabteachercombo->DisplayMember = "editsublabteachercombo"; // Update to the correct column name
     editsublabteachercombo->ValueMember = "editsublabteachercombo";
     DisplayCSVInListBox("details/classroom.csv",editsubroomlist,0);
@@ -8235,10 +8647,18 @@ private: System::Void editsublabno_CheckedChanged(System::Object^ sender, System
 }
 private: System::Void panel7_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
-private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) {
-    panel8->Top = tableLayoutPanel1->Bottom;
-    InitializeMatrix(tableLayoutPanel1,addsubsave,"ele");
-    onOptionClick();
+private: System::Void addsubclusteroptions_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (addsubeleyes->Checked == true)
+    {
+        addsubeletablepanel->Visible = true;
+        panelsub->Top = addsubeletablepanel->Bottom;
+        InitializeMatrix3(tableLayoutPanel1, "ele", "Available");
+        onOptionClick();
+    }
+    else
+    {
+        MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+    }
 }
 private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ e) {
     bool  flag = true;
@@ -8366,11 +8786,14 @@ private: System::Void button19_Click(System::Object^ sender, System::EventArgs^ 
         {
             for (int j = 0; j < obj.timeTable[i].size(); j++)
             {
-                Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
-                if (obj.timeTable[i][j] != "f")
-                    button->Text = msclr::interop::marshal_as<String^>(obj.timeTable[i][j]);
-                else
-                    button->Text = "free";
+                if (j != 2)
+                {
+                    Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
+                    if (obj.timeTable[i][j] != "f")
+                        button->Text = msclr::interop::marshal_as<String^>(obj.timeTable[i][j]);
+                    else
+                        button->Text = "free";
+                }
             }
         }
     }
@@ -8397,6 +8820,12 @@ private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ 
     deptDataGridView->Rows->Clear();
 }
 private: System::Void editroompanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void tableLayoutPanel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void panelsub_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
