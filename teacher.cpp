@@ -8,7 +8,7 @@ class teacher {
 public:
     std::string name;//name of teacher
     std::string branch;//branch of teacher
-
+    std::string email;
     std::vector<std::vector<bool>> timeTable;//when teacher is free. 1 for free 0 for occupiued.
     std::vector<std::vector<unsigned>> timeTableName;//what teacher is teaching when occupied. changes done by program, not taken from user.
 
@@ -27,6 +27,7 @@ public:
 bool teacher::readData(std::string inp) {
     enum format {
         namen,
+        emailn,
         branchn,
         //workHoursn,
         timeTablen
@@ -41,6 +42,9 @@ bool teacher::readData(std::string inp) {
             switch (commacount) {
             case namen:
                 name.push_back(inp[i]);
+                break;//read name
+            case emailn:
+                email.push_back(inp[i]);
                 break;//read name
             case branchn:
                 branch.push_back(inp[i]);
@@ -78,6 +82,8 @@ a:
 std::string teacher::convertToString() {
     std::string output;
     output = name;
+    output.push_back(',');
+    output += email;
     output.push_back(',');
     output += branch;
     //output.push_back(',');

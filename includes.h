@@ -2,22 +2,23 @@
 #include<string>
 #include<vector>
 #include"configs.cpp"
-
 class subject {
 public:
     std::string name;
+    std::string title;
     std::string elective;
+    std::string courseCode;
     bool lab;
     int credits, hoursPerCredit;
     unsigned short int bFactor;
     std::vector<std::string> rooms;
+    std::string subjectCode;
     bool readData(std::string inp);
     std::string convertToString();
     subject() {
         credits = 0;
         hoursPerCredit = 0;
         bFactor = 0;
-        lab = false;
     };
 };
 
@@ -25,7 +26,7 @@ class teacher {
 public:
     std::string name;//name of teacher
     std::string branch;//branch of teacher
-
+    std::string email;
     std::vector<std::vector<bool>> timeTable;//when teacher is free. 1 for free 0 for occupiued.
     std::vector<std::vector<unsigned>> timeTableName;//what teacher is teaching when occupied. changes done by program, not taken from user.
 

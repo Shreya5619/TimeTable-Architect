@@ -6,11 +6,14 @@
 class subject {
 public:
     std::string name;
+    std::string title;
     std::string elective;
+    std::string courseCode;
     bool lab;
     int credits, hoursPerCredit;
     unsigned short int bFactor;
     std::vector<std::string> rooms;
+    std::string subjectCode;
     bool readData(std::string inp);
     std::string convertToString();
     subject() {
@@ -22,11 +25,14 @@ public:
 bool subject::readData(std::string inp) {
     enum format {
         namen,
+        titlen,
+        courseCoden,
         electiven,
         labn,
         creditsn,
         hoursPerCreditn,
         bFactorn,
+        subjectCoden,
         roomsn,
     };
     int commaCount = 0;
@@ -39,6 +45,12 @@ bool subject::readData(std::string inp) {
             switch (commaCount) {
             case namen:
                 name.push_back(inp[i]);
+                break;
+            case titlen:
+                title.push_back(inp[i]);
+                break;
+            case courseCoden:
+                courseCode.push_back(inp[i]);
                 break;
             case electiven:
                 elective.push_back(inp[i]);
@@ -55,6 +67,9 @@ bool subject::readData(std::string inp) {
             case bFactorn:
                 bFactor = bFactor * 10 + inp[i] - '0';
                 break;
+            case subjectCoden:
+                subjectCode.push_back(inp[i]);
+                break;//read name
             case roomsn:
                 int commaCount = 0;
                 i++;
@@ -76,6 +91,7 @@ bool subject::readData(std::string inp) {
 
             }
         }
+        return 1;
     }
     catch (...) {
         return 0;
@@ -84,11 +100,13 @@ bool subject::readData(std::string inp) {
 std::string subject::convertToString() {
     std::string out;
     out = name + ",";
+    out += title + ",";
+    out += courseCode + ",";
     out += elective + ",";
     out += std::to_string(lab) + ",";
     out += std::to_string(credits) + ",";
     out += std::to_string(hoursPerCredit) + ",";
-    out += std::to_string(bFactor) + ",[";
+    out += std::to_string(bFactor) + "," + subjectCode + ",[";
     for (int i = 0; i < rooms.size() - 1; i++) {
         out += rooms[i] + ",";
     }
