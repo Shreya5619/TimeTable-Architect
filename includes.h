@@ -12,7 +12,6 @@ public:
     int credits, hoursPerCredit;
     unsigned short int bFactor;
     std::vector<std::string> rooms;
-    std::string subjectCode;
     bool readData(std::string inp);
     std::string convertToString();
     subject() {
@@ -21,7 +20,6 @@ public:
         bFactor = 0;
     };
 };
-
 class teacher {
 public:
     std::string name;//name of teacher
@@ -62,4 +60,78 @@ public:
             timeTableName.push_back(b);
         }
     }//initialise all classes to zero.
+};
+
+class section {
+public:
+    int name;
+    std::vector<teacher> allTeachers;
+    std::vector<std::string> coreTeachers;
+    std::vector<subject> coreSubjects;
+    void addCore(std::string Teacher, subject Subject);
+
+
+    std::vector<std::vector<std::string>> labTeachers;
+    std::vector<subject> labSubjects;
+    std::vector<int> noOfLabs;
+    std::vector<int> noTeachersPerLab;
+    void addLab(std::vector<std::string> teacherList, subject Subject, int noLabs, int noTeachersLab);
+    //make a vector type list of the names of teachers who can take the subject. then pass a subject object to the function
+    //third parameter is how many lab rooms do you need per session Last is how many teachers you need per lab
+
+    std::vector<room> allRooms;
+    std::vector<std::string> defaultRooms;
+    std::vector<std::vector<std::string>> timeTable;
+    std::vector<std::vector<std::string>> teacherTable;
+    std::vector<std::vector<std::string>> roomTable;
+    std::string formattedOutput;
+
+    void block(int i, int j, std::string Teacher, std::string Subject);
+    void makeTIMETABLE();
+    void showTimeTable();
+    void showTeacherTable();
+    void showRoomTable();
+    section() {
+        log += "Section object constructor";
+        std::vector<std::string> deff = { "f","f","f","f","f","f" };
+        std::vector<std::string> defNA = { "NA","NA","NA","NA","NA","NA" };
+        log += "\ninside constructor going to initialise timeTable,roomTable,teacherTable and bfactor";
+        for (int i = 0; i < days; i++) {
+            timeTable.push_back(deff);
+            teacherTable.push_back(deff);
+            roomTable.push_back(defNA);
+            bfactor.push_back(0);
+        }
+        log += "\ninitialisation of tables done, going to exit constructor.";
+        formattedOutput = "TIME DAY,9:00-10:00,10:00-11:00,,11:30-12:30,12:30-1:30,,2:30-3:30,3:30-4:30\n";
+    }
+    std::string convertToString();
+    bool readData(std::string inp);
+    bool error_;
+    std::string errorMessage;
+    int _intersections;// a variable reserved for the findIntersection function. the fucntion will alter this number 
+    std::string log;// log of where the program has reached.
+    //and change it to how many intersections it has found
+    //returns a vector of vector of bools. 0 represents all the timetables are free at that period,day. 
+    //1 represents not all are free 
+    //the following factors are used by findWeightageLab for scoring which periods to use for allotment. change the following to adjust allotment
+    int busyFactorL = 10;//busy factor is addded if teacher is either busy before or after the period.
+    int freeFactorL = 25;//freefactor is addded if teacher is either free before or after the period
+    int baseFactorL = 5;//it helps in choosing teachers that are already free over the others.
+
+    //the following factors are used by findWeightageCore for scoring which periods to use for allotment. change the following to adjust allotment
+    int busyFactorC = 10;//busy factor is addded if teacher is either busy before or after the period.
+    int freeFactorC = 25;//freefactor is addded if teacher is either free before or after the period
+    int baseFactorC = 5;//this factor is added to all the subjects, it helps in choosing teachers that are already free over the others.
+    float reductionIndexC = 1.5;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
+    bool deAllocate();
+private:
+    std::vector<int> bfactor;
+    std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
+    std::vector<std::vector<bool>> findIntersection(std::vector<std::vector<std::vector<bool>>> inputs, std::vector<std::vector<std::string>> def = {});
+    room& returnRoom(std::string name);
+    teacher& returnTeacher(std::string inp);
+    subject& returnSubject(std::string inp);
+    std::vector<std::vector<int>> findWeightageLab(std::vector < std::vector<bool>> inp, std::vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
+    std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
 };

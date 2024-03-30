@@ -13,7 +13,6 @@ public:
     int credits, hoursPerCredit;
     unsigned short int bFactor;
     std::vector<std::string> rooms;
-    std::string subjectCode;
     bool readData(std::string inp);
     std::string convertToString();
     subject() {
@@ -32,7 +31,6 @@ bool subject::readData(std::string inp) {
         creditsn,
         hoursPerCreditn,
         bFactorn,
-        subjectCoden,
         roomsn,
     };
     int commaCount = 0;
@@ -67,9 +65,6 @@ bool subject::readData(std::string inp) {
             case bFactorn:
                 bFactor = bFactor * 10 + inp[i] - '0';
                 break;
-            case subjectCoden:
-                subjectCode.push_back(inp[i]);
-                break;//read name
             case roomsn:
                 int commaCount = 0;
                 i++;
@@ -106,7 +101,7 @@ std::string subject::convertToString() {
     out += std::to_string(lab) + ",";
     out += std::to_string(credits) + ",";
     out += std::to_string(hoursPerCredit) + ",";
-    out += std::to_string(bFactor) + "," + subjectCode + ",[";
+    out += std::to_string(bFactor) + ",[";
     for (int i = 0; i < rooms.size() - 1; i++) {
         out += rooms[i] + ",";
     }
