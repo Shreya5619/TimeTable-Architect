@@ -191,7 +191,7 @@ std::vector<std::vector<bool>> section::findIntersection(std::vector<std::vector
     return output;
 }
 
-//a function that returns all possible 'required' number of combinations from the vector of teacghers. designed for finding all possible lab allotments.
+//a function that returns all possible 'required' number of combinations from the vector of teachers. designed for finding all possible lab allotments.
 std::vector<std::vector<std::string>> section::returnCombinations(std::vector<std::string> comb, int required) {
     std::vector<std::vector<std::string>> sols;
     std::vector<int>ptrs;
@@ -201,7 +201,7 @@ std::vector<std::vector<std::string>> section::returnCombinations(std::vector<st
     }
     bool trigger = 1;
     while (trigger) {
-        //this part is adding the combination to the total liost of combination
+        //this part is adding the combination to the total list of combination
         std::vector<std::string> temp;
         temp.push_back(comb[ptrs[0]]);
         for (int i = 1; i < required; i++) {

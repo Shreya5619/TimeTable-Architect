@@ -8327,6 +8327,15 @@ private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs
     {
         if(flag)
         subcsvgen(filePath);
+        fstream file;
+        file.open("details/subject_file.csv");
+        if (file.is_open())
+        {
+            string line;
+            file >> line;
+            subject obj;
+            obj.readData(line);
+        }
     }
 a:
     {}

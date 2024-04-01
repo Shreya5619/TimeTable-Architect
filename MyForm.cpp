@@ -6,6 +6,7 @@ std::vector<section> allsections;
 std::string searchteachername="";
 std::string searchroomname;
 std::string searchsubname;
+std::vector<std::vector<bool>> reserveMatrix;
 [STAThreadAttribute]
 
 void main(array<String^>^ args) {
