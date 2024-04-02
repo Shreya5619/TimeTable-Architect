@@ -5,61 +5,108 @@
 #include"includes.h"
 #include"initializer_list"
 // using namespace std;
-class section {
-public:
-    int name;
-    std::vector<teacher> allTeachers;
-    std::vector<std::string> coreTeachers;
-    std::vector<subject> coreSubjects;
-    void addCore(std::string Teacher, subject Subject);
-
-
-    std::vector<std::vector<std::string>> labTeachers;
-    std::vector<subject> labSubjects;
-    std::vector<int> noOfLabs;
-    std::vector<int> noTeachersPerLab;
-    void addLab(std::vector<std::string> teacherList, subject Subject, int noLabs, int noTeachersLab);
-    //make a vector type list of the names of teachers who can take the subject. then pass a subject object to the function
-    //third parameter is how many lab rooms do you need per session Last is how many teachers you need per lab
-
-    std::vector<room> allRooms;
-    std::vector<std::string> defaultRooms;
-    std::vector<std::vector<std::string>> timeTable;
-    std::vector<std::vector<std::string>> teacherTable;
-    std::vector<std::vector<std::string>> roomTable;
-
-    void block(int i, int j, std::string Teacher, std::string Subject);
-    void makeTIMETABLE();
-    void showTimeTable();
-    void showTeacherTable();
-    void showRoomTable();
-    section() {
-        std::vector<std::string> deff = { "f","f","f","f","f","f" };
-        std::vector<std::string> defNA = { "NA","NA","NA","NA","NA","NA" };
-        for (int i = 0; i < days; i++) {
-            timeTable.push_back(deff);
-            teacherTable.push_back(deff);
-            roomTable.push_back(defNA);
-            bfactor.push_back(0);
+bool section::deAllocate() {
+    bool flag = 1;
+    for (int day = 0; day < days; day++) {
+        for (int period = 0; period < periods; period++) {
+            if (timeTable[day][period] != "f") {
+                teacher& currentT = returnTeacher(teacherTable[day][period]);
+                if (!error_) {
+                    currentT.timeTable[day][period] = 0;
+                }
+                else {
+                    //handle lab and esc
+                    errorMessage += "lab teachers deallocation not done";
+                }
+                room& currentR = returnRoom(roomTable[day][period]);
+                if (!error_) {
+                    currentR.timeTable[day][period] = 0;
+                }
+                else {
+                    //handle
+                    errorMessage += "lab rooms deallocation not done";
+                }
+            }
         }
     }
-
-    bool error_;
-    std::string errorMessage;
-    int _intersections;// a variable reserved for th enext function. the fucntion will alter this number 
-    //and change it to how many intersections it has found
-    //returns a vector of vector of bools. 0 represents all the timetables are free at that period,day. 
-    //1 represents not all are free
-private:
-    std::vector<int> bfactor;
-    std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
-    std::vector<std::vector<bool>> findIntersection(std::vector<std::vector<std::vector<bool>>> inputs, std::vector<std::vector<std::string>> def = {});
-    room& returnRoom(std::string name);
-    teacher& returnTeacher(std::string inp);
-    subject& returnSubject(std::string inp);
-    std::vector<std::vector<int>> findWeightageLab(std::vector < std::vector<bool>> inp, std::vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
-    std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
-};
+    return 1;
+}
+std::string section::convertToString() {
+    std::string out;
+    out = std::to_string(name);
+    for (int i = 0; i < days; i++) {
+        for (int j = 0; j < periods; j++) {
+            out += "," + timeTable[i][j] + "," + teacherTable[i][j] + "," + roomTable[i][j];
+        }
+    }
+    return out;
+}
+bool section::readData(std::string inp) {
+    for (auto& row : teacherTable)
+    {
+        for (auto& cell : row)
+        {
+            cell = "";
+        }
+    }
+    for (auto& row : roomTable)
+    {
+        for (auto& cell : row)
+        {
+            cell = "";
+        }
+    }
+    for (auto& row : timeTable)
+    {
+        for (auto& cell : row)
+        {
+            cell = "";
+        }
+    }
+    enum format {
+        namen,
+        timeTablen
+    };
+    int commaCount = 0;
+    try {
+        for (int i = 0; i < inp.size(); i++) {
+            if (inp[i] == ',') {
+                commaCount++;
+                continue;
+            }
+            switch (commaCount) {
+            case namen:
+                name = name * 10 + inp[i] - '0';
+                break;
+            case timeTablen:
+                int commacount = 0;
+                int strptr = i;
+                while (inp[strptr]) {
+                    if (inp[strptr] == ',') {
+                        commacount++;
+                    }
+                    else if (commacount % 3 == 0) {
+                        timeTable[commacount / 18][(commacount % 18) / 3] += inp[strptr];
+                    }
+                    else if (commacount % 3 == 1) {
+                        teacherTable[commacount / 18][(commacount % 18) / 3] += inp[strptr];
+                    }
+                    else {
+                        roomTable[commacount / 18][(commacount % 18) / 3] += inp[strptr];
+                    }
+                    strptr++;
+                }
+                goto b;
+                break;
+            }
+        }
+    }
+    catch (...) {
+        return 0;
+    }
+b:
+    return 1;
+}
 void section::addCore(std::string Teacher, subject Subject) {
     coreTeachers.push_back(Teacher);
     coreSubjects.push_back(Subject);
@@ -540,7 +587,7 @@ void section::makeTIMETABLE() {
             }
         }
         else {
-            errorMessage += "oops! collision occured when alloting " + labSubjects[i].name + "  \n";
+            errorMessage += "collision occured when alloting " + labSubjects[i].name + "  \n";
         }
     }
     //find preferred clasroom
@@ -638,7 +685,7 @@ void section::makeTIMETABLE() {
                             defaultRoom.timeTableName[k][highestindex] = name;
                             for (int j = 0; j < days; j++) {
                                 if (scoredTable[j][highestindex] != -1) {
-                                    scoredTable[j][highestindex] /= 1.5;
+                                    scoredTable[j][highestindex] /= reductionIndexC;
                                 }
                             }
                             //convert thew period to -1 to prevent further allotment on the same day.
@@ -872,7 +919,7 @@ void section::makeTIMETABLE() {
                                             else {
                                                 bool alloted = false;
                                                 for (auto rooms : defaultRooms) {
-                                                    //go through each room and check if its free. if free allot. else put NA and fuck offf
+                                                    //go through each room and check if its free. if free allot. else put NA 
                                                     if (!returnRoom(rooms).timeTable[dayIndex][tHighestIndex]) {
                                                         roomTable[dayIndex][tHighestIndex] = rooms;
                                                         returnRoom(rooms).timeTable[dayIndex][tHighestIndex] = 1;
@@ -897,7 +944,110 @@ void section::makeTIMETABLE() {
                             }
                         }
                         //if credCount still more than 0 means do not best allocation.
-                        //
+                        if (credCount) {
+                            //if here reached means allotment not yet done fully.
+                            for (int day = 0; day < days; day++) {
+                                bool found = false;
+                                for (int period = 0; period < periods; period++) {
+                                    if (timeTable[day][period] == currSubject.name) {
+                                        found = true;
+                                    }
+                                }
+                                if (!found && credCount) {
+                                    for (int period = 0; period < periods; period++) {
+                                        if (!currTeacher.timeTable[day][period]) {
+                                            //if exectution reaches here it implies that the teacher is free at this time. 
+                                            //now check if this subject can be realloted.
+                                            //if alloted break out of loop and decrease credCount
+                                            if (period != -1 && timeTable[day][period] != "block" && timeTable[day][period] != "f") {
+                                                //subject curSub = returnSubject(timeTable[day][period]);//subject thats there on that time.
+                                                int index = -1;
+                                                for (int su = 0; su < coreSubjects.size(); su++) {
+                                                    if (coreSubjects[su].name == timeTable[day][period]) {
+                                                        index = su;
+                                                    }
+                                                }
+                                                if (index != -1) {
+                                                    //found the subject. 
+                                                    teacher& curTeach = returnTeacher(coreTeachers[index]);
+                                                    int tHighest = 0, tHighestIndex = -1, dayIndex;//vars that hold the best score for that teacher.
+                                                    for (int d = 0; d < days; d++) {
+                                                        bool found = false;
+                                                        for (int p = 0; p < periods; p++) {
+                                                            if (timeTable[d][p] == timeTable[day][period] && d != day) {
+                                                                found = true;
+                                                            }
+                                                        }
+                                                        if (!found) {
+                                                            //means not already alloted on that day.
+                                                            // preoceed to allot teacher there and change the timetable.
+                                                            std::vector<std::vector<std::vector<bool>>> temp; temp.push_back(curTeach.timeTable);
+                                                            std::vector < std::vector<bool >>Instersections = findIntersection(temp, timeTable);
+                                                            std::vector<int> teacherScored = findWeightageCore(Instersections, curTeach)[d];//LIST OF AVAILABLE SLOTS
+                                                            int indexs = 0, indexsindex = -1;
+                                                            //find highest on that particualr day
+                                                            for (int q = 0; q < periods; q++) {
+                                                                if (indexs < teacherScored[q]) {
+                                                                    indexs = teacherScored[q];
+                                                                    indexsindex = q;
+                                                                }
+                                                            }
+                                                            //check if its greater than the greates
+                                                            if (indexsindex != -1) {
+                                                                if (indexs > tHighest) {
+                                                                    tHighest = indexs;
+                                                                    tHighestIndex = indexsindex;
+                                                                    dayIndex = d;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                    if (tHighestIndex != -1) {
+                                                        //reallot new teacher.
+                                                        timeTable[dayIndex][tHighestIndex] = timeTable[day][period];
+                                                        teacherTable[dayIndex][tHighestIndex] = curTeach.name;
+                                                        curTeach.timeTable[dayIndex][tHighestIndex] = 1;
+                                                        curTeach.timeTable[day][period] = 1;
+                                                        curTeach.timeTableName[dayIndex][tHighestIndex] = name;
+                                                        if (!defaultRoom.timeTable[dayIndex][tHighestIndex]) {
+                                                            roomTable[dayIndex][tHighestIndex] = defaultRoom.name;
+                                                            defaultRoom.timeTable[dayIndex][tHighestIndex] = 1;
+                                                            defaultRoom.timeTableName[dayIndex][tHighestIndex] = name;
+                                                        }
+                                                        else {
+                                                            bool alloted = false;
+                                                            for (auto rooms : defaultRooms) {
+                                                                //go through each room and check if its free. if free allot. else put NA and fuck offf
+                                                                if (!returnRoom(rooms).timeTable[dayIndex][tHighestIndex]) {
+                                                                    roomTable[dayIndex][tHighestIndex] = rooms;
+                                                                    returnRoom(rooms).timeTable[dayIndex][tHighestIndex] = 1;
+                                                                    returnRoom(rooms).timeTableName[dayIndex][tHighestIndex] = name;
+                                                                    alloted = 1;
+                                                                }
+                                                            }
+                                                            if (!alloted) {
+                                                                roomTable[dayIndex][tHighestIndex] = "NAlloted";
+                                                                errorMessage += "\ndid not allot room for " + timeTable[day][period];
+                                                            }
+                                                        }
+                                                        timeTable[day][period] = currSubject.name;
+                                                        teacherTable[day][period] = currTeacher.name;
+                                                        curTeach.timeTable[day][period] = 1;
+                                                        curTeach.timeTable[day][period] = 1;
+                                                        curTeach.timeTableName[day][period] = name;
+                                                        credCount--;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        if (credCount) {
+                            //if exectution reaches here it means that we cant allot with the current input combination.
+                            errorMessage += std::to_string(credCount) + " session for "+ currSubject.name + " couldnt be alloted.";
+                        }
                     }
                 }
             }
@@ -935,5 +1085,16 @@ void section::makeTIMETABLE() {
             }
         }
     }
+    //Formatting output
+    std::string dayList[] = { "MON","TUE","WED","THU","FRI","SAT" };
+    for (int day = 0; day < days; day++) {
+        formattedOutput += dayList[day] + ",";
+        for (int period = 0; period < periods; period++) {
+            if (!(period % 2) && period != 0) {
+                formattedOutput += ",";
+            }
+            formattedOutput += timeTable[day][period] + ",";
+        }
+        formattedOutput += "\n";
+    }
 }
-
