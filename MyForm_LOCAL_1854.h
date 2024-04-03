@@ -15,39 +15,28 @@ extern std::vector<std::vector<bool>>reserveMatrix;
 namespace TTA_ui {
     using namespace std;
     using namespace System::IO;
-    using namespace System;
-    using namespace System::ComponentModel;
-    using namespace System::Collections;
-    using namespace System::Windows::Forms;
-    using namespace System::Data;
-    using namespace System::Drawing;
+	using namespace System;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing;
     using namespace Drawing2D;
 
-    /// <summary>
-    /// Summary for MyForm
-    /// </summary>
-    public ref class MyForm : public System::Windows::Forms::Form
-    {
-    public:
-        MyForm()
+	/// <summary>
+	/// Summary for MyForm
+	/// </summary>
+	public ref class MyForm : public System::Windows::Forms::Form
+	{
+	public:
+		MyForm()
         {
-
-            InitializeComponent();
-            //
-            //TODO: Add the constructor code here
-            //
-        }
-        System::Void EditingControlShowing(System::Object^ sender, System::Windows::Forms::DataGridViewEditingControlShowingEventArgs^ e)
-        {
-            // Check if the current cell is in the TextBoxColumn
-            if (deptDataGridView->CurrentCell->OwningColumn->Name =="dataGridViewTextBoxColumn1")
-            {
-                // Attach KeyPress event handler to the TextBox control
-                System::Windows::Forms::TextBox^ textBox = dynamic_cast<System::Windows::Forms::TextBox^>(e->Control);
-                textBox->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPress);
-            }
-        }
-
+            
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+		}
         void textBox_KeyDown(Object^ sender, KeyEventArgs^ e)
         {
             // Check if the Enter key was pressed
@@ -61,7 +50,7 @@ namespace TTA_ui {
                 }
             }
         }
-
+        
         void textBox_KeyDownRoom(Object^ sender, KeyEventArgs^ e)
         {
             if (e->KeyCode == Keys::Enter)
@@ -82,7 +71,7 @@ namespace TTA_ui {
                 if (textBox != nullptr)
                 {
                     editsubjectcsvshow();
-
+                    
                 }
             }
         }
@@ -146,7 +135,7 @@ namespace TTA_ui {
                 editsubsearch->ForeColor = Color::Gray; // Change text color to gray when unfocused
             }
         }
-
+  
         void deptcsvgen(DataGridView^ classlab, const string filePath) {
             try
             {
@@ -194,7 +183,7 @@ namespace TTA_ui {
             return data;
         }
 
-        void DisplayCSVInComboBox(DataGridView^ classlab, const string& filename) {
+        void DisplayCSVInComboBox(DataGridView^ classlab,const string& filename) {
             classlab->Rows->Clear();
             vector<vector<string>> data = ReadCSVFile(filename);
 
@@ -234,9 +223,9 @@ namespace TTA_ui {
             for (const auto& row : data) {
                 bool bools = true;
                 String^ rowStringManaged = msclr::interop::marshal_as<String^>(row[0]);
-                for each (Object ^ item in comboBox->Items)
+                for each (Object^ item in comboBox->Items)
                 {
-                    if (item->ToString() == rowStringManaged)
+                    if (item ->ToString() == rowStringManaged)
                         bools = false;
                 }
                 if (bools)
@@ -246,8 +235,8 @@ namespace TTA_ui {
             }
         }
 
-        void deletebutton(DataGridViewButtonColumn^ x, DataGridView^ classlab, System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
-        {
+        void deletebutton(DataGridViewButtonColumn^ x,DataGridView^ classlab, System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+            {
             try
             {
                 if (e->ColumnIndex == x->Index && e->RowIndex >= 0)
@@ -257,11 +246,11 @@ namespace TTA_ui {
                 }
             }
             catch (...)
-            {
+                {
 
             }
         }
-
+ 
         void Button_click(Object^ sender, EventArgs^ e)
         {
             Button^ clickedButton = dynamic_cast<Button^>(sender);
@@ -287,7 +276,7 @@ namespace TTA_ui {
                     clickedButton->Text = "free";
                     clickedButton->BackColor = Color::FromArgb(179, 255, 230);
                 }
-
+                
             }
         }
 
@@ -298,7 +287,7 @@ namespace TTA_ui {
                 // Toggle the text of the clicked button
                 if (clickedButton->Text == "Available")
                 {
-                    clickedButton->Text = addsubname->Text;
+                    clickedButton->Text =addsubname->Text;
                     clickedButton->BackColor = Color::FromArgb(102, 255, 204);
                 }
                 if (clickedButton->Text == addsubname->Text)
@@ -319,17 +308,17 @@ namespace TTA_ui {
             }
         }
 
-        void Button_clickEle(Object^ sender, EventArgs^ e)
+        void Button_clickEle (Object^ sender, EventArgs^ e)
         {
             Button^ clickedButton = dynamic_cast<Button^>(sender);
             if (clickedButton != nullptr) {
                 // Toggle the text of the clicked button
                 if (clickedButton->Text == "Available")
                 {
-                    clickedButton->Text = addsubname->Text;
+                    clickedButton->Text =addsubname->Text;
                     clickedButton->BackColor = Color::FromArgb(102, 255, 204);
                 }
-                else if (clickedButton->Text == "blocked" || clickedButton->Text == addsubname->Text)
+                else if (clickedButton->Text == "blocked" || clickedButton->Text==addsubname->Text)
                 {
                     clickedButton->Text = "Available";
                     clickedButton->BackColor = Color::FromArgb(179, 255, 230);
@@ -347,7 +336,7 @@ namespace TTA_ui {
                     clickedButton->Text = editsubname->Text;
                     clickedButton->BackColor = Color::FromArgb(102, 255, 204);
                 }
-                else if (clickedButton->Text == editsubname->Text)
+                else if (clickedButton->Text ==editsubname->Text)
                 {
                     clickedButton->Text = "Available";
                     clickedButton->BackColor = Color::FromArgb(179, 255, 230);
@@ -358,16 +347,16 @@ namespace TTA_ui {
 
         void change(Button^ clickedButton)
         { // Toggle the text of the clicked button
-            if (clickedButton->Text == "free")
-            {
-                clickedButton->Text = "busy";
-                clickedButton->BackColor = Color::FromArgb(102, 255, 204);
-            }
-            else
-            {
-                clickedButton->Text = "free";
-                clickedButton->BackColor = Color::FromArgb(179, 255, 230);
-            }
+                if (clickedButton->Text == "free")
+                {
+                    clickedButton->Text = "busy";
+                    clickedButton->BackColor = Color::FromArgb(102, 255, 204);
+                }
+                else
+                {
+                    clickedButton->Text = "free";
+                    clickedButton->BackColor = Color::FromArgb(179, 255, 230);
+                }
         }
 
         string replacewhitespace(string text)
@@ -385,7 +374,7 @@ namespace TTA_ui {
         void addnamecsvgen(string filePath)
         {
             try
-            {
+            {   
                 bool flag = true;
                 string find = replacewhitespace(msclr::interop::marshal_as<string>(addteachername->Text));
                 if (searchname(find, "details/teacher_file.csv", 0))
@@ -426,8 +415,8 @@ namespace TTA_ui {
                             }
                         }
                         x += "\n";
-                        replacename(find, filePath, 0, x);
-                        flag = false;
+                      replacename(find, filePath, 0, x);
+                      flag = false;
                     }
                 }
                 if (flag)
@@ -446,7 +435,7 @@ namespace TTA_ui {
                         outputFile << Depname << ",";
                         String^ ename = addteacheremailid->Text->ToString();
                         string eName = replacewhitespace(msclr::interop::marshal_as<string>(ename));
-                        outputFile << eName << ",";
+                        outputFile<<eName << ",";
                         for (int i = 1; i <= 36; ++i)
                         {
                             String^ tagValue = i.ToString();
@@ -480,9 +469,9 @@ namespace TTA_ui {
             }
         }
 
-        bool searchname(string find, string filename, int n)
+        bool searchname(string find, string filename,int n)
         {
-            for (char& a : find)
+            for (char& a :find)
             {
                 a = toupper(static_cast<unsigned char>(a));
             }
@@ -519,27 +508,27 @@ namespace TTA_ui {
             }
             vector<vector<string>>data = ReadCSVFile(filename);
             ofstream file(filename);
-            bool flag = true;
+            bool flag=true;
             if (file.is_open())// Temporary file
             {
-                for (auto& row : data)
+                for ( auto &row : data)
                 {
-                    for (char& a : row[n])
+                    for (char &a : row[n])
                     {
                         a = toupper(static_cast<unsigned char>(a));
                     }
                     if (row[n] == find)
                     {
-                        file << x;
+                        file<< x;
                         flag = false;
                     }
                     else
                     {
                         for (int i = 0; i < row.size() - 1; i++)
                         {
-                            file << row[i] << ",";
+                            file << row[i]<<",";
                         }
-                        file << row[row.size() - 1] << "\n";
+                        file << row[row.size() - 1] <<"\n";
                     }
                 }
             }
@@ -556,56 +545,56 @@ namespace TTA_ui {
             try
             {
                 bool flag = true;
-                string find = replacewhitespace(msclr::interop::marshal_as<string>(roomname->Text));
-                if (searchname(find, "details/classroom.csv", 0))
+                string find =replacewhitespace( msclr::interop::marshal_as<string>(roomname->Text));
+                if (searchname(find,"details/classroom.csv", 0))
                 {
                     System::Windows::Forms::DialogResult Result = MessageBox::Show("Room name already exists.\nDo you want to replace the room.", "Warning", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
-                    if (Result == System::Windows::Forms::DialogResult::Cancel)
-                        flag = false;
-                    else if (Result == System::Windows::Forms::DialogResult::OK)
-                    {
-                        string x;
-                        String^ name = roomname->Text->ToString();
-                        string Name = replacewhitespace(msclr::interop::marshal_as<string>(name));
-                        x += Name + ",";
-                        String^ cap = roomcapacity->Text->ToString();
-                        string Cap = msclr::interop::marshal_as<string>(cap);
-                        x += Cap + ",";
-                        if (roomlabyes->Checked)
-                        {
-                            x = x + "1" + ",";
-                        }
-                        else
-                        {
-                            x = x + "0" + ",";
-                        }
-                        System::String^ dep = roomdept->Text->ToString();
-                        std::string Dep = replacewhitespace(msclr::interop::marshal_as<string>(dep));
-                        x += Dep + ",";
-                        for (int i = 1; i <= 36; ++i)
-                        {
-                            String^ tagValue = i.ToString();
-                            Button^ button = dynamic_cast<Button^>(addroomtablepanel->Controls[String::Format("buttonroom{0}", tagValue)]);
-                            if (button != nullptr)
-                            {
-                                if (button->Text == "Busy")
-                                {
-                                    x += "1,0";
-                                }
-                                else if (button->Text == "Free")
-                                {
-                                    x += "0,0";
-                                }
-                                if (i != 36)
-                                {
-                                    x += ",";
-                                }
-                            }
-                        }
-                        x += "\n";
-                        replacename(find, filePath, 0, x);
-                        flag = false;
-                    }
+                   if( Result== System::Windows::Forms::DialogResult::Cancel)
+                    flag  = false;
+                   else if ( Result == System::Windows::Forms::DialogResult::OK)
+                   {
+                       string x;
+                       String^ name = roomname->Text->ToString();
+                       string Name = replacewhitespace(msclr::interop::marshal_as<string>(name));
+                       x+= Name + ",";
+                       String^ cap = roomcapacity->Text->ToString();
+                       string Cap = msclr::interop::marshal_as<string>(cap);
+                       x+= Cap +",";
+                       if (roomlabyes->Checked)
+                       {
+                           x =x+ "1" + ",";
+                       }
+                       else
+                       {
+                           x =x+"0" + ",";
+                       }
+                       System::String^ dep = roomdept->Text->ToString();
+                       std::string Dep = replacewhitespace(msclr::interop::marshal_as<string>(dep));
+                       x+= Dep + ",";
+                       for (int i = 1; i <= 36; ++i)
+                       {
+                           String^ tagValue = i.ToString();
+                           Button^ button = dynamic_cast<Button^>(addroomtablepanel->Controls[String::Format("buttonroom{0}", tagValue)]);
+                           if (button != nullptr)
+                           {
+                               if (button->Text == "Busy")
+                               {
+                                   x+= "1,0";
+                               }
+                               else if (button->Text == "Free")
+                               {
+                                 x+= "0,0";
+                               }
+                               if (i != 36)
+                               {
+                                   x+= ",";
+                               }
+                           }
+                       }
+                       x += "\n";
+                       replacename(find, filePath, 0, x);
+                       flag = false;
+                   }
                 }
                 if (flag)
                 {
@@ -663,15 +652,15 @@ namespace TTA_ui {
 
         void subcsvgen(String^ filePath)
         {
-            try {
+            try{
                 bool flag = true;
                 string find = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
                 if (searchname(find, "details/subject_file.csv", 0))
                 {
                     System::Windows::Forms::DialogResult Result = MessageBox::Show("Subject already exists.\nDo you want to replace the subject", "Warning", MessageBoxButtons::YesNoCancel, MessageBoxIcon::Exclamation);
-                    if (Result == System::Windows::Forms::DialogResult::Cancel)
+                    if ( Result== System::Windows::Forms::DialogResult::Cancel)
                         flag = false;
-                    else if (Result == System::Windows::Forms::DialogResult::Yes)
+                    else if  (Result==System::Windows::Forms::DialogResult::Yes)
                     {
                         flag = false;
                         string x;
@@ -735,23 +724,23 @@ namespace TTA_ui {
                         String^ Bfact = addsubbfactor->Text->ToString();
                         string BFact = msclr::interop::marshal_as<string>(Bfact);
                         x += BFact + ",";
-                        x += "[";
-                        bool y = true;
+                        x+= "[";
+                        bool y= true;
                         for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
                             String^ value = addsubroomlist->CheckedItems[i]->ToString();
                             std::string Value = msclr::interop::marshal_as<string>(value);
-                            x += Value;
+                            x+= Value;
                             y = false;
                             if (i < addsubroomlist->CheckedItems->Count - 1) {
-                                x += ",";// Add a comma after each value, except the last one
+                              x+= ",";// Add a comma after each value, except the last one
                             }
                         }
                         if (y)
                         {
-                            x += "0";
+                            x+= "0";
                         }
-                        x += "]\n";
-                        replacename(find, "details/subject_file.csv", 0, x);
+                        x+= "]\n";
+                        replacename(find,"details/subject_file.csv", 0, x);
                         flag = false;
                     }
                 }
@@ -838,27 +827,27 @@ namespace TTA_ui {
                     }
                     MessageBox::Show("Saved Successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
                 }
-            }
-            catch (...)
-            {
-                MessageBox::Show("Error Occured while trying to save the data\nTry Closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            }
         }
-
-        void DisplayCSVInListBox(const string& filename, ListBox^ ListBox, int i) {
-            ListBox->Items->Clear();
-            vector<string> a;
-            vector<vector<string>> data = ReadCSVFile(filename);
-
-            for (const auto& row : data) {
-                a.push_back(replaceunderscore(row[i]));
+        catch (...)
+        {
+            MessageBox::Show("Error Occured while trying to save the data\nTry Closing opened files", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+        }
             }
-            std::sort(a.begin(), a.end());
-            for (int i = 0; i < a.size(); i++)
-            {
-                if (!ListBox->Items->Contains(msclr::interop::marshal_as<String^>(a[i])))
-                    ListBox->Items->Add(msclr::interop::marshal_as<String^>(a[i]));
-            }
+
+        void DisplayCSVInListBox(const string& filename, ListBox^ ListBox,int i) {
+                ListBox->Items->Clear();
+                vector<string> a;
+                vector<vector<string>> data = ReadCSVFile(filename);
+
+                for (const auto& row : data) {
+                    a.push_back(replaceunderscore(row[i]));
+                }
+                std::sort(a.begin(), a.end());
+                for (int i = 0; i < a.size(); i++)
+                {
+                    if (!ListBox->Items->Contains(msclr::interop::marshal_as<String^>(a[i])))
+                        ListBox->Items->Add(msclr::interop::marshal_as<String^>(a[i]));
+                }
         }
 
         void editcsvelectivee(const string filePath)
@@ -869,7 +858,7 @@ namespace TTA_ui {
 
                 vector<vector<string>>data = ReadCSVFile(filePath);
                 ofstream outputFile(filePath);
-
+                
                 {
                     for (const auto& row : data)
                     {
@@ -895,18 +884,18 @@ namespace TTA_ui {
                         }
                         else
                         {
-
-                            for (int i = 0; i < row.size() - 1; i++)
-                            {
-                                outputFile << row[i] + ",";
-                            }
-                            outputFile << row[row.size() - 1] << "\n";
-
+                        
+                                   for (int i = 0; i < row.size() - 1; i++)
+                                   {
+                                       outputFile << row[i] + ",";
+                                   }
+                                   outputFile << row[row.size() - 1] << "\n";
+                   
                         }
                     }
                     outputFile.close();
                 }
-
+                
             }
             catch (...)
             {
@@ -914,7 +903,7 @@ namespace TTA_ui {
             }
         }
 
-
+        
         void csvlab(System::String^ filePath)
         {
             try
@@ -925,21 +914,21 @@ namespace TTA_ui {
                     System::String^ name = addsubname->Text->ToString();
                     std::string Name = replacewhitespace(msclr::interop::marshal_as<string>(name));
                     outputFile << Name;
-
+           
                     for (int i = 0; i < sldataGridView->RowCount; ++i)
                     {
                         if (sldataGridView->Rows[i]->Cells[0]->Value != nullptr)
                         {
                             System::String^ cellvalue = sldataGridView->Rows[i]->Cells[0]->Value->ToString();
-                            std::string CellValue = replacewhitespace(msclr::interop::marshal_as<string>(cellvalue));
-                            outputFile << "," << CellValue;
+                            std::string CellValue = msclr::interop::marshal_as<string>(cellvalue);
+                            outputFile <<","<<CellValue;
                         }
                     }
                     outputFile << ",[";
-                    bool x = true;
-                    for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
+                        bool x = true;
+                        for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
                         String^ value = addsubroomlist->CheckedItems[i]->ToString();
-                        std::string Value = replacewhitespace(msclr::interop::marshal_as<string>(value));
+                        std::string Value = msclr::interop::marshal_as<string>(value);
                         outputFile << Value;
                         x = false;
                         if (i < addsubroomlist->CheckedItems->Count - 1) {
@@ -959,7 +948,7 @@ namespace TTA_ui {
             }
         }
 
-        System::Data::DataTable^ CreateDataTableFromCSV1(const std::string filePath, String^ name) {
+        System::Data::DataTable^ CreateDataTableFromCSV1(const std::string filePath,String^ name) {
             System::Data::DataTable^ dataTable = gcnew System::Data::DataTable();
             vector<string> it;
             dataTable->Columns->Add(name);
@@ -999,253 +988,89 @@ namespace TTA_ui {
             return "not found";
         }
 
-        System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-            // Clear the existing graphics
-            e->Graphics->Clear(pictureBox12->BackColor);
+       System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+          // Clear the existing graphics
+          e->Graphics->Clear(pictureBox12->BackColor);
 
-            // Get the image from the PictureBox
-            Image^ image = pictureBox12->Image;
-            if (image == nullptr)
-                return;
+          // Get the image from the PictureBox
+          Image^ image = pictureBox12->Image;
+          if (image == nullptr)
+              return;
 
-            // Calculate the square area to draw the circular image within
-            int size = Math::Min(pictureBox12->Width, pictureBox12->Height);
-            Drawing::Rectangle rect = Drawing::Rectangle((pictureBox12->Width - size) / 2, (pictureBox12->Height - size) / 2, size, size);
+          // Calculate the square area to draw the circular image within
+          int size = Math::Min(pictureBox12->Width, pictureBox12->Height);
+          Drawing::Rectangle rect = Drawing::Rectangle((pictureBox12->Width - size) / 2, (pictureBox12->Height - size) / 2, size, size);
 
-            // Create a GraphicsPath to define the circular region
-            Drawing::Drawing2D::GraphicsPath^ path = gcnew Drawing::Drawing2D::GraphicsPath();
-            path->AddEllipse(rect);
+          // Create a GraphicsPath to define the circular region
+          Drawing::Drawing2D::GraphicsPath^ path = gcnew Drawing::Drawing2D::GraphicsPath();
+          path->AddEllipse(rect);
 
-            // Set the clipping region to the circular area
-            e->Graphics->SetClip(path);
+          // Set the clipping region to the circular area
+          e->Graphics->SetClip(path);
 
-            // Draw the image within the circular region
-            e->Graphics->DrawImage(image, rect);
-        }
-    public:
-        void labcreate(const string filename, section& t)
+          // Draw the image within the circular region
+          e->Graphics->DrawImage(image, rect);
+      }	
+public:
+   void labcreate(const string filename, section& t)
+    {
+        vector<vector<string>>abc =ReadCSVFile(filename);
+        for (int i = 0; i < classlab->RowCount; ++i)
         {
-            vector<vector<string>>abc = ReadCSVFile(filename);
-            for (int i = 0; i < classlab->RowCount; ++i)
+            if (classlab->Rows[i]->Cells[0]->Value != nullptr)
             {
-                if (classlab->Rows[i]->Cells[0]->Value != nullptr)
+                System::String^ cellvalue = classlab->Rows[i]->Cells[0]->Value->ToString();
+                std::string CellValue = msclr::interop::marshal_as<string>(cellvalue);
+                vector<string> a;
+                int j;
+                for (j = 0; j < abc.size(); j++)
                 {
-                    System::String^ cellvalue = classlab->Rows[i]->Cells[0]->Value->ToString();
-                    std::string CellValue = msclr::interop::marshal_as<string>(cellvalue);
-                    vector<string> a;
-                    int j;
-                    for (j = 0; j < abc.size(); j++)
+                    
+                    if (CellValue == (abc[j][0]))
                     {
-
-                        if (CellValue == (abc[j][0]))
+                        ::subject  subj;
+                        subj.readData(returnLine(abc[j][0], "details/subject_file.csv"));
+                        for (int x = 1; x < abc[j].size(); x++)
                         {
-                            ::subject  subj;
-                            subj.readData(returnLine(abc[j][0], "details/subject_file.csv"));
-                            for (int x = 1; x < abc[j].size(); x++)
-                            {
-                                a.push_back(abc[j][x]);
-                            }
-                            t.addLab(a, subj, 2, 2);
-                            break;
+                            a.push_back(abc[j][x]);
                         }
+                        t.addLab(a, subj, 2, 2);
+                        break;
                     }
                 }
-
             }
+
         }
+    }
 
-        void editteachercsvshow(const string filename)
+   void editteachercsvshow(const string filename)
+   {
+       bool flag = true;
+       string*a = &searchteachername;
+        string find = replacewhitespace(msclr::interop::marshal_as<string>(teachersearch->Text));
+        vector<vector<string>>data = ReadCSVFile(filename);
         {
-            bool flag = true;
-            string* a = &searchteachername;
-            string find = replacewhitespace(msclr::interop::marshal_as<string>(teachersearch->Text));
-            vector<vector<string>>data = ReadCSVFile(filename);
-            {
-                for (auto& row : data)
-                {
-                    string str;
-                    for (char& c : find) {
-                        c = std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
-                    }
-                    for (char& c : row[0]) {
-                        str += std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
-                    }
-                    if (find == str)
-                    {
-                        flag = false;
-                        *a = row[0];
-                        editteachername->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[0]));
-                        editteacherdepartment->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[1]));
-                        editteacheremailid->Text = msclr::interop::marshal_as<String^>(row[2]);
-                        for (int i = 3; i < row.size(); i += 2)
-                        {
-                            int x = i / 2;
-                            String^ tagValue = x.ToString();
-                            Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
-                            if (row[i] == "1")
-                            {
-                                button->Text = "Busy";
-                                button->BackColor = Color::FromArgb(102, 255, 204);
-                            }
-                            else
-                            {
-                                button->Text = "Free";
-                                button->BackColor = Color::FromArgb(179, 255, 230);
-                            }
-                        }
-
-                    }
-
-                }
-            }
-            if (flag)
-            {
-                MessageBox::Show("Teacher not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-            }
-        }
-
-        void editteachercsvsave(const string filename)
-
-        {
-            try
-            {
-                string find = searchteachername;
-                bool flag = true;
-                vector<vector<string>>data = ReadCSVFile(filename);
-                ofstream file(filename);
-                {
-                    for (const auto& row : data)
-                    {
-                        if (find == row[0])
-                        {
-                            flag = false;
-                            file << replacewhitespace(msclr::interop::marshal_as<string>(editteachername->Text->ToString()));
-                            file << ",";
-                            file << replacewhitespace(msclr::interop::marshal_as<string>(editteacherdepartment->Text->ToString()));
-                            file << ",";
-                            file << replacewhitespace(msclr::interop::marshal_as<string>(editteacheremailid->Text->ToString()));
-                            file << ",";
-                            for (int i = 1; i < 37; i++)
-                            {
-
-                                String^ tagValue = i.ToString();
-                                Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
-
-                                if (button != nullptr)
-                                {
-                                    if (button->Text == "Busy")
-                                    {
-                                        file << "1,0";
-                                    }
-                                    else if (button->Text == "Free")
-                                    {
-                                        file << "0,0";
-                                    }
-                                    if (i != 36)
-                                    {
-                                        file << ",";
-                                    }
-                                }
-                            }file << "\n";
-                            MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < row.size() - 1; i++)
-                            {
-                                file << row[i] + ",";
-                            }
-                            file << row[row.size() - 1] << "\n";
-                        }
-                    }
-                }file.close();
-                if (flag)
-                {
-                    MessageBox::Show("Teacher not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                }
-
-            }
-            catch (...)
-            {
-                MessageBox::Show("Error saving changes", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            }
-        }
-
-        void editteachercsvdelete(const string filename)
-        {
-            try
-            {
-                string find = searchteachername;
-                bool flag = true;
-                vector<vector<string>>data = ReadCSVFile(filename);
-                ofstream file(filename);
-                {
-                    for (const auto& row : data)
-                    {
-                        if (find == row[0])
-                        {
-                            flag = false;
-                            MessageBox::Show("Deleted successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                            DeleteTeacherFromCSV(row[0], "details/Elective.csv");
-                        }
-                        else
-                        {
-                            for (int i = 0; i < row.size() - 1; i++)
-                            {
-                                file << row[i] + ",";
-                            }
-                            file << row[row.size() - 1] << "\n";
-                        }
-                    }
-                }file.close();
-                if (flag)
-                {
-                    MessageBox::Show("Teacher not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                }
-            }
-            catch (...)
-            {
-                MessageBox::Show("Error deleting data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            }
-        }
-
-        void editroomcsvshow(const string filename)
-        {
-            string* a = &searchroomname;
-            string find = replacewhitespace(msclr::interop::marshal_as<string>(editroomsearch->Text));
-            bool flag = true;
-            vector<vector<string>>data = ReadCSVFile(filename);
-            for (auto& row : data)
+            for ( auto& row : data)
             {
                 string str;
-                for (char& r : find)
-                {
-                    r = toupper(static_cast<unsigned char>(r));
+                for (char& c : find) {
+                    c = std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
                 }
-                for (char& r : row[0])
-                {
-                    str += toupper(static_cast<unsigned char>(r));
+                for (char& c : row[0]) {
+                     str += std::toupper(static_cast<unsigned char>(c)); // Cast char to unsigned char before calling toupper
                 }
-                if (find == str) {
+                if (find ==str)
+                {
                     flag = false;
                     *a = row[0];
-                    editroomname->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[0]));
-                    editroomcapacity->Text = msclr::interop::marshal_as<String^>(row[1]);
-                    if (row[2] == "0")
+                    editteachername->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[0]));
+                    editteacherdepartment->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[1]));
+                    editteacheremailid->Text = msclr::interop::marshal_as<String^>(row[2]);
+                    for (int i = 3; i < row.size(); i += 2)
                     {
-                        editroomlabno->Checked = true;
-                    }
-                    else
-                    {
-                        editroomlabyes->Checked = true;
-                    }
-                    editroomdepartment->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[3]));
-
-                    for (int i = 4; i < row.size(); i += 2)
-                    {
-                        int x = (i / 2) - 1;
+                        int x = i / 2;
                         String^ tagValue = x.ToString();
-                        Button^ button = dynamic_cast<Button^>(editroomtablepanel->Controls[String::Format("buttoneditroom{0}", tagValue)]);
+                        Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
                         if (row[i] == "1")
                         {
                             button->Text = "Busy";
@@ -1257,713 +1082,908 @@ namespace TTA_ui {
                             button->BackColor = Color::FromArgb(179, 255, 230);
                         }
                     }
+
                 }
-            }
-            if (flag)
-            {
-                MessageBox::Show("Room not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                
             }
         }
-
-        void editroomcsvsave(const string filename)
+        if(flag)
         {
-            try {
-                string find = searchroomname;
-                bool flag = true;
-                vector<vector<string>>data = ReadCSVFile(filename);
-                ofstream file(filename);
-                {
-                    for (const auto& row : data)
-                    {
-                        if (find == row[0]) {
-                            flag = false;
-                            file << replacewhitespace(msclr::interop::marshal_as<string>(editroomname->Text)) << ",";
-                            file << msclr::interop::marshal_as<string>(editroomcapacity->Text) << ",";
-                            if (editroomlabyes->Checked)
-                            {
-                                file << "1,";
-                            }
-                            else
-                            {
-                                file << "0,";
-                            }
-                            file << replacewhitespace(msclr::interop::marshal_as<string>(editroomdepartment->Text)) << ",";
-
-                            for (int i = 1; i < 37; i++)
-                            {
-                                String^ tagValue = i.ToString();
-                                Button^ button = dynamic_cast<Button^>(editroomtablepanel->Controls[String::Format("buttoneditroom{0}", tagValue)]);
-                                if (button != nullptr)
-                                {
-                                    if (button->Text == "Free")
-                                    {
-                                        file << "0,0";
-                                    }
-                                    else
-                                    {
-                                        file << "1,0";
-                                    }
-                                    if (i != 36)
-                                    {
-                                        file << ",";
-                                    }
-                                    else
-                                    {
-                                        file << "\n";
-                                    }
-                                }
-                            }
-                            MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < row.size() - 1; i++)
-                            {
-                                file << row[i] + ",";
-                            }
-                            file << row[row.size() - 1] << "\n";
-                        }
-                    }
-                }file.close();
-                if (flag)
-                {
-                    MessageBox::Show("Room not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                }
-            }
-            catch (...)
-            {
-                MessageBox::Show("Error Saving data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            }
+            MessageBox::Show("Teacher not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
         }
+    }
 
-        void editroomcsvdelete(const string filename)
-        {
-            string find = searchroomname;
+   void editteachercsvsave(const string filename)
 
-            vector<vector<string>>data = ReadCSVFile(filename);
-            bool flag = true;
-            ofstream file(filename);
-            {
-                for (const auto& row : data)
-                {
-                    if (find == row[0]) {
-                        flag = false;
-                        MessageBox::Show("Deleted successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                    }
-                    else
-                    {
-                        for (int i = 0; i < row.size() - 1; i++)
-                        {
-                            file << row[i] + ",";
+   {
+       try
+       {
+           string find = searchteachername;
+           bool flag = true;
+           vector<vector<string>>data = ReadCSVFile(filename);
+           ofstream file(filename);
+           {
+               for (const auto& row : data)
+               {
+                   if (find == row[0])
+                   {
+                       flag = false;
+                       file << replacewhitespace(msclr::interop::marshal_as<string>(editteachername->Text->ToString()));
+                       file << ",";
+                       file << replacewhitespace(msclr::interop::marshal_as<string>(editteacherdepartment->Text->ToString()));
+                       file << ",";
+                       file << replacewhitespace(msclr::interop::marshal_as<string>(editteacheremailid->Text->ToString()));
+                       file << ",";
+                       for (int i = 1; i < 37; i++)
+                       {
+
+                           String^ tagValue = i.ToString();
+                           Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
+       
+                           if (button != nullptr)
+                           {
+                               if (button->Text == "Busy")
+                               {
+                                   file << "1,0";
+                               }
+                               else if (button->Text == "Free")
+                               {
+                                   file << "0,0";
+                               }
+                               if (i != 36)
+                               {
+                                   file << ",";
+                               }
+                           }
+                       }file << "\n";
+                       MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                   }
+                   else
+                   {
+                       for (int i = 0; i < row.size() - 1; i++)
+                       {
+                           file << row[i] + ",";
+                       }
+                       file << row[row.size() - 1] << "\n";
+                   }
+               }
+           }file.close();
+           if (flag)
+           {
+               MessageBox::Show("Teacher not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+           }
+
+       }
+       catch (...)
+       {
+           MessageBox::Show("Error saving changes", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+       }
+   }
+
+   void editteachercsvdelete(const string filename)
+   {
+       try
+       {
+           string find = searchteachername;
+           bool flag = true;
+           vector<vector<string>>data = ReadCSVFile(filename);
+           ofstream file(filename);
+           {
+               for (const auto& row : data)
+               {
+                   if (find == row[0])
+                   {
+                       flag = false;  
+                       MessageBox::Show("Deleted successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                       DeleteTeacherFromCSV(row[0], "details/Elective.csv");
+                   }
+                   else
+                   {
+                       for (int i = 0; i < row.size() - 1; i++)
+                       {
+                           file << row[i] + ",";
+                       }
+                       file << row[row.size() - 1] << "\n";
+                   }
+               }
+           }file.close();
+           if (flag)
+           {
+               MessageBox::Show("Teacher not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+           }
+       }
+       catch (...)
+       {
+           MessageBox::Show("Error deleting data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+       }
+   }
+
+   void editroomcsvshow(const string filename)
+   {
+       string* a = &searchroomname;
+       string find = replacewhitespace(msclr::interop::marshal_as<string>(editroomsearch->Text));
+       bool flag = true;
+       vector<vector<string>>data = ReadCSVFile(filename);
+       for ( auto& row : data)
+       {
+           string str;
+           for (char& r : find)
+           {
+               r = toupper(static_cast<unsigned char>(r));
+           }
+           for (char& r :row[0])
+           {
+               str+= toupper(static_cast<unsigned char>(r));
+           }
+           if (find == str) {
+               flag = false;
+               *a = row[0];
+               editroomname->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[0]));
+               editroomcapacity->Text = msclr::interop::marshal_as<String^>(row[1]);
+               if (row[2] == "0")
+               {
+                   editroomlabno->Checked=true;
+               }
+               else
+               {
+                   editroomlabyes->Checked=true;
+               }
+               editroomdepartment->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[3]));
+
+               for (int i = 4; i <row.size(); i += 2)
+               {
+                   int x = (i / 2) - 1;
+                   String^ tagValue = x.ToString();
+                   Button^ button = dynamic_cast<Button^>(editroomtablepanel->Controls[String::Format("buttoneditroom{0}", tagValue)]);
+                   if (row[i] == "1")
+                   {
+                       button->Text = "Busy";
+                       button->BackColor = Color::FromArgb(102, 255, 204);
+                   }
+                   else
+                   {
+                       button->Text = "Free";
+                       button->BackColor = Color::FromArgb(179, 255, 230);
+                   }
+               }
+           }
+       }
+       if (flag)
+       {
+           MessageBox::Show("Room not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);  
+       }
+   }
+
+   void editroomcsvsave(const string filename)
+   {
+       try {
+           string find = searchroomname;
+           bool flag = true;
+           vector<vector<string>>data = ReadCSVFile(filename);
+           ofstream file(filename);
+           {
+               for (const auto& row : data)
+               {
+                   if (find == row[0]) {
+                       flag = false;
+                       file << replacewhitespace(msclr::interop::marshal_as<string>(editroomname->Text)) << ",";
+                       file << msclr::interop::marshal_as<string>(editroomcapacity->Text) << ",";
+                       if (editroomlabyes->Checked)
+                       {
+                           file << "1,";
+                       }
+                       else
+                       {
+                           file << "0,";
+                       }
+                       file << replacewhitespace(msclr::interop::marshal_as<string>(editroomdepartment->Text)) << ",";
+
+                       for (int i = 1; i < 37; i++)
+                       {
+                           String^ tagValue = i.ToString();
+                           Button^ button = dynamic_cast<Button^>(editroomtablepanel->Controls[String::Format("buttoneditroom{0}", tagValue)]);
+                           if (button != nullptr)
+                           {
+                               if (button->Text == "Free")
+                               {
+                                   file << "0,0";
+                               }
+                               else
+                               {
+                                   file << "1,0";
+                               }
+                               if (i != 36)
+                               {
+                                   file << ",";
+                               }
+                               else
+                               {
+                                   file << "\n";
+                               }
+                           }
+                       }
+                       MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                   }
+                   else
+                   {
+                       for (int i = 0; i < row.size() - 1; i++)
+                       {
+                           file << row[i] + ",";
+                       }
+                       file << row[row.size() - 1] << "\n";
+                   }
+               }
+           }file.close();
+           if (flag)
+           {
+               MessageBox::Show("Room not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+           }
+       }
+       catch (...)
+       {
+           MessageBox::Show("Error Saving data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+       }
+   }
+
+   void editroomcsvdelete(const string filename)
+   {
+       string find = searchroomname;
+
+       vector<vector<string>>data = ReadCSVFile(filename);
+       bool flag = true;
+       ofstream file(filename);
+       {
+           for (const auto& row : data)
+           {
+               if (find == row[0]) {
+                   flag = false;
+                   MessageBox::Show("Deleted successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+               }
+               else
+               {
+                   for (int i = 0; i < row.size() - 1; i++)
+                   {
+                       file << row[i] + ",";
+                   }
+                   file << row[row.size() - 1] << "\n";
+               }
+           }
+       }file.close();
+       if (flag)
+       {
+           MessageBox::Show("Room not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+       }
+   }
+
+   void editsubjectcsvshow()
+   {
+       string* a = &searchsubname;
+       string find =replacewhitespace( msclr::interop::marshal_as<string>(editsubsearch->Text));
+       for (char& a : find)
+       {
+           a = toupper(static_cast<unsigned char>(a));
+       }
+       bool flag = true;
+       vector<vector<string>>data = ReadCSVFile("details/subject_file.csv");
+       for (auto& row : data)
+       {
+           string str;
+           for (char& a : row[0])
+           {
+               str += toupper(static_cast<unsigned char>(a));
+           }
+           if (str == find)
+           {
+               flag = false;
+               *a = row[0];
+               editsubname->Text = msclr::interop::marshal_as<String^>(row[0]);
+               editsubtitle->Text = msclr::interop::marshal_as<String^>(row[1]);
+              editsubcode->Text = msclr::interop::marshal_as<String^>(row[2]);
+               if (row[3] == "0")
+               {
+                   editsubeleno->Checked=true;
+                   editsubcluster->Text = "";
+                   editsubeleteacher->Rows->Clear();
+               }
+               else
+               {
+                   editsubeleyes->Checked = true;
+               }
+               if (row[4] == "0")
+               {
+                   editsublabno->Checked=true;
+               }
+               else
+               {
+                   editsublabyes->Checked=true;
+                   fstream file;
+                   file.open("details/Labo.csv");
+                   string line;
+                   while (getline(file, line))
+                   {
+                       stringstream lineStream(line);
+                       vector<string> rows;
+                       string cell;
+                       while (getline(lineStream, cell, ',')) {
+                           rows.push_back(cell);
+                       }
+                       for (char& a : rows[0])
+                       {
+                           a = toupper(static_cast<unsigned char>(a));
+                       }
+                       if (rows[0] == find)
+                       {
+                           editsublabteacher->Rows->Clear();
+                           for (int i = 1; i < rows.size(); i++)
+                           {
+                               if (rows[i][0] == '[')
+                                   break;
+                               else
+                               {
+                                   String^ rowString = msclr::interop::marshal_as<String^>(replaceunderscore(rows[i]));
+                                   editsublabteacher->Rows->Add(rowString);
+                               }
+                           }
+                           break;
+                       }
+
+                   }
+
+               }
+               editsubcredits->Text= msclr::interop::marshal_as<String^>(row[5]);
+               editsubbfactor->Text= msclr::interop::marshal_as<String^>(row[7]);
+               for (int i = 0; i < editsubroomlist->Items->Count; i++) {
+                   editsubroomlist->SetItemChecked(i, false);
+               }
+
+                   if (row.size()==8) {
+                      String^ y = msclr::interop::marshal_as<String^>( row[8].erase(0, 1).substr(0,(row[8].length())-1));
+                       for (int i = 0; i < editsubroomlist->Items->Count; i++)
+                       {
+
+                           String^ item = editsubroomlist->Items[i]->ToString();
+                           if (item == y)
+                           {
+                               editsubroomlist->SetItemChecked(i, true);
+                               break;
+                           }
+                       }
+                    
+                   }
+                   else
+                   {
+                       String^ y = msclr::interop::marshal_as<String^>(row[8].erase(0, 1));
+                       for (int i = 0; i < editsubroomlist->Items->Count; i++)
+                       {
+
+                           String^ item = editsubroomlist->Items[i]->ToString();
+                           if (item == y)
+                           {
+                               editsubroomlist->SetItemChecked(i, true);
+                               break;
+                           }
+                       }
+                      for (int j = 9; j < row.size()-1; j++)
+                      { 
+                               String^ searchString = msclr::interop::marshal_as<String^>(row[j]);
+                               for (int i = 0; i < editsubroomlist->Items->Count; i++)
+                               {
+
+                                       String^ item = editsubroomlist->Items[i]->ToString();
+                                       if (item == searchString)
+                                       {
+                                           editsubroomlist->SetItemChecked(i, true);
+                                           break;
+                                       }
+                               }
+                      }
+                      
+                      String^ searchString = msclr::interop::marshal_as<String^>(row[row.size() - 1].substr(0, row[row.size()-1].length() - 1));
+                      for (int i = 0; i < editsubroomlist->Items->Count; i++)
+                      {
+
+                          String^ item = editsubroomlist->Items[i]->ToString();
+                          if (item == searchString)
+                          {
+                              editsubroomlist->SetItemChecked(i, true);
+                              break;
+                          }
+                      }
+
+                   }
+
+           }
+          
+       }
+       if(flag)
+       {
+           vector<vector<string>> ele = ReadCSVFile("details/Electivetimetable.csv");
+           bool eleflag = true;
+           string str;
+           for ( auto &elerow : ele)
+           {
+               for (int i = 1; i < elerow.size(); i++)
+               {
+                   str = "";
+                   for (char& a : elerow[i])
+                   {
+                       str+= std::toupper(a);
+                   }
+                   if (find == str)
+                   {
+                       eleflag = false;
+                       *a = elerow[i];
+                       editsubelepanel->Visible = true;
+                       editsubelepanel->Top = button3->Bottom;
+                       editpanelsub->Top = editsubelepanel->Bottom;
+                       editsubname->Text = msclr::interop::marshal_as<String^>(elerow[i]);
+                       editsubeleyes->Checked = true;
+                       editsubcluster->Text= msclr::interop::marshal_as<String^>(elerow[0]);
+                       for (int k = 1; k < 37; k++)
+                       {
+                           Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", k)]);
+                           if (elerow[k] == "0")
+                           {
+                               button->Text = "Available";
+                           }
+                           else
+                           {
+                               button->Text = msclr::interop::marshal_as<String^>(elerow[k]);
+                               button->BackColor = Color::FromArgb(102, 255, 204);
+                           }
+                       }
+                       editsubeleteacher->Rows->Clear();
+                       vector<vector<string>>teachers = ReadCSVFile("details/teacher_file.csv");
+                       for (const auto& teach : teachers)
+                       {
+                           for (int n = 4; n < teach.size(); n += 2)
+                           {
+                               if (teach[n] == elerow[i])
+                               {
+                                   editsubeleteacher->Rows->Add(msclr::interop::marshal_as<String^>(teach[0]));
+                                   break;
+                               }
+                           }
+                       }
+                       goto out;
+                   }
+                   
+               }
+           }
+       out:
+           if(eleflag)
+           MessageBox::Show("Subject not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+       }
+   }
+
+   void editsubcsvsave(const string filename)
+   {
+       try {
+           string find = searchsubname;
+           if (searchname(find, filename, 0))
+           {
+               if (editsubeleyes->Checked)
+               {
+                   string x="";
+                   vector<vector<string>>temp = ReadCSVFile("details/teacher_file.csv");
+                   replacename(find, filename, 0, "");
+                   x += msclr::interop::marshal_as<string>(editsubcluster->Text);
+                   for (auto& row : temp)
+                   {
+                       for (int m = 4; m < row.size(); m+=2)
+                       {
+                           if (row[m] == find)
+                           {
+                               row[m - 1] = "0";
+                               row[m] = "0";
+                           }
+                       }
+                   }
+                   for (int i = 1; i <= 36; i++)
+                   {
+                       Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                       if (button != nullptr)
+                       {
+                           if (button->Text == msclr::interop::marshal_as<String^>(find))
+                           {
+                               x += "," + msclr::interop::marshal_as<string>(button->Text);
+                               for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                               {
+                                   if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                   {
+                                       for (auto& row : temp)
+                                       {
+                                           string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
+                                           if (row[0] == s)
+                                           {
+                                               row[(2 * i)+1] = '1';
+                                               row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
+                                           }
+                                           else
+                                           {
+                                           }
+                                       }
+                                   }
+                               }
+
+                           }
+                           else
+                           {
+                               if (button->Text == "Available")
+                                   x += ",0";
+                               else if (button->Text == "Busy")
+                                   x += ",0";
+                               else
+                                   x += "," + msclr::interop::marshal_as<string>(button->Text);
+                           }
+                       }
+                   }
+                   x += "\n";
+                   ofstream file;
+                   file.open("details/Electivetimetable.csv", ios::app);
+                      if(file.is_open())
+                   {
+                           file << x;
+                   }
+                      file.close();
+                   ofstream tFile("details/teacher_file.csv");
+                   if (tFile.is_open()) {
+                       for (const auto& t : temp) {
+                           for (int i = 0; i < t.size() - 1; i++) {
+                               tFile << t[i] << ",";
+                           }
+                           tFile << t[t.size() - 1] << "\n";
+                       }
+                   }
+                   tFile.close();
+                   MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+               }
+               else
+               {
+                   string x;
+                   x += replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text))+",";
+                   x += replacewhitespace(msclr::interop::marshal_as<string>(editsubtitle->Text))+",";
+                   x += replacewhitespace(msclr::interop::marshal_as<string>(editsubcode->Text))+",";
+                   x += "0,";
+                   if (editsublabyes->Checked)
+                   {
+                       x += "1,";
+                       x += msclr::interop::marshal_as<string>(editsubcredits->Text)+",2,";
+                       string lab = searchsubname;
+                       for (int i = 0; i < editsublabteacher->RowCount; i++)
+                       {
+                           if (editsublabteacher->Rows[i]->Cells[0]->Value != nullptr)
+                           {
+                               lab += "," + msclr::interop::marshal_as<string>(editsublabteacher->Rows[i]->Cells[0]->Value->ToString());
+                           }
+                       }
+                       lab += "\n";
+                       replacename(searchsubname, "details/Labo.csv", 0, lab);
+                   }
+                   else
+                   {
+                       x += "0,";
+                       x += msclr::interop::marshal_as<string>(editsubcredits->Text) + ",1,";
+                       replacename(searchsubname, "details/Labo.csv", 0, "");
+                   }
+
+                   x += msclr::interop::marshal_as<string>(editsubbfactor->Text)+",";
+                   x+= "[";
+                   bool room = true;
+                    for (int i = 0; i < editsubroomlist->CheckedItems->Count; ++i) {
+                        String^ value = editsubroomlist->CheckedItems[i]->ToString();
+                        x += replacewhitespace(msclr::interop::marshal_as<string>(value));
+                            room=false;
+                        if (i < editsubroomlist->CheckedItems->Count - 1) {
+                            x+=",";// Add a comma after each value, except the last one
                         }
-                        file << row[row.size() - 1] << "\n";
                     }
-                }
-            }file.close();
-            if (flag)
-            {
-                MessageBox::Show("Room not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-            }
-        }
+                    if (room)
+                    {
+                        x+= "0";
+                    }
+                    x+= "]\n";
+                    replacename(find,filename,0,x);
+                    MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                    goto err;
+               }
+           }
+           else
+           {
+               vector<vector<string>>ele = ReadCSVFile("details/Electivetimetable.csv");
 
-        void editsubjectcsvshow()
-        {
-            string* a = &searchsubname;
-            string find = replacewhitespace(msclr::interop::marshal_as<string>(editsubsearch->Text));
-            for (char& a : find)
-            {
-                a = toupper(static_cast<unsigned char>(a));
-            }
-            bool flag = true;
-            vector<vector<string>>data = ReadCSVFile("details/subject_file.csv");
-            for (auto& row : data)
-            {
-                string str;
-                for (char& a : row[0])
-                {
-                    str += toupper(static_cast<unsigned char>(a));
-                }
-                if (str == find)
-                {
-                    flag = false;
-                    *a = row[0];
-                    editsubname->Text = msclr::interop::marshal_as<String^>(row[0]);
-                    editsubtitle->Text = msclr::interop::marshal_as<String^>(row[1]);
-                    editsubcode->Text = msclr::interop::marshal_as<String^>(row[2]);
-                    if (row[3] == "0")
-                    {
-                        editsubeleno->Checked = true;
-                        editsubcluster->Text = "";
-                        editsubeleteacher->Rows->Clear();
-                    }
-                    else
-                    {
-                        editsubeleyes->Checked = true;
-                    }
-                    if (row[4] == "0")
-                    {
-                        editsublabno->Checked = true;
-                    }
-                    else
-                    {
-                        editsublabyes->Checked = true;
-                        fstream file;
-                        file.open("details/Labo.csv");
-                        string line;
-                        while (getline(file, line))
-                        {
-                            stringstream lineStream(line);
-                            vector<string> rows;
-                            string cell;
-                            while (getline(lineStream, cell, ',')) {
-                                rows.push_back(cell);
-                            }
-                            for (char& a : rows[0])
-                            {
-                                a = toupper(static_cast<unsigned char>(a));
-                            }
-                            if (rows[0] == find)
-                            {
-                                editsublabteacher->Rows->Clear();
-                                for (int i = 1; i < rows.size(); i++)
+               for (auto& row : ele)
+               {
+                   for (int i = 1; i < row.size(); i++)
+                   {
+                       if (row[i] == find)
+                       {
+                           //if elective
+                           vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
+                           bool nflag = false;
+                           for (int i = 1; i <= 36; i++)
+                           {
+                                   Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i )]);
+                                   if (button != nullptr)
+                                   {
+                                       if (button->Text == editsubname->Text)
+                                           nflag = true;
+                                   }
+                           }
+                           if (!nflag)
+                           {
+                               MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                           }
+                           else
+                           {
+                               string file;
+                               bool flags = true;
+                                if (row[0] == msclr::interop::marshal_as<string>(editsubcluster->Text))
                                 {
-                                    if (rows[i][0] == '[')
-                                        break;
-                                    else
+                                    flags = false;
+                                    file += row[0];
+                                    for (int i = 1; i <= 36; i++)
                                     {
-                                        String^ rowString = msclr::interop::marshal_as<String^>(replaceunderscore(rows[i]));
-                                        editsublabteacher->Rows->Add(rowString);
-                                    }
-                                }
-                                break;
-                            }
-
-                        }
-
-                    }
-                    editsubcredits->Text = msclr::interop::marshal_as<String^>(row[5]);
-                    editsubbfactor->Text = msclr::interop::marshal_as<String^>(row[7]);
-                    for (int i = 0; i < editsubroomlist->Items->Count; i++) {
-                        editsubroomlist->SetItemChecked(i, false);
-                    }
-
-                    if (row.size() == 8) {
-                        String^ y = msclr::interop::marshal_as<String^>(row[8].erase(0, 1).substr(0, (row[8].length()) - 1));
-                        for (int i = 0; i < editsubroomlist->Items->Count; i++)
-                        {
-
-                            String^ item = editsubroomlist->Items[i]->ToString();
-                            if (item == y)
-                            {
-                                editsubroomlist->SetItemChecked(i, true);
-                                break;
-                            }
-                        }
-
-                    }
-                    else
-                    {
-                        String^ y = msclr::interop::marshal_as<String^>(row[8].erase(0, 1));
-                        for (int i = 0; i < editsubroomlist->Items->Count; i++)
-                        {
-
-                            String^ item = editsubroomlist->Items[i]->ToString();
-                            if (item == y)
-                            {
-                                editsubroomlist->SetItemChecked(i, true);
-                                break;
-                            }
-                        }
-                        for (int j = 9; j < row.size() - 1; j++)
-                        {
-                            String^ searchString = msclr::interop::marshal_as<String^>(row[j]);
-                            for (int i = 0; i < editsubroomlist->Items->Count; i++)
-                            {
-
-                                String^ item = editsubroomlist->Items[i]->ToString();
-                                if (item == searchString)
-                                {
-                                    editsubroomlist->SetItemChecked(i, true);
-                                    break;
-                                }
-                            }
-                        }
-
-                        String^ searchString = msclr::interop::marshal_as<String^>(row[row.size() - 1].substr(0, row[row.size() - 1].length() - 1));
-                        for (int i = 0; i < editsubroomlist->Items->Count; i++)
-                        {
-
-                            String^ item = editsubroomlist->Items[i]->ToString();
-                            if (item == searchString)
-                            {
-                                editsubroomlist->SetItemChecked(i, true);
-                                break;
-                            }
-                        }
-
-                    }
-
-                }
-
-            }
-            if (flag)
-            {
-                vector<vector<string>> ele = ReadCSVFile("details/Electivetimetable.csv");
-                bool eleflag = true;
-                string str;
-                for (auto& elerow : ele)
-                {
-                    for (int i = 1; i < elerow.size(); i++)
-                    {
-                        str = "";
-                        for (char& a : elerow[i])
-                        {
-                            str += std::toupper(a);
-                        }
-                        if (find == str)
-                        {
-                            eleflag = false;
-                            *a = elerow[i];
-                            editsubelepanel->Visible = true;
-                            editsubelepanel->Top = button3->Bottom;
-                            editpanelsub->Top = editsubelepanel->Bottom;
-                            editsubname->Text = msclr::interop::marshal_as<String^>(elerow[i]);
-                            editsubeleyes->Checked = true;
-                            editsubcluster->Text = msclr::interop::marshal_as<String^>(elerow[0]);
-                            for (int k = 1; k < 37; k++)
-                            {
-                                Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", k)]);
-                                if (elerow[k] == "0")
-                                {
-                                    button->Text = "Available";
-                                }
-                                else
-                                {
-                                    button->Text = msclr::interop::marshal_as<String^>(elerow[k]);
-                                    button->BackColor = Color::FromArgb(102, 255, 204);
-                                }
-                            }
-                            editsubeleteacher->Rows->Clear();
-                            vector<vector<string>>teachers = ReadCSVFile("details/teacher_file.csv");
-                            for (const auto& teach : teachers)
-                            {
-                                for (int n = 4; n < teach.size(); n += 2)
-                                {
-                                    if (teach[n] == elerow[i])
-                                    {
-                                        editsubeleteacher->Rows->Add(msclr::interop::marshal_as<String^>(teach[0]));
-                                        break;
-                                    }
-                                }
-                            }
-                            goto out;
-                        }
-
-                    }
-                }
-            out:
-                if (eleflag)
-                    MessageBox::Show("Subject not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-            }
-        }
-
-        void editsubcsvsave(const string filename)
-        {
-            try {
-                string find = searchsubname;
-                if (searchname(find, filename, 0))
-                {
-                    if (editsubeleyes->Checked)
-                    {
-                        string x = "";
-                        vector<vector<string>>temp = ReadCSVFile("details/teacher_file.csv");
-                        replacename(find, filename, 0, "");
-                        x += msclr::interop::marshal_as<string>(editsubcluster->Text);
-                        for (auto& row : temp)
-                        {
-                            for (int m = 4; m < row.size(); m += 2)
-                            {
-                                if (row[m] == find)
-                                {
-                                    row[m - 1] = "0";
-                                    row[m] = "0";
-                                }
-                            }
-                        }
-                        for (int i = 1; i <= 36; i++)
-                        {
-                            Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
-                            if (button != nullptr)
-                            {
-                                if (button->Text == msclr::interop::marshal_as<String^>(find))
-                                {
-                                    x += "," + msclr::interop::marshal_as<string>(button->Text);
-                                    for (int j = 0; j < editsubeleteacher->RowCount; j++)
-                                    {
-                                        if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                        Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                                        if (button != nullptr)
                                         {
-                                            for (auto& row : temp)
+                                            if (button->Text == editsubname->Text)
                                             {
-                                                string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
-                                                if (row[0] == s)
+                                                file += ","+ msclr::interop::marshal_as<string>(editsubname->Text);
+                                                for (int j = 0; j < editsubeleteacher->RowCount; j++)
                                                 {
-                                                    row[(2 * i) + 1] = '1';
-                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
-                                                }
-                                                else
-                                                {
-                                                }
-                                            }
-                                        }
-                                    }
-
-                                }
-                                else
-                                {
-                                    if (button->Text == "Available")
-                                        x += ",0";
-                                    else if (button->Text == "Busy")
-                                        x += ",0";
-                                    else
-                                        x += "," + msclr::interop::marshal_as<string>(button->Text);
-                                }
-                            }
-                        }
-                        x += "\n";
-                        replacename(msclr::interop::marshal_as<string>(editsubcluster->Text), "details/Electivetimetable.csv", 0, x);
-                        ofstream tFile("details/teacher_file.csv");
-                        if (tFile.is_open()) {
-                            for (const auto& t : temp) {
-                                for (int i = 0; i < t.size() - 1; i++) {
-                                    tFile << t[i] << ",";
-                                }
-                                tFile << t[t.size() - 1] << "\n";
-                            }
-                        }
-                        tFile.close();
-                        MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-
-                    }
-                    else
-                    {
-                        string x;
-                        x += replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text)) + ",";
-                        x += replacewhitespace(msclr::interop::marshal_as<string>(editsubtitle->Text)) + ",";
-                        x += replacewhitespace(msclr::interop::marshal_as<string>(editsubcode->Text)) + ",";
-                        x += "0,";
-                        if (editsublabyes->Checked)
-                        {
-                            x += "1,";
-                            x += msclr::interop::marshal_as<string>(editsubcredits->Text) + ",2,";
-                            string lab = searchsubname;
-                            for (int i = 0; i < editsublabteacher->RowCount; i++)
-                            {
-                                if (editsublabteacher->Rows[i]->Cells[0]->Value != nullptr)
-                                {
-                                    lab += "," + msclr::interop::marshal_as<string>(editsublabteacher->Rows[i]->Cells[0]->Value->ToString());
-                                }
-                            }
-                            lab += "\n";
-                            replacename(searchsubname, "details/Labo.csv", 0, lab);
-                        }
-                        else
-                        {
-                            x += "0,";
-                            x += msclr::interop::marshal_as<string>(editsubcredits->Text) + ",1,";
-                            replacename(searchsubname, "details/Labo.csv", 0, "");
-                        }
-
-                        x += msclr::interop::marshal_as<string>(editsubbfactor->Text) + ",";
-                        x += "[";
-                        bool room = true;
-                        for (int i = 0; i < editsubroomlist->CheckedItems->Count; ++i) {
-                            String^ value = editsubroomlist->CheckedItems[i]->ToString();
-                            x += replacewhitespace(msclr::interop::marshal_as<string>(value));
-                            room = false;
-                            if (i < editsubroomlist->CheckedItems->Count - 1) {
-                                x += ",";// Add a comma after each value, except the last one
-                            }
-                        }
-                        if (room)
-                        {
-                            x += "0";
-                        }
-                        x += "]\n";
-                        replacename(find, filename, 0, x);
-                        MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                        goto err;
-                    }
-                }
-                else
-                {
-                    vector<vector<string>>ele = ReadCSVFile("details/Electivetimetable.csv");
-
-                    for (auto& row : ele)
-                    {
-                        for (int i = 1; i < row.size(); i++)
-                        {
-                            if (row[i] == find)
-                            {
-                                //if elective
-                                vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
-                                bool nflag = false;
-                                for (int i = 1; i <= 36; i++)
-                                {
-                                    Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
-                                    if (button != nullptr)
-                                    {
-                                        if (button->Text == editsubname->Text)
-                                            nflag = true;
-                                    }
-                                }
-                                if (!nflag)
-                                {
-                                    MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                                }
-                                else
-                                {
-                                    string file;
-                                        file += row[0];
-                                        for (int i = 1; i <= 36; i++)
-                                        {
-                                            Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
-                                            if (button != nullptr)
-                                            {
-                                                if (button->Text == editsubname->Text)
-                                                {
-                                                    file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
-                                                    for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                                                    if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
                                                     {
-                                                        if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                                        for (auto& row : temp)
                                                         {
-                                                            for (auto& row : temp)
-                                                            {
 
-                                                                for (int n = 4; n < row.size(); n += 2)
+                                                            for (int n = 4; n < row.size(); n+=2)
+                                                            {
+                                                                if (row[n] == find)
                                                                 {
-                                                                    if (row[n] == find)
-                                                                    {
-                                                                        row[n] = "0";
-                                                                        row[n - 1] = "0";
-                                                                    }
+                                                                    row[n] = "0";
+                                                                    row[n - 1] = "0";
                                                                 }
-                                                                string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
-                                                                if (row[0] == s)
-                                                                {
-                                                                    row[(2 * i) + 1] = '1';
-                                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
-                                                                }
+                                                            }
+                                                            string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
+                                                            if (row[0] == s)
+                                                            {
+                                                                row[(2 * i)+1] = '1';
+                                                                row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
                                                             }
                                                         }
                                                     }
+                                                }
 
-                                                }
-                                                else if (button->Text == "busy")
-                                                {
-                                                    file += ",0";
-                                                }
-                                                else
-                                                    file += "," + row[i];
                                             }
-                                        }
-                                        file += "\n";
-                                        replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
-                                    ofstream tFile("details/teacher_file.csv");
-                                    if (tFile.is_open()) {
-                                        for (const auto& t : temp) {
-                                            for (int i = 0; i < t.size() - 1; i++) {
-                                                tFile << t[i] << ",";
-                                            }
-                                            tFile << t[t.size() - 1] << "\n";
+                                            else
+                                                file += "," + row[i];
                                         }
                                     }
-                                    tFile.close();
-                                    MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                                    goto err;
+                                    file += "\n";
+                                    replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
                                 }
-                            }
-                        }
-                    }
-                }
-
-                MessageBox::Show("Subject Not Found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                                   if (flags)
+                                   {
+                                       file += msclr::interop::marshal_as<string>(editsubcluster->Text);
+                                       for (int i = 1; i <= 36; i++)
+                                       {
+                                           Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                                           if (button != nullptr)
+                                           {
+                                               if (button->Text == editsubname->Text)
+                                               {
+                                                   file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
+                                                   for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                                                   {
+                                                       if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                                       {
+                                                           for (auto& row : temp)
+                                                           {
+                                                               for (int n = 1; n < row.size(); n++)
+                                                               {
+                                                                   if (row[n] == find)
+                                                                   {
+                                                                       row[n] = "0";
+                                                                       row[n - 1] = "0";
+                                                                   }
+                                                               }
+                                                               if (row[0] == msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString()))
+                                                               {
+                                                                   row[(2 * i) + 1] = '1';
+                                                                   row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
+                                                               }
+                                                           }
+                                                       }
+                                                   }
+                                               }
+                                               else
+                                                   file += ",0";
+                                           }
+                                       }
+                                       file += "\n";
+                                       replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
+                                   }
+                               ofstream tFile("details/teacher_file.csv");
+                               if (tFile.is_open()) {
+                                   for (const auto& t : temp) {
+                                       for (int i = 0; i < t.size() - 1; i++) {
+                                           tFile << t[i] << ",";
+                                       }
+                                       tFile << t[t.size() - 1] << "\n";
+                                   }
+                               }
+                               tFile.close();
+                               MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                               goto err;
+                           }
+                       }
+                   }
+               }
+           }
+           
+            MessageBox::Show("Subject Not Found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation); 
             err:
-                {}
-            }
-            catch (...)
-            {
-                MessageBox::Show("Error Saving data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
-            }
-        }
+            {}
+       }
+       catch (...)
+       {
+           MessageBox::Show("Error Saving data", "Error", MessageBoxButtons::OK, MessageBoxIcon::Error);
+       }
+   }
 
-        void editsubcsvdelete(const string filename)
+   void editsubcsvdelete(const string filename)
+   {
+       string find = searchsubname;
+
+       vector<vector<string>>data = ReadCSVFile(filename);
+       ofstream file(filename);
+       bool flag=true;
+       {
+           for (const auto& row : data)
+           {
+               if (find == row[0]) {
+                   flag = false;
+                   MessageBox::Show("Deleted successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+               }
+               else
+               {
+                   for (int i = 0; i < row.size() - 1; i++)
+                   {
+                       file << row[i] + ",";
+                   }
+                   file << row[row.size() - 1] << "\n";
+               }
+           }
+       }file.close();
+       if (flag)
+       {
+           MessageBox::Show("Subject not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+       }
+   }
+
+   void allroomsfunction(const string filename, section& t)
+   {
+       std::fstream outputFile(filename);
+       string line;
+       if (outputFile.is_open())
+       {
+          while (outputFile >> line)
+           {
+           room obj;
+           obj.readData(line);
+           t.allRooms.push_back(obj);
+          }
+       }
+       outputFile.close();
+   }
+
+   void allteachersfunction(const string filename, section& t)
+   {
+       fstream output(filename);
+       string line;
+       if (output.is_open())
+       {
+       
+           while (output >> line)
+           {
+           teacher obj;
+           obj.readData(line);
+           t.allTeachers.push_back(obj);
+           }
+       }
+       output.close();
+   }
+
+   void loadcore(section &obj)
+   {
+       for (int i = 0; i < classcore->RowCount; ++i)
+       {
+           if (classcore->Rows[i]->Cells[1]->Value != nullptr)
+           {
+               subject sub;
+               sub.readData(returnLine(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[0]->Value->ToString()), "details/subject_file.csv"));
+               obj.addCore(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[1]->Value->ToString()), sub);
+           }
+       }
+   }
+
+   void defaultroomallot(section& obj)
+   {
+       vector<string>drooms;
+       for each (int checkedIndex in classdefaultrooms->CheckedIndices)
+       {
+           String^ itemRoom = classdefaultrooms->Items[checkedIndex]->ToString();
+           string ItemRoom = msclr::interop::marshal_as<string>(itemRoom);
+           vector < vector<string>>data = ReadCSVFile("details/classroom.csv");
+
+           for (const auto& row : data)
+           {
+               if (!row.empty())
+               {
+                   if (ItemRoom == row[3])
+                   {
+                       drooms.push_back(row[0]);
+                   }
+               }
+           }
+       }
+       obj.defaultRooms = drooms;
+   }
+
+   void DeleteTeacherFromCSV(string teacherName,string filename) {
+       vector < vector<string>>data = ReadCSVFile(filename);
+       ofstream file(filename);
+       if (file.is_open())
+       {
+           for (auto& row : data)
+           {
+               file << row[0] << "," << row[1];
+               for (int i = 2; i < row.size()-1; i++)
+               {
+                   if(teacherName==row[i])
+                   { }
+                   else
+                   {
+                       file << ","<<row[i];
+                   }
+               }
+               if(teacherName==row[row.size() - 1])
+               {
+               }
+               else
+               {
+                   file << row[row.size() - 1];
+               }
+               file << "\n";
+           }
+       }
+       file.close();
+    }
+    vector<vector<bool>> returntimetable(string clustername)
+    {
+        vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
+        vector<vector<bool>>tt;
+        vector<bool>ttval;
+        bool flag = true;
+        for (auto& row : data)
         {
-            string find = searchsubname;
-
-            vector<vector<string>>data = ReadCSVFile(filename);
-            ofstream file(filename);
-            bool flag = true;
+            if (row[0] == clustername)
             {
-                for (const auto& row : data)
-                {
-                    if (find == row[0]) {
-                        flag = false;
-                        MessageBox::Show("Deleted successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                    }
-                    else
-                    {
-                        for (int i = 0; i < row.size() - 1; i++)
-                        {
-                            file << row[i] + ",";
-                        }
-                        file << row[row.size() - 1] << "\n";
-                    }
-                }
-            }file.close();
-            if (flag)
-            {
-                MessageBox::Show("Subject not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-            }
-        }
-
-        void allroomsfunction(const string filename, section& t)
-        {
-            std::fstream outputFile(filename);
-            string line;
-            if (outputFile.is_open())
-            {
-                while (outputFile >> line)
-                {
-                    room obj;
-                    obj.readData(line);
-                    t.allRooms.push_back(obj);
-                }
-            }
-            outputFile.close();
-        }
-
-        void allteachersfunction(const string filename, section& t)
-        {
-            fstream output(filename);
-            string line;
-            if (output.is_open())
-            {
-
-                while (output >> line)
-                {
-                    teacher obj;
-                    obj.readData(line);
-                    t.allTeachers.push_back(obj);
-                }
-            }
-            output.close();
-        }
-
-        void loadcore(section& obj)
-        {
-            for (int i = 0; i < classcore->RowCount; ++i)
-            {
-                if (classcore->Rows[i]->Cells[1]->Value != nullptr)
-                {
-                    subject sub;
-                    sub.readData(returnLine(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[0]->Value->ToString()), "details/subject_file.csv"));
-                    obj.addCore(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[1]->Value->ToString()), sub);
-                }
-            }
-        }
-
-        void defaultroomallot(section& obj)
-        {
-            vector<string>drooms;
-            for each (int checkedIndex in classdefaultrooms->CheckedIndices)
-            {
-                String^ itemRoom = classdefaultrooms->Items[checkedIndex]->ToString();
-                string ItemRoom = msclr::interop::marshal_as<string>(itemRoom);
-                vector < vector<string>>data = ReadCSVFile("details/classroom.csv");
-
-                for (const auto& row : data)
-                {
-                    if (!row.empty())
-                    {
-                        if (ItemRoom == row[3])
-                        {
-                            drooms.push_back(row[0]);
-                        }
-                    }
-                }
-            }
-            obj.defaultRooms = drooms;
-        }
-
-        void DeleteTeacherFromCSV(string teacherName, string filename) {
-            vector < vector<string>>data = ReadCSVFile(filename);
-            ofstream file(filename);
-            if (file.is_open())
-            {
-                for (auto& row : data)
-                {
-                    file << row[0] << "," << row[1];
-                    for (int i = 2; i < row.size() - 1; i++)
-                    {
-                        if (teacherName == row[i])
-                        {
-                        }
-                        else
-                        {
-                            file << "," << row[i];
-                        }
-                    }
-                    if (teacherName == row[row.size() - 1])
-                    {
-                    }
-                    else
-                    {
-                        file << row[row.size() - 1];
-                    }
-                    file << "\n";
-                }
-            }
-            file.close();
-        }
-        vector<vector<bool>> returntimetable(string clustername)
-        {
-            vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            vector<vector<bool>>tt;
-            vector<bool>ttval;
-            bool flag = true;
-            for (auto& row : data)
-            {
-                if (row[0] == clustername)
-                {
-                    flag = false;
-                    int count = 0;
-                    for (int i = 1; i < row.size(); i++)
-                    {
-                        count++;
-                        if (row[i] == "0")
-                        {
-                            ttval.push_back(0);
-                        }
-                        else
-                        {
-                            ttval.push_back(1);
-                        }
-                        if (count == 6)
-                        {
-                            tt.push_back(ttval);
-                            count = 0;
-                            ttval.clear();
-                        }
-                    }
-                }
-            }
-            if (flag)
-            {
+                flag = false;
                 int count = 0;
-                for (int i = 1; i < 37; i++)
+                for (int i = 1; i < row.size(); i++)
                 {
                     count++;
-                    ttval.push_back(0);
+                    if (row[i] == "0")
+                    {
+                        ttval.push_back(0);
+                    }
+                    else
+                    {
+                        ttval.push_back(1);
+                    }
                     if (count == 6)
                     {
                         tt.push_back(ttval);
@@ -1972,662 +1992,652 @@ namespace TTA_ui {
                     }
                 }
             }
-            return tt;
         }
-
-        vector<vector<vector<bool>>>valuetimetable(string clustername, DataGridView^ sedataGridView)
+        if (flag)
         {
-            vector < vector < vector<bool>>>allt;
-            vector<vector<bool>>tt;
-            vector<bool>ttval;
-            allt.push_back(returntimetable(clustername));
-            vector<vector<string>>data = ReadCSVFile("details/teacher_file.csv");
-            for (int i = 0; i < sedataGridView->RowCount; i++)
+            int count = 0;
+            for (int i = 1; i < 37; i++)
             {
-                if (sedataGridView->Rows[i]->Cells[0]->Value != nullptr)
+                count++;
+                ttval.push_back(0);
+                if (count == 6)
                 {
-                    string name = msclr::interop::marshal_as<string>(sedataGridView->Rows[i]->Cells[0]->Value->ToString());
-                    for (const auto& row : data)
-                    {
-                        if (name == row[0])
-                        {
-                            int count = 0;
-                            for (int i = 3; i < row.size(); i += 2)
-                            {
-                                count++;
-                                if (row[i] == "0")
-                                {
-                                    ttval.push_back(0);
-                                }
-                                else
-                                {
-                                    ttval.push_back(1);
-                                }
-                                if (count == 6)
-                                {
-                                    tt.push_back(ttval);
-                                    count = 0;
-                                    ttval.clear();
-                                }
-                            }
-                            allt.push_back(tt);
-                            tt.clear();
-                            break;
-                        }
-                    }
+                    tt.push_back(ttval);
+                    count = 0;
+                    ttval.clear();
                 }
             }
-            return allt;
         }
+        return tt;
+    }
 
-
-        vector<vector<bool>> intersectionElective(std::vector<std::vector<std::vector<bool>>> inputs) {
-            std::vector<std::vector<bool>> output;//return type is a vector of vector of booleans
-            std::vector<std::vector<int>> temp;//tempetrory vector that stores number of intersections
-            //_intersections = 0;
-            for (int i = 0; i < inputs[0].size(); i++) {//making a days*periods matrix
-                std::vector<int>tempp;
-                for (int j = 0; j < inputs[0][0].size(); j++) {
-                    tempp.push_back(0);
-                }
-                temp.push_back(tempp);
-            }
-            for (std::vector<std::vector<bool>> each : inputs) {//incrementing when timetable free
-                for (int i = 0; i < each.size(); i++) {
-                    for (int j = 0; j < each[i].size(); j++) {
-                        temp[i][j] += !each[i][j];
-                    }
-                }
-            }
-            for (int i = 0; i < inputs[0].size(); i++) {
-                std::vector<bool>tempp;
-                bool alloted = 0;
-                for (int j = 0; j < inputs[0][0].size(); j++) {
-                    tempp.push_back(!(temp[i][j] / (inputs.size())));
-                    if (!alloted && !tempp[tempp.size() - 1]) {
-                        alloted = 1;
-                    }
-                }
-                output.push_back(tempp);
-            }
-            return output;
-        }
-
-        void onOptionClick(ComboBox^ addsubcluster, DataGridView^ dgv, TableLayoutPanel^ t, String^ s)
+    vector<vector<vector<bool>>>valuetimetable(string clustername,DataGridView^ sedataGridView)
+    {
+        vector < vector < vector<bool>>>allt;
+        vector<vector<bool>>tt;
+        vector<bool>ttval;
+        allt.push_back(returntimetable(clustername));
+        vector<vector<string>>data = ReadCSVFile("details/teacher_file.csv");
+        for (int i = 0; i < sedataGridView->RowCount; i++)
         {
-            string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
-            vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            vector<vector<vector<bool>>>tt = valuetimetable(name, dgv);
-            vector<vector<bool>>intersecttt = intersectionElective(tt);
-            for (int i = 0; i < 6; i++)
+            if (sedataGridView->Rows[i]->Cells[0]->Value != nullptr)
             {
-                for (int j = 0; j < 6; j++)
+                string name = msclr::interop::marshal_as<string>(sedataGridView->Rows[i]->Cells[0]->Value->ToString());
+                for (const auto& row : data)
                 {
-                    Button^ button = dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", i * 6 + j + 1)]);
-                    if (button != nullptr)
+                    if (name == row[0])
                     {
-                        if (intersecttt[i][j])
+                        int count = 0;
+                        for (int i = 3; i < row.size(); i+=2)
                         {
-                            button->Text = "busy";
-                            button->BackColor = Color::FromArgb(224, 224, 224);
-                        }
-                        else
-                        {
-                            button->Text = "Available";
-                            button->BackColor = Color::FromArgb(179, 255, 240);
-                        }
-                    }
-                    for (auto row : data)
-                    {
-                        if (row[0] == name)
-                        {
-                            if (row[i * 6 + j + 1] != "0")
+                            count++;
+                            if (row[i] == "0")
                             {
-                                button->Text = msclr::interop::marshal_as<String^>(row[i * 6 + j + 1]);
-                                button->BackColor = Color::FromArgb(102, 255, 204);
+                                ttval.push_back(0);
+                            }
+                            else
+                            {
+                                ttval.push_back(1);
+                            }
+                            if (count == 6)
+                            {
+                                tt.push_back(ttval);
+                                count = 0;
+                                ttval.clear();
                             }
                         }
+                        allt.push_back(tt);
+                        tt.clear();
+                        break;
                     }
                 }
             }
         }
-        void onOptionClickedit(ComboBox^ addsubcluster, DataGridView^ dgv, TableLayoutPanel^ t, String^ s)
+        return allt;
+    }
+
+
+    vector<vector<bool>> intersectionElective(std::vector<std::vector<std::vector<bool>>> inputs) {
+        std::vector<std::vector<bool>> output;//return type is a vector of vector of booleans
+        std::vector<std::vector<int>> temp;//tempetrory vector that stores number of intersections
+        //_intersections = 0;
+        for (int i = 0; i < inputs[0].size(); i++) {//making a days*periods matrix
+            std::vector<int>tempp;
+            for (int j = 0; j < inputs[0][0].size(); j++) {
+                tempp.push_back(0);
+            }
+            temp.push_back(tempp);
+        }
+        for (std::vector<std::vector<bool>> each : inputs) {//incrementing when timetable free
+            for (int i = 0; i < each.size(); i++) {
+                for (int j = 0; j < each[i].size(); j++) {
+                    temp[i][j] += !each[i][j];
+                }
+            }
+        }
+        for (int i = 0; i < inputs[0].size(); i++) {
+            std::vector<bool>tempp;
+            bool alloted = 0;
+            for (int j = 0; j < inputs[0][0].size(); j++) {
+                tempp.push_back(!(temp[i][j] / (inputs.size())));
+                if (!alloted && !tempp[tempp.size() - 1]) {
+                    alloted = 1;
+                }
+            }
+            output.push_back(tempp);
+        }
+        return output;
+    }
+
+    void onOptionClick(ComboBox^ addsubcluster,DataGridView^ dgv,TableLayoutPanel^ t,String^ s)
+    {
+        string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
+        vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
+        vector<vector<vector<bool>>>tt = valuetimetable(name,dgv);
+        vector<vector<bool>>intersecttt = intersectionElective(tt);
+        for (int i = 0; i < 6; i++)
         {
-            string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
-            vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
-            vector<vector<vector<bool>>>tt = valuetimetable(name, dgv);
-            vector<vector<bool>>intersecttt = intersectionElective(tt);
-            for (int i = 0; i < 6; i++)
+            for (int j = 0; j < 6; j++)
             {
-                for (int j = 0; j < 6; j++)
+                Button^ button = dynamic_cast<Button^>(t->Controls[String::Format("button"+s+"{0}", i * 6 + j + 1)]);
+                if (button != nullptr)
                 {
-
-                    Button^ button = dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", i * 6 + j + 1)]);
-                    if (button != nullptr)
+                    if (intersecttt[i][j])
                     {
-                        if (intersecttt[i][j])
-                        {
-                            button->Text = "busy";
-                            button->BackColor = Color::FromArgb(224, 224, 224);
-                        }
-                        else
-                        {
-                            button->Text = "Available";
-                            button->BackColor = Color::FromArgb(179, 255, 240);
-                        }
-                    }
-                    for (auto row : data)
-                    {
-                        if (row[0] == name)
-                        {
-                            if (row[i * 6 + j + 1] != "0")
-                            {
-                                button->Text = msclr::interop::marshal_as<String^>(row[i * 6 + j + 1]);
-                                button->BackColor = Color::FromArgb(102, 255, 204);
-                            }
-                        }
-                    }
-                }
-            }
-            for (int x = 0; x < editsubeleteacher->RowCount; x++)
-            {
-                if (editsubeleteacher->Rows[x]->Cells[0]->Value != nullptr)
-                {
-                    string n = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[x]->Cells[0]->Value->ToString());
-                    for (auto cell : temp)
-                    {
-                        if (cell[0] == n)
-                        {
-                            for (int l = 3; l < cell.size(); l += 2)
-                            {
-                                if ((cell[l] == "1" && cell[l + 1] != msclr::interop::marshal_as<string>(editsubname->Text)) && (dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", l / 2)])->Text == editsubname->Text))
-                                {
-                                    dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", l / 2)])->Text = "busy";
-                                    dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", l / 2)])->BackColor = Color::FromArgb(224, 224, 224);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        System::Void KeyPress(System::Object^ sender, KeyPressEventArgs^ e) {
-            if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back && !Char::IsDigit(e->KeyChar)) {
-                e->Handled = true;
-            }
-        }
-        System::Void KeyPressemail(System::Object^ sender, KeyPressEventArgs^ e) {
-            // Filter out special characters
-            if ((!Char::IsLetter(e->KeyChar) && e->KeyChar !='@' && !Char::IsDigit(e->KeyChar)) && e->KeyChar != (char)Keys::Back) {
-                e->Handled = true;
-            }
-        }
-
-        void Button_ClickFreeBusy(Object^ sender, EventArgs^ e) {
-            Button^ clickedButton = dynamic_cast<Button^>(sender);
-            if (clickedButton != nullptr) {
-                // Toggle the text of the clicked button
-                if (clickedButton->Text == "Free")
-                {
-                    clickedButton->Text = "Busy";
-                    clickedButton->BackColor = Color::FromArgb(102, 255, 204);
-                }
-                else if (clickedButton->Text == "Busy")
-                {
-                    clickedButton->Text = "Free";
-                    clickedButton->BackColor = Color::FromArgb(179, 255, 230);
-                }
-            }
-        }
-        void InitializeMatrix(TableLayoutPanel^ tableLayoutPanel, String^ s, String^ Texts, int x) {
-
-            // Clear existing buttons if any
-            tableLayoutPanel->Controls->Clear();
-            // Create buttons and add them to the TableLayoutPanel
-
-            for (int i = 0; i < 6; i++) {
-                int count = 0;
-                for (int j = 0; j < 8; j++) {
-                    if (j == 2 || j == 5)
-                    {
-                        count++;
+                        button->Text = "busy";
+                        button->BackColor = Color::FromArgb(224, 224, 224);
                     }
                     else
                     {
-                        Button^ button = gcnew Button();
-                        button->Text = Texts;
-                        button->BackColor = Color::FromArgb(179, 255, 230);
-                        button->Dock = DockStyle::Fill;
-                        button->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                            static_cast<System::Byte>(0)));
-                        if (count == 0)
-                            button->Name = String::Format("button" + s + "{0}", i * 6 + j + 1);
-                        else if (count == 1)
-                            button->Name = String::Format("button" + s + "{0}", i * 6 + j);
-                        else
-                            button->Name = String::Format("button" + s + "{0}", i * 6 + j - 1);
-                        tableLayoutPanel->Controls->Add(button, j, i);
-                        if (x == 0)
-                            button->Click += gcnew EventHandler(this, &MyForm::Button_clickEle);
-                        if (x == 1)
-                            button->Click += gcnew EventHandler(this, &MyForm::Button_ClickFreeBusy);
-                        if (x == 2)
-                            button->Click += gcnew EventHandler(this, &MyForm::Button_clickEditEle);
-                        if (x == 3)
-                            button->Click += gcnew EventHandler(this, &MyForm::Button_clicks);
-                        tableLayoutPanel->Controls->Add(button, j, i);
+                        button->Text = "Available";
+                        button->BackColor = Color::FromArgb(179, 255, 240);
+                    }
+                }
+                for (auto row : data)
+                {
+                    if (row[0] == name)
+                    {
+                        if (row[i * 6 + j + 1] != "0")
+                        {
+                            button->Text = msclr::interop::marshal_as<String^>(row[i * 6 + j + 1]);
+                            button->BackColor = Color::FromArgb(102, 255, 204);
+                        }
                     }
                 }
             }
         }
-        void ClearReset()
+    }
+    void onOptionClickedit(ComboBox^ addsubcluster, DataGridView^ dgv, TableLayoutPanel^ t, String^ s)
+    {
+        string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
+        vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
+        vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
+        vector<vector<vector<bool>>>tt = valuetimetable(name, dgv);
+        vector<vector<bool>>intersecttt = intersectionElective(tt);
+        for (int i = 0; i < 6; i++)
         {
-            for (int i = 1; i <= 36; i++)
+            for (int j = 0; j < 6; j++)
             {
-                try
+
+                Button^ button = dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", i * 6 + j + 1)]);
+                if (button != nullptr)
                 {
-                    Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", i)]);
-                    button->Text = "Reserved";
-                    Button^ button1 = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", i)]);
-                    button1->Text = "free";
+                    if (intersecttt[i][j])
+                    {
+                        button->Text = "busy";
+                        button->BackColor = Color::FromArgb(224, 224, 224);
+                    }
+                    else
+                    {
+                        button->Text = "Available";
+                        button->BackColor = Color::FromArgb(179, 255, 240);
+                    }
                 }
-                catch (...) {
-
+                for (auto row : data)
+                {
+                    if (row[0] == name)
+                    {
+                        if (row[i * 6 + j + 1] != "0")
+                        {
+                            button->Text = msclr::interop::marshal_as<String^>(row[i * 6 + j + 1]);
+                            button->BackColor = Color::FromArgb(102, 255, 204);
+                        }
+                    }
                 }
             }
         }
-    protected:
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        ~MyForm()
-        {
-            if (components)
+    }
+    System::Void KeyPress(System::Object^ sender, KeyPressEventArgs^ e) {
+        // Filter out special characters
+        if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
+            e->Handled = true;
+        }
+    }
+
+    void Button_ClickFreeBusy(Object^ sender, EventArgs^ e) {
+        Button^ clickedButton = dynamic_cast<Button^>(sender);
+        if (clickedButton != nullptr) {
+            // Toggle the text of the clicked button
+            if (clickedButton->Text == "Free")
             {
-                delete components;
+                clickedButton->Text = "Busy";
+                clickedButton->BackColor = Color::FromArgb(102, 255, 204);
+            }
+            else if (clickedButton->Text == "Busy")
+            {
+                clickedButton->Text = "Free";
+                clickedButton->BackColor = Color::FromArgb(179, 255, 230);
             }
         }
+    }
+    void InitializeMatrix(TableLayoutPanel^ tableLayoutPanel, String^ s, String^ Texts,int x) {
 
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ SubjectName;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn8;
-    private: System::Windows::Forms::Label^ label45;
-    private: System::Windows::Forms::Label^ label44;
-    private: System::Windows::Forms::DataGridView^ sldataGridView;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher_Name;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn4;
-    private: System::Windows::Forms::Label^ label49;
-    private: System::Windows::Forms::NumericUpDown^ addsubcredits;
-    private: System::Windows::Forms::Label^ label43;
-    private: System::Windows::Forms::Label^ label42;
-    private: System::Windows::Forms::Label^ label41;
-    private: System::Windows::Forms::NumericUpDown^ addsubbfactor;
-    private: System::Windows::Forms::Button^ addsubsave;
-    private: System::Windows::Forms::CheckedListBox^ addsubroomlist;
-    private: System::Windows::Forms::Button^ newaddsub;
-    private: System::Windows::Forms::Panel^ panel11;
-    private: System::Windows::Forms::RadioButton^ addsublabyes;
-    private: System::Windows::Forms::RadioButton^ addsublabno;
-    private: System::Windows::Forms::Panel^ addsubjectpanel;
-    private: System::Windows::Forms::Panel^ panel12;
-    private: System::Windows::Forms::RadioButton^ addsubeleyes;
-    private: System::Windows::Forms::RadioButton^ addsubeleno;
-    private: System::Windows::Forms::Label^ label46;
-    private: System::Windows::Forms::DataGridView^ sedataGridView;
-    private: System::Windows::Forms::Label^ label47;
-    private: System::Windows::Forms::Label^ label48;
-    private: System::Windows::Forms::TextBox^ addsubname;
-    private: System::Windows::Forms::Button^ saveroom;
-    private: System::Windows::Forms::Label^ label31;
-    private: System::Windows::Forms::TextBox^ roomname;
-    private: System::Windows::Forms::NumericUpDown^ roomcapacity;
-    private: System::Windows::Forms::Label^ label30;
-    private: System::Windows::Forms::Label^ label29;
-    private: System::Windows::Forms::Label^ label28;
-    private: System::Windows::Forms::ComboBox^ roomdept;
-    private: System::Windows::Forms::Button^ clearroom;
-    private: System::Windows::Forms::RadioButton^ roomlabno;
-    private: System::Windows::Forms::RadioButton^ roomlabyes;
-    private: System::Windows::Forms::Panel^ addclassroompanel;
-    private: System::Windows::Forms::Panel^ Homepanel;
-    private: System::Windows::Forms::PictureBox^ pictureBox1;
-    private: System::Windows::Forms::PictureBox^ pictureBox8;
-    private: System::Windows::Forms::PictureBox^ pictureBox9;
-    private: System::Windows::Forms::PictureBox^ pictureBox10;
-    private: System::Windows::Forms::PictureBox^ pictureBox11;
-    private: System::Windows::Forms::PictureBox^ pictureBox12;
-    private: System::Windows::Forms::Panel^ panel4;
-    private: System::Windows::Forms::Label^ label15;
-    private: System::Windows::Forms::Panel^ editteacherpanel;
-    private: System::Windows::Forms::Label^ label39;
-    private: System::Windows::Forms::Label^ label62;
-    private: System::Windows::Forms::ComboBox^ editteacherdepartment;
-    private: System::Windows::Forms::Label^ label63;
-    private: System::Windows::Forms::TextBox^ editteachername;
-    private: System::Windows::Forms::Button^ editteachersave;
-    private: System::Windows::Forms::Label^ label64;
-    private: System::Windows::Forms::Button^ editteacherdelete;
-    private: System::Windows::Forms::Panel^ editroompanel;
-    private: System::Windows::Forms::RadioButton^ editroomlabno;
-    private: System::Windows::Forms::RadioButton^ editroomlabyes;
-    private: System::Windows::Forms::Button^ editroomdelete;
-    private: System::Windows::Forms::ComboBox^ editroomdepartment;
-    private: System::Windows::Forms::Label^ label78;
-    private: System::Windows::Forms::Label^ label79;
-    private: System::Windows::Forms::Label^ label80;
-    private: System::Windows::Forms::NumericUpDown^ editroomcapacity;
-    private: System::Windows::Forms::TextBox^ editroomname;
-    private: System::Windows::Forms::Label^ label81;
-    private: System::Windows::Forms::Button^ editroomsave;
-    private: System::Windows::Forms::Panel^ panel6;
-    private: System::Windows::Forms::Button^ editroomsearchbutton;
-    private: System::Windows::Forms::Label^ label82;
-    private: System::Windows::Forms::Panel^ editsubjectpanel;
-    private: System::Windows::Forms::Label^ label109;
-    private: System::Windows::Forms::Panel^ settingspanel;
-    private: System::Windows::Forms::TrackBar^ trackBar1;
-    private: System::Windows::Forms::Label^ label110;
-    private: System::Windows::Forms::Label^ label112;
-    private: System::Windows::Forms::TrackBar^ trackBar2;
-    private: System::Windows::Forms::Label^ label111;
-    private: System::Windows::Forms::Button^ button1;
-    private: System::Windows::Forms::Button^ button6;
-    private: System::Windows::Forms::Button^ button9;
-    private: System::Windows::Forms::Button^ button5;
-    private: System::Windows::Forms::Button^ button8;
-    private: System::Windows::Forms::Button^ button4;
-    private: System::Windows::Forms::Button^ button7;
-    private: System::Windows::Forms::Button^ button12;
-    private: System::Windows::Forms::Button^ button11;
-    private: System::Windows::Forms::Button^ button10;
-    private: System::Windows::Forms::Button^ button15;
-    private: System::Windows::Forms::Button^ button14;
-    private: System::Windows::Forms::Button^ button13;
-    private: System::Windows::Forms::Button^ Homebutton1;
-    private: System::Windows::Forms::Panel^ panel3;
-    private: System::Windows::Forms::PictureBox^ pictureBox2;
-    private: System::Windows::Forms::PictureBox^ pictureBox3;
-    private: System::Windows::Forms::PictureBox^ pictureBox4;
-    private: System::Windows::Forms::PictureBox^ pictureBox5;
-    private: System::Windows::Forms::PictureBox^ pictureBox6;
-    private: System::Windows::Forms::PictureBox^ pictureBox7;
-    private: System::Windows::Forms::Label^ textBox4;
-    private: System::Windows::Forms::Label^ textBox5;
-    private: System::Windows::Forms::Label^ textBox10;
-    private: System::Windows::Forms::Label^ textBox8;
-    private: System::Windows::Forms::Label^ textBox6;
-    private: System::Windows::Forms::Label^ textBox11;
-    private: System::Windows::Forms::Label^ textBox9;
-    private: System::Windows::Forms::Label^ textBox7;
-    private: System::Windows::Forms::Panel^ panel1;
-    private: System::Windows::Forms::ComboBox^ teachersearch;
-    private: System::Windows::Forms::ComboBox^ editroomsearch;
-    private: System::Windows::Forms::Panel^ panel10;
-    private: System::Windows::Forms::RadioButton^ editsubeleyes;
-    private: System::Windows::Forms::RadioButton^ editsubeleno;
-    private: System::Windows::Forms::Label^ label92;
-    private: System::Windows::Forms::TextBox^ editsubname;
-    private: System::Windows::Forms::Label^ label93;
-    private: System::Windows::Forms::Label^ label94;
-    private: System::Windows::Forms::Label^ label95;
-    private: System::Windows::Forms::DataGridView^ editsubeleteacher;
-    private: System::Windows::Forms::Panel^ panel13;
-    private: System::Windows::Forms::RadioButton^ editsublabyes;
-    private: System::Windows::Forms::RadioButton^ editsublabno;
-    private: System::Windows::Forms::CheckedListBox^ editsubroomlist;
-    private: System::Windows::Forms::Label^ label96;
-    private: System::Windows::Forms::Label^ label97;
-    private: System::Windows::Forms::NumericUpDown^ editsubcredits;
-    private: System::Windows::Forms::DataGridView^ editsublabteacher;
-    private: System::Windows::Forms::Label^ label98;
-    private: System::Windows::Forms::Label^ label99;
-    private: System::Windows::Forms::Button^ editsubdelete;
-    private: System::Windows::Forms::Button^ editsubsave;
-    private: System::Windows::Forms::NumericUpDown^ editsubbfactor;
-    private: System::Windows::Forms::Label^ label100;
-    private: System::Windows::Forms::Button^ editsubsearchbutton;
-    private: System::Windows::Forms::Label^ label101;
-    private: System::Windows::Forms::ComboBox^ editsubsearch;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsubeleteachercombo;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn10;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsublabteachercombo;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn11;
-    private: System::Windows::Forms::ComboBox^ addsubcluster;
-    private: System::Windows::Forms::ComboBox^ editsubcluster;
-    private: System::Windows::Forms::Panel^ panel7;
-    private: System::Windows::Forms::Button^ addsubclusteroptions;
-    private: System::Windows::Forms::Panel^ panelsub;
-    private: System::Windows::Forms::DataGridView^ classele;
-    private: System::Windows::Forms::DataGridView^ classcore;
-    private: System::Windows::Forms::Label^ label38;
-    private: System::Windows::Forms::MaskedTextBox^ classname;
-    private: System::Windows::Forms::ComboBox^ classbranch;
-    private: System::Windows::Forms::Label^ label37;
-    private: System::Windows::Forms::MaskedTextBox^ classbatch;
-    private: System::Windows::Forms::Label^ label36;
-    private: System::Windows::Forms::CheckedListBox^ classdefaultrooms;
-    private: System::Windows::Forms::Label^ label34;
-    private: System::Windows::Forms::Button^ classgenerate;
-    private: System::Windows::Forms::Button^ classsave;
-    private: System::Windows::Forms::Button^ classclear;
-    private: System::Windows::Forms::DataGridView^ classlab;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ lsubject;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn2;
-    private: System::Windows::Forms::Label^ label33;
-    private: System::Windows::Forms::Label^ label32;
-    private: System::Windows::Forms::Label^ label13;
-    private: System::Windows::Forms::Button^ classreserve;
-    private: System::Windows::Forms::Panel^ classpanel;
-    private: System::Windows::Forms::Panel^ panel9;
-    private: System::Windows::Forms::Panel^ panel14;
-    private: System::Windows::Forms::Label^ label1;
-    private: System::Windows::Forms::TextBox^ addteachername;
-    private: System::Windows::Forms::Label^ label2;
-    private: System::Windows::Forms::ComboBox^ addteacherdepartment;
-    private: System::Windows::Forms::Label^ label3;
-    private: System::Windows::Forms::Panel^ addteacherpanel;
-    private: System::Windows::Forms::Panel^ panel17;
-    private: System::Windows::Forms::Button^ addteachersave;
-    private: System::Windows::Forms::Button^ addteachernew;
-    private: System::Windows::Forms::Label^ label4;
-    private: System::Windows::Forms::Label^ label5;
-    private: System::Windows::Forms::Panel^ panel18;
-    private: System::Windows::Forms::Label^ label51;
-    private: System::Windows::Forms::Panel^ panel20;
-    private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel2;
-    private: System::Windows::Forms::Label^ label83;
-    private: System::Windows::Forms::Label^ label84;
-    private: System::Windows::Forms::Label^ label85;
-    private: System::Windows::Forms::Label^ label86;
-    private: System::Windows::Forms::Label^ label87;
-    private: System::Windows::Forms::Label^ label88;
-    private: System::Windows::Forms::Label^ label89;
-    private: System::Windows::Forms::Label^ label90;
-    private: System::Windows::Forms::Label^ label91;
-    private: System::Windows::Forms::Label^ label102;
-    private: System::Windows::Forms::Label^ label121;
-    private: System::Windows::Forms::Label^ label122;
-    private: System::Windows::Forms::Panel^ panel22;
-    private: System::Windows::Forms::Panel^ panel21;
-    private: System::Windows::Forms::Button^ editteachersearchbutton;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn5;
-    private: System::Windows::Forms::Panel^ addsubeletablepanel;
-    private: System::Windows::Forms::Panel^ panel23;
-    private: System::Windows::Forms::Panel^ panel24;
-    private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
-    private: System::Windows::Forms::Label^ label123;
-    private: System::Windows::Forms::Label^ label124;
-    private: System::Windows::Forms::Label^ label125;
-    private: System::Windows::Forms::Label^ label126;
-    private: System::Windows::Forms::Label^ label127;
-    private: System::Windows::Forms::Label^ label128;
-    private: System::Windows::Forms::Label^ label129;
-    private: System::Windows::Forms::Label^ label130;
-    private: System::Windows::Forms::Label^ label131;
-    private: System::Windows::Forms::Label^ label132;
-    private: System::Windows::Forms::Label^ label133;
-    private: System::Windows::Forms::Label^ label134;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ csubject;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ cteacher;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn6;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ eSubject;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn3;
-    private: System::Windows::Forms::Panel^ finalttpanel;
-    private: System::Windows::Forms::Panel^ panel8;
-    private: System::Windows::Forms::Panel^ panel25;
-    private: System::Windows::Forms::TableLayoutPanel^ classtablegen1;
-    private: System::Windows::Forms::Label^ label35;
-    private: System::Windows::Forms::Label^ label52;
-    private: System::Windows::Forms::Label^ label53;
-    private: System::Windows::Forms::Label^ label54;
-    private: System::Windows::Forms::Label^ label55;
-    private: System::Windows::Forms::Label^ label56;
-    private: System::Windows::Forms::Label^ label57;
-    private: System::Windows::Forms::Label^ label58;
-    private: System::Windows::Forms::Label^ label59;
-    private: System::Windows::Forms::Label^ label60;
-    private: System::Windows::Forms::Label^ label61;
-    private: System::Windows::Forms::Label^ label65;
-    private: System::Windows::Forms::Panel^ classtablegenpanel;
-    private: System::Windows::Forms::Panel^ panel26;
-    private: System::Windows::Forms::Panel^ panel27;
-    private: System::Windows::Forms::TableLayoutPanel^ classtablegen;
-    private: System::Windows::Forms::Label^ label135;
-    private: System::Windows::Forms::Label^ label136;
-    private: System::Windows::Forms::Label^ label137;
-    private: System::Windows::Forms::Label^ label138;
-    private: System::Windows::Forms::Label^ label139;
-    private: System::Windows::Forms::Label^ label140;
-    private: System::Windows::Forms::Label^ label141;
-    private: System::Windows::Forms::Label^ label142;
-    private: System::Windows::Forms::Label^ label143;
-    private: System::Windows::Forms::Label^ label144;
-    private: System::Windows::Forms::Label^ label145;
-    private: System::Windows::Forms::Label^ label146;
-    private: System::Windows::Forms::Panel^ panel5;
-    private: System::Windows::Forms::Panel^ panel28;
-    private: System::Windows::Forms::TableLayoutPanel^ editteachertablepanel;
-    private: System::Windows::Forms::Label^ label6;
-    private: System::Windows::Forms::Label^ label7;
-    private: System::Windows::Forms::Label^ label8;
-    private: System::Windows::Forms::Label^ label9;
-    private: System::Windows::Forms::Label^ label10;
-    private: System::Windows::Forms::Label^ label11;
-    private: System::Windows::Forms::Label^ label12;
-    private: System::Windows::Forms::Label^ label14;
-    private: System::Windows::Forms::Label^ label40;
-    private: System::Windows::Forms::Label^ label50;
-    private: System::Windows::Forms::Label^ label119;
-    private: System::Windows::Forms::Label^ label120;
-    private: System::Windows::Forms::Panel^ panel16;
-    private: System::Windows::Forms::Panel^ panel29;
-    private: System::Windows::Forms::Panel^ panel30;
-    private: System::Windows::Forms::TableLayoutPanel^ teachertablepanel;
-    private: System::Windows::Forms::Label^ label66;
-    private: System::Windows::Forms::Label^ label67;
-    private: System::Windows::Forms::Label^ label68;
-    private: System::Windows::Forms::Label^ label69;
-    private: System::Windows::Forms::Label^ label70;
-    private: System::Windows::Forms::Label^ label71;
-    private: System::Windows::Forms::Label^ label72;
-    private: System::Windows::Forms::Label^ label73;
-    private: System::Windows::Forms::Label^ label74;
-    private: System::Windows::Forms::Label^ label75;
-    private: System::Windows::Forms::Label^ label76;
-    private: System::Windows::Forms::Label^ label77;
-    private: System::Windows::Forms::Panel^ panel15;
-    private: System::Windows::Forms::Panel^ panel31;
-    private: System::Windows::Forms::Panel^ panel32;
-    private: System::Windows::Forms::TableLayoutPanel^ editroomtablepanel;
-    private: System::Windows::Forms::Label^ label16;
-    private: System::Windows::Forms::Label^ label17;
-    private: System::Windows::Forms::Label^ label18;
-    private: System::Windows::Forms::Label^ label19;
-    private: System::Windows::Forms::Label^ label20;
-    private: System::Windows::Forms::Label^ label21;
-    private: System::Windows::Forms::Label^ label22;
-    private: System::Windows::Forms::Label^ label23;
-    private: System::Windows::Forms::Label^ label24;
-    private: System::Windows::Forms::Label^ label25;
-    private: System::Windows::Forms::Label^ label26;
-    private: System::Windows::Forms::Label^ label27;
-    private: System::Windows::Forms::Panel^ panel33;
-    private: System::Windows::Forms::Panel^ panel34;
-    private: System::Windows::Forms::Panel^ panel35;
-    private: System::Windows::Forms::TableLayoutPanel^ addroomtablepanel;
-    private: System::Windows::Forms::Label^ label103;
-    private: System::Windows::Forms::Label^ label104;
-    private: System::Windows::Forms::Label^ label105;
-    private: System::Windows::Forms::Label^ label106;
-    private: System::Windows::Forms::Label^ label107;
-    private: System::Windows::Forms::Label^ label108;
-    private: System::Windows::Forms::Label^ label113;
-    private: System::Windows::Forms::Label^ label114;
-    private: System::Windows::Forms::Label^ label115;
-    private: System::Windows::Forms::Label^ label116;
-    private: System::Windows::Forms::Label^ label117;
-    private: System::Windows::Forms::Label^ label118;
-    private: System::Windows::Forms::TextBox^ deptlabel;
-    private: System::Windows::Forms::DataGridView^ deptDataGridView;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn1;
-    private: System::Windows::Forms::Button^ button2;
-    private: System::Windows::Forms::Button^ button22;
-    private: System::Windows::Forms::Panel^ panel2;
-    private: System::Windows::Forms::TextBox^ addteacheremailid;
-    private: System::Windows::Forms::Label^ label147;
-    private: System::Windows::Forms::TextBox^ addsubcode;
-    private: System::Windows::Forms::Label^ label149;
-    private: System::Windows::Forms::TextBox^ addsubtitle;
-    private: System::Windows::Forms::Label^ label148;
-    private: System::Windows::Forms::TextBox^ editteacheremailid;
-    private: System::Windows::Forms::Label^ label151;
-    private: System::Windows::Forms::Panel^ deleteclasspanel;
-    private: System::Windows::Forms::DataGridView^ sectiondeletedatagridview;
-    private: System::Windows::Forms::Panel^ panel36;
-    private: System::Windows::Forms::Label^ label150;
-    private: System::Windows::Forms::Label^ label152;
-    private: System::Windows::Forms::TextBox^ editsubtitle;
-    private: System::Windows::Forms::TextBox^ editsubcode;
-    private: System::Windows::Forms::DataGridViewTextBoxColumn^ classcolumn;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ classdeletebutton;
-    private: System::Windows::Forms::Panel^ panel19;
-    private: System::Windows::Forms::Panel^ editpanelsub;
+        // Clear existing buttons if any
+        tableLayoutPanel->Controls->Clear();
+        // Create buttons and add them to the TableLayoutPanel
 
-    private: System::Windows::Forms::Button^ button3;
-    private: System::Windows::Forms::Panel^ editsubelepanel;
-    private: System::Windows::Forms::Panel^ panel39;
-    private: System::Windows::Forms::Panel^ panel40;
-    private: System::Windows::Forms::TableLayoutPanel^ editsubeletable;
-    private: System::Windows::Forms::Label^ label153;
-    private: System::Windows::Forms::Label^ label154;
-    private: System::Windows::Forms::Label^ label155;
-    private: System::Windows::Forms::Label^ label156;
-    private: System::Windows::Forms::Label^ label157;
-    private: System::Windows::Forms::Label^ label158;
-    private: System::Windows::Forms::Label^ label159;
-    private: System::Windows::Forms::Label^ label160;
-    private: System::Windows::Forms::Label^ label161;
-    private: System::Windows::Forms::Label^ label162;
-    private: System::Windows::Forms::Label^ label163;
-    private: System::Windows::Forms::Label^ label164;
-    private: System::ComponentModel::IContainer^ components;
+        for (int i = 0; i < 6; i++) {
+            int count = 0;
+            for (int j = 0; j < 8; j++) {
+                if (j == 2 || j == 5)
+                {
+                    count++;
+                }
+                else
+                {
+                    Button^ button = gcnew Button();
+                    button->Text = Texts;
+                    button->BackColor = Color::FromArgb(179, 255, 230);
+                    button->Dock = DockStyle::Fill;
+                    button->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                        static_cast<System::Byte>(0)));
+                    if (count == 0)
+                        button->Name = String::Format("button" + s + "{0}", i * 6 + j + 1);
+                    else if (count == 1)
+                        button->Name = String::Format("button" + s + "{0}", i * 6 + j);
+                    else
+                        button->Name = String::Format("button" + s + "{0}", i * 6 + j - 1);
+                    tableLayoutPanel->Controls->Add(button, j, i);
+                    if(x==0)
+                    button->Click += gcnew EventHandler(this, &MyForm::Button_clickEle);
+                    if(x==1)
+                        button->Click += gcnew EventHandler(this, &MyForm::Button_ClickFreeBusy);
+                    if (x==2)
+                        button->Click += gcnew EventHandler(this, &MyForm::Button_clickEditEle);
+                    if(x==3)
+                        button->Click += gcnew EventHandler(this, &MyForm::Button_clicks);
+                    tableLayoutPanel->Controls->Add(button, j, i);
+                }
+            }
+        }
+    }
+    void ClearReset()
+    {
+        for (int i = 1; i <= 36; i++)
+        {
+            try
+            {
+                Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", i)]);
+                button->Text = "Reserved";
+                 Button^ button1 = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", i)]);
+                        button1->Text = "free";
+            }
+            catch (...) {
+                          
+            }
+        }
+    }
+	protected:
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		~MyForm()
+		{
+			if (components)
+			{
+				delete components;
+			}
+        }
+        
+        private: System::Windows::Forms::DataGridViewComboBoxColumn^ SubjectName;
+        private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher;
+        private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn8;
+        private: System::Windows::Forms::Label^ label45;
+        private: System::Windows::Forms::Label^ label44;
+        private: System::Windows::Forms::DataGridView^ sldataGridView;
+        private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher_Name;
+        private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn4;
+        private: System::Windows::Forms::Label^ label49;
+private: System::Windows::Forms::NumericUpDown^ addsubcredits;
+        private: System::Windows::Forms::Label^ label43;
+        private: System::Windows::Forms::Label^ label42;
+        private: System::Windows::Forms::Label^ label41;
+private: System::Windows::Forms::NumericUpDown^ addsubbfactor;
+        private: System::Windows::Forms::Button^ addsubsave;
+private: System::Windows::Forms::CheckedListBox^ addsubroomlist;
+        private: System::Windows::Forms::Button^ newaddsub;
+        private: System::Windows::Forms::Panel^ panel11;
+private: System::Windows::Forms::RadioButton^ addsublabyes;
+private: System::Windows::Forms::RadioButton^ addsublabno;
+        private: System::Windows::Forms::Panel^ addsubjectpanel;
+        private: System::Windows::Forms::Panel^ panel12;
+private: System::Windows::Forms::RadioButton^ addsubeleyes;
+private: System::Windows::Forms::RadioButton^ addsubeleno;
+private: System::Windows::Forms::Label^ label46;
+private: System::Windows::Forms::DataGridView^ sedataGridView;
+private: System::Windows::Forms::Label^ label47;
+private: System::Windows::Forms::Label^ label48;
+private: System::Windows::Forms::TextBox^ addsubname;
+private: System::Windows::Forms::Button^ saveroom;
+private: System::Windows::Forms::Label^ label31;
+private: System::Windows::Forms::TextBox^ roomname;
+private: System::Windows::Forms::NumericUpDown^ roomcapacity;
+private: System::Windows::Forms::Label^ label30;
+private: System::Windows::Forms::Label^ label29;
+private: System::Windows::Forms::Label^ label28;
+private: System::Windows::Forms::ComboBox^ roomdept;
+private: System::Windows::Forms::Button^ clearroom;
+private: System::Windows::Forms::RadioButton^ roomlabno;
+private: System::Windows::Forms::RadioButton^ roomlabyes;
+private: System::Windows::Forms::Panel^ addclassroompanel;
+private: System::Windows::Forms::Panel^ Homepanel;
+private: System::Windows::Forms::PictureBox^ pictureBox1;
+private: System::Windows::Forms::PictureBox^ pictureBox8;
+private: System::Windows::Forms::PictureBox^ pictureBox9;
+private: System::Windows::Forms::PictureBox^ pictureBox10;
+private: System::Windows::Forms::PictureBox^ pictureBox11;
+private: System::Windows::Forms::PictureBox^ pictureBox12;
+private: System::Windows::Forms::Panel^ panel4;
+private: System::Windows::Forms::Label^ label15;
+private: System::Windows::Forms::Panel^ editteacherpanel;
+private: System::Windows::Forms::Label^ label39;
+private: System::Windows::Forms::Label^ label62;
+private: System::Windows::Forms::ComboBox^ editteacherdepartment;
+private: System::Windows::Forms::Label^ label63;
+private: System::Windows::Forms::TextBox^ editteachername;
+private: System::Windows::Forms::Button^ editteachersave;
+private: System::Windows::Forms::Label^ label64;
+private: System::Windows::Forms::Button^ editteacherdelete;
+private: System::Windows::Forms::Panel^ editroompanel;
+private: System::Windows::Forms::RadioButton^ editroomlabno;
+private: System::Windows::Forms::RadioButton^ editroomlabyes;
+private: System::Windows::Forms::Button^ editroomdelete;
+private: System::Windows::Forms::ComboBox^ editroomdepartment;
+private: System::Windows::Forms::Label^ label78;
+private: System::Windows::Forms::Label^ label79;
+private: System::Windows::Forms::Label^ label80;
+private: System::Windows::Forms::NumericUpDown^ editroomcapacity;
+private: System::Windows::Forms::TextBox^ editroomname;
+private: System::Windows::Forms::Label^ label81;
+private: System::Windows::Forms::Button^ editroomsave;
+private: System::Windows::Forms::Panel^ panel6;
+private: System::Windows::Forms::Button^ editroomsearchbutton;
+private: System::Windows::Forms::Label^ label82;
+private: System::Windows::Forms::Panel^ editsubjectpanel;
+private: System::Windows::Forms::Label^ label109;
+private: System::Windows::Forms::Panel^ settingspanel;
+private: System::Windows::Forms::TrackBar^ trackBar1;
+private: System::Windows::Forms::Label^ label110;
+private: System::Windows::Forms::Label^ label112;
+private: System::Windows::Forms::TrackBar^ trackBar2;
+private: System::Windows::Forms::Label^ label111;
+private: System::Windows::Forms::Button^ button1;
+private: System::Windows::Forms::Button^ button6;
+private: System::Windows::Forms::Button^ button9;
+private: System::Windows::Forms::Button^ button5;
+private: System::Windows::Forms::Button^ button8;
+private: System::Windows::Forms::Button^ button4;
+private: System::Windows::Forms::Button^ button7;
+private: System::Windows::Forms::Button^ button12;
+private: System::Windows::Forms::Button^ button11;
+private: System::Windows::Forms::Button^ button10;
+private: System::Windows::Forms::Button^ button15;
+private: System::Windows::Forms::Button^ button14;
+private: System::Windows::Forms::Button^ button13;
+private: System::Windows::Forms::Button^ Homebutton1;
+private: System::Windows::Forms::Panel^ panel3;
+private: System::Windows::Forms::PictureBox^ pictureBox2;
+private: System::Windows::Forms::PictureBox^ pictureBox3;
+private: System::Windows::Forms::PictureBox^ pictureBox4;
+private: System::Windows::Forms::PictureBox^ pictureBox5;
+private: System::Windows::Forms::PictureBox^ pictureBox6;
+private: System::Windows::Forms::PictureBox^ pictureBox7;
+private: System::Windows::Forms::Label^ textBox4;
+private: System::Windows::Forms::Label^ textBox5;
+private: System::Windows::Forms::Label^ textBox10;
+private: System::Windows::Forms::Label^ textBox8;
+private: System::Windows::Forms::Label^ textBox6;
+private: System::Windows::Forms::Label^ textBox11;
+private: System::Windows::Forms::Label^ textBox9;
+private: System::Windows::Forms::Label^ textBox7;
+private: System::Windows::Forms::Panel^ panel1;
+private: System::Windows::Forms::ComboBox^ teachersearch;
+private: System::Windows::Forms::ComboBox^ editroomsearch;
+private: System::Windows::Forms::Panel^ panel10;
+private: System::Windows::Forms::RadioButton^ editsubeleyes;
+private: System::Windows::Forms::RadioButton^ editsubeleno;
+private: System::Windows::Forms::Label^ label92;
+private: System::Windows::Forms::TextBox^ editsubname;
+private: System::Windows::Forms::Label^ label93;
+private: System::Windows::Forms::Label^ label94;
+private: System::Windows::Forms::Label^ label95;
+private: System::Windows::Forms::DataGridView^ editsubeleteacher;
+private: System::Windows::Forms::Panel^ panel13;
+private: System::Windows::Forms::RadioButton^ editsublabyes;
+private: System::Windows::Forms::RadioButton^ editsublabno;
+private: System::Windows::Forms::CheckedListBox^ editsubroomlist;
+private: System::Windows::Forms::Label^ label96;
+private: System::Windows::Forms::Label^ label97;
+private: System::Windows::Forms::NumericUpDown^ editsubcredits;
+private: System::Windows::Forms::DataGridView^ editsublabteacher;
+private: System::Windows::Forms::Label^ label98;
+private: System::Windows::Forms::Label^ label99;
+private: System::Windows::Forms::Button^ editsubdelete;
+private: System::Windows::Forms::Button^ editsubsave;
+private: System::Windows::Forms::NumericUpDown^ editsubbfactor;
+private: System::Windows::Forms::Label^ label100;
+private: System::Windows::Forms::Button^ editsubsearchbutton;
+private: System::Windows::Forms::Label^ label101;
+private: System::Windows::Forms::ComboBox^ editsubsearch;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsubeleteachercombo;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn10;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsublabteachercombo;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn11;
+private: System::Windows::Forms::ComboBox^ addsubcluster;
+private: System::Windows::Forms::ComboBox^ editsubcluster;
+private: System::Windows::Forms::Panel^ panel7;
+private: System::Windows::Forms::Button^ addsubclusteroptions;
+private: System::Windows::Forms::Panel^ panelsub;
+private: System::Windows::Forms::DataGridView^ classele;
+private: System::Windows::Forms::DataGridView^ classcore;
+private: System::Windows::Forms::Label^ label38;
+private: System::Windows::Forms::MaskedTextBox^ classname;
+private: System::Windows::Forms::ComboBox^ classbranch;
+private: System::Windows::Forms::Label^ label37;
+private: System::Windows::Forms::MaskedTextBox^ classbatch;
+private: System::Windows::Forms::Label^ label36;
+private: System::Windows::Forms::CheckedListBox^ classdefaultrooms;
+private: System::Windows::Forms::Label^ label34;
+private: System::Windows::Forms::Button^ classgenerate;
+private: System::Windows::Forms::Button^ classsave;
+private: System::Windows::Forms::Button^ classclear;
+private: System::Windows::Forms::DataGridView^ classlab;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ lsubject;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn2;
+private: System::Windows::Forms::Label^ label33;
+private: System::Windows::Forms::Label^ label32;
+private: System::Windows::Forms::Label^ label13;
+private: System::Windows::Forms::Button^ classreserve;
+private: System::Windows::Forms::Panel^ classpanel;
+private: System::Windows::Forms::Panel^ panel9;
+private: System::Windows::Forms::Panel^ panel14;
+private: System::Windows::Forms::Label^ label1;
+private: System::Windows::Forms::TextBox^ addteachername;
+private: System::Windows::Forms::Label^ label2;
+private: System::Windows::Forms::ComboBox^ addteacherdepartment;
+private: System::Windows::Forms::Label^ label3;
+private: System::Windows::Forms::Panel^ addteacherpanel;
+private: System::Windows::Forms::Panel^ panel17;
+private: System::Windows::Forms::Button^ addteachersave;
+private: System::Windows::Forms::Button^ addteachernew;
+private: System::Windows::Forms::Label^ label4;
+private: System::Windows::Forms::Label^ label5;
+private: System::Windows::Forms::Panel^ panel18;
+private: System::Windows::Forms::Label^ label51;
+private: System::Windows::Forms::Panel^ panel20;
+private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel2;
+private: System::Windows::Forms::Label^ label83;
+private: System::Windows::Forms::Label^ label84;
+private: System::Windows::Forms::Label^ label85;
+private: System::Windows::Forms::Label^ label86;
+private: System::Windows::Forms::Label^ label87;
+private: System::Windows::Forms::Label^ label88;
+private: System::Windows::Forms::Label^ label89;
+private: System::Windows::Forms::Label^ label90;
+private: System::Windows::Forms::Label^ label91;
+private: System::Windows::Forms::Label^ label102;
+private: System::Windows::Forms::Label^ label121;
+private: System::Windows::Forms::Label^ label122;
+private: System::Windows::Forms::Panel^ panel22;
+private: System::Windows::Forms::Panel^ panel21;
+private: System::Windows::Forms::Button^ editteachersearchbutton;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn5;
+private: System::Windows::Forms::Panel^ addsubeletablepanel;
+private: System::Windows::Forms::Panel^ panel23;
+private: System::Windows::Forms::Panel^ panel24;
+private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel1;
+private: System::Windows::Forms::Label^ label123;
+private: System::Windows::Forms::Label^ label124;
+private: System::Windows::Forms::Label^ label125;
+private: System::Windows::Forms::Label^ label126;
+private: System::Windows::Forms::Label^ label127;
+private: System::Windows::Forms::Label^ label128;
+private: System::Windows::Forms::Label^ label129;
+private: System::Windows::Forms::Label^ label130;
+private: System::Windows::Forms::Label^ label131;
+private: System::Windows::Forms::Label^ label132;
+private: System::Windows::Forms::Label^ label133;
+private: System::Windows::Forms::Label^ label134;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ csubject;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ cteacher;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn6;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ eSubject;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn3;
+private: System::Windows::Forms::Panel^ finalttpanel;
+private: System::Windows::Forms::Panel^ panel8;
+private: System::Windows::Forms::Panel^ panel25;
+private: System::Windows::Forms::TableLayoutPanel^ classtablegen1;
+private: System::Windows::Forms::Label^ label35;
+private: System::Windows::Forms::Label^ label52;
+private: System::Windows::Forms::Label^ label53;
+private: System::Windows::Forms::Label^ label54;
+private: System::Windows::Forms::Label^ label55;
+private: System::Windows::Forms::Label^ label56;
+private: System::Windows::Forms::Label^ label57;
+private: System::Windows::Forms::Label^ label58;
+private: System::Windows::Forms::Label^ label59;
+private: System::Windows::Forms::Label^ label60;
+private: System::Windows::Forms::Label^ label61;
+private: System::Windows::Forms::Label^ label65;
+private: System::Windows::Forms::Panel^ classtablegenpanel;
+private: System::Windows::Forms::Panel^ panel26;
+private: System::Windows::Forms::Panel^ panel27;
+private: System::Windows::Forms::TableLayoutPanel^ classtablegen;
+private: System::Windows::Forms::Label^ label135;
+private: System::Windows::Forms::Label^ label136;
+private: System::Windows::Forms::Label^ label137;
+private: System::Windows::Forms::Label^ label138;
+private: System::Windows::Forms::Label^ label139;
+private: System::Windows::Forms::Label^ label140;
+private: System::Windows::Forms::Label^ label141;
+private: System::Windows::Forms::Label^ label142;
+private: System::Windows::Forms::Label^ label143;
+private: System::Windows::Forms::Label^ label144;
+private: System::Windows::Forms::Label^ label145;
+private: System::Windows::Forms::Label^ label146;
+private: System::Windows::Forms::Panel^ panel5;
+private: System::Windows::Forms::Panel^ panel28;
+private: System::Windows::Forms::TableLayoutPanel^ editteachertablepanel;
+private: System::Windows::Forms::Label^ label6;
+private: System::Windows::Forms::Label^ label7;
+private: System::Windows::Forms::Label^ label8;
+private: System::Windows::Forms::Label^ label9;
+private: System::Windows::Forms::Label^ label10;
+private: System::Windows::Forms::Label^ label11;
+private: System::Windows::Forms::Label^ label12;
+private: System::Windows::Forms::Label^ label14;
+private: System::Windows::Forms::Label^ label40;
+private: System::Windows::Forms::Label^ label50;
+private: System::Windows::Forms::Label^ label119;
+private: System::Windows::Forms::Label^ label120;
+private: System::Windows::Forms::Panel^ panel16;
+private: System::Windows::Forms::Panel^ panel29;
+private: System::Windows::Forms::Panel^ panel30;
+private: System::Windows::Forms::TableLayoutPanel^ teachertablepanel;
+private: System::Windows::Forms::Label^ label66;
+private: System::Windows::Forms::Label^ label67;
+private: System::Windows::Forms::Label^ label68;
+private: System::Windows::Forms::Label^ label69;
+private: System::Windows::Forms::Label^ label70;
+private: System::Windows::Forms::Label^ label71;
+private: System::Windows::Forms::Label^ label72;
+private: System::Windows::Forms::Label^ label73;
+private: System::Windows::Forms::Label^ label74;
+private: System::Windows::Forms::Label^ label75;
+private: System::Windows::Forms::Label^ label76;
+private: System::Windows::Forms::Label^ label77;
+private: System::Windows::Forms::Panel^ panel15;
+private: System::Windows::Forms::Panel^ panel31;
+private: System::Windows::Forms::Panel^ panel32;
+private: System::Windows::Forms::TableLayoutPanel^ editroomtablepanel;
+private: System::Windows::Forms::Label^ label16;
+private: System::Windows::Forms::Label^ label17;
+private: System::Windows::Forms::Label^ label18;
+private: System::Windows::Forms::Label^ label19;
+private: System::Windows::Forms::Label^ label20;
+private: System::Windows::Forms::Label^ label21;
+private: System::Windows::Forms::Label^ label22;
+private: System::Windows::Forms::Label^ label23;
+private: System::Windows::Forms::Label^ label24;
+private: System::Windows::Forms::Label^ label25;
+private: System::Windows::Forms::Label^ label26;
+private: System::Windows::Forms::Label^ label27;
+private: System::Windows::Forms::Panel^ panel33;
+private: System::Windows::Forms::Panel^ panel34;
+private: System::Windows::Forms::Panel^ panel35;
+private: System::Windows::Forms::TableLayoutPanel^ addroomtablepanel;
+private: System::Windows::Forms::Label^ label103;
+private: System::Windows::Forms::Label^ label104;
+private: System::Windows::Forms::Label^ label105;
+private: System::Windows::Forms::Label^ label106;
+private: System::Windows::Forms::Label^ label107;
+private: System::Windows::Forms::Label^ label108;
+private: System::Windows::Forms::Label^ label113;
+private: System::Windows::Forms::Label^ label114;
+private: System::Windows::Forms::Label^ label115;
+private: System::Windows::Forms::Label^ label116;
+private: System::Windows::Forms::Label^ label117;
+private: System::Windows::Forms::Label^ label118;
+private: System::Windows::Forms::TextBox^ deptlabel;
+private: System::Windows::Forms::DataGridView^ deptDataGridView;
+private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn1;
+private: System::Windows::Forms::Button^ button2;
+private: System::Windows::Forms::Button^ button22;
+private: System::Windows::Forms::Panel^ panel2;
+private: System::Windows::Forms::TextBox^ addteacheremailid;
+private: System::Windows::Forms::Label^ label147;
+private: System::Windows::Forms::TextBox^ addsubcode;
+private: System::Windows::Forms::Label^ label149;
+private: System::Windows::Forms::TextBox^ addsubtitle;
+private: System::Windows::Forms::Label^ label148;
+private: System::Windows::Forms::TextBox^ editteacheremailid;
+private: System::Windows::Forms::Label^ label151;
+private: System::Windows::Forms::Panel^ deleteclasspanel;
+private: System::Windows::Forms::DataGridView^ sectiondeletedatagridview;
+private: System::Windows::Forms::Panel^ panel36;
+private: System::Windows::Forms::Label^ label150;
+private: System::Windows::Forms::Label^ label152;
+private: System::Windows::Forms::TextBox^ editsubtitle;
+private: System::Windows::Forms::TextBox^ editsubcode;
+private: System::Windows::Forms::DataGridViewTextBoxColumn^ classcolumn;
+private: System::Windows::Forms::DataGridViewButtonColumn^ classdeletebutton;
+private: System::Windows::Forms::Panel^ panel19;
+private: System::Windows::Forms::Panel^ editpanelsub;
+
+private: System::Windows::Forms::Button^ button3;
+private: System::Windows::Forms::Panel^ editsubelepanel;
+private: System::Windows::Forms::Panel^ panel39;
+private: System::Windows::Forms::Panel^ panel40;
+private: System::Windows::Forms::TableLayoutPanel^ editsubeletable;
+private: System::Windows::Forms::Label^ label153;
+private: System::Windows::Forms::Label^ label154;
+private: System::Windows::Forms::Label^ label155;
+private: System::Windows::Forms::Label^ label156;
+private: System::Windows::Forms::Label^ label157;
+private: System::Windows::Forms::Label^ label158;
+private: System::Windows::Forms::Label^ label159;
+private: System::Windows::Forms::Label^ label160;
+private: System::Windows::Forms::Label^ label161;
+private: System::Windows::Forms::Label^ label162;
+private: System::Windows::Forms::Label^ label163;
+private: System::Windows::Forms::Label^ label164;
+private: System::ComponentModel::IContainer^ components;
     protected:
-    private:
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+	private:
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
 
 
 #pragma region Windows Form Designer generated code
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
-        void InitializeComponent(void)
-        {
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		void InitializeComponent(void)
+		{
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle65 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle66 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle69 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
@@ -3943,7 +3953,6 @@ namespace TTA_ui {
             this->roomname->Name = L"roomname";
             this->roomname->Size = System::Drawing::Size(295, 34);
             this->roomname->TabIndex = 68;
-            this->roomname->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // roomcapacity
             // 
@@ -4002,7 +4011,6 @@ namespace TTA_ui {
             this->roomdept->Name = L"roomdept";
             this->roomdept->Size = System::Drawing::Size(294, 36);
             this->roomdept->TabIndex = 73;
-            this->roomdept->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // clearroom
             // 
@@ -7077,7 +7085,7 @@ namespace TTA_ui {
             this->classname->Size = System::Drawing::Size(410, 34);
             this->classname->TabIndex = 244;
             this->classname->TextMaskFormat = System::Windows::Forms::MaskFormat::ExcludePromptAndLiterals;
-            this->classname->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
+            this->classname->KeyPress+= gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // classbranch
             // 
@@ -8235,8 +8243,6 @@ namespace TTA_ui {
             this->dataGridViewTextBoxColumn1->MinimumWidth = 30;
             this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
             this->dataGridViewTextBoxColumn1->Width = 350;
-            this->deptDataGridView->EditingControlShowing += gcnew DataGridViewEditingControlShowingEventHandler(this, &MyForm::EditingControlShowing);
-            
             // 
             // dataGridViewButtonColumn1
             // 
@@ -8533,7 +8539,7 @@ namespace TTA_ui {
 
         }
 #pragma endregion
-    private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
         panel3->Height = button1->Height;
         panel3->Top = button1->Top;
         panel2->BringToFront();
@@ -8559,313 +8565,334 @@ namespace TTA_ui {
         textBox11->Visible = true;
         DisplayCSVInComboBox(deptDataGridView, "details/dept_file.csv");
     }
-    private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+private: System::Void panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+    Homepanel->BringToFront();
+    panel1->BringToFront();
+    DisplayCSVInComboBox(deptDataGridView,"details/dept_file.csv");
+    pictureBox12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pictureBox1_Paint);
+    InitializeMatrix(addroomtablepanel, "room", "Free",1);
+    InitializeMatrix(editroomtablepanel, "editroom", "Free",1);
+    InitializeMatrix(teachertablepanel, "teacher", "Free",1);
+    InitializeMatrix(editteachertablepanel, "editteacher", "Free",1);
+    InitializeMatrix(editsubeletable, "editele", "Available",2);
+}
+    
+private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (button4->Visible == false)
+    {
+        button5->Visible = true;
+        button4->Visible = true;
+        textBox5->Visible = false;
+        textBox4->Visible = true;
     }
-    private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-        Homepanel->BringToFront();
-        panel1->BringToFront();
-        DisplayCSVInComboBox(deptDataGridView, "details/dept_file.csv");
-        pictureBox12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pictureBox1_Paint);
-        InitializeMatrix(addroomtablepanel, "room", "Free", 1);
-        InitializeMatrix(editroomtablepanel, "editroom", "Free", 1);
-        InitializeMatrix(teachertablepanel, "teacher", "Free", 1);
-        InitializeMatrix(editteachertablepanel, "editteacher", "Free", 1);
-        InitializeMatrix(editsubeletable, "editele", "Available", 2);
-    }
-
-    private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (button4->Visible == false)
-        {
-            button5->Visible = true;
-            button4->Visible = true;
-            textBox5->Visible = false;
-            textBox4->Visible = true;
-        }
-        else
-        {
-            button5->Visible = false;
-            button4->Visible = false;
-            textBox4->Visible = false;
-            textBox5->Visible = true;
-        }
-        panel3->Height = button6->Height;
-        panel3->Top = button6->Top;
-        //close teachers suboption
-        button8->Visible = false;
-        button7->Visible = false;
-        textBox6->Visible = false;
-        textBox7->Visible = true;
-        //close subject suboptions
-        button10->Visible = false;
-        button11->Visible = false;
-        textBox8->Visible = false;
-        textBox9->Visible = true;
-        //close class suboptions
-        button14->Visible = false;
-        button13->Visible = false;
-        textBox10->Visible = false;
-        textBox11->Visible = true;
-    }
-    private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (button8->Visible == false)
-        {
-            button8->Visible = true;
-            button7->Visible = true;
-            textBox7->Visible = false;
-            textBox6->Visible = true;
-        }
-
-        else
-        {
-            button8->Visible = false;
-            button7->Visible = false;
-            textBox6->Visible = false;
-            textBox7->Visible = true;
-        }
-        panel3->Height = button9->Height;
-        panel3->Top = button9->Top;
+    else
+    {
         button5->Visible = false;
         button4->Visible = false;
         textBox4->Visible = false;
         textBox5->Visible = true;
-        //close subject suboptions
-        button10->Visible = false;
-        button11->Visible = false;
-        textBox8->Visible = false;
-        textBox9->Visible = true;
-        //close class suboptions
-        button14->Visible = false;
-        button13->Visible = false;
-        textBox10->Visible = false;
-        textBox11->Visible = true;
     }
-    private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+    panel3->Height = button6->Height;
+    panel3->Top = button6->Top;
+    //close teachers suboption
+    button8->Visible = false;
+    button7->Visible = false;
+    textBox6->Visible = false;
+    textBox7->Visible = true;
+    //close subject suboptions
+    button10->Visible = false;
+    button11->Visible = false;
+    textBox8->Visible = false;
+    textBox9->Visible = true;
+    //close class suboptions
+    button14->Visible = false;
+    button13->Visible = false;
+    textBox10->Visible = false;
+    textBox11->Visible = true;
+}
+private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (button8->Visible == false)
+    {
+        button8->Visible = true;
+        button7->Visible = true;
+        textBox7->Visible = false;
+        textBox6->Visible = true;
     }
-    private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-        panel3->Height = button6->Height;
-        panel3->Top = button6->Top;
-        addclassroompanel->BringToFront();
-        DisplayCSVInComboBox1("details/dept_file.csv", roomdept);
-        button5->BackColor = Color::FromArgb(0, 0, 100);
-        button4->BackColor = Color::FromArgb(0, 0, 77);
-        button7->BackColor = Color::FromArgb(0, 0, 77);
-        button8->BackColor = Color::FromArgb(0, 0, 77);
-        button10->BackColor = Color::FromArgb(0, 0, 77);
-        button11->BackColor = Color::FromArgb(0, 0, 77);
-        button13->BackColor = Color::FromArgb(0, 0, 77);
-        button14->BackColor = Color::FromArgb(0, 0, 77);
-    }
-    private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-        panel3->Height = button6->Height;
-        panel3->Top = button6->Top;
-    }
-    private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
-        panel3->Height = Homebutton1->Height;
-        panel3->Top = Homebutton1->Top;
-        Homepanel->BringToFront();
-        //close classroom suboptions
-        button5->Visible = false;
-        button4->Visible = false;
-        textBox4->Visible = false;
-        textBox5->Visible = true;
-        //close teacher suboptions
+    
+    else
+    {
         button8->Visible = false;
         button7->Visible = false;
         textBox6->Visible = false;
         textBox7->Visible = true;
-        //close subject suboptions
+    }
+    panel3->Height = button9->Height;
+    panel3->Top = button9->Top;
+    button5->Visible = false;
+    button4->Visible = false;
+    textBox4->Visible = false;
+    textBox5->Visible = true;
+    //close subject suboptions
+    button10->Visible = false;
+    button11->Visible = false;
+    textBox8->Visible = false;
+    textBox9->Visible = true;
+    //close class suboptions
+    button14->Visible = false;
+    button13->Visible = false;
+    textBox10->Visible = false;
+    textBox11->Visible = true;
+}
+private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+    panel3->Height = button6->Height;
+    panel3->Top = button6->Top;
+    addclassroompanel->BringToFront();
+    DisplayCSVInComboBox1("details/dept_file.csv", roomdept);
+    button5->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+    panel3->Height = button6->Height;
+    panel3->Top = button6->Top;
+}
+private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
+    panel3->Height = Homebutton1->Height;
+    panel3->Top = Homebutton1->Top;
+    Homepanel->BringToFront();
+    //close classroom suboptions
+    button5->Visible = false;
+    button4->Visible = false;
+    textBox4->Visible = false;
+    textBox5->Visible = true;
+    //close teacher suboptions
+    button8->Visible = false;
+    button7->Visible = false;
+    textBox6->Visible = false;
+    textBox7->Visible = true;
+    //close subject suboptions
+    button10->Visible = false;
+    button11->Visible = false;
+    textBox8->Visible = false;
+    textBox9->Visible = true;
+    //close class suboptions
+    button14->Visible = false;
+    button13->Visible = false;
+    textBox10->Visible = false;
+    textBox11->Visible = true;
+}
+private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (button10->Visible == false)
+    {
+        button10->Visible = true;
+        button11->Visible = true;
+        textBox9->Visible = false;
+        textBox8->Visible = true;
+    }
+
+    else
+    {
         button10->Visible = false;
         button11->Visible = false;
         textBox8->Visible = false;
         textBox9->Visible = true;
-        //close class suboptions
-        button14->Visible = false;
-        button13->Visible = false;
-        textBox10->Visible = false;
-        textBox11->Visible = true;
     }
-    private: System::Void button12_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (button10->Visible == false)
-        {
-            button10->Visible = true;
-            button11->Visible = true;
-            textBox9->Visible = false;
-            textBox8->Visible = true;
-        }
+    panel3->Height = button12->Height;
+    panel3->Top = button12->Top;
+    //close classroom suboptions
+    button5->Visible = false;
+    button4->Visible = false;
+    textBox4->Visible = false;
+    textBox5->Visible = true;
+    //close teachers suboption
+    button8->Visible = false;
+    button7->Visible = false;
+    textBox6->Visible = false;
+    textBox7->Visible = true;
+    //close class suboptions
+    button14->Visible = false;
+    button13->Visible = false;
+    textBox10->Visible = false;
+    textBox11->Visible = true;
+}
 
-        else
-        {
-            button10->Visible = false;
-            button11->Visible = false;
-            textBox8->Visible = false;
-            textBox9->Visible = true;
-        }
-        panel3->Height = button12->Height;
-        panel3->Top = button12->Top;
-        //close classroom suboptions
-        button5->Visible = false;
-        button4->Visible = false;
-        textBox4->Visible = false;
-        textBox5->Visible = true;
-        //close teachers suboption
-        button8->Visible = false;
-        button7->Visible = false;
-        textBox6->Visible = false;
-        textBox7->Visible = true;
-        //close class suboptions
-        button14->Visible = false;
-        button13->Visible = false;
-        textBox10->Visible = false;
-        textBox11->Visible = true;
+private: System::Void panel4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void panel5_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
+    panel3->Height = button9->Height;
+    panel3->Top = button9->Top;
+    addteacherpanel->BringToFront();
+    DisplayCSVInComboBox1("details/dept_file.csv",addteacherdepartment);
+    button8->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);   
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+}
+private: System::Void dataGridView2_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn1, deptDataGridView, sender, e);
+}
+private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
+    string filePath = "details/dept_file.csv";
+    deptcsvgen(deptDataGridView, filePath);
+}
+private: System::Void addteachersave_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool  flag = true;
+    if (String::IsNullOrEmpty(addteachername->Text))
+    {
+        MessageBox::Show("Teacher Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    else if (String::IsNullOrEmpty(addteacherdepartment->Text))
+    {
+        MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    else if (String::IsNullOrEmpty(addteacheremailid->Text))
+    {
+        MessageBox::Show("Teacher's Email ID not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (flag)
+    {
+        addnamecsvgen("details/teacher_file.csv");
     }
 
-    private: System::Void panel4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void saveroom_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool  flag = true;
+    if (String::IsNullOrEmpty(roomname->Text))
+    {
+        MessageBox::Show("Room Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
     }
-    private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+    else if (String::IsNullOrEmpty(roomdept->Text))
+    {
+        MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
     }
-    private: System::Void panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+    else if ((!roomlabyes->Checked) && (!roomlabno->Checked))
+    {
+        MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
     }
-    private: System::Void panel5_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+    if (flag)
+    {
+        classroomcsvcreate("details/classroom.csv");
     }
-    private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
-        panel3->Height = button9->Height;
-        panel3->Top = button9->Top;
-        addteacherpanel->BringToFront();
-        DisplayCSVInComboBox1("details/dept_file.csv", addteacherdepartment);
-        button8->BackColor = Color::FromArgb(0, 0, 100);
-        button4->BackColor = Color::FromArgb(0, 0, 77);
-        button7->BackColor = Color::FromArgb(0, 0, 77);
-        button5->BackColor = Color::FromArgb(0, 0, 77);
-        button10->BackColor = Color::FromArgb(0, 0, 77);
-        button11->BackColor = Color::FromArgb(0, 0, 77);
-        button13->BackColor = Color::FromArgb(0, 0, 77);
-        button14->BackColor = Color::FromArgb(0, 0, 77);
+}
+private: System::Void clearroom_Click(System::Object^ sender, System::EventArgs^ e) {
+    for (int i = 1; i <= 36; i++)
+    {
+        Button^ button = dynamic_cast<Button^>(addroomtablepanel->Controls[String::Format("buttonroom{0}", i)]);
+        button->Text="Free";
+        button->BackColor= Color::FromArgb(179, 255, 230);
     }
-    private: System::Void dataGridView2_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn1, deptDataGridView, sender, e);
+    roomname->Clear();
+    roomcapacity->Value = 0;
+    roomlabyes->Checked = false;
+    roomlabno->Checked = false;
+    roomdept->Text = "";
+}
+private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
+    panel3->Height = button12->Height;
+    panel3->Top = button12->Top;
+    addsubjectpanel->BringToFront();
+    const std::string filePath = "details/classroom.csv";
+    DisplayCSVInListBox(filePath, addsubroomlist,0);
+    const std::string fileName = "details/teacher_file.csv";
+    TeacherName->DataSource = CreateDataTableFromCSV1(fileName,"teacherName");
+    TeacherName->DisplayMember = "TeacherName"; // Update to the correct column name
+    TeacherName->ValueMember = "TeacherName";
+    list<string> itemsList;
+    Teacher_Name->DataSource = CreateDataTableFromCSV1(fileName,"Teacher_Name");
+    Teacher_Name->DisplayMember = "Teacher_Name"; // Update to the correct column name
+    Teacher_Name->ValueMember = "Teacher_Name";
+    button11->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+    DisplayCluster("details/Electivetimetable.csv", addsubcluster);
+    InitializeMatrix(tableLayoutPanel1, "ele", "Available",0);
+    addsubeletablepanel->Visible = false;
+    panelsub->Top = addsubeletablepanel ->Top;
+}
+private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs^ e) {
+    
+    bool  flag = true;
+    bool eleflag = true;
+    if(String::IsNullOrEmpty(addsubname->Text))
+    {
+        MessageBox::Show("Subject Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+        eleflag = false;
     }
-    private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
-        string filePath = "details/dept_file.csv";
-        deptcsvgen(deptDataGridView, filePath);
+    if ((!addsubeleyes->Checked) && (!addsubeleno->Checked))
+    {
+        MessageBox::Show("Select whether it is a elective or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
     }
-    private: System::Void addteachersave_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool  flag = true;
-        if (String::IsNullOrEmpty(addteachername->Text))
+     if(addsubeleyes->Checked)
+    {
+        if (String::IsNullOrEmpty(addsubcluster->Text))
         {
-            MessageBox::Show("Teacher Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if (String::IsNullOrEmpty(addteacherdepartment->Text))
-        {
-            MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if (String::IsNullOrEmpty(addteacheremailid->Text))
-        {
-            MessageBox::Show("Teacher's Email ID not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (flag)
-        {
-            addnamecsvgen("details/teacher_file.csv");
-        }
-
-    }
-    private: System::Void saveroom_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool  flag = true;
-        if (String::IsNullOrEmpty(roomname->Text))
-        {
-            MessageBox::Show("Room Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if (String::IsNullOrEmpty(roomdept->Text))
-        {
-            MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if ((!roomlabyes->Checked) && (!roomlabno->Checked))
-        {
-            MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (flag)
-        {
-            classroomcsvcreate("details/classroom.csv");
-        }
-    }
-    private: System::Void clearroom_Click(System::Object^ sender, System::EventArgs^ e) {
-        for (int i = 1; i <= 36; i++)
-        {
-            Button^ button = dynamic_cast<Button^>(addroomtablepanel->Controls[String::Format("buttonroom{0}", i)]);
-            button->Text = "Free";
-            button->BackColor = Color::FromArgb(179, 255, 230);
-        }
-        roomname->Clear();
-        roomcapacity->Value = 0;
-        roomlabyes->Checked = false;
-        roomlabno->Checked = false;
-        roomdept->Text = "";
-    }
-    private: System::Void button11_Click(System::Object^ sender, System::EventArgs^ e) {
-        panel3->Height = button12->Height;
-        panel3->Top = button12->Top;
-        addsubjectpanel->BringToFront();
-        const std::string filePath = "details/classroom.csv";
-        DisplayCSVInListBox(filePath, addsubroomlist, 0);
-        const std::string fileName = "details/teacher_file.csv";
-        TeacherName->DataSource = CreateDataTableFromCSV1(fileName, "teacherName");
-        TeacherName->DisplayMember = "TeacherName"; // Update to the correct column name
-        TeacherName->ValueMember = "TeacherName";
-        list<string> itemsList;
-        Teacher_Name->DataSource = CreateDataTableFromCSV1(fileName, "Teacher_Name");
-        Teacher_Name->DisplayMember = "Teacher_Name"; // Update to the correct column name
-        Teacher_Name->ValueMember = "Teacher_Name";
-        button11->BackColor = Color::FromArgb(0, 0, 100);
-        button4->BackColor = Color::FromArgb(0, 0, 77);
-        button7->BackColor = Color::FromArgb(0, 0, 77);
-        button8->BackColor = Color::FromArgb(0, 0, 77);
-        button10->BackColor = Color::FromArgb(0, 0, 77);
-        button5->BackColor = Color::FromArgb(0, 0, 77);
-        button13->BackColor = Color::FromArgb(0, 0, 77);
-        button14->BackColor = Color::FromArgb(0, 0, 77);
-        DisplayCluster("details/Electivetimetable.csv", addsubcluster);
-        InitializeMatrix(tableLayoutPanel1, "ele", "Available", 0);
-        addsubeletablepanel->Visible = false;
-        panelsub->Top = addsubeletablepanel->Top;
-    }
-    private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs^ e) {
-
-        bool  flag = true;
-        bool eleflag = true;
-        if (String::IsNullOrEmpty(addsubname->Text))
-        {
-            MessageBox::Show("Subject Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
+            MessageBox::Show("Elective name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             eleflag = false;
         }
-        if ((!addsubeleyes->Checked) && (!addsubeleno->Checked))
-        {
-            MessageBox::Show("Select whether it is a elective or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
+        if (sedataGridView->RowCount==1)
+        {if(sedataGridView->Rows[0]->Cells[0]->Value==nullptr)
+            MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            eleflag = false;
         }
-        if (addsubeleyes->Checked)
+        bool xflag = false;
+        string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
+        vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
+        vector<vector<vector<bool>>>tt = valuetimetable(name,sedataGridView);
+        vector<vector<bool>>intersecttt = intersectionElective(tt);
+        for (int i = 0; i < 6; i++)
         {
-            if (String::IsNullOrEmpty(addsubcluster->Text))
+            for (int j = 0; j < 6; j++)
             {
-                MessageBox::Show("Elective name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                eleflag = false;
+                Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i * 6 + j + 1)]);
+                if (button != nullptr)
+                {
+                    if (intersecttt[i][j])
+                    {
+                        if (button->Text != "busy")
+                            xflag = true;
+                        break;
+                        break;
+                    }
+                }
+
             }
-            if (sedataGridView->RowCount == 1)
-            {
-                if (sedataGridView->Rows[0]->Cells[0]->Value == nullptr)
-                    MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                eleflag = false;
-            }
-            bool xflag = false;
-            string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
-            vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            vector<vector<vector<bool>>>tt = valuetimetable(name, sedataGridView);
-            vector<vector<bool>>intersecttt = intersectionElective(tt);
+        }
+        if (xflag)
+        {
+            eleflag = false;
+            MessageBox::Show("Select eligible timeslots to block.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
@@ -8875,148 +8902,81 @@ namespace TTA_ui {
                     {
                         if (intersecttt[i][j])
                         {
-                            if (button->Text != "busy")
-                                xflag = true;
-                            break;
-                            break;
+                            button->Text = "busy";
+                            button->BackColor = Color::FromArgb(224, 224, 224);
+                        }
+                        else
+                        {
+                            button->Text = "Available";
+                            button->BackColor = Color::FromArgb(179, 255, 230);
                         }
                     }
 
                 }
             }
-            if (xflag)
+        }
+    }
+     if ((!addsublabyes->Checked) && (!addsublabno->Checked) && (!addsubeleyes->Checked))
+     {
+         MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+         flag = false;
+     }
+     if (addsublabyes->Checked)
+     {
+         if (sldataGridView->RowCount == 1)
+         {
+             if (sldataGridView->Rows[0]->Cells[0]->Value == nullptr)
+                 MessageBox::Show("Lab teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+             flag = false;
+         }
+         if (addsubroomlist->CheckedItems->Count == 0)
+         {
+             MessageBox::Show("Select Default rooms for lab", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+             flag = false;
+         }
+     }
+     if (addsubbfactor->Value <= 0 &&  !addsubeleyes->Checked)
+     {
+         MessageBox::Show("Invalid bfactor Value", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+         flag = false;
+     }
+    if (addsubeleyes->Checked)
+    {
+        if (eleflag)
+        {
+            vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
+            bool nflag = false;
+            for (int i = 0; i < 6; i++)
             {
-                eleflag = false;
-                MessageBox::Show("Select eligible timeslots to block.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                for (int i = 0; i < 6; i++)
+                for (int j = 0; j < 6; j++)
                 {
-                    for (int j = 0; j < 6; j++)
+                    Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i * 6 + j + 1)]);
+                    if (button != nullptr)
                     {
-                        Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i * 6 + j + 1)]);
-                        if (button != nullptr)
-                        {
-                            if (intersecttt[i][j])
-                            {
-                                button->Text = "busy";
-                                button->BackColor = Color::FromArgb(224, 224, 224);
-                            }
-                            else
-                            {
-                                button->Text = "Available";
-                                button->BackColor = Color::FromArgb(179, 255, 230);
-                            }
-                        }
-
+                        if (button->Text ==addsubname->Text)
+                            nflag = true;
                     }
                 }
+
             }
-        }
-        if ((!addsublabyes->Checked) && (!addsublabno->Checked) && (!addsubeleyes->Checked))
-        {
-            MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (addsublabyes->Checked)
-        {
-            if (sldataGridView->RowCount == 1)
+            if (!nflag)
             {
-                if (sldataGridView->Rows[0]->Cells[0]->Value == nullptr)
-                    MessageBox::Show("Lab teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                flag = false;
+                MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             }
-            if (addsubroomlist->CheckedItems->Count == 0)
+            else
             {
-                MessageBox::Show("Select Default rooms for lab", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                flag = false;
-            }
-        }
-        if (addsubbfactor->Value <= 0 && !addsubeleyes->Checked)
-        {
-            MessageBox::Show("Invalid bfactor Value", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (addsubeleyes->Checked)
-        {
-            if (eleflag)
-            {
-                vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
-                bool nflag = false;
-                for (int i = 0; i < 6; i++)
+                vector<vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
+                ofstream file("details/Electivetimetable.csv");
+                bool flags = true;
+
+                if (file.is_open())
                 {
-                    for (int j = 0; j < 6; j++)
+                    for (const auto& row : data)
                     {
-                        Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i * 6 + j + 1)]);
-                        if (button != nullptr)
+                        if (row[0] == msclr::interop::marshal_as<string>(addsubcluster->Text))
                         {
-                            if (button->Text == addsubname->Text)
-                                nflag = true;
-                        }
-                    }
-
-                }
-                if (!nflag)
-                {
-                    MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                }
-                else
-                {
-                    vector<vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-                    ofstream file("details/Electivetimetable.csv");
-                    bool flags = true;
-
-                    if (file.is_open())
-                    {
-                        for (const auto& row : data)
-                        {
-                            if (row[0] == msclr::interop::marshal_as<string>(addsubcluster->Text))
-                            {
-                                flags = false;
-                                file << row[0];
-                                for (int i = 1; i <= 36; i++)
-                                {
-                                    Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i)]);
-                                    if (button != nullptr)
-                                    {
-                                        if (button->Text == addsubname->Text)
-                                        {
-                                            file << "," << msclr::interop::marshal_as<string>(addsubname->Text);
-                                            for (int j = 0; j < sedataGridView->RowCount; j++)
-                                            {
-                                                if (sedataGridView->Rows[j]->Cells[0]->Value != nullptr)
-                                                {
-                                                    for (auto& row : temp)
-                                                    {
-                                                        string s = msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString());
-                                                        if (row[0] == s)
-                                                        {
-                                                            row[(2 * i)] = '1';
-                                                            row[(2 * i) + 1] = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
-                                                        }
-                                                        else
-                                                        {
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                        }
-                                        else
-                                            file << "," << row[i];
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                for (int i = 0; i < row.size() - 1; i++)
-                                {
-                                    file << row[i] << ",";
-                                }
-                                file << row[row.size() - 1] << "\n";
-                            }
-                        }
-                        if (flags)
-                        {
-                            file << msclr::interop::marshal_as<string>(addsubcluster->Text);
+                            flags = false;
+                            file << row[0];
                             for (int i = 1; i <= 36; i++)
                             {
                                 Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i)]);
@@ -9031,66 +8991,141 @@ namespace TTA_ui {
                                             {
                                                 for (auto& row : temp)
                                                 {
-                                                    if (row[0] == msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString()))
+                                                    string s = msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString());
+                                                    if (row[0] == s)
                                                     {
-                                                        row[(2 * i) + 1] = '1';
-                                                        row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
+                                                        row[(2 * i)] = '1';
+                                                        row[(2 * i) + 1] = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
+                                                    }
+                                                    else
+                                                    {
                                                     }
                                                 }
                                             }
                                         }
+
                                     }
                                     else
-                                        file << ",0";
+                                        file << "," << row[i];
                                 }
                             }
-
                         }
-                    }
-                    file.close();
-                    ofstream tFile("details/teacher_file.csv");
-                    if (tFile.is_open()) {
-                        for (const auto& t : temp) {
-                            for (int i = 0; i < t.size() - 1; i++) {
-                                tFile << t[i] << ",";
+                        else
+                        {
+                            for (int i = 0; i < row.size() - 1; i++)
+                            {
+                                file << row[i] << ",";
                             }
-                            tFile << t[t.size() - 1] << "\n";
+                            file << row[row.size() - 1] << "\n";
                         }
                     }
-                    tFile.close();
-                    MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                    if (flags)
+                    {
+                        file << msclr::interop::marshal_as<string>(addsubcluster->Text);
+                        for (int i = 1; i <= 36; i++)
+                        {
+                            Button^ button = dynamic_cast<Button^>(tableLayoutPanel1->Controls[String::Format("buttonele{0}", i)]);
+                            if (button != nullptr)
+                            {
+                                if (button->Text == addsubname->Text)
+                                {
+                                    file << "," << msclr::interop::marshal_as<string>(addsubname->Text);
+                                    for (int j = 0; j < sedataGridView->RowCount; j++)
+                                    {
+                                        if (sedataGridView->Rows[j]->Cells[0]->Value != nullptr)
+                                        {
+                                            for (auto& row : temp)
+                                            {
+                                                if (row[0] == msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString()))
+                                                {
+                                                    row[(2 * i)+1] = '1';
+                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                else
+                                    file << ",0";
+                            }
+                        }
+
+                    }
                 }
+                file.close();
+                ofstream tFile("details/teacher_file.csv");
+                if (tFile.is_open()) {
+                    for (const auto& t : temp) {
+                        for (int i = 0; i < t.size() - 1; i++) {
+                            tFile << t[i] << ",";
+                        }
+                        tFile << t[t.size() - 1] << "\n";
+                    }
+                }
+                tFile.close();
+                MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             }
         }
-        else
-        {
-            if (flag)
-                subcsvgen("details/subject_file.csv");
-        }
-    a:
-        {}
-        DisplayCluster("details/Electivetimetable.csv", addsubcluster);
     }
+    else 
+    {
+        if(flag)
+        subcsvgen("details/subject_file.csv");
+    }
+a:
+    {}
+ DisplayCluster("details/Electivetimetable.csv", addsubcluster);
+}
 
-    private: System::Void sldataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn4, sldataGridView, sender, e);
+private: System::Void sldataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn4, sldataGridView, sender, e);
+}
+private: System::Void newaddsub_Click(System::Object^ sender, System::EventArgs^ e) {
+    addsubname->Clear();
+    addsubcluster->Text = "";
+    addsubeleyes->Checked = false;
+    addsubeleno->Checked = false;
+    addsubcluster->Cursor = Cursors::No;
+    sedataGridView->Rows->Clear();
+    sedataGridView->Cursor = Cursors::No;
+    sedataGridView->ReadOnly = true;
+    sldataGridView->Rows->Clear();
+    sedataGridView->Rows->Clear();
+    addsubcredits->Value = 0;
+    addsubbfactor->Value = 0;
+    for (int i = 0; i < addsubroomlist->Items->Count; i++) {
+        addsubroomlist->SetItemChecked(i, false);
     }
-    private: System::Void newaddsub_Click(System::Object^ sender, System::EventArgs^ e) {
-        addsubname->Clear();
+    if (addsubeletablepanel->Visible)
+    {
+        addsubeletablepanel->Visible = false;
+        panelsub->Top = addsubeletablepanel->Top;
+    }
+    addsublabyes->Enabled = true;
+    addsublabno->Enabled = true;
+    sldataGridView->Cursor = Cursors::No;
+    addsublabyes->Cursor = Cursors::Arrow;
+    addsublabno->Cursor = Cursors::Arrow;
+    addsubcredits->ReadOnly = false;
+    addsubcredits->Cursor = Cursors::Arrow;
+    addsubroomlist->Cursor = Cursors::Arrow;
+    addsubroomlist->Enabled = true;
+    addsubbfactor->ReadOnly = false;
+    addsubbfactor->Cursor = Cursors::Arrow;
+}
+private: System::Void sedataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn5, sedataGridView, sender, e);
+}
+private: System::Void addsubeleno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (addsubeleno->Checked)
+    {
+        
         addsubcluster->Text = "";
-        addsubeleyes->Checked = false;
-        addsubeleno->Checked = false;
         addsubcluster->Cursor = Cursors::No;
         sedataGridView->Rows->Clear();
         sedataGridView->Cursor = Cursors::No;
         sedataGridView->ReadOnly = true;
-        sldataGridView->Rows->Clear();
-        sedataGridView->Rows->Clear();
-        addsubcredits->Value = 0;
-        addsubbfactor->Value = 0;
-        for (int i = 0; i < addsubroomlist->Items->Count; i++) {
-            addsubroomlist->SetItemChecked(i, false);
-        }
+        addsubclusteroptions->Cursor = Cursors::No;
         if (addsubeletablepanel->Visible)
         {
             addsubeletablepanel->Visible = false;
@@ -9098,431 +9133,440 @@ namespace TTA_ui {
         }
         addsublabyes->Enabled = true;
         addsublabno->Enabled = true;
-        sldataGridView->Cursor = Cursors::No;
+        sldataGridView->Rows->Clear();
+        sldataGridView->Cursor = Cursors::Arrow;
         addsublabyes->Cursor = Cursors::Arrow;
         addsublabno->Cursor = Cursors::Arrow;
+        sedataGridView->ReadOnly = false;
+        addsubcredits->Value = 0;
         addsubcredits->ReadOnly = false;
         addsubcredits->Cursor = Cursors::Arrow;
         addsubroomlist->Cursor = Cursors::Arrow;
         addsubroomlist->Enabled = true;
+        addsubbfactor->Value = 0;
         addsubbfactor->ReadOnly = false;
         addsubbfactor->Cursor = Cursors::Arrow;
     }
-    private: System::Void sedataGridView_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn5, sedataGridView, sender, e);
-    }
-    private: System::Void addsubeleno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        if (addsubeleno->Checked)
-        {
-
-            addsubcluster->Text = "";
-            addsubcluster->Cursor = Cursors::No;
-            sedataGridView->Rows->Clear();
-            sedataGridView->Cursor = Cursors::No;
-            sedataGridView->ReadOnly = true;
-            addsubclusteroptions->Cursor = Cursors::No;
-            if (addsubeletablepanel->Visible)
-            {
-                addsubeletablepanel->Visible = false;
-                panelsub->Top = addsubeletablepanel->Top;
-            }
-            addsublabyes->Enabled = true;
-            addsublabno->Enabled = true;
-            sldataGridView->Rows->Clear();
-            sldataGridView->Cursor = Cursors::Arrow;
-            addsublabyes->Cursor = Cursors::Arrow;
-            addsublabno->Cursor = Cursors::Arrow;
-            sedataGridView->ReadOnly = false;
-            addsubcredits->Value = 0;
-            addsubcredits->ReadOnly = false;
-            addsubcredits->Cursor = Cursors::Arrow;
-            addsubroomlist->Cursor = Cursors::Arrow;
-            addsubroomlist->Enabled = true;
-            addsubbfactor->Value = 0;
-            addsubbfactor->ReadOnly = false;
-            addsubbfactor->Cursor = Cursors::Arrow;
-        }
-    }
-    private: System::Void addsubeleyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        if (addsubeleyes->Checked)
-        {
-            addsubcluster->Text = "";
-            sedataGridView->Cursor = Cursors::Arrow;
-            sedataGridView->ReadOnly = false;
-            addsubcluster->Cursor = Cursors::Arrow;
-            addsubclusteroptions->Cursor = Cursors::Arrow;
-            addsubbfactor->Value = 0;
-            addsubbfactor->ReadOnly = true;
-            addsublabno->Checked = false;
-            addsublabyes->Checked = false;
-            addsublabyes->Enabled = false;
-            addsublabno->Enabled = false;
-            sldataGridView->Rows->Clear();
-            sldataGridView->ReadOnly = true;
-            sldataGridView->Cursor = Cursors::No;
-            addsublabyes->Cursor = Cursors::No;
-            addsublabno->Cursor = Cursors::No;
-            addsubbfactor->Cursor = Cursors::No;
-            addsubcredits->Cursor = Cursors::No;
-            addsubcredits->Value = 0;
-            addsubcredits->ReadOnly = true;
-            addsubroomlist->Cursor = Cursors::No;
-            addsubroomlist->Enabled = false;
-        }
-    }
-    private: System::Void addsublabno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void addsubeleyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (addsubeleyes->Checked)
+    {
+        addsubcluster->Text="";
+        sedataGridView->Cursor = Cursors::Arrow;
+        sedataGridView->ReadOnly = false;
+        addsubcluster->Cursor = Cursors::Arrow;
+        addsubclusteroptions->Cursor = Cursors::Arrow;
+        addsubbfactor->Value = 0;
+        addsubbfactor->ReadOnly = true;
+        addsublabno->Checked = false;
+        addsublabyes->Checked = false;
+        addsublabyes->Enabled = false;
+        addsublabno->Enabled = false;
         sldataGridView->Rows->Clear();
-        sldataGridView->Cursor = Cursors::No;
         sldataGridView->ReadOnly = true;
+        sldataGridView->Cursor = Cursors::No;
+        addsublabyes->Cursor = Cursors::No;
+        addsublabno->Cursor = Cursors::No;
+        addsubbfactor->Cursor = Cursors::No;
+        addsubcredits->Cursor = Cursors::No;
+        addsubcredits->Value = 0;
+        addsubcredits->ReadOnly = true;
+        addsubroomlist->Cursor = Cursors::No;
+        addsubroomlist->Enabled = false;
     }
-    private: System::Void addsublabyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        sldataGridView->Cursor = Cursors::Arrow;
-        sldataGridView->ReadOnly = false;
+}
+private: System::Void addsublabno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    sldataGridView->Rows->Clear();
+    sldataGridView->Cursor = Cursors::No;
+    sldataGridView->ReadOnly = true;
+}
+private: System::Void addsublabyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    sldataGridView->Cursor = Cursors::Arrow;
+    sldataGridView->ReadOnly = false;
+}
+private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (button14->Visible == false)
+    {
+        button14->Visible = true;
+        button13->Visible = true;
+        textBox11->Visible = false;
+        textBox10->Visible = true;
     }
-    private: System::Void button15_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (button14->Visible == false)
-        {
-            button14->Visible = true;
-            button13->Visible = true;
-            textBox11->Visible = false;
-            textBox10->Visible = true;
-        }
 
-        else
+    else
+    {
+        button13->Visible = false;
+        button14->Visible = false;
+        textBox10->Visible = false;
+        textBox11->Visible = true;
+    }
+    panel3->Height = button15->Height;
+    panel3->Top = button15->Top;
+    //close classroom suboptions
+    button5->Visible = false;
+    button4->Visible = false;
+    textBox4->Visible = false;
+    textBox5->Visible = true;
+    //close subject suboptions
+    button10->Visible = false;
+    button11->Visible = false;
+    textBox6->Visible = false;
+    textBox7->Visible = true;
+    //close teachers suboption
+    button8->Visible = false;
+    button7->Visible = false;
+    textBox6->Visible = false;
+    textBox7->Visible = true;
+}
+private: System::Void classcore_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn6,classcore , sender, e);
+}
+private: System::Void classele_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn3, classele, sender, e);
+}
+private: System::Void classlab_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn2, classlab, sender, e);
+}
+private: System::Void addsubcluster_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void addsubjectpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void addsubclusteroptions_Click_1(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void classsave_Click(System::Object^ sender, System::EventArgs^ e) {
+    
+    bool  flag = true;
+    if(String::IsNullOrEmpty(classname->Text))
+    {
+        MessageBox::Show("Section Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (String::IsNullOrEmpty(classbatch->Text))
+    {
+        MessageBox::Show("Batch(Year of admission not filled)", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (String::IsNullOrEmpty(classbranch->Text))
+    {
+        MessageBox::Show("Branch not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (classcore->RowCount == 1)
+    {
+        if (classcore->Rows[0]->Cells[0]->Value == nullptr)
+         MessageBox::Show("CoreSubjects and teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        
+    }
+    if (classele->RowCount == 1)
+    {
+        if (classele->Rows[0]->Cells[0]->Value == nullptr)
         {
-            button13->Visible = false;
-            button14->Visible = false;
-            textBox10->Visible = false;
-            textBox11->Visible = true;
+            if (MessageBox::Show("Are you Sure you do not want to fill any electives", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
+                flag = false;
         }
-        panel3->Height = button15->Height;
-        panel3->Top = button15->Top;
-        //close classroom suboptions
-        button5->Visible = false;
-        button4->Visible = false;
-        textBox4->Visible = false;
-        textBox5->Visible = true;
-        //close subject suboptions
-        button10->Visible = false;
-        button11->Visible = false;
-        textBox6->Visible = false;
-        textBox7->Visible = true;
-        //close teachers suboption
-        button8->Visible = false;
-        button7->Visible = false;
-        textBox6->Visible = false;
-        textBox7->Visible = true;
     }
-    private: System::Void classcore_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn6, classcore, sender, e);
-    }
-    private: System::Void classele_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn3, classele, sender, e);
-    }
-    private: System::Void classlab_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn2, classlab, sender, e);
-    }
-    private: System::Void addsubcluster_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void addsubjectpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void addsubclusteroptions_Click_1(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void classsave_Click(System::Object^ sender, System::EventArgs^ e) {
-
-        bool  flag = true;
-        if (String::IsNullOrEmpty(classname->Text))
+    if (classlab->RowCount == 1)
+    {
+        if (classlab->Rows[0]->Cells[0]->Value == nullptr)
         {
-            MessageBox::Show("Section Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
+            if (MessageBox::Show("Are you Sure you do not want to fill any lab subjects", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
+                flag = false;
         }
-        if (String::IsNullOrEmpty(classbatch->Text))
-        {
-            MessageBox::Show("Batch(Year of admission not filled)", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (String::IsNullOrEmpty(classbranch->Text))
-        {
-            MessageBox::Show("Branch not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (classcore->RowCount == 1)
-        {
-            if (classcore->Rows[0]->Cells[0]->Value == nullptr)
-                MessageBox::Show("CoreSubjects and teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-
-        }
-        if (classele->RowCount == 1)
-        {
-            if (classele->Rows[0]->Cells[0]->Value == nullptr)
+    }
+    if (classdefaultrooms->CheckedItems->Count == 0)
+    {
+        MessageBox::Show("Default classes not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+//
+    if (flag)
+    {
+        string x;
+        if (MessageBox::Show("Are you Sure you want to save the generated timeTable", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes)
+        {  
+             extern vector<section>allsections;
+            if (allsections.size() == 0)
             {
-                if (MessageBox::Show("Are you Sure you do not want to fill any electives", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
-                    flag = false;
-            }
-        }
-        if (classlab->RowCount == 1)
-        {
-            if (classlab->Rows[0]->Cells[0]->Value == nullptr)
-            {
-                if (MessageBox::Show("Are you Sure you do not want to fill any lab subjects", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
-                    flag = false;
-            }
-        }
-        if (classdefaultrooms->CheckedItems->Count == 0)
-        {
-            MessageBox::Show("Default classes not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        //
-        if (flag)
-        {
-            string x;
-            if (MessageBox::Show("Are you Sure you want to save the generated timeTable", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes)
-            {
-                extern vector<section>allsections;
-                if (allsections.size() == 0)
+                section obj;
+                for (int i = 0; i < classele->RowCount; i++)
                 {
-                    section obj;
-                    for (int i = 0; i < classele->RowCount; i++)
+                    if (classele->Rows[i]->Cells[0]->Value != nullptr)
                     {
-                        if (classele->Rows[i]->Cells[0]->Value != nullptr)
-                        {
-                            vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
-                            for (auto name : rowsOfElectives) {
-                                if (name[0] == msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString()))
-                                {
-                                    for (int ptr = 1; ptr < name.size(); ptr++) {
-                                        if (name[ptr] != "0")
-                                        {
-                                            int day = (ptr - 1) / 6;
-                                            int period = (ptr - 1) % 6;
-                                            obj.block(day, period, name[ptr], name[ptr]);
-                                        }
+                        vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
+                        for (auto name : rowsOfElectives) {
+                            if (name[0] == msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString()))
+                            {
+                                for (int ptr = 1; ptr < name.size(); ptr++) {
+                                    if (name[ptr] != "0")
+                                    {
+                                        int day = (ptr - 1) / 6;
+                                        int period = (ptr - 1) % 6;
+                                        obj.block(day, period, name[ptr], name[ptr]);
                                     }
                                 }
                             }
                         }
                     }
-                    String^ sec = classname->Text->ToString();
-                    string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
-                    int secval;
-                    //Making class name
-                    if (Sec[0] > 'Z')
-                    {
-                        secval = Sec[0] - 'a';
-                    }
-                    else
-                        secval = Sec[0] - 'A';
-                    String^ branch = classbranch->Text->ToString();
-                    string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
-                    int branchval = 0;
-                    for (int i = 0; i < Branch.size(); i++)
-                        if (Branch[i] > 'Z')
-                        {
-                            branchval = Branch[i] - 'a';
-                        }
-                        else
-                            branchval = Branch[i] - 'A';
-                    String^ year = classbatch->Text->ToString();
-                    string YEAR = msclr::interop::marshal_as<string>(year);
-                    int intyear = 0;
-
-                    for (int i = 0; i < YEAR.size(); i++) {
-                        intyear *= 10;
-                        intyear += YEAR[i] - '0';
-                    }
-                    int idClass = intyear * 10000 + branchval * 10 + secval;
-                    obj.name = idClass;
-                    allteachersfunction("details/teacher_file.csv", obj);
-                    allroomsfunction("details/classroom.csv", obj);
-                    //alloting default rooms
-                    defaultroomallot(obj);
-                    //alloting core teacher and subjects
-                    loadcore(obj);
-                    labcreate("details/Labo.csv", obj);
-                    for (int i = 0; i < 6; i++)
-                    {
-                        for (int j = 0; j < 6; j++)
-                        {
-                            Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", 6 * i + j + 1)]);
-                            if (button->Text == "Reserved")
-                            {
-                                obj.block(i, j, "Reserved", "Reserved");
-                            }
-                        }
-                    }
-                    obj.makeTIMETABLE();
-                    allsections.push_back(obj);
-                    ofstream sfile;
-                    sfile.open("details/section.csv", ios::app);
-                    if (sfile.is_open())
-                    {
-                        sfile << obj.convertToString() << "\n";
-                    }
-                    sfile.close();
+                }
+                String^ sec = classname->Text->ToString();
+                string Sec = replacewhitespace( msclr::interop::marshal_as<string>(sec));
+                int secval;
+                //Making class name
+                if (Sec[0] > 'Z')
+                {
+                    secval = Sec[0] - 'a';
                 }
                 else
-                {
-                    section obj;
-                    String^ sec = classname->Text->ToString();
-                    string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
-                    int secval;
-                    //Making class name
-                    if (Sec[0] > 'Z')
+                    secval = Sec[0] - 'A';
+                String^ branch = classbranch->Text->ToString();
+                string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
+                int branchval = 0;
+                for (int i = 0; i < Branch.size(); i++)
+                    if (Branch[i] > 'Z')
                     {
-                        secval = Sec[0] - 'a';
+                        branchval = Branch[i] - 'a';
                     }
                     else
-                        secval = Sec[0] - 'A';
-                    String^ branch = classbranch->Text->ToString();
-                    string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
-                    int branchval = 0;
-                    for (int i = 0; i < Branch.size(); i++)
-                        if (Branch[i] > 'Z')
-                        {
-                            branchval = Branch[i] - 'a';
-                        }
-                        else
-                            branchval = Branch[i] - 'A';
-                    String^ year = classbatch->Text->ToString();
-                    string YEAR = msclr::interop::marshal_as<string>(year);
-                    int intyear = 0;
+                        branchval = Branch[i] - 'A';
+                String^ year = classbatch->Text->ToString();
+                string YEAR = msclr::interop::marshal_as<string>(year);
+                int intyear = 0;
 
-                    for (int i = 0; i < YEAR.size(); i++) {
-                        intyear *= 10;
-                        intyear += YEAR[i] - '0';
-                    }
-                    int idClass = intyear * 10000 + branchval * 10 + secval;
-                    obj.name = idClass;
-                    obj.allTeachers = allsections[allsections.size() - 1].allTeachers;
-                    obj.allRooms = allsections[allsections.size() - 1].allRooms;
-                    defaultroomallot(obj);
-                    //alloting core teacher and subjects
-                    loadcore(obj);
-                    labcreate("details/Labo.csv", obj);
-                    for (int i = 0; i < 6; i++)
-                    {
-                        for (int j = 0; j < 6; j++)
-                        {
-                            Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", 6 * i + j + 1)]);
-                            if (button->Text == "Reserved")
-                            {
-                                obj.block(i, j, "Reserved", "Reserved");
-                            }
-                        }
-                    }
-                    obj.makeTIMETABLE();
-                    allsections.push_back(obj);
-                    ofstream sfile;
-                    sfile.open("details/section.csv", ios::app);
-                    if (sfile.is_open())
-                    {
-                        sfile << obj.convertToString() << "\n";
-                    }
-                    sfile.close();
+                for (int i = 0; i < YEAR.size(); i++) {
+                    intyear *= 10;
+                    intyear += YEAR[i] - '0';
                 }
-                ofstream file;
-                file.open(replacewhitespace("timetables/" + (msclr::interop::marshal_as<string>(classbranch->Text + (classname)->Text + classbatch->Text)) + ".csv"));
-                if (file.is_open())
+                int idClass = intyear * 10000 + branchval * 10 + secval;
+                obj.name = idClass;
+                allteachersfunction("details/teacher_file.csv", obj);
+                allroomsfunction("details/classroom.csv", obj);
+                //alloting default rooms
+                defaultroomallot(obj);
+                //alloting core teacher and subjects
+                loadcore(obj);
+                labcreate("details/Labo.csv", obj);
+                for (int i = 0; i < 6; i++)
                 {
-                    string  tt;
-                    tt += "TIMETABLE\n\n";
-                    tt += "SUBJECTS\n";
-                    for (auto day : allsections[allsections.size() - 1].timeTable)
+                    for (int j = 0; j < 6; j++)
                     {
-                        for (auto period : day)
+                        Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", 6 * i + j + 1)]);
+                        if (button->Text == "Reserved")
                         {
-                            tt += period + ",";
+                            obj.block(i, j, "Reserved", "Reserved");
                         }
-                        tt += "\n";
                     }
-                    tt += "\n\n";
-                    tt += "TEACHERS\n";
-                    for (auto day : allsections[allsections.size() - 1].teacherTable)
-                    {
-                        for (auto period : day)
-                        {
-                            tt += period + ",";
-                        }
-                        tt += "\n";
-                    }
-                    tt += "\n\n";
-                    tt += "ROOM\n";
-                    for (auto day : allsections[allsections.size() - 1].roomTable)
-                    {
-                        for (auto period : day)
-                        {
-                            tt += period + ",";
-                        }
-                        tt += "\n";
-                    }
-                    tt += "\n\n";
-                    file << tt;
-                    file.close();
                 }
-                File::Copy("details/teacher_file.csv", "details/duplicate.csv", true);
-                ofstream files("details/duplicate.csv");
-                if (files.is_open())
+                obj.makeTIMETABLE();
+                allsections.push_back(obj);
+                ofstream sfile;
+                sfile.open("details/section.csv",ios::app);
+                if (sfile.is_open())
                 {
-                    for (auto t : allsections[allsections.size() - 1].allTeachers)
+                    sfile << obj.convertToString()<<"\n";
+                }
+                sfile.close();
+            }
+            else
+            {
+                section obj;
+                String^ sec = classname->Text->ToString();
+                string Sec = replacewhitespace( msclr::interop::marshal_as<string>(sec));
+                int secval;
+                //Making class name
+                if (Sec[0] > 'Z')
+                {
+                    secval = Sec[0] - 'a';
+                }
+                else
+                    secval = Sec[0] - 'A';
+                String^ branch = classbranch->Text->ToString();
+                string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
+                int branchval = 0;
+                for (int i = 0; i < Branch.size(); i++)
+                    if (Branch[i] > 'Z')
                     {
-                        files << t.convertToString() << "\n";
+                        branchval = Branch[i] - 'a';
                     }
+                    else
+                        branchval = Branch[i] - 'A';
+                String^ year = classbatch->Text->ToString();
+                string YEAR = msclr::interop::marshal_as<string>(year);
+                int intyear = 0;
 
+                for (int i = 0; i < YEAR.size(); i++) {
+                    intyear *= 10;
+                    intyear += YEAR[i] - '0';
                 }
-                files.close();
-                File::Copy("details/duplicate.csv", "details/teacher_file.csv", true);
-                File::Delete("details/duplicate.csv");
-                ofstream fils("details/classroom.csv");
-                if (fils.is_open())
+                int idClass = intyear * 10000 + branchval * 10 + secval;
+                obj.name = idClass;
+                obj.allTeachers = allsections[allsections.size() - 1].allTeachers;
+                obj.allRooms = allsections[allsections.size() - 1].allRooms;
+                defaultroomallot(obj);
+                //alloting core teacher and subjects
+                loadcore(obj);
+                labcreate("details/Labo.csv", obj);
+                for (int i = 0; i < 6; i++)
                 {
-                    for (auto t : allsections[allsections.size() - 1].allRooms)
+                    for (int j = 0; j < 6; j++)
                     {
-                        fils << t.convertToString() << "\n";
+                        Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", 6 * i + j + 1)]);
+                        if (button->Text == "Reserved")
+                        {
+                            obj.block(i, j, "Reserved", "Reserved");
+                        }
                     }
-
                 }
-                fils.close();
-                MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                obj.makeTIMETABLE();
+                allsections.push_back(obj);
+                ofstream sfile;
+                sfile.open("details/section.csv", ios::app);
+                if (sfile.is_open())
+                {
+                    sfile << obj.convertToString()<<"\n";
+                }
+                sfile.close();
+            }
+            ofstream file;
+            file.open(replacewhitespace("timetables/" + (msclr::interop::marshal_as<string>(classbranch->Text+(classname)->Text+classbatch->Text)) + ".csv"));
+            if (file.is_open())
+            {    
+                string  tt;
+                tt+="TIMETABLE\n\n";
+                tt+="SUBJECTS\n";
+                for (auto day : allsections[allsections.size() - 1].timeTable)
+                {
+                    for (auto period : day)
+                    {
+                        tt += period + ",";
+                    }
+                    tt += "\n";
+                }
+                tt += "\n\n";
+                tt+="TEACHERS\n";
+                for (auto day : allsections[allsections.size() - 1].teacherTable)
+                {
+                    for (auto period : day)
+                    {
+                        tt += period + ",";
+                    }
+                    tt += "\n";
+                }
+                tt += "\n\n";
+                tt+="ROOM\n";
+                for (auto day : allsections[allsections.size() - 1].roomTable)
+                {
+                    for (auto period : day)
+                    {
+                        tt += period + ",";
+                    }
+                    tt += "\n";
+                }
+                tt += "\n\n";
+                file << tt;
+                file.close();
+            }
+            File::Copy("details/teacher_file.csv","details/duplicate.csv",true);
+            ofstream files("details/duplicate.csv");
+            if (files.is_open())
+            {
+                for (auto t : allsections[allsections.size() - 1].allTeachers)
+                {
+                    files << t.convertToString() << "\n";
+                }
+
+            }
+            files.close();
+            File::Copy("details/duplicate.csv", "details/teacher_file.csv",true);
+            File::Delete("details/duplicate.csv");
+            ofstream fils("details/classroom.csv");
+            if (fils.is_open())
+            {
+                for (auto t : allsections[allsections.size() - 1].allRooms)
+                {
+                    fils << t.convertToString() << "\n";
+                }
+
+            }
+            fils.close();
+            MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        }
+    }
+}
+
+private: System::Void textBox16_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void pictureBox10_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (File::Exists("details/duplicate.csv"))
+    {
+        MessageBox::Show("Data not saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Error);
+    }
+    Application::Exit();
+}
+private: System::Void textBox11_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button7_Click_1(System::Object^ sender, System::EventArgs^ e) {
+    panel3->Height = button9->Height;
+    panel3->Top = button9->Top;
+    editteacherpanel->BringToFront();
+    button7->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+    DisplayCSVInComboBox1("details/dept_file.csv", editteacherdepartment);
+}
+private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void panel5_Paint_1(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void editteacherpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void editteacherdelete_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (MessageBox::Show("Are you sure you want to delete", "Disclaimer", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes)
+    {   editteachercsvdelete("details/teacher_File.csv");
+     
+        editteachername->Clear();
+        editteacheremailid->Clear();
+        for (int i = 1; i <= 36; ++i)
+        {
+            String^ tagValue = i.ToString();
+            Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
+            if (button != nullptr)
+            {
+                button->Text = "Free";
+                button->BackColor = Color::FromArgb(179, 255, 230);
             }
         }
+        editteacherdepartment->Text = "";
     }
+ 
+}
 
-    private: System::Void textBox16_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void editteachersave_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool flag = true;
+    if (String::IsNullOrEmpty(editteachername->Text))
+    {
+        MessageBox::Show("Teacher Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
     }
-    private: System::Void pictureBox10_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (File::Exists("details/duplicate.csv"))
+    else if (String::IsNullOrEmpty(editteacherdepartment->Text))
+    {
+        MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    else if (String::IsNullOrEmpty(editteacheremailid->Text))
+    {
+        MessageBox::Show("Teacher's Email ID not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (flag)
+    {
+        if (MessageBox::Show("Are you sure you want to save the changes", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
         {
-            MessageBox::Show("Data not saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Error);
-        }
-        Application::Exit();
-    }
-    private: System::Void textBox11_Click(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void button7_Click_1(System::Object^ sender, System::EventArgs^ e) {
-        panel3->Height = button9->Height;
-        panel3->Top = button9->Top;
-        editteacherpanel->BringToFront();
-        button7->BackColor = Color::FromArgb(0, 0, 100);
-        button4->BackColor = Color::FromArgb(0, 0, 77);
-        button5->BackColor = Color::FromArgb(0, 0, 77);
-        button8->BackColor = Color::FromArgb(0, 0, 77);
-        button10->BackColor = Color::FromArgb(0, 0, 77);
-        button11->BackColor = Color::FromArgb(0, 0, 77);
-        button13->BackColor = Color::FromArgb(0, 0, 77);
-        button14->BackColor = Color::FromArgb(0, 0, 77);
-        DisplayCSVInComboBox1("details/dept_file.csv", editteacherdepartment);
-    }
-    private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void panel5_Paint_1(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void editteacherpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void editteacherdelete_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (MessageBox::Show("Are you sure you want to delete", "Disclaimer", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes)
-        {
-            editteachercsvdelete("details/teacher_File.csv");
+            editteachercsvsave("details/teacher_File.csv");
 
             editteachername->Clear();
             editteacheremailid->Clear();
@@ -9538,71 +9582,72 @@ namespace TTA_ui {
             }
             editteacherdepartment->Text = "";
         }
-
     }
+}
+private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
-    private: System::Void editteachersave_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool flag = true;
-        if (String::IsNullOrEmpty(editteachername->Text))
+    editroompanel->BringToFront();
+    panel3->Height = button6->Height;
+    panel3 -> Top = button6->Top;
+    button4->BackColor = Color::FromArgb(0, 0, 100);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+    DisplayCSVInComboBox1("details/dept_file.csv",editroomdepartment);
+}
+private: System::Void editroomsearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
+
+    editroomcsvshow("details/classroom.csv");
+}
+private: System::Void editroomdelete_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (MessageBox::Show("Are you sure you want to delete", "Disclaimer", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes)
+    {
+        editroomcsvdelete("details/classroom.csv");
+        editroomname->Clear();
+        editroomcapacity->Value = 0;
+        editroomlabyes->Checked = false;
+        editroomlabno->Checked = false;
+        for (int i = 1; i <= 36; ++i)
         {
-            MessageBox::Show("Teacher Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if (String::IsNullOrEmpty(editteacherdepartment->Text))
-        {
-            MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if (String::IsNullOrEmpty(editteacheremailid->Text))
-        {
-            MessageBox::Show("Teacher's Email ID not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (flag)
-        {
-            if (MessageBox::Show("Are you sure you want to save the changes", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
+            String^ tagValue = i.ToString();
+            Button^ button = dynamic_cast<Button^>(editroomtablepanel->Controls[String::Format("buttoneditroom{0}", tagValue)]);
+            if (button != nullptr)
             {
-                editteachercsvsave("details/teacher_File.csv");
-
-                editteachername->Clear();
-                editteacheremailid->Clear();
-                for (int i = 1; i <= 36; ++i)
-                {
-                    String^ tagValue = i.ToString();
-                    Button^ button = dynamic_cast<Button^>(editteachertablepanel->Controls[String::Format("buttoneditteacher{0}", tagValue)]);
-                    if (button != nullptr)
-                    {
-                        button->Text = "Free";
-                        button->BackColor = Color::FromArgb(179, 255, 230);
-                    }
-                }
-                editteacherdepartment->Text = "";
+                button->Text = "Free";
+                button->BackColor = Color::FromArgb(179, 255, 230);
             }
         }
+        editroomdepartment->Text = "";
     }
-    private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^ e) {
 
-        editroompanel->BringToFront();
-        panel3->Height = button6->Height;
-        panel3->Top = button6->Top;
-        button4->BackColor = Color::FromArgb(0, 0, 100);
-        button5->BackColor = Color::FromArgb(0, 0, 77);
-        button7->BackColor = Color::FromArgb(0, 0, 77);
-        button8->BackColor = Color::FromArgb(0, 0, 77);
-        button10->BackColor = Color::FromArgb(0, 0, 77);
-        button11->BackColor = Color::FromArgb(0, 0, 77);
-        button13->BackColor = Color::FromArgb(0, 0, 77);
-        button14->BackColor = Color::FromArgb(0, 0, 77);
-        DisplayCSVInComboBox1("details/dept_file.csv", editroomdepartment);
+}
+private: System::Void editroomsave_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool  flag = true;
+    if (String::IsNullOrEmpty(editroomname->Text))
+    {
+        MessageBox::Show("Room Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
     }
-    private: System::Void editroomsearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
+    else if (String::IsNullOrEmpty(editroomdepartment->Text))
+    {
+        MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    else if ((!editroomlabyes->Checked) && (!editroomlabno->Checked))
+    {
+        MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (flag)
+    {
 
-        editroomcsvshow("details/classroom.csv");
-    }
-    private: System::Void editroomdelete_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (MessageBox::Show("Are you sure you want to delete", "Disclaimer", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes)
+        if (MessageBox::Show("Are you sure you want to save the changes", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
         {
-            editroomcsvdelete("details/classroom.csv");
+            editroomcsvsave("details/classroom.csv");
             editroomname->Clear();
             editroomcapacity->Value = 0;
             editroomlabyes->Checked = false;
@@ -9619,571 +9664,524 @@ namespace TTA_ui {
             }
             editroomdepartment->Text = "";
         }
-
     }
-    private: System::Void editroomsave_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool  flag = true;
-        if (String::IsNullOrEmpty(editroomname->Text))
+}
+private: System::Void pictureBox10_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox10->Height += 5;
+    pictureBox10->Width += 5;
+}
+private: System::Void pictureBox10_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox10->Height -= 5;
+    pictureBox10->Width -= 5;
+}
+private: System::Void pictureBox9_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox9->Height += 5;
+    pictureBox9->Width += 5;
+}
+private: System::Void pictureBox9_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox9->Height -= 5;
+    pictureBox9->Width -= 5;
+}
+private: System::Void pictureBox11_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox11->Height += 5;
+    pictureBox11->Width += 5;
+}
+private: System::Void pictureBox11_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox11->Height -= 5;
+    pictureBox11->Width -= 5;
+}
+private: System::Void editsubjectpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+
+private: System::Void panel9_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button10_Click_1(System::Object^ sender, System::EventArgs^ e) {
+    editsubeleteachercombo->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv","editsubeleteachercombo");
+    editsubeleteachercombo->DisplayMember = "editsubeleteachercombo"; // Update to the correct column name
+    editsubeleteachercombo->ValueMember = "editsubeleteachercombo";
+    editsublabteachercombo->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv","editsublabteachercombo");
+    editsublabteachercombo->DisplayMember = "editsublabteachercombo"; // Update to the correct column name
+    editsublabteachercombo->ValueMember = "editsublabteachercombo";
+    DisplayCSVInListBox("details/classroom.csv",editsubroomlist,0);
+    DisplayCSVInComboBox1("details/Electivetimetable.csv", editsubcluster);
+    panel3->Height = button12->Height;
+    panel3->Top = button12->Top;
+    editsubjectpanel->BringToFront();
+    button10->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+    DisplayCluster("details/Electivetimetable.csv", editsubcluster);
+   //
+    InitializeMatrix(editsubeletable, "editele", "Available", 2);
+    editsubelepanel->Visible = false;
+    editpanelsub->Top = editsubelepanel->Top;
+}
+private: System::Void pictureBox12_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void pictureBox12_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox12->Height += 2;
+    pictureBox12->Width += 2;
+}
+private: System::Void pictureBox12_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
+    pictureBox12->Height -= 2;
+    pictureBox12->Width -= 2;
+}
+private: System::Void pictureBox9_Click(System::Object^ sender, System::EventArgs^ e) {
+    this->WindowState = FormWindowState::Minimized;
+}
+private: System::Void pictureBox13_Click(System::Object^ sender, System::EventArgs^ e) {
+    this->WindowState = FormWindowState::Maximized;
+}
+private: System::Void button37_Click(System::Object^ sender, System::EventArgs^ e) {
+    addnamecsvgen("details/teacher_file.csv");
+}
+private: System::Void pictureBox11_Click(System::Object^ sender, System::EventArgs^ e) {
+    settingspanel->BringToFront();
+}
+private: System::Void addteachernew_Click(System::Object^ sender, System::EventArgs^ e) {
+    addteachername->Clear();
+    addteacheremailid->Clear();
+    for (int i = 1; i <= 36; ++i)
+    {
+        String^ tagValue = i.ToString();
+        Button^ button = dynamic_cast<Button^>(teachertablepanel->Controls[String::Format("buttonteacher{0}", tagValue)]);
+        if (button != nullptr)
         {
-            MessageBox::Show("Room Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            button->Text = "Free";
+            button->BackColor = Color::FromArgb(179, 255, 230);
+        }
+    }
+    addteacherdepartment->Text = "";
+}
+
+private: System::Void panel10_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button60_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void editsubsearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
+    editsubjectcsvshow();
+}
+private: System::Void label99_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void editsubsave_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool  flag = true;
+    if (String::IsNullOrEmpty(editsubname->Text))
+    {
+        MessageBox::Show("Subject Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if ((!editsubeleyes->Checked) && (!editsubeleno->Checked))
+    {
+        MessageBox::Show("Select whether it is a elective or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (editsubeleyes->Checked)
+    {
+        if (String::IsNullOrEmpty(editsubcluster->Text))
+        {
+            MessageBox::Show("Elective name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
-        else if (String::IsNullOrEmpty(editroomdepartment->Text))
+        if (editsubeleteacher->RowCount == 1)
         {
-            MessageBox::Show("Department not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            if (editsubeleteacher->Rows[0]->Cells[0]->Value == nullptr)
+                MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
-        else if ((!editroomlabyes->Checked) && (!editroomlabno->Checked))
+    }
+    if ((!editsublabyes->Checked) && (!editsublabno->Checked))
+    {
+        MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (editsublabyes->Checked)
+    {
+        if (editsublabteacher->RowCount == 1)
         {
-            MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            if (editsublabteacher->Rows[0]->Cells[0]->Value == nullptr)
+                MessageBox::Show("Lab teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
-        if (flag)
-        {
-
-            if (MessageBox::Show("Are you sure you want to save the changes", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
-            {
-                editroomcsvsave("details/classroom.csv");
-                editroomname->Clear();
-                editroomcapacity->Value = 0;
-                editroomlabyes->Checked = false;
-                editroomlabno->Checked = false;
-                for (int i = 1; i <= 36; ++i)
-                {
-                    String^ tagValue = i.ToString();
-                    Button^ button = dynamic_cast<Button^>(editroomtablepanel->Controls[String::Format("buttoneditroom{0}", tagValue)]);
-                    if (button != nullptr)
-                    {
-                        button->Text = "Free";
-                        button->BackColor = Color::FromArgb(179, 255, 230);
-                    }
-                }
-                editroomdepartment->Text = "";
-            }
+    }
+    if (editsubbfactor->Value == 0)
+    {
+        MessageBox::Show("Invalid bfactor Value", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (flag)
+    {
+        string filePath = "details/subject_file.csv";
+        editsubcsvsave(filePath);
+    }
+}
+private: System::Void editsubdelete_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (MessageBox::Show("Are you sure you want to delete", "Disclaimer", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes)
+    {
+        editsubcsvdelete("details/subject_file.csv");
+        editsubname->Clear();
+        editsubcluster->Text="";
+        editsubeleyes->Checked = false;
+        editsubeleno->Checked = false;
+        editsublabyes->Checked = false;
+        editsublabno->Checked = false;
+        editsubeleteacher->Rows->Clear();
+        editsublabteacher->Rows->Clear();
+        editsubcredits->Value = 0;
+        editsubbfactor->Value = 0;
+        for (int i = 0; i < editsubroomlist->Items->Count; i++) {
+            editsubroomlist->SetItemChecked(i, false);
         }
     }
-    private: System::Void pictureBox10_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox10->Height += 5;
-        pictureBox10->Width += 5;
+}
+private: System::Void editsubeleteacher_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn10,editsubeleteacher, sender, e);
+}
+private: System::Void editsublabteacher_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    deletebutton(dataGridViewButtonColumn11, editsublabteacher, sender, e);
+}
+private: System::Void editsubeleyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (editsubeleyes->Checked)
+    {
+        editsubcluster->Text = "";
+        editsubeleteacher->Cursor = Cursors::Arrow;
+        editsubeleteacher->ReadOnly = false;
+        editsubcluster->Cursor = Cursors::Arrow;
     }
-    private: System::Void pictureBox10_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox10->Height -= 5;
-        pictureBox10->Width -= 5;
+}
+private: System::Void editsubeleno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (editsubeleno->Checked)
+    {
+        editsubcluster->Text = "";
+        editsubcluster->Cursor = Cursors::No;
+        editsubeleteacher->Rows->Clear();
+        editsubeleteacher->Cursor = Cursors::No;
+        editsubeleteacher->ReadOnly = true;
     }
-    private: System::Void pictureBox9_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox9->Height += 5;
-        pictureBox9->Width += 5;
+}
+private: System::Void editsublabyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (editsublabyes->Checked)
+    {
+        editsublabteacher->Cursor = Cursors::Arrow;
+        editsublabteacher->ReadOnly = false;
     }
-    private: System::Void pictureBox9_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox9->Height -= 5;
-        pictureBox9->Width -= 5;
+}
+private: System::Void editsublabno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
+    if (editsublabno->Checked)
+    {
+        editsublabteacher->Rows->Clear();
+        editsublabteacher->Cursor = Cursors::No;
+        editsublabteacher->ReadOnly = true;
     }
-    private: System::Void pictureBox11_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox11->Height += 5;
-        pictureBox11->Width += 5;
+}
+private: System::Void panel7_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void addsubclusteroptions_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (addsubeleyes->Checked == true)
+    {
+        addsubeletablepanel->Visible = true;
+        panelsub->Top = addsubeletablepanel->Bottom;
+        InitializeMatrix(tableLayoutPanel1, "ele", "Available",0);
+        onOptionClick(addsubcluster,sedataGridView,tableLayoutPanel1,"ele");
     }
-    private: System::Void pictureBox11_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox11->Height -= 5;
-        pictureBox11->Width -= 5;
+    else
+    {
+        MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
     }
-    private: System::Void editsubjectpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void classgenerate_Click(System::Object^ sender, System::EventArgs^ e) {
+    bool  flag = true;
+    if (String::IsNullOrEmpty(classname->Text))
+    {
+        MessageBox::Show("Section Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (String::IsNullOrEmpty(classbatch->Text))
+    {
+        MessageBox::Show("Batch(Year of admission not filled)", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (String::IsNullOrEmpty(classbranch->Text))
+    {
+        MessageBox::Show("Branch not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
+    }
+    if (classcore->RowCount == 1)
+    {
+        if (classcore->Rows[0]->Cells[0]->Value == nullptr)
+            MessageBox::Show("CoreSubjects and teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+
+    }
+    if (classele->RowCount == 1)
+    {
+        if (classele->Rows[0]->Cells[0]->Value == nullptr)
+        {
+            if (MessageBox::Show("Are you Sure you do not want to fill any electives", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
+                flag = false;
+        }
+    }
+    if (classlab->RowCount == 1)
+    {
+        if (classlab->Rows[0]->Cells[0]->Value == nullptr)
+        {
+            if (MessageBox::Show("Are you Sure you do not want to fill any lab subjects", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
+                flag = false;
+        }
+    }
+    if (classdefaultrooms->CheckedItems->Count == 0)
+    {
+        MessageBox::Show("Default classes not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        flag = false;
     }
 
-    private: System::Void panel9_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void button10_Click_1(System::Object^ sender, System::EventArgs^ e) {
-        editsubeleteachercombo->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv", "editsubeleteachercombo");
-        editsubeleteachercombo->DisplayMember = "editsubeleteachercombo"; // Update to the correct column name
-        editsubeleteachercombo->ValueMember = "editsubeleteachercombo";
-        editsublabteachercombo->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv", "editsublabteachercombo");
-        editsublabteachercombo->DisplayMember = "editsublabteachercombo"; // Update to the correct column name
-        editsublabteachercombo->ValueMember = "editsublabteachercombo";
-        DisplayCSVInListBox("details/classroom.csv", editsubroomlist, 0);
-        DisplayCSVInComboBox1("details/Electivetimetable.csv", editsubcluster);
-        panel3->Height = button12->Height;
-        panel3->Top = button12->Top;
-        editsubjectpanel->BringToFront();
-        button10->BackColor = Color::FromArgb(0, 0, 100);
-        button4->BackColor = Color::FromArgb(0, 0, 77);
-        button7->BackColor = Color::FromArgb(0, 0, 77);
-        button8->BackColor = Color::FromArgb(0, 0, 77);
-        button5->BackColor = Color::FromArgb(0, 0, 77);
-        button11->BackColor = Color::FromArgb(0, 0, 77);
-        button13->BackColor = Color::FromArgb(0, 0, 77);
-        button14->BackColor = Color::FromArgb(0, 0, 77);
-        DisplayCluster("details/Electivetimetable.csv", editsubcluster);
+    if (flag) {
         //
-        InitializeMatrix(editsubeletable, "editele", "Available", 2);
-        editsubelepanel->Visible = false;
-        editpanelsub->Top = editsubelepanel->Top;
-    }
-    private: System::Void pictureBox12_Click(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void pictureBox12_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox12->Height += 2;
-        pictureBox12->Width += 2;
-    }
-    private: System::Void pictureBox12_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox12->Height -= 2;
-        pictureBox12->Width -= 2;
-    }
-    private: System::Void pictureBox9_Click(System::Object^ sender, System::EventArgs^ e) {
-        this->WindowState = FormWindowState::Minimized;
-    }
-    private: System::Void pictureBox13_Click(System::Object^ sender, System::EventArgs^ e) {
-        this->WindowState = FormWindowState::Maximized;
-    }
-    private: System::Void button37_Click(System::Object^ sender, System::EventArgs^ e) {
-        addnamecsvgen("details/teacher_file.csv");
-    }
-    private: System::Void pictureBox11_Click(System::Object^ sender, System::EventArgs^ e) {
-        settingspanel->BringToFront();
-    }
-    private: System::Void addteachernew_Click(System::Object^ sender, System::EventArgs^ e) {
-        addteachername->Clear();
-        addteacheremailid->Clear();
-        for (int i = 1; i <= 36; ++i)
+        section obj;
+        for (int i = 0; i < classele->RowCount; i++)
         {
-            String^ tagValue = i.ToString();
-            Button^ button = dynamic_cast<Button^>(teachertablepanel->Controls[String::Format("buttonteacher{0}", tagValue)]);
-            if (button != nullptr)
+            if (classele->Rows[i]->Cells[0]->Value != nullptr)
             {
-                button->Text = "Free";
-                button->BackColor = Color::FromArgb(179, 255, 230);
-            }
-        }
-        addteacherdepartment->Text = "";
-    }
-
-    private: System::Void panel10_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void button60_Click(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void editsubsearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
-        editsubjectcsvshow();
-    }
-    private: System::Void label99_Click(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void editsubsave_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool  flag = true;
-        if (String::IsNullOrEmpty(editsubname->Text))
-        {
-            MessageBox::Show("Subject Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if ((!editsubeleyes->Checked) && (!editsubeleno->Checked))
-        {
-            MessageBox::Show("Select whether it is a elective or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (editsubeleyes->Checked)
-        {
-            if (String::IsNullOrEmpty(editsubcluster->Text))
-            {
-                MessageBox::Show("Elective name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                flag = false;
-            }
-            if (editsubeleteacher->RowCount == 1)
-            {
-                if (editsubeleteacher->Rows[0]->Cells[0]->Value == nullptr)
-                    MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                flag = false;
-            }
-        }
-        if ((!editsublabyes->Checked) && (!editsublabno->Checked))
-        {
-            MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (editsublabyes->Checked)
-        {
-            if (editsublabteacher->RowCount == 1)
-            {
-                if (editsublabteacher->Rows[0]->Cells[0]->Value == nullptr)
-                    MessageBox::Show("Lab teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                flag = false;
-            }
-        }
-        if (editsubbfactor->Value == 0)
-        {
-            MessageBox::Show("Invalid bfactor Value", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (flag)
-        {
-            string filePath = "details/subject_file.csv";
-            editsubcsvsave(filePath);
-        }
-    }
-    private: System::Void editsubdelete_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (MessageBox::Show("Are you sure you want to delete", "Disclaimer", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::Yes)
-        {
-            editsubcsvdelete("details/subject_file.csv");
-            editsubname->Clear();
-            editsubcluster->Text = "";
-            editsubeleyes->Checked = false;
-            editsubeleno->Checked = false;
-            editsublabyes->Checked = false;
-            editsublabno->Checked = false;
-            editsubeleteacher->Rows->Clear();
-            editsublabteacher->Rows->Clear();
-            editsubcredits->Value = 0;
-            editsubbfactor->Value = 0;
-            for (int i = 0; i < editsubroomlist->Items->Count; i++) {
-                editsubroomlist->SetItemChecked(i, false);
-            }
-        }
-    }
-    private: System::Void editsubeleteacher_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn10, editsubeleteacher, sender, e);
-    }
-    private: System::Void editsublabteacher_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        deletebutton(dataGridViewButtonColumn11, editsublabteacher, sender, e);
-    }
-    private: System::Void editsubeleyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        if (editsubeleyes->Checked)
-        {
-            editsubcluster->Text = "";
-            editsubeleteacher->Cursor = Cursors::Arrow;
-            editsubeleteacher->ReadOnly = false;
-            editsubcluster->Cursor = Cursors::Arrow;
-        }
-    }
-    private: System::Void editsubeleno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        if (editsubeleno->Checked)
-        {
-            editsubcluster->Text = "";
-            editsubcluster->Cursor = Cursors::No;
-            editsubeleteacher->Rows->Clear();
-            editsubeleteacher->Cursor = Cursors::No;
-            editsubeleteacher->ReadOnly = true;
-        }
-    }
-    private: System::Void editsublabyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        if (editsublabyes->Checked)
-        {
-            editsublabteacher->Cursor = Cursors::Arrow;
-            editsublabteacher->ReadOnly = false;
-        }
-    }
-    private: System::Void editsublabno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
-        if (editsublabno->Checked)
-        {
-            editsublabteacher->Rows->Clear();
-            editsublabteacher->Cursor = Cursors::No;
-            editsublabteacher->ReadOnly = true;
-        }
-    }
-    private: System::Void panel7_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void addsubclusteroptions_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool flag=true;
-        if (addsubname->Text == "")
-        {
-            MessageBox::Show("Subject Name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if (addsubeleyes->Checked == false )
-        {
-            MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if(flag)
-        {
-            addsubeletablepanel->Visible = true;
-            panelsub->Top = addsubeletablepanel->Bottom;
-            InitializeMatrix(tableLayoutPanel1, "ele", "Available", 0);
-            onOptionClick(addsubcluster, sedataGridView, tableLayoutPanel1, "ele");
-        }
-    }
-    private: System::Void classgenerate_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool  flag = true;
-        if (String::IsNullOrEmpty(classname->Text))
-        {
-            MessageBox::Show("Section Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (String::IsNullOrEmpty(classbatch->Text))
-        {
-            MessageBox::Show("Batch(Year of admission not filled)", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (String::IsNullOrEmpty(classbranch->Text))
-        {
-            MessageBox::Show("Branch not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if (classcore->RowCount == 1)
-        {
-            if (classcore->Rows[0]->Cells[0]->Value == nullptr)
-                MessageBox::Show("CoreSubjects and teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-
-        }
-        if (classele->RowCount == 1)
-        {
-            if (classele->Rows[0]->Cells[0]->Value == nullptr)
-            {
-                if (MessageBox::Show("Are you Sure you do not want to fill any electives", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
-                    flag = false;
-            }
-        }
-        if (classlab->RowCount == 1)
-        {
-            if (classlab->Rows[0]->Cells[0]->Value == nullptr)
-            {
-                if (MessageBox::Show("Are you Sure you do not want to fill any lab subjects", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
-                    flag = false;
-            }
-        }
-        if (classdefaultrooms->CheckedItems->Count == 0)
-        {
-            MessageBox::Show("Default classes not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-
-        if (flag) {
-            //
-            section obj;
-            for (int i = 0; i < classele->RowCount; i++)
-            {
-                if (classele->Rows[i]->Cells[0]->Value != nullptr)
-                {
-                    vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
-                    for (auto name : rowsOfElectives) {
-                        if (name[0] == msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString()))
-                        {
-                            for (int ptr = 1; ptr < name.size(); ptr++) {
-                                if (name[ptr] != "0")
-                                {
-                                    int day = (ptr - 1) / 6;
-                                    int period = (ptr - 1) % 6;
-                                    obj.block(day, period, name[ptr], name[ptr]);
-                                }
+                vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
+                for (auto name : rowsOfElectives) {
+                    if (name[0] == msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString()))
+                    {
+                        for (int ptr = 1; ptr < name.size(); ptr++) {
+                            if (name[ptr] != "0")
+                            {
+                                int day = (ptr - 1) / 6;
+                                int period = (ptr - 1) % 6;
+                                obj.block(day, period, name[ptr], name[ptr]);
                             }
                         }
                     }
                 }
             }
-            for (int x = 0; x < 6; x++)
-            {
-                for (int y = 0; y < 6; y++)
-                {
-                    Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", x * 6 + y + 1)]);
-                    if (button->Text == "Reserved")
-                    {
-                        obj.block(x, y, "Reserved", "Reserved");
-                    }
-                }
-            }
-            InitializeMatrix(classtablegen1, "g", "free", -1);
-            classtablegenpanel->Visible = false;
-            finalttpanel->Visible = true;
-            finalttpanel->Top = panel36->Bottom;
-            String^ sec = (classname)->Text->ToString();
-            string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
-            int secval;
-            //Making class name
-            if (Sec[0] > 'Z')
-            {
-                secval = Sec[0] - 'a';
-            }
-            else
-                secval = Sec[0] - 'A';
-            String^ branch = classbranch->Text->ToString();
-            string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
-            int branchval = 0;
-            for (int i = 0; i < Branch.size(); i++)
-                if (Branch[i] > 'Z')
-                {
-                    branchval = Branch[i] - 'a';
-                }
-                else
-                    branchval = Branch[i] - 'A';
-            String^ year = classbatch->Text->ToString();
-            string YEAR = msclr::interop::marshal_as<string>(year);
-            int intyear = 0;
-
-            for (int i = 0; i < YEAR.size(); i++) {
-                intyear *= 10;
-                intyear += YEAR[i] - '0';
-            }
-            int idClass = intyear * 10000 + branchval * 10 + secval;
-            obj.name = idClass;
-            allteachersfunction("details/teacher_file.csv", obj);
-            allroomsfunction("details/classroom.csv", obj);
-            //alloting default rooms
-            defaultroomallot(obj);
-            //alloting core teacher and subjects
-            loadcore(obj);
-            labcreate("details/Labo.csv", obj);
-
-            obj.makeTIMETABLE();
-            for (int i = 0; i < obj.timeTable.size(); i++)
-            {
-                for (int j = 0; j < obj.timeTable[i].size(); j++)
-                {
-                    Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
-                    if (obj.timeTable[i][j] != "f")
-                        button->Text = msclr::interop::marshal_as<String^>(obj.timeTable[i][j]);
-                    else
-                        button->Text = "free";
-                }
-            }
         }
-    }
-    private: System::Void classreserve_Click_1(System::Object^ sender, System::EventArgs^ e) {
-        InitializeMatrix(classtablegen, "res", "Open", 3);
-        classtablegenpanel->Visible = true;
-        classtablegenpanel->Top = panel36->Bottom;
-        finalttpanel->Visible = false;
-    }
-    private: System::Void classclear_Click(System::Object^ sender, System::EventArgs^ e) {
-        ClearReset();
-        classtablegenpanel->Visible = false;
-        finalttpanel->Visible = false;
-        classbatch->Clear();
-        classname->Clear();
-        classbranch->Text = "";
-        classlab->Rows->Clear();
-        classele->Rows->Clear();
-        for (int i = classdefaultrooms->Items->Count - 1; i >= 0; i--) {
-            classdefaultrooms->SetItemChecked(i, false);
-        }
-    }
-    private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) {
-        deptDataGridView->Rows->Clear();
-    }
-    private: System::Void editroompanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void tableLayoutPanel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void panelsub_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
-        button14->BackColor = Color::FromArgb(0, 0, 100);
-        button4->BackColor = Color::FromArgb(0, 0, 77);
-        button5->BackColor = Color::FromArgb(0, 0, 77);
-        button8->BackColor = Color::FromArgb(0, 0, 77);
-        button10->BackColor = Color::FromArgb(0, 0, 77);
-        button11->BackColor = Color::FromArgb(0, 0, 77);
-        button13->BackColor = Color::FromArgb(0, 0, 77);
-        button7->BackColor = Color::FromArgb(0, 0, 77);
-        classpanel->BringToFront();
-        InitializeMatrix(classtablegen, "res", "Open", 3);
-        InitializeMatrix(classtablegen1, "g", "free", -1);
-        finalttpanel->Top = classsave->Bottom;
-        finalttpanel->Visible = false;
-        classtablegenpanel->Visible = false;
-        classbatch->Clear();
-        classname->Clear();
-        classbranch->Text = "";
-        classlab->Rows->Clear();
-        classele->Rows->Clear();
-        classdefaultrooms->Items->Clear();
-        DisplayCSVInComboBox1("details/dept_file.csv", classbranch);
-        DisplayCSVInListBox("details/classroom.csv", classdefaultrooms, 3);
-        csubject->DataSource = CreateDataTableFromCSV1("details/subject_file.csv", "Core Subject");
-        csubject->DisplayMember = "Core Subject"; // Update to the correct column name
-        csubject->ValueMember = "Core Subject";
-        cteacher->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv", "cteacher");
-        cteacher->DisplayMember = "cteacher"; // Update to the correct column name
-        cteacher->ValueMember = "cteacher";
-        eSubject->DataSource = CreateDataTableFromCSV1("details/electivetimetable.csv", "esubject");
-        eSubject->DisplayMember = "eSubject"; // Update to the correct column name
-        eSubject->ValueMember = "eSubject";
-        lsubject->DataSource = CreateDataTableFromCSV1("details/Labo.csv", "lsubject");
-        lsubject->DisplayMember = "lsubject"; // Update to the correct column name
-        lsubject->ValueMember = "lsubject";
-        panel3->Height = button15->Height;
-        panel3->Top = button15->Top;
-        //close classroom suboption
-        button5->Visible = false;
-        button4->Visible = false;
-        textBox4->Visible = false;
-        textBox5->Visible = true;
-        //close teachers suboption
-        button8->Visible = false;
-        button7->Visible = false;
-        textBox6->Visible = false;
-        textBox7->Visible = true;
-        //close subject suboption
-        button10->Visible = false;
-        button11->Visible = false;
-        textBox8->Visible = false;
-        textBox9->Visible = true;
-    }
-    private: System::Void panel16_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-        section obj;
-        allteachersfunction("details/teacher_file.csv", obj);
-        allroomsfunction("details/classroom.csv", obj);
-        if (e->ColumnIndex == classdeletebutton->Index && e->RowIndex >= 0)
+        for (int x = 0; x < 6; x++)
         {
-            if (MessageBox::Show("Are you Sure you want to delete the class", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes)
+            for (int y = 0; y < 6; y++)
             {
-                int rowIndexToDelete = e->RowIndex;
-                string find = msclr::interop::marshal_as<string>(sectiondeletedatagridview->Rows[rowIndexToDelete]->Cells[0]->Value->ToString());
-                string x = returnLine(find, "details/section.csv");
-                obj.readData(x);
-                obj.deAllocate();
-                File::Copy("details/teacher_file.csv", "details/duplicate.csv", true);
-                ofstream files("details/duplicate.csv");
-                if (files.is_open())
+                Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", x * 6 + y + 1)]);
+                if (button->Text == "Reserved")
                 {
-                    for (auto t : obj.allTeachers)
-                    {
-                        files << t.convertToString() << "\n";
-                    }
-
+                    obj.block(x, y, "Reserved", "Reserved");
                 }
-                files.close();
-                File::Copy("details/duplicate.csv", "details/teacher_file.csv", true);
-                File::Delete("details/duplicate.csv");
-                ofstream fils("details/classroom.csv");
-                if (fils.is_open())
-                {
-                    for (auto t : obj.allRooms)
-                    {
-                        fils << t.convertToString() << "\n";
-                    }
-
-                }
-                fils.close();
-                replacename(find, "details/section.csv", 0, "");
-                sectiondeletedatagridview->Rows->RemoveAt(rowIndexToDelete);
             }
         }
-    }
-    private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) {
-        button13->BackColor = Color::FromArgb(0, 0, 100);
-        button4->BackColor = Color::FromArgb(0, 0, 77);
-        button5->BackColor = Color::FromArgb(0, 0, 77);
-        button8->BackColor = Color::FromArgb(0, 0, 77);
-        button10->BackColor = Color::FromArgb(0, 0, 77);
-        button11->BackColor = Color::FromArgb(0, 0, 77);
-        button7->BackColor = Color::FromArgb(0, 0, 77);
-        button14->BackColor = Color::FromArgb(0, 0, 77);
-        deleteclasspanel->BringToFront();
-        DisplayCSVInComboBox(sectiondeletedatagridview, "details/section.csv");
-    }
-    private: System::Void editteachersearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
-        editteachercsvshow("details/teacher_file.csv");
-    }
-    private: System::Void panel37_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-    }
-    private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (editsubeleyes->Checked == true)
+        InitializeMatrix(classtablegen1, "g", "free",-1);
+        classtablegenpanel->Visible = false;
+        finalttpanel->Visible = true;
+        finalttpanel->Top = panel36->Bottom;
+        String^ sec = (classname)->Text->ToString();
+        string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
+        int secval;
+        //Making class name
+        if (Sec[0] > 'Z')
         {
-            editsubelepanel->Visible = true;
-            editpanelsub->Top = editsubelepanel->Bottom;
-            InitializeMatrix(editsubeletable, "editele", "Available", 2);
-            onOptionClickedit(editsubcluster, editsubeleteacher, editsubeletable, "editele");
+            secval = Sec[0] - 'a';
         }
         else
+            secval = Sec[0] - 'A';
+        String^ branch = classbranch->Text->ToString();
+        string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
+        int branchval = 0;
+        for (int i = 0; i < Branch.size(); i++)
+            if (Branch[i] > 'Z')
+            {
+                branchval = Branch[i] - 'a';
+            }
+            else
+                branchval = Branch[i] - 'A';
+        String^ year = classbatch->Text->ToString();
+        string YEAR = msclr::interop::marshal_as<string>(year);
+        int intyear = 0;
+
+        for (int i = 0; i < YEAR.size(); i++) {
+            intyear *= 10;
+            intyear += YEAR[i] - '0';
+        }
+        int idClass = intyear * 10000 + branchval * 10 + secval;
+        obj.name = idClass;
+        allteachersfunction("details/teacher_file.csv", obj);
+        allroomsfunction("details/classroom.csv", obj);
+        //alloting default rooms
+        defaultroomallot(obj);
+        //alloting core teacher and subjects
+        loadcore(obj);
+        labcreate("details/Labo.csv", obj);
+
+        obj.makeTIMETABLE();
+        for (int i = 0; i < obj.timeTable.size(); i++)
         {
-            MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            for (int j = 0; j < obj.timeTable[i].size(); j++)
+            {
+                Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
+                if (obj.timeTable[i][j] != "f")
+                    button->Text = msclr::interop::marshal_as<String^>(obj.timeTable[i][j]);
+                else
+                    button->Text = "free";
+            }
         }
     }
-    };
 }
+private: System::Void classreserve_Click_1(System::Object^ sender, System::EventArgs^ e) {
+    InitializeMatrix(classtablegen,"res", "Open",3);
+    classtablegenpanel->Visible = true;
+    classtablegenpanel->Top = panel36->Bottom;
+    finalttpanel ->Visible = false;
+}
+private: System::Void classclear_Click(System::Object^ sender, System::EventArgs^ e) {
+    ClearReset();
+    classtablegenpanel->Visible = false;
+    finalttpanel->Visible = false;
+    classbatch->Clear();
+    classname->Clear();
+    classbranch->Text = "";
+    classlab->Rows->Clear();
+    classele->Rows->Clear();
+    for (int i = classdefaultrooms->Items->Count - 1; i >= 0; i--) {
+        classdefaultrooms->SetItemChecked(i, false);
+    }
+}
+private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) {
+    deptDataGridView->Rows->Clear();
+}
+private: System::Void editroompanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void tableLayoutPanel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void panelsub_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
+    button14->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    classpanel->BringToFront();
+    InitializeMatrix(classtablegen, "res", "Open",3);
+    InitializeMatrix(classtablegen1,"g", "free",-1);
+    finalttpanel->Top = classsave->Bottom;
+    finalttpanel->Visible = false;
+    classtablegenpanel->Visible = false;
+    classbatch->Clear();
+    classname->Clear();
+    classbranch->Text = "";
+    classlab->Rows->Clear();
+    classele->Rows->Clear();
+    classdefaultrooms->Items->Clear();
+    DisplayCSVInComboBox1("details/dept_file.csv", classbranch);
+    DisplayCSVInListBox("details/classroom.csv", classdefaultrooms, 3);
+    csubject->DataSource = CreateDataTableFromCSV1("details/subject_file.csv", "Core Subject");
+    csubject->DisplayMember = "Core Subject"; // Update to the correct column name
+    csubject->ValueMember = "Core Subject";
+    cteacher->DataSource = CreateDataTableFromCSV1("details/teacher_file.csv", "cteacher");
+    cteacher->DisplayMember = "cteacher"; // Update to the correct column name
+    cteacher->ValueMember = "cteacher";
+    eSubject->DataSource = CreateDataTableFromCSV1("details/electivetimetable.csv", "esubject");
+    eSubject->DisplayMember = "eSubject"; // Update to the correct column name
+    eSubject->ValueMember = "eSubject";
+    lsubject->DataSource = CreateDataTableFromCSV1("details/Labo.csv", "lsubject");
+    lsubject->DisplayMember = "lsubject"; // Update to the correct column name
+    lsubject->ValueMember = "lsubject";
+    panel3->Height = button15->Height;
+    panel3->Top = button15->Top;
+    //close classroom suboption
+    button5->Visible = false;
+    button4->Visible = false;
+    textBox4->Visible = false;
+    textBox5->Visible = true;
+    //close teachers suboption
+    button8->Visible = false;
+    button7->Visible = false;
+    textBox6->Visible = false;
+    textBox7->Visible = true;
+    //close subject suboption
+    button10->Visible = false;
+    button11->Visible = false;
+    textBox8->Visible = false;
+    textBox9->Visible = true;
+}
+private: System::Void panel16_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+    section obj;
+    allteachersfunction("details/teacher_file.csv", obj);
+    allroomsfunction("details/classroom.csv", obj);
+    if (e->ColumnIndex == classdeletebutton->Index && e->RowIndex >= 0)
+    {
+        if (MessageBox::Show("Are you Sure you want to delete the class", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes)
+        {
+            int rowIndexToDelete = e->RowIndex;
+            string find = msclr::interop::marshal_as<string>(sectiondeletedatagridview->Rows[rowIndexToDelete]->Cells[0]->Value->ToString());
+            string x = returnLine(find, "details/section.csv");
+            obj.readData(x);
+            obj.deAllocate();
+            File::Copy("details/teacher_file.csv", "details/duplicate.csv", true);
+            ofstream files("details/duplicate.csv");
+            if (files.is_open())
+            {
+                for (auto t : obj.allTeachers)
+                {
+                    files << t.convertToString() << "\n";
+                }
+
+            }
+            files.close();
+            File::Copy("details/duplicate.csv", "details/teacher_file.csv", true);
+            File::Delete("details/duplicate.csv");
+            ofstream fils("details/classroom.csv");
+            if (fils.is_open())
+            {
+                for (auto t : obj.allRooms)
+                {
+                    fils << t.convertToString() << "\n";
+                }
+
+            }
+            fils.close();
+            replacename(find,"details/section.csv", 0, "");
+            sectiondeletedatagridview->Rows->RemoveAt(rowIndexToDelete);
+        }
+    }
+}
+private: System::Void button13_Click(System::Object^ sender, System::EventArgs^ e) {
+    button13->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+    deleteclasspanel->BringToFront();
+    DisplayCSVInComboBox(sectiondeletedatagridview, "details/section.csv");
+}
+private: System::Void editteachersearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
+    editteachercsvshow("details/teacher_file.csv");
+}
+private: System::Void panel37_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (editsubeleyes->Checked == true)
+    {
+        editsubelepanel->Visible = true;
+        editpanelsub->Top = editsubelepanel->Bottom;
+        InitializeMatrix(editsubeletable, "editele", "Available", 2);
+        onOptionClickedit(editsubcluster, editsubeleteacher, editsubeletable, "editele");
+    }
+    else
+    {
+        MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+    }
+}
+};
+}
+
