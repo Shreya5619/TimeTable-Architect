@@ -1043,6 +1043,8 @@ namespace TTA_ui {
                             subj.readData(returnLine(abc[j][0], "details/subject_file.csv"));
                             for (int x = 1; x < abc[j].size(); x++)
                             {
+                                if (abc[j][x][0] == '[')
+                                    break;
                                 a.push_back(abc[j][x]);
                             }
                             t.addLab(a, subj, 2, 2);
