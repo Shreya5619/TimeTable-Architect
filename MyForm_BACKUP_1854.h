@@ -37,17 +37,6 @@ namespace TTA_ui {
             //TODO: Add the constructor code here
             //
         }
-        System::Void EditingControlShowing(System::Object^ sender, System::Windows::Forms::DataGridViewEditingControlShowingEventArgs^ e)
-        {
-            // Check if the current cell is in the TextBoxColumn
-            if (deptDataGridView->CurrentCell->OwningColumn->Name =="dataGridViewTextBoxColumn1")
-            {
-                // Attach KeyPress event handler to the TextBox control
-                System::Windows::Forms::TextBox^ textBox = dynamic_cast<System::Windows::Forms::TextBox^>(e->Control);
-                textBox->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPress);
-            }
-        }
-
         void textBox_KeyDown(Object^ sender, KeyEventArgs^ e)
         {
             // Check if the Enter key was pressed
@@ -931,7 +920,7 @@ namespace TTA_ui {
                         if (sldataGridView->Rows[i]->Cells[0]->Value != nullptr)
                         {
                             System::String^ cellvalue = sldataGridView->Rows[i]->Cells[0]->Value->ToString();
-                            std::string CellValue = replacewhitespace(msclr::interop::marshal_as<string>(cellvalue));
+                            std::string CellValue = msclr::interop::marshal_as<string>(cellvalue);
                             outputFile << "," << CellValue;
                         }
                     }
@@ -939,7 +928,7 @@ namespace TTA_ui {
                     bool x = true;
                     for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
                         String^ value = addsubroomlist->CheckedItems[i]->ToString();
-                        std::string Value = replacewhitespace(msclr::interop::marshal_as<string>(value));
+                        std::string Value = msclr::interop::marshal_as<string>(value);
                         outputFile << Value;
                         x = false;
                         if (i < addsubroomlist->CheckedItems->Count - 1) {
@@ -1622,7 +1611,7 @@ namespace TTA_ui {
                                 {
                                     if (button->Text == "Available")
                                         x += ",0";
-                                    else if (button->Text == "Busy")
+                                    else if (button->Text == "busy")
                                         x += ",0";
                                     else
                                         x += "," + msclr::interop::marshal_as<string>(button->Text);
@@ -1704,82 +1693,136 @@ namespace TTA_ui {
                         {
                             if (row[i] == find)
                             {
-                                //if elective
-                                vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
-                                bool nflag = false;
-                                for (int i = 1; i <= 36; i++)
+                                if (editsubeleyes->Checked)
                                 {
-                                    Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
-                                    if (button != nullptr)
+                                    vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
+                                    bool nflag = false;
+                                    for (int i = 1; i <= 36; i++)
                                     {
-                                        if (button->Text == editsubname->Text)
-                                            nflag = true;
-                                    }
-                                }
-                                if (!nflag)
-                                {
-                                    MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                                }
-                                else
-                                {
-                                    string file;
-                                        file += row[0];
-                                        for (int i = 1; i <= 36; i++)
+                                        Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                                        if (button != nullptr)
                                         {
-                                            Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
-                                            if (button != nullptr)
+                                            if (button->Text == editsubname->Text)
+                                                nflag = true;
+                                        }
+                                    }
+                                    if (!nflag)
+                                    {
+                                        MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                                    }
+                                    else
+                                    {
+                                        string file;
+                                        bool flags = true;
+                                        if (row[0] == msclr::interop::marshal_as<string>(editsubcluster->Text))
+                                        {
+                                            flags = false;
+                                            file += row[0];
+                                            for (int i = 1; i <= 36; i++)
                                             {
-                                                if (button->Text == editsubname->Text)
+                                                Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                                                if (button != nullptr)
                                                 {
-                                                    file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
-                                                    for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                                                    if (button->Text == editsubname->Text)
                                                     {
-                                                        if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                                        file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
+                                                        for (int j = 0; j < editsubeleteacher->RowCount; j++)
                                                         {
-                                                            for (auto& row : temp)
+                                                            if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
                                                             {
-
-                                                                for (int n = 4; n < row.size(); n += 2)
+                                                                for (auto& row : temp)
                                                                 {
-                                                                    if (row[n] == find)
+
+                                                                    for (int n = 4; n < row.size(); n += 2)
                                                                     {
-                                                                        row[n] = "0";
-                                                                        row[n - 1] = "0";
+                                                                        if (row[n] == find)
+                                                                        {
+                                                                            row[n] = "0";
+                                                                            row[n - 1] = "0";
+                                                                        }
+                                                                    }
+                                                                    string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
+                                                                    if (row[0] == s)
+                                                                    {
+                                                                        row[(2 * i) + 1] = '1';
+                                                                        row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
                                                                     }
                                                                 }
-                                                                string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
-                                                                if (row[0] == s)
+                                                            }
+                                                        }
+
+                                                    }
+                                                    else if (button->Text == "busy")
+                                                    {
+                                                        file += ",0";
+                                                    }
+                                                    else
+                                                    {
+                                                        file += "," + msclr::interop::marshal_as<string>(button->Text);
+                                                    }
+                                                }
+                                            }
+                                            file += "\n";
+                                            replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
+                                        }
+                                        if (flags)
+                                        {
+                                            file += msclr::interop::marshal_as<string>(editsubcluster->Text);
+                                            for (int i = 1; i <= 36; i++)
+                                            {
+                                                Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                                                if (button != nullptr)
+                                                {
+                                                    if (button->Text == editsubname->Text)
+                                                    {
+                                                        file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
+                                                        for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                                                        {
+                                                            if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                                            {
+                                                                for (auto& row : temp)
                                                                 {
-                                                                    row[(2 * i) + 1] = '1';
-                                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
+                                                                    for (int n = 1; n < row.size(); n++)
+                                                                    {
+                                                                        if (row[n] == find)
+                                                                        {
+                                                                            row[n] = "0";
+                                                                            row[n - 1] = "0";
+                                                                        }
+                                                                    }
+                                                                    if (row[0] == msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString()))
+                                                                    {
+                                                                        row[(2 * i) + 1] = '1';
+                                                                        row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
+                                                                    }
                                                                 }
                                                             }
                                                         }
                                                     }
-
+                                                    else
+                                                        file += ",0";
                                                 }
-                                                else if (button->Text == "busy")
-                                                {
-                                                    file += ",0";
+                                            }
+                                            file += "\n";
+                                            replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
+                                        }
+                                        ofstream tFile("details/teacher_file.csv");
+                                        if (tFile.is_open()) {
+                                            for (const auto& t : temp) {
+                                                for (int i = 0; i < t.size() - 1; i++) {
+                                                    tFile << t[i] << ",";
                                                 }
-                                                else
-                                                    file += "," + row[i];
+                                                tFile << t[t.size() - 1] << "\n";
                                             }
                                         }
-                                        file += "\n";
-                                        replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
-                                    ofstream tFile("details/teacher_file.csv");
-                                    if (tFile.is_open()) {
-                                        for (const auto& t : temp) {
-                                            for (int i = 0; i < t.size() - 1; i++) {
-                                                tFile << t[i] << ",";
-                                            }
-                                            tFile << t[t.size() - 1] << "\n";
-                                        }
+                                        tFile.close();
+                                        MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                                        goto err;
                                     }
-                                    tFile.close();
-                                    MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                                    goto err;
+                                }
+                                else
+                                {
+                                    //to be filled
                                 }
                             }
                         }
@@ -2128,23 +2171,23 @@ namespace TTA_ui {
                             }
                         }
                     }
-                }
-            }
-            for (int x = 0; x < editsubeleteacher->RowCount; x++)
-            {
-                if (editsubeleteacher->Rows[x]->Cells[0]->Value != nullptr)
-                {
-                    string n = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[x]->Cells[0]->Value->ToString());
-                    for (auto cell : temp)
+                    for (int i = 0; i < dgv->RowCount; i++)
                     {
-                        if (cell[0] == n)
+                        if (dgv->Rows[i]->Cells[0]->Value != nullptr)
                         {
-                            for (int l = 3; l < cell.size(); l += 2)
+                            string n = msclr::interop::marshal_as<string>(dgv->Rows[i]->Cells[0]->Value->ToString());
+                            for (auto cell : temp)
                             {
-                                if ((cell[l] == "1" && cell[l + 1] != msclr::interop::marshal_as<string>(editsubname->Text)) && (dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", l / 2)])->Text == editsubname->Text))
+                                if (cell[0] == n)
                                 {
-                                    dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", l / 2)])->Text = "busy";
-                                    dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", l / 2)])->BackColor = Color::FromArgb(224, 224, 224);
+                                    for (int x = 3; x < cell.size(); x+=2)
+                                    {
+                                        if ((cell[x] == "1" && cell[x+1]!=msclr::interop::marshal_as<string>(editsubname->Text)) && dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", x / 2)])->Text == editsubname->Text)
+                                        {
+                                            dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", x / 2)])->Text = "busy";
+                                            dynamic_cast<Button^>(t->Controls[String::Format("buttoneditele{0}", x / 2)])->BackColor = Color::FromArgb(224, 224, 224);
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -2153,13 +2196,8 @@ namespace TTA_ui {
             }
         }
         System::Void KeyPress(System::Object^ sender, KeyPressEventArgs^ e) {
-            if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back && !Char::IsDigit(e->KeyChar)) {
-                e->Handled = true;
-            }
-        }
-        System::Void KeyPressemail(System::Object^ sender, KeyPressEventArgs^ e) {
             // Filter out special characters
-            if ((!Char::IsLetter(e->KeyChar) && e->KeyChar !='@' && !Char::IsDigit(e->KeyChar)) && e->KeyChar != (char)Keys::Back) {
+            if (!Char::IsLetter(e->KeyChar) && e->KeyChar != (char)Keys::Back) {
                 e->Handled = true;
             }
         }
@@ -3943,7 +3981,6 @@ namespace TTA_ui {
             this->roomname->Name = L"roomname";
             this->roomname->Size = System::Drawing::Size(295, 34);
             this->roomname->TabIndex = 68;
-            this->roomname->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // roomcapacity
             // 
@@ -4002,7 +4039,6 @@ namespace TTA_ui {
             this->roomdept->Name = L"roomdept";
             this->roomdept->Size = System::Drawing::Size(294, 36);
             this->roomdept->TabIndex = 73;
-            this->roomdept->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // clearroom
             // 
@@ -8235,8 +8271,6 @@ namespace TTA_ui {
             this->dataGridViewTextBoxColumn1->MinimumWidth = 30;
             this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
             this->dataGridViewTextBoxColumn1->Width = 350;
-            this->deptDataGridView->EditingControlShowing += gcnew DataGridViewEditingControlShowingEventHandler(this, &MyForm::EditingControlShowing);
-            
             // 
             // dataGridViewButtonColumn1
             // 
@@ -9877,23 +9911,16 @@ namespace TTA_ui {
     private: System::Void panel7_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
     }
     private: System::Void addsubclusteroptions_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool flag=true;
-        if (addsubname->Text == "")
-        {
-            MessageBox::Show("Subject Name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else if (addsubeleyes->Checked == false )
-        {
-            MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        if(flag)
+        if (addsubeleyes->Checked == true && addsubname->Text!="")
         {
             addsubeletablepanel->Visible = true;
             panelsub->Top = addsubeletablepanel->Bottom;
             InitializeMatrix(tableLayoutPanel1, "ele", "Available", 0);
             onOptionClick(addsubcluster, sedataGridView, tableLayoutPanel1, "ele");
+        }
+        else
+        {
+            MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         }
     }
     private: System::Void classgenerate_Click(System::Object^ sender, System::EventArgs^ e) {
