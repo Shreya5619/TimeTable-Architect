@@ -44,7 +44,7 @@ namespace TTA_ui {
             {
                 // Attach KeyPress event handler to the TextBox control
                 System::Windows::Forms::TextBox^ textBox = dynamic_cast<System::Windows::Forms::TextBox^>(e->Control);
-                textBox->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPress);
+                textBox->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             }
         }
 
@@ -403,7 +403,7 @@ namespace TTA_ui {
                         string Cap = msclr::interop::marshal_as<string>(cap);
                         x += Cap + ",";
                         String^ ename = addteacheremailid->Text->ToString();
-                        string eName = replacewhitespace(msclr::interop::marshal_as<string>(ename));
+                        string eName =(msclr::interop::marshal_as<string>(ename));
                         x += eName + ",";
                         for (int i = 1; i <= 36; ++i)
                         {
@@ -445,7 +445,7 @@ namespace TTA_ui {
                         string Depname = replacewhitespace(Dep);
                         outputFile << Depname << ",";
                         String^ ename = addteacheremailid->Text->ToString();
-                        string eName = replacewhitespace(msclr::interop::marshal_as<string>(ename));
+                        string eName = (msclr::interop::marshal_as<string>(ename));
                         outputFile << eName << ",";
                         for (int i = 1; i <= 36; ++i)
                         {
@@ -1043,6 +1043,8 @@ namespace TTA_ui {
                             subj.readData(returnLine(abc[j][0], "details/subject_file.csv"));
                             for (int x = 1; x < abc[j].size(); x++)
                             {
+                                if (abc[j][x][0] == '[')
+                                    break;
                                 a.push_back(abc[j][x]);
                             }
                             t.addLab(a, subj, 2, 2);
@@ -1123,7 +1125,7 @@ namespace TTA_ui {
                             file << ",";
                             file << replacewhitespace(msclr::interop::marshal_as<string>(editteacherdepartment->Text->ToString()));
                             file << ",";
-                            file << replacewhitespace(msclr::interop::marshal_as<string>(editteacheremailid->Text->ToString()));
+                            file << (msclr::interop::marshal_as<string>(editteacheremailid->Text->ToString()));
                             file << ",";
                             for (int i = 1; i < 37; i++)
                             {
@@ -1866,8 +1868,8 @@ namespace TTA_ui {
                 if (classcore->Rows[i]->Cells[1]->Value != nullptr)
                 {
                     subject sub;
-                    sub.readData(returnLine(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[0]->Value->ToString()), "details/subject_file.csv"));
-                    obj.addCore(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[1]->Value->ToString()), sub);
+                    sub.readData(returnLine(replacewhitespace(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[0]->Value->ToString())), "details/subject_file.csv"));
+                    obj.addCore(replacewhitespace(msclr::interop::marshal_as<string>(classcore->Rows[i]->Cells[1]->Value->ToString())), sub);
                 }
             }
         }
@@ -2157,9 +2159,14 @@ namespace TTA_ui {
                 e->Handled = true;
             }
         }
+        System::Void KeyPressAllowspace(System::Object^ sender, KeyPressEventArgs^ e) {
+            if (!Char::IsLetter(e->KeyChar) && e->KeyChar != ' ' && e->KeyChar != (char)Keys::Back && !Char::IsDigit(e->KeyChar)) {
+                e->Handled = true;
+            }
+        }
         System::Void KeyPressemail(System::Object^ sender, KeyPressEventArgs^ e) {
             // Filter out special characters
-            if ((!Char::IsLetter(e->KeyChar) && e->KeyChar !='@' && !Char::IsDigit(e->KeyChar)) && e->KeyChar != (char)Keys::Back) {
+            if ((!Char::IsLetter(e->KeyChar) && e->KeyChar !='@' && !Char::IsDigit(e->KeyChar) && e->KeyChar != '.') && e->KeyChar != (char)Keys::Back) {
                 e->Handled = true;
             }
         }
@@ -2300,7 +2307,6 @@ namespace TTA_ui {
     private: System::Windows::Forms::Panel^ panel4;
     private: System::Windows::Forms::Label^ label15;
     private: System::Windows::Forms::Panel^ editteacherpanel;
-    private: System::Windows::Forms::Label^ label39;
     private: System::Windows::Forms::Label^ label62;
     private: System::Windows::Forms::ComboBox^ editteacherdepartment;
     private: System::Windows::Forms::Label^ label63;
@@ -2404,7 +2410,7 @@ namespace TTA_ui {
     private: System::Windows::Forms::MaskedTextBox^ classname;
     private: System::Windows::Forms::ComboBox^ classbranch;
     private: System::Windows::Forms::Label^ label37;
-    private: System::Windows::Forms::MaskedTextBox^ classbatch;
+
     private: System::Windows::Forms::Label^ label36;
     private: System::Windows::Forms::CheckedListBox^ classdefaultrooms;
     private: System::Windows::Forms::Label^ label34;
@@ -2613,6 +2619,8 @@ namespace TTA_ui {
     private: System::Windows::Forms::Label^ label162;
     private: System::Windows::Forms::Label^ label163;
     private: System::Windows::Forms::Label^ label164;
+private: System::Windows::Forms::NumericUpDown^ classbatch;
+
     private: System::ComponentModel::IContainer^ components;
     protected:
     private:
@@ -2813,7 +2821,6 @@ namespace TTA_ui {
             this->label63 = (gcnew System::Windows::Forms::Label());
             this->editteachername = (gcnew System::Windows::Forms::TextBox());
             this->label64 = (gcnew System::Windows::Forms::Label());
-            this->label39 = (gcnew System::Windows::Forms::Label());
             this->teachersearch = (gcnew System::Windows::Forms::ComboBox());
             this->editroompanel = (gcnew System::Windows::Forms::Panel());
             this->panel15 = (gcnew System::Windows::Forms::Panel());
@@ -2966,7 +2973,6 @@ namespace TTA_ui {
             this->classname = (gcnew System::Windows::Forms::MaskedTextBox());
             this->classbranch = (gcnew System::Windows::Forms::ComboBox());
             this->label37 = (gcnew System::Windows::Forms::Label());
-            this->classbatch = (gcnew System::Windows::Forms::MaskedTextBox());
             this->label36 = (gcnew System::Windows::Forms::Label());
             this->classdefaultrooms = (gcnew System::Windows::Forms::CheckedListBox());
             this->label34 = (gcnew System::Windows::Forms::Label());
@@ -2981,6 +2987,7 @@ namespace TTA_ui {
             this->label13 = (gcnew System::Windows::Forms::Label());
             this->classreserve = (gcnew System::Windows::Forms::Button());
             this->classpanel = (gcnew System::Windows::Forms::Panel());
+            this->classbatch = (gcnew System::Windows::Forms::NumericUpDown());
             this->panel36 = (gcnew System::Windows::Forms::Panel());
             this->classtablegenpanel = (gcnew System::Windows::Forms::Panel());
             this->panel26 = (gcnew System::Windows::Forms::Panel());
@@ -3105,6 +3112,7 @@ namespace TTA_ui {
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classcore))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlab))->BeginInit();
             this->classpanel->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classbatch))->BeginInit();
             this->panel36->SuspendLayout();
             this->classtablegenpanel->SuspendLayout();
             this->finalttpanel->SuspendLayout();
@@ -3431,6 +3439,7 @@ namespace TTA_ui {
             this->addsubcode->Name = L"addsubcode";
             this->addsubcode->Size = System::Drawing::Size(480, 34);
             this->addsubcode->TabIndex = 305;
+            this->addsubcode->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // label149
             // 
@@ -3455,6 +3464,7 @@ namespace TTA_ui {
             this->addsubtitle->Name = L"addsubtitle";
             this->addsubtitle->Size = System::Drawing::Size(480, 34);
             this->addsubtitle->TabIndex = 303;
+            this->addsubtitle->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label148
             // 
@@ -3698,6 +3708,7 @@ namespace TTA_ui {
             this->addsubcluster->Name = L"addsubcluster";
             this->addsubcluster->Size = System::Drawing::Size(294, 36);
             this->addsubcluster->TabIndex = 264;
+            this->addsubcluster->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // panel12
             // 
@@ -3778,6 +3789,7 @@ namespace TTA_ui {
             this->addsubname->Size = System::Drawing::Size(480, 34);
             this->addsubname->TabIndex = 3;
             this->addsubname->TextChanged += gcnew System::EventHandler(this, &MyForm::textBox16_TextChanged);
+            this->addsubname->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // sedataGridView
             // 
@@ -3943,7 +3955,7 @@ namespace TTA_ui {
             this->roomname->Name = L"roomname";
             this->roomname->Size = System::Drawing::Size(295, 34);
             this->roomname->TabIndex = 68;
-            this->roomname->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
+            this->roomname->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // roomcapacity
             // 
@@ -4002,7 +4014,7 @@ namespace TTA_ui {
             this->roomdept->Name = L"roomdept";
             this->roomdept->Size = System::Drawing::Size(294, 36);
             this->roomdept->TabIndex = 73;
-            this->roomdept->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
+            this->roomdept->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // clearroom
             // 
@@ -4429,7 +4441,6 @@ namespace TTA_ui {
             this->editteacherpanel->Controls->Add(this->label63);
             this->editteacherpanel->Controls->Add(this->editteachername);
             this->editteacherpanel->Controls->Add(this->label64);
-            this->editteacherpanel->Controls->Add(this->label39);
             this->editteacherpanel->Controls->Add(this->teachersearch);
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editteacherpanel->Location = System::Drawing::Point(0, 0);
@@ -4450,6 +4461,7 @@ namespace TTA_ui {
             this->editteacheremailid->Name = L"editteacheremailid";
             this->editteacheremailid->Size = System::Drawing::Size(361, 34);
             this->editteacheremailid->TabIndex = 306;
+            this->editteacheremailid->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressemail);
             // 
             // label151
             // 
@@ -4744,6 +4756,7 @@ namespace TTA_ui {
             this->editteacherdepartment->Name = L"editteacherdepartment";
             this->editteacherdepartment->Size = System::Drawing::Size(362, 36);
             this->editteacherdepartment->TabIndex = 234;
+            this->editteacherdepartment->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label63
             // 
@@ -4768,6 +4781,7 @@ namespace TTA_ui {
             this->editteachername->Name = L"editteachername";
             this->editteachername->Size = System::Drawing::Size(361, 34);
             this->editteachername->TabIndex = 232;
+            this->editteachername->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label64
             // 
@@ -4780,17 +4794,6 @@ namespace TTA_ui {
             this->label64->Size = System::Drawing::Size(179, 28);
             this->label64->TabIndex = 231;
             this->label64->Text = L"Enter teacher name";
-            // 
-            // label39
-            // 
-            this->label39->AutoSize = true;
-            this->label39->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label39->Location = System::Drawing::Point(610, 112);
-            this->label39->Name = L"label39";
-            this->label39->Size = System::Drawing::Size(242, 30);
-            this->label39->TabIndex = 0;
-            this->label39->Text = L"Enter the teacher Name";
             // 
             // teachersearch
             // 
@@ -4808,6 +4811,7 @@ namespace TTA_ui {
             this->teachersearch->Text = L"Search";
             this->teachersearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocus);
             this->teachersearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDown);
+            this->teachersearch->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             this->teachersearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocus);
             // 
             // editroompanel
@@ -5154,6 +5158,7 @@ namespace TTA_ui {
             this->editroomdepartment->Name = L"editroomdepartment";
             this->editroomdepartment->Size = System::Drawing::Size(294, 36);
             this->editroomdepartment->TabIndex = 131;
+            this->editroomdepartment->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label78
             // 
@@ -5211,6 +5216,7 @@ namespace TTA_ui {
             this->editroomname->Name = L"editroomname";
             this->editroomname->Size = System::Drawing::Size(295, 34);
             this->editroomname->TabIndex = 126;
+            this->editroomname->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label81
             // 
@@ -5239,6 +5245,7 @@ namespace TTA_ui {
             this->editroomsearch->Text = L"Search";
             this->editroomsearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocusRoom);
             this->editroomsearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownRoom);
+            this->editroomsearch->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             this->editroomsearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocusRoom);
             // 
             // editsubjectpanel
@@ -5780,6 +5787,7 @@ namespace TTA_ui {
             this->editsubcode->Name = L"editsubcode";
             this->editsubcode->Size = System::Drawing::Size(480, 34);
             this->editsubcode->TabIndex = 319;
+            this->editsubcode->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // editsubtitle
             // 
@@ -5792,6 +5800,7 @@ namespace TTA_ui {
             this->editsubtitle->Name = L"editsubtitle";
             this->editsubtitle->Size = System::Drawing::Size(480, 34);
             this->editsubtitle->TabIndex = 318;
+            this->editsubtitle->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label150
             // 
@@ -5829,6 +5838,7 @@ namespace TTA_ui {
             this->editsubcluster->Name = L"editsubcluster";
             this->editsubcluster->Size = System::Drawing::Size(294, 36);
             this->editsubcluster->TabIndex = 313;
+            this->editsubcluster->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // editsubsearchbutton
             // 
@@ -5870,6 +5880,7 @@ namespace TTA_ui {
             this->editsubsearch->Text = L"Search";
             this->editsubsearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocusSub);
             this->editsubsearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownsubject);
+            this->editsubsearch->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             this->editsubsearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocusSub);
             // 
             // label94
@@ -6056,6 +6067,7 @@ namespace TTA_ui {
             this->editsubname->Name = L"editsubname";
             this->editsubname->Size = System::Drawing::Size(480, 34);
             this->editsubname->TabIndex = 265;
+            this->editsubname->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label93
             // 
@@ -7076,8 +7088,7 @@ namespace TTA_ui {
             this->classname->PromptChar = ' ';
             this->classname->Size = System::Drawing::Size(410, 34);
             this->classname->TabIndex = 244;
-            this->classname->TextMaskFormat = System::Windows::Forms::MaskFormat::ExcludePromptAndLiterals;
-            this->classname->KeyPress += gcnew KeyPressEventHandler(this, &MyForm::KeyPress);
+            this->classname->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
             // classbranch
             // 
@@ -7091,6 +7102,7 @@ namespace TTA_ui {
             this->classbranch->Name = L"classbranch";
             this->classbranch->Size = System::Drawing::Size(406, 36);
             this->classbranch->TabIndex = 245;
+            this->classbranch->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label37
             // 
@@ -7102,22 +7114,6 @@ namespace TTA_ui {
             this->label37->Size = System::Drawing::Size(225, 28);
             this->label37->TabIndex = 241;
             this->label37->Text = L"Batch(year of admission)";
-            // 
-            // classbatch
-            // 
-            this->classbatch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->classbatch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->classbatch->HidePromptOnLeave = true;
-            this->classbatch->HideSelection = false;
-            this->classbatch->Location = System::Drawing::Point(191, 436);
-            this->classbatch->Name = L"classbatch";
-            this->classbatch->Size = System::Drawing::Size(404, 34);
-            this->classbatch->SkipLiterals = false;
-            this->classbatch->TabIndex = 242;
-            this->classbatch->TextMaskFormat = System::Windows::Forms::MaskFormat::ExcludePromptAndLiterals;
-            this->classbatch->ValidatingType = System::Int32::typeid;
             // 
             // label36
             // 
@@ -7354,6 +7350,7 @@ namespace TTA_ui {
             this->classpanel->AutoScroll = true;
             this->classpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classpanel->Controls->Add(this->classbatch);
             this->classpanel->Controls->Add(this->panel36);
             this->classpanel->Controls->Add(this->classtablegenpanel);
             this->classpanel->Controls->Add(this->finalttpanel);
@@ -7364,7 +7361,6 @@ namespace TTA_ui {
             this->classpanel->Controls->Add(this->label34);
             this->classpanel->Controls->Add(this->classdefaultrooms);
             this->classpanel->Controls->Add(this->label36);
-            this->classpanel->Controls->Add(this->classbatch);
             this->classpanel->Controls->Add(this->label37);
             this->classpanel->Controls->Add(this->classbranch);
             this->classpanel->Controls->Add(this->classname);
@@ -7372,11 +7368,26 @@ namespace TTA_ui {
             this->classpanel->Controls->Add(this->classcore);
             this->classpanel->Controls->Add(this->classele);
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->classpanel->Location = System::Drawing::Point(0, 0);
+            this->classpanel->Location = System::Drawing::Point(324, 139);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1946, 1106);
+            this->classpanel->Size = System::Drawing::Size(1622, 967);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
+            // 
+            // classbatch
+            // 
+            this->classbatch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->classbatch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->classbatch->Location = System::Drawing::Point(190, 444);
+            this->classbatch->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+            this->classbatch->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999, 0, 0, 0 });
+            this->classbatch->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2000, 0, 0, 0 });
+            this->classbatch->Name = L"classbatch";
+            this->classbatch->Size = System::Drawing::Size(401, 34);
+            this->classbatch->TabIndex = 261;
+            this->classbatch->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2000, 0, 0, 0 });
             // 
             // panel36
             // 
@@ -7819,6 +7830,7 @@ namespace TTA_ui {
             this->addteachername->Name = L"addteachername";
             this->addteachername->Size = System::Drawing::Size(361, 34);
             this->addteachername->TabIndex = 232;
+            this->addteachername->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label2
             // 
@@ -7842,6 +7854,7 @@ namespace TTA_ui {
             this->addteacherdepartment->Name = L"addteacherdepartment";
             this->addteacherdepartment->Size = System::Drawing::Size(362, 36);
             this->addteacherdepartment->TabIndex = 234;
+            this->addteacherdepartment->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // label3
             // 
@@ -7922,6 +7935,7 @@ namespace TTA_ui {
             this->addteacheremailid->Name = L"addteacheremailid";
             this->addteacheremailid->Size = System::Drawing::Size(361, 34);
             this->addteacheremailid->TabIndex = 304;
+            this->addteacheremailid->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressemail);
             // 
             // label147
             // 
@@ -8220,6 +8234,7 @@ namespace TTA_ui {
             this->deptDataGridView->Size = System::Drawing::Size(735, 257);
             this->deptDataGridView->TabIndex = 233;
             this->deptDataGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView2_CellContentClick_1);
+            this->deptDataGridView->EditingControlShowing += gcnew System::Windows::Forms::DataGridViewEditingControlShowingEventHandler(this, &MyForm::EditingControlShowing);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -8235,8 +8250,6 @@ namespace TTA_ui {
             this->dataGridViewTextBoxColumn1->MinimumWidth = 30;
             this->dataGridViewTextBoxColumn1->Name = L"dataGridViewTextBoxColumn1";
             this->dataGridViewTextBoxColumn1->Width = 350;
-            this->deptDataGridView->EditingControlShowing += gcnew DataGridViewEditingControlShowingEventHandler(this, &MyForm::EditingControlShowing);
-            
             // 
             // dataGridViewButtonColumn1
             // 
@@ -8419,9 +8432,9 @@ namespace TTA_ui {
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1946, 1106);
+            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
-            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->deleteclasspanel);
             this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel2);
@@ -8514,6 +8527,7 @@ namespace TTA_ui {
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlab))->EndInit();
             this->classpanel->ResumeLayout(false);
             this->classpanel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classbatch))->EndInit();
             this->panel36->ResumeLayout(false);
             this->classtablegenpanel->ResumeLayout(false);
             this->classtablegenpanel->PerformLayout();
@@ -9289,7 +9303,7 @@ namespace TTA_ui {
                         {
                             vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
                             for (auto name : rowsOfElectives) {
-                                if (name[0] == msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString()))
+                                if (name[0] == replacewhitespace(msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString())))
                                 {
                                     for (int ptr = 1; ptr < name.size(); ptr++) {
                                         if (name[ptr] != "0")
@@ -9432,7 +9446,7 @@ namespace TTA_ui {
                     {
                         for (auto period : day)
                         {
-                            tt += period + ",";
+                            tt += replaceunderscore(period) + ",";
                         }
                         tt += "\n";
                     }
@@ -9442,7 +9456,7 @@ namespace TTA_ui {
                     {
                         for (auto period : day)
                         {
-                            tt += period + ",";
+                            tt += replaceunderscore(period) + ",";
                         }
                         tt += "\n";
                     }
@@ -9452,7 +9466,7 @@ namespace TTA_ui {
                     {
                         for (auto period : day)
                         {
-                            tt += period + ",";
+                            tt += replaceunderscore(period) + ",";
                         }
                         tt += "\n";
                     }
@@ -9950,7 +9964,7 @@ namespace TTA_ui {
                 {
                     vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
                     for (auto name : rowsOfElectives) {
-                        if (name[0] == msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString()))
+                        if (name[0] == replacewhitespace(msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString())))
                         {
                             for (int ptr = 1; ptr < name.size(); ptr++) {
                                 if (name[ptr] != "0")
@@ -10024,7 +10038,7 @@ namespace TTA_ui {
                 {
                     Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
                     if (obj.timeTable[i][j] != "f")
-                        button->Text = msclr::interop::marshal_as<String^>(obj.timeTable[i][j]);
+                        button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(obj.timeTable[i][j]));
                     else
                         button->Text = "free";
                 }
@@ -10041,7 +10055,7 @@ namespace TTA_ui {
         ClearReset();
         classtablegenpanel->Visible = false;
         finalttpanel->Visible = false;
-        classbatch->Clear();
+        classbatch->Value = 2000;
         classname->Clear();
         classbranch->Text = "";
         classlab->Rows->Clear();
@@ -10074,7 +10088,7 @@ namespace TTA_ui {
         finalttpanel->Top = classsave->Bottom;
         finalttpanel->Visible = false;
         classtablegenpanel->Visible = false;
-        classbatch->Clear();
+        classbatch->Value = 2000;
         classname->Clear();
         classbranch->Text = "";
         classlab->Rows->Clear();

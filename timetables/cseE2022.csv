@@ -1,29 +1,29 @@
 TIMETABLE
 
 SUBJECTS
+DSA,f,f,f,f,f,
+f,DSA,f,f,f,f,
+f,f,DSA,f,f,f,
 f,f,f,f,f,f,
 f,f,f,f,f,f,
-f,f,f,f,f,f,
-f,f,f,f,f,f,
-sub,f,f,f,f,f,
 f,f,f,f,f,f,
 
 
 TEACHERS
+Shreya,f,f,f,f,f,
+f,Shreya,f,f,f,f,
+f,f,Shreya,f,f,f,
 f,f,f,f,f,f,
 f,f,f,f,f,f,
-f,f,f,f,f,f,
-f,f,f,f,f,f,
-test,f,f,f,f,f,
 f,f,f,f,f,f,
 
 
 ROOM
+CS110,NA,NA,NA,NA,NA,
+NA,CS110,NA,NA,NA,NA,
+NA,NA,CS110,NA,NA,NA,
 NA,NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA,NA,
-NA,NA,NA,NA,NA,NA,
-NA,NA,NA,NA,NA,NA,
-cs101,NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA,NA,
 
 
