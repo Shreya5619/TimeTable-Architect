@@ -134,4 +134,5 @@ private:
     subject& returnSubject(std::string inp);
     std::vector<std::vector<int>> findWeightageLab(std::vector < std::vector<bool>> inp, std::vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
     std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
+    std::vector<std::string> section::splitString(const std::string& str, char delimiter);
 };
