@@ -16,13 +16,34 @@ bool section::deAllocate() {
                 }
                 else {
                     //handle lab and esc
-                    errorMessage += "lab teachers deallocation not done";
+                    std::vector<std::string> temp = splitString(teacherTable[day][period], ' ');
+                    for (auto uname : temp) {
+                        std::string name;
+                        for (auto character : uname) {
+                            if (character != '_') {
+                                name += character;
+                            }
+                            else {
+                                name += ' ';
+                            }
+                        }
+                        teacher& currentT = returnTeacher(name);
+                        if (!error_) {
+                            currentT.timeTable[day][period] = 0;
+                        }
+                    }
                 }
                 room& currentR = returnRoom(roomTable[day][period]);
                 if (!error_) {
                     currentR.timeTable[day][period] = 0;
                 }
                 else {
+                    std::vector<std::string> temp = splitString(roomTable[day][period], ' ');
+                    for (auto r : temp) {
+                        room& currentR = returnRoom(r);
+                        if (!error_)
+                            currentR.timeTable[day][period] = 0;
+                    }
                     //handle
                     errorMessage += "lab rooms deallocation not done";
                 }
@@ -412,6 +433,18 @@ std::vector<std::vector<int>> section::findWeightageCore(std::vector<std::vector
     }
     return ans;
 }
+std::vector<std::string> section::splitString(const std::string& str, char delimiter) {
+    std::vector<std::string> tokens;
+    size_t start = 0, end = 0;
+
+    while ((end = str.find(delimiter, start)) != std::string::npos) {
+        tokens.push_back(str.substr(start, end - start));
+        start = end + 1;
+    }
+
+    tokens.push_back(str.substr(start));
+    return tokens;
+}
 void section::makeTIMETABLE() {
     //alloting labs
     for (int i = 0; i < labTeachers.size(); i++) {
@@ -546,10 +579,14 @@ void section::makeTIMETABLE() {
                     std::string roomString;
                     //making teacher and room string a,b,c,d format
                     for (auto teachers : allCombs[index][0]) {
-                        teacherString += teachers + " , ";
+                        std::vector<std::string> temp = splitString(teachers, ' ');
+                        for (int i = 0; i < temp.size() - 1; i++) {
+                            teachers += temp[i] + "_";
+                        }
+                        teacherString += temp[temp.size() - 1] + " ";
                     }
                     for (auto rooms : allCombs[index][1]) {
-                        roomString += rooms + " , ";
+                        roomString += rooms + " ";
                     }
                     //assignment
                     teacherTable[k][highestindex] = teacherString;
@@ -1046,7 +1083,7 @@ void section::makeTIMETABLE() {
                         }
                         if (credCount) {
                             //if exectution reaches here it means that we cant allot with the current input combination.
-                            errorMessage += std::to_string(credCount) + " session for "+ currSubject.name + " couldnt be alloted.";
+                            errorMessage += std::to_string(credCount) + " session for " + currSubject.name + " couldnt be alloted.";
                         }
                     }
                 }
