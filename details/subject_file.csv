@@ -1,4 +1,5 @@
 DSA,data_Structure,DSC11X,0,0,3,1,3.00,[0]
 DBMS,data_base_management_system,DBMS5,0,0,3,1,3.00,[0]
-s_b,v,v,0,0,1,1,2.00,[CS113]
-a,xc,ce33a,0,1,0,2,1.00,[CS112,CS113,CS114,CS210]
+S_B,v,v,0,0,1,1,2.00,[CS113]
+a,aaa,aa,0,1,1,2,2.00,[CS110,CS112,CS113]
+B,b,b,0,1,2,2,2.00,[CS112,CS114]
