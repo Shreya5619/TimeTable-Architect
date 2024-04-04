@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CS235AI,Operating_Systems,CS235AI,0,0,3,1,3.00,[0]
 CS234AI,Applied_Digital_Logic_Design_and_Computer_Organization,CS234AI,0,0,3,1,3.00,[0]
 MA231CT,Data_Structures_and_Applications,MA231CT,0,0,4,1,3.00,[0]
@@ -7,3 +8,6 @@ CS237DL,Design_Thinking_Lab,CS237DL,0,0,1,1,3.00,[0]
 21CS53,Introduction_To_Database_Systems,21CS53,0,0,3,1,3.00,[0]
 21AI52,Artificial_Intelligence_and_Machine_Learning,21AI52,0,0,3,1,3.00,[0]
 21CS54,Theory_of_Computation,21CS54,0,0,3,1,3.00,[0]
+=======
+A,A,A,0,1,2,2,2.00,[Cs101,Cs102,Cs103]
+>>>>>>> 1c6529b60994d9cfb9a5db614d13ed2b12fc2e67

@@ -7,6 +7,7 @@ std::string searchteachername="";
 std::string searchroomname;
 std::string searchsubname;
 std::vector<std::vector<bool>> reserveMatrix;
+std::vector<std::vector<std::string>> labteachers;;
 [STAThreadAttribute]
 
 void main(array<String^>^ args) {
@@ -14,5 +15,4 @@ void main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	TTA_ui::MyForm form;
 	Application::Run(% form);
-	
 }
