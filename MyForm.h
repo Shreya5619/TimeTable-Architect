@@ -269,11 +269,11 @@ namespace TTA_ui {
                 if (e->ColumnIndex == x->Index && e->RowIndex >= 0)
                 {
                     int rowIndexToDelete = e->RowIndex;
-                    for (int i=0;i<labteachers.size();i++)
+                    for (int i = 0; i < labteachers.size(); i++)
                     {
                         if (labteachers[i][0] == replacewhitespace(msclr::interop::marshal_as<string>(classlab->Rows[rowIndexToDelete]->Cells[0]->Value->ToString())))
                         {
-                            labteachers.erase(labteachers.begin()+i);
+                            labteachers.erase(labteachers.begin() + i);
                         }
                     }
                     classlab->Rows->RemoveAt(rowIndexToDelete);
@@ -882,7 +882,7 @@ namespace TTA_ui {
             }
         }
 
-  
+
 
         void editcsvelectivee(const string filePath)
         {
@@ -1001,7 +1001,7 @@ namespace TTA_ui {
             e->Graphics->DrawImage(image, rect);
         }
     public:
-        void labcreate(vector<vector<string>> teachers,section &t)
+        void labcreate(vector<vector<string>> teachers, section& t)
         {
             //vector<vector<string>>abc = ReadCSVFile("details/teacher_file.csv");
             //for (int i = 0; i < classlab->RowCount; ++i)
@@ -1671,51 +1671,51 @@ namespace TTA_ui {
                                 else
                                 {
                                     string file;
-                                        file += row[0];
-                                        for (int i = 1; i <= 36; i++)
+                                    file += row[0];
+                                    for (int i = 1; i <= 36; i++)
+                                    {
+                                        Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                                        if (button != nullptr)
                                         {
-                                            Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
-                                            if (button != nullptr)
+                                            if (button->Text == editsubname->Text)
                                             {
-                                                if (button->Text == editsubname->Text)
+                                                file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
+                                                for (int j = 0; j < editsubeleteacher->RowCount; j++)
                                                 {
-                                                    file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
-                                                    for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                                                    if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
                                                     {
-                                                        if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                                        for (auto& row : temp)
                                                         {
-                                                            for (auto& row : temp)
-                                                            {
 
-                                                                for (int n = 4; n < row.size(); n += 2)
+                                                            for (int n = 4; n < row.size(); n += 2)
+                                                            {
+                                                                if (row[n] == find)
                                                                 {
-                                                                    if (row[n] == find)
-                                                                    {
-                                                                        row[n] = "0";
-                                                                        row[n - 1] = "0";
-                                                                    }
+                                                                    row[n] = "0";
+                                                                    row[n - 1] = "0";
                                                                 }
-                                                                string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
-                                                                if (row[0] == s)
-                                                                {
-                                                                    row[(2 * i) + 1] = '1';
-                                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
-                                                                }
+                                                            }
+                                                            string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
+                                                            if (row[0] == s)
+                                                            {
+                                                                row[(2 * i) + 1] = '1';
+                                                                row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
                                                             }
                                                         }
                                                     }
+                                                }
 
-                                                }
-                                                else if (button->Text == "busy")
-                                                {
-                                                    file += ",0";
-                                                }
-                                                else
-                                                    file += "," + row[i];
                                             }
+                                            else if (button->Text == "busy")
+                                            {
+                                                file += ",0";
+                                            }
+                                            else
+                                                file += "," + row[i];
                                         }
-                                        file += "\n";
-                                        replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
+                                    }
+                                    file += "\n";
+                                    replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
                                     ofstream tFile("details/teacher_file.csv");
                                     if (tFile.is_open()) {
                                         for (const auto& t : temp) {
@@ -2112,7 +2112,7 @@ namespace TTA_ui {
         }
         System::Void KeyPressemail(System::Object^ sender, KeyPressEventArgs^ e) {
             // Filter out special characters
-            if ((!Char::IsLetter(e->KeyChar) && e->KeyChar !='@' && !Char::IsDigit(e->KeyChar) && e->KeyChar != '.') && e->KeyChar != (char)Keys::Back) {
+            if ((!Char::IsLetter(e->KeyChar) && e->KeyChar != '@' && !Char::IsDigit(e->KeyChar) && e->KeyChar != '.') && e->KeyChar != (char)Keys::Back) {
                 e->Handled = true;
             }
         }
@@ -2565,29 +2565,29 @@ namespace TTA_ui {
     private: System::Windows::Forms::Label^ label162;
     private: System::Windows::Forms::Label^ label163;
     private: System::Windows::Forms::Label^ label164;
-private: System::Windows::Forms::NumericUpDown^ classbatch;
+    private: System::Windows::Forms::NumericUpDown^ classbatch;
 
 
-private: System::Windows::Forms::Label^ label39;
-private: System::Windows::Forms::ComboBox^ classlabcombo;
+    private: System::Windows::Forms::Label^ label39;
+    private: System::Windows::Forms::ComboBox^ classlabcombo;
 
-private: System::Windows::Forms::DataGridView^ classlabteachers;
-
-
+    private: System::Windows::Forms::DataGridView^ classlabteachers;
 
 
 
-private: System::Windows::Forms::DataGridView^ classele;
-private: System::Windows::Forms::DataGridViewComboBoxColumn^ eSubject;
-private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn3;
-private: System::Windows::Forms::DataGridView^ classlab;
 
 
-private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher1;
-private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn7;
-private: System::Windows::Forms::Button^ classlabsave;
-private: System::Windows::Forms::DataGridViewTextBoxColumn^ lsubject;
-private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn2;
+    private: System::Windows::Forms::DataGridView^ classele;
+    private: System::Windows::Forms::DataGridViewComboBoxColumn^ eSubject;
+    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn3;
+    private: System::Windows::Forms::DataGridView^ classlab;
+
+
+    private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher1;
+    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn7;
+    private: System::Windows::Forms::Button^ classlabsave;
+    private: System::Windows::Forms::DataGridViewTextBoxColumn^ lsubject;
+    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn2;
 
 
 
@@ -2662,6 +2662,8 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle27 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle28 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle29 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle25 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle26 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle30 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle31 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle34 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
@@ -2690,8 +2692,6 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle57 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle53 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle54 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle25 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle26 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->label45 = (gcnew System::Windows::Forms::Label());
             this->label49 = (gcnew System::Windows::Forms::Label());
             this->addsubcredits = (gcnew System::Windows::Forms::NumericUpDown());
@@ -2966,6 +2966,8 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classpanel = (gcnew System::Windows::Forms::Panel());
             this->classlabsave = (gcnew System::Windows::Forms::Button());
             this->classlab = (gcnew System::Windows::Forms::DataGridView());
+            this->lsubject = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->dataGridViewButtonColumn2 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->label39 = (gcnew System::Windows::Forms::Label());
             this->classlabcombo = (gcnew System::Windows::Forms::ComboBox());
             this->classlabteachers = (gcnew System::Windows::Forms::DataGridView());
@@ -3046,8 +3048,6 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->sectiondeletedatagridview = (gcnew System::Windows::Forms::DataGridView());
             this->classcolumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->classdeletebutton = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
-            this->lsubject = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-            this->dataGridViewButtonColumn2 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->BeginInit();
             this->panel11->SuspendLayout();
@@ -3618,9 +3618,9 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                 static_cast<System::Byte>(0)));
             this->label46->Location = System::Drawing::Point(204, 857);
             this->label46->Name = L"label46";
-            this->label46->Size = System::Drawing::Size(330, 28);
+            this->label46->Size = System::Drawing::Size(481, 28);
             this->label46->TabIndex = 235;
-            this->label46->Text = L"Teacher handling the elective subject";
+            this->label46->Text = L"Teacher handling the elective or common time subject";
             // 
             // label47
             // 
@@ -3640,9 +3640,9 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                 static_cast<System::Byte>(0)));
             this->label48->Location = System::Drawing::Point(205, 548);
             this->label48->Name = L"label48";
-            this->label48->Size = System::Drawing::Size(148, 28);
+            this->label48->Size = System::Drawing::Size(381, 28);
             this->label48->TabIndex = 23;
-            this->label48->Text = L"Is it an elective\?";
+            this->label48->Text = L"Is it an elective or a common time subject\?";
             // 
             // addsubname
             // 
@@ -6839,9 +6839,9 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                 static_cast<System::Byte>(0)));
             this->label33->Location = System::Drawing::Point(200, 867);
             this->label33->Name = L"label33";
-            this->label33->Size = System::Drawing::Size(153, 28);
+            this->label33->Size = System::Drawing::Size(329, 28);
             this->label33->TabIndex = 255;
-            this->label33->Text = L"Elective subjects";
+            this->label33->Text = L"Electives and Common time subjects";
             // 
             // label32
             // 
@@ -6906,9 +6906,9 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classpanel->Controls->Add(this->classcore);
             this->classpanel->Controls->Add(this->classele);
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->classpanel->Location = System::Drawing::Point(324, 139);
+            this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1622, 967);
+            this->classpanel->Size = System::Drawing::Size(1946, 1106);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -6992,6 +6992,45 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classlab->Size = System::Drawing::Size(537, 230);
             this->classlab->TabIndex = 307;
             this->classlab->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::classlab_CellContentClick_1);
+            // 
+            // lsubject
+            // 
+            dataGridViewCellStyle25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            dataGridViewCellStyle25->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle25->Padding = System::Windows::Forms::Padding(1);
+            dataGridViewCellStyle25->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(194)));
+            dataGridViewCellStyle25->SelectionForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle25->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->lsubject->DefaultCellStyle = dataGridViewCellStyle25;
+            this->lsubject->HeaderText = L"Lab subjects Applicable";
+            this->lsubject->MinimumWidth = 30;
+            this->lsubject->Name = L"lsubject";
+            this->lsubject->ReadOnly = true;
+            this->lsubject->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+            this->lsubject->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
+            this->lsubject->Width = 250;
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this->dataGridViewButtonColumn2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
+            dataGridViewCellStyle26->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
+            dataGridViewCellStyle26->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
+                static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle26->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle26->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)),
+                static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle26->SelectionForeColor = System::Drawing::Color::Black;
+            this->dataGridViewButtonColumn2->DefaultCellStyle = dataGridViewCellStyle26;
+            this->dataGridViewButtonColumn2->DividerWidth = 1;
+            this->dataGridViewButtonColumn2->HeaderText = L"";
+            this->dataGridViewButtonColumn2->MinimumWidth = 75;
+            this->dataGridViewButtonColumn2->Name = L"dataGridViewButtonColumn2";
+            this->dataGridViewButtonColumn2->ReadOnly = true;
+            this->dataGridViewButtonColumn2->Text = L"Delete";
+            this->dataGridViewButtonColumn2->UseColumnTextForButtonValue = true;
+            this->dataGridViewButtonColumn2->Width = 75;
             // 
             // label39
             // 
@@ -8287,45 +8326,6 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classdeletebutton->Text = L"Delete";
             this->classdeletebutton->UseColumnTextForButtonValue = true;
             // 
-            // lsubject
-            // 
-            dataGridViewCellStyle25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            dataGridViewCellStyle25->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle25->Padding = System::Windows::Forms::Padding(1);
-            dataGridViewCellStyle25->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(194)));
-            dataGridViewCellStyle25->SelectionForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle25->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->lsubject->DefaultCellStyle = dataGridViewCellStyle25;
-            this->lsubject->HeaderText = L"Lab subjects Applicable";
-            this->lsubject->MinimumWidth = 30;
-            this->lsubject->Name = L"lsubject";
-            this->lsubject->ReadOnly = true;
-            this->lsubject->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-            this->lsubject->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
-            this->lsubject->Width = 250;
-            // 
-            // dataGridViewButtonColumn2
-            // 
-            this->dataGridViewButtonColumn2->AutoSizeMode = System::Windows::Forms::DataGridViewAutoSizeColumnMode::AllCells;
-            dataGridViewCellStyle26->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleCenter;
-            dataGridViewCellStyle26->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
-                static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle26->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle26->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)),
-                static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle26->SelectionForeColor = System::Drawing::Color::Black;
-            this->dataGridViewButtonColumn2->DefaultCellStyle = dataGridViewCellStyle26;
-            this->dataGridViewButtonColumn2->DividerWidth = 1;
-            this->dataGridViewButtonColumn2->HeaderText = L"";
-            this->dataGridViewButtonColumn2->MinimumWidth = 75;
-            this->dataGridViewButtonColumn2->Name = L"dataGridViewButtonColumn2";
-            this->dataGridViewButtonColumn2->ReadOnly = true;
-            this->dataGridViewButtonColumn2->Text = L"Delete";
-            this->dataGridViewButtonColumn2->UseColumnTextForButtonValue = true;
-            this->dataGridViewButtonColumn2->Width = 75;
-            // 
             // MyForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(144, 144);
@@ -8333,19 +8333,19 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1946, 1106);
-            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
-            this->Controls->Add(this->deleteclasspanel);
-            this->Controls->Add(this->editteacherpanel);
-            this->Controls->Add(this->panel2);
-            this->Controls->Add(this->settingspanel);
-            this->Controls->Add(this->addteacherpanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
             this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->classpanel);
+            this->Controls->Add(this->deleteclasspanel);
+            this->Controls->Add(this->editteacherpanel);
+            this->Controls->Add(this->panel2);
+            this->Controls->Add(this->settingspanel);
+            this->Controls->Add(this->addteacherpanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -8962,8 +8962,8 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                         }
                     }
                     tFile.close();
-                   /* string x;
-                    x += msclr::interop::marshal_as<string>(addsubname->Text);*/
+                    /* string x;
+                     x += msclr::interop::marshal_as<string>(addsubname->Text);*/
                     MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
                 }
             }
@@ -9106,7 +9106,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
         deletebutton(dataGridViewButtonColumn3, classele, sender, e);
     }
     private: System::Void classlab_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-       deletebutton(dataGridViewButtonColumn2, classlab, sender, e);
+        deletebutton(dataGridViewButtonColumn2, classlab, sender, e);
     }
     private: System::Void addsubcluster_TextChanged(System::Object^ sender, System::EventArgs^ e) {
     }
@@ -9737,18 +9737,18 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
     private: System::Void panel7_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
     }
     private: System::Void addsubclusteroptions_Click(System::Object^ sender, System::EventArgs^ e) {
-        bool flag=true;
+        bool flag = true;
         if (addsubname->Text == "")
         {
             MessageBox::Show("Subject Name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
-        else if (addsubeleyes->Checked == false )
+        else if (addsubeleyes->Checked == false)
         {
             MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
-        if(flag)
+        if (flag)
         {
             addsubeletablepanel->Visible = true;
             panelsub->Top = addsubeletablepanel->Bottom;
@@ -10048,28 +10048,41 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
     private: System::Void dataGridView1_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
         deletebutton(dataGridViewButtonColumn7, classlabteachers, sender, e);
     }
-private: System::Void classlab_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-    deletebuttonlab(dataGridViewButtonColumn2, classlab, sender, e);
-}
-private: System::Void classlabsave_Click(System::Object^ sender, System::EventArgs^ e) {
-    if (classlabcombo->Text == "")
-    {
-        MessageBox::Show("Select a lab subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-    }   
-    else if (classlabteachers->RowCount <= 4)
-    {
-        MessageBox::Show("Minimum number of lab teachers required not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+    private: System::Void classlab_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+        deletebuttonlab(dataGridViewButtonColumn2, classlab, sender, e);
     }
-    else
-    {
-        int x = classlabteachers->RowCount;
-        bool flag = true;
-        for (auto& row : labteachers)
+    private: System::Void classlabsave_Click(System::Object^ sender, System::EventArgs^ e) {
+        if (classlabcombo->Text == "")
         {
-            if (row[0] == replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)))
+            MessageBox::Show("Select a lab subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        }
+        else if (classlabteachers->RowCount <= 4)
+        {
+            MessageBox::Show("Minimum number of lab teachers required not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        }
+        else
+        {
+            int x = classlabteachers->RowCount;
+            bool flag = true;
+            for (auto& row : labteachers)
             {
-                flag = false;
-                row.clear();
+                if (row[0] == replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)))
+                {
+                    flag = false;
+                    row.clear();
+                    row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)));
+                    for (int i = 0; i < classlabteachers->RowCount; i++)
+                    {
+                        if (classlabteachers->Rows[i]->Cells[0]->Value != nullptr)
+                        {
+                            row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabteachers->Rows[i]->Cells[0]->Value->ToString())));
+                        }
+                    }
+                }
+            }
+            if (flag)
+            {
+                vector<string>row;
                 row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)));
                 for (int i = 0; i < classlabteachers->RowCount; i++)
                 {
@@ -10078,39 +10091,26 @@ private: System::Void classlabsave_Click(System::Object^ sender, System::EventAr
                         row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabteachers->Rows[i]->Cells[0]->Value->ToString())));
                     }
                 }
+                labteachers.push_back(row);
+                classlab->Rows->Add(msclr::interop::marshal_as< String^>(row[0]));
             }
-        }
-        if (flag)
-        {
-            vector<string>row;
-            row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)));
-            for (int i = 0; i < classlabteachers->RowCount; i++)
-            {
-                if (classlabteachers->Rows[i]->Cells[0]->Value != nullptr)
-                {
-                    row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabteachers->Rows[i]->Cells[0]->Value->ToString())));
-                }
-            }
-            labteachers.push_back(row);
-            classlab->Rows->Add(msclr::interop::marshal_as< String^>(row[0]));
-        }
 
-        MessageBox::Show("Saved Successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-    }
-}
-private: System::Void classlabcombo_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
-    classlabteachers->Rows->Clear();
-    for (const auto& row : labteachers)
-    {
-        if (row[0] == replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)))
-        {
-            for (int i = 1; i < row.size(); i++)
-            {
-                classlabteachers->Rows->Add(msclr::interop::marshal_as<String^>(replaceunderscore(row[i])));
-            }
-            break;
+            MessageBox::Show("Saved Successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         }
     }
-}
-};
+    private: System::Void classlabcombo_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) {
+        classlabteachers->Rows->Clear();
+        for (const auto& row : labteachers)
+        {
+            if (row[0] == replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)))
+            {
+                for (int i = 1; i < row.size(); i++)
+                {
+                    classlabteachers->Rows->Add(msclr::interop::marshal_as<String^>(replaceunderscore(row[i])));
+                }
+                break;
+            }
+        }
+    }
+    };
 }
