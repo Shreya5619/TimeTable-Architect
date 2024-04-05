@@ -9272,7 +9272,6 @@ namespace TTA_ui {
                 //    String^ year = classbatch->Text->ToString();
                 //    string YEAR = msclr::interop::marshal_as<string>(year);
                 //    int intyear = 0;
-
                 //    for (int i = 0; i < YEAR.size(); i++) {
                 //        intyear *= 10;
                 //        intyear += YEAR[i] - '0';
