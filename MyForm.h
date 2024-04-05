@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <msclr\marshal_cppstd.h>
 #include<vector>
 #include<string>
@@ -9166,7 +9166,6 @@ namespace TTA_ui {
             if (MessageBox::Show("Are you Sure you want to save the generated timeTable", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::Yes)
             {
                 extern vector<section>allsections;
-                if (allsections.size() == 0)
                 {
                     section obj;
                     for (int i = 0; i < classele->RowCount; i++)
@@ -9247,66 +9246,65 @@ namespace TTA_ui {
                     }
                     sfile.close();
                 }
-                else
-                {
-                    section obj;
-                    String^ sec = classname->Text->ToString();
-                    string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
-                    int secval;
-                    //Making class name
-                    if (Sec[0] > 'Z')
-                    {
-                        secval = Sec[0] - 'a';
-                    }
-                    else
-                        secval = Sec[0] - 'A';
-                    String^ branch = classbranch->Text->ToString();
-                    string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
-                    int branchval = 0;
-                    for (int i = 0; i < Branch.size(); i++)
-                        if (Branch[i] > 'Z')
-                        {
-                            branchval = Branch[i] - 'a';
-                        }
-                        else
-                            branchval = Branch[i] - 'A';
-                    String^ year = classbatch->Text->ToString();
-                    string YEAR = msclr::interop::marshal_as<string>(year);
-                    int intyear = 0;
-
-                    for (int i = 0; i < YEAR.size(); i++) {
-                        intyear *= 10;
-                        intyear += YEAR[i] - '0';
-                    }
-                    int idClass = intyear * 10000 + branchval * 10 + secval;
-                    obj.name = idClass;
-                    obj.allTeachers = allsections[allsections.size() - 1].allTeachers;
-                    obj.allRooms = allsections[allsections.size() - 1].allRooms;
-                    defaultroomallot(obj);
-                    //alloting core teacher and subjects
-                    loadcore(obj);
-                    labcreate(labteachers, obj);
-                    for (int i = 0; i < 6; i++)
-                    {
-                        for (int j = 0; j < 6; j++)
-                        {
-                            Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", 6 * i + j + 1)]);
-                            if (button->Text == "Reserved")
-                            {
-                                obj.block(i, j, "Reserved", "Reserved");
-                            }
-                        }
-                    }
-                    obj.makeTIMETABLE();
-                    allsections.push_back(obj);
-                    ofstream sfile;
-                    sfile.open("details/section.csv", ios::app);
-                    if (sfile.is_open())
-                    {
-                        sfile << obj.convertToString() << "\n";
-                    }
-                    sfile.close();
-                }
+                //else
+                //{
+                //    section obj;
+                //    String^ sec = classname->Text->ToString();
+                //    string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
+                //    int secval;
+                //    //Making class name
+                //    if (Sec[0] > 'Z')
+                //    {
+                //        secval = Sec[0] - 'a';
+                //    }
+                //    else
+                //        secval = Sec[0] - 'A';
+                //    String^ branch = classbranch->Text->ToString();
+                //    string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
+                //    int branchval = 0;
+                //    for (int i = 0; i < Branch.size(); i++)
+                //        if (Branch[i] > 'Z')
+                //        {
+                //            branchval = Branch[i] - 'a';
+                //        }
+                //        else
+                //            branchval = Branch[i] - 'A';
+                //    String^ year = classbatch->Text->ToString();
+                //    string YEAR = msclr::interop::marshal_as<string>(year);
+                //    int intyear = 0;
+                //    for (int i = 0; i < YEAR.size(); i++) {
+                //        intyear *= 10;
+                //        intyear += YEAR[i] - '0';
+                //    }
+                //    int idClass = intyear * 10000 + branchval * 10 + secval;
+                //    obj.name = idClass;
+                //    obj.allTeachers = allsections[allsections.size() - 1].allTeachers;
+                //    obj.allRooms = allsections[allsections.size() - 1].allRooms;
+                //    defaultroomallot(obj);
+                //    //alloting core teacher and subjects
+                //    loadcore(obj);
+                //    labcreate(labteachers, obj);
+                //    for (int i = 0; i < 6; i++)
+                //    {
+                //        for (int j = 0; j < 6; j++)
+                //        {
+                //            Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", 6 * i + j + 1)]);
+                //            if (button->Text == "Reserved")
+                //            {
+                //                obj.block(i, j, "Reserved", "Reserved");
+                //            }
+                //        }
+                //    }
+                //    obj.makeTIMETABLE();
+                //    allsections.push_back(obj);
+                //    ofstream sfile;
+                //    sfile.open("details/section.csv", ios::app);
+                //    if (sfile.is_open())
+                //    {
+                //        sfile << obj.convertToString() << "\n";
+                //    }
+                //    sfile.close();
+                //}
                 ofstream file;
                 file.open(replacewhitespace("timetables/" + (msclr::interop::marshal_as<string>(classbranch->Text + (classname)->Text + classbatch->Text)) + ".csv"));
                 if (file.is_open())
