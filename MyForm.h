@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #include <msclr\marshal_cppstd.h>
 #include<vector>
 #include<string>
