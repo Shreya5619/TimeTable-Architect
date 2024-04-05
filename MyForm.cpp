@@ -15,5 +15,4 @@ void main(array<String^>^ args) {
 	Application::SetCompatibleTextRenderingDefault(false);
 	TTA_ui::MyForm form;
 	Application::Run(% form);
-	
 }

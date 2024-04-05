@@ -16,18 +16,18 @@ bool section::deAllocate() {
                 }
                 else {
                     //handle lab and esc
-                    std::vector<std::string> temp = splitString(teacherTable[day][period], ' ');
+                    std::vector<std::string> temp = splitString(teacherTable[day][period], '|');
                     for (auto uname : temp) {
                         std::string name;
-                        for (auto character : uname) {
+                        /*for (auto character : uname) {
                             if (character != '_') {
                                 name += character;
                             }
                             else {
                                 name += ' ';
                             }
-                        }
-                        teacher& currentT = returnTeacher(name);
+                        }*/
+                        teacher& currentT = returnTeacher(uname);
                         if (!error_) {
                             currentT.timeTable[day][period] = 0;
                         }
@@ -38,14 +38,13 @@ bool section::deAllocate() {
                     currentR.timeTable[day][period] = 0;
                 }
                 else {
-                    std::vector<std::string> temp = splitString(roomTable[day][period], ' ');
+                    std::vector<std::string> temp = splitString(roomTable[day][period], '|');
                     for (auto r : temp) {
                         room& currentR = returnRoom(r);
                         if (!error_)
                             currentR.timeTable[day][period] = 0;
                     }
                     //handle
-                    errorMessage += "lab rooms deallocation not done";
                 }
             }
         }
@@ -583,10 +582,10 @@ void section::makeTIMETABLE() {
                         for (int i = 0; i < temp.size() - 1; i++) {
                             teachers += temp[i] + "_";
                         }
-                        teacherString += temp[temp.size() - 1] + " ";
+                        teacherString += temp[temp.size() - 1] + "|";//new delimiiter
                     }
                     for (auto rooms : allCombs[index][1]) {
-                        roomString += rooms + " ";
+                        roomString += rooms + "|";
                     }
                     //assignment
                     teacherTable[k][highestindex] = teacherString;
