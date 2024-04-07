@@ -62,6 +62,61 @@ namespace TTA_ui {
                 }
             }
         }
+        void textBox_KeyDownClass(Object^ sender, KeyEventArgs^ e)
+        {
+            // Check if the Enter key was pressed
+            if (e->KeyCode == Keys::Enter)
+            {
+                // Perform the desired action (e.g., process the input)
+                classlabteachers->Rows->Clear();
+                classbatches->Value = 0;
+                classsessions->Value = 0;
+                for (int i = 0; i < classlabroomlist->Items->Count; i++) {
+                    classlabroomlist->SetItemChecked(i, false);
+                }
+                string find = replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text));
+                MaskedTextBox^ textBox = dynamic_cast<MaskedTextBox^>(sender);
+                if (textBox != nullptr)
+                {
+                    for (const auto& row : labteachers)
+                    {
+                        if (row[0] == find)
+                        {
+                            classbatches->Text = msclr::interop::marshal_as<String^>(row[1]);
+                            classsessions->Text = msclr::interop::marshal_as<String^>(row[2]);
+                            bool flag = false;
+                            for (int i = 3; i < row.size() - 1; i++)
+                            {
+                                classlabteachers->Rows->Add(msclr::interop::marshal_as<String^>(replaceunderscore(row[i])));
+                            }
+                            string s;
+                            for (const char& cell : row[row.size() - 1])
+                            {
+                                if (cell == '[')
+                                    continue;
+                                else if (cell == ',' || cell == ']')
+                                {
+                                    String^ y = msclr::interop::marshal_as<String^>(s);
+                                    for (int i = 0; i < classlabroomlist->Items->Count; i++)
+                                    {
+
+                                        String^ item = classlabroomlist->Items[i]->ToString();
+                                        if (item == y)
+                                        {
+                                            classlabroomlist->SetItemChecked(i, true);
+                                            break;
+                                        }
+                                    }
+                                    s = "";
+                                }
+                                else
+                                    s += cell;
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
         void textBox_KeyDownRoom(Object^ sender, KeyEventArgs^ e)
         {
@@ -280,6 +335,64 @@ namespace TTA_ui {
                 }
                 classlabcombo->Text = "";
                 classlabteachers->Rows->Clear();
+            }
+            catch (...)
+            {
+
+            }
+        }
+        void editbuttonlab(DataGridViewTextBoxColumn^ x, DataGridView^ classlab, System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e)
+        {
+            try
+            {
+                if (e->ColumnIndex == x->Index && e->RowIndex >= 0)
+                {
+                    int rowIndexToDelete = e->RowIndex;
+                    classlabteachers->Rows->Clear();
+                    classbatches->Value = 0;
+                    classsessions->Value = 0;
+                    for (int i = 0; i < classlabroomlist->Items->Count; i++) {
+                        classlabroomlist->SetItemChecked(i, false);
+                    }
+                    string find = replacewhitespace(msclr::interop::marshal_as<string>(classlab->Rows[rowIndexToDelete]->Cells[0]->Value->ToString()));
+                        for (const auto& row : labteachers)
+                        {
+                            if (row[0] == find)
+                            {
+                                classlabcombo->Text= msclr::interop::marshal_as<String^>(row[0]);
+                                classbatches->Text = msclr::interop::marshal_as<String^>(row[1]);
+                                classsessions->Text = msclr::interop::marshal_as<String^>(row[2]);
+                                bool flag = false;
+                                for (int i = 3; i < row.size() - 1; i++)
+                                {
+                                    classlabteachers->Rows->Add(msclr::interop::marshal_as<String^>(replaceunderscore(row[i])));
+                                }
+                                string s;
+                                for (const char& cell : row[row.size() - 1])
+                                {
+                                    if (cell == '[')
+                                        continue;
+                                    else if (cell == ',' || cell == ']')
+                                    {
+                                        String^ y = msclr::interop::marshal_as<String^>(s);
+                                        for (int i = 0; i < classlabroomlist->Items->Count; i++)
+                                        {
+
+                                            String^ item = classlabroomlist->Items[i]->ToString();
+                                            if (item == y)
+                                            {
+                                                classlabroomlist->SetItemChecked(i, true);
+                                                break;
+                                            }
+                                        }
+                                        s = "";
+                                    }
+                                    else
+                                        s += cell;
+                                }
+                            }
+                        }
+                }
             }
             catch (...)
             {
@@ -717,25 +830,11 @@ namespace TTA_ui {
                         {
                             x = x + "0" + ",";
                         }
-                        if (addsublabyes->Checked)
-                        {
-                            x = x + "1" + ",";
-                        }
-                        else
-                        {
                             x = x + "0" + ",";
-                        }
                         String^ cap = addsubcredits->Text->ToString();
                         string Cap = msclr::interop::marshal_as<string>(cap);
                         x += Cap + ",";
-                        if (addsublabyes->Checked)
-                        {
-                            x += "2,";
-                        }
-                        else
-                        {
                             x += "1,";
-                        }
                         String^ Bfact = addsubbfactor->Text->ToString();
                         string BFact = msclr::interop::marshal_as<string>(Bfact);
                         x += BFact + ",";
@@ -796,25 +895,11 @@ namespace TTA_ui {
                         {
                             outputFile << "0,";
                         }}
-                        {if (addsublabyes->Checked)
-                        {
-                            outputFile << "1,";
-                        }
-                        else
-                        {
                             outputFile << "0,";
-                        }}
                         System::String^ credits = addsubcredits->Text->ToString();
                         std::string Credits = msclr::interop::marshal_as<string>(credits);
                         outputFile << Credits << ",";
-                        if (addsublabyes->Checked)
-                        {
-                            outputFile << "2,";
-                        }
-                        else
-                        {
                             outputFile << "1,";
-                        }
                         System::String^ bfactor = addsubbfactor->Text->ToString();
                         std::string Bfactor = msclr::interop::marshal_as<string>(bfactor);
                         outputFile << Bfactor << ",";
@@ -861,28 +946,6 @@ namespace TTA_ui {
                     ListBox->Items->Add(msclr::interop::marshal_as<String^>(a[i]));
             }
         }
-        void DisplayCSVInComboBox2() {
-            classlabcombo->Items->Clear();
-            vector<vector<string>> data = ReadCSVFile("details/subject_file.csv");
-            for (const auto& row : data) {
-                if (row[4] == "1")
-                {
-                    bool bools = true;
-                    String^ rowStringManaged = msclr::interop::marshal_as<String^>(replaceunderscore(row[0]));
-                    for each (Object ^ item in classlabcombo->Items)
-                    {
-                        if (item->ToString() == rowStringManaged)
-                            bools = false;
-                    }
-                    if (bools)
-                    {
-                        classlabcombo->Items->Add(rowStringManaged);
-                    }
-                }
-            }
-        }
-
-
 
         void editcsvelectivee(const string filePath)
         {
@@ -1014,7 +1077,6 @@ namespace TTA_ui {
             //        int j;
             //        for (j = 0; j < abc.size(); j++)
             //        {
-
             //            if (CellValue == (abc[j][0]))
             //            {
             //                ::subject  subj;
@@ -1036,12 +1098,38 @@ namespace TTA_ui {
             {
                 subject subj;
                 vector<string> a;
-                subj.readData(returnLine(row[0], "details/subject_file.csv"));
-                for (int i = 1; i < row.size(); i++)
+                subj.name = row[0];
+                subj.credits = stoi(row[2]);
+                subj.hoursPerCredit = 2;
+                subj.lab = 1;
+                int noTeacher = 0;
+                vector<string>lrooms;
+                string s;
+                for (char& cell : row[row.size() - 1])
+                {
+                    if (cell == '[')
+                        continue;
+                    else if (cell == ',' || cell==']')
+                    {
+                        lrooms.push_back(s);
+                        s = "";
+                    }
+                    else
+                        s += cell;
+                }
+                subj.rooms = lrooms;
+                for (int i = 3; i < row.size()-1; i++)
                 {
                     a.push_back(row[i]);
+                    noTeacher++;
                 }
-                t.addLab(a, subj, 2, 2);
+                int functionTeacherNo = noTeacher / stoi(row[1]) + !(!(noTeacher % stoi(row[1])));
+                while(noTeacher<functionTeacherNo*stoi(row[1]))
+                {
+                    a.push_back(row[3]);
+                    noTeacher++;
+                }
+                t.addLab(a, subj,stoi(row[1]), functionTeacherNo);
             }
         }
 
@@ -1390,11 +1478,6 @@ namespace TTA_ui {
                     else
                     {
                         editsubeleyes->Checked = true;
-                    }
-                    else
-                    {
-                        editsublabyes->Checked = true;
-
                     }
                     editsubcredits->Text = msclr::interop::marshal_as<String^>(row[5]);
                     editsubbfactor->Text = msclr::interop::marshal_as<String^>(row[7]);
@@ -2090,6 +2173,11 @@ namespace TTA_ui {
                 e->Handled = true;
             }
         }
+        System::Void KeyPressAllowspaceslash(System::Object^ sender, KeyPressEventArgs^ e) {
+            if (!Char::IsLetter(e->KeyChar) && e->KeyChar != '/' && e->KeyChar != ' ' && e->KeyChar != (char)Keys::Back && e->KeyChar != (char)Keys::ControlKey && !Char::IsDigit(e->KeyChar)) {
+                e->Handled = true;
+            }
+        }
         System::Void KeyPressAllowspace(System::Object^ sender, KeyPressEventArgs^ e) {
             if (!Char::IsLetter(e->KeyChar) && e->KeyChar != ' ' && e->KeyChar != (char)Keys::Back && e->KeyChar != (char)Keys::ControlKey && !Char::IsDigit(e->KeyChar)) {
                 e->Handled = true;
@@ -2195,7 +2283,7 @@ namespace TTA_ui {
     private: System::Windows::Forms::DataGridViewComboBoxColumn^ SubjectName;
     private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher;
     private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn8;
-    private: System::Windows::Forms::Label^ label45;
+
 
 
 
@@ -2209,9 +2297,9 @@ namespace TTA_ui {
     private: System::Windows::Forms::Button^ addsubsave;
     private: System::Windows::Forms::CheckedListBox^ addsubroomlist;
     private: System::Windows::Forms::Button^ newaddsub;
-    private: System::Windows::Forms::Panel^ panel11;
-    private: System::Windows::Forms::RadioButton^ addsublabyes;
-    private: System::Windows::Forms::RadioButton^ addsublabno;
+
+
+
     private: System::Windows::Forms::Panel^ addsubjectpanel;
     private: System::Windows::Forms::Panel^ panel12;
     private: System::Windows::Forms::RadioButton^ addsubeleyes;
@@ -2559,7 +2647,7 @@ namespace TTA_ui {
 
 
     private: System::Windows::Forms::Label^ label39;
-    private: System::Windows::Forms::ComboBox^ classlabcombo;
+
 
     private: System::Windows::Forms::DataGridView^ classlabteachers;
 
@@ -2578,6 +2666,20 @@ namespace TTA_ui {
     private: System::Windows::Forms::Button^ classlabsave;
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ lsubject;
     private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn2;
+private: System::Windows::Forms::NumericUpDown^ classbatches;
+
+private: System::Windows::Forms::MaskedTextBox^ classlabcombo;
+
+
+
+
+private: System::Windows::Forms::Label^ label44;
+private: System::Windows::Forms::Label^ label98;
+private: System::Windows::Forms::NumericUpDown^ classsessions;
+
+private: System::Windows::Forms::Label^ label165;
+private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
+
 
 
 
@@ -2682,7 +2784,6 @@ namespace TTA_ui {
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle57 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle53 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle54 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            this->label45 = (gcnew System::Windows::Forms::Label());
             this->label49 = (gcnew System::Windows::Forms::Label());
             this->addsubcredits = (gcnew System::Windows::Forms::NumericUpDown());
             this->label43 = (gcnew System::Windows::Forms::Label());
@@ -2692,10 +2793,8 @@ namespace TTA_ui {
             this->addsubsave = (gcnew System::Windows::Forms::Button());
             this->addsubroomlist = (gcnew System::Windows::Forms::CheckedListBox());
             this->newaddsub = (gcnew System::Windows::Forms::Button());
-            this->panel11 = (gcnew System::Windows::Forms::Panel());
-            this->addsublabyes = (gcnew System::Windows::Forms::RadioButton());
-            this->addsublabno = (gcnew System::Windows::Forms::RadioButton());
             this->addsubjectpanel = (gcnew System::Windows::Forms::Panel());
+            this->panelsub = (gcnew System::Windows::Forms::Panel());
             this->addsubcode = (gcnew System::Windows::Forms::TextBox());
             this->label149 = (gcnew System::Windows::Forms::Label());
             this->addsubtitle = (gcnew System::Windows::Forms::TextBox());
@@ -2728,7 +2827,6 @@ namespace TTA_ui {
             this->sedataGridView = (gcnew System::Windows::Forms::DataGridView());
             this->TeacherName = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn5 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
-            this->panelsub = (gcnew System::Windows::Forms::Panel());
             this->saveroom = (gcnew System::Windows::Forms::Button());
             this->label31 = (gcnew System::Windows::Forms::Label());
             this->roomname = (gcnew System::Windows::Forms::TextBox());
@@ -2954,12 +3052,18 @@ namespace TTA_ui {
             this->label13 = (gcnew System::Windows::Forms::Label());
             this->classreserve = (gcnew System::Windows::Forms::Button());
             this->classpanel = (gcnew System::Windows::Forms::Panel());
+            this->label165 = (gcnew System::Windows::Forms::Label());
+            this->classlabroomlist = (gcnew System::Windows::Forms::CheckedListBox());
+            this->label98 = (gcnew System::Windows::Forms::Label());
+            this->classsessions = (gcnew System::Windows::Forms::NumericUpDown());
+            this->label44 = (gcnew System::Windows::Forms::Label());
+            this->classbatches = (gcnew System::Windows::Forms::NumericUpDown());
+            this->classlabcombo = (gcnew System::Windows::Forms::MaskedTextBox());
             this->classlabsave = (gcnew System::Windows::Forms::Button());
             this->classlab = (gcnew System::Windows::Forms::DataGridView());
             this->lsubject = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->dataGridViewButtonColumn2 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->label39 = (gcnew System::Windows::Forms::Label());
-            this->classlabcombo = (gcnew System::Windows::Forms::ComboBox());
             this->classlabteachers = (gcnew System::Windows::Forms::DataGridView());
             this->Teacher1 = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn7 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
@@ -3040,12 +3144,11 @@ namespace TTA_ui {
             this->classdeletebutton = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->BeginInit();
-            this->panel11->SuspendLayout();
             this->addsubjectpanel->SuspendLayout();
+            this->panelsub->SuspendLayout();
             this->addsubeletablepanel->SuspendLayout();
             this->panel12->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sedataGridView))->BeginInit();
-            this->panelsub->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomcapacity))->BeginInit();
             this->addclassroompanel->SuspendLayout();
             this->panel33->SuspendLayout();
@@ -3087,6 +3190,8 @@ namespace TTA_ui {
             this->panel1->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classcore))->BeginInit();
             this->classpanel->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classsessions))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classbatches))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlab))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabteachers))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classbatch))->BeginInit();
@@ -3103,24 +3208,13 @@ namespace TTA_ui {
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sectiondeletedatagridview))->BeginInit();
             this->SuspendLayout();
             // 
-            // label45
-            // 
-            this->label45->AutoSize = true;
-            this->label45->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label45->Location = System::Drawing::Point(32, 31);
-            this->label45->Name = L"label45";
-            this->label45->Size = System::Drawing::Size(98, 28);
-            this->label45->TabIndex = 236;
-            this->label45->Text = L"Is it a lab\?";
-            // 
             // label49
             // 
             this->label49->AutoSize = true;
             this->label49->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label49->ForeColor = System::Drawing::Color::Black;
-            this->label49->Location = System::Drawing::Point(192, 133);
+            this->label49->Location = System::Drawing::Point(182, 311);
             this->label49->Name = L"label49";
             this->label49->Size = System::Drawing::Size(134, 28);
             this->label49->TabIndex = 2;
@@ -3132,7 +3226,7 @@ namespace TTA_ui {
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
             this->addsubcredits->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubcredits->Location = System::Drawing::Point(36, 228);
+            this->addsubcredits->Location = System::Drawing::Point(47, 85);
             this->addsubcredits->Name = L"addsubcredits";
             this->addsubcredits->Size = System::Drawing::Size(170, 34);
             this->addsubcredits->TabIndex = 240;
@@ -3142,7 +3236,7 @@ namespace TTA_ui {
             this->label43->AutoSize = true;
             this->label43->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label43->Location = System::Drawing::Point(33, 184);
+            this->label43->Location = System::Drawing::Point(44, 41);
             this->label43->Name = L"label43";
             this->label43->Size = System::Drawing::Size(125, 28);
             this->label43->TabIndex = 241;
@@ -3153,7 +3247,7 @@ namespace TTA_ui {
             this->label42->AutoSize = true;
             this->label42->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label42->Location = System::Drawing::Point(37, 595);
+            this->label42->Location = System::Drawing::Point(48, 452);
             this->label42->Name = L"label42";
             this->label42->Size = System::Drawing::Size(75, 28);
             this->label42->TabIndex = 243;
@@ -3164,7 +3258,7 @@ namespace TTA_ui {
             this->label41->AutoSize = true;
             this->label41->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label41->Location = System::Drawing::Point(27, 312);
+            this->label41->Location = System::Drawing::Point(38, 169);
             this->label41->Name = L"label41";
             this->label41->Size = System::Drawing::Size(255, 28);
             this->label41->TabIndex = 242;
@@ -3177,7 +3271,7 @@ namespace TTA_ui {
             this->addsubbfactor->DecimalPlaces = 2;
             this->addsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubbfactor->Location = System::Drawing::Point(39, 658);
+            this->addsubbfactor->Location = System::Drawing::Point(50, 515);
             this->addsubbfactor->Name = L"addsubbfactor";
             this->addsubbfactor->Size = System::Drawing::Size(170, 34);
             this->addsubbfactor->TabIndex = 244;
@@ -3188,7 +3282,7 @@ namespace TTA_ui {
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->addsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubsave->Location = System::Drawing::Point(579, 792);
+            this->addsubsave->Location = System::Drawing::Point(590, 649);
             this->addsubsave->Name = L"addsubsave";
             this->addsubsave->Size = System::Drawing::Size(116, 58);
             this->addsubsave->TabIndex = 245;
@@ -3205,7 +3299,7 @@ namespace TTA_ui {
             this->addsubroomlist->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addsubroomlist->FormattingEnabled = true;
-            this->addsubroomlist->Location = System::Drawing::Point(40, 423);
+            this->addsubroomlist->Location = System::Drawing::Point(51, 280);
             this->addsubroomlist->Name = L"addsubroomlist";
             this->addsubroomlist->Size = System::Drawing::Size(224, 155);
             this->addsubroomlist->Sorted = true;
@@ -3218,7 +3312,7 @@ namespace TTA_ui {
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->newaddsub->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->newaddsub->Location = System::Drawing::Point(779, 789);
+            this->newaddsub->Location = System::Drawing::Point(790, 646);
             this->newaddsub->Name = L"newaddsub";
             this->newaddsub->Size = System::Drawing::Size(116, 58);
             this->newaddsub->TabIndex = 247;
@@ -3226,43 +3320,12 @@ namespace TTA_ui {
             this->newaddsub->UseVisualStyleBackColor = false;
             this->newaddsub->Click += gcnew System::EventHandler(this, &MyForm::newaddsub_Click);
             // 
-            // panel11
-            // 
-            this->panel11->Controls->Add(this->addsublabyes);
-            this->panel11->Controls->Add(this->addsublabno);
-            this->panel11->ForeColor = System::Drawing::Color::Black;
-            this->panel11->Location = System::Drawing::Point(53, 69);
-            this->panel11->Name = L"panel11";
-            this->panel11->Size = System::Drawing::Size(219, 52);
-            this->panel11->TabIndex = 262;
-            // 
-            // addsublabyes
-            // 
-            this->addsublabyes->AutoSize = true;
-            this->addsublabyes->Location = System::Drawing::Point(23, 14);
-            this->addsublabyes->Name = L"addsublabyes";
-            this->addsublabyes->Size = System::Drawing::Size(62, 24);
-            this->addsublabyes->TabIndex = 10;
-            this->addsublabyes->TabStop = true;
-            this->addsublabyes->Text = L"Yes";
-            this->addsublabyes->UseVisualStyleBackColor = true;
-            // 
-            // addsublabno
-            // 
-            this->addsublabno->AutoSize = true;
-            this->addsublabno->Location = System::Drawing::Point(148, 14);
-            this->addsublabno->Name = L"addsublabno";
-            this->addsublabno->Size = System::Drawing::Size(54, 24);
-            this->addsublabno->TabIndex = 11;
-            this->addsublabno->TabStop = true;
-            this->addsublabno->Text = L"No";
-            this->addsublabno->UseVisualStyleBackColor = true;
-            // 
             // addsubjectpanel
             // 
             this->addsubjectpanel->AutoScroll = true;
             this->addsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addsubjectpanel->Controls->Add(this->panelsub);
             this->addsubjectpanel->Controls->Add(this->addsubcode);
             this->addsubjectpanel->Controls->Add(this->label149);
             this->addsubjectpanel->Controls->Add(this->addsubtitle);
@@ -3277,13 +3340,28 @@ namespace TTA_ui {
             this->addsubjectpanel->Controls->Add(this->addsubname);
             this->addsubjectpanel->Controls->Add(this->label49);
             this->addsubjectpanel->Controls->Add(this->sedataGridView);
-            this->addsubjectpanel->Controls->Add(this->panelsub);
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->addsubjectpanel->Name = L"addsubjectpanel";
             this->addsubjectpanel->Size = System::Drawing::Size(1946, 1106);
             this->addsubjectpanel->TabIndex = 124;
             this->addsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addsubjectpanel_Paint);
+            // 
+            // panelsub
+            // 
+            this->panelsub->Controls->Add(this->label41);
+            this->panelsub->Controls->Add(this->label43);
+            this->panelsub->Controls->Add(this->addsubcredits);
+            this->panelsub->Controls->Add(this->addsubroomlist);
+            this->panelsub->Controls->Add(this->addsubbfactor);
+            this->panelsub->Controls->Add(this->newaddsub);
+            this->panelsub->Controls->Add(this->label42);
+            this->panelsub->Controls->Add(this->addsubsave);
+            this->panelsub->Location = System::Drawing::Point(167, 2025);
+            this->panelsub->Name = L"panelsub";
+            this->panelsub->Size = System::Drawing::Size(1086, 912);
+            this->panelsub->TabIndex = 267;
+            this->panelsub->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panelsub_Paint);
             // 
             // addsubcode
             // 
@@ -3292,7 +3370,7 @@ namespace TTA_ui {
             this->addsubcode->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addsubcode->ForeColor = System::Drawing::Color::Black;
-            this->addsubcode->Location = System::Drawing::Point(200, 471);
+            this->addsubcode->Location = System::Drawing::Point(190, 649);
             this->addsubcode->Name = L"addsubcode";
             this->addsubcode->Size = System::Drawing::Size(480, 34);
             this->addsubcode->TabIndex = 305;
@@ -3304,7 +3382,7 @@ namespace TTA_ui {
             this->label149->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label149->ForeColor = System::Drawing::Color::Black;
-            this->label149->Location = System::Drawing::Point(204, 422);
+            this->label149->Location = System::Drawing::Point(194, 600);
             this->label149->Name = L"label149";
             this->label149->Size = System::Drawing::Size(128, 28);
             this->label149->TabIndex = 304;
@@ -3317,7 +3395,7 @@ namespace TTA_ui {
             this->addsubtitle->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addsubtitle->ForeColor = System::Drawing::Color::Black;
-            this->addsubtitle->Location = System::Drawing::Point(201, 322);
+            this->addsubtitle->Location = System::Drawing::Point(191, 500);
             this->addsubtitle->Name = L"addsubtitle";
             this->addsubtitle->Size = System::Drawing::Size(480, 34);
             this->addsubtitle->TabIndex = 303;
@@ -3329,7 +3407,7 @@ namespace TTA_ui {
             this->label148->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label148->ForeColor = System::Drawing::Color::Black;
-            this->label148->Location = System::Drawing::Point(203, 276);
+            this->label148->Location = System::Drawing::Point(193, 454);
             this->label148->Name = L"label148";
             this->label148->Size = System::Drawing::Size(124, 28);
             this->label148->TabIndex = 302;
@@ -3341,7 +3419,7 @@ namespace TTA_ui {
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->addsubclusteroptions->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubclusteroptions->Location = System::Drawing::Point(709, 1140);
+            this->addsubclusteroptions->Location = System::Drawing::Point(699, 1318);
             this->addsubclusteroptions->Name = L"addsubclusteroptions";
             this->addsubclusteroptions->Size = System::Drawing::Size(116, 46);
             this->addsubclusteroptions->TabIndex = 265;
@@ -3366,7 +3444,7 @@ namespace TTA_ui {
             this->addsubeletablepanel->Controls->Add(this->label132);
             this->addsubeletablepanel->Controls->Add(this->label133);
             this->addsubeletablepanel->Controls->Add(this->label134);
-            this->addsubeletablepanel->Location = System::Drawing::Point(200, 1202);
+            this->addsubeletablepanel->Location = System::Drawing::Point(190, 1380);
             this->addsubeletablepanel->Name = L"addsubeletablepanel";
             this->addsubeletablepanel->Size = System::Drawing::Size(1183, 621);
             this->addsubeletablepanel->TabIndex = 301;
@@ -3560,7 +3638,7 @@ namespace TTA_ui {
             this->addsubcluster->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addsubcluster->FormattingEnabled = true;
-            this->addsubcluster->Location = System::Drawing::Point(209, 751);
+            this->addsubcluster->Location = System::Drawing::Point(199, 929);
             this->addsubcluster->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->addsubcluster->Name = L"addsubcluster";
             this->addsubcluster->Size = System::Drawing::Size(294, 36);
@@ -3572,7 +3650,7 @@ namespace TTA_ui {
             this->panel12->Controls->Add(this->addsubeleyes);
             this->panel12->Controls->Add(this->addsubeleno);
             this->panel12->ForeColor = System::Drawing::Color::Black;
-            this->panel12->Location = System::Drawing::Point(228, 586);
+            this->panel12->Location = System::Drawing::Point(218, 764);
             this->panel12->Name = L"panel12";
             this->panel12->Size = System::Drawing::Size(220, 60);
             this->panel12->TabIndex = 263;
@@ -3606,7 +3684,7 @@ namespace TTA_ui {
             this->label46->AutoSize = true;
             this->label46->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label46->Location = System::Drawing::Point(204, 857);
+            this->label46->Location = System::Drawing::Point(194, 1035);
             this->label46->Name = L"label46";
             this->label46->Size = System::Drawing::Size(481, 28);
             this->label46->TabIndex = 235;
@@ -3617,7 +3695,7 @@ namespace TTA_ui {
             this->label47->AutoSize = true;
             this->label47->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label47->Location = System::Drawing::Point(205, 699);
+            this->label47->Location = System::Drawing::Point(195, 877);
             this->label47->Name = L"label47";
             this->label47->Size = System::Drawing::Size(152, 28);
             this->label47->TabIndex = 24;
@@ -3628,7 +3706,7 @@ namespace TTA_ui {
             this->label48->AutoSize = true;
             this->label48->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label48->Location = System::Drawing::Point(205, 548);
+            this->label48->Location = System::Drawing::Point(195, 726);
             this->label48->Name = L"label48";
             this->label48->Size = System::Drawing::Size(381, 28);
             this->label48->TabIndex = 23;
@@ -3641,7 +3719,7 @@ namespace TTA_ui {
             this->addsubname->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addsubname->ForeColor = System::Drawing::Color::Black;
-            this->addsubname->Location = System::Drawing::Point(197, 183);
+            this->addsubname->Location = System::Drawing::Point(187, 361);
             this->addsubname->Name = L"addsubname";
             this->addsubname->Size = System::Drawing::Size(480, 34);
             this->addsubname->TabIndex = 3;
@@ -3692,7 +3770,7 @@ namespace TTA_ui {
             this->sedataGridView->DefaultCellStyle = dataGridViewCellStyle5;
             this->sedataGridView->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)), static_cast<System::Int32>(static_cast<System::Byte>(211)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->sedataGridView->Location = System::Drawing::Point(221, 912);
+            this->sedataGridView->Location = System::Drawing::Point(211, 1090);
             this->sedataGridView->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->sedataGridView->Name = L"sedataGridView";
             dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -3755,24 +3833,6 @@ namespace TTA_ui {
             this->dataGridViewButtonColumn5->ReadOnly = true;
             this->dataGridViewButtonColumn5->Text = L"Delete";
             this->dataGridViewButtonColumn5->UseColumnTextForButtonValue = true;
-            // 
-            // panelsub
-            // 
-            this->panelsub->Controls->Add(this->panel11);
-            this->panelsub->Controls->Add(this->label41);
-            this->panelsub->Controls->Add(this->label43);
-            this->panelsub->Controls->Add(this->addsubcredits);
-            this->panelsub->Controls->Add(this->addsubroomlist);
-            this->panelsub->Controls->Add(this->addsubbfactor);
-            this->panelsub->Controls->Add(this->newaddsub);
-            this->panelsub->Controls->Add(this->label42);
-            this->panelsub->Controls->Add(this->label45);
-            this->panelsub->Controls->Add(this->addsubsave);
-            this->panelsub->Location = System::Drawing::Point(177, 1847);
-            this->panelsub->Name = L"panelsub";
-            this->panelsub->Size = System::Drawing::Size(1086, 912);
-            this->panelsub->TabIndex = 267;
-            this->panelsub->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panelsub_Paint);
             // 
             // saveroom
             // 
@@ -6765,7 +6825,7 @@ namespace TTA_ui {
             this->classdefaultrooms->CheckOnClick = true;
             this->classdefaultrooms->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
             this->classdefaultrooms->FormattingEnabled = true;
-            this->classdefaultrooms->Location = System::Drawing::Point(192, 1713);
+            this->classdefaultrooms->Location = System::Drawing::Point(264, 2051);
             this->classdefaultrooms->Name = L"classdefaultrooms";
             this->classdefaultrooms->Size = System::Drawing::Size(287, 124);
             this->classdefaultrooms->TabIndex = 250;
@@ -6775,7 +6835,7 @@ namespace TTA_ui {
             this->label34->AutoSize = true;
             this->label34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label34->Location = System::Drawing::Point(199, 1673);
+            this->label34->Location = System::Drawing::Point(271, 2011);
             this->label34->Name = L"label34";
             this->label34->Size = System::Drawing::Size(136, 28);
             this->label34->TabIndex = 251;
@@ -6839,7 +6899,7 @@ namespace TTA_ui {
             this->label32->AutoSize = true;
             this->label32->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label32->Location = System::Drawing::Point(194, 1167);
+            this->label32->Location = System::Drawing::Point(960, 1167);
             this->label32->Name = L"label32";
             this->label32->Size = System::Drawing::Size(118, 28);
             this->label32->TabIndex = 256;
@@ -6875,10 +6935,16 @@ namespace TTA_ui {
             this->classpanel->AutoScroll = true;
             this->classpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classpanel->Controls->Add(this->label165);
+            this->classpanel->Controls->Add(this->classlabroomlist);
+            this->classpanel->Controls->Add(this->label98);
+            this->classpanel->Controls->Add(this->classsessions);
+            this->classpanel->Controls->Add(this->label44);
+            this->classpanel->Controls->Add(this->classbatches);
+            this->classpanel->Controls->Add(this->classlabcombo);
             this->classpanel->Controls->Add(this->classlabsave);
             this->classpanel->Controls->Add(this->classlab);
             this->classpanel->Controls->Add(this->label39);
-            this->classpanel->Controls->Add(this->classlabcombo);
             this->classpanel->Controls->Add(this->classlabteachers);
             this->classpanel->Controls->Add(this->classbatch);
             this->classpanel->Controls->Add(this->panel36);
@@ -6897,11 +6963,94 @@ namespace TTA_ui {
             this->classpanel->Controls->Add(this->classcore);
             this->classpanel->Controls->Add(this->classele);
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->classpanel->Location = System::Drawing::Point(0, 0);
+            this->classpanel->Location = System::Drawing::Point(324, 139);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1946, 1106);
+            this->classpanel->Size = System::Drawing::Size(1622, 967);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
+            // 
+            // label165
+            // 
+            this->label165->AutoSize = true;
+            this->label165->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label165->Location = System::Drawing::Point(249, 1647);
+            this->label165->Name = L"label165";
+            this->label165->Size = System::Drawing::Size(104, 28);
+            this->label165->TabIndex = 316;
+            this->label165->Text = L"Lab rooms";
+            // 
+            // classlabroomlist
+            // 
+            this->classlabroomlist->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classlabroomlist->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->classlabroomlist->CheckOnClick = true;
+            this->classlabroomlist->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
+            this->classlabroomlist->FormattingEnabled = true;
+            this->classlabroomlist->Location = System::Drawing::Point(245, 1692);
+            this->classlabroomlist->Name = L"classlabroomlist";
+            this->classlabroomlist->Size = System::Drawing::Size(287, 124);
+            this->classlabroomlist->TabIndex = 315;
+            // 
+            // label98
+            // 
+            this->label98->AutoSize = true;
+            this->label98->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label98->Location = System::Drawing::Point(463, 1259);
+            this->label98->Name = L"label98";
+            this->label98->Size = System::Drawing::Size(182, 28);
+            this->label98->TabIndex = 314;
+            this->label98->Text = L"Number of sessions";
+            // 
+            // classsessions
+            // 
+            this->classsessions->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->classsessions->Location = System::Drawing::Point(572, 1304);
+            this->classsessions->Name = L"classsessions";
+            this->classsessions->Size = System::Drawing::Size(63, 26);
+            this->classsessions->TabIndex = 313;
+            // 
+            // label44
+            // 
+            this->label44->AutoSize = true;
+            this->label44->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label44->Location = System::Drawing::Point(155, 1259);
+            this->label44->Name = L"label44";
+            this->label44->Size = System::Drawing::Size(184, 28);
+            this->label44->TabIndex = 310;
+            this->label44->Text = L"Number  of batches";
+            // 
+            // classbatches
+            // 
+            this->classbatches->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->classbatches->Location = System::Drawing::Point(272, 1304);
+            this->classbatches->Name = L"classbatches";
+            this->classbatches->Size = System::Drawing::Size(63, 26);
+            this->classbatches->TabIndex = 309;
+            // 
+            // classlabcombo
+            // 
+            this->classlabcombo->AllowPromptAsInput = false;
+            this->classlabcombo->AsciiOnly = true;
+            this->classlabcombo->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->classlabcombo->BeepOnError = true;
+            this->classlabcombo->CutCopyMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
+            this->classlabcombo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->classlabcombo->Location = System::Drawing::Point(160, 1199);
+            this->classlabcombo->Name = L"classlabcombo";
+            this->classlabcombo->PromptChar = ' ';
+            this->classlabcombo->Size = System::Drawing::Size(410, 34);
+            this->classlabcombo->TabIndex = 308;
+            this->classlabcombo->MaskInputRejected += gcnew System::Windows::Forms::MaskInputRejectedEventHandler(this, &MyForm::classlabcombo_MaskInputRejected);
+            this->classlabcombo->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownClass);
+            this->classlabcombo->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspaceslash);
             // 
             // classlabsave
             // 
@@ -6909,7 +7058,7 @@ namespace TTA_ui {
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->classlabsave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->classlabsave->Location = System::Drawing::Point(1237, 1544);
+            this->classlabsave->Location = System::Drawing::Point(615, 1866);
             this->classlabsave->Name = L"classlabsave";
             this->classlabsave->Size = System::Drawing::Size(104, 48);
             this->classlabsave->TabIndex = 261;
@@ -6957,7 +7106,7 @@ namespace TTA_ui {
             this->classlab->DefaultCellStyle = dataGridViewCellStyle27;
             this->classlab->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)), static_cast<System::Int32>(static_cast<System::Byte>(211)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->classlab->Location = System::Drawing::Point(183, 1219);
+            this->classlab->Location = System::Drawing::Point(944, 1232);
             this->classlab->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->classlab->Name = L"classlab";
             dataGridViewCellStyle28->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -6980,7 +7129,7 @@ namespace TTA_ui {
             dataGridViewCellStyle29->SelectionForeColor = System::Drawing::Color::Black;
             this->classlab->RowsDefaultCellStyle = dataGridViewCellStyle29;
             this->classlab->RowTemplate->Height = 28;
-            this->classlab->Size = System::Drawing::Size(537, 230);
+            this->classlab->Size = System::Drawing::Size(500, 230);
             this->classlab->TabIndex = 307;
             this->classlab->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::classlab_CellContentClick_1);
             // 
@@ -7028,26 +7177,11 @@ namespace TTA_ui {
             this->label39->AutoSize = true;
             this->label39->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label39->Location = System::Drawing::Point(819, 1174);
+            this->label39->Location = System::Drawing::Point(150, 1156);
             this->label39->Name = L"label39";
-            this->label39->Size = System::Drawing::Size(77, 28);
+            this->label39->Size = System::Drawing::Size(163, 28);
             this->label39->TabIndex = 306;
-            this->label39->Text = L"Choose";
-            // 
-            // classlabcombo
-            // 
-            this->classlabcombo->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->classlabcombo->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-            this->classlabcombo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->classlabcombo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->classlabcombo->FormattingEnabled = true;
-            this->classlabcombo->Location = System::Drawing::Point(813, 1219);
-            this->classlabcombo->Name = L"classlabcombo";
-            this->classlabcombo->Size = System::Drawing::Size(406, 36);
-            this->classlabcombo->TabIndex = 305;
-            this->classlabcombo->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::classlabcombo_SelectedIndexChanged);
+            this->label39->Text = L"Lab subject name";
             // 
             // classlabteachers
             // 
@@ -7096,7 +7230,7 @@ namespace TTA_ui {
             this->classlabteachers->DefaultCellStyle = dataGridViewCellStyle34;
             this->classlabteachers->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->classlabteachers->Location = System::Drawing::Point(813, 1306);
+            this->classlabteachers->Location = System::Drawing::Point(160, 1404);
             this->classlabteachers->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->classlabteachers->Name = L"classlabteachers";
             dataGridViewCellStyle35->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -7119,7 +7253,7 @@ namespace TTA_ui {
             dataGridViewCellStyle36->SelectionForeColor = System::Drawing::Color::Black;
             this->classlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle36;
             this->classlabteachers->RowTemplate->Height = 28;
-            this->classlabteachers->Size = System::Drawing::Size(591, 215);
+            this->classlabteachers->Size = System::Drawing::Size(512, 215);
             this->classlabteachers->TabIndex = 304;
             this->classlabteachers->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick_1);
             // 
@@ -7182,7 +7316,7 @@ namespace TTA_ui {
             this->panel36->Controls->Add(this->classclear);
             this->panel36->Controls->Add(this->classsave);
             this->panel36->Controls->Add(this->classgenerate);
-            this->panel36->Location = System::Drawing::Point(594, 1849);
+            this->panel36->Location = System::Drawing::Point(666, 2187);
             this->panel36->Name = L"panel36";
             this->panel36->Size = System::Drawing::Size(640, 97);
             this->panel36->TabIndex = 303;
@@ -7204,7 +7338,7 @@ namespace TTA_ui {
             this->classtablegenpanel->Controls->Add(this->label144);
             this->classtablegenpanel->Controls->Add(this->label145);
             this->classtablegenpanel->Controls->Add(this->label146);
-            this->classtablegenpanel->Location = System::Drawing::Point(160, 2625);
+            this->classtablegenpanel->Location = System::Drawing::Point(232, 2963);
             this->classtablegenpanel->Name = L"classtablegenpanel";
             this->classtablegenpanel->Size = System::Drawing::Size(1183, 621);
             this->classtablegenpanel->TabIndex = 302;
@@ -7407,7 +7541,7 @@ namespace TTA_ui {
             this->finalttpanel->Controls->Add(this->label60);
             this->finalttpanel->Controls->Add(this->label61);
             this->finalttpanel->Controls->Add(this->label65);
-            this->finalttpanel->Location = System::Drawing::Point(158, 1965);
+            this->finalttpanel->Location = System::Drawing::Point(230, 2303);
             this->finalttpanel->Name = L"finalttpanel";
             this->finalttpanel->Size = System::Drawing::Size(1183, 621);
             this->finalttpanel->TabIndex = 301;
@@ -7657,7 +7791,7 @@ namespace TTA_ui {
             dataGridViewCellStyle43->SelectionForeColor = System::Drawing::Color::Black;
             this->classele->RowsDefaultCellStyle = dataGridViewCellStyle43;
             this->classele->RowTemplate->Height = 28;
-            this->classele->Size = System::Drawing::Size(735, 230);
+            this->classele->Size = System::Drawing::Size(735, 214);
             this->classele->TabIndex = 253;
             this->classele->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::classele_CellContentClick);
             // 
@@ -8324,19 +8458,19 @@ namespace TTA_ui {
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1946, 1106);
+            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
-            this->Controls->Add(this->addsubjectpanel);
-            this->Controls->Add(this->editroompanel);
-            this->Controls->Add(this->editsubjectpanel);
-            this->Controls->Add(this->addclassroompanel);
-            this->Controls->Add(this->Homepanel);
-            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->deleteclasspanel);
             this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel2);
             this->Controls->Add(this->settingspanel);
             this->Controls->Add(this->addteacherpanel);
+            this->Controls->Add(this->addsubjectpanel);
+            this->Controls->Add(this->editroompanel);
+            this->Controls->Add(this->editsubjectpanel);
+            this->Controls->Add(this->addclassroompanel);
+            this->Controls->Add(this->Homepanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -8345,17 +8479,15 @@ namespace TTA_ui {
             this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->EndInit();
-            this->panel11->ResumeLayout(false);
-            this->panel11->PerformLayout();
             this->addsubjectpanel->ResumeLayout(false);
             this->addsubjectpanel->PerformLayout();
+            this->panelsub->ResumeLayout(false);
+            this->panelsub->PerformLayout();
             this->addsubeletablepanel->ResumeLayout(false);
             this->addsubeletablepanel->PerformLayout();
             this->panel12->ResumeLayout(false);
             this->panel12->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sedataGridView))->EndInit();
-            this->panelsub->ResumeLayout(false);
-            this->panelsub->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->roomcapacity))->EndInit();
             this->addclassroompanel->ResumeLayout(false);
             this->addclassroompanel->PerformLayout();
@@ -8415,6 +8547,8 @@ namespace TTA_ui {
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classcore))->EndInit();
             this->classpanel->ResumeLayout(false);
             this->classpanel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classsessions))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classbatches))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlab))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabteachers))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classbatch))->EndInit();
@@ -8769,7 +8903,7 @@ namespace TTA_ui {
             bool xflag = false;
             string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
             vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            vector<vector<bool>>intersect = intersectionElective(valuetimetable("",sedataGridView));
+            vector<vector<bool>>intersect = intersectionElective(valuetimetable("", sedataGridView));
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
@@ -8779,7 +8913,7 @@ namespace TTA_ui {
                     {
                         if (intersect[i][j])
                         {
-                            if (button->Text!="busy")
+                            if (button->Text != "busy")
                             {
                                 xflag = true;
                                 goto fl;
@@ -8795,20 +8929,7 @@ namespace TTA_ui {
             {
                 eleflag = false;
                 MessageBox::Show("Select eligible timeslots to block.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                onOptionClickedit(addsubcluster,sedataGridView,tableLayoutPanel1,"ele",addsubname);
-            }
-        }
-        else  if ((!addsublabyes->Checked) && (!addsublabno->Checked) && (!addsubeleyes->Checked))
-        {
-            MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
-        }
-        else  if (addsublabyes->Checked)
-        {
-            if (addsubroomlist->CheckedItems->Count == 0)
-            {
-                MessageBox::Show("Select Default rooms for lab", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                flag = false;
+                onOptionClickedit(addsubcluster, sedataGridView, tableLayoutPanel1, "ele", addsubname);
             }
         }
         else if (addsubcredits->Value <= 0 && !addsubeleyes->Checked)
@@ -9019,10 +9140,6 @@ namespace TTA_ui {
             addsubeletablepanel->Visible = false;
             panelsub->Top = addsubeletablepanel->Top;
         }
-        addsublabyes->Enabled = true;
-        addsublabno->Enabled = true;
-        addsublabyes->Cursor = Cursors::Arrow;
-        addsublabno->Cursor = Cursors::Arrow;
         addsubcredits->ReadOnly = false;
         addsubcredits->Cursor = Cursors::Arrow;
         addsubroomlist->Cursor = Cursors::Arrow;
@@ -9048,10 +9165,6 @@ namespace TTA_ui {
                 addsubeletablepanel->Visible = false;
                 panelsub->Top = addsubeletablepanel->Top;
             }
-            addsublabyes->Enabled = true;
-            addsublabno->Enabled = true;
-            addsublabyes->Cursor = Cursors::Arrow;
-            addsublabno->Cursor = Cursors::Arrow;
             sedataGridView->ReadOnly = false;
             addsubcredits->Value = 0;
             addsubcredits->ReadOnly = false;
@@ -9073,12 +9186,6 @@ namespace TTA_ui {
             addsubclusteroptions->Cursor = Cursors::Arrow;
             addsubbfactor->Value = 0;
             addsubbfactor->ReadOnly = true;
-            addsublabno->Checked = false;
-            addsublabyes->Checked = false;
-            addsublabyes->Enabled = false;
-            addsublabno->Enabled = false;
-            addsublabyes->Cursor = Cursors::No;
-            addsublabno->Cursor = Cursors::No;
             addsubbfactor->Cursor = Cursors::No;
             addsubcredits->Cursor = Cursors::No;
             addsubcredits->Value = 0;
@@ -9305,7 +9412,8 @@ namespace TTA_ui {
                 //    defaultroomallot(obj);
                 //    //alloting core teacher and subjects
                 //    loadcore(obj);
-                //    labcreate(labteachers, obj);
+                //    
+                // (labteachers, obj);
                 //    for (int i = 0; i < 6; i++)
                 //    {
                 //        for (int j = 0; j < 6; j++)
@@ -9949,6 +10057,7 @@ namespace TTA_ui {
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button7->BackColor = Color::FromArgb(0, 0, 77);
         classpanel->BringToFront();
+        DisplayCSVInListBox("details/classroom.csv", classlabroomlist, 0);
         InitializeMatrix(classtablegen, "res", "Open", 3);
         InitializeMatrix(classtablegen1, "g", "free", -1);
         finalttpanel->Top = classsave->Bottom;
@@ -9960,7 +10069,6 @@ namespace TTA_ui {
         classele->Rows->Clear();
         classdefaultrooms->Items->Clear();
         DisplayCSVInComboBox1("details/dept_file.csv", classbranch);
-        DisplayCSVInComboBox2();
         DisplayCSVInListBox("details/classroom.csv", classdefaultrooms, 3);
         csubject->DataSource = CreateDataTableFromCSV1("details/subject_file.csv", "Core Subject");
         csubject->DisplayMember = "Core Subject"; // Update to the correct column name
@@ -10070,15 +10178,24 @@ namespace TTA_ui {
     }
     private: System::Void classlab_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
         deletebuttonlab(dataGridViewButtonColumn2, classlab, sender, e);
+        editbuttonlab(lsubject, classlab, sender, e);
     }
     private: System::Void classlabsave_Click(System::Object^ sender, System::EventArgs^ e) {
-        if (classlabcombo->Text == "")
+        if (classlabcombo->Text=="")
         {
             MessageBox::Show("Select a lab subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         }
-        else if (classlabteachers->RowCount <= 4)
+        else if (classbatches->Value == 0)
         {
-            MessageBox::Show("Minimum number of lab teachers required not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            MessageBox::Show("Select number of batches", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        }
+        else if (classlabroomlist->CheckedItems->Count!=classbatches->Value)
+        {
+            MessageBox::Show("Limit number of rooms to number of batches", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+        }
+        else if(classsessions->Value == 0)
+        {
+            MessageBox::Show("Select number of sessions", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         }
         else
         {
@@ -10091,6 +10208,8 @@ namespace TTA_ui {
                     flag = false;
                     row.clear();
                     row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)));
+                    row.push_back(msclr::interop::marshal_as<string>(classbatches->Text->ToString()));
+                    row.push_back(msclr::interop::marshal_as<string>(classsessions->Text->ToString()));
                     for (int i = 0; i < classlabteachers->RowCount; i++)
                     {
                         if (classlabteachers->Rows[i]->Cells[0]->Value != nullptr)
@@ -10098,12 +10217,25 @@ namespace TTA_ui {
                             row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabteachers->Rows[i]->Cells[0]->Value->ToString())));
                         }
                     }
+                    string x = "[";
+                    for (int i = 0; i < classlabroomlist->CheckedItems->Count; ++i) {
+                        String^ value = classlabroomlist->CheckedItems[i]->ToString();
+                        std::string Value = replacewhitespace(msclr::interop::marshal_as<string>(value));
+                        x += Value;
+                        if (i < classlabroomlist->CheckedItems->Count - 1) {
+                            x += ",";// Add a comma after each value, except the last one
+                        }
+                    }
+                    x += "]\n";
+                    row.push_back(x);
                 }
             }
             if (flag)
             {
                 vector<string>row;
                 row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabcombo->Text)));
+                row.push_back(msclr::interop::marshal_as<string>(classbatches->Text->ToString()));
+                row.push_back(msclr::interop::marshal_as<string>(classsessions->Text->ToString()));
                 for (int i = 0; i < classlabteachers->RowCount; i++)
                 {
                     if (classlabteachers->Rows[i]->Cells[0]->Value != nullptr)
@@ -10111,8 +10243,19 @@ namespace TTA_ui {
                         row.push_back(replacewhitespace(msclr::interop::marshal_as<string>(classlabteachers->Rows[i]->Cells[0]->Value->ToString())));
                     }
                 }
-                labteachers.push_back(row);
                 classlab->Rows->Add(msclr::interop::marshal_as< String^>(replaceunderscore(row[0])));
+                string x = "[";
+                for (int i = 0; i < classlabroomlist->CheckedItems->Count; ++i) {
+                    String^ value = classlabroomlist->CheckedItems[i]->ToString();
+                    std::string Value = replacewhitespace(msclr::interop::marshal_as<string>(value));
+                    x += Value;
+                    if (i < classlabroomlist->CheckedItems->Count - 1) {
+                        x += ",";// Add a comma after each value, except the last one
+                    }
+                }
+                x += "]\n";
+                row.push_back(x);
+                labteachers.push_back(row);
             }
 
             MessageBox::Show("Saved Successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
@@ -10132,5 +10275,7 @@ namespace TTA_ui {
             }
         }
     }
-    };
+    private: System::Void classlabcombo_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
+    }
+};
 }
