@@ -103,6 +103,8 @@ public:
             bfactor.push_back(0);
         }
         log += "\ninitialisation of tables done, going to exit constructor.";
+        std::vector<bool>temp(days, 0);
+        labAllotment = temp;
         formattedOutput = "TIME DAY,9:00-10:00,10:00-11:00,,11:30-12:30,12:30-1:30,,2:30-3:30,3:30-4:30\n";
     }
     std::string convertToString();
@@ -135,4 +137,5 @@ private:
     std::vector<std::vector<int>> findWeightageLab(std::vector < std::vector<bool>> inp, std::vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
     std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
     std::vector<std::string> section::splitString(const std::string& str, char delimiter);
+    std::vector<bool> labAllotment;
 };

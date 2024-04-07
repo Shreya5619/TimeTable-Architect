@@ -743,7 +743,7 @@ namespace TTA_ui {
                         bool y = true;
                         for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
                             String^ value = addsubroomlist->CheckedItems[i]->ToString();
-                            std::string Value = msclr::interop::marshal_as<string>(value);
+                            std::string Value = replacewhitespace(msclr::interop::marshal_as<string>(value));
                             x += Value;
                             y = false;
                             if (i < addsubroomlist->CheckedItems->Count - 1) {
@@ -823,7 +823,7 @@ namespace TTA_ui {
                         bool x = true;
                         for (int i = 0; i < addsubroomlist->CheckedItems->Count; ++i) {
                             String^ value = addsubroomlist->CheckedItems[i]->ToString();
-                            std::string Value = msclr::interop::marshal_as<string>(value);
+                            std::string Value = replacewhitespace(msclr::interop::marshal_as<string>(value));
                             outputFile << Value;
                             x = false;
                             if (i < addsubroomlist->CheckedItems->Count - 1) {

@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+CV232AT/ME232AT/BT232AT,MA231CT,DSA LAB,DSA LAB,OS LAB,OS LAB,
+ADLD LAB,ADLD LAB,MA231CT,CS235AI,f,f,
+MA231CT,IS233AI,CS234AI,CS139DT,CS237DL,CS237DL,
+IS233AI,CS234AI,CS235AI,MA231CT,f,f,
+CS234AI,CS235AI,IS233AI,f,CV232AT/ME232AT/BT232AT,CV232AT/ME232AT/BT232AT,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+CV232AT/ME232AT/BT232AT,kirankumar d l,sumab rao|abhisek m idya|abhisek m idya|sumab rao|,sumab rao|abhisek m idya|abhisek m idya|sumab rao|,jyothi s|Pavithra|jyothi s|Pavithra|,jyothi s|Pavithra|jyothi s|Pavithra|,
+MH|MH|prapulla s b|prapulla s b|,MH|MH|prapulla s b|prapulla s b|,kirankumar d l,apoorvau k c,f,f,
+kirankumar d l,sumab rao,prapulla s b,Ganashree,CS237DL,CS237DL,
+sumab rao,prapulla s b,apoorvau k c,kirankumar d l,f,f,
+prapulla s b,apoorvau k c,sumab rao,f,CV232AT/ME232AT/BT232AT,CV232AT/ME232AT/BT232AT,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+NA,CS112,BEHIND CHEMICAL DEP 1|BEHIND CHEMICAL DEP 2|,BEHIND CHEMICAL DEP 1|BEHIND CHEMICAL DEP 2|,BEHIND CHEMICAL DEP 1|BEHIND CHEMICAL DEP 2|,BEHIND CHEMICAL DEP 1|BEHIND CHEMICAL DEP 2|,
+BEHIND CHEMICAL DEP 1|BEHIND CHEMICAL DEP 2|,BEHIND CHEMICAL DEP 1|BEHIND CHEMICAL DEP 2|,CS112,CS112,NA,NA,
+CS112,CS112,CS112,CS112,NA,NA,
+CS112,CS112,CS112,CS112,NA,NA,
+CS112,CS112,CS112,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+

@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+21HS51A,21AI52,21CS53,21CS54,f,f,
+21AI52,PCC1,AIML,AIML,DBS,DBS,
+21CS53,21CS54,f,21HS51A,PAT,PAT,
+21CS54,21CS53,21AI52,PCC1,21HS51A,f,
+f,f,PCC1,f,SI,SI,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+neethu s,sumab rao,pratiba d,smriti s,f,f,
+sumab rao,PCC1,sumab rao|sumab rao|Hemalatha|Hemalatha|,sumab rao|sumab rao|Hemalatha|Hemalatha|,Sakshath|Sakshath|SMS|Hemanth|,Sakshath|Sakshath|SMS|Hemanth|,
+pratiba d,smriti s,f,neethu s,PAT,PAT,
+smriti s,pratiba d,sumab rao,PCC1,neethu s,f,
+f,f,PCC1,f,SI,SI,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+CS LAB 5,CS LAB 5,CS LAB 5,CS LAB 5,NA,NA,
+CS LAB 5,NA,Lab10|Lab11|,Lab10|Lab11|,Lab11|Lab2|,Lab11|Lab2|,
+CS LAB 5,CS LAB 5,NA,CS LAB 5,NA,NA,
+CS LAB 5,CS LAB 5,CS LAB 5,NA,CS LAB 5,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
