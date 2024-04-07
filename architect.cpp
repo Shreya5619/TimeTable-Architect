@@ -482,24 +482,27 @@ void section::makeTIMETABLE() {
                 }
                 std::cout << "\n";
             }
+            int counter = 0;
             for (auto day : intersection) {
                 for (int k = 0; k < day.size(); k += 2) {
-                    if (!day[k] && !day[k + 1]) {
+                    if (!day[k] && !day[k + 1] && !labAllotment[counter]) {
                         intersectionCount++;
                         break;
                     }
                 }
+                counter++;
             }
             std::cout << "\n";
             if (intersectionCount >= labSubjects[i].credits) {
                 std::vector<std::vector<int>> intersectionScore = findWeightageLab(intersection, teachers);
                 interSectionList.push_back(intersectionScore);
+                
                 //search best credits number of scores.
                 std::vector<int> tops(labSubjects[i].credits, 0);
                 for (int f = 0; f < days; f++) {
                     for (int g = 0; g < periods; g++) {
                         for (int l = tops.size() - 1; l >= 0; l--) {
-                            if (intersectionScore[f][g] > tops[l]) {
+                            if (intersectionScore[f][g] > tops[l] && !labAllotment[f]) {
                                 tops[l] = intersectionScore[f][g];
                                 break;
                             }
@@ -514,14 +517,13 @@ void section::makeTIMETABLE() {
             }
             //intersections less than credits
             else {
-                std::vector<int> temp(6, 1);
                 std::vector<std::vector<int>> ans(6, std::vector<int>(6, 1));
                 //make a days*periods empty matrix
                 interSectionList.push_back(ans);
                 score.push_back(-1);
             }
         }
-        //finding the best possible combination. adding all the factors index referes to the combination
+        //finding the best possible combination. index refers to best combination(max value of score)
         int index = 0;
         int indexScore = -1;
         for (int f = 0; f < score.size(); f++) {
@@ -540,82 +542,86 @@ void section::makeTIMETABLE() {
             //find best credits number of intersections
             std::vector<int> tops(credCount, 0);
             for (int f = 0; f < days; f++) {
-                for (int g = 0; g < periods; g++) {
-                    if (interSectionList[index][f][g] == -1) {
-                        break;
-                    }
-                    for (int l = tops.size() - 1; l >= 0; l--) {
-                        if (interSectionList[index][f][g] > tops[l]) {
-                            for (int f = 1; f <= l; f++) {
-                                tops[f - 1] = tops[f];
-                            }
-                            tops[l] = interSectionList[index][f][g];
-                            g++;
+                if(!labAllotment[f])
+                    for (int g = 0; g < periods; g++) {
+                        if (interSectionList[index][f][g] == -1) {
                             break;
                         }
+                        for (int l = tops.size() - 1; l >= 0; l--) {
+                            if (interSectionList[index][f][g] > tops[l]) {
+                                for (int f = 1; f <= l; f++) {
+                                    tops[f - 1] = tops[f];
+                                }
+                                tops[l] = interSectionList[index][f][g];
+                                g++;
+                                break;
+                            }
+                        }
                     }
-                }
             }
             //iterate through each period
             for (int k = 0; k < days; k++) {
-                int highest = 0, highestindex = 0;
-                //find the highest value in the day
-                for (int l = 0; l < periods; l++) {
-                    if (highest < interSectionList[index][k][l]) {
-                        highest = interSectionList[index][k][l];
-                        highestindex = l;
-                    }
-                    if (interSectionList[index][k][l] == -1) {
-                        break;
-                    }
-                }
-                //if highest is in top 'credits' rank
-                if (highest >= tops[0] && credCount) {
-                    //assgign timetable name
-                    timeTable[k][highestindex] = labSubjects[i].name;
-                    timeTable[k][highestindex + 1] = labSubjects[i].name;
-                    std::string teacherString;
-                    std::string roomString;
-                    //making teacher and room string a,b,c,d format
-                    for (auto teachers : allCombs[index][0]) {
-                        std::vector<std::string> temp = splitString(teachers, ' ');
-                        for (int i = 0; i < temp.size() - 1; i++) {
-                            teachers += temp[i] + "_";
+                if (!labAllotment[k]) {
+                    int highest = 0, highestindex = 0;
+                    //find the highest value in the day
+                    for (int l = 0; l < periods; l++) {
+                        if (highest < interSectionList[index][k][l]) {
+                            highest = interSectionList[index][k][l];
+                            highestindex = l;
                         }
-                        teacherString += temp[temp.size() - 1] + "|";//new delimiiter
+                        if (interSectionList[index][k][l] == -1) {
+                            break;
+                        }
                     }
-                    for (auto rooms : allCombs[index][1]) {
-                        roomString += rooms + "|";
+                    //if highest is in top 'credits' rank
+                    if (highest >= tops[0] && credCount && !labAllotment[k]) {
+                        //assgign timetable name
+                        timeTable[k][highestindex] = labSubjects[i].name;
+                        timeTable[k][highestindex + 1] = labSubjects[i].name;
+                        labAllotment[k] = 1;
+                        std::string teacherString;
+                        std::string roomString;
+                        //making teacher and room string a,b,c,d format
+                        for (auto teachers : allCombs[index][0]) {
+                            std::vector<std::string> temp = splitString(teachers, ' ');
+                            for (int i = 0; i < temp.size() - 1; i++) {
+                                teachers += temp[i] + "_";
+                            }
+                            teacherString += temp[temp.size() - 1] + "|";//new delimiiter
+                        }
+                        for (auto rooms : allCombs[index][1]) {
+                            roomString += rooms + "|";
+                        }
+                        //assignment
+                        teacherTable[k][highestindex] = teacherString;
+                        teacherTable[k][highestindex + 1] = teacherString;
+                        roomTable[k][highestindex] = roomString;
+                        roomTable[k][highestindex + 1] = roomString;
+                        //assignements of particul;ar teacher and room
+                        for (auto teachers : allCombs[index][0]) {
+                            teacher& t = returnTeacher(teachers);
+                            t.timeTable[k][highestindex] = 1;
+                            t.timeTable[k][highestindex + 1] = 1;
+                            t.timeTableName[k][highestindex] = name;
+                            t.timeTableName[k][highestindex + 1] = name;
+                        }
+                        for (auto rooms : allCombs[index][0]) {
+                            room& r = returnRoom(rooms);
+                            r.timeTable[k][highestindex] = 1;
+                            r.timeTable[k][highestindex + 1] = 1;
+                            r.timeTableName[k][highestindex] = name;
+                            r.timeTableName[k][highestindex + 1] = name;
+                        }
+                        //decrease the factors to reduce prefereence of allotment on same time again
+                        for (int j = 0; j < days; j++) {
+                            interSectionList[index][j][highestindex] /= 2;
+                            interSectionList[index][j][highestindex + 1] /= 2;
+                        }
+                        //convert the period to -1 to prevent further allotment on the same day.
+                        interSectionList[index][k][0] = -1;
+                        //reduce commacount
+                        credCount--;
                     }
-                    //assignment
-                    teacherTable[k][highestindex] = teacherString;
-                    teacherTable[k][highestindex + 1] = teacherString;
-                    roomTable[k][highestindex] = roomString;
-                    roomTable[k][highestindex + 1] = roomString;
-                    //assignements of particul;ar teacher and room
-                    for (auto teachers : allCombs[index][0]) {
-                        teacher& t = returnTeacher(teachers);
-                        t.timeTable[k][highestindex] = 1;
-                        t.timeTable[k][highestindex + 1] = 1;
-                        t.timeTableName[k][highestindex] = name;
-                        t.timeTableName[k][highestindex + 1] = name;
-                    }
-                    for (auto rooms : allCombs[index][0]) {
-                        room& r = returnRoom(rooms);
-                        r.timeTable[k][highestindex] = 1;
-                        r.timeTable[k][highestindex + 1] = 1;
-                        r.timeTableName[k][highestindex] = name;
-                        r.timeTableName[k][highestindex + 1] = name;
-                    }
-                    //decrease the factors to reduce prefereence of allotment on same time again
-                    for (int j = 0; j < days; j++) {
-                        interSectionList[index][j][highestindex] /= 2;
-                        interSectionList[index][j][highestindex + 1] /= 2;
-                    }
-                    //convert thew period to -1 to prevent further allotment on the same day.
-                    interSectionList[index][k][0] = -1;
-                    //reduce commacount
-                    credCount--;
                 }
             }
             if (credCount) {
