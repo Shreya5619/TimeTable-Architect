@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+21AI52,21HS51A,DBS,DBS,AIML,AIML,
+21HS51A,PCC1,21AI52,21CS53,f,f,
+21CS53,21AI52,21HS51A,21CS54,PAT,PAT,
+21CS54,21CS53,f,PCC1,f,f,
+f,21CS54,PCC1,f,SI,SI,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+shantharanga swamy,Hemalatha,Sakshath|Sakshath|neethu s|Hemanth|,Sakshath|Sakshath|neethu s|Hemanth|,sumab rao|sumab rao|Hemalatha|Hemalatha|,sumab rao|sumab rao|Hemalatha|Hemalatha|,
+Hemalatha,PCC1,shantharanga swamy,sowmyarani c n,f,f,
+sowmyarani c n,shantharanga swamy,Hemalatha,anitha sandeep,PAT,PAT,
+anitha sandeep,sowmyarani c n,f,PCC1,f,f,
+f,anitha sandeep,PCC1,f,SI,SI,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+MAIN LIB LAB 1,MAIN LIB LAB 1,Lab11|Lab2|,Lab11|Lab2|,Lab10|Lab11|,Lab10|Lab11|,
+MAIN LIB LAB 1,NA,MAIN LIB LAB 1,MAIN LIB LAB 1,NA,NA,
+MAIN LIB LAB 1,MAIN LIB LAB 1,MAIN LIB LAB 1,MAIN LIB LAB 1,NA,NA,
+MAIN LIB LAB 1,MAIN LIB LAB 1,NA,NA,NA,NA,
+NA,MAIN LIB LAB 1,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
