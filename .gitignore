@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 
 #files in details dir to be ignored
+details
