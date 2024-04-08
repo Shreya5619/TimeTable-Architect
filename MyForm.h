@@ -8901,7 +8901,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                 eleflag = false;
             }
             bool xflag = false;
-            string name = msclr::interop::marshal_as<string>(addsubcluster->Text);
             vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
             vector<vector<bool>>intersect = intersectionElective(valuetimetable("", sedataGridView));
             for (int i = 0; i < 6; i++)
@@ -8913,7 +8912,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                     {
                         if (intersect[i][j])
                         {
-                            if (button->Text != "busy")
+                            if (button->Text == addsubname->Text)
                             {
                                 xflag = true;
                                 goto fl;
@@ -8978,13 +8977,9 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                           }
                          if(rows[i]==find)
                          {
-                            if (MessageBox::Show("Elective already exists.\nDo you want to replace it", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::No)
+                            if (MessageBox::Show("Elective already exists.", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::No)
                             {
                                 goto a;
-                            }
-                            else
-                            {
-                            //to be filled
                             }
                          }
                       }
@@ -9084,7 +9079,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                                                     if (row[0] == replacewhitespace(msclr::interop::marshal_as<string>(sedataGridView->Rows[j]->Cells[0]->Value->ToString())))
                                                     {
                                                         row[(2 * i) + 1] = '1';
-                                                        row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
+                                                        row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text)) + "(" + replacewhitespace(msclr::interop::marshal_as<string>(addsubcluster->Text)) + ")";
                                                     }
                                                 }
                                             }
@@ -9097,6 +9092,8 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
 
                         }
                     }
+                    file << "\n";
+                    file.close();
                     ofstream tFile("details/teacher_file.csv");
                     if (tFile.is_open()) {
                         for (const auto& t : temp) {
@@ -9876,6 +9873,51 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
+        string find = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
+        string findclust = replacewhitespace(msclr::interop::marshal_as<string>(addsubcluster->Text));
+        string str1;
+        string str2;
+        for (char& a : find)
+        {
+            a = toupper(static_cast<unsigned char>(a));
+        }
+        for (char& a : findclust)
+        {
+            a = toupper(static_cast<unsigned char>(a));
+        }
+        fstream file;
+        file.open("details/Electivetimetable.csv");
+        string line;
+        while (getline(file, line))
+        {
+            stringstream lineStream(line);
+            vector<string> rows;
+            string cell;
+            while (getline(lineStream, cell, ',')) {
+                rows.push_back(cell);
+            }
+            for (char& a : rows[0])
+            {
+                str1 += toupper(static_cast<unsigned char>(a));
+            }
+            if (replacewhitespace(str1) == findclust)
+            {
+                for (int i = 1; i < rows.size(); i++)
+                {
+                    for (char& a : rows[i])
+                    {
+                        a = toupper(static_cast<unsigned char>(a));
+                    }
+                    if (rows[i] == find)
+                    {
+                        MessageBox::Show("Elective already exists.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Warning) ;
+                        {
+                            goto a;
+                        }
+                    }
+                }
+            }
+        }
         if (flag)
         {
             addsubeletablepanel->Visible = true;
@@ -9883,6 +9925,8 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             InitializeMatrix(tableLayoutPanel1, "ele", "Available", 0);
             onOptionClickedit(addsubcluster, sedataGridView, tableLayoutPanel1, "ele",addsubname);
         }
+    a:
+        {}
     }
     private: System::Void classgenerate_Click(System::Object^ sender, System::EventArgs^ e) {
         bool  flag = true;
