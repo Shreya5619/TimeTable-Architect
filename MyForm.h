@@ -1620,7 +1620,6 @@ namespace TTA_ui {
                             x += "0,";
                             x += msclr::interop::marshal_as<string>(editsubcredits->Text) + ",1,";
                         }
-
                         x += msclr::interop::marshal_as<string>(editsubbfactor->Text) + ",";
                         x += "[";
                         bool room = true;
