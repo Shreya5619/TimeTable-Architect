@@ -550,7 +550,7 @@ void section::makeTIMETABLE() {
                         for (int l = tops.size() - 1; l >= 0; l--) {
                             if (interSectionList[index][f][g] > tops[l]) {
                                 for (int f = 1; f <= l; f++) {
-                                    tops[f - 1] = tops[f];
+                                    tops[f -    1] = tops[f];
                                 }
                                 tops[l] = interSectionList[index][f][g];
                                 g++;
