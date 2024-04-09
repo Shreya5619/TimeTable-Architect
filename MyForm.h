@@ -282,7 +282,33 @@ namespace TTA_ui {
                 comboBox->Items->Add(msclr::interop::marshal_as<String^>(it[i]));
             }
         }
+        void DisplayCSVInComboBoxsub(const string& filename, ComboBox^ comboBox) {
+            comboBox->Items->Clear();
+            vector<string> it;
+            vector<vector<string>> data = ReadCSVFile(filename);
+            vector<vector<string>> sub = ReadCSVFile("details/subject_file.csv");
+            for (const auto& row : data) {
+                for (int i=1;i<row.size();i++)
+                {
+                    if (row[i] != "0")
+                    {
+                        string rowString = row[i] + "(" + row[0] + ")";
+                        it.push_back(replaceunderscore(rowString));
+                    }
+                }
+            }
+            for (const auto& cell : sub)
+            {
+                it.push_back(replaceunderscore(cell[0]));
+            }
+            std::sort(it.begin(), it.end());
+            for (int i = 0; i < it.size(); i++)
+            {
+                if(!comboBox->Items->Contains(msclr::interop::marshal_as<String^>(it[i])))
+                comboBox->Items->Add(msclr::interop::marshal_as<String^>(it[i]));
+            }
 
+        }
         void DisplayCluster(const string& filename, ComboBox^ comboBox) {
             comboBox->Items->Clear();
             vector<vector<string>> data = ReadCSVFile(filename);
@@ -686,7 +712,6 @@ namespace TTA_ui {
                 file << x;
             }
             file.close();
-            MessageBox::Show("Successfully Replaced", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         }
 
         void classroomcsvcreate(const string filePath)
@@ -1449,23 +1474,15 @@ namespace TTA_ui {
         {
             string* a = &searchsubname;
             string find = replacewhitespace(msclr::interop::marshal_as<string>(editsubsearch->Text));
-            for (char& a : find)
-            {
-                a = toupper(static_cast<unsigned char>(a));
-            }
             bool flag = true;
             vector<vector<string>>data = ReadCSVFile("details/subject_file.csv");
             for (auto& row : data)
             {
                 string str;
-                for (char& a : row[0])
-                {
-                    str += toupper(static_cast<unsigned char>(a));
-                }
                 if (str == find)
                 {
                     flag = false;
-                    *a = row[0];
+                    *a = find;
                     editsubname->Text = msclr::interop::marshal_as<String^>(row[0]);
                     editsubtitle->Text = msclr::interop::marshal_as<String^>(row[1]);
                     editsubcode->Text = msclr::interop::marshal_as<String^>(row[2]);
@@ -1474,10 +1491,6 @@ namespace TTA_ui {
                         editsubeleno->Checked = true;
                         editsubcluster->Text = "";
                         editsubeleteacher->Rows->Clear();
-                    }
-                    else
-                    {
-                        editsubeleyes->Checked = true;
                     }
                     editsubcredits->Text = msclr::interop::marshal_as<String^>(row[5]);
                     editsubbfactor->Text = msclr::interop::marshal_as<String^>(row[7]);
@@ -1566,55 +1579,55 @@ namespace TTA_ui {
                     else
                         name += n;
                 }
-                string str;
                 for (auto& elerow : ele)
                 {
-                    for (int i = 1; i < elerow.size(); i++)
+               
+                    if (clust == elerow[0])
                     {
-                        str = "";
-                        for (char& a : elerow[i])
+                        for (int i = 1; i < elerow.size(); i++)
                         {
-                            str += std::toupper(a);
-                        }
-                        if (find == str)
-                        {
-                            eleflag = false;
-                            *a = elerow[i];
-                            editsubelepanel->Visible = true;
-                            editsubelepanel->Top = button3->Bottom;
-                            editpanelsub->Top = editsubelepanel->Bottom;
-                            editsubname->Text = msclr::interop::marshal_as<String^>(elerow[i]);
-                            editsubeleyes->Checked = true;
-                            editsubcluster->Text = msclr::interop::marshal_as<String^>(elerow[0]);
-                            for (int k = 1; k < 37; k++)
+                            
+                            if (name == elerow[i])
                             {
-                                Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", k)]);
-                                if (elerow[k] == "0")
+                                eleflag = false;
+                                *a = find;
+                                editsubelepanel->Visible = true;
+                                editsubelepanel->Top = button3->Bottom;
+                                editpanelsub->Top = editsubelepanel->Bottom;
+                                editsubname->Text = msclr::interop::marshal_as<String^>(elerow[i]);
+                                editsubeleyes->Checked = true;
+                                editsubcluster->Text = msclr::interop::marshal_as<String^>(elerow[0]);
+                                for (int k = 1; k < 37; k++)
                                 {
-                                    button->Text = "Available";
-                                }
-                                else
-                                {
-                                    button->Text = msclr::interop::marshal_as<String^>(elerow[k]);
-                                    button->BackColor = Color::FromArgb(102, 255, 204);
-                                }
-                            }
-                            editsubeleteacher->Rows->Clear();
-                            vector<vector<string>>teachers = ReadCSVFile("details/teacher_file.csv");
-                            for (const auto& teach : teachers)
-                            {
-                                for (int n = 4; n < teach.size(); n += 2)
-                                {
-                                    if (teach[n] == elerow[i])
+                                    Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", k)]);
+                                    if (elerow[k] == "0")
                                     {
-                                        editsubeleteacher->Rows->Add(msclr::interop::marshal_as<String^>(teach[0]));
-                                        break;
+                                        button->Text = "Available";
+                                        button->BackColor = Color::FromArgb(179, 255, 230);
+                                    }
+                                    else
+                                    {
+                                        button->Text = msclr::interop::marshal_as<String^>(elerow[k]);
+                                        button->BackColor = Color::FromArgb(102, 255, 204);
                                     }
                                 }
+                                editsubeleteacher->Rows->Clear();
+                                vector<vector<string>>teachers = ReadCSVFile("details/teacher_file.csv");
+                                for (const auto& teach : teachers)
+                                {
+                                    for (int n = 4; n < teach.size(); n += 2)
+                                    {
+                                        if (teach[n] == find)
+                                        {
+                                            editsubeleteacher->Rows->Add(msclr::interop::marshal_as<String^>(teach[0]));
+                                            break;
+                                        }
+                                    }
+                                }
+                                goto out;
                             }
-                            goto out;
-                        }
 
+                        }
                     }
                 }
             out:
@@ -1666,7 +1679,7 @@ namespace TTA_ui {
                                                 if (row[0] == s)
                                                 {
                                                     row[(2 * i) + 1] = '1';
-                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text))+"("+ replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text))+")";
+                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text))+"("+ replacewhitespace(msclr::interop::marshal_as<string>(editsubcluster->Text))+")";
                                                 }
                                                 else
                                                 {
@@ -1755,45 +1768,48 @@ namespace TTA_ui {
                     }
                     for (auto& row : ele)
                     {
-                        for (int i = 1; i < row.size(); i++)
+                        if (row[0] == clust)
                         {
-                            if (row[i] == find)
+                            for (int i = 1; i < row.size(); i++)
                             {
-                                //if elective
-                                vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
-                                bool nflag = false;
-                                for (int i = 1; i <= 36; i++)
+                                if (row[i] == name)
                                 {
-                                    Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
-                                    if (button != nullptr)
-                                    {
-                                        if (button->Text == editsubname->Text)
-                                            nflag = true;
-                                    }
-                                }
-                                if (!nflag)
-                                {
-                                    MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                                }
-                                else
-                                {
-                                    string file;
-                                    file += row[0];
+                                    //if elective
+                                    vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
+                                    bool nflag = false;
                                     for (int i = 1; i <= 36; i++)
                                     {
                                         Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
                                         if (button != nullptr)
                                         {
                                             if (button->Text == editsubname->Text)
+                                                nflag = true;
+                                        }
+                                    }
+                                    if (!nflag)
+                                    {
+                                        MessageBox::Show("Block slots for the subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                                        onOptionClickedit(editsubcluster, editsubeleteacher, editsubeletable, "editele", editsubname);
+                                        goto err;
+                                    }
+                                    else
+                                    {
+                                        string file;
+                                        bool first = true;
+                                        file += row[0];
+                                        for (int i = 1; i <= 36; i++)
+                                        {
+                                            Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i)]);
+                                            if (button != nullptr)
                                             {
-                                                file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
-                                                for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                                                if (button->Text == editsubname->Text)
                                                 {
-                                                    if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
+                                                    file += "," + msclr::interop::marshal_as<string>(editsubname->Text);
+                                                    
+                                                    for (auto& row : temp)
                                                     {
-                                                        for (auto& row : temp)
+                                                        if(first)
                                                         {
-
                                                             for (int n = 4; n < row.size(); n += 2)
                                                             {
                                                                 if (row[n] == find)
@@ -1802,39 +1818,45 @@ namespace TTA_ui {
                                                                     row[n - 1] = "0";
                                                                 }
                                                             }
-                                                            string s = msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString());
-                                                            if (row[0] == s)
+                                                        }
+                                                        for (int j = 0; j < editsubeleteacher->RowCount; j++)
+                                                        {
+                                                            if (editsubeleteacher->Rows[j]->Cells[0]->Value != nullptr)
                                                             {
-                                                                row[(2 * i) + 1] = '1';
-                                                                row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text));
+                                                                if (row[0] == msclr::interop::marshal_as<string>(editsubeleteacher->Rows[j]->Cells[0]->Value->ToString()))
+                                                                {
+                                                                    row[(2 * i) + 1] = '1';
+                                                                    row[(2 * i) + 2] = replacewhitespace(msclr::interop::marshal_as<string>(editsubname->Text)) + "(" + replacewhitespace(msclr::interop::marshal_as<string>(editsubcluster->Text)) + ")";
+                                                                    break;
+                                                                }
                                                             }
                                                         }
                                                     }
+                                                    first = false;
                                                 }
-
+                                                else if (button->Text == "busy" || button->Text=="Available")
+                                                {
+                                                    file += ",0";
+                                                }
+                                                else
+                                                    file += "," + row[i];
                                             }
-                                            else if (button->Text == "busy")
-                                            {
-                                                file += ",0";
-                                            }
-                                            else
-                                                file += "," + row[i];
                                         }
-                                    }
-                                    file += "\n";
-                                    replacename(msclr::interop::marshal_as<string>(addsubcluster->Text), "details/Electivetimetable.csv", 0, file);
-                                    ofstream tFile("details/teacher_file.csv");
-                                    if (tFile.is_open()) {
-                                        for (const auto& t : temp) {
-                                            for (int i = 0; i < t.size() - 1; i++) {
-                                                tFile << t[i] << ",";
+                                        file += "\n";
+                                        replacename(msclr::interop::marshal_as<string>(editsubcluster->Text), "details/Electivetimetable.csv", 0, file);
+                                        ofstream tFile("details/teacher_file.csv");
+                                        if (tFile.is_open()) {
+                                            for (const auto& t : temp) {
+                                                for (int i = 0; i < t.size() - 1; i++) {
+                                                    tFile << t[i] << ",";
+                                                }
+                                                tFile << t[t.size() - 1] << "\n";
                                             }
-                                            tFile << t[t.size() - 1] << "\n";
                                         }
+                                        tFile.close();
+                                        MessageBox::Show("Replaced successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                                        goto err;
                                     }
-                                    tFile.close();
-                                    MessageBox::Show("Saved successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-                                    goto err;
                                 }
                             }
                         }
@@ -2030,7 +2052,7 @@ namespace TTA_ui {
             return tt;
         }
 
-        vector<vector<vector<bool>>>valuetimetable(string clustername, DataGridView^ sedataGridView)
+        vector<vector<vector<bool>>>valuetimetable(string clustername, DataGridView^ sedataGridView,TextBox^ addsubnames,ComboBox^ addsubclusts)
         {
             vector < vector < vector<bool>>>allt;
             vector<vector<bool>>tt;
@@ -2050,7 +2072,7 @@ namespace TTA_ui {
                             for (int i = 3; i < row.size(); i += 2)
                             {
                                 count++;
-                                if (row[i] == "0" || row[i+1]==replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text)))
+                                if (row[i] == "0" || row[i+1]==replacewhitespace(msclr::interop::marshal_as<string>(addsubnames->Text))+"("+ replacewhitespace(msclr::interop::marshal_as<string>(addsubclusts->Text))+")")
                                 {
                                     ttval.push_back(0);
                                 }
@@ -2107,12 +2129,12 @@ namespace TTA_ui {
             }
             return output;
         }
-        void onOptionClickedit(ComboBox^ addsubcluster, DataGridView^ dgv, TableLayoutPanel^ t, String^ s,TextBox^ editsubnames)
+        void onOptionClickedit(ComboBox^ addsubclusters, DataGridView^ dgv, TableLayoutPanel^ t, String^ s,TextBox^ editsubnames)
         {
-            string name = replacewhitespace(msclr::interop::marshal_as<string>(addsubcluster->Text));
+            string name = replacewhitespace(msclr::interop::marshal_as<string>(addsubclusters->Text));
             vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
             vector < vector<string>> temp = ReadCSVFile("details/teacher_file.csv");
-            vector<vector<bool>>intersecttt = intersectionElective(valuetimetable(name,dgv));
+            vector<vector<bool>>intersecttt = intersectionElective(valuetimetable(name,dgv,editsubnames,addsubclusters));
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
@@ -2157,7 +2179,7 @@ namespace TTA_ui {
                         {
                             for (int l = 3; l < cell.size(); l += 2)
                             {
-                                if ((cell[l] == "1" && cell[l + 1] != msclr::interop::marshal_as<string>(editsubnames->Text)) && (dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", l / 2)])->Text == editsubnames->Text))
+                                if ((cell[l] == "1" && cell[l + 1] != (msclr::interop::marshal_as<string>(editsubnames->Text)+"("+ msclr::interop::marshal_as<string>(addsubclusters->Text)+")") && (dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", l / 2)])->Text == editsubnames->Text)))
                                 {
                                     dynamic_cast<Button^>(t->Controls[String::Format("button"+s+"{0}", l / 2)])->Text = "busy";
                                     dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", l / 2)])->BackColor = Color::FromArgb(224, 224, 224);
@@ -2402,16 +2424,16 @@ namespace TTA_ui {
     private: System::Windows::Forms::Label^ label94;
     private: System::Windows::Forms::Label^ label95;
     private: System::Windows::Forms::DataGridView^ editsubeleteacher;
-    private: System::Windows::Forms::Panel^ panel13;
-    private: System::Windows::Forms::RadioButton^ editsublabyes;
-    private: System::Windows::Forms::RadioButton^ editsublabno;
+
+
+
     private: System::Windows::Forms::CheckedListBox^ editsubroomlist;
     private: System::Windows::Forms::Label^ label96;
     private: System::Windows::Forms::Label^ label97;
     private: System::Windows::Forms::NumericUpDown^ editsubcredits;
 
 
-    private: System::Windows::Forms::Label^ label99;
+
     private: System::Windows::Forms::Button^ editsubdelete;
     private: System::Windows::Forms::Button^ editsubsave;
     private: System::Windows::Forms::NumericUpDown^ editsubbfactor;
@@ -2958,10 +2980,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editsubbfactor = (gcnew System::Windows::Forms::NumericUpDown());
             this->editsubsave = (gcnew System::Windows::Forms::Button());
             this->editsubdelete = (gcnew System::Windows::Forms::Button());
-            this->label99 = (gcnew System::Windows::Forms::Label());
-            this->panel13 = (gcnew System::Windows::Forms::Panel());
-            this->editsublabyes = (gcnew System::Windows::Forms::RadioButton());
-            this->editsublabno = (gcnew System::Windows::Forms::RadioButton());
             this->editsubcode = (gcnew System::Windows::Forms::TextBox());
             this->editsubtitle = (gcnew System::Windows::Forms::TextBox());
             this->label150 = (gcnew System::Windows::Forms::Label());
@@ -3174,7 +3192,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editpanelsub->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->BeginInit();
-            this->panel13->SuspendLayout();
             this->panel10->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->BeginInit();
             this->settingspanel->SuspendLayout();
@@ -5185,9 +5202,9 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editsubjectpanel->Controls->Add(this->editsubname);
             this->editsubjectpanel->Controls->Add(this->label93);
             this->editsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->editsubjectpanel->Location = System::Drawing::Point(0, 0);
+            this->editsubjectpanel->Location = System::Drawing::Point(324, 139);
             this->editsubjectpanel->Name = L"editsubjectpanel";
-            this->editsubjectpanel->Size = System::Drawing::Size(1946, 1106);
+            this->editsubjectpanel->Size = System::Drawing::Size(1622, 967);
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
             // 
@@ -5418,8 +5435,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editpanelsub->Controls->Add(this->editsubbfactor);
             this->editpanelsub->Controls->Add(this->editsubsave);
             this->editpanelsub->Controls->Add(this->editsubdelete);
-            this->editpanelsub->Controls->Add(this->label99);
-            this->editpanelsub->Controls->Add(this->panel13);
             this->editpanelsub->Location = System::Drawing::Point(161, 2432);
             this->editpanelsub->Name = L"editpanelsub";
             this->editpanelsub->Size = System::Drawing::Size(846, 1096);
@@ -5431,7 +5446,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->label96->AutoSize = true;
             this->label96->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label96->Location = System::Drawing::Point(46, 341);
+            this->label96->Location = System::Drawing::Point(52, 188);
             this->label96->Name = L"label96";
             this->label96->Size = System::Drawing::Size(255, 28);
             this->label96->TabIndex = 303;
@@ -5442,7 +5457,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->label97->AutoSize = true;
             this->label97->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label97->Location = System::Drawing::Point(51, 194);
+            this->label97->Location = System::Drawing::Point(57, 41);
             this->label97->Name = L"label97";
             this->label97->Size = System::Drawing::Size(125, 28);
             this->label97->TabIndex = 302;
@@ -5454,7 +5469,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
             this->editsubcredits->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubcredits->Location = System::Drawing::Point(76, 240);
+            this->editsubcredits->Location = System::Drawing::Point(82, 87);
             this->editsubcredits->Name = L"editsubcredits";
             this->editsubcredits->Size = System::Drawing::Size(123, 34);
             this->editsubcredits->TabIndex = 301;
@@ -5468,7 +5483,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editsubroomlist->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editsubroomlist->FormattingEnabled = true;
-            this->editsubroomlist->Location = System::Drawing::Point(57, 396);
+            this->editsubroomlist->Location = System::Drawing::Point(63, 243);
             this->editsubroomlist->Name = L"editsubroomlist";
             this->editsubroomlist->Size = System::Drawing::Size(251, 124);
             this->editsubroomlist->Sorted = true;
@@ -5480,7 +5495,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->label100->AutoSize = true;
             this->label100->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label100->Location = System::Drawing::Point(47, 566);
+            this->label100->Location = System::Drawing::Point(53, 413);
             this->label100->Name = L"label100";
             this->label100->Size = System::Drawing::Size(75, 28);
             this->label100->TabIndex = 306;
@@ -5493,7 +5508,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editsubbfactor->DecimalPlaces = 2;
             this->editsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubbfactor->Location = System::Drawing::Point(53, 608);
+            this->editsubbfactor->Location = System::Drawing::Point(59, 455);
             this->editsubbfactor->Name = L"editsubbfactor";
             this->editsubbfactor->Size = System::Drawing::Size(135, 34);
             this->editsubbfactor->TabIndex = 307;
@@ -5504,7 +5519,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubsave->Location = System::Drawing::Point(389, 731);
+            this->editsubsave->Location = System::Drawing::Point(395, 578);
             this->editsubsave->Name = L"editsubsave";
             this->editsubsave->Size = System::Drawing::Size(116, 58);
             this->editsubsave->TabIndex = 308;
@@ -5518,57 +5533,13 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editsubdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubdelete->Location = System::Drawing::Point(568, 730);
+            this->editsubdelete->Location = System::Drawing::Point(574, 577);
             this->editsubdelete->Name = L"editsubdelete";
             this->editsubdelete->Size = System::Drawing::Size(116, 58);
             this->editsubdelete->TabIndex = 309;
             this->editsubdelete->Text = L"Delete";
             this->editsubdelete->UseVisualStyleBackColor = false;
             this->editsubdelete->Click += gcnew System::EventHandler(this, &MyForm::editsubdelete_Click);
-            // 
-            // label99
-            // 
-            this->label99->AutoSize = true;
-            this->label99->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label99->Location = System::Drawing::Point(50, 25);
-            this->label99->Name = L"label99";
-            this->label99->Size = System::Drawing::Size(98, 28);
-            this->label99->TabIndex = 298;
-            this->label99->Text = L"Is it a lab\?";
-            this->label99->Click += gcnew System::EventHandler(this, &MyForm::label99_Click);
-            // 
-            // panel13
-            // 
-            this->panel13->Controls->Add(this->editsublabyes);
-            this->panel13->Controls->Add(this->editsublabno);
-            this->panel13->ForeColor = System::Drawing::Color::Black;
-            this->panel13->Location = System::Drawing::Point(56, 78);
-            this->panel13->Name = L"panel13";
-            this->panel13->Size = System::Drawing::Size(219, 52);
-            this->panel13->TabIndex = 305;
-            // 
-            // editsublabyes
-            // 
-            this->editsublabyes->AutoSize = true;
-            this->editsublabyes->Location = System::Drawing::Point(23, 14);
-            this->editsublabyes->Name = L"editsublabyes";
-            this->editsublabyes->Size = System::Drawing::Size(62, 24);
-            this->editsublabyes->TabIndex = 10;
-            this->editsublabyes->TabStop = true;
-            this->editsublabyes->Text = L"Yes";
-            this->editsublabyes->UseVisualStyleBackColor = true;
-            // 
-            // editsublabno
-            // 
-            this->editsublabno->AutoSize = true;
-            this->editsublabno->Location = System::Drawing::Point(148, 14);
-            this->editsublabno->Name = L"editsublabno";
-            this->editsublabno->Size = System::Drawing::Size(54, 24);
-            this->editsublabno->TabIndex = 11;
-            this->editsublabno->TabStop = true;
-            this->editsublabno->Text = L"No";
-            this->editsublabno->UseVisualStyleBackColor = true;
             // 
             // editsubcode
             // 
@@ -5639,7 +5610,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editsubsearchbutton->BackColor = System::Drawing::Color::White;
             this->editsubsearchbutton->FlatAppearance->BorderSize = 0;
             this->editsubsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->editsubsearchbutton->Location = System::Drawing::Point(841, 229);
+            this->editsubsearchbutton->Location = System::Drawing::Point(838, 227);
             this->editsubsearchbutton->Name = L"editsubsearchbutton";
             this->editsubsearchbutton->Size = System::Drawing::Size(26, 29);
             this->editsubsearchbutton->TabIndex = 311;
@@ -5662,6 +5633,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             // 
             this->editsubsearch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editsubsearch->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
             this->editsubsearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editsubsearch->ForeColor = System::Drawing::SystemColors::WindowFrame;
@@ -5671,7 +5643,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editsubsearch->Name = L"editsubsearch";
             this->editsubsearch->Size = System::Drawing::Size(360, 36);
             this->editsubsearch->TabIndex = 312;
-            this->editsubsearch->Text = L"Search";
             this->editsubsearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocusSub);
             this->editsubsearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownsubject);
             this->editsubsearch->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspacesearch);
@@ -6963,9 +6934,9 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->classpanel->Controls->Add(this->classcore);
             this->classpanel->Controls->Add(this->classele);
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->classpanel->Location = System::Drawing::Point(324, 139);
+            this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1622, 967);
+            this->classpanel->Size = System::Drawing::Size(1946, 1106);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -8458,9 +8429,12 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1946, 1106);
-            this->Controls->Add(this->classpanel);
+            this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
+            this->Controls->Add(this->addclassroompanel);
+            this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->deleteclasspanel);
             this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel2);
@@ -8468,9 +8442,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->Controls->Add(this->addteacherpanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
-            this->Controls->Add(this->editsubjectpanel);
-            this->Controls->Add(this->addclassroompanel);
-            this->Controls->Add(this->Homepanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -8525,8 +8496,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             this->editpanelsub->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->EndInit();
-            this->panel13->ResumeLayout(false);
-            this->panel13->PerformLayout();
             this->panel10->ResumeLayout(false);
             this->panel10->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->EndInit();
@@ -8902,7 +8871,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             }
             bool xflag = false;
             vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            vector<vector<bool>>intersect = intersectionElective(valuetimetable("", sedataGridView));
+            vector<vector<bool>>intersect = intersectionElective(valuetimetable("", sedataGridView,addsubname,addsubcluster));
             for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
@@ -8926,9 +8895,58 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             {}
             if (xflag)
             {
-                eleflag = false;
+                eleflag = false; string find = replacewhitespace(msclr::interop::marshal_as<string>(addsubname->Text));
+                string findclust = replacewhitespace(msclr::interop::marshal_as<string>(addsubcluster->Text));
+                string str1;
+                string str2;
+                for (char& a : find)
+                {
+                    a = toupper(static_cast<unsigned char>(a));
+                }
+                for (char& a : findclust)
+                {
+                    a = toupper(static_cast<unsigned char>(a));
+                }
+                fstream file;
+                file.open("details/Electivetimetable.csv");
+                string line;
+                while (getline(file, line))
+                {
+                    stringstream lineStream(line);
+                    vector<string> rows;
+                    string cell;
+                    while (getline(lineStream, cell, ',')) {
+                        rows.push_back(cell);
+                    }
+                    for (char& a : rows[0])
+                    {
+                        str1 += toupper(static_cast<unsigned char>(a));
+                    }
+                    if (replacewhitespace(str1) == findclust)
+                    {
+                        for (int i = 1; i < rows.size(); i++)
+                        {
+                            for (char& a : rows[i])
+                            {
+                                a = toupper(static_cast<unsigned char>(a));
+                            }
+                            if (rows[i] == find)
+                            {
+                                MessageBox::Show("Elective already exists.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+                                {
+                                    goto x;
+                                }
+                            }
+                        }
+                    }
+                }
                 MessageBox::Show("Select eligible timeslots to block.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
                 onOptionClickedit(addsubcluster, sedataGridView, tableLayoutPanel1, "ele", addsubname);
+            x:
+                {
+                    addsubeletablepanel->Visible = false;
+                    panelsub->Top = addsubeletablepanel->Top;
+                }
             }
         }
         else if (addsubcredits->Value <= 0 && !addsubeleyes->Checked)
@@ -9708,6 +9726,7 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
         editsubeleteachercombo->ValueMember = "editsubeleteachercombo";
         DisplayCSVInListBox("details/classroom.csv", editsubroomlist, 0);
         DisplayCSVInComboBox1("details/Electivetimetable.csv", editsubcluster);
+        DisplayCSVInComboBoxsub("details/Electivetimetable.csv", editsubsearch);
         panel3->Height = button12->Height;
         panel3->Top = button12->Top;
         editsubjectpanel->BringToFront();
@@ -9791,17 +9810,42 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
                 MessageBox::Show("Elective name not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
                 flag = false;
             }
-            if (editsubeleteacher->RowCount == 1)
+            else if (editsubeleteacher->RowCount == 1)
             {
                 if (editsubeleteacher->Rows[0]->Cells[0]->Value == nullptr)
                     MessageBox::Show("Elective teachers not filled", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
                 flag = false;
             }
-        }
-        if ((!editsublabyes->Checked) && (!editsublabno->Checked))
-        {
-            MessageBox::Show("Select whether it is a lab or not", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
-            flag = false;
+                bool xflag = false;
+                vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
+                vector<vector<bool>>intersect = intersectionElective(valuetimetable("",editsubeleteacher,editsubname,editsubcluster));
+                for (int i = 0; i < 6; i++)
+                {
+                    for (int j = 0; j < 6; j++)
+                    {
+                        Button^ button = dynamic_cast<Button^>(editsubeletable->Controls[String::Format("buttoneditele{0}", i * 6 + j + 1)]);
+                        if (button != nullptr)
+                        {
+                            if (intersect[i][j])
+                            {
+                                if (button->Text == editsubname->Text)
+                                {
+                                    xflag = true;
+                                    goto fl;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            fl:
+                {}
+                if (xflag)
+                {
+                    flag = false;
+                    MessageBox::Show("Select eligible timeslots to block.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                    onOptionClickedit(editsubcluster,editsubeleteacher, editsubeletable, "editele", editsubname);
+                }
         }
         if (editsubcredits->Value <= 0 && !editsubeleyes->Checked)
         {
@@ -9827,8 +9871,6 @@ private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
             editsubcluster->Text = "";
             editsubeleyes->Checked = false;
             editsubeleno->Checked = false;
-            editsublabyes->Checked = false;
-            editsublabno->Checked = false;
             editsubeleteacher->Rows->Clear();
             editsubcredits->Value = 0;
             editsubbfactor->Value = 0;
