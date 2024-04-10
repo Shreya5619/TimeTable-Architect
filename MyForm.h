@@ -48,10 +48,6 @@ namespace TTA_ui {
                 textBox->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             }
         }
-        void Form_Resized(Object^ sender, EventArgs^ e) {
-            // Adjust the position of the panel whenever the form is resized
-            panel11->Location = Point(this->ClientSize.Width - panel11->Width - 8, 13);
-        }
         void textBox_KeyDown(Object^ sender, KeyEventArgs^ e)
         {
             // Check if the Enter key was pressed
@@ -446,10 +442,10 @@ namespace TTA_ui {
                 }
                 else if (clickedButton->Text == "free")
                 {
-                    clickedButton->Text = "busy";
+                    clickedButton->Text = "Busy";
                     clickedButton->BackColor = Color::FromArgb(102, 255, 204);
                 }
-                else if (clickedButton->Text == "busy")
+                else if (clickedButton->Text == "Busy")
                 {
                     clickedButton->Text = "free";
                     clickedButton->BackColor = Color::FromArgb(179, 255, 230);
@@ -527,7 +523,7 @@ namespace TTA_ui {
         { // Toggle the text of the clicked button
             if (clickedButton->Text == "free")
             {
-                clickedButton->Text = "busy";
+                clickedButton->Text = "Busy";
                 clickedButton->BackColor = Color::FromArgb(102, 255, 204);
             }
             else
@@ -1481,9 +1477,18 @@ namespace TTA_ui {
             vector<vector<string>>data = ReadCSVFile("details/subject_file.csv");
             for (auto& row : data)
             {
-                string str;
-                if (str == find)
+                if (row[0] == find)
                 {
+                    editsubname->ReadOnly = false;
+                    editsubtitle->ReadOnly = false;
+                    editsubcode->ReadOnly = false;
+                    editsubeleyes->Enabled = true;
+                    editsubeleno->Enabled = true;
+                    editsubcluster->Cursor = Cursors::Arrow;
+                    editsubname->Cursor = Cursors::Arrow;
+                    editsubtitle->Cursor = Cursors::Arrow;
+                    editsubcode->Cursor = Cursors::Arrow;
+
                     flag = false;
                     *a = find;
                     editsubname->Text = msclr::interop::marshal_as<String^>(row[0]);
@@ -1587,11 +1592,21 @@ namespace TTA_ui {
                
                     if (clust == elerow[0])
                     {
+                        editsubname->ReadOnly = true;
+                        editsubtitle->ReadOnly = true;
+                        editsubcode->ReadOnly = true;
+                        editsubeleyes->Enabled = false;
+                        editsubeleno->Enabled = false;
+                        editsubcluster->Cursor = Cursors::No;
+                        editsubname->Cursor = Cursors::No;
+                        editsubtitle->Cursor = Cursors::No;
+                        editsubcode->Cursor = Cursors::No;
                         for (int i = 1; i < elerow.size(); i++)
                         {
                             
                             if (name == elerow[i])
                             {
+                                
                                 eleflag = false;
                                 *a = find;
                                 editsubelepanel->Visible = true;
@@ -1773,6 +1788,12 @@ namespace TTA_ui {
                     {
                         if (row[0] == clust)
                         {
+                            if (clust != replacewhitespace(msclr::interop::marshal_as<string>(editsubcluster->Text)))
+                            {
+                                MessageBox::Show("Cluster name changed.", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                                editsubcluster->Text = msclr::interop::marshal_as<String^>(replaceunderscore(clust));
+                                goto err;
+                            }
                             for (int i = 1; i < row.size(); i++)
                             {
                                 if (row[i] == name)
@@ -1837,7 +1858,7 @@ namespace TTA_ui {
                                                     }
                                                     first = false;
                                                 }
-                                                else if (button->Text == "busy" || button->Text=="Available")
+                                                else if (button->Text == "Busy" || button->Text=="Available")
                                                 {
                                                     file += ",0";
                                                 }
@@ -1879,7 +1900,6 @@ namespace TTA_ui {
         void editsubcsvdelete(const string filename)
         {
             string find = searchsubname;
-
             vector<vector<string>>data = ReadCSVFile(filename);
             ofstream file(filename);
             bool flag = true;
@@ -1902,7 +1922,89 @@ namespace TTA_ui {
             }file.close();
             if (flag)
             {
-                MessageBox::Show("Subject not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                bool subr = true;
+                vector<vector<string>>ele = ReadCSVFile("details/Electivetimetable.csv");
+                ofstream efile("details/Electivetimetable.csv");
+                if (efile.is_open())
+                {
+                    string name, clust;
+                    bool e = false;
+                    for (char& n : find)
+                    {
+                        if (n == '(')
+                        {
+                            e = true;
+                            continue;
+                        }
+                        if (n == ')')
+                            continue;
+                        if (e)
+                        {
+                            clust += n;
+                        }
+                        else
+                            name += n;
+                    }
+                    for (auto& row : ele)
+                    {
+                        if (row[0] == clust)
+                        {
+                            efile << row[0];
+                            for (int i = 1; i < row.size(); i++)
+                            {
+                                if (row[i] == name)
+                                {
+                                    subr = false;
+                                    efile << ",0";
+                                }
+                                else
+                                {
+                                    efile << "," << row[i];
+                                }
+                            }
+                            efile << "\n";
+                        }
+                        else
+                        {
+                            efile << row[0];
+                            for (int i = 1; i < row.size(); i++)
+                            {
+                                efile << "," << row[i];
+                            }
+                            efile << "\n";
+                        }
+                    }
+                    efile.close();
+
+                }
+                vector<vector<string>>temp = ReadCSVFile("details/teacher_file.csv");
+                ofstream tfile("details/teacher_file.csv");
+                if (tfile.is_open())
+                {
+                    for (auto& row : temp)
+                    {
+                        tfile << row[0] << "," << row[1] << "," << row[2];
+                        for (int i = 4; i < row.size(); i+=2)
+                        {
+                            if (row[i] == find)
+                            {
+                                tfile << ",0,0";
+                            }
+                            else
+                                tfile << "," << row[i - 1] << "," << row[i];
+                        }
+                        tfile << "\n";
+                    }
+                    tfile.close();
+                }
+                if (subr)
+                {
+                    MessageBox::Show("Subject not found", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                }
+                else
+                {
+                    MessageBox::Show("Deleted successfully", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                }
             }
         }
 
@@ -2148,7 +2250,7 @@ namespace TTA_ui {
                     {
                         if (intersecttt[i][j])
                         {
-                            button->Text = "busy";
+                            button->Text = "Busy";
                             button->BackColor = Color::FromArgb(224, 224, 224);
                         }
                         else
@@ -2184,7 +2286,7 @@ namespace TTA_ui {
                             {
                                 if ((cell[l] == "1" && cell[l + 1] != (msclr::interop::marshal_as<string>(editsubnames->Text)+"("+ msclr::interop::marshal_as<string>(addsubclusters->Text)+")") && (dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", l / 2)])->Text == editsubnames->Text)))
                                 {
-                                    dynamic_cast<Button^>(t->Controls[String::Format("button"+s+"{0}", l / 2)])->Text = "busy";
+                                    dynamic_cast<Button^>(t->Controls[String::Format("button"+s+"{0}", l / 2)])->Text = "Busy";
                                     dynamic_cast<Button^>(t->Controls[String::Format("button" + s + "{0}", l / 2)])->BackColor = Color::FromArgb(224, 224, 224);
                                 }
                             }
@@ -2407,14 +2509,14 @@ namespace TTA_ui {
     private: System::Windows::Forms::PictureBox^ pictureBox5;
     private: System::Windows::Forms::PictureBox^ pictureBox6;
     private: System::Windows::Forms::PictureBox^ pictureBox7;
-    private: System::Windows::Forms::Label^ textBox4;
-    private: System::Windows::Forms::Label^ textBox5;
-    private: System::Windows::Forms::Label^ textBox10;
-    private: System::Windows::Forms::Label^ textBox8;
-    private: System::Windows::Forms::Label^ textBox6;
-    private: System::Windows::Forms::Label^ textBox11;
-    private: System::Windows::Forms::Label^ textBox9;
-    private: System::Windows::Forms::Label^ textBox7;
+
+
+
+
+
+
+
+
     private: System::Windows::Forms::Panel^ panel1;
     private: System::Windows::Forms::ComboBox^ teachersearch;
     private: System::Windows::Forms::ComboBox^ editroomsearch;
@@ -2705,6 +2807,19 @@ private: System::Windows::Forms::NumericUpDown^ classsessions;
 private: System::Windows::Forms::Label^ label165;
 private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
 private: System::Windows::Forms::Panel^ panel11;
+private: System::Windows::Forms::Panel^ panel13;
+private: System::Windows::Forms::Panel^ textBox5;
+private: System::Windows::Forms::Panel^ textBox7;
+private: System::Windows::Forms::Panel^ textBox6;
+private: System::Windows::Forms::Panel^ textBox11;
+private: System::Windows::Forms::Panel^ textBox10;
+private: System::Windows::Forms::Panel^ textBox4;
+private: System::Windows::Forms::Panel^ textBox9;
+private: System::Windows::Forms::Panel^ textBox8;
+
+
+
+
     private: System::ComponentModel::IContainer^ components;
     protected:
     private:
@@ -2860,9 +2975,10 @@ private: System::Windows::Forms::Panel^ panel11;
             this->pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
             this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
             this->panel4 = (gcnew System::Windows::Forms::Panel());
+            this->panel13 = (gcnew System::Windows::Forms::Panel());
+            this->label15 = (gcnew System::Windows::Forms::Label());
             this->panel11 = (gcnew System::Windows::Forms::Panel());
             this->label109 = (gcnew System::Windows::Forms::Label());
-            this->label15 = (gcnew System::Windows::Forms::Label());
             this->editteacherpanel = (gcnew System::Windows::Forms::Panel());
             this->editteacheremailid = (gcnew System::Windows::Forms::TextBox());
             this->label151 = (gcnew System::Windows::Forms::Label());
@@ -2927,6 +3043,7 @@ private: System::Windows::Forms::Panel^ panel11;
             this->label81 = (gcnew System::Windows::Forms::Label());
             this->editroomsearch = (gcnew System::Windows::Forms::ComboBox());
             this->editsubjectpanel = (gcnew System::Windows::Forms::Panel());
+            this->textBox7 = (gcnew System::Windows::Forms::Panel());
             this->button3 = (gcnew System::Windows::Forms::Button());
             this->editsubelepanel = (gcnew System::Windows::Forms::Panel());
             this->panel39 = (gcnew System::Windows::Forms::Panel());
@@ -3015,15 +3132,14 @@ private: System::Windows::Forms::Panel^ panel11;
             this->pictureBox5 = (gcnew System::Windows::Forms::PictureBox());
             this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
             this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
-            this->textBox4 = (gcnew System::Windows::Forms::Label());
-            this->textBox5 = (gcnew System::Windows::Forms::Label());
-            this->textBox10 = (gcnew System::Windows::Forms::Label());
-            this->textBox8 = (gcnew System::Windows::Forms::Label());
-            this->textBox6 = (gcnew System::Windows::Forms::Label());
-            this->textBox11 = (gcnew System::Windows::Forms::Label());
-            this->textBox9 = (gcnew System::Windows::Forms::Label());
-            this->textBox7 = (gcnew System::Windows::Forms::Label());
             this->panel1 = (gcnew System::Windows::Forms::Panel());
+            this->textBox9 = (gcnew System::Windows::Forms::Panel());
+            this->textBox11 = (gcnew System::Windows::Forms::Panel());
+            this->textBox4 = (gcnew System::Windows::Forms::Panel());
+            this->textBox5 = (gcnew System::Windows::Forms::Panel());
+            this->textBox10 = (gcnew System::Windows::Forms::Panel());
+            this->textBox8 = (gcnew System::Windows::Forms::Panel());
+            this->textBox6 = (gcnew System::Windows::Forms::Panel());
             this->classcore = (gcnew System::Windows::Forms::DataGridView());
             this->csubject = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->cteacher = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
@@ -3152,6 +3268,7 @@ private: System::Windows::Forms::Panel^ panel11;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->BeginInit();
             this->panel4->SuspendLayout();
+            this->panel13->SuspendLayout();
             this->panel11->SuspendLayout();
             this->editteacherpanel->SuspendLayout();
             this->panel5->SuspendLayout();
@@ -4232,7 +4349,7 @@ private: System::Windows::Forms::Panel^ panel11;
             // pictureBox8
             // 
             this->pictureBox8->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox8.Image")));
-            this->pictureBox8->Location = System::Drawing::Point(716, 0);
+            this->pictureBox8->Location = System::Drawing::Point(24, 0);
             this->pictureBox8->Name = L"pictureBox8";
             this->pictureBox8->Size = System::Drawing::Size(137, 136);
             this->pictureBox8->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -4295,11 +4412,10 @@ private: System::Windows::Forms::Panel^ panel11;
             // panel4
             // 
             this->panel4->BackColor = System::Drawing::Color::White;
+            this->panel4->Controls->Add(this->panel13);
             this->panel4->Controls->Add(this->panel11);
             this->panel4->Controls->Add(this->label109);
-            this->panel4->Controls->Add(this->label15);
             this->panel4->Controls->Add(this->pictureBox12);
-            this->panel4->Controls->Add(this->pictureBox8);
             this->panel4->Dock = System::Windows::Forms::DockStyle::Top;
             this->panel4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(204)));
@@ -4309,15 +4425,37 @@ private: System::Windows::Forms::Panel^ panel11;
             this->panel4->TabIndex = 2;
             this->panel4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel4_Paint);
             // 
+            // panel13
+            // 
+            this->panel13->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+                | System::Windows::Forms::AnchorStyles::Right));
+            this->panel13->Controls->Add(this->label15);
+            this->panel13->Controls->Add(this->pictureBox8);
+            this->panel13->Location = System::Drawing::Point(601, 3);
+            this->panel13->Name = L"panel13";
+            this->panel13->Size = System::Drawing::Size(631, 136);
+            this->panel13->TabIndex = 10;
+            // 
+            // label15
+            // 
+            this->label15->AutoSize = true;
+            this->label15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 20, System::Drawing::FontStyle::Bold));
+            this->label15->Location = System::Drawing::Point(183, 40);
+            this->label15->Name = L"label15";
+            this->label15->Size = System::Drawing::Size(383, 54);
+            this->label15->TabIndex = 6;
+            this->label15->Text = L"TimetableArchitect";
+            // 
             // panel11
             // 
+            this->panel11->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
             this->panel11->Controls->Add(this->pictureBox11);
             this->panel11->Controls->Add(this->pictureBox10);
             this->panel11->Controls->Add(this->pictureBox9);
+            this->panel11->Location = System::Drawing::Point(1588, 13);
             this->panel11->Name = L"panel11";
             this->panel11->Size = System::Drawing::Size(346, 104);
             this->panel11->TabIndex = 9;
-            this->Resize += gcnew EventHandler(this, &MyForm::Form_Resized);
             // 
             // label109
             // 
@@ -4331,16 +4469,6 @@ private: System::Windows::Forms::Panel^ panel11;
             this->label109->Size = System::Drawing::Size(121, 32);
             this->label109->TabIndex = 8;
             this->label109->Text = L"Username";
-            // 
-            // label15
-            // 
-            this->label15->AutoSize = true;
-            this->label15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 20, System::Drawing::FontStyle::Bold));
-            this->label15->Location = System::Drawing::Point(881, 41);
-            this->label15->Name = L"label15";
-            this->label15->Size = System::Drawing::Size(383, 54);
-            this->label15->TabIndex = 6;
-            this->label15->Text = L"TimetableArchitect";
             // 
             // editteacherpanel
             // 
@@ -5190,6 +5318,15 @@ private: System::Windows::Forms::Panel^ panel11;
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
             // 
+            // textBox7
+            // 
+            this->textBox7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox7.BackgroundImage")));
+            this->textBox7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox7->Location = System::Drawing::Point(277, 412);
+            this->textBox7->Name = L"textBox7";
+            this->textBox7->Size = System::Drawing::Size(24, 22);
+            this->textBox7->TabIndex = 322;
+            // 
             // button3
             // 
             this->button3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
@@ -5590,13 +5727,14 @@ private: System::Windows::Forms::Panel^ panel11;
             // editsubsearchbutton
             // 
             this->editsubsearchbutton->BackColor = System::Drawing::Color::White;
+            this->editsubsearchbutton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"editsubsearchbutton.BackgroundImage")));
+            this->editsubsearchbutton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->editsubsearchbutton->FlatAppearance->BorderSize = 0;
             this->editsubsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->editsubsearchbutton->Location = System::Drawing::Point(838, 227);
             this->editsubsearchbutton->Name = L"editsubsearchbutton";
             this->editsubsearchbutton->Size = System::Drawing::Size(26, 29);
             this->editsubsearchbutton->TabIndex = 311;
-            this->editsubsearchbutton->Text = L"🔍";
             this->editsubsearchbutton->UseVisualStyleBackColor = false;
             this->editsubsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editsubsearchbutton_Click);
             // 
@@ -6309,7 +6447,7 @@ private: System::Windows::Forms::Panel^ panel11;
             this->button15->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->button15->ForeColor = System::Drawing::Color::White;
-            this->button15->Location = System::Drawing::Point(60, 612);
+            this->button15->Location = System::Drawing::Point(58, 620);
             this->button15->Name = L"button15";
             this->button15->Size = System::Drawing::Size(267, 44);
             this->button15->TabIndex = 22;
@@ -6324,7 +6462,7 @@ private: System::Windows::Forms::Panel^ panel11;
             this->button14->FlatAppearance->BorderSize = 0;
             this->button14->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button14->ForeColor = System::Drawing::Color::White;
-            this->button14->Location = System::Drawing::Point(57, 652);
+            this->button14->Location = System::Drawing::Point(57, 663);
             this->button14->Margin = System::Windows::Forms::Padding(0);
             this->button14->Name = L"button14";
             this->button14->Size = System::Drawing::Size(267, 34);
@@ -6342,7 +6480,7 @@ private: System::Windows::Forms::Panel^ panel11;
             this->button13->FlatAppearance->BorderSize = 0;
             this->button13->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button13->ForeColor = System::Drawing::Color::White;
-            this->button13->Location = System::Drawing::Point(55, 684);
+            this->button13->Location = System::Drawing::Point(55, 695);
             this->button13->Margin = System::Windows::Forms::Padding(0);
             this->button13->Name = L"button13";
             this->button13->Size = System::Drawing::Size(267, 34);
@@ -6418,7 +6556,7 @@ private: System::Windows::Forms::Panel^ panel11;
             // pictureBox5
             // 
             this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-            this->pictureBox5->Location = System::Drawing::Point(68, 398);
+            this->pictureBox5->Location = System::Drawing::Point(68, 406);
             this->pictureBox5->Name = L"pictureBox5";
             this->pictureBox5->Size = System::Drawing::Size(35, 44);
             this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -6438,123 +6576,25 @@ private: System::Windows::Forms::Panel^ panel11;
             // pictureBox7
             // 
             this->pictureBox7->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox7.Image")));
-            this->pictureBox7->Location = System::Drawing::Point(68, 612);
+            this->pictureBox7->Location = System::Drawing::Point(68, 623);
             this->pictureBox7->Name = L"pictureBox7";
             this->pictureBox7->Size = System::Drawing::Size(35, 44);
             this->pictureBox7->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox7->TabIndex = 31;
             this->pictureBox7->TabStop = false;
             // 
-            // textBox4
-            // 
-            this->textBox4->AutoSize = true;
-            this->textBox4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox4->Location = System::Drawing::Point(279, 308);
-            this->textBox4->Name = L"textBox4";
-            this->textBox4->Size = System::Drawing::Size(28, 26);
-            this->textBox4->TabIndex = 8;
-            this->textBox4->Text = L"◤";
-            // 
-            // textBox5
-            // 
-            this->textBox5->AutoSize = true;
-            this->textBox5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox5->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox5->Location = System::Drawing::Point(281, 309);
-            this->textBox5->Name = L"textBox5";
-            this->textBox5->Size = System::Drawing::Size(28, 26);
-            this->textBox5->TabIndex = 7;
-            this->textBox5->Text = L"◢";
-            // 
-            // textBox10
-            // 
-            this->textBox10->AutoSize = true;
-            this->textBox10->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox10->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox10->Location = System::Drawing::Point(272, 622);
-            this->textBox10->Name = L"textBox10";
-            this->textBox10->Size = System::Drawing::Size(28, 26);
-            this->textBox10->TabIndex = 32;
-            this->textBox10->Text = L"◤";
-            // 
-            // textBox8
-            // 
-            this->textBox8->AutoSize = true;
-            this->textBox8->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox8->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox8->Location = System::Drawing::Point(273, 519);
-            this->textBox8->Name = L"textBox8";
-            this->textBox8->Size = System::Drawing::Size(28, 26);
-            this->textBox8->TabIndex = 33;
-            this->textBox8->Text = L"◤";
-            // 
-            // textBox6
-            // 
-            this->textBox6->AutoSize = true;
-            this->textBox6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox6->Location = System::Drawing::Point(279, 413);
-            this->textBox6->Name = L"textBox6";
-            this->textBox6->Size = System::Drawing::Size(28, 26);
-            this->textBox6->TabIndex = 34;
-            this->textBox6->Text = L"◤";
-            // 
-            // textBox11
-            // 
-            this->textBox11->AutoSize = true;
-            this->textBox11->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox11->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox11->Location = System::Drawing::Point(272, 619);
-            this->textBox11->Name = L"textBox11";
-            this->textBox11->Size = System::Drawing::Size(28, 26);
-            this->textBox11->TabIndex = 35;
-            this->textBox11->Text = L"◢";
-            this->textBox11->Click += gcnew System::EventHandler(this, &MyForm::textBox11_Click);
-            // 
-            // textBox9
-            // 
-            this->textBox9->AutoSize = true;
-            this->textBox9->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox9->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox9->Location = System::Drawing::Point(272, 517);
-            this->textBox9->Name = L"textBox9";
-            this->textBox9->Size = System::Drawing::Size(28, 26);
-            this->textBox9->TabIndex = 36;
-            this->textBox9->Text = L"◢";
-            // 
-            // textBox7
-            // 
-            this->textBox7->AutoSize = true;
-            this->textBox7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11));
-            this->textBox7->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->textBox7->Location = System::Drawing::Point(272, 413);
-            this->textBox7->Name = L"textBox7";
-            this->textBox7->Size = System::Drawing::Size(28, 26);
-            this->textBox7->TabIndex = 37;
-            this->textBox7->Text = L"◢";
-            // 
             // panel1
             // 
             this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->panel1->Controls->Add(this->textBox11);
             this->panel1->Controls->Add(this->textBox7);
-            this->panel1->Controls->Add(this->textBox9);
-            this->panel1->Controls->Add(this->textBox6);
-            this->panel1->Controls->Add(this->textBox8);
-            this->panel1->Controls->Add(this->textBox10);
             this->panel1->Controls->Add(this->textBox5);
+            this->panel1->Controls->Add(this->textBox9);
+            this->panel1->Controls->Add(this->textBox11);
             this->panel1->Controls->Add(this->textBox4);
+            this->panel1->Controls->Add(this->textBox10);
             this->panel1->Controls->Add(this->pictureBox7);
+            this->panel1->Controls->Add(this->textBox8);
             this->panel1->Controls->Add(this->pictureBox6);
             this->panel1->Controls->Add(this->pictureBox5);
             this->panel1->Controls->Add(this->pictureBox4);
@@ -6567,6 +6607,7 @@ private: System::Windows::Forms::Panel^ panel11;
             this->panel1->Controls->Add(this->button15);
             this->panel1->Controls->Add(this->button10);
             this->panel1->Controls->Add(this->button11);
+            this->panel1->Controls->Add(this->textBox6);
             this->panel1->Controls->Add(this->button12);
             this->panel1->Controls->Add(this->button7);
             this->panel1->Controls->Add(this->button4);
@@ -6580,6 +6621,69 @@ private: System::Windows::Forms::Panel^ panel11;
             this->panel1->Name = L"panel1";
             this->panel1->Size = System::Drawing::Size(324, 967);
             this->panel1->TabIndex = 259;
+            // 
+            // textBox9
+            // 
+            this->textBox9->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox9.BackgroundImage")));
+            this->textBox9->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox9->Location = System::Drawing::Point(270, 520);
+            this->textBox9->Name = L"textBox9";
+            this->textBox9->Size = System::Drawing::Size(24, 22);
+            this->textBox9->TabIndex = 323;
+            // 
+            // textBox11
+            // 
+            this->textBox11->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox11.BackgroundImage")));
+            this->textBox11->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox11->Location = System::Drawing::Point(276, 627);
+            this->textBox11->Name = L"textBox11";
+            this->textBox11->Size = System::Drawing::Size(24, 22);
+            this->textBox11->TabIndex = 323;
+            // 
+            // textBox4
+            // 
+            this->textBox4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox4.BackgroundImage")));
+            this->textBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox4->Location = System::Drawing::Point(280, 315);
+            this->textBox4->Name = L"textBox4";
+            this->textBox4->Size = System::Drawing::Size(24, 22);
+            this->textBox4->TabIndex = 324;
+            // 
+            // textBox5
+            // 
+            this->textBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox5.BackgroundImage")));
+            this->textBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox5->Location = System::Drawing::Point(277, 313);
+            this->textBox5->Name = L"textBox5";
+            this->textBox5->Size = System::Drawing::Size(24, 22);
+            this->textBox5->TabIndex = 321;
+            // 
+            // textBox10
+            // 
+            this->textBox10->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox10.BackgroundImage")));
+            this->textBox10->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox10->Location = System::Drawing::Point(278, 627);
+            this->textBox10->Name = L"textBox10";
+            this->textBox10->Size = System::Drawing::Size(24, 22);
+            this->textBox10->TabIndex = 323;
+            // 
+            // textBox8
+            // 
+            this->textBox8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox8.BackgroundImage")));
+            this->textBox8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox8->Location = System::Drawing::Point(274, 521);
+            this->textBox8->Name = L"textBox8";
+            this->textBox8->Size = System::Drawing::Size(24, 22);
+            this->textBox8->TabIndex = 324;
+            // 
+            // textBox6
+            // 
+            this->textBox6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox6.BackgroundImage")));
+            this->textBox6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox6->Location = System::Drawing::Point(280, 412);
+            this->textBox6->Name = L"textBox6";
+            this->textBox6->Size = System::Drawing::Size(24, 22);
+            this->textBox6->TabIndex = 324;
             // 
             // classcore
             // 
@@ -8457,6 +8561,8 @@ private: System::Windows::Forms::Panel^ panel11;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->EndInit();
             this->panel4->ResumeLayout(false);
             this->panel4->PerformLayout();
+            this->panel13->ResumeLayout(false);
+            this->panel13->PerformLayout();
             this->panel11->ResumeLayout(false);
             this->editteacherpanel->ResumeLayout(false);
             this->editteacherpanel->PerformLayout();
@@ -8495,7 +8601,6 @@ private: System::Windows::Forms::Panel^ panel11;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
             this->panel1->ResumeLayout(false);
-            this->panel1->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classcore))->EndInit();
             this->classpanel->ResumeLayout(false);
             this->classpanel->PerformLayout();
@@ -9218,8 +9323,8 @@ private: System::Windows::Forms::Panel^ panel11;
         //close subject suboptions
         button10->Visible = false;
         button11->Visible = false;
-        textBox6->Visible = false;
-        textBox7->Visible = true;
+        textBox8->Visible = false;
+        textBox9->Visible = true;
         //close teachers suboption
         button8->Visible = false;
         button7->Visible = false;
@@ -9881,10 +9986,19 @@ private: System::Windows::Forms::Panel^ panel11;
     private: System::Void editsubeleyes_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
         if (editsubeleyes->Checked)
         {
-            editsubcluster->Text = "";
-            editsubeleteacher->Cursor = Cursors::Arrow;
-            editsubeleteacher->ReadOnly = false;
-            editsubcluster->Cursor = Cursors::Arrow;
+                editsubcluster->Text = "";
+                editsubeleteacher->Cursor = Cursors::Arrow;
+                editsubeleteacher->ReadOnly = false;
+                editsubcluster->Cursor = Cursors::Arrow;
+                button3->Cursor = Cursors::Arrow;
+                editsubbfactor->Value = 0;
+                editsubbfactor->ReadOnly = true;
+                editsubbfactor->Cursor = Cursors::No;
+                editsubcredits->Cursor = Cursors::No;
+                editsubcredits->Value = 0;
+                editsubcredits->ReadOnly = true;
+                editsubroomlist->Cursor = Cursors::No;
+                editsubroomlist->Enabled = false;
         }
     }
     private: System::Void editsubeleno_CheckedChanged(System::Object^ sender, System::EventArgs^ e) {
@@ -9895,6 +10009,21 @@ private: System::Windows::Forms::Panel^ panel11;
             editsubeleteacher->Rows->Clear();
             editsubeleteacher->Cursor = Cursors::No;
             editsubeleteacher->ReadOnly = true;
+            button3->Cursor = Cursors::No;
+            if (editsubelepanel->Visible)
+            {
+                editsubelepanel->Visible = false;
+                editpanelsub->Top = addsubeletablepanel->Top;
+            }
+            editsubeleteacher->ReadOnly = false;
+            editsubcredits->Value = 0;
+            editsubcredits->ReadOnly = false;
+            editsubcredits->Cursor = Cursors::Arrow;
+            editsubroomlist->Cursor = Cursors::Arrow;
+            editsubroomlist->Enabled = true;
+            editsubbfactor->Value = 0;
+            editsubbfactor->ReadOnly = false;
+            editsubbfactor->Cursor = Cursors::Arrow;
         }
     }
     private: System::Void panel7_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
@@ -10243,6 +10372,43 @@ private: System::Windows::Forms::Panel^ panel11;
     private: System::Void panel37_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
     }
     private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+        if (searchsubname == "")
+        {
+            MessageBox::Show("Select a subject", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            goto er;
+        }
+        else
+        {
+            string name, clust;
+            bool e = false;
+            for (char& n : searchsubname)
+            {
+                if (n == '(')
+                {
+                    e = true;
+                    continue;
+                }
+                if (n == ')')
+                    continue;
+                if (e)
+                {
+                    clust += n;
+                }
+                else
+                    name += n;
+            }
+            if (clust == "")
+            {
+                MessageBox::Show("Select an elective", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                goto er;
+            }
+            else if (searchsubname != clust)
+            {
+                MessageBox::Show("Cluster name cannot be changed", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
+                editsubname->Text = msclr::interop::marshal_as<String^>(replaceunderscore(clust));
+                goto er;
+            }
+        }
         if (editsubeleyes->Checked == true)
         {
             editsubelepanel->Visible = true;
@@ -10254,6 +10420,8 @@ private: System::Windows::Forms::Panel^ panel11;
         {
             MessageBox::Show("Only applicable for Electives", "Message", MessageBoxButtons::OK, MessageBoxIcon::Information);
         }
+    er:
+        {}
     }
     private: System::Void dataGridView1_CellContentClick_1(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
         deletebutton(dataGridViewButtonColumn7, classlabteachers, sender, e);
