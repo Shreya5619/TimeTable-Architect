@@ -61,7 +61,15 @@ public:
         }
     }//initialise all classes to zero.
 };
-
+class settings {
+    public:
+        std::string path;
+        int freeFactor=0;
+        float reductionIndex = 0;
+        std::vector<std::vector<bool>> defaultReserve;
+        std::string convertToString();
+        bool readData(std::string inp);
+};
 class section {
 public:
     int name;
