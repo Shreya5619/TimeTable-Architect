@@ -2484,7 +2484,8 @@ namespace TTA_ui {
     private: System::Windows::Forms::Label^ label109;
     private: System::Windows::Forms::Panel^ settingspanel;
     private: System::Windows::Forms::TrackBar^ trackBar1;
-    private: System::Windows::Forms::Label^ label110;
+private: System::Windows::Forms::Label^ freefactor;
+
     private: System::Windows::Forms::Label^ label112;
     private: System::Windows::Forms::TrackBar^ trackBar2;
     private: System::Windows::Forms::Label^ label111;
@@ -2816,6 +2817,14 @@ private: System::Windows::Forms::Panel^ textBox10;
 private: System::Windows::Forms::Panel^ textBox4;
 private: System::Windows::Forms::Panel^ textBox9;
 private: System::Windows::Forms::Panel^ textBox8;
+private: System::Windows::Forms::Label^ label45;
+private: System::Windows::Forms::Button^ button16;
+private: System::Windows::Forms::TextBox^ filepath;
+
+private: System::Windows::Forms::FolderBrowserDialog^ fbd;
+
+
+
 
 
 
@@ -3043,7 +3052,6 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->label81 = (gcnew System::Windows::Forms::Label());
             this->editroomsearch = (gcnew System::Windows::Forms::ComboBox());
             this->editsubjectpanel = (gcnew System::Windows::Forms::Panel());
-            this->textBox7 = (gcnew System::Windows::Forms::Panel());
             this->button3 = (gcnew System::Windows::Forms::Button());
             this->editsubelepanel = (gcnew System::Windows::Forms::Panel());
             this->panel39 = (gcnew System::Windows::Forms::Panel());
@@ -3089,7 +3097,11 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->dataGridViewButtonColumn10 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->editsubname = (gcnew System::Windows::Forms::TextBox());
             this->label93 = (gcnew System::Windows::Forms::Label());
+            this->textBox7 = (gcnew System::Windows::Forms::Panel());
             this->settingspanel = (gcnew System::Windows::Forms::Panel());
+            this->filepath = (gcnew System::Windows::Forms::TextBox());
+            this->button16 = (gcnew System::Windows::Forms::Button());
+            this->label45 = (gcnew System::Windows::Forms::Label());
             this->panel20 = (gcnew System::Windows::Forms::Panel());
             this->panel21 = (gcnew System::Windows::Forms::Panel());
             this->panel22 = (gcnew System::Windows::Forms::Panel());
@@ -3110,7 +3122,7 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->trackBar2 = (gcnew System::Windows::Forms::TrackBar());
             this->label111 = (gcnew System::Windows::Forms::Label());
             this->trackBar1 = (gcnew System::Windows::Forms::TrackBar());
-            this->label110 = (gcnew System::Windows::Forms::Label());
+            this->freefactor = (gcnew System::Windows::Forms::Label());
             this->button1 = (gcnew System::Windows::Forms::Button());
             this->button6 = (gcnew System::Windows::Forms::Button());
             this->button9 = (gcnew System::Windows::Forms::Button());
@@ -3133,10 +3145,10 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
             this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
             this->panel1 = (gcnew System::Windows::Forms::Panel());
+            this->textBox5 = (gcnew System::Windows::Forms::Panel());
             this->textBox9 = (gcnew System::Windows::Forms::Panel());
             this->textBox11 = (gcnew System::Windows::Forms::Panel());
             this->textBox4 = (gcnew System::Windows::Forms::Panel());
-            this->textBox5 = (gcnew System::Windows::Forms::Panel());
             this->textBox10 = (gcnew System::Windows::Forms::Panel());
             this->textBox8 = (gcnew System::Windows::Forms::Panel());
             this->textBox6 = (gcnew System::Windows::Forms::Panel());
@@ -3249,6 +3261,7 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->sectiondeletedatagridview = (gcnew System::Windows::Forms::DataGridView());
             this->classcolumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->classdeletebutton = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->fbd = (gcnew System::Windows::Forms::FolderBrowserDialog());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->BeginInit();
             this->addsubjectpanel->SuspendLayout();
@@ -5312,20 +5325,11 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->editsubjectpanel->Controls->Add(this->editsubname);
             this->editsubjectpanel->Controls->Add(this->label93);
             this->editsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->editsubjectpanel->Location = System::Drawing::Point(324, 139);
+            this->editsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->editsubjectpanel->Name = L"editsubjectpanel";
-            this->editsubjectpanel->Size = System::Drawing::Size(1622, 967);
+            this->editsubjectpanel->Size = System::Drawing::Size(1946, 1106);
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
-            // 
-            // textBox7
-            // 
-            this->textBox7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox7.BackgroundImage")));
-            this->textBox7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox7->Location = System::Drawing::Point(277, 412);
-            this->textBox7->Name = L"textBox7";
-            this->textBox7->Size = System::Drawing::Size(24, 22);
-            this->textBox7->TabIndex = 322;
             // 
             // button3
             // 
@@ -5966,20 +5970,58 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->label93->TabIndex = 264;
             this->label93->Text = L"Subject Name";
             // 
+            // textBox7
+            // 
+            this->textBox7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox7.BackgroundImage")));
+            this->textBox7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox7->Location = System::Drawing::Point(277, 412);
+            this->textBox7->Name = L"textBox7";
+            this->textBox7->Size = System::Drawing::Size(24, 22);
+            this->textBox7->TabIndex = 322;
+            // 
             // settingspanel
             // 
             this->settingspanel->AutoScroll = true;
+            this->settingspanel->Controls->Add(this->filepath);
+            this->settingspanel->Controls->Add(this->button16);
+            this->settingspanel->Controls->Add(this->label45);
             this->settingspanel->Controls->Add(this->panel20);
             this->settingspanel->Controls->Add(this->label112);
             this->settingspanel->Controls->Add(this->trackBar2);
             this->settingspanel->Controls->Add(this->label111);
             this->settingspanel->Controls->Add(this->trackBar1);
-            this->settingspanel->Controls->Add(this->label110);
+            this->settingspanel->Controls->Add(this->freefactor);
             this->settingspanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->settingspanel->Location = System::Drawing::Point(0, 0);
+            this->settingspanel->Location = System::Drawing::Point(324, 139);
             this->settingspanel->Name = L"settingspanel";
-            this->settingspanel->Size = System::Drawing::Size(1946, 1106);
+            this->settingspanel->Size = System::Drawing::Size(1622, 967);
             this->settingspanel->TabIndex = 286;
+            // 
+            // filepath
+            // 
+            this->filepath->Location = System::Drawing::Point(414, 98);
+            this->filepath->Name = L"filepath";
+            this->filepath->Size = System::Drawing::Size(377, 26);
+            this->filepath->TabIndex = 303;
+            // 
+            // button16
+            // 
+            this->button16->Location = System::Drawing::Point(795, 96);
+            this->button16->Name = L"button16";
+            this->button16->Size = System::Drawing::Size(92, 30);
+            this->button16->TabIndex = 302;
+            this->button16->Text = L"Browse";
+            this->button16->UseVisualStyleBackColor = true;
+            this->button16->Click += gcnew System::EventHandler(this, &MyForm::button16_Click);
+            // 
+            // label45
+            // 
+            this->label45->AutoSize = true;
+            this->label45->Location = System::Drawing::Point(420, 63);
+            this->label45->Name = L"label45";
+            this->label45->Size = System::Drawing::Size(73, 20);
+            this->label45->TabIndex = 301;
+            this->label45->Text = L"File PAth";
             // 
             // panel20
             // 
@@ -5998,7 +6040,7 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->panel20->Controls->Add(this->label102);
             this->panel20->Controls->Add(this->label121);
             this->panel20->Controls->Add(this->label122);
-            this->panel20->Location = System::Drawing::Point(350, 494);
+            this->panel20->Location = System::Drawing::Point(327, 667);
             this->panel20->Name = L"panel20";
             this->panel20->Size = System::Drawing::Size(1183, 621);
             this->panel20->TabIndex = 300;
@@ -6188,7 +6230,7 @@ private: System::Windows::Forms::Panel^ textBox8;
             // label112
             // 
             this->label112->AutoSize = true;
-            this->label112->Location = System::Drawing::Point(449, 454);
+            this->label112->Location = System::Drawing::Point(426, 627);
             this->label112->Name = L"label112";
             this->label112->Size = System::Drawing::Size(152, 20);
             this->label112->TabIndex = 4;
@@ -6196,7 +6238,7 @@ private: System::Windows::Forms::Panel^ textBox8;
             // 
             // trackBar2
             // 
-            this->trackBar2->Location = System::Drawing::Point(437, 290);
+            this->trackBar2->Location = System::Drawing::Point(414, 463);
             this->trackBar2->Maximum = 7;
             this->trackBar2->Minimum = 1;
             this->trackBar2->Name = L"trackBar2";
@@ -6207,30 +6249,31 @@ private: System::Windows::Forms::Panel^ textBox8;
             // label111
             // 
             this->label111->AutoSize = true;
-            this->label111->Location = System::Drawing::Point(449, 247);
+            this->label111->Location = System::Drawing::Point(426, 420);
             this->label111->Name = L"label111";
-            this->label111->Size = System::Drawing::Size(265, 20);
+            this->label111->Size = System::Drawing::Size(88, 20);
             this->label111->TabIndex = 2;
-            this->label111->Text = L"Maximum number of classes per day";
+            this->label111->Text = L"busyFactor";
             // 
             // trackBar1
             // 
-            this->trackBar1->Location = System::Drawing::Point(431, 136);
+            this->trackBar1->Location = System::Drawing::Point(408, 309);
             this->trackBar1->Maximum = 7;
             this->trackBar1->Minimum = 1;
             this->trackBar1->Name = L"trackBar1";
             this->trackBar1->Size = System::Drawing::Size(442, 69);
             this->trackBar1->TabIndex = 1;
+            this->trackBar1->TickStyle = System::Windows::Forms::TickStyle::TopLeft;
             this->trackBar1->Value = 1;
             // 
-            // label110
+            // freefactor
             // 
-            this->label110->AutoSize = true;
-            this->label110->Location = System::Drawing::Point(443, 93);
-            this->label110->Name = L"label110";
-            this->label110->Size = System::Drawing::Size(247, 20);
-            this->label110->TabIndex = 0;
-            this->label110->Text = L"Maximum number of working days";
+            this->freefactor->AutoSize = true;
+            this->freefactor->Location = System::Drawing::Point(420, 266);
+            this->freefactor->Name = L"freefactor";
+            this->freefactor->Size = System::Drawing::Size(87, 20);
+            this->freefactor->TabIndex = 0;
+            this->freefactor->Text = L"free Factor";
             // 
             // button1
             // 
@@ -6622,6 +6665,15 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->panel1->Size = System::Drawing::Size(324, 967);
             this->panel1->TabIndex = 259;
             // 
+            // textBox5
+            // 
+            this->textBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox5.BackgroundImage")));
+            this->textBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->textBox5->Location = System::Drawing::Point(277, 313);
+            this->textBox5->Name = L"textBox5";
+            this->textBox5->Size = System::Drawing::Size(24, 22);
+            this->textBox5->TabIndex = 321;
+            // 
             // textBox9
             // 
             this->textBox9->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox9.BackgroundImage")));
@@ -6648,15 +6700,6 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->textBox4->Name = L"textBox4";
             this->textBox4->Size = System::Drawing::Size(24, 22);
             this->textBox4->TabIndex = 324;
-            // 
-            // textBox5
-            // 
-            this->textBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox5.BackgroundImage")));
-            this->textBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox5->Location = System::Drawing::Point(277, 313);
-            this->textBox5->Name = L"textBox5";
-            this->textBox5->Size = System::Drawing::Size(24, 22);
-            this->textBox5->TabIndex = 321;
             // 
             // textBox10
             // 
@@ -8515,19 +8558,19 @@ private: System::Windows::Forms::Panel^ textBox8;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1946, 1106);
-            this->Controls->Add(this->editsubjectpanel);
+            this->Controls->Add(this->settingspanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
+            this->Controls->Add(this->addteacherpanel);
+            this->Controls->Add(this->addsubjectpanel);
+            this->Controls->Add(this->editroompanel);
+            this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
             this->Controls->Add(this->classpanel);
             this->Controls->Add(this->deleteclasspanel);
             this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel2);
-            this->Controls->Add(this->settingspanel);
-            this->Controls->Add(this->addteacherpanel);
-            this->Controls->Add(this->addsubjectpanel);
-            this->Controls->Add(this->editroompanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -9866,6 +9909,7 @@ private: System::Windows::Forms::Panel^ textBox8;
     }
     private: System::Void pictureBox11_Click(System::Object^ sender, System::EventArgs^ e) {
         settingspanel->BringToFront();
+        //InitializeMatrix();
     }
     private: System::Void addteachernew_Click(System::Object^ sender, System::EventArgs^ e) {
         addteachername->Clear();
@@ -10527,5 +10571,11 @@ private: System::Windows::Forms::Panel^ textBox8;
     }
     private: System::Void classlabcombo_MaskInputRejected(System::Object^ sender, System::Windows::Forms::MaskInputRejectedEventArgs^ e) {
     }
+private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ e) {
+    if(fbd->ShowDialog()==System::Windows::Forms::DialogResult::OK);
+    {
+        filepath->Text = fbd->SelectedPath;
+    }
+} 
 };
 }
