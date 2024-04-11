@@ -2482,7 +2482,9 @@ namespace TTA_ui {
     private: System::Windows::Forms::Label^ label82;
     private: System::Windows::Forms::Panel^ editsubjectpanel;
     private: System::Windows::Forms::Label^ label109;
-    private: System::Windows::Forms::Panel^ settingspanel;
+private: System::Windows::Forms::Panel^ settingspanel;
+
+
     private: System::Windows::Forms::TrackBar^ trackBar1;
 private: System::Windows::Forms::Label^ freefactor;
 
@@ -2593,7 +2595,8 @@ private: System::Windows::Forms::Label^ freefactor;
     private: System::Windows::Forms::Panel^ panel18;
     private: System::Windows::Forms::Label^ label51;
     private: System::Windows::Forms::Panel^ panel20;
-    private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel2;
+private: System::Windows::Forms::TableLayoutPanel^ settingstable;
+
     private: System::Windows::Forms::Label^ label83;
     private: System::Windows::Forms::Label^ label84;
     private: System::Windows::Forms::Label^ label85;
@@ -3105,7 +3108,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             this->panel20 = (gcnew System::Windows::Forms::Panel());
             this->panel21 = (gcnew System::Windows::Forms::Panel());
             this->panel22 = (gcnew System::Windows::Forms::Panel());
-            this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->settingstable = (gcnew System::Windows::Forms::TableLayoutPanel());
             this->label83 = (gcnew System::Windows::Forms::Label());
             this->label84 = (gcnew System::Windows::Forms::Label());
             this->label85 = (gcnew System::Windows::Forms::Label());
@@ -4465,7 +4468,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             this->panel11->Controls->Add(this->pictureBox11);
             this->panel11->Controls->Add(this->pictureBox10);
             this->panel11->Controls->Add(this->pictureBox9);
-            this->panel11->Location = System::Drawing::Point(1588, 13);
+            this->panel11->Location = System::Drawing::Point(1600, 16);
             this->panel11->Name = L"panel11";
             this->panel11->Size = System::Drawing::Size(346, 104);
             this->panel11->TabIndex = 9;
@@ -6027,7 +6030,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             // 
             this->panel20->Controls->Add(this->panel21);
             this->panel20->Controls->Add(this->panel22);
-            this->panel20->Controls->Add(this->tableLayoutPanel2);
+            this->panel20->Controls->Add(this->settingstable);
             this->panel20->Controls->Add(this->label83);
             this->panel20->Controls->Add(this->label84);
             this->panel20->Controls->Add(this->label85);
@@ -6063,37 +6066,37 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             this->panel22->Size = System::Drawing::Size(44, 436);
             this->panel22->TabIndex = 1;
             // 
-            // tableLayoutPanel2
+            // settingstable
             // 
-            this->tableLayoutPanel2->ColumnCount = 8;
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+            this->settingstable->ColumnCount = 8;
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66354F)));
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66743F)));
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
                 50)));
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66354F)));
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66686F)));
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
                 50)));
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66887F)));
-            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+            this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->tableLayoutPanel2->Location = System::Drawing::Point(140, 113);
-            this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
-            this->tableLayoutPanel2->RowCount = 6;
-            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->tableLayoutPanel2->Size = System::Drawing::Size(949, 435);
-            this->tableLayoutPanel2->TabIndex = 260;
-            this->tableLayoutPanel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::tableLayoutPanel2_Paint);
+            this->settingstable->Location = System::Drawing::Point(140, 113);
+            this->settingstable->Name = L"settingstable";
+            this->settingstable->RowCount = 6;
+            this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->settingstable->Size = System::Drawing::Size(949, 435);
+            this->settingstable->TabIndex = 260;
+            this->settingstable->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::tableLayoutPanel2_Paint);
             // 
             // label83
             // 
@@ -9909,7 +9912,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
     }
     private: System::Void pictureBox11_Click(System::Object^ sender, System::EventArgs^ e) {
         settingspanel->BringToFront();
-        //InitializeMatrix();
+        InitializeMatrix(settingstable,"set","Open",3);
     }
     private: System::Void addteachernew_Click(System::Object^ sender, System::EventArgs^ e) {
         addteachername->Clear();
@@ -10575,6 +10578,25 @@ private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ 
     if(fbd->ShowDialog()==System::Windows::Forms::DialogResult::OK);
     {
         filepath->Text = fbd->SelectedPath;
+        string x;
+        x+= msclr::interop::marshal_as<string>(filepath->Text)+",";
+       x+= to_string(trackBar1->Value)+",";
+        x+=to_string(trackBar2->Value);
+        for (int i = 1; i < 37; i++)
+        {
+            Button^ button = dynamic_cast<Button^>(settingstable->Controls[String::Format("buttonset{0}",i)]);
+            if (button != nullptr)
+            {
+                if (button->Text == "Reserved")
+                {
+                    x += ",1";
+                }
+                else
+                    x += ",0";
+            }
+        }
+        settings obj;
+        obj.readData(x);
     }
 } 
 };
