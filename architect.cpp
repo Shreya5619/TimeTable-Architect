@@ -605,7 +605,7 @@ void section::makeTIMETABLE() {
                             t.timeTableName[k][highestindex] = name;
                             t.timeTableName[k][highestindex + 1] = name;
                         }
-                        for (auto rooms : allCombs[index][0]) {
+                        for (auto rooms : allCombs[index][1]) {
                             room& r = returnRoom(rooms);
                             r.timeTable[k][highestindex] = 1;
                             r.timeTable[k][highestindex + 1] = 1;
