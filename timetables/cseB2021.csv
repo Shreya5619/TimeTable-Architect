@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+21AI52,21CS54,DBS/DBS/AIML,DBS/DBS/AIML,21CS54(T),f,
+21HS51A,PCC1,21AI52,21CS53,f,f,
+AIML/AIML/DBS,AIML/AIML/DBS,21CS53,21HS51A,PAT,PAT,
+21CS53,21HS51A,21CS54,PCC1,f,f,
+21CS54,21AI52,PCC1,21CS54(T),SI,SI,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+soumya a,krishnappa h k,MSS|shobha g|SM|,MSS|shobha g|SM|,krishnappa h k,f,
+f1,PCC1,soumya a,shobha g,f,f,
+TD|VH|HR|,TD|VH|HR|,shobha g,f1,PAT,PAT,
+shobha g,f1,krishnappa h k,PCC1,f,f,
+krishnappa h k,soumya a,PCC1,krishnappa h k,SI,SI,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+CS210,CS210,Lab11|Lab6|Lab9|,Lab11|Lab6|Lab9|,CS210,NA,
+CS210,NA,CS210,CS210,NA,NA,
+Lab11|Lab3|Lab6|,Lab11|Lab3|Lab6|,CS210,CS210,NA,NA,
+CS210,CS210,CS210,NA,NA,NA,
+CS210,CS210,NA,CS210,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
