@@ -9216,6 +9216,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
                                             file << "," << row[i];
                                     }
                                 }
+                                file << endl;
                             }
                             else
                             {
@@ -9256,10 +9257,9 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
                                         file << ",0";
                                 }
                             }
-
+                            file << endl;
                         }
                     }
-                    file << "\n";
                     file.close();
                     ofstream tFile("details/teacher_file.csv");
                     if (tFile.is_open()) {

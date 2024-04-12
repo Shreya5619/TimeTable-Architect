@@ -614,8 +614,8 @@ void section::makeTIMETABLE() {
                         }
                         //decrease the factors to reduce prefereence of allotment on same time again
                         for (int j = 0; j < days; j++) {
-                            interSectionList[index][j][highestindex] /= 2;
-                            interSectionList[index][j][highestindex + 1] /= 2;
+                            interSectionList[index][j][highestindex] /= reductionIndexC;
+                            interSectionList[index][j][highestindex + 1] /= reductionIndexC;
                         }
                         //convert the period to -1 to prevent further allotment on the same day.
                         interSectionList[index][k][0] = -1;
