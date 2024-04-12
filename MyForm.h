@@ -271,11 +271,7 @@ namespace TTA_ui {
             vector<vector<string>> data = ReadCSVFile(filename);
 
             for (const auto& row : data) {
-                string rowString;
-                for (const auto& cell : row) {
-                    rowString += cell;
-                }
-                it.push_back(replaceunderscore(rowString));
+                it.push_back(replaceunderscore(row[0]));
             }
             std::sort(it.begin(), it.end());
             for (int i = 0; i < it.size(); i++)
@@ -3477,9 +3473,9 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             this->addsubjectpanel->Controls->Add(this->label49);
             this->addsubjectpanel->Controls->Add(this->sedataGridView);
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->addsubjectpanel->Location = System::Drawing::Point(324, 139);
+            this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->addsubjectpanel->Name = L"addsubjectpanel";
-            this->addsubjectpanel->Size = System::Drawing::Size(1622, 967);
+            this->addsubjectpanel->Size = System::Drawing::Size(1946, 1106);
             this->addsubjectpanel->TabIndex = 124;
             this->addsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addsubjectpanel_Paint);
             // 
@@ -5162,13 +5158,14 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             // editroomsearchbutton
             // 
             this->editroomsearchbutton->BackColor = System::Drawing::Color::White;
+            this->editroomsearchbutton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"editroomsearchbutton.BackgroundImage")));
+            this->editroomsearchbutton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->editroomsearchbutton->FlatAppearance->BorderSize = 0;
             this->editroomsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->editroomsearchbutton->Location = System::Drawing::Point(970, 183);
             this->editroomsearchbutton->Name = L"editroomsearchbutton";
             this->editroomsearchbutton->Size = System::Drawing::Size(26, 29);
             this->editroomsearchbutton->TabIndex = 292;
-            this->editroomsearchbutton->Text = L"🔍";
             this->editroomsearchbutton->UseVisualStyleBackColor = false;
             this->editroomsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editroomsearchbutton_Click);
             // 
@@ -5301,6 +5298,8 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             // 
             // editroomsearch
             // 
+            this->editroomsearch->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+            this->editroomsearch->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
             this->editroomsearch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editroomsearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -5772,7 +5771,6 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             // 
             this->editsubsearch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->editsubsearch->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
             this->editsubsearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editsubsearch->ForeColor = System::Drawing::SystemColors::WindowFrame;
@@ -5782,6 +5780,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             this->editsubsearch->Name = L"editsubsearch";
             this->editsubsearch->Size = System::Drawing::Size(360, 36);
             this->editsubsearch->TabIndex = 312;
+            this->editsubsearch->Text = L"Search";
             this->editsubsearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocusSub);
             this->editsubsearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownsubject);
             this->editsubsearch->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspacesearch);
@@ -8573,10 +8572,8 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1946, 1106);
-            this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->panel4);
-            this->Controls->Add(this->editroompanel);
             this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
@@ -8586,6 +8583,8 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             this->Controls->Add(this->panel2);
             this->Controls->Add(this->settingspanel);
             this->Controls->Add(this->addteacherpanel);
+            this->Controls->Add(this->addsubjectpanel);
+            this->Controls->Add(this->editroompanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -9760,7 +9759,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
         }
     }
     private: System::Void button4_Click_1(System::Object^ sender, System::EventArgs^ e) {
-
+        
         editroompanel->BringToFront();
         panel3->Height = button6->Height;
         panel3->Top = button6->Top;
@@ -9773,6 +9772,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
         DisplayCSVInComboBox1("details/dept_file.csv", editroomdepartment);
+        DisplayCSVInComboBox1("details/classroom.csv",editroomsearch);
     }
     private: System::Void editroomsearchbutton_Click(System::Object^ sender, System::EventArgs^ e) {
 
