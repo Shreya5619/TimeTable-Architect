@@ -24,6 +24,7 @@ std::string settings::convertToString() {
     }
     return out;
 }
+
 bool settings::readData(std::string inp) {
     defaultReserve=std::vector<std::vector<bool>>(6,std::vector<bool>(6,0));
     enum format {
