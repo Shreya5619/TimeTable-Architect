@@ -9483,34 +9483,11 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
                     }
                     String^ sec = classname->Text->ToString();
                     string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
-                    int secval;
-                    //Making class name
-                    if (Sec[0] > 'Z')
-                    {
-                        secval = Sec[0] - 'a';
-                    }
-                    else
-                        secval = Sec[0] - 'A';
                     String^ branch = classbranch->Text->ToString();
                     string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
-                    int branchval = 0;
-                    for (int i = 0; i < Branch.size(); i++)
-                        if (Branch[i] > 'Z')
-                        {
-                            branchval = Branch[i] - 'a';
-                        }
-                        else
-                            branchval = Branch[i] - 'A';
                     String^ year = classbatch->Text->ToString();
                     string YEAR = msclr::interop::marshal_as<string>(year);
-                    int intyear = 0;
-
-                    for (int i = 0; i < YEAR.size(); i++) {
-                        intyear *= 10;
-                        intyear += YEAR[i] - '0';
-                    }
-                    int idClass = intyear * 10000 + branchval * 10 + secval;
-                    obj.name = idClass;
+                    obj.name = Sec+YEAR+Branch;
                     allteachersfunction("details/teacher_file.csv", obj);
                     allroomsfunction("details/classroom.csv", obj);
                     //alloting default rooms
@@ -10243,34 +10220,12 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
             finalttpanel->Top = panel36->Bottom;
             String^ sec = (classname)->Text->ToString();
             string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
-            int secval;
-            //Making class name
-            if (Sec[0] > 'Z')
-            {
-                secval = Sec[0] - 'a';
-            }
-            else
-                secval = Sec[0] - 'A';
             String^ branch = classbranch->Text->ToString();
             string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
-            int branchval = 0;
-            for (int i = 0; i < Branch.size(); i++)
-                if (Branch[i] > 'Z')
-                {
-                    branchval = Branch[i] - 'a';
-                }
-                else
-                    branchval = Branch[i] - 'A';
             String^ year = classbatch->Text->ToString();
             string YEAR = msclr::interop::marshal_as<string>(year);
-            int intyear = 0;
-
-            for (int i = 0; i < YEAR.size(); i++) {
-                intyear *= 10;
-                intyear += YEAR[i] - '0';
-            }
-            int idClass = intyear * 10000 + branchval * 10 + secval;
-            obj.name = idClass;
+            
+            obj.name = Sec + YEAR + Branch;
             allteachersfunction("details/teacher_file.csv", obj);
             allroomsfunction("details/classroom.csv", obj);
             //alloting default rooms
