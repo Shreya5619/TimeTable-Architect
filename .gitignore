@@ -362,5 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-#files in details dir to be ignored
+#files in details and timetables/ dir to be ignored
 details
