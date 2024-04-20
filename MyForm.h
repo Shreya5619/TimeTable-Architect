@@ -959,7 +959,7 @@ namespace TTA_ui {
             vector<vector<string>> data = ReadCSVFile(filename);
 
             for (const auto& row : data) {
-                a.push_back(replaceunderscore(row[i]));
+                    a.push_back(replaceunderscore(row[i]));
             }
             std::sort(a.begin(), a.end());
             for (int i = 0; i < a.size(); i++)
@@ -1038,6 +1038,10 @@ namespace TTA_ui {
             {
                 dataTable->Rows->Add(msclr::interop::marshal_as<String^>(replaceunderscore(it[i])));
             }
+            if (name == "cteacher" || name == "lteacher1" || name=="editsubeleteachercombo")
+            {
+                dataTable->Rows->Add("No Teacher");
+            }
             return dataTable;
         }
         std::string returnLine(std::string name, std::string path) {
@@ -1088,34 +1092,6 @@ namespace TTA_ui {
     public:
         void labcreate(vector<vector<string>> teachers, section& t)
         {
-            //vector<vector<string>>abc = ReadCSVFile("details/teacher_file.csv");
-            //for (int i = 0; i < classlab->RowCount; ++i)
-            //{
-            //    if (classlab->Rows[i]->Cells[0]->Value != nullptr)
-            //    {
-            //        System::String^ cellvalue = classlab->Rows[i]->Cells[0]->Value->ToString();
-            //        std::string CellValue = replacewhitespace(msclr::interop::marshal_as<string>(cellvalue));
-            //        vector<string> a;
-            //        int j;
-            //        for (j = 0; j < abc.size(); j++)
-            //        {
-            //            if (CellValue == (abc[j][0]))
-            //            {
-            //                ::subject  subj;
-            //                subj.readData(returnLine(abc[j][0], "details/subject_file.csv"));
-            //                for (int x = 1; x < abc[j].size(); x++)
-            //                {
-            //                    if (abc[j][x][0] == '[')
-            //                        break;
-            //                    a.push_back(abc[j][x]);
-            //                }
-            //                t.addLab(a, subj, 2, 2);
-            //                break;
-            //            }
-            //        }
-            //    }
-
-            //}
             for (auto row : teachers)
             {
                 subject subj;
@@ -2018,6 +1994,15 @@ namespace TTA_ui {
                     obj.readData(line);
                     t.allRooms.push_back(obj);
                 }
+                room obj;
+                string line = "No_Room,0,0,nil";
+                for (int i = 0; i < 72; i++)
+                {
+                    line += ",0";
+                }
+                line += "\n";
+                obj.readData(line);
+                t.allRooms.push_back(obj);
             }
             outputFile.close();
         }
@@ -2035,6 +2020,15 @@ namespace TTA_ui {
                     obj.readData(line);
                     t.allTeachers.push_back(obj);
                 }
+                teacher obj;
+                string line = "No_Teacher,nil,nil";
+                for (int i = 0; i < 72; i++)
+                {
+                    line += ",0";
+                }
+                line += "\n";
+                obj.readData(line);
+                t.allTeachers.push_back(obj);
             }
             output.close();
         }
@@ -9621,6 +9615,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
                 {
                     for (auto t : allsections[allsections.size() - 1].allTeachers)
                     {
+                        if(t.name!="No_Teacher")
                         files << t.convertToString() << "\n";
                     }
 
@@ -9633,6 +9628,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
                 {
                     for (auto t : allsections[allsections.size() - 1].allRooms)
                     {
+                        if(t.name!="No_Room")
                         fils << t.convertToString() << "\n";
                     }
 
@@ -10287,6 +10283,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
         button7->BackColor = Color::FromArgb(0, 0, 77);
         classpanel->BringToFront();
         DisplayCSVInListBox("details/classroom.csv", classlabroomlist, 0);
+        classlabroomlist->Items->Add("No Room");
         InitializeMatrix(classtablegen, "res", "Open", 3);
         InitializeMatrix(classtablegen1, "g", "free", -1);
         finalttpanel->Top = classsave->Bottom;
