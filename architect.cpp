@@ -53,7 +53,7 @@ bool section::deAllocate() {
 }
 std::string section::convertToString() {
     std::string out;
-    out = std::to_string(name);
+    out = name;
     for (int i = 0; i < days; i++) {
         for (int j = 0; j < periods; j++) {
             out += "," + timeTable[i][j] + "," + teacherTable[i][j] + "," + roomTable[i][j];
@@ -96,7 +96,7 @@ bool section::readData(std::string inp) {
             }
             switch (commaCount) {
             case namen:
-                name = name * 10 + inp[i] - '0';
+                name += inp[i] ;
                 break;
             case timeTablen:
                 int commacount = 0;

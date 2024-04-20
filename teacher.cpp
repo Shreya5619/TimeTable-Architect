@@ -4,20 +4,21 @@
 #include<vector>
 //includes
 //namespace declaration
+
 class teacher {
 public:
     std::string name;//name of teacher
     std::string branch;//branch of teacher
     std::string email;
     std::vector<std::vector<bool>> timeTable;//when teacher is free. 1 for free 0 for occupiued.
-    std::vector<std::vector<unsigned>> timeTableName;//what teacher is teaching when occupied. changes done by program, not taken from user.
+    std::vector<std::vector<std::string>> timeTableName;//what teacher is teaching when occupied. changes done by program, not taken from user.
 
     bool readData(std::string inp);//function which converts std::string input from teacherdata to the objects data
     std::string convertToString();//reverse of above
     void showTimeTable();
     teacher() {
         std::vector<bool> a(periods);
-        std::vector<unsigned> b(periods, 0);
+        std::vector<std::string> b(periods, "");
         for (int i = 0; i < days; i++) {
             timeTable.push_back(a);
             timeTableName.push_back(b);
@@ -64,7 +65,7 @@ bool teacher::readData(std::string inp) {
                         timeTable[commacount / 12][(commacount % 12) / 2] = inp[strptr] - '0';
                     }
                     else {
-                        timeTableName[commacount / 12][(commacount % 12) / 2] = timeTableName[commacount / 12][(commacount % 12) / 2] * 10 + inp[strptr] - '0';
+                        timeTableName[commacount / 12][(commacount % 12) / 2] += inp[strptr];
                     }
                     strptr++;
                 }
@@ -90,7 +91,7 @@ std::string teacher::convertToString() {
     //output+=std::to_string(workHours);
     for (int i = 0; i < days; i++) {
         for (int j = 0; j < days; j++) {
-            output += "," + std::to_string(timeTable[i][j]) + "," + std::to_string(timeTableName[i][j]);
+            output += "," + std::to_string(timeTable[i][j]) + "," + timeTableName[i][j];
         }
     }
     return output;
