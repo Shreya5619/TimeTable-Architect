@@ -13,6 +13,7 @@ extern std::string searchroomname;
 extern std::string searchsubname;
 extern std::vector<std::vector<bool>>reserveMatrix;
 extern std::vector<std::vector<std::string>>labteachers;
+extern std::string lastpanel;
 namespace TTA_ui {
     using namespace std;
     using namespace System::IO;
@@ -36,7 +37,9 @@ namespace TTA_ui {
             InitializeComponent();
             //
             //TODO: Add the constructor code here
-            //
+            //// Initialize the form components
+            timer1->Interval = 50; // Set the interval for the timer (adjust as needed)
+            timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick_1);
         }
         System::Void EditingControlShowing(System::Object^ sender, System::Windows::Forms::DataGridViewEditingControlShowingEventArgs^ e)
         {
@@ -47,6 +50,48 @@ namespace TTA_ui {
                 System::Windows::Forms::TextBox^ textBox = dynamic_cast<System::Windows::Forms::TextBox^>(e->Control);
                 textBox->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             }
+        }
+    private: System::Windows::Forms::Timer^ timer1;
+    private: ComponentFactory::Krypton::Toolkit::KryptonButton^ editsubactivepanel;
+
+    public:
+        int animationProgress = 0;
+    private: System::Void timer1_Tick_1(System::Object^ sender, System::EventArgs^ e) {
+        animationProgress++;
+        // Update the border color based on the animation progress
+        if (animationProgress <= 2) {
+            editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch90;
+
+            editsubactivepanel->Height = int(editsubtitlegroup->Panel->Height * 0.25);
+        }
+        else if (animationProgress <=4) {
+            editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch50;
+            editsubactivepanel->Height = int(editsubtitlegroup->Height * 0.5);
+        }
+        else if (animationProgress <= 5.5) {
+            editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch33;
+            editsubactivepanel->Height = int(editsubtitlegroup->Height * 0.6875);
+        }
+        else if (animationProgress <= 6.5) {
+            editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch25;
+            editsubactivepanel->Height = int(editsubtitlegroup->Height * 0.8125);
+        }
+        // If the animation is complete, stop the timer
+        if (animationProgress >= 8) {
+
+            editsubactivepanel->Height = (editsubtitlegroup->Height);
+            editsubtitlegroup->StateCommon->Border->Color1 = Color::FromArgb(0, 0, 77);
+            editsubtitlegroup->StateCommon->Border->Color1 = Color::FromArgb(0, 0, 77);
+            timer1->Stop();
+        }
+        }
+        // Method to start the animation
+        void StartAnimation() {
+            // Reset the animation progress
+            animationProgress = 0;
+
+            // Start the timer
+            timer1->Start();
         }
         void textBox_KeyDown(Object^ sender, KeyEventArgs^ e)
         {
@@ -2876,7 +2921,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubsearchgroup
 
 private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel2;
 private: System::Windows::Forms::Label^ label99;
-private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
+
 
 
 
@@ -2954,6 +2999,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
         /// </summary>
         void InitializeComponent(void)
         {
+            this->components = (gcnew System::ComponentModel::Container());
             System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle58 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle59 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
@@ -3168,7 +3214,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubeleyes = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
             this->editsubeleno = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
             this->editsubnamegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->kryptonPanel2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
             this->kryptonPanel3 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
             this->label93 = (gcnew System::Windows::Forms::Label());
             this->editsubname = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
@@ -3208,6 +3253,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubeleteacher = (gcnew System::Windows::Forms::DataGridView());
             this->editsubeleteachercombo = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn10 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->editsubactivepanel = (gcnew ComponentFactory::Krypton::Toolkit::KryptonButton());
             this->kryptonPanel6 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
             this->kryptonLabel1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonLabel());
             this->panel4 = (gcnew System::Windows::Forms::Panel());
@@ -3382,6 +3428,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->classcolumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->classdeletebutton = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->fbd = (gcnew System::Windows::Forms::FolderBrowserDialog());
+            this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->BeginInit();
             this->addsubjectpanel->SuspendLayout();
@@ -3424,7 +3471,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup->Panel))->BeginInit();
             this->editsubnamegroup->Panel->SuspendLayout();
             this->editsubnamegroup->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel2))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->BeginInit();
@@ -5332,7 +5378,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubjectpanel->AutoScroll = true;
             this->editsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
                 static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubjectpanel->Controls->Add(this->kryptonLabel2);
             this->editsubjectpanel->Controls->Add(this->panel13);
             this->editsubjectpanel->Controls->Add(this->button3);
             this->editsubjectpanel->Controls->Add(this->editsubelepanel);
@@ -5352,7 +5397,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             // 
             // kryptonLabel2
             // 
-            this->kryptonLabel2->Location = System::Drawing::Point(507, 78);
+            this->kryptonLabel2->Location = System::Drawing::Point(427, 42);
             this->kryptonLabel2->Name = L"kryptonLabel2";
             this->kryptonLabel2->Size = System::Drawing::Size(217, 43);
             this->kryptonLabel2->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -5364,12 +5409,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             // 
             // panel13
             // 
+            this->panel13->Controls->Add(this->kryptonLabel2);
             this->panel13->Controls->Add(this->editsubsearchgroup);
             this->panel13->Controls->Add(this->editsubtitlegroup);
             this->panel13->Controls->Add(this->editsubelegroup);
             this->panel13->Controls->Add(this->editsubnamegroup);
             this->panel13->Controls->Add(this->editsubcodegroup);
-            this->panel13->Location = System::Drawing::Point(92, 165);
+            this->panel13->Location = System::Drawing::Point(88, 89);
             this->panel13->Name = L"panel13";
             this->panel13->Size = System::Drawing::Size(1156, 1282);
             this->panel13->TabIndex = 340;
@@ -5379,7 +5425,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubsearchgroup->CaptionOverlap = 1;
             this->editsubsearchgroup->CaptionVisible = false;
             this->editsubsearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubsearchgroup->Location = System::Drawing::Point(32, 30);
+            this->editsubsearchgroup->Location = System::Drawing::Point(31, 141);
             this->editsubsearchgroup->Name = L"editsubsearchgroup";
             // 
             // editsubsearchgroup.Panel
@@ -5477,7 +5523,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubtitlegroup->CaptionOverlap = 1;
             this->editsubtitlegroup->CaptionVisible = false;
             this->editsubtitlegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubtitlegroup->Location = System::Drawing::Point(26, 574);
+            this->editsubtitlegroup->Location = System::Drawing::Point(25, 685);
             this->editsubtitlegroup->Name = L"editsubtitlegroup";
             // 
             // editsubtitlegroup.Panel
@@ -5485,10 +5531,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubtitlegroup->Panel->Controls->Add(this->kryptonPanel1);
             this->editsubtitlegroup->Panel->Controls->Add(this->label109);
             this->editsubtitlegroup->Panel->Controls->Add(this->editsubtitle);
+            this->editsubtitlegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubtitlegroup_Panel_Paint);
             this->editsubtitlegroup->Size = System::Drawing::Size(1089, 194);
             this->editsubtitlegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubtitlegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubtitlegroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->editsubtitlegroup->StateCommon->Border->ColorAngle = 50;
             this->editsubtitlegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
@@ -5499,7 +5548,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             // 
             // kryptonPanel1
             // 
-            this->kryptonPanel1->Location = System::Drawing::Point(101, 116);
+            this->kryptonPanel1->Location = System::Drawing::Point(101, 128);
             this->kryptonPanel1->Name = L"kryptonPanel1";
             this->kryptonPanel1->Size = System::Drawing::Size(470, 2);
             this->kryptonPanel1->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -5517,6 +5566,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->label109->Size = System::Drawing::Size(124, 28);
             this->label109->TabIndex = 327;
             this->label109->Text = L"Subject Title";
+            this->label109->Click += gcnew System::EventHandler(this, &MyForm::label109_Click);
             // 
             // editsubtitle
             // 
@@ -5540,13 +5590,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubtitle->StateCommon->Border->Width = 3;
             this->editsubtitle->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
             this->editsubtitle->TabIndex = 328;
+            this->editsubtitle->TextChanged += gcnew System::EventHandler(this, &MyForm::editsubtitle_TextChanged);
             // 
             // editsubelegroup
             // 
             this->editsubelegroup->CaptionOverlap = 1;
             this->editsubelegroup->CaptionVisible = false;
             this->editsubelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubelegroup->Location = System::Drawing::Point(26, 1023);
+            this->editsubelegroup->Location = System::Drawing::Point(25, 1134);
             this->editsubelegroup->Name = L"editsubelegroup";
             // 
             // editsubelegroup.Panel
@@ -5618,12 +5669,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubnamegroup->CaptionOverlap = 1;
             this->editsubnamegroup->CaptionVisible = false;
             this->editsubnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubnamegroup->Location = System::Drawing::Point(26, 338);
+            this->editsubnamegroup->Location = System::Drawing::Point(25, 449);
             this->editsubnamegroup->Name = L"editsubnamegroup";
             // 
             // editsubnamegroup.Panel
             // 
-            this->editsubnamegroup->Panel->Controls->Add(this->kryptonPanel2);
             this->editsubnamegroup->Panel->Controls->Add(this->kryptonPanel3);
             this->editsubnamegroup->Panel->Controls->Add(this->label93);
             this->editsubnamegroup->Panel->Controls->Add(this->editsubname);
@@ -5640,15 +5690,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubnamegroup->StateCommon->Border->Rounding = 9;
             this->editsubnamegroup->StateCommon->Border->Width = 1;
             this->editsubnamegroup->TabIndex = 337;
-            // 
-            // kryptonPanel2
-            // 
-            this->kryptonPanel2->Location = System::Drawing::Point(0, 1);
-            this->kryptonPanel2->Name = L"kryptonPanel2";
-            this->kryptonPanel2->Size = System::Drawing::Size(10, 191);
-            this->kryptonPanel2->StateCommon->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
-                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->kryptonPanel2->TabIndex = 327;
             // 
             // kryptonPanel3
             // 
@@ -5699,7 +5740,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubcodegroup->CaptionOverlap = 1;
             this->editsubcodegroup->CaptionVisible = false;
             this->editsubcodegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubcodegroup->Location = System::Drawing::Point(26, 795);
+            this->editsubcodegroup->Location = System::Drawing::Point(25, 906);
             this->editsubcodegroup->Name = L"editsubcodegroup";
             // 
             // editsubcodegroup.Panel
@@ -6239,6 +6280,21 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->dataGridViewButtonColumn10->ReadOnly = true;
             this->dataGridViewButtonColumn10->Text = L"Delete";
             this->dataGridViewButtonColumn10->UseColumnTextForButtonValue = true;
+            // 
+            // editsubactivepanel
+            // 
+            this->editsubactivepanel->Location = System::Drawing::Point(427, 179);
+            this->editsubactivepanel->Name = L"editsubactivepanel";
+            this->editsubactivepanel->Size = System::Drawing::Size(10, 147);
+            this->editsubactivepanel->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->editsubactivepanel->StateCommon->Back->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->editsubactivepanel->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>(((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left));
+            this->editsubactivepanel->StateCommon->Border->Rounding = 9;
+            this->editsubactivepanel->TabIndex = 327;
+            this->editsubactivepanel->Values->Text = L"";
             // 
             // kryptonPanel6
             // 
@@ -8966,6 +9022,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->classdeletebutton->Text = L"Delete";
             this->classdeletebutton->UseColumnTextForButtonValue = true;
             // 
+            // timer1
+            // 
+            this->timer1->Tick += gcnew System::EventHandler(this, &MyForm::timer1_Tick_1);
+            // 
             // MyForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(144, 144);
@@ -8984,6 +9044,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->Controls->Add(this->panel2);
             this->Controls->Add(this->settingspanel);
             this->Controls->Add(this->addteacherpanel);
+            this->Controls->Add(this->editsubactivepanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
@@ -9028,6 +9089,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubjectpanel->ResumeLayout(false);
             this->editsubjectpanel->PerformLayout();
             this->panel13->ResumeLayout(false);
+            this->panel13->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup->Panel))->EndInit();
             this->editsubsearchgroup->Panel->ResumeLayout(false);
             this->editsubsearchgroup->Panel->PerformLayout();
@@ -9052,7 +9114,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
             this->editsubnamegroup->Panel->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup))->EndInit();
             this->editsubnamegroup->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel2))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->EndInit();
             this->editsubcodegroup->Panel->ResumeLayout(false);
@@ -10308,6 +10369,12 @@ private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
     private: System::Void panel9_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
     }
     private: System::Void button10_Click_1(System::Object^ sender, System::EventArgs^ e) {
+        lastpanel = "editsubnamegroup";
+        editsubnamegroup->Panel->Controls->Add(this->editsubactivepanel);
+        editsubactivepanel->Location = System::Drawing::Point(0, 0);
+        editsubactivepanel->Height = editsubnamegroup->Panel->Height;
+        editsubnamegroup->SendToBack();
+        editsubactivepanel->BringToFront();
         editsubsearch->Text = "";
         editsubname->Clear();
         editsubtitle->Clear();
@@ -11039,6 +11106,29 @@ private: System::Void kryptonGroupBox2_Panel_Paint(System::Object^ sender, Syste
 private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void panel13_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void editsubtitlegroup_Panel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void editsubtitle_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+
+}
+private: System::Void label109_Click(System::Object^ sender, System::EventArgs^ e) {
+    try
+    {
+        ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ g = dynamic_cast <ComponentFactory::Krypton::Toolkit::KryptonGroupBox^>(panel13->Controls[msclr::interop::marshal_as<String^>(lastpanel)]);
+        g->StateCommon->Border->Color1 = Color::FromArgb(224, 224, 224);
+        g->StateCommon->Border->Color2 = Color::FromArgb(224, 224, 224);  //(addroomtablepanel->Controls[String::Format("buttonroom{0}", tagValue)]);  
+    }
+    catch (...)
+    {
+    }
+    lastpanel = "editsubtitlegroup";
+    editsubactivepanel->Height = 0;
+    editsubtitlegroup->Panel->Controls->Add(this->editsubactivepanel);
+    editsubactivepanel->Location = System::Drawing::Point(0, 0);
+    editsubtitlegroup->SendToBack();
+    editsubactivepanel->BringToFront();
+    StartAnimation();
 }
 };
 }
