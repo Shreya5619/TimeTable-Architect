@@ -6,7 +6,6 @@
 #include<sstream>
 #include<iostream>
 #include<algorithm>
-#include<process.h>
 #include "includes.h"
 #include<list>
 extern std::string searchteachername;
@@ -23,8 +22,7 @@ namespace TTA_ui {
     using namespace System::Windows::Forms;
     using namespace System::Data;
     using namespace System::Diagnostics;
-    using namespace System::Drawing;
-    using namespace Drawing2D;
+    using namespace Drawing;
 
     /// <summary>
     /// Summary for MyForm
@@ -279,7 +277,7 @@ namespace TTA_ui {
                 comboBox->Items->Add(msclr::interop::marshal_as<String^>(it[i]));
             }
         }
-        void DisplayCSVInComboBoxsub(const string& filename, ComboBox^ comboBox) {
+        void DisplayCSVInComboBoxsub(const string& filename,ComponentFactory::Krypton::Toolkit::KryptonComboBox^ comboBox) {
             comboBox->Items->Clear();
             vector<string> it;
             vector<vector<string>> data = ReadCSVFile(filename);
@@ -1062,29 +1060,6 @@ namespace TTA_ui {
             return "not found";
         }
 
-        System::Void pictureBox1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-            // Clear the existing graphics
-            e->Graphics->Clear(pictureBox12->BackColor);
-
-            // Get the image from the PictureBox
-            Image^ image = pictureBox12->Image;
-            if (image == nullptr)
-                return;
-
-            // Calculate the square area to draw the circular image within
-            int size = Math::Min(pictureBox12->Width, pictureBox12->Height);
-            Drawing::Rectangle rect = Drawing::Rectangle((pictureBox12->Width - size) / 2, (pictureBox12->Height - size) / 2, size, size);
-
-            // Create a GraphicsPath to define the circular region
-            Drawing::Drawing2D::GraphicsPath^ path = gcnew Drawing::Drawing2D::GraphicsPath();
-            path->AddEllipse(rect);
-
-            // Set the clipping region to the circular area
-            e->Graphics->SetClip(path);
-
-            // Draw the image within the circular region
-            e->Graphics->DrawImage(image, rect);
-        }
     public:
         void labcreate(vector<vector<string>> teachers, section& t)
         {
@@ -2448,13 +2423,13 @@ namespace TTA_ui {
     private: System::Windows::Forms::Panel^ addclassroompanel;
     private: System::Windows::Forms::Panel^ Homepanel;
     private: System::Windows::Forms::PictureBox^ pictureBox1;
-    private: System::Windows::Forms::PictureBox^ pictureBox8;
-    private: System::Windows::Forms::PictureBox^ pictureBox9;
-    private: System::Windows::Forms::PictureBox^ pictureBox10;
-    private: System::Windows::Forms::PictureBox^ pictureBox11;
-    private: System::Windows::Forms::PictureBox^ pictureBox12;
-    private: System::Windows::Forms::Panel^ panel4;
-    private: System::Windows::Forms::Label^ label15;
+
+
+
+
+
+
+
     private: System::Windows::Forms::Panel^ editteacherpanel;
     private: System::Windows::Forms::Label^ label62;
     private: System::Windows::Forms::ComboBox^ editteacherdepartment;
@@ -2479,7 +2454,7 @@ namespace TTA_ui {
     private: System::Windows::Forms::Button^ editroomsearchbutton;
     private: System::Windows::Forms::Label^ label82;
     private: System::Windows::Forms::Panel^ editsubjectpanel;
-    private: System::Windows::Forms::Label^ label109;
+
 private: System::Windows::Forms::Panel^ settingspanel;
 
 
@@ -2526,7 +2501,7 @@ private: System::Windows::Forms::Label^ freefactor;
 
     private: System::Windows::Forms::Label^ label92;
 
-    private: System::Windows::Forms::Label^ label93;
+
     private: System::Windows::Forms::Label^ label94;
     private: System::Windows::Forms::Label^ label95;
     private: System::Windows::Forms::DataGridView^ editsubeleteacher;
@@ -2545,7 +2520,7 @@ private: System::Windows::Forms::Label^ freefactor;
     private: System::Windows::Forms::NumericUpDown^ editsubbfactor;
     private: System::Windows::Forms::Label^ label100;
 
-    private: System::Windows::Forms::Label^ label101;
+
 
     private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsubeleteachercombo;
     private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn10;
@@ -2746,8 +2721,8 @@ private: System::Windows::Forms::TableLayoutPanel^ settingstable;
     private: System::Windows::Forms::Panel^ deleteclasspanel;
     private: System::Windows::Forms::DataGridView^ sectiondeletedatagridview;
     private: System::Windows::Forms::Panel^ panel36;
-    private: System::Windows::Forms::Label^ label150;
-    private: System::Windows::Forms::Label^ label152;
+
+
 
 
     private: System::Windows::Forms::DataGridViewTextBoxColumn^ classcolumn;
@@ -2808,8 +2783,8 @@ private: System::Windows::Forms::NumericUpDown^ classsessions;
 
 private: System::Windows::Forms::Label^ label165;
 private: System::Windows::Forms::CheckedListBox^ classlabroomlist;
-private: System::Windows::Forms::Panel^ panel11;
-private: System::Windows::Forms::Panel^ panel13;
+
+
 private: System::Windows::Forms::Panel^ textBox5;
 private: System::Windows::Forms::Panel^ textBox7;
 private: System::Windows::Forms::Panel^ textBox6;
@@ -2823,17 +2798,124 @@ private: System::Windows::Forms::Button^ button16;
 private: System::Windows::Forms::TextBox^ filepath;
 
 private: System::Windows::Forms::FolderBrowserDialog^ fbd;
-private: System::Windows::Forms::Button^ editsubsearchbutton;
-private: System::Windows::Forms::ComboBox^ editsubsearch;
 
-private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ kryptonComboBox1;
-private: ComponentFactory::Krypton::Toolkit::KryptonButton^ kryptonButton1;
-private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubname;
-private: System::Windows::Forms::Label^ label99;
-private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubcode;
-private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubtitle;
+
+
+
+
+
+
+
+
+
+
 private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleyes;
 private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubcodegroup;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel4;
+private: System::Windows::Forms::Label^ label15;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubcode;
+
+
+
+
+
+
+
+
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel6;
+private: System::Windows::Forms::Panel^ panel4;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel1;
+
+private: ComponentFactory::Krypton::Toolkit::KryptonButton^ editsubsearchbutton;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editsubsearch;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubtitlegroup;
+
+
+
+
+
+
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel1;
+private: System::Windows::Forms::Label^ label109;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubtitle;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubnamegroup;
+
+
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel3;
+private: System::Windows::Forms::Label^ label93;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubname;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubelegroup;
+
+private: System::Windows::Forms::PictureBox^ pictureBox11;
+private: System::Windows::Forms::Button^ button17;
+private: System::Windows::Forms::PictureBox^ pictureBox8;
+
+private: System::Windows::Forms::Panel^ panel13;
+private: System::Windows::Forms::TextBox^ textBox1;
+private: System::Windows::Forms::PictureBox^ pictureBox12;
+private: System::Windows::Forms::Button^ button18;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubsearchgroup;
+
+
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel2;
+private: System::Windows::Forms::Label^ label99;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3006,16 +3088,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel7 = (gcnew System::Windows::Forms::Panel());
             this->Homepanel = (gcnew System::Windows::Forms::Panel());
             this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
-            this->pictureBox8 = (gcnew System::Windows::Forms::PictureBox());
-            this->pictureBox9 = (gcnew System::Windows::Forms::PictureBox());
-            this->pictureBox10 = (gcnew System::Windows::Forms::PictureBox());
-            this->pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
-            this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
-            this->panel4 = (gcnew System::Windows::Forms::Panel());
-            this->panel13 = (gcnew System::Windows::Forms::Panel());
-            this->label15 = (gcnew System::Windows::Forms::Label());
-            this->panel11 = (gcnew System::Windows::Forms::Panel());
-            this->label109 = (gcnew System::Windows::Forms::Label());
             this->editteacherpanel = (gcnew System::Windows::Forms::Panel());
             this->editteacheremailid = (gcnew System::Windows::Forms::TextBox());
             this->label151 = (gcnew System::Windows::Forms::Label());
@@ -3080,9 +3152,30 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label81 = (gcnew System::Windows::Forms::Label());
             this->editroomsearch = (gcnew System::Windows::Forms::ComboBox());
             this->editsubjectpanel = (gcnew System::Windows::Forms::Panel());
+            this->kryptonLabel2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonLabel());
+            this->panel13 = (gcnew System::Windows::Forms::Panel());
+            this->editsubsearchgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->editsubsearchbutton = (gcnew ComponentFactory::Krypton::Toolkit::KryptonButton());
+            this->label99 = (gcnew System::Windows::Forms::Label());
+            this->editsubsearch = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
+            this->editsubtitlegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label109 = (gcnew System::Windows::Forms::Label());
+            this->editsubtitle = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->editsubelegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->label92 = (gcnew System::Windows::Forms::Label());
+            this->panel10 = (gcnew System::Windows::Forms::Panel());
+            this->editsubeleyes = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->editsubeleno = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->editsubnamegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->kryptonPanel3 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label93 = (gcnew System::Windows::Forms::Label());
             this->editsubname = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
-            this->kryptonButton1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonButton());
-            this->kryptonComboBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
+            this->editsubcodegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel4 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label15 = (gcnew System::Windows::Forms::Label());
+            this->editsubcode = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
             this->button3 = (gcnew System::Windows::Forms::Button());
             this->editsubelepanel = (gcnew System::Windows::Forms::Panel());
             this->panel39 = (gcnew System::Windows::Forms::Panel());
@@ -3109,20 +3202,17 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editsubbfactor = (gcnew System::Windows::Forms::NumericUpDown());
             this->editsubsave = (gcnew System::Windows::Forms::Button());
             this->editsubdelete = (gcnew System::Windows::Forms::Button());
-            this->label150 = (gcnew System::Windows::Forms::Label());
-            this->label152 = (gcnew System::Windows::Forms::Label());
             this->editsubcluster = (gcnew System::Windows::Forms::ComboBox());
-            this->editsubsearchbutton = (gcnew System::Windows::Forms::Button());
-            this->label101 = (gcnew System::Windows::Forms::Label());
-            this->editsubsearch = (gcnew System::Windows::Forms::ComboBox());
             this->label94 = (gcnew System::Windows::Forms::Label());
-            this->panel10 = (gcnew System::Windows::Forms::Panel());
-            this->label92 = (gcnew System::Windows::Forms::Label());
             this->label95 = (gcnew System::Windows::Forms::Label());
             this->editsubeleteacher = (gcnew System::Windows::Forms::DataGridView());
             this->editsubeleteachercombo = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
             this->dataGridViewButtonColumn10 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
-            this->label93 = (gcnew System::Windows::Forms::Label());
+            this->kryptonPanel6 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->kryptonLabel1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonLabel());
+            this->panel4 = (gcnew System::Windows::Forms::Panel());
+            this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+            this->pictureBox8 = (gcnew System::Windows::Forms::PictureBox());
             this->textBox7 = (gcnew System::Windows::Forms::Panel());
             this->settingspanel = (gcnew System::Windows::Forms::Panel());
             this->filepath = (gcnew System::Windows::Forms::TextBox());
@@ -3171,6 +3261,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
             this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
             this->panel1 = (gcnew System::Windows::Forms::Panel());
+            this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
+            this->button18 = (gcnew System::Windows::Forms::Button());
+            this->pictureBox11 = (gcnew System::Windows::Forms::PictureBox());
+            this->button17 = (gcnew System::Windows::Forms::Button());
             this->textBox5 = (gcnew System::Windows::Forms::Panel());
             this->textBox9 = (gcnew System::Windows::Forms::Panel());
             this->textBox11 = (gcnew System::Windows::Forms::Panel());
@@ -3288,11 +3382,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classcolumn = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
             this->classdeletebutton = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->fbd = (gcnew System::Windows::Forms::FolderBrowserDialog());
-            this->label99 = (gcnew System::Windows::Forms::Label());
-            this->editsubtitle = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
-            this->editsubcode = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
-            this->editsubeleyes = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
-            this->editsubeleno = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->BeginInit();
             this->addsubjectpanel->SuspendLayout();
@@ -3306,14 +3395,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel9->SuspendLayout();
             this->panel7->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->BeginInit();
-            this->panel4->SuspendLayout();
-            this->panel13->SuspendLayout();
-            this->panel11->SuspendLayout();
             this->editteacherpanel->SuspendLayout();
             this->panel5->SuspendLayout();
             this->panel18->SuspendLayout();
@@ -3323,13 +3404,42 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel6->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editroomcapacity))->BeginInit();
             this->editsubjectpanel->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonComboBox1))->BeginInit();
+            this->panel13->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup->Panel))->BeginInit();
+            this->editsubsearchgroup->Panel->SuspendLayout();
+            this->editsubsearchgroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearch))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup->Panel))->BeginInit();
+            this->editsubtitlegroup->Panel->SuspendLayout();
+            this->editsubtitlegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel1))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup->Panel))->BeginInit();
+            this->editsubelegroup->Panel->SuspendLayout();
+            this->editsubelegroup->SuspendLayout();
+            this->panel10->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup->Panel))->BeginInit();
+            this->editsubnamegroup->Panel->SuspendLayout();
+            this->editsubnamegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel2))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->BeginInit();
+            this->editsubcodegroup->Panel->SuspendLayout();
+            this->editsubcodegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel4))->BeginInit();
             this->editsubelepanel->SuspendLayout();
             this->editpanelsub->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->BeginInit();
-            this->panel10->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel6))->BeginInit();
+            this->kryptonPanel6->SuspendLayout();
+            this->panel4->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->BeginInit();
             this->settingspanel->SuspendLayout();
             this->panel20->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->trackBar2))->BeginInit();
@@ -3341,6 +3451,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->BeginInit();
             this->panel1->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classcore))->BeginInit();
             this->classpanel->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classsessions))->BeginInit();
@@ -3379,7 +3491,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
             this->addsubcredits->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubcredits->Location = System::Drawing::Point(47, 85);
+            this->addsubcredits->Location = System::Drawing::Point(46, 86);
             this->addsubcredits->Name = L"addsubcredits";
             this->addsubcredits->Size = System::Drawing::Size(170, 34);
             this->addsubcredits->TabIndex = 240;
@@ -3389,7 +3501,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label43->AutoSize = true;
             this->label43->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label43->Location = System::Drawing::Point(44, 41);
+            this->label43->Location = System::Drawing::Point(44, 40);
             this->label43->Name = L"label43";
             this->label43->Size = System::Drawing::Size(125, 28);
             this->label43->TabIndex = 241;
@@ -3411,7 +3523,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label41->AutoSize = true;
             this->label41->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label41->Location = System::Drawing::Point(38, 169);
+            this->label41->Location = System::Drawing::Point(38, 170);
             this->label41->Name = L"label41";
             this->label41->Size = System::Drawing::Size(255, 28);
             this->label41->TabIndex = 242;
@@ -3424,7 +3536,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addsubbfactor->DecimalPlaces = 2;
             this->addsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubbfactor->Location = System::Drawing::Point(50, 515);
+            this->addsubbfactor->Location = System::Drawing::Point(50, 514);
             this->addsubbfactor->Name = L"addsubbfactor";
             this->addsubbfactor->Size = System::Drawing::Size(170, 34);
             this->addsubbfactor->TabIndex = 244;
@@ -3435,7 +3547,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->addsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubsave->Location = System::Drawing::Point(590, 649);
+            this->addsubsave->Location = System::Drawing::Point(590, 650);
             this->addsubsave->Name = L"addsubsave";
             this->addsubsave->Size = System::Drawing::Size(116, 58);
             this->addsubsave->TabIndex = 245;
@@ -3454,7 +3566,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addsubroomlist->FormattingEnabled = true;
             this->addsubroomlist->Location = System::Drawing::Point(51, 280);
             this->addsubroomlist->Name = L"addsubroomlist";
-            this->addsubroomlist->Size = System::Drawing::Size(224, 155);
+            this->addsubroomlist->Size = System::Drawing::Size(224, 124);
             this->addsubroomlist->Sorted = true;
             this->addsubroomlist->TabIndex = 246;
             this->addsubroomlist->ThreeDCheckBoxes = true;
@@ -3496,7 +3608,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->addsubjectpanel->Name = L"addsubjectpanel";
-            this->addsubjectpanel->Size = System::Drawing::Size(1946, 1106);
+            this->addsubjectpanel->Size = System::Drawing::Size(1924, 1050);
             this->addsubjectpanel->TabIndex = 124;
             this->addsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addsubjectpanel_Paint);
             // 
@@ -3510,7 +3622,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panelsub->Controls->Add(this->newaddsub);
             this->panelsub->Controls->Add(this->label42);
             this->panelsub->Controls->Add(this->addsubsave);
-            this->panelsub->Location = System::Drawing::Point(169, 1870);
+            this->panelsub->Location = System::Drawing::Point(170, 1870);
             this->panelsub->Name = L"panelsub";
             this->panelsub->Size = System::Drawing::Size(1086, 912);
             this->panelsub->TabIndex = 267;
@@ -3535,7 +3647,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label149->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label149->ForeColor = System::Drawing::Color::Black;
-            this->label149->Location = System::Drawing::Point(196, 445);
+            this->label149->Location = System::Drawing::Point(196, 446);
             this->label149->Name = L"label149";
             this->label149->Size = System::Drawing::Size(128, 28);
             this->label149->TabIndex = 304;
@@ -3548,7 +3660,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addsubtitle->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addsubtitle->ForeColor = System::Drawing::Color::Black;
-            this->addsubtitle->Location = System::Drawing::Point(193, 345);
+            this->addsubtitle->Location = System::Drawing::Point(194, 345);
             this->addsubtitle->Name = L"addsubtitle";
             this->addsubtitle->Size = System::Drawing::Size(480, 34);
             this->addsubtitle->TabIndex = 303;
@@ -3560,7 +3672,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label148->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label148->ForeColor = System::Drawing::Color::Black;
-            this->label148->Location = System::Drawing::Point(195, 299);
+            this->label148->Location = System::Drawing::Point(195, 298);
             this->label148->Name = L"label148";
             this->label148->Size = System::Drawing::Size(124, 28);
             this->label148->TabIndex = 302;
@@ -3572,7 +3684,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->addsubclusteroptions->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubclusteroptions->Location = System::Drawing::Point(701, 1163);
+            this->addsubclusteroptions->Location = System::Drawing::Point(700, 1162);
             this->addsubclusteroptions->Name = L"addsubclusteroptions";
             this->addsubclusteroptions->Size = System::Drawing::Size(116, 46);
             this->addsubclusteroptions->TabIndex = 265;
@@ -3597,9 +3709,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addsubeletablepanel->Controls->Add(this->label132);
             this->addsubeletablepanel->Controls->Add(this->label133);
             this->addsubeletablepanel->Controls->Add(this->label134);
-            this->addsubeletablepanel->Location = System::Drawing::Point(192, 1225);
+            this->addsubeletablepanel->Location = System::Drawing::Point(192, 1226);
             this->addsubeletablepanel->Name = L"addsubeletablepanel";
-            this->addsubeletablepanel->Size = System::Drawing::Size(1183, 621);
+            this->addsubeletablepanel->Size = System::Drawing::Size(1184, 621);
             this->addsubeletablepanel->TabIndex = 301;
             // 
             // panel23
@@ -3608,14 +3720,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel23->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->panel23->Location = System::Drawing::Point(416, 112);
             this->panel23->Name = L"panel23";
-            this->panel23->Size = System::Drawing::Size(44, 413);
+            this->panel23->Size = System::Drawing::Size(44, 412);
             this->panel23->TabIndex = 2;
             // 
             // panel24
             // 
             this->panel24->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel24.BackgroundImage")));
             this->panel24->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel24->Location = System::Drawing::Point(757, 110);
+            this->panel24->Location = System::Drawing::Point(758, 110);
             this->panel24->Name = L"panel24";
             this->panel24->Size = System::Drawing::Size(44, 436);
             this->panel24->TabIndex = 1;
@@ -3639,7 +3751,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->tableLayoutPanel1->Location = System::Drawing::Point(140, 113);
+            this->tableLayoutPanel1->Location = System::Drawing::Point(140, 112);
             this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
             this->tableLayoutPanel1->RowCount = 6;
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -3648,7 +3760,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->tableLayoutPanel1->Size = System::Drawing::Size(949, 435);
+            this->tableLayoutPanel1->Size = System::Drawing::Size(950, 435);
             this->tableLayoutPanel1->TabIndex = 260;
             // 
             // label123
@@ -3689,7 +3801,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label126->AutoSize = true;
             this->label126->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label126->Location = System::Drawing::Point(635, 72);
+            this->label126->Location = System::Drawing::Point(634, 72);
             this->label126->Name = L"label126";
             this->label126->Size = System::Drawing::Size(105, 28);
             this->label126->TabIndex = 297;
@@ -3722,7 +3834,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label129->AutoSize = true;
             this->label129->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label129->Location = System::Drawing::Point(43, 495);
+            this->label129->Location = System::Drawing::Point(44, 495);
             this->label129->Name = L"label129";
             this->label129->Size = System::Drawing::Size(90, 28);
             this->label129->TabIndex = 266;
@@ -3733,7 +3845,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label130->AutoSize = true;
             this->label130->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label130->Location = System::Drawing::Point(43, 418);
+            this->label130->Location = System::Drawing::Point(44, 418);
             this->label130->Name = L"label130";
             this->label130->Size = System::Drawing::Size(66, 28);
             this->label130->TabIndex = 265;
@@ -3766,7 +3878,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label133->AutoSize = true;
             this->label133->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label133->Location = System::Drawing::Point(47, 201);
+            this->label133->Location = System::Drawing::Point(46, 201);
             this->label133->Name = L"label133";
             this->label133->Size = System::Drawing::Size(83, 28);
             this->label133->TabIndex = 262;
@@ -3777,7 +3889,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label134->AutoSize = true;
             this->label134->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label134->Location = System::Drawing::Point(41, 132);
+            this->label134->Location = System::Drawing::Point(40, 132);
             this->label134->Name = L"label134";
             this->label134->Size = System::Drawing::Size(85, 28);
             this->label134->TabIndex = 261;
@@ -3811,7 +3923,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // addsubeleyes
             // 
             this->addsubeleyes->AutoSize = true;
-            this->addsubeleyes->Location = System::Drawing::Point(5, 21);
+            this->addsubeleyes->Location = System::Drawing::Point(4, 21);
             this->addsubeleyes->Name = L"addsubeleyes";
             this->addsubeleyes->Size = System::Drawing::Size(62, 24);
             this->addsubeleyes->TabIndex = 2;
@@ -3823,7 +3935,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // addsubeleno
             // 
             this->addsubeleno->AutoSize = true;
-            this->addsubeleno->Location = System::Drawing::Point(139, 21);
+            this->addsubeleno->Location = System::Drawing::Point(140, 21);
             this->addsubeleno->Name = L"addsubeleno";
             this->addsubeleno->Size = System::Drawing::Size(54, 24);
             this->addsubeleno->TabIndex = 3;
@@ -3848,7 +3960,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label47->AutoSize = true;
             this->label47->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label47->Location = System::Drawing::Point(197, 722);
+            this->label47->Location = System::Drawing::Point(196, 722);
             this->label47->Name = L"label47";
             this->label47->Size = System::Drawing::Size(152, 28);
             this->label47->TabIndex = 24;
@@ -3859,7 +3971,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label48->AutoSize = true;
             this->label48->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label48->Location = System::Drawing::Point(197, 571);
+            this->label48->Location = System::Drawing::Point(196, 572);
             this->label48->Name = L"label48";
             this->label48->Size = System::Drawing::Size(381, 28);
             this->label48->TabIndex = 23;
@@ -3923,7 +4035,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->sedataGridView->DefaultCellStyle = dataGridViewCellStyle62;
             this->sedataGridView->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)), static_cast<System::Int32>(static_cast<System::Byte>(211)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->sedataGridView->Location = System::Drawing::Point(213, 935);
+            this->sedataGridView->Location = System::Drawing::Point(213, 934);
             this->sedataGridView->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->sedataGridView->Name = L"sedataGridView";
             dataGridViewCellStyle63->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -3992,7 +4104,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->saveroom->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->saveroom->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->saveroom->Location = System::Drawing::Point(28, 47);
+            this->saveroom->Location = System::Drawing::Point(28, 46);
             this->saveroom->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->saveroom->Name = L"saveroom";
             this->saveroom->Size = System::Drawing::Size(138, 58);
@@ -4006,7 +4118,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label31->AutoSize = true;
             this->label31->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label31->Location = System::Drawing::Point(254, 185);
+            this->label31->Location = System::Drawing::Point(254, 184);
             this->label31->Name = L"label31";
             this->label31->Size = System::Drawing::Size(164, 28);
             this->label31->TabIndex = 67;
@@ -4031,7 +4143,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->roomcapacity->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->roomcapacity->Location = System::Drawing::Point(263, 356);
+            this->roomcapacity->Location = System::Drawing::Point(262, 356);
             this->roomcapacity->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->roomcapacity->Name = L"roomcapacity";
             this->roomcapacity->Size = System::Drawing::Size(300, 34);
@@ -4042,7 +4154,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label30->AutoSize = true;
             this->label30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label30->Location = System::Drawing::Point(259, 307);
+            this->label30->Location = System::Drawing::Point(260, 308);
             this->label30->Name = L"label30";
             this->label30->Size = System::Drawing::Size(158, 28);
             this->label30->TabIndex = 70;
@@ -4053,7 +4165,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label29->AutoSize = true;
             this->label29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label29->Location = System::Drawing::Point(259, 421);
+            this->label29->Location = System::Drawing::Point(260, 422);
             this->label29->Name = L"label29";
             this->label29->Size = System::Drawing::Size(98, 28);
             this->label29->TabIndex = 71;
@@ -4064,7 +4176,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label28->AutoSize = true;
             this->label28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label28->Location = System::Drawing::Point(253, 541);
+            this->label28->Location = System::Drawing::Point(254, 542);
             this->label28->Name = L"label28";
             this->label28->Size = System::Drawing::Size(117, 28);
             this->label28->TabIndex = 72;
@@ -4089,7 +4201,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->clearroom->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->clearroom->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->clearroom->Location = System::Drawing::Point(227, 47);
+            this->clearroom->Location = System::Drawing::Point(226, 46);
             this->clearroom->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->clearroom->Name = L"clearroom";
             this->clearroom->Size = System::Drawing::Size(138, 58);
@@ -4101,7 +4213,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // roomlabno
             // 
             this->roomlabno->AutoSize = true;
-            this->roomlabno->Location = System::Drawing::Point(149, 20);
+            this->roomlabno->Location = System::Drawing::Point(148, 20);
             this->roomlabno->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->roomlabno->Name = L"roomlabno";
             this->roomlabno->Size = System::Drawing::Size(54, 24);
@@ -4139,7 +4251,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addclassroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addclassroompanel->Location = System::Drawing::Point(0, 0);
             this->addclassroompanel->Name = L"addclassroompanel";
-            this->addclassroompanel->Size = System::Drawing::Size(1946, 1106);
+            this->addclassroompanel->Size = System::Drawing::Size(1924, 1050);
             this->addclassroompanel->TabIndex = 230;
             // 
             // panel33
@@ -4161,7 +4273,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel33->Controls->Add(this->label118);
             this->panel33->Location = System::Drawing::Point(249, 694);
             this->panel33->Name = L"panel33";
-            this->panel33->Size = System::Drawing::Size(1183, 621);
+            this->panel33->Size = System::Drawing::Size(1184, 621);
             this->panel33->TabIndex = 304;
             // 
             // panel34
@@ -4170,14 +4282,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel34->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->panel34->Location = System::Drawing::Point(416, 112);
             this->panel34->Name = L"panel34";
-            this->panel34->Size = System::Drawing::Size(44, 413);
+            this->panel34->Size = System::Drawing::Size(44, 412);
             this->panel34->TabIndex = 2;
             // 
             // panel35
             // 
             this->panel35->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel35.BackgroundImage")));
             this->panel35->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel35->Location = System::Drawing::Point(757, 110);
+            this->panel35->Location = System::Drawing::Point(758, 110);
             this->panel35->Name = L"panel35";
             this->panel35->Size = System::Drawing::Size(44, 436);
             this->panel35->TabIndex = 1;
@@ -4201,7 +4313,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->addroomtablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->addroomtablepanel->Location = System::Drawing::Point(140, 113);
+            this->addroomtablepanel->Location = System::Drawing::Point(140, 112);
             this->addroomtablepanel->Name = L"addroomtablepanel";
             this->addroomtablepanel->RowCount = 6;
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -4210,7 +4322,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->addroomtablepanel->Size = System::Drawing::Size(949, 435);
+            this->addroomtablepanel->Size = System::Drawing::Size(950, 435);
             this->addroomtablepanel->TabIndex = 260;
             // 
             // label103
@@ -4251,7 +4363,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label106->AutoSize = true;
             this->label106->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label106->Location = System::Drawing::Point(635, 72);
+            this->label106->Location = System::Drawing::Point(634, 72);
             this->label106->Name = L"label106";
             this->label106->Size = System::Drawing::Size(105, 28);
             this->label106->TabIndex = 297;
@@ -4284,7 +4396,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label113->AutoSize = true;
             this->label113->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label113->Location = System::Drawing::Point(43, 495);
+            this->label113->Location = System::Drawing::Point(44, 495);
             this->label113->Name = L"label113";
             this->label113->Size = System::Drawing::Size(90, 28);
             this->label113->TabIndex = 266;
@@ -4295,7 +4407,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label114->AutoSize = true;
             this->label114->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label114->Location = System::Drawing::Point(43, 418);
+            this->label114->Location = System::Drawing::Point(44, 418);
             this->label114->Name = L"label114";
             this->label114->Size = System::Drawing::Size(66, 28);
             this->label114->TabIndex = 265;
@@ -4328,7 +4440,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label117->AutoSize = true;
             this->label117->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label117->Location = System::Drawing::Point(47, 201);
+            this->label117->Location = System::Drawing::Point(46, 201);
             this->label117->Name = L"label117";
             this->label117->Size = System::Drawing::Size(83, 28);
             this->label117->TabIndex = 262;
@@ -4339,7 +4451,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label118->AutoSize = true;
             this->label118->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label118->Location = System::Drawing::Point(41, 132);
+            this->label118->Location = System::Drawing::Point(40, 132);
             this->label118->Name = L"label118";
             this->label118->Size = System::Drawing::Size(85, 28);
             this->label118->TabIndex = 261;
@@ -4350,7 +4462,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label5->AutoSize = true;
             this->label5->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label5->Location = System::Drawing::Point(253, 667);
+            this->label5->Location = System::Drawing::Point(254, 668);
             this->label5->Name = L"label5";
             this->label5->Size = System::Drawing::Size(148, 28);
             this->label5->TabIndex = 263;
@@ -4360,7 +4472,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             this->panel9->Controls->Add(this->clearroom);
             this->panel9->Controls->Add(this->saveroom);
-            this->panel9->Location = System::Drawing::Point(1079, 1321);
+            this->panel9->Location = System::Drawing::Point(1078, 1322);
             this->panel9->Name = L"panel9";
             this->panel9->Size = System::Drawing::Size(376, 156);
             this->panel9->TabIndex = 124;
@@ -4369,17 +4481,18 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             this->panel7->Controls->Add(this->roomlabyes);
             this->panel7->Controls->Add(this->roomlabno);
-            this->panel7->Location = System::Drawing::Point(259, 457);
+            this->panel7->Location = System::Drawing::Point(260, 458);
             this->panel7->Name = L"panel7";
             this->panel7->Size = System::Drawing::Size(237, 58);
             this->panel7->TabIndex = 123;
             // 
             // Homepanel
             // 
+            this->Homepanel->BackColor = System::Drawing::Color::Azure;
             this->Homepanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->Homepanel->Location = System::Drawing::Point(0, 0);
             this->Homepanel->Name = L"Homepanel";
-            this->Homepanel->Size = System::Drawing::Size(1946, 1106);
+            this->Homepanel->Size = System::Drawing::Size(1924, 1050);
             this->Homepanel->TabIndex = 258;
             // 
             // pictureBox1
@@ -4390,132 +4503,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox1->TabIndex = 3;
             this->pictureBox1->TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this->pictureBox8->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox8.Image")));
-            this->pictureBox8->Location = System::Drawing::Point(24, 0);
-            this->pictureBox8->Name = L"pictureBox8";
-            this->pictureBox8->Size = System::Drawing::Size(137, 136);
-            this->pictureBox8->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-            this->pictureBox8->TabIndex = 1;
-            this->pictureBox8->TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this->pictureBox9->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox9.Image")));
-            this->pictureBox9->Location = System::Drawing::Point(138, 27);
-            this->pictureBox9->Name = L"pictureBox9";
-            this->pictureBox9->Size = System::Drawing::Size(39, 45);
-            this->pictureBox9->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-            this->pictureBox9->TabIndex = 2;
-            this->pictureBox9->TabStop = false;
-            this->pictureBox9->Click += gcnew System::EventHandler(this, &MyForm::pictureBox9_Click);
-            this->pictureBox9->MouseEnter += gcnew System::EventHandler(this, &MyForm::pictureBox9_MouseEnter);
-            this->pictureBox9->MouseLeave += gcnew System::EventHandler(this, &MyForm::pictureBox9_MouseLeave);
-            // 
-            // pictureBox10
-            // 
-            this->pictureBox10->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox10.Image")));
-            this->pictureBox10->Location = System::Drawing::Point(223, 27);
-            this->pictureBox10->Name = L"pictureBox10";
-            this->pictureBox10->Size = System::Drawing::Size(39, 45);
-            this->pictureBox10->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-            this->pictureBox10->TabIndex = 3;
-            this->pictureBox10->TabStop = false;
-            this->pictureBox10->Click += gcnew System::EventHandler(this, &MyForm::pictureBox10_Click);
-            this->pictureBox10->MouseEnter += gcnew System::EventHandler(this, &MyForm::pictureBox10_MouseEnter);
-            this->pictureBox10->MouseLeave += gcnew System::EventHandler(this, &MyForm::pictureBox10_MouseLeave);
-            // 
-            // pictureBox11
-            // 
-            this->pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
-            this->pictureBox11->Location = System::Drawing::Point(49, 27);
-            this->pictureBox11->Name = L"pictureBox11";
-            this->pictureBox11->Size = System::Drawing::Size(39, 45);
-            this->pictureBox11->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-            this->pictureBox11->TabIndex = 4;
-            this->pictureBox11->TabStop = false;
-            this->pictureBox11->Click += gcnew System::EventHandler(this, &MyForm::pictureBox11_Click);
-            this->pictureBox11->MouseEnter += gcnew System::EventHandler(this, &MyForm::pictureBox11_MouseEnter);
-            this->pictureBox11->MouseLeave += gcnew System::EventHandler(this, &MyForm::pictureBox11_MouseLeave);
-            // 
-            // pictureBox12
-            // 
-            this->pictureBox12->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox12.Image")));
-            this->pictureBox12->InitialImage = nullptr;
-            this->pictureBox12->Location = System::Drawing::Point(43, 13);
-            this->pictureBox12->Name = L"pictureBox12";
-            this->pictureBox12->Size = System::Drawing::Size(143, 120);
-            this->pictureBox12->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
-            this->pictureBox12->TabIndex = 5;
-            this->pictureBox12->TabStop = false;
-            this->pictureBox12->Click += gcnew System::EventHandler(this, &MyForm::pictureBox12_Click);
-            this->pictureBox12->MouseEnter += gcnew System::EventHandler(this, &MyForm::pictureBox12_MouseEnter);
-            this->pictureBox12->MouseLeave += gcnew System::EventHandler(this, &MyForm::pictureBox12_MouseLeave);
-            // 
-            // panel4
-            // 
-            this->panel4->BackColor = System::Drawing::Color::White;
-            this->panel4->Controls->Add(this->label99);
-            this->panel4->Controls->Add(this->panel13);
-            this->panel4->Controls->Add(this->panel11);
-            this->panel4->Controls->Add(this->label109);
-            this->panel4->Controls->Add(this->pictureBox12);
-            this->panel4->Dock = System::Windows::Forms::DockStyle::Top;
-            this->panel4->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->panel4->Location = System::Drawing::Point(0, 0);
-            this->panel4->Name = L"panel4";
-            this->panel4->Size = System::Drawing::Size(1946, 139);
-            this->panel4->TabIndex = 2;
-            this->panel4->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel4_Paint);
-            // 
-            // panel13
-            // 
-            this->panel13->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
-                | System::Windows::Forms::AnchorStyles::Right));
-            this->panel13->Controls->Add(this->label15);
-            this->panel13->Controls->Add(this->pictureBox8);
-            this->panel13->Location = System::Drawing::Point(601, 3);
-            this->panel13->Name = L"panel13";
-            this->panel13->Size = System::Drawing::Size(631, 136);
-            this->panel13->TabIndex = 10;
-            // 
-            // label15
-            // 
-            this->label15->AutoSize = true;
-            this->label15->Font = (gcnew System::Drawing::Font(L"Segoe UI", 20, System::Drawing::FontStyle::Bold));
-            this->label15->ForeColor = System::Drawing::Color::DeepSkyBlue;
-            this->label15->Location = System::Drawing::Point(183, 40);
-            this->label15->Name = L"label15";
-            this->label15->Size = System::Drawing::Size(383, 54);
-            this->label15->TabIndex = 6;
-            this->label15->Text = L"TimetableArchitect";
-            // 
-            // panel11
-            // 
-            this->panel11->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
-            this->panel11->Controls->Add(this->pictureBox11);
-            this->panel11->Controls->Add(this->pictureBox10);
-            this->panel11->Controls->Add(this->pictureBox9);
-            this->panel11->Location = System::Drawing::Point(1600, 16);
-            this->panel11->Name = L"panel11";
-            this->panel11->Size = System::Drawing::Size(346, 104);
-            this->panel11->TabIndex = 9;
-            // 
-            // label109
-            // 
-            this->label109->AutoSize = true;
-            this->label109->Font = (gcnew System::Drawing::Font(L"Segoe UI", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label109->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
-                static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->label109->Location = System::Drawing::Point(229, 41);
-            this->label109->Name = L"label109";
-            this->label109->Size = System::Drawing::Size(113, 32);
-            this->label109->TabIndex = 8;
-            this->label109->Text = L"K L Rahul";
             // 
             // editteacherpanel
             // 
@@ -4534,7 +4521,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editteacherpanel->Location = System::Drawing::Point(0, 0);
             this->editteacherpanel->Name = L"editteacherpanel";
-            this->editteacherpanel->Size = System::Drawing::Size(1946, 1106);
+            this->editteacherpanel->Size = System::Drawing::Size(1924, 1050);
             this->editteacherpanel->TabIndex = 264;
             this->editteacherpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editteacherpanel_Paint);
             // 
@@ -4557,7 +4544,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label151->AutoSize = true;
             this->label151->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label151->Location = System::Drawing::Point(191, 593);
+            this->label151->Location = System::Drawing::Point(190, 592);
             this->label151->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->label151->Name = L"label151";
             this->label151->Size = System::Drawing::Size(215, 28);
@@ -4583,7 +4570,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel5->Controls->Add(this->label120);
             this->panel5->Location = System::Drawing::Point(204, 802);
             this->panel5->Name = L"panel5";
-            this->panel5->Size = System::Drawing::Size(1183, 621);
+            this->panel5->Size = System::Drawing::Size(1184, 621);
             this->panel5->TabIndex = 302;
             // 
             // panel19
@@ -4599,7 +4586,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             this->panel28->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel28.BackgroundImage")));
             this->panel28->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel28->Location = System::Drawing::Point(757, 110);
+            this->panel28->Location = System::Drawing::Point(758, 110);
             this->panel28->Name = L"panel28";
             this->panel28->Size = System::Drawing::Size(44, 436);
             this->panel28->TabIndex = 1;
@@ -4623,7 +4610,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->editteachertablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->editteachertablepanel->Location = System::Drawing::Point(140, 113);
+            this->editteachertablepanel->Location = System::Drawing::Point(140, 112);
             this->editteachertablepanel->Name = L"editteachertablepanel";
             this->editteachertablepanel->RowCount = 6;
             this->editteachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent,
@@ -4638,7 +4625,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66666F)));
             this->editteachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent,
                 16.66667F)));
-            this->editteachertablepanel->Size = System::Drawing::Size(949, 435);
+            this->editteachertablepanel->Size = System::Drawing::Size(950, 435);
             this->editteachertablepanel->TabIndex = 260;
             // 
             // label6
@@ -4679,7 +4666,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label9->AutoSize = true;
             this->label9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label9->Location = System::Drawing::Point(635, 72);
+            this->label9->Location = System::Drawing::Point(634, 72);
             this->label9->Name = L"label9";
             this->label9->Size = System::Drawing::Size(105, 28);
             this->label9->TabIndex = 297;
@@ -4712,7 +4699,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label12->AutoSize = true;
             this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label12->Location = System::Drawing::Point(43, 495);
+            this->label12->Location = System::Drawing::Point(44, 495);
             this->label12->Name = L"label12";
             this->label12->Size = System::Drawing::Size(90, 28);
             this->label12->TabIndex = 266;
@@ -4723,7 +4710,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label14->AutoSize = true;
             this->label14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label14->Location = System::Drawing::Point(43, 418);
+            this->label14->Location = System::Drawing::Point(44, 418);
             this->label14->Name = L"label14";
             this->label14->Size = System::Drawing::Size(66, 28);
             this->label14->TabIndex = 265;
@@ -4756,7 +4743,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label119->AutoSize = true;
             this->label119->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label119->Location = System::Drawing::Point(47, 201);
+            this->label119->Location = System::Drawing::Point(46, 201);
             this->label119->Name = L"label119";
             this->label119->Size = System::Drawing::Size(83, 28);
             this->label119->TabIndex = 262;
@@ -4767,7 +4754,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label120->AutoSize = true;
             this->label120->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label120->Location = System::Drawing::Point(41, 132);
+            this->label120->Location = System::Drawing::Point(40, 132);
             this->label120->Name = L"label120";
             this->label120->Size = System::Drawing::Size(85, 28);
             this->label120->TabIndex = 261;
@@ -4778,9 +4765,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editteachersearchbutton->BackColor = System::Drawing::Color::White;
             this->editteachersearchbutton->FlatAppearance->BorderSize = 0;
             this->editteachersearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->editteachersearchbutton->Location = System::Drawing::Point(889, 165);
+            this->editteachersearchbutton->Location = System::Drawing::Point(890, 165);
             this->editteachersearchbutton->Name = L"editteachersearchbutton";
-            this->editteachersearchbutton->Size = System::Drawing::Size(26, 29);
+            this->editteachersearchbutton->Size = System::Drawing::Size(26, 28);
             this->editteachersearchbutton->TabIndex = 301;
             this->editteachersearchbutton->Text = L"🔍";
             this->editteachersearchbutton->UseVisualStyleBackColor = false;
@@ -4801,9 +4788,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             this->panel18->Controls->Add(this->editteacherdelete);
             this->panel18->Controls->Add(this->editteachersave);
-            this->panel18->Location = System::Drawing::Point(982, 1427);
+            this->panel18->Location = System::Drawing::Point(982, 1426);
             this->panel18->Name = L"panel18";
-            this->panel18->Size = System::Drawing::Size(368, 115);
+            this->panel18->Size = System::Drawing::Size(368, 116);
             this->panel18->TabIndex = 291;
             // 
             // editteacherdelete
@@ -4812,9 +4799,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editteacherdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editteacherdelete->Location = System::Drawing::Point(233, 35);
+            this->editteacherdelete->Location = System::Drawing::Point(232, 34);
             this->editteacherdelete->Name = L"editteacherdelete";
-            this->editteacherdelete->Size = System::Drawing::Size(121, 49);
+            this->editteacherdelete->Size = System::Drawing::Size(122, 50);
             this->editteacherdelete->TabIndex = 290;
             this->editteacherdelete->Text = L"Delete";
             this->editteacherdelete->UseVisualStyleBackColor = false;
@@ -4826,9 +4813,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editteachersave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editteachersave->Location = System::Drawing::Point(53, 35);
+            this->editteachersave->Location = System::Drawing::Point(52, 34);
             this->editteachersave->Name = L"editteachersave";
-            this->editteachersave->Size = System::Drawing::Size(121, 49);
+            this->editteachersave->Size = System::Drawing::Size(122, 50);
             this->editteachersave->TabIndex = 273;
             this->editteachersave->Text = L"Save";
             this->editteachersave->UseVisualStyleBackColor = false;
@@ -4841,7 +4828,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editteacherdepartment->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editteacherdepartment->FormattingEnabled = true;
-            this->editteacherdepartment->Location = System::Drawing::Point(193, 498);
+            this->editteacherdepartment->Location = System::Drawing::Point(194, 498);
             this->editteacherdepartment->Name = L"editteacherdepartment";
             this->editteacherdepartment->Size = System::Drawing::Size(362, 36);
             this->editteacherdepartment->TabIndex = 234;
@@ -4866,7 +4853,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editteachername->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editteachername->ForeColor = System::Drawing::Color::Black;
-            this->editteachername->Location = System::Drawing::Point(199, 356);
+            this->editteachername->Location = System::Drawing::Point(200, 356);
             this->editteachername->Name = L"editteachername";
             this->editteachername->Size = System::Drawing::Size(361, 34);
             this->editteachername->TabIndex = 232;
@@ -4893,7 +4880,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->teachersearch->ForeColor = System::Drawing::SystemColors::WindowFrame;
             this->teachersearch->FormattingEnabled = true;
             this->teachersearch->ImeMode = System::Windows::Forms::ImeMode::Off;
-            this->teachersearch->Location = System::Drawing::Point(556, 163);
+            this->teachersearch->Location = System::Drawing::Point(556, 164);
             this->teachersearch->Name = L"teachersearch";
             this->teachersearch->Size = System::Drawing::Size(362, 36);
             this->teachersearch->TabIndex = 100;
@@ -4923,7 +4910,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editroompanel->Location = System::Drawing::Point(0, 0);
             this->editroompanel->Name = L"editroompanel";
-            this->editroompanel->Size = System::Drawing::Size(1946, 1106);
+            this->editroompanel->Size = System::Drawing::Size(1924, 1050);
             this->editroompanel->TabIndex = 124;
             this->editroompanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editroompanel_Paint);
             // 
@@ -4944,9 +4931,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel15->Controls->Add(this->label25);
             this->panel15->Controls->Add(this->label26);
             this->panel15->Controls->Add(this->label27);
-            this->panel15->Location = System::Drawing::Point(233, 822);
+            this->panel15->Location = System::Drawing::Point(232, 822);
             this->panel15->Name = L"panel15";
-            this->panel15->Size = System::Drawing::Size(1183, 621);
+            this->panel15->Size = System::Drawing::Size(1184, 621);
             this->panel15->TabIndex = 303;
             // 
             // panel31
@@ -4955,14 +4942,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel31->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->panel31->Location = System::Drawing::Point(416, 112);
             this->panel31->Name = L"panel31";
-            this->panel31->Size = System::Drawing::Size(44, 413);
+            this->panel31->Size = System::Drawing::Size(44, 412);
             this->panel31->TabIndex = 2;
             // 
             // panel32
             // 
             this->panel32->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel32.BackgroundImage")));
             this->panel32->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel32->Location = System::Drawing::Point(757, 110);
+            this->panel32->Location = System::Drawing::Point(758, 110);
             this->panel32->Name = L"panel32";
             this->panel32->Size = System::Drawing::Size(44, 436);
             this->panel32->TabIndex = 1;
@@ -4986,7 +4973,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->editroomtablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->editroomtablepanel->Location = System::Drawing::Point(140, 113);
+            this->editroomtablepanel->Location = System::Drawing::Point(140, 112);
             this->editroomtablepanel->Name = L"editroomtablepanel";
             this->editroomtablepanel->RowCount = 6;
             this->editroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -4995,7 +4982,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->editroomtablepanel->Size = System::Drawing::Size(949, 435);
+            this->editroomtablepanel->Size = System::Drawing::Size(950, 435);
             this->editroomtablepanel->TabIndex = 260;
             // 
             // label16
@@ -5036,7 +5023,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label19->AutoSize = true;
             this->label19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label19->Location = System::Drawing::Point(635, 72);
+            this->label19->Location = System::Drawing::Point(634, 72);
             this->label19->Name = L"label19";
             this->label19->Size = System::Drawing::Size(105, 28);
             this->label19->TabIndex = 297;
@@ -5069,7 +5056,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label22->AutoSize = true;
             this->label22->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label22->Location = System::Drawing::Point(43, 495);
+            this->label22->Location = System::Drawing::Point(44, 495);
             this->label22->Name = L"label22";
             this->label22->Size = System::Drawing::Size(90, 28);
             this->label22->TabIndex = 266;
@@ -5080,7 +5067,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label23->AutoSize = true;
             this->label23->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label23->Location = System::Drawing::Point(43, 418);
+            this->label23->Location = System::Drawing::Point(44, 418);
             this->label23->Name = L"label23";
             this->label23->Size = System::Drawing::Size(66, 28);
             this->label23->TabIndex = 265;
@@ -5113,7 +5100,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label26->AutoSize = true;
             this->label26->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label26->Location = System::Drawing::Point(47, 201);
+            this->label26->Location = System::Drawing::Point(46, 201);
             this->label26->Name = L"label26";
             this->label26->Size = System::Drawing::Size(83, 28);
             this->label26->TabIndex = 262;
@@ -5124,7 +5111,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label27->AutoSize = true;
             this->label27->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label27->Location = System::Drawing::Point(41, 132);
+            this->label27->Location = System::Drawing::Point(40, 132);
             this->label27->Name = L"label27";
             this->label27->Size = System::Drawing::Size(85, 28);
             this->label27->TabIndex = 261;
@@ -5145,7 +5132,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             this->panel14->Controls->Add(this->editroomdelete);
             this->panel14->Controls->Add(this->editroomsave);
-            this->panel14->Location = System::Drawing::Point(1102, 1451);
+            this->panel14->Location = System::Drawing::Point(1102, 1450);
             this->panel14->Name = L"panel14";
             this->panel14->Size = System::Drawing::Size(464, 141);
             this->panel14->TabIndex = 295;
@@ -5155,7 +5142,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editroomdelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editroomdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->editroomdelete->Location = System::Drawing::Point(274, 35);
+            this->editroomdelete->Location = System::Drawing::Point(274, 34);
             this->editroomdelete->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomdelete->Name = L"editroomdelete";
             this->editroomdelete->Size = System::Drawing::Size(138, 58);
@@ -5187,7 +5174,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editroomsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->editroomsearchbutton->Location = System::Drawing::Point(970, 183);
             this->editroomsearchbutton->Name = L"editroomsearchbutton";
-            this->editroomsearchbutton->Size = System::Drawing::Size(26, 29);
+            this->editroomsearchbutton->Size = System::Drawing::Size(26, 28);
             this->editroomsearchbutton->TabIndex = 292;
             this->editroomsearchbutton->UseVisualStyleBackColor = false;
             this->editroomsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editroomsearchbutton_Click);
@@ -5197,7 +5184,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label82->AutoSize = true;
             this->label82->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label82->Location = System::Drawing::Point(678, 121);
+            this->label82->Location = System::Drawing::Point(678, 122);
             this->label82->Name = L"label82";
             this->label82->Size = System::Drawing::Size(271, 30);
             this->label82->TabIndex = 290;
@@ -5209,7 +5196,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel6->Controls->Add(this->editroomlabno);
             this->panel6->Location = System::Drawing::Point(236, 586);
             this->panel6->Name = L"panel6";
-            this->panel6->Size = System::Drawing::Size(207, 67);
+            this->panel6->Size = System::Drawing::Size(207, 68);
             this->panel6->TabIndex = 182;
             // 
             // editroomlabyes
@@ -5227,7 +5214,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // editroomlabno
             // 
             this->editroomlabno->AutoSize = true;
-            this->editroomlabno->Location = System::Drawing::Point(131, 14);
+            this->editroomlabno->Location = System::Drawing::Point(130, 14);
             this->editroomlabno->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomlabno->Name = L"editroomlabno";
             this->editroomlabno->Size = System::Drawing::Size(54, 24);
@@ -5243,7 +5230,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editroomdepartment->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editroomdepartment->FormattingEnabled = true;
-            this->editroomdepartment->Location = System::Drawing::Point(233, 702);
+            this->editroomdepartment->Location = System::Drawing::Point(232, 702);
             this->editroomdepartment->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomdepartment->Name = L"editroomdepartment";
             this->editroomdepartment->Size = System::Drawing::Size(294, 36);
@@ -5301,7 +5288,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editroomname->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editroomname->Location = System::Drawing::Point(235, 368);
+            this->editroomname->Location = System::Drawing::Point(236, 368);
             this->editroomname->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomname->Name = L"editroomname";
             this->editroomname->Size = System::Drawing::Size(295, 34);
@@ -5313,7 +5300,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label81->AutoSize = true;
             this->label81->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label81->Location = System::Drawing::Point(231, 307);
+            this->label81->Location = System::Drawing::Point(231, 308);
             this->label81->Name = L"label81";
             this->label81->Size = System::Drawing::Size(164, 28);
             this->label81->TabIndex = 125;
@@ -5343,44 +5330,358 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // editsubjectpanel
             // 
             this->editsubjectpanel->AutoScroll = true;
-            this->editsubjectpanel->BackColor = System::Drawing::Color::Azure;
-            this->editsubjectpanel->Controls->Add(this->editsubcode);
-            this->editsubjectpanel->Controls->Add(this->editsubtitle);
-            this->editsubjectpanel->Controls->Add(this->editsubname);
-            this->editsubjectpanel->Controls->Add(this->kryptonButton1);
-            this->editsubjectpanel->Controls->Add(this->kryptonComboBox1);
+            this->editsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubjectpanel->Controls->Add(this->kryptonLabel2);
+            this->editsubjectpanel->Controls->Add(this->panel13);
             this->editsubjectpanel->Controls->Add(this->button3);
             this->editsubjectpanel->Controls->Add(this->editsubelepanel);
             this->editsubjectpanel->Controls->Add(this->editpanelsub);
-            this->editsubjectpanel->Controls->Add(this->label150);
-            this->editsubjectpanel->Controls->Add(this->label152);
             this->editsubjectpanel->Controls->Add(this->editsubcluster);
-            this->editsubjectpanel->Controls->Add(this->editsubsearchbutton);
-            this->editsubjectpanel->Controls->Add(this->label101);
-            this->editsubjectpanel->Controls->Add(this->editsubsearch);
             this->editsubjectpanel->Controls->Add(this->label94);
-            this->editsubjectpanel->Controls->Add(this->panel10);
-            this->editsubjectpanel->Controls->Add(this->label92);
             this->editsubjectpanel->Controls->Add(this->label95);
             this->editsubjectpanel->Controls->Add(this->editsubeleteacher);
-            this->editsubjectpanel->Controls->Add(this->label93);
             this->editsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->editsubjectpanel->Location = System::Drawing::Point(324, 139);
+            this->editsubjectpanel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->editsubjectpanel->Location = System::Drawing::Point(326, 76);
             this->editsubjectpanel->Name = L"editsubjectpanel";
-            this->editsubjectpanel->Size = System::Drawing::Size(1622, 967);
+            this->editsubjectpanel->Size = System::Drawing::Size(1598, 974);
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
+            // 
+            // kryptonLabel2
+            // 
+            this->kryptonLabel2->Location = System::Drawing::Point(507, 78);
+            this->kryptonLabel2->Name = L"kryptonLabel2";
+            this->kryptonLabel2->Size = System::Drawing::Size(217, 43);
+            this->kryptonLabel2->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->kryptonLabel2->StateCommon->ShortText->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
+            this->kryptonLabel2->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
+            this->kryptonLabel2->TabIndex = 2;
+            this->kryptonLabel2->Values->Text = L"Subject Details";
+            // 
+            // panel13
+            // 
+            this->panel13->Controls->Add(this->editsubsearchgroup);
+            this->panel13->Controls->Add(this->editsubtitlegroup);
+            this->panel13->Controls->Add(this->editsubelegroup);
+            this->panel13->Controls->Add(this->editsubnamegroup);
+            this->panel13->Controls->Add(this->editsubcodegroup);
+            this->panel13->Location = System::Drawing::Point(92, 165);
+            this->panel13->Name = L"panel13";
+            this->panel13->Size = System::Drawing::Size(1156, 1282);
+            this->panel13->TabIndex = 340;
+            // 
+            // editsubsearchgroup
+            // 
+            this->editsubsearchgroup->CaptionOverlap = 1;
+            this->editsubsearchgroup->CaptionVisible = false;
+            this->editsubsearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubsearchgroup->Location = System::Drawing::Point(32, 30);
+            this->editsubsearchgroup->Name = L"editsubsearchgroup";
+            // 
+            // editsubsearchgroup.Panel
+            // 
+            this->editsubsearchgroup->Panel->Controls->Add(this->editsubsearchbutton);
+            this->editsubsearchgroup->Panel->Controls->Add(this->label99);
+            this->editsubsearchgroup->Panel->Controls->Add(this->editsubsearch);
+            this->editsubsearchgroup->Size = System::Drawing::Size(1089, 260);
+            this->editsubsearchgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubsearchgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubsearchgroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubsearchgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubsearchgroup->StateCommon->Border->Rounding = 10;
+            this->editsubsearchgroup->StateCommon->Border->Width = 1;
+            this->editsubsearchgroup->TabIndex = 340;
+            // 
+            // editsubsearchbutton
+            // 
+            this->editsubsearchbutton->ButtonStyle = ComponentFactory::Krypton::Toolkit::ButtonStyle::Custom1;
+            this->editsubsearchbutton->Location = System::Drawing::Point(986, 176);
+            this->editsubsearchbutton->Name = L"editsubsearchbutton";
+            this->editsubsearchbutton->Size = System::Drawing::Size(27, 27);
+            this->editsubsearchbutton->StateCommon->Back->Color1 = System::Drawing::Color::IndianRed;
+            this->editsubsearchbutton->StateCommon->Back->Color2 = System::Drawing::Color::Silver;
+            this->editsubsearchbutton->StateCommon->Back->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"editsubsearchbutton.StateCommon.Back.Image")));
+            this->editsubsearchbutton->StateCommon->Back->ImageAlign = ComponentFactory::Krypton::Toolkit::PaletteRectangleAlign::Control;
+            this->editsubsearchbutton->StateCommon->Back->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::Stretch;
+            this->editsubsearchbutton->StateCommon->Border->Color1 = System::Drawing::Color::Silver;
+            this->editsubsearchbutton->StateCommon->Border->Color2 = System::Drawing::Color::Silver;
+            this->editsubsearchbutton->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
+            this->editsubsearchbutton->StateCommon->Border->Draw = ComponentFactory::Krypton::Toolkit::InheritBool::False;
+            this->editsubsearchbutton->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubsearchbutton->StateCommon->Border->Rounding = 3;
+            this->editsubsearchbutton->StateNormal->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubsearchbutton->StateNormal->Back->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubsearchbutton->StatePressed->Back->Color1 = System::Drawing::Color::White;
+            this->editsubsearchbutton->StatePressed->Back->Color2 = System::Drawing::Color::White;
+            this->editsubsearchbutton->TabIndex = 324;
+            this->editsubsearchbutton->Values->Text = L"";
+            this->editsubsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editsubsearchbutton_Click);
+            // 
+            // label99
+            // 
+            this->label99->AutoSize = true;
+            this->label99->BackColor = System::Drawing::Color::White;
+            this->label99->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label99->ForeColor = System::Drawing::Color::Black;
+            this->label99->Location = System::Drawing::Point(372, 68);
+            this->label99->Name = L"label99";
+            this->label99->Size = System::Drawing::Size(241, 28);
+            this->label99->TabIndex = 264;
+            this->label99->Text = L"Search the Subject Name";
+            // 
+            // editsubsearch
+            // 
+            this->editsubsearch->DropBackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
+            this->editsubsearch->DropButtonStyle = ComponentFactory::Krypton::Toolkit::ButtonStyle::ListItem;
+            this->editsubsearch->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+            this->editsubsearch->DropDownWidth = 356;
+            this->editsubsearch->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->editsubsearch->Location = System::Drawing::Point(236, 122);
+            this->editsubsearch->Name = L"editsubsearch";
+            this->editsubsearch->Size = System::Drawing::Size(525, 34);
+            this->editsubsearch->StateCommon->ComboBox->Back->Color1 = System::Drawing::Color::White;
+            this->editsubsearch->StateCommon->ComboBox->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubsearch->StateCommon->ComboBox->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubsearch->StateCommon->ComboBox->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Linear;
+            this->editsubsearch->StateCommon->ComboBox->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubsearch->StateCommon->ComboBox->Border->Rounding = 5;
+            this->editsubsearch->StateCommon->ComboBox->Border->Width = 2;
+            this->editsubsearch->StateCommon->ComboBox->Content->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->editsubsearch->StateCommon->ComboBox->Content->Padding = System::Windows::Forms::Padding(20, 0, 0, 0);
+            this->editsubsearch->StateCommon->DropBack->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(165)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubsearch->StateCommon->Item->Content->ShortText->Color1 = System::Drawing::Color::DimGray;
+            this->editsubsearch->StateCommon->Item->Content->ShortText->Color2 = System::Drawing::Color::DimGray;
+            this->editsubsearch->StateCommon->Item->Content->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->editsubsearch->TabIndex = 323;
+            // 
+            // editsubtitlegroup
+            // 
+            this->editsubtitlegroup->CaptionOverlap = 1;
+            this->editsubtitlegroup->CaptionVisible = false;
+            this->editsubtitlegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubtitlegroup->Location = System::Drawing::Point(26, 574);
+            this->editsubtitlegroup->Name = L"editsubtitlegroup";
+            // 
+            // editsubtitlegroup.Panel
+            // 
+            this->editsubtitlegroup->Panel->Controls->Add(this->kryptonPanel1);
+            this->editsubtitlegroup->Panel->Controls->Add(this->label109);
+            this->editsubtitlegroup->Panel->Controls->Add(this->editsubtitle);
+            this->editsubtitlegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubtitlegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubtitlegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubtitlegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubtitlegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubtitlegroup->StateCommon->Border->Rounding = 7;
+            this->editsubtitlegroup->StateCommon->Border->Width = 1;
+            this->editsubtitlegroup->TabIndex = 338;
+            // 
+            // kryptonPanel1
+            // 
+            this->kryptonPanel1->Location = System::Drawing::Point(101, 116);
+            this->kryptonPanel1->Name = L"kryptonPanel1";
+            this->kryptonPanel1->Size = System::Drawing::Size(470, 2);
+            this->kryptonPanel1->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel1->TabIndex = 329;
+            // 
+            // label109
+            // 
+            this->label109->AutoSize = true;
+            this->label109->BackColor = System::Drawing::Color::White;
+            this->label109->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label109->ForeColor = System::Drawing::Color::Black;
+            this->label109->Location = System::Drawing::Point(94, 39);
+            this->label109->Name = L"label109";
+            this->label109->Size = System::Drawing::Size(124, 28);
+            this->label109->TabIndex = 327;
+            this->label109->Text = L"Subject Title";
+            // 
+            // editsubtitle
+            // 
+            this->editsubtitle->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->editsubtitle->Location = System::Drawing::Point(99, 86);
+            this->editsubtitle->Name = L"editsubtitle";
+            this->editsubtitle->Size = System::Drawing::Size(440, 44);
+            this->editsubtitle->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->editsubtitle->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubtitle->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubtitle->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->editsubtitle->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->editsubtitle->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->editsubtitle->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubtitle->StateCommon->Border->Rounding = 10;
+            this->editsubtitle->StateCommon->Border->Width = 3;
+            this->editsubtitle->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->editsubtitle->TabIndex = 328;
+            // 
+            // editsubelegroup
+            // 
+            this->editsubelegroup->CaptionOverlap = 1;
+            this->editsubelegroup->CaptionVisible = false;
+            this->editsubelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubelegroup->Location = System::Drawing::Point(26, 1023);
+            this->editsubelegroup->Name = L"editsubelegroup";
+            // 
+            // editsubelegroup.Panel
+            // 
+            this->editsubelegroup->Panel->Controls->Add(this->label92);
+            this->editsubelegroup->Panel->Controls->Add(this->panel10);
+            this->editsubelegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::kryptonGroupBox2_Panel_Paint);
+            this->editsubelegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubelegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubelegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubelegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubelegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubelegroup->StateCommon->Border->Rounding = 7;
+            this->editsubelegroup->StateCommon->Border->Width = 1;
+            this->editsubelegroup->TabIndex = 339;
+            // 
+            // label92
+            // 
+            this->label92->AutoSize = true;
+            this->label92->BackColor = System::Drawing::Color::White;
+            this->label92->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label92->Location = System::Drawing::Point(111, 40);
+            this->label92->Name = L"label92";
+            this->label92->Size = System::Drawing::Size(156, 28);
+            this->label92->TabIndex = 266;
+            this->label92->Text = L"Is it an Elective\?";
+            // 
+            // panel10
+            // 
+            this->panel10->BackColor = System::Drawing::Color::White;
+            this->panel10->Controls->Add(this->editsubeleyes);
+            this->panel10->Controls->Add(this->editsubeleno);
+            this->panel10->ForeColor = System::Drawing::Color::Black;
+            this->panel10->Location = System::Drawing::Point(162, 90);
+            this->panel10->Name = L"panel10";
+            this->panel10->Size = System::Drawing::Size(454, 60);
+            this->panel10->TabIndex = 267;
+            // 
+            // editsubeleyes
+            // 
+            this->editsubeleyes->Location = System::Drawing::Point(16, 14);
+            this->editsubeleyes->Name = L"editsubeleyes";
+            this->editsubeleyes->Size = System::Drawing::Size(58, 32);
+            this->editsubeleyes->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
+            this->editsubeleyes->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
+            this->editsubeleyes->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->editsubeleyes->TabIndex = 328;
+            this->editsubeleyes->Values->Text = L"YES";
+            // 
+            // editsubeleno
+            // 
+            this->editsubeleno->Location = System::Drawing::Point(230, 14);
+            this->editsubeleno->Name = L"editsubeleno";
+            this->editsubeleno->Size = System::Drawing::Size(56, 32);
+            this->editsubeleno->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
+            this->editsubeleno->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
+            this->editsubeleno->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->editsubeleno->TabIndex = 330;
+            this->editsubeleno->Values->Text = L"NO";
+            // 
+            // editsubnamegroup
+            // 
+            this->editsubnamegroup->CaptionOverlap = 1;
+            this->editsubnamegroup->CaptionVisible = false;
+            this->editsubnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubnamegroup->Location = System::Drawing::Point(26, 338);
+            this->editsubnamegroup->Name = L"editsubnamegroup";
+            // 
+            // editsubnamegroup.Panel
+            // 
+            this->editsubnamegroup->Panel->Controls->Add(this->kryptonPanel2);
+            this->editsubnamegroup->Panel->Controls->Add(this->kryptonPanel3);
+            this->editsubnamegroup->Panel->Controls->Add(this->label93);
+            this->editsubnamegroup->Panel->Controls->Add(this->editsubname);
+            this->editsubnamegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->editsubnamegroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->editsubnamegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubnamegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubnamegroup->StateCommon->Border->Rounding = 9;
+            this->editsubnamegroup->StateCommon->Border->Width = 1;
+            this->editsubnamegroup->TabIndex = 337;
+            // 
+            // kryptonPanel2
+            // 
+            this->kryptonPanel2->Location = System::Drawing::Point(0, 1);
+            this->kryptonPanel2->Name = L"kryptonPanel2";
+            this->kryptonPanel2->Size = System::Drawing::Size(10, 191);
+            this->kryptonPanel2->StateCommon->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->kryptonPanel2->TabIndex = 327;
+            // 
+            // kryptonPanel3
+            // 
+            this->kryptonPanel3->Location = System::Drawing::Point(98, 110);
+            this->kryptonPanel3->Name = L"kryptonPanel3";
+            this->kryptonPanel3->Size = System::Drawing::Size(470, 2);
+            this->kryptonPanel3->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel3->TabIndex = 326;
+            // 
+            // label93
+            // 
+            this->label93->AutoSize = true;
+            this->label93->BackColor = System::Drawing::Color::White;
+            this->label93->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label93->ForeColor = System::Drawing::Color::Black;
+            this->label93->Location = System::Drawing::Point(93, 30);
+            this->label93->Name = L"label93";
+            this->label93->Size = System::Drawing::Size(139, 28);
+            this->label93->TabIndex = 264;
+            this->label93->Text = L"Subject Name";
             // 
             // editsubname
             // 
             this->editsubname->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editsubname->Location = System::Drawing::Point(112, 391);
+            this->editsubname->Location = System::Drawing::Point(105, 75);
             this->editsubname->Name = L"editsubname";
-            this->editsubname->Size = System::Drawing::Size(275, 41);
+            this->editsubname->Size = System::Drawing::Size(440, 44);
+            this->editsubname->StateActive->Back->Color1 = System::Drawing::Color::White;
             this->editsubname->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubname->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            this->editsubname->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->editsubname->StateCommon->Border->Color1 = System::Drawing::Color::White;
             this->editsubname->StateCommon->Border->Color2 = System::Drawing::Color::White;
@@ -5390,55 +5691,77 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
             this->editsubname->StateCommon->Border->Rounding = 10;
             this->editsubname->StateCommon->Border->Width = 3;
+            this->editsubname->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
             this->editsubname->TabIndex = 325;
             // 
-            // kryptonButton1
+            // editsubcodegroup
             // 
-            this->kryptonButton1->ButtonStyle = ComponentFactory::Krypton::Toolkit::ButtonStyle::Custom1;
-            this->kryptonButton1->Location = System::Drawing::Point(964, 153);
-            this->kryptonButton1->Name = L"kryptonButton1";
-            this->kryptonButton1->Size = System::Drawing::Size(50, 56);
-            this->kryptonButton1->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->kryptonButton1->StateCommon->Back->Color2 = System::Drawing::Color::White;
-            this->kryptonButton1->StateCommon->Back->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kryptonButton1.StateCommon.Back.Image")));
-            this->kryptonButton1->StateCommon->Back->ImageAlign = ComponentFactory::Krypton::Toolkit::PaletteRectangleAlign::Control;
-            this->kryptonButton1->StateCommon->Back->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::Stretch;
-            this->kryptonButton1->StateCommon->Border->Color1 = System::Drawing::Color::White;
-            this->kryptonButton1->StateCommon->Border->Color2 = System::Drawing::Color::White;
-            this->kryptonButton1->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
-            this->kryptonButton1->StateCommon->Border->Draw = ComponentFactory::Krypton::Toolkit::InheritBool::False;
-            this->kryptonButton1->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>(((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonButton1->StateCommon->Border->Rounding = 20;
-            this->kryptonButton1->TabIndex = 324;
-            this->kryptonButton1->Values->Text = L"";
-            this->kryptonButton1->Click += gcnew System::EventHandler(this, &MyForm::kryptonButton1_Click_1);
+            this->editsubcodegroup->CaptionOverlap = 1;
+            this->editsubcodegroup->CaptionVisible = false;
+            this->editsubcodegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubcodegroup->Location = System::Drawing::Point(26, 795);
+            this->editsubcodegroup->Name = L"editsubcodegroup";
             // 
-            // kryptonComboBox1
+            // editsubcodegroup.Panel
             // 
-            this->kryptonComboBox1->DropBackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
-            this->kryptonComboBox1->DropButtonStyle = ComponentFactory::Krypton::Toolkit::ButtonStyle::ListItem;
-            this->kryptonComboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-            this->kryptonComboBox1->DropDownWidth = 356;
-            this->kryptonComboBox1->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->kryptonComboBox1->Location = System::Drawing::Point(485, 153);
-            this->kryptonComboBox1->Name = L"kryptonComboBox1";
-            this->kryptonComboBox1->Size = System::Drawing::Size(525, 42);
-            this->kryptonComboBox1->StateCommon->ComboBox->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->kryptonComboBox1->StateCommon->ComboBox->Border->Color1 = System::Drawing::Color::White;
-            this->kryptonComboBox1->StateCommon->ComboBox->Border->Color2 = System::Drawing::Color::White;
-            this->kryptonComboBox1->StateCommon->ComboBox->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->editsubcodegroup->Panel->Controls->Add(this->kryptonPanel4);
+            this->editsubcodegroup->Panel->Controls->Add(this->label15);
+            this->editsubcodegroup->Panel->Controls->Add(this->editsubcode);
+            this->editsubcodegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubcodegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubcodegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubcodegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubcodegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonComboBox1->StateCommon->ComboBox->Border->Rounding = 18;
-            this->kryptonComboBox1->StateCommon->ComboBox->Border->Width = 3;
-            this->kryptonComboBox1->StateCommon->ComboBox->Content->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular,
-                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->kryptonComboBox1->StateCommon->ComboBox->Content->Padding = System::Windows::Forms::Padding(20, 0, 0, 0);
-            this->kryptonComboBox1->StateCommon->DropBack->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
-            this->kryptonComboBox1->TabIndex = 323;
+            this->editsubcodegroup->StateCommon->Border->Rounding = 7;
+            this->editsubcodegroup->StateCommon->Border->Width = 1;
+            this->editsubcodegroup->TabIndex = 336;
+            // 
+            // kryptonPanel4
+            // 
+            this->kryptonPanel4->Location = System::Drawing::Point(99, 137);
+            this->kryptonPanel4->Name = L"kryptonPanel4";
+            this->kryptonPanel4->Size = System::Drawing::Size(470, 2);
+            this->kryptonPanel4->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel4->TabIndex = 329;
+            // 
+            // label15
+            // 
+            this->label15->AutoSize = true;
+            this->label15->BackColor = System::Drawing::Color::White;
+            this->label15->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label15->ForeColor = System::Drawing::Color::Black;
+            this->label15->Location = System::Drawing::Point(93, 46);
+            this->label15->Name = L"label15";
+            this->label15->Size = System::Drawing::Size(132, 28);
+            this->label15->TabIndex = 327;
+            this->label15->Text = L"Subject Code";
+            // 
+            // editsubcode
+            // 
+            this->editsubcode->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->editsubcode->Location = System::Drawing::Point(98, 92);
+            this->editsubcode->Name = L"editsubcode";
+            this->editsubcode->Size = System::Drawing::Size(440, 44);
+            this->editsubcode->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->editsubcode->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubcode->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubcode->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->editsubcode->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->editsubcode->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->editsubcode->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubcode->StateCommon->Border->Rounding = 10;
+            this->editsubcode->StateCommon->Border->Width = 3;
+            this->editsubcode->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->editsubcode->TabIndex = 328;
             // 
             // button3
             // 
@@ -5446,7 +5769,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->button3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button3->Location = System::Drawing::Point(730, 1322);
+            this->button3->Location = System::Drawing::Point(784, 1742);
             this->button3->Name = L"button3";
             this->button3->Size = System::Drawing::Size(116, 46);
             this->button3->TabIndex = 310;
@@ -5471,9 +5794,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editsubelepanel->Controls->Add(this->label162);
             this->editsubelepanel->Controls->Add(this->label163);
             this->editsubelepanel->Controls->Add(this->label164);
-            this->editsubelepanel->Location = System::Drawing::Point(63, 1374);
+            this->editsubelepanel->Location = System::Drawing::Point(117, 1794);
             this->editsubelepanel->Name = L"editsubelepanel";
-            this->editsubelepanel->Size = System::Drawing::Size(1183, 621);
+            this->editsubelepanel->Size = System::Drawing::Size(1184, 621);
             this->editsubelepanel->TabIndex = 311;
             // 
             // panel39
@@ -5482,14 +5805,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel39->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->panel39->Location = System::Drawing::Point(416, 112);
             this->panel39->Name = L"panel39";
-            this->panel39->Size = System::Drawing::Size(44, 413);
+            this->panel39->Size = System::Drawing::Size(44, 412);
             this->panel39->TabIndex = 2;
             // 
             // panel40
             // 
             this->panel40->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel40.BackgroundImage")));
             this->panel40->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel40->Location = System::Drawing::Point(757, 110);
+            this->panel40->Location = System::Drawing::Point(758, 110);
             this->panel40->Name = L"panel40";
             this->panel40->Size = System::Drawing::Size(44, 436);
             this->panel40->TabIndex = 1;
@@ -5513,7 +5836,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->editsubeletable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->editsubeletable->Location = System::Drawing::Point(140, 113);
+            this->editsubeletable->Location = System::Drawing::Point(140, 112);
             this->editsubeletable->Name = L"editsubeletable";
             this->editsubeletable->RowCount = 6;
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -5522,7 +5845,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->editsubeletable->Size = System::Drawing::Size(949, 435);
+            this->editsubeletable->Size = System::Drawing::Size(950, 435);
             this->editsubeletable->TabIndex = 260;
             // 
             // label153
@@ -5563,7 +5886,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label156->AutoSize = true;
             this->label156->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label156->Location = System::Drawing::Point(635, 72);
+            this->label156->Location = System::Drawing::Point(634, 72);
             this->label156->Name = L"label156";
             this->label156->Size = System::Drawing::Size(105, 28);
             this->label156->TabIndex = 297;
@@ -5596,7 +5919,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label159->AutoSize = true;
             this->label159->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label159->Location = System::Drawing::Point(43, 495);
+            this->label159->Location = System::Drawing::Point(44, 495);
             this->label159->Name = L"label159";
             this->label159->Size = System::Drawing::Size(90, 28);
             this->label159->TabIndex = 266;
@@ -5607,7 +5930,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label160->AutoSize = true;
             this->label160->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label160->Location = System::Drawing::Point(43, 418);
+            this->label160->Location = System::Drawing::Point(44, 418);
             this->label160->Name = L"label160";
             this->label160->Size = System::Drawing::Size(66, 28);
             this->label160->TabIndex = 265;
@@ -5640,7 +5963,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label163->AutoSize = true;
             this->label163->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label163->Location = System::Drawing::Point(47, 201);
+            this->label163->Location = System::Drawing::Point(46, 201);
             this->label163->Name = L"label163";
             this->label163->Size = System::Drawing::Size(83, 28);
             this->label163->TabIndex = 262;
@@ -5651,7 +5974,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label164->AutoSize = true;
             this->label164->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label164->Location = System::Drawing::Point(41, 132);
+            this->label164->Location = System::Drawing::Point(40, 132);
             this->label164->Name = L"label164";
             this->label164->Size = System::Drawing::Size(85, 28);
             this->label164->TabIndex = 261;
@@ -5667,7 +5990,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editpanelsub->Controls->Add(this->editsubbfactor);
             this->editpanelsub->Controls->Add(this->editsubsave);
             this->editpanelsub->Controls->Add(this->editsubdelete);
-            this->editpanelsub->Location = System::Drawing::Point(161, 2432);
+            this->editpanelsub->Location = System::Drawing::Point(214, 2852);
             this->editpanelsub->Name = L"editpanelsub";
             this->editpanelsub->Size = System::Drawing::Size(846, 1096);
             this->editpanelsub->TabIndex = 320;
@@ -5689,7 +6012,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label97->AutoSize = true;
             this->label97->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label97->Location = System::Drawing::Point(57, 41);
+            this->label97->Location = System::Drawing::Point(57, 40);
             this->label97->Name = L"label97";
             this->label97->Size = System::Drawing::Size(125, 28);
             this->label97->TabIndex = 302;
@@ -5717,7 +6040,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editsubroomlist->FormattingEnabled = true;
             this->editsubroomlist->Location = System::Drawing::Point(63, 243);
             this->editsubroomlist->Name = L"editsubroomlist";
-            this->editsubroomlist->Size = System::Drawing::Size(251, 124);
+            this->editsubroomlist->Size = System::Drawing::Size(250, 93);
             this->editsubroomlist->Sorted = true;
             this->editsubroomlist->TabIndex = 304;
             this->editsubroomlist->ThreeDCheckBoxes = true;
@@ -5727,7 +6050,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label100->AutoSize = true;
             this->label100->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label100->Location = System::Drawing::Point(53, 413);
+            this->label100->Location = System::Drawing::Point(52, 412);
             this->label100->Name = L"label100";
             this->label100->Size = System::Drawing::Size(75, 28);
             this->label100->TabIndex = 306;
@@ -5740,7 +6063,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editsubbfactor->DecimalPlaces = 2;
             this->editsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubbfactor->Location = System::Drawing::Point(59, 455);
+            this->editsubbfactor->Location = System::Drawing::Point(58, 454);
             this->editsubbfactor->Name = L"editsubbfactor";
             this->editsubbfactor->Size = System::Drawing::Size(135, 34);
             this->editsubbfactor->TabIndex = 307;
@@ -5751,7 +6074,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubsave->Location = System::Drawing::Point(395, 578);
+            this->editsubsave->Location = System::Drawing::Point(394, 578);
             this->editsubsave->Name = L"editsubsave";
             this->editsubsave->Size = System::Drawing::Size(116, 58);
             this->editsubsave->TabIndex = 308;
@@ -5765,36 +6088,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->editsubdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubdelete->Location = System::Drawing::Point(574, 577);
+            this->editsubdelete->Location = System::Drawing::Point(574, 578);
             this->editsubdelete->Name = L"editsubdelete";
             this->editsubdelete->Size = System::Drawing::Size(116, 58);
             this->editsubdelete->TabIndex = 309;
             this->editsubdelete->Text = L"Delete";
             this->editsubdelete->UseVisualStyleBackColor = false;
             this->editsubdelete->Click += gcnew System::EventHandler(this, &MyForm::editsubdelete_Click);
-            // 
-            // label150
-            // 
-            this->label150->AutoSize = true;
-            this->label150->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label150->Location = System::Drawing::Point(1150, 343);
-            this->label150->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-            this->label150->Name = L"label150";
-            this->label150->Size = System::Drawing::Size(128, 28);
-            this->label150->TabIndex = 316;
-            this->label150->Text = L"Subject Code";
-            // 
-            // label152
-            // 
-            this->label152->AutoSize = true;
-            this->label152->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label152->Location = System::Drawing::Point(656, 342);
-            this->label152->Name = L"label152";
-            this->label152->Size = System::Drawing::Size(119, 28);
-            this->label152->TabIndex = 314;
-            this->label152->Text = L"Subject Title";
             // 
             // editsubcluster
             // 
@@ -5804,96 +6104,30 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editsubcluster->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->editsubcluster->FormattingEnabled = true;
-            this->editsubcluster->Location = System::Drawing::Point(223, 932);
+            this->editsubcluster->Location = System::Drawing::Point(278, 1352);
             this->editsubcluster->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editsubcluster->Name = L"editsubcluster";
             this->editsubcluster->Size = System::Drawing::Size(294, 36);
             this->editsubcluster->TabIndex = 313;
             this->editsubcluster->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
-            // editsubsearchbutton
-            // 
-            this->editsubsearchbutton->BackColor = System::Drawing::Color::White;
-            this->editsubsearchbutton->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"editsubsearchbutton.BackgroundImage")));
-            this->editsubsearchbutton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->editsubsearchbutton->FlatAppearance->BorderSize = 0;
-            this->editsubsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->editsubsearchbutton->Location = System::Drawing::Point(1061, 1038);
-            this->editsubsearchbutton->Name = L"editsubsearchbutton";
-            this->editsubsearchbutton->Size = System::Drawing::Size(26, 29);
-            this->editsubsearchbutton->TabIndex = 311;
-            this->editsubsearchbutton->UseVisualStyleBackColor = false;
-            this->editsubsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editsubsearchbutton_Click);
-            // 
-            // label101
-            // 
-            this->label101->AutoSize = true;
-            this->label101->Font = (gcnew System::Drawing::Font(L"Segoe UI", 11, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label101->Location = System::Drawing::Point(620, 99);
-            this->label101->Name = L"label101";
-            this->label101->Size = System::Drawing::Size(241, 30);
-            this->label101->TabIndex = 310;
-            this->label101->Text = L"Enter the Subject Name";
-            this->label101->Click += gcnew System::EventHandler(this, &MyForm::label101_Click);
-            // 
-            // editsubsearch
-            // 
-            this->editsubsearch->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->editsubsearch->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->editsubsearch->ForeColor = System::Drawing::SystemColors::WindowFrame;
-            this->editsubsearch->FormattingEnabled = true;
-            this->editsubsearch->Location = System::Drawing::Point(730, 1037);
-            this->editsubsearch->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-            this->editsubsearch->Name = L"editsubsearch";
-            this->editsubsearch->Size = System::Drawing::Size(360, 36);
-            this->editsubsearch->TabIndex = 312;
-            this->editsubsearch->Text = L"Search";
-            this->editsubsearch->GotFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxFocusSub);
-            this->editsubsearch->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::textBox_KeyDownsubject);
-            this->editsubsearch->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspacesearch);
-            this->editsubsearch->LostFocus += gcnew System::EventHandler(this, &MyForm::OnSearchBoxLostFocusSub);
-            // 
             // label94
             // 
             this->label94->AutoSize = true;
             this->label94->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label94->Location = System::Drawing::Point(163, 1031);
+            this->label94->Location = System::Drawing::Point(218, 1450);
             this->label94->Name = L"label94";
             this->label94->Size = System::Drawing::Size(330, 28);
             this->label94->TabIndex = 297;
             this->label94->Text = L"Teacher handling the elective subject";
-            // 
-            // panel10
-            // 
-            this->panel10->Controls->Add(this->editsubeleyes);
-            this->panel10->Controls->Add(this->editsubeleno);
-            this->panel10->ForeColor = System::Drawing::Color::Black;
-            this->panel10->Location = System::Drawing::Point(203, 592);
-            this->panel10->Name = L"panel10";
-            this->panel10->Size = System::Drawing::Size(220, 60);
-            this->panel10->TabIndex = 267;
-            // 
-            // label92
-            // 
-            this->label92->AutoSize = true;
-            this->label92->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label92->Location = System::Drawing::Point(174, 536);
-            this->label92->Name = L"label92";
-            this->label92->Size = System::Drawing::Size(148, 28);
-            this->label92->TabIndex = 266;
-            this->label92->Text = L"Is it an elective\?";
             // 
             // label95
             // 
             this->label95->AutoSize = true;
             this->label95->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label95->Location = System::Drawing::Point(221, 884);
+            this->label95->Location = System::Drawing::Point(274, 1304);
             this->label95->Name = L"label95";
             this->label95->Size = System::Drawing::Size(152, 28);
             this->label95->TabIndex = 294;
@@ -5916,7 +6150,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             dataGridViewCellStyle66->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle66->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            dataGridViewCellStyle66->Font = (gcnew System::Drawing::Font(L"Segoe UI Variable Display Semib", 10, System::Drawing::FontStyle::Bold));
+            dataGridViewCellStyle66->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
             dataGridViewCellStyle66->ForeColor = System::Drawing::SystemColors::Window;
             dataGridViewCellStyle66->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
@@ -5931,7 +6166,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             });
             dataGridViewCellStyle69->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle69->BackColor = System::Drawing::Color::White;
-            dataGridViewCellStyle69->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle69->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             dataGridViewCellStyle69->ForeColor = System::Drawing::SystemColors::ControlText;
             dataGridViewCellStyle69->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
@@ -5941,12 +6176,12 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->editsubeleteacher->DefaultCellStyle = dataGridViewCellStyle69;
             this->editsubeleteacher->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubeleteacher->Location = System::Drawing::Point(173, 1085);
+            this->editsubeleteacher->Location = System::Drawing::Point(226, 1504);
             this->editsubeleteacher->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->editsubeleteacher->Name = L"editsubeleteacher";
             dataGridViewCellStyle70->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
             dataGridViewCellStyle70->BackColor = System::Drawing::Color::White;
-            dataGridViewCellStyle70->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle70->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             dataGridViewCellStyle70->ForeColor = System::Drawing::SystemColors::WindowText;
             dataGridViewCellStyle70->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
@@ -6005,23 +6240,73 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->dataGridViewButtonColumn10->Text = L"Delete";
             this->dataGridViewButtonColumn10->UseColumnTextForButtonValue = true;
             // 
-            // label93
+            // kryptonPanel6
             // 
-            this->label93->AutoSize = true;
-            this->label93->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->kryptonPanel6->Controls->Add(this->kryptonLabel1);
+            this->kryptonPanel6->Controls->Add(this->panel4);
+            this->kryptonPanel6->Dock = System::Windows::Forms::DockStyle::Top;
+            this->kryptonPanel6->Location = System::Drawing::Point(0, 0);
+            this->kryptonPanel6->Name = L"kryptonPanel6";
+            this->kryptonPanel6->Size = System::Drawing::Size(1924, 76);
+            this->kryptonPanel6->StateCommon->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->kryptonPanel6->TabIndex = 338;
+            // 
+            // kryptonLabel1
+            // 
+            this->kryptonLabel1->Location = System::Drawing::Point(382, 14);
+            this->kryptonLabel1->Name = L"kryptonLabel1";
+            this->kryptonLabel1->Size = System::Drawing::Size(328, 49);
+            this->kryptonLabel1->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->kryptonLabel1->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 16, System::Drawing::FontStyle::Bold));
+            this->kryptonLabel1->TabIndex = 1;
+            this->kryptonLabel1->Values->Text = L"TimeTable Architect";
+            // 
+            // panel4
+            // 
+            this->panel4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->panel4->Controls->Add(this->textBox1);
+            this->panel4->Controls->Add(this->pictureBox8);
+            this->panel4->Dock = System::Windows::Forms::DockStyle::Left;
+            this->panel4->Location = System::Drawing::Point(0, 0);
+            this->panel4->Name = L"panel4";
+            this->panel4->Size = System::Drawing::Size(326, 76);
+            this->panel4->TabIndex = 0;
+            // 
+            // textBox1
+            // 
+            this->textBox1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
+            this->textBox1->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label93->ForeColor = System::Drawing::Color::Black;
-            this->label93->Location = System::Drawing::Point(174, 345);
-            this->label93->Name = L"label93";
-            this->label93->Size = System::Drawing::Size(134, 28);
-            this->label93->TabIndex = 264;
-            this->label93->Text = L"Subject Name";
+            this->textBox1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->textBox1->Location = System::Drawing::Point(130, 20);
+            this->textBox1->Name = L"textBox1";
+            this->textBox1->Size = System::Drawing::Size(270, 32);
+            this->textBox1->TabIndex = 341;
+            this->textBox1->Text = L"UserName";
+            // 
+            // pictureBox8
+            // 
+            this->pictureBox8->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox8.Image")));
+            this->pictureBox8->Location = System::Drawing::Point(15, 8);
+            this->pictureBox8->Name = L"pictureBox8";
+            this->pictureBox8->Size = System::Drawing::Size(87, 64);
+            this->pictureBox8->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox8->TabIndex = 340;
+            this->pictureBox8->TabStop = false;
             // 
             // textBox7
             // 
+            this->textBox7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox7.BackgroundImage")));
             this->textBox7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox7->Location = System::Drawing::Point(277, 412);
+            this->textBox7->Location = System::Drawing::Point(278, 412);
             this->textBox7->Name = L"textBox7";
             this->textBox7->Size = System::Drawing::Size(24, 22);
             this->textBox7->TabIndex = 322;
@@ -6041,14 +6326,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->settingspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->settingspanel->Location = System::Drawing::Point(0, 0);
             this->settingspanel->Name = L"settingspanel";
-            this->settingspanel->Size = System::Drawing::Size(1946, 1106);
+            this->settingspanel->Size = System::Drawing::Size(1924, 1050);
             this->settingspanel->TabIndex = 286;
             // 
             // filepath
             // 
             this->filepath->Location = System::Drawing::Point(414, 98);
             this->filepath->Name = L"filepath";
-            this->filepath->Size = System::Drawing::Size(377, 26);
+            this->filepath->Size = System::Drawing::Size(378, 26);
             this->filepath->TabIndex = 303;
             // 
             // button16
@@ -6087,9 +6372,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel20->Controls->Add(this->label102);
             this->panel20->Controls->Add(this->label121);
             this->panel20->Controls->Add(this->label122);
-            this->panel20->Location = System::Drawing::Point(327, 667);
+            this->panel20->Location = System::Drawing::Point(327, 668);
             this->panel20->Name = L"panel20";
-            this->panel20->Size = System::Drawing::Size(1183, 621);
+            this->panel20->Size = System::Drawing::Size(1184, 621);
             this->panel20->TabIndex = 300;
             // 
             // panel21
@@ -6105,7 +6390,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             this->panel22->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel22.BackgroundImage")));
             this->panel22->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel22->Location = System::Drawing::Point(757, 110);
+            this->panel22->Location = System::Drawing::Point(758, 110);
             this->panel22->Name = L"panel22";
             this->panel22->Size = System::Drawing::Size(44, 436);
             this->panel22->TabIndex = 1;
@@ -6129,7 +6414,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->settingstable->Location = System::Drawing::Point(140, 113);
+            this->settingstable->Location = System::Drawing::Point(140, 112);
             this->settingstable->Name = L"settingstable";
             this->settingstable->RowCount = 6;
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -6138,7 +6423,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->settingstable->Size = System::Drawing::Size(949, 435);
+            this->settingstable->Size = System::Drawing::Size(950, 435);
             this->settingstable->TabIndex = 260;
             this->settingstable->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::tableLayoutPanel2_Paint);
             // 
@@ -6180,7 +6465,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label86->AutoSize = true;
             this->label86->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label86->Location = System::Drawing::Point(635, 72);
+            this->label86->Location = System::Drawing::Point(634, 72);
             this->label86->Name = L"label86";
             this->label86->Size = System::Drawing::Size(105, 28);
             this->label86->TabIndex = 297;
@@ -6213,7 +6498,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label89->AutoSize = true;
             this->label89->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label89->Location = System::Drawing::Point(43, 495);
+            this->label89->Location = System::Drawing::Point(44, 495);
             this->label89->Name = L"label89";
             this->label89->Size = System::Drawing::Size(90, 28);
             this->label89->TabIndex = 266;
@@ -6224,7 +6509,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label90->AutoSize = true;
             this->label90->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label90->Location = System::Drawing::Point(43, 418);
+            this->label90->Location = System::Drawing::Point(44, 418);
             this->label90->Name = L"label90";
             this->label90->Size = System::Drawing::Size(66, 28);
             this->label90->TabIndex = 265;
@@ -6257,7 +6542,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label121->AutoSize = true;
             this->label121->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label121->Location = System::Drawing::Point(47, 201);
+            this->label121->Location = System::Drawing::Point(46, 201);
             this->label121->Name = L"label121";
             this->label121->Size = System::Drawing::Size(83, 28);
             this->label121->TabIndex = 262;
@@ -6268,7 +6553,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label122->AutoSize = true;
             this->label122->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label122->Location = System::Drawing::Point(41, 132);
+            this->label122->Location = System::Drawing::Point(40, 132);
             this->label122->Name = L"label122";
             this->label122->Size = System::Drawing::Size(85, 28);
             this->label122->TabIndex = 261;
@@ -6285,7 +6570,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // trackBar2
             // 
-            this->trackBar2->Location = System::Drawing::Point(414, 463);
+            this->trackBar2->Location = System::Drawing::Point(414, 464);
             this->trackBar2->Maximum = 7;
             this->trackBar2->Minimum = 1;
             this->trackBar2->Name = L"trackBar2";
@@ -6324,7 +6609,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // button1
             // 
-            this->button1->BackColor = System::Drawing::Color::Black;
+            this->button1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button1->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             this->button1->FlatAppearance->BorderSize = 0;
@@ -6335,18 +6621,20 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button1->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button1->ForeColor = System::Drawing::Color::White;
+            this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button1->Location = System::Drawing::Point(0, 200);
             this->button1->Name = L"button1";
             this->button1->Size = System::Drawing::Size(324, 44);
             this->button1->TabIndex = 2;
-            this->button1->Text = L"               Departments";
+            this->button1->Text = L"        Departments";
             this->button1->UseVisualStyleBackColor = false;
             this->button1->Click += gcnew System::EventHandler(this, &MyForm::button1_Click);
             // 
             // button6
             // 
-            this->button6->BackColor = System::Drawing::Color::Black;
+            this->button6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button6->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             this->button6->FlatAppearance->BorderSize = 0;
@@ -6357,18 +6645,20 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->button6->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button6->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button6->ForeColor = System::Drawing::Color::White;
-            this->button6->Location = System::Drawing::Point(58, 300);
+            this->button6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button6->Location = System::Drawing::Point(0, 300);
             this->button6->Name = L"button6";
-            this->button6->Size = System::Drawing::Size(269, 44);
+            this->button6->Size = System::Drawing::Size(327, 44);
             this->button6->TabIndex = 12;
-            this->button6->Text = L"Classrooms";
+            this->button6->Text = L"   Classrooms";
             this->button6->UseVisualStyleBackColor = false;
             this->button6->Click += gcnew System::EventHandler(this, &MyForm::button6_Click);
             // 
             // button9
             // 
-            this->button9->BackColor = System::Drawing::Color::Black;
+            this->button9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button9->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             this->button9->FlatAppearance->BorderSize = 0;
@@ -6379,10 +6669,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->button9->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button9->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button9->ForeColor = System::Drawing::Color::White;
-            this->button9->Location = System::Drawing::Point(58, 406);
+            this->button9->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button9->Location = System::Drawing::Point(0, 406);
             this->button9->Name = L"button9";
-            this->button9->Size = System::Drawing::Size(271, 44);
+            this->button9->Size = System::Drawing::Size(330, 44);
             this->button9->TabIndex = 12;
             this->button9->Text = L"Teachers";
             this->button9->UseVisualStyleBackColor = false;
@@ -6390,75 +6681,76 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // button5
             // 
-            this->button5->BackColor = System::Drawing::Color::Black;
+            this->button5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button5->FlatAppearance->BorderSize = 0;
             this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button5->ForeColor = System::Drawing::Color::White;
-            this->button5->Location = System::Drawing::Point(21, 343);
+            this->button5->Location = System::Drawing::Point(3, 344);
             this->button5->Margin = System::Windows::Forms::Padding(0);
             this->button5->Name = L"button5";
-            this->button5->Size = System::Drawing::Size(306, 34);
+            this->button5->Size = System::Drawing::Size(321, 34);
             this->button5->TabIndex = 13;
-            this->button5->Text = L"Add                 ";
-            this->button5->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button5->Text = L"      Add";
             this->button5->UseVisualStyleBackColor = false;
             this->button5->Visible = false;
             this->button5->Click += gcnew System::EventHandler(this, &MyForm::button5_Click);
             // 
             // button8
             // 
-            this->button8->BackColor = System::Drawing::Color::Black;
+            this->button8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button8->FlatAppearance->BorderSize = 0;
             this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button8->ForeColor = System::Drawing::Color::White;
-            this->button8->Location = System::Drawing::Point(21, 450);
+            this->button8->Location = System::Drawing::Point(3, 450);
             this->button8->Margin = System::Windows::Forms::Padding(0);
             this->button8->Name = L"button8";
-            this->button8->Size = System::Drawing::Size(306, 34);
+            this->button8->Size = System::Drawing::Size(324, 34);
             this->button8->TabIndex = 13;
-            this->button8->Text = L"Add                 ";
-            this->button8->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button8->Text = L"     Add\r\n";
             this->button8->UseVisualStyleBackColor = false;
             this->button8->Visible = false;
             this->button8->Click += gcnew System::EventHandler(this, &MyForm::button8_Click);
             // 
             // button4
             // 
-            this->button4->BackColor = System::Drawing::Color::Black;
+            this->button4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button4->FlatAppearance->BorderSize = 0;
             this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button4->ForeColor = System::Drawing::Color::White;
-            this->button4->Location = System::Drawing::Point(21, 373);
+            this->button4->Location = System::Drawing::Point(3, 374);
             this->button4->Margin = System::Windows::Forms::Padding(0);
             this->button4->Name = L"button4";
-            this->button4->Size = System::Drawing::Size(306, 34);
+            this->button4->Size = System::Drawing::Size(324, 34);
             this->button4->TabIndex = 14;
-            this->button4->Text = L"Edit                 ";
-            this->button4->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button4->Text = L"      Edit\r\n";
             this->button4->UseVisualStyleBackColor = false;
             this->button4->Visible = false;
             this->button4->Click += gcnew System::EventHandler(this, &MyForm::button4_Click_1);
             // 
             // button7
             // 
-            this->button7->BackColor = System::Drawing::Color::Black;
+            this->button7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button7->FlatAppearance->BorderSize = 0;
             this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button7->ForeColor = System::Drawing::Color::White;
-            this->button7->Location = System::Drawing::Point(18, 474);
+            this->button7->Location = System::Drawing::Point(0, 474);
             this->button7->Margin = System::Windows::Forms::Padding(0);
             this->button7->Name = L"button7";
-            this->button7->Size = System::Drawing::Size(309, 34);
+            this->button7->Size = System::Drawing::Size(327, 34);
             this->button7->TabIndex = 14;
-            this->button7->Text = L"Edit                 ";
-            this->button7->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button7->Text = L"       Edit";
             this->button7->UseVisualStyleBackColor = false;
             this->button7->Visible = false;
             this->button7->Click += gcnew System::EventHandler(this, &MyForm::button7_Click_1);
             // 
             // button12
             // 
-            this->button12->BackColor = System::Drawing::Color::Black;
+            this->button12->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button12->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             this->button12->FlatAppearance->BorderSize = 0;
@@ -6469,10 +6761,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->button12->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button12->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button12->ForeColor = System::Drawing::Color::White;
-            this->button12->Location = System::Drawing::Point(84, 512);
+            this->button12->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button12->Location = System::Drawing::Point(0, 512);
             this->button12->Name = L"button12";
-            this->button12->Size = System::Drawing::Size(246, 44);
+            this->button12->Size = System::Drawing::Size(330, 44);
             this->button12->TabIndex = 17;
             this->button12->Text = L"Subjects";
             this->button12->UseVisualStyleBackColor = false;
@@ -6480,41 +6773,42 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // button11
             // 
-            this->button11->BackColor = System::Drawing::Color::Black;
+            this->button11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button11->FlatAppearance->BorderSize = 0;
             this->button11->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button11->ForeColor = System::Drawing::Color::White;
-            this->button11->Location = System::Drawing::Point(24, 558);
+            this->button11->Location = System::Drawing::Point(0, 558);
             this->button11->Margin = System::Windows::Forms::Padding(0);
             this->button11->Name = L"button11";
-            this->button11->Size = System::Drawing::Size(305, 34);
+            this->button11->Size = System::Drawing::Size(328, 34);
             this->button11->TabIndex = 18;
-            this->button11->Text = L"Add                 ";
-            this->button11->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button11->Text = L"     Add";
             this->button11->UseVisualStyleBackColor = false;
             this->button11->Visible = false;
             this->button11->Click += gcnew System::EventHandler(this, &MyForm::button11_Click);
             // 
             // button10
             // 
-            this->button10->BackColor = System::Drawing::Color::Black;
+            this->button10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button10->FlatAppearance->BorderSize = 0;
             this->button10->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button10->ForeColor = System::Drawing::Color::White;
-            this->button10->Location = System::Drawing::Point(24, 588);
+            this->button10->Location = System::Drawing::Point(0, 588);
             this->button10->Margin = System::Windows::Forms::Padding(0);
             this->button10->Name = L"button10";
-            this->button10->Size = System::Drawing::Size(303, 34);
+            this->button10->Size = System::Drawing::Size(327, 34);
             this->button10->TabIndex = 19;
-            this->button10->Text = L"Edit                 ";
-            this->button10->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button10->Text = L"      Edit";
             this->button10->UseVisualStyleBackColor = false;
             this->button10->Visible = false;
             this->button10->Click += gcnew System::EventHandler(this, &MyForm::button10_Click_1);
             // 
             // button15
             // 
-            this->button15->BackColor = System::Drawing::Color::Black;
+            this->button15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button15->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             this->button15->FlatAppearance->BorderSize = 0;
@@ -6525,10 +6819,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->button15->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button15->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button15->ForeColor = System::Drawing::Color::White;
-            this->button15->Location = System::Drawing::Point(58, 620);
+            this->button15->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button15->Location = System::Drawing::Point(3, 620);
             this->button15->Name = L"button15";
-            this->button15->Size = System::Drawing::Size(267, 44);
+            this->button15->Size = System::Drawing::Size(322, 44);
             this->button15->TabIndex = 22;
             this->button15->Text = L"Classes";
             this->button15->UseVisualStyleBackColor = false;
@@ -6536,41 +6831,41 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // button14
             // 
-            this->button14->BackColor = System::Drawing::Color::Black;
+            this->button14->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button14->FlatAppearance->BorderSize = 0;
             this->button14->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button14->ForeColor = System::Drawing::Color::White;
-            this->button14->Location = System::Drawing::Point(57, 663);
+            this->button14->Location = System::Drawing::Point(0, 663);
             this->button14->Margin = System::Windows::Forms::Padding(0);
             this->button14->Name = L"button14";
-            this->button14->Size = System::Drawing::Size(267, 34);
+            this->button14->Size = System::Drawing::Size(324, 34);
             this->button14->TabIndex = 23;
-            this->button14->Text = L"Add                 ";
-            this->button14->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button14->Text = L"     Add";
             this->button14->UseVisualStyleBackColor = false;
             this->button14->Visible = false;
             this->button14->Click += gcnew System::EventHandler(this, &MyForm::button14_Click);
             // 
             // button13
             // 
-            this->button13->BackColor = System::Drawing::Color::Black;
+            this->button13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->button13->FlatAppearance->BorderSize = 0;
             this->button13->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button13->ForeColor = System::Drawing::Color::White;
-            this->button13->Location = System::Drawing::Point(55, 695);
+            this->button13->Location = System::Drawing::Point(0, 694);
             this->button13->Margin = System::Windows::Forms::Padding(0);
             this->button13->Name = L"button13";
-            this->button13->Size = System::Drawing::Size(267, 34);
+            this->button13->Size = System::Drawing::Size(322, 34);
             this->button13->TabIndex = 24;
-            this->button13->Text = L"Delete            ";
-            this->button13->TextAlign = System::Drawing::ContentAlignment::MiddleRight;
+            this->button13->Text = L"        Delete";
             this->button13->UseVisualStyleBackColor = false;
             this->button13->Visible = false;
             this->button13->Click += gcnew System::EventHandler(this, &MyForm::button13_Click);
             // 
             // Homebutton1
             // 
-            this->Homebutton1->BackColor = System::Drawing::Color::Black;
+            this->Homebutton1->BackColor = System::Drawing::Color::Transparent;
             this->Homebutton1->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
             this->Homebutton1->FlatAppearance->BorderSize = 0;
@@ -6581,8 +6876,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->Homebutton1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->Homebutton1->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->Homebutton1->ForeColor = System::Drawing::Color::White;
-            this->Homebutton1->Location = System::Drawing::Point(3, 85);
+            this->Homebutton1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->Homebutton1->Location = System::Drawing::Point(3, 86);
             this->Homebutton1->Name = L"Homebutton1";
             this->Homebutton1->Size = System::Drawing::Size(321, 44);
             this->Homebutton1->TabIndex = 26;
@@ -6593,7 +6889,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // panel3
             // 
             this->panel3->BackColor = System::Drawing::Color::White;
-            this->panel3->Location = System::Drawing::Point(15, 85);
+            this->panel3->Location = System::Drawing::Point(15, 86);
             this->panel3->Name = L"panel3";
             this->panel3->Size = System::Drawing::Size(4, 44);
             this->panel3->TabIndex = 6;
@@ -6601,9 +6897,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // pictureBox2
             // 
             this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-            this->pictureBox2->Location = System::Drawing::Point(68, 85);
+            this->pictureBox2->Location = System::Drawing::Point(68, 86);
             this->pictureBox2->Name = L"pictureBox2";
-            this->pictureBox2->Size = System::Drawing::Size(43, 44);
+            this->pictureBox2->Size = System::Drawing::Size(44, 44);
             this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox2->TabIndex = 6;
             this->pictureBox2->TabStop = false;
@@ -6613,7 +6909,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
             this->pictureBox3->Location = System::Drawing::Point(68, 195);
             this->pictureBox3->Name = L"pictureBox3";
-            this->pictureBox3->Size = System::Drawing::Size(35, 44);
+            this->pictureBox3->Size = System::Drawing::Size(34, 44);
             this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox3->TabIndex = 27;
             this->pictureBox3->TabStop = false;
@@ -6623,7 +6919,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
             this->pictureBox4->Location = System::Drawing::Point(68, 300);
             this->pictureBox4->Name = L"pictureBox4";
-            this->pictureBox4->Size = System::Drawing::Size(35, 44);
+            this->pictureBox4->Size = System::Drawing::Size(34, 44);
             this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox4->TabIndex = 28;
             this->pictureBox4->TabStop = false;
@@ -6633,7 +6929,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
             this->pictureBox5->Location = System::Drawing::Point(68, 406);
             this->pictureBox5->Name = L"pictureBox5";
-            this->pictureBox5->Size = System::Drawing::Size(35, 44);
+            this->pictureBox5->Size = System::Drawing::Size(34, 44);
             this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox5->TabIndex = 29;
             this->pictureBox5->TabStop = false;
@@ -6643,7 +6939,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->pictureBox6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.Image")));
             this->pictureBox6->Location = System::Drawing::Point(68, 512);
             this->pictureBox6->Name = L"pictureBox6";
-            this->pictureBox6->Size = System::Drawing::Size(35, 44);
+            this->pictureBox6->Size = System::Drawing::Size(34, 44);
             this->pictureBox6->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox6->TabIndex = 30;
             this->pictureBox6->TabStop = false;
@@ -6651,16 +6947,21 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // pictureBox7
             // 
             this->pictureBox7->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox7.Image")));
-            this->pictureBox7->Location = System::Drawing::Point(68, 623);
+            this->pictureBox7->Location = System::Drawing::Point(68, 622);
             this->pictureBox7->Name = L"pictureBox7";
-            this->pictureBox7->Size = System::Drawing::Size(35, 44);
+            this->pictureBox7->Size = System::Drawing::Size(34, 44);
             this->pictureBox7->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox7->TabIndex = 31;
             this->pictureBox7->TabStop = false;
             // 
             // panel1
             // 
-            this->panel1->BackColor = System::Drawing::Color::Black;
+            this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->panel1->Controls->Add(this->pictureBox12);
+            this->panel1->Controls->Add(this->button18);
+            this->panel1->Controls->Add(this->pictureBox11);
+            this->panel1->Controls->Add(this->button17);
             this->panel1->Controls->Add(this->textBox7);
             this->panel1->Controls->Add(this->textBox5);
             this->panel1->Controls->Add(this->textBox9);
@@ -6691,22 +6992,95 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel1->Controls->Add(this->button6);
             this->panel1->Controls->Add(this->button1);
             this->panel1->Dock = System::Windows::Forms::DockStyle::Left;
-            this->panel1->Location = System::Drawing::Point(0, 139);
+            this->panel1->Location = System::Drawing::Point(0, 76);
             this->panel1->Name = L"panel1";
-            this->panel1->Size = System::Drawing::Size(324, 967);
+            this->panel1->Size = System::Drawing::Size(326, 974);
             this->panel1->TabIndex = 259;
+            // 
+            // pictureBox12
+            // 
+            this->pictureBox12->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox12.Image")));
+            this->pictureBox12->Location = System::Drawing::Point(68, 740);
+            this->pictureBox12->Name = L"pictureBox12";
+            this->pictureBox12->Size = System::Drawing::Size(34, 44);
+            this->pictureBox12->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox12->TabIndex = 328;
+            this->pictureBox12->TabStop = false;
+            // 
+            // button18
+            // 
+            this->button18->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button18->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
+            this->button18->FlatAppearance->BorderSize = 0;
+            this->button18->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button18->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button18->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button18->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->button18->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button18->Location = System::Drawing::Point(3, 740);
+            this->button18->Name = L"button18";
+            this->button18->Size = System::Drawing::Size(326, 44);
+            this->button18->TabIndex = 327;
+            this->button18->Text = L"   Contact Us";
+            this->button18->UseVisualStyleBackColor = false;
+            // 
+            // pictureBox11
+            // 
+            this->pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
+            this->pictureBox11->Location = System::Drawing::Point(69, 808);
+            this->pictureBox11->Name = L"pictureBox11";
+            this->pictureBox11->Size = System::Drawing::Size(34, 44);
+            this->pictureBox11->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox11->TabIndex = 4;
+            this->pictureBox11->TabStop = false;
+            this->pictureBox11->Click += gcnew System::EventHandler(this, &MyForm::pictureBox11_Click);
+            this->pictureBox11->MouseEnter += gcnew System::EventHandler(this, &MyForm::pictureBox11_MouseEnter);
+            this->pictureBox11->MouseLeave += gcnew System::EventHandler(this, &MyForm::pictureBox11_MouseLeave);
+            // 
+            // button17
+            // 
+            this->button17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button17->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
+            this->button17->FlatAppearance->BorderSize = 0;
+            this->button17->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button17->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button17->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button17->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->button17->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button17->Location = System::Drawing::Point(3, 808);
+            this->button17->Name = L"button17";
+            this->button17->Size = System::Drawing::Size(321, 44);
+            this->button17->TabIndex = 325;
+            this->button17->Text = L"Settings";
+            this->button17->UseVisualStyleBackColor = false;
             // 
             // textBox5
             // 
+            this->textBox5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox5.BackgroundImage")));
             this->textBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox5->Location = System::Drawing::Point(277, 313);
+            this->textBox5->Location = System::Drawing::Point(282, 306);
             this->textBox5->Name = L"textBox5";
             this->textBox5->Size = System::Drawing::Size(24, 22);
             this->textBox5->TabIndex = 321;
             // 
             // textBox9
             // 
+            this->textBox9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox9->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox9.BackgroundImage")));
             this->textBox9->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->textBox9->Location = System::Drawing::Point(270, 520);
@@ -6716,6 +7090,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // textBox11
             // 
+            this->textBox11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox11->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox11.BackgroundImage")));
             this->textBox11->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->textBox11->Location = System::Drawing::Point(276, 627);
@@ -6725,15 +7101,19 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // textBox4
             // 
+            this->textBox4->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox4.BackgroundImage")));
             this->textBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox4->Location = System::Drawing::Point(280, 315);
+            this->textBox4->Location = System::Drawing::Point(285, 308);
             this->textBox4->Name = L"textBox4";
             this->textBox4->Size = System::Drawing::Size(24, 22);
             this->textBox4->TabIndex = 324;
             // 
             // textBox10
             // 
+            this->textBox10->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox10->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox10.BackgroundImage")));
             this->textBox10->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->textBox10->Location = System::Drawing::Point(278, 627);
@@ -6743,15 +7123,19 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             // 
             // textBox8
             // 
+            this->textBox8->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox8.BackgroundImage")));
             this->textBox8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox8->Location = System::Drawing::Point(274, 521);
+            this->textBox8->Location = System::Drawing::Point(274, 520);
             this->textBox8->Name = L"textBox8";
             this->textBox8->Size = System::Drawing::Size(24, 22);
             this->textBox8->TabIndex = 324;
             // 
             // textBox6
             // 
+            this->textBox6->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox6.BackgroundImage")));
             this->textBox6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->textBox6->Location = System::Drawing::Point(280, 412);
@@ -6904,7 +7288,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classname->CutCopyMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
             this->classname->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->classname->Location = System::Drawing::Point(185, 173);
+            this->classname->Location = System::Drawing::Point(184, 172);
             this->classname->Name = L"classname";
             this->classname->PromptChar = ' ';
             this->classname->Size = System::Drawing::Size(410, 34);
@@ -6956,9 +7340,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classdefaultrooms->CheckOnClick = true;
             this->classdefaultrooms->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
             this->classdefaultrooms->FormattingEnabled = true;
-            this->classdefaultrooms->Location = System::Drawing::Point(264, 2051);
+            this->classdefaultrooms->Location = System::Drawing::Point(264, 2050);
             this->classdefaultrooms->Name = L"classdefaultrooms";
-            this->classdefaultrooms->Size = System::Drawing::Size(287, 124);
+            this->classdefaultrooms->Size = System::Drawing::Size(286, 93);
             this->classdefaultrooms->TabIndex = 250;
             // 
             // label34
@@ -6966,7 +7350,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label34->AutoSize = true;
             this->label34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label34->Location = System::Drawing::Point(271, 2011);
+            this->label34->Location = System::Drawing::Point(272, 2012);
             this->label34->Name = L"label34";
             this->label34->Size = System::Drawing::Size(136, 28);
             this->label34->TabIndex = 251;
@@ -6992,7 +7376,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->classsave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->classsave->Location = System::Drawing::Point(350, 31);
+            this->classsave->Location = System::Drawing::Point(350, 32);
             this->classsave->Name = L"classsave";
             this->classsave->Size = System::Drawing::Size(104, 48);
             this->classsave->TabIndex = 247;
@@ -7096,7 +7480,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1946, 1106);
+            this->classpanel->Size = System::Drawing::Size(1924, 1050);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -7119,9 +7503,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classlabroomlist->CheckOnClick = true;
             this->classlabroomlist->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
             this->classlabroomlist->FormattingEnabled = true;
-            this->classlabroomlist->Location = System::Drawing::Point(245, 1692);
+            this->classlabroomlist->Location = System::Drawing::Point(244, 1692);
             this->classlabroomlist->Name = L"classlabroomlist";
-            this->classlabroomlist->Size = System::Drawing::Size(287, 124);
+            this->classlabroomlist->Size = System::Drawing::Size(286, 93);
             this->classlabroomlist->TabIndex = 315;
             // 
             // label98
@@ -7129,7 +7513,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label98->AutoSize = true;
             this->label98->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label98->Location = System::Drawing::Point(463, 1259);
+            this->label98->Location = System::Drawing::Point(464, 1258);
             this->label98->Name = L"label98";
             this->label98->Size = System::Drawing::Size(182, 28);
             this->label98->TabIndex = 314;
@@ -7149,7 +7533,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label44->AutoSize = true;
             this->label44->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label44->Location = System::Drawing::Point(155, 1259);
+            this->label44->Location = System::Drawing::Point(154, 1258);
             this->label44->Name = L"label44";
             this->label44->Size = System::Drawing::Size(184, 28);
             this->label44->TabIndex = 310;
@@ -7174,7 +7558,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classlabcombo->CutCopyMaskFormat = System::Windows::Forms::MaskFormat::IncludePromptAndLiterals;
             this->classlabcombo->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->classlabcombo->Location = System::Drawing::Point(160, 1199);
+            this->classlabcombo->Location = System::Drawing::Point(160, 1198);
             this->classlabcombo->Name = L"classlabcombo";
             this->classlabcombo->PromptChar = ' ';
             this->classlabcombo->Size = System::Drawing::Size(410, 34);
@@ -7384,7 +7768,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             dataGridViewCellStyle93->SelectionForeColor = System::Drawing::Color::Black;
             this->classlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle93;
             this->classlabteachers->RowTemplate->Height = 28;
-            this->classlabteachers->Size = System::Drawing::Size(512, 215);
+            this->classlabteachers->Size = System::Drawing::Size(512, 214);
             this->classlabteachers->TabIndex = 304;
             this->classlabteachers->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick_1);
             // 
@@ -7437,7 +7821,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classbatch->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 9999, 0, 0, 0 });
             this->classbatch->Minimum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2000, 0, 0, 0 });
             this->classbatch->Name = L"classbatch";
-            this->classbatch->Size = System::Drawing::Size(401, 34);
+            this->classbatch->Size = System::Drawing::Size(400, 34);
             this->classbatch->TabIndex = 261;
             this->classbatch->Value = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2000, 0, 0, 0 });
             // 
@@ -7449,7 +7833,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel36->Controls->Add(this->classgenerate);
             this->panel36->Location = System::Drawing::Point(666, 2187);
             this->panel36->Name = L"panel36";
-            this->panel36->Size = System::Drawing::Size(640, 97);
+            this->panel36->Size = System::Drawing::Size(640, 98);
             this->panel36->TabIndex = 303;
             // 
             // classtablegenpanel
@@ -7469,9 +7853,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classtablegenpanel->Controls->Add(this->label144);
             this->classtablegenpanel->Controls->Add(this->label145);
             this->classtablegenpanel->Controls->Add(this->label146);
-            this->classtablegenpanel->Location = System::Drawing::Point(232, 2963);
+            this->classtablegenpanel->Location = System::Drawing::Point(232, 2962);
             this->classtablegenpanel->Name = L"classtablegenpanel";
-            this->classtablegenpanel->Size = System::Drawing::Size(1183, 621);
+            this->classtablegenpanel->Size = System::Drawing::Size(1184, 621);
             this->classtablegenpanel->TabIndex = 302;
             // 
             // panel26
@@ -7480,14 +7864,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel26->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->panel26->Location = System::Drawing::Point(416, 112);
             this->panel26->Name = L"panel26";
-            this->panel26->Size = System::Drawing::Size(44, 413);
+            this->panel26->Size = System::Drawing::Size(44, 412);
             this->panel26->TabIndex = 2;
             // 
             // panel27
             // 
             this->panel27->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel27.BackgroundImage")));
             this->panel27->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel27->Location = System::Drawing::Point(757, 110);
+            this->panel27->Location = System::Drawing::Point(758, 110);
             this->panel27->Name = L"panel27";
             this->panel27->Size = System::Drawing::Size(44, 436);
             this->panel27->TabIndex = 1;
@@ -7511,7 +7895,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->classtablegen->Location = System::Drawing::Point(140, 113);
+            this->classtablegen->Location = System::Drawing::Point(140, 112);
             this->classtablegen->Name = L"classtablegen";
             this->classtablegen->RowCount = 6;
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -7520,7 +7904,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen->Size = System::Drawing::Size(949, 435);
+            this->classtablegen->Size = System::Drawing::Size(950, 435);
             this->classtablegen->TabIndex = 260;
             // 
             // label135
@@ -7561,7 +7945,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label138->AutoSize = true;
             this->label138->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label138->Location = System::Drawing::Point(635, 72);
+            this->label138->Location = System::Drawing::Point(634, 72);
             this->label138->Name = L"label138";
             this->label138->Size = System::Drawing::Size(105, 28);
             this->label138->TabIndex = 297;
@@ -7594,7 +7978,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label141->AutoSize = true;
             this->label141->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label141->Location = System::Drawing::Point(43, 495);
+            this->label141->Location = System::Drawing::Point(44, 495);
             this->label141->Name = L"label141";
             this->label141->Size = System::Drawing::Size(90, 28);
             this->label141->TabIndex = 266;
@@ -7605,7 +7989,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label142->AutoSize = true;
             this->label142->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label142->Location = System::Drawing::Point(43, 418);
+            this->label142->Location = System::Drawing::Point(44, 418);
             this->label142->Name = L"label142";
             this->label142->Size = System::Drawing::Size(66, 28);
             this->label142->TabIndex = 265;
@@ -7638,7 +8022,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label145->AutoSize = true;
             this->label145->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label145->Location = System::Drawing::Point(47, 201);
+            this->label145->Location = System::Drawing::Point(46, 201);
             this->label145->Name = L"label145";
             this->label145->Size = System::Drawing::Size(83, 28);
             this->label145->TabIndex = 262;
@@ -7649,7 +8033,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label146->AutoSize = true;
             this->label146->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label146->Location = System::Drawing::Point(41, 132);
+            this->label146->Location = System::Drawing::Point(40, 132);
             this->label146->Name = L"label146";
             this->label146->Size = System::Drawing::Size(85, 28);
             this->label146->TabIndex = 261;
@@ -7672,9 +8056,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->finalttpanel->Controls->Add(this->label60);
             this->finalttpanel->Controls->Add(this->label61);
             this->finalttpanel->Controls->Add(this->label65);
-            this->finalttpanel->Location = System::Drawing::Point(230, 2303);
+            this->finalttpanel->Location = System::Drawing::Point(230, 2302);
             this->finalttpanel->Name = L"finalttpanel";
-            this->finalttpanel->Size = System::Drawing::Size(1183, 621);
+            this->finalttpanel->Size = System::Drawing::Size(1184, 621);
             this->finalttpanel->TabIndex = 301;
             // 
             // panel8
@@ -7683,14 +8067,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->panel8->Location = System::Drawing::Point(416, 112);
             this->panel8->Name = L"panel8";
-            this->panel8->Size = System::Drawing::Size(44, 413);
+            this->panel8->Size = System::Drawing::Size(44, 412);
             this->panel8->TabIndex = 2;
             // 
             // panel25
             // 
             this->panel25->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel25.BackgroundImage")));
             this->panel25->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel25->Location = System::Drawing::Point(757, 110);
+            this->panel25->Location = System::Drawing::Point(758, 110);
             this->panel25->Name = L"panel25";
             this->panel25->Size = System::Drawing::Size(44, 436);
             this->panel25->TabIndex = 1;
@@ -7714,7 +8098,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->classtablegen1->Location = System::Drawing::Point(140, 113);
+            this->classtablegen1->Location = System::Drawing::Point(140, 112);
             this->classtablegen1->Name = L"classtablegen1";
             this->classtablegen1->RowCount = 6;
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -7723,7 +8107,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->Size = System::Drawing::Size(949, 435);
+            this->classtablegen1->Size = System::Drawing::Size(950, 435);
             this->classtablegen1->TabIndex = 260;
             // 
             // label35
@@ -7764,7 +8148,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label54->AutoSize = true;
             this->label54->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label54->Location = System::Drawing::Point(635, 72);
+            this->label54->Location = System::Drawing::Point(634, 72);
             this->label54->Name = L"label54";
             this->label54->Size = System::Drawing::Size(105, 28);
             this->label54->TabIndex = 297;
@@ -7797,7 +8181,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label57->AutoSize = true;
             this->label57->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label57->Location = System::Drawing::Point(43, 495);
+            this->label57->Location = System::Drawing::Point(44, 495);
             this->label57->Name = L"label57";
             this->label57->Size = System::Drawing::Size(90, 28);
             this->label57->TabIndex = 266;
@@ -7808,7 +8192,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label58->AutoSize = true;
             this->label58->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label58->Location = System::Drawing::Point(43, 418);
+            this->label58->Location = System::Drawing::Point(44, 418);
             this->label58->Name = L"label58";
             this->label58->Size = System::Drawing::Size(66, 28);
             this->label58->TabIndex = 265;
@@ -7841,7 +8225,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label61->AutoSize = true;
             this->label61->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label61->Location = System::Drawing::Point(47, 201);
+            this->label61->Location = System::Drawing::Point(46, 201);
             this->label61->Name = L"label61";
             this->label61->Size = System::Drawing::Size(83, 28);
             this->label61->TabIndex = 262;
@@ -7852,7 +8236,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label65->AutoSize = true;
             this->label65->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label65->Location = System::Drawing::Point(41, 132);
+            this->label65->Location = System::Drawing::Point(40, 132);
             this->label65->Name = L"label65";
             this->label65->Size = System::Drawing::Size(85, 28);
             this->label65->TabIndex = 261;
@@ -7983,7 +8367,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addteachername->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addteachername->ForeColor = System::Drawing::Color::Black;
-            this->addteachername->Location = System::Drawing::Point(199, 214);
+            this->addteachername->Location = System::Drawing::Point(200, 214);
             this->addteachername->Name = L"addteachername";
             this->addteachername->Size = System::Drawing::Size(361, 34);
             this->addteachername->TabIndex = 232;
@@ -7994,7 +8378,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label2->AutoSize = true;
             this->label2->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label2->Location = System::Drawing::Point(200, 295);
+            this->label2->Location = System::Drawing::Point(200, 296);
             this->label2->Name = L"label2";
             this->label2->Size = System::Drawing::Size(198, 28);
             this->label2->TabIndex = 233;
@@ -8018,7 +8402,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label3->AutoSize = true;
             this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label3->Location = System::Drawing::Point(203, 549);
+            this->label3->Location = System::Drawing::Point(202, 549);
             this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->label3->Name = L"label3";
             this->label3->Size = System::Drawing::Size(161, 28);
@@ -8040,14 +8424,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addteacherpanel->Location = System::Drawing::Point(0, 0);
             this->addteacherpanel->Name = L"addteacherpanel";
-            this->addteacherpanel->Size = System::Drawing::Size(1946, 1106);
+            this->addteacherpanel->Size = System::Drawing::Size(1924, 1050);
             this->addteacherpanel->TabIndex = 293;
             // 
             // panel17
             // 
             this->panel17->Controls->Add(this->addteachersave);
             this->panel17->Controls->Add(this->addteachernew);
-            this->panel17->Location = System::Drawing::Point(1020, 1223);
+            this->panel17->Location = System::Drawing::Point(1020, 1222);
             this->panel17->Name = L"panel17";
             this->panel17->Size = System::Drawing::Size(326, 110);
             this->panel17->TabIndex = 298;
@@ -8058,9 +8442,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->addteachersave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addteachersave->Location = System::Drawing::Point(14, 29);
+            this->addteachersave->Location = System::Drawing::Point(14, 28);
             this->addteachersave->Name = L"addteachersave";
-            this->addteachersave->Size = System::Drawing::Size(121, 49);
+            this->addteachersave->Size = System::Drawing::Size(122, 50);
             this->addteachersave->TabIndex = 273;
             this->addteachersave->Text = L"Save";
             this->addteachersave->UseVisualStyleBackColor = false;
@@ -8072,9 +8456,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->addteachernew->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addteachernew->Location = System::Drawing::Point(184, 29);
+            this->addteachernew->Location = System::Drawing::Point(184, 28);
             this->addteachernew->Name = L"addteachernew";
-            this->addteachernew->Size = System::Drawing::Size(121, 49);
+            this->addteachernew->Size = System::Drawing::Size(122, 50);
             this->addteachernew->TabIndex = 272;
             this->addteachernew->Text = L"Clear All";
             this->addteachernew->UseVisualStyleBackColor = false;
@@ -8088,7 +8472,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->addteacheremailid->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->addteacheremailid->ForeColor = System::Drawing::Color::Black;
-            this->addteacheremailid->Location = System::Drawing::Point(199, 461);
+            this->addteacheremailid->Location = System::Drawing::Point(200, 460);
             this->addteacheremailid->Name = L"addteacheremailid";
             this->addteacheremailid->Size = System::Drawing::Size(361, 34);
             this->addteacheremailid->TabIndex = 304;
@@ -8099,7 +8483,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label147->AutoSize = true;
             this->label147->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label147->Location = System::Drawing::Point(195, 415);
+            this->label147->Location = System::Drawing::Point(195, 416);
             this->label147->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
             this->label147->Name = L"label147";
             this->label147->Size = System::Drawing::Size(223, 28);
@@ -8123,9 +8507,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel16->Controls->Add(this->label75);
             this->panel16->Controls->Add(this->label76);
             this->panel16->Controls->Add(this->label77);
-            this->panel16->Location = System::Drawing::Point(185, 591);
+            this->panel16->Location = System::Drawing::Point(184, 591);
             this->panel16->Name = L"panel16";
-            this->panel16->Size = System::Drawing::Size(1183, 621);
+            this->panel16->Size = System::Drawing::Size(1184, 621);
             this->panel16->TabIndex = 302;
             // 
             // panel29
@@ -8134,14 +8518,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel29->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->panel29->Location = System::Drawing::Point(416, 112);
             this->panel29->Name = L"panel29";
-            this->panel29->Size = System::Drawing::Size(44, 413);
+            this->panel29->Size = System::Drawing::Size(44, 412);
             this->panel29->TabIndex = 2;
             // 
             // panel30
             // 
             this->panel30->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel30.BackgroundImage")));
             this->panel30->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel30->Location = System::Drawing::Point(757, 110);
+            this->panel30->Location = System::Drawing::Point(758, 110);
             this->panel30->Name = L"panel30";
             this->panel30->Size = System::Drawing::Size(44, 436);
             this->panel30->TabIndex = 1;
@@ -8165,7 +8549,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 16.66887F)));
             this->teachertablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->teachertablepanel->Location = System::Drawing::Point(140, 113);
+            this->teachertablepanel->Location = System::Drawing::Point(140, 112);
             this->teachertablepanel->Name = L"teachertablepanel";
             this->teachertablepanel->RowCount = 6;
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -8174,7 +8558,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->teachertablepanel->Size = System::Drawing::Size(949, 435);
+            this->teachertablepanel->Size = System::Drawing::Size(950, 435);
             this->teachertablepanel->TabIndex = 260;
             // 
             // label66
@@ -8215,7 +8599,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label69->AutoSize = true;
             this->label69->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label69->Location = System::Drawing::Point(635, 72);
+            this->label69->Location = System::Drawing::Point(634, 72);
             this->label69->Name = L"label69";
             this->label69->Size = System::Drawing::Size(105, 28);
             this->label69->TabIndex = 297;
@@ -8248,7 +8632,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label72->AutoSize = true;
             this->label72->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label72->Location = System::Drawing::Point(43, 495);
+            this->label72->Location = System::Drawing::Point(44, 495);
             this->label72->Name = L"label72";
             this->label72->Size = System::Drawing::Size(90, 28);
             this->label72->TabIndex = 266;
@@ -8259,7 +8643,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label73->AutoSize = true;
             this->label73->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label73->Location = System::Drawing::Point(43, 418);
+            this->label73->Location = System::Drawing::Point(44, 418);
             this->label73->Name = L"label73";
             this->label73->Size = System::Drawing::Size(66, 28);
             this->label73->TabIndex = 265;
@@ -8292,7 +8676,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label76->AutoSize = true;
             this->label76->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label76->Location = System::Drawing::Point(47, 201);
+            this->label76->Location = System::Drawing::Point(46, 201);
             this->label76->Name = L"label76";
             this->label76->Size = System::Drawing::Size(83, 28);
             this->label76->TabIndex = 262;
@@ -8303,7 +8687,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->label77->AutoSize = true;
             this->label77->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label77->Location = System::Drawing::Point(41, 132);
+            this->label77->Location = System::Drawing::Point(40, 132);
             this->label77->Name = L"label77";
             this->label77->Size = System::Drawing::Size(85, 28);
             this->label77->TabIndex = 261;
@@ -8365,7 +8749,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->deptDataGridView->DefaultCellStyle = dataGridViewCellStyle105;
             this->deptDataGridView->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->deptDataGridView->Location = System::Drawing::Point(397, 272);
+            this->deptDataGridView->Location = System::Drawing::Point(398, 272);
             this->deptDataGridView->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->deptDataGridView->Name = L"deptDataGridView";
             dataGridViewCellStyle106->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -8388,7 +8772,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             dataGridViewCellStyle107->SelectionForeColor = System::Drawing::Color::Black;
             this->deptDataGridView->RowsDefaultCellStyle = dataGridViewCellStyle107;
             this->deptDataGridView->RowTemplate->Height = 28;
-            this->deptDataGridView->Size = System::Drawing::Size(735, 257);
+            this->deptDataGridView->Size = System::Drawing::Size(735, 256);
             this->deptDataGridView->TabIndex = 233;
             this->deptDataGridView->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView2_CellContentClick_1);
             this->deptDataGridView->EditingControlShowing += gcnew System::Windows::Forms::DataGridViewEditingControlShowingEventHandler(this, &MyForm::EditingControlShowing);
@@ -8434,7 +8818,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Byte>(0)));
             this->button2->Location = System::Drawing::Point(888, 654);
             this->button2->Name = L"button2";
-            this->button2->Size = System::Drawing::Size(121, 49);
+            this->button2->Size = System::Drawing::Size(122, 50);
             this->button2->TabIndex = 234;
             this->button2->Text = L"Save";
             this->button2->UseVisualStyleBackColor = false;
@@ -8448,7 +8832,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
                 static_cast<System::Byte>(0)));
             this->button22->Location = System::Drawing::Point(1040, 654);
             this->button22->Name = L"button22";
-            this->button22->Size = System::Drawing::Size(121, 49);
+            this->button22->Size = System::Drawing::Size(122, 50);
             this->button22->TabIndex = 235;
             this->button22->Text = L"Clear All";
             this->button22->UseVisualStyleBackColor = false;
@@ -8465,7 +8849,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
             this->panel2->Location = System::Drawing::Point(0, 0);
             this->panel2->Name = L"panel2";
-            this->panel2->Size = System::Drawing::Size(1946, 1106);
+            this->panel2->Size = System::Drawing::Size(1924, 1050);
             this->panel2->TabIndex = 5;
             this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel2_Paint);
             // 
@@ -8475,7 +8859,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->deleteclasspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->deleteclasspanel->Location = System::Drawing::Point(0, 0);
             this->deleteclasspanel->Name = L"deleteclasspanel";
-            this->deleteclasspanel->Size = System::Drawing::Size(1946, 1106);
+            this->deleteclasspanel->Size = System::Drawing::Size(1924, 1050);
             this->deleteclasspanel->TabIndex = 236;
             // 
             // sectiondeletedatagridview
@@ -8545,7 +8929,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             dataGridViewCellStyle114->SelectionForeColor = System::Drawing::Color::Black;
             this->sectiondeletedatagridview->RowsDefaultCellStyle = dataGridViewCellStyle114;
             this->sectiondeletedatagridview->RowTemplate->Height = 28;
-            this->sectiondeletedatagridview->Size = System::Drawing::Size(735, 257);
+            this->sectiondeletedatagridview->Size = System::Drawing::Size(735, 256);
             this->sectiondeletedatagridview->TabIndex = 234;
             this->sectiondeletedatagridview->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick);
             // 
@@ -8582,94 +8966,16 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->classdeletebutton->Text = L"Delete";
             this->classdeletebutton->UseColumnTextForButtonValue = true;
             // 
-            // label99
-            // 
-            this->label99->AutoSize = true;
-            this->label99->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-            this->label99->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
-                static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->label99->Location = System::Drawing::Point(240, 73);
-            this->label99->Name = L"label99";
-            this->label99->Size = System::Drawing::Size(79, 28);
-            this->label99->TabIndex = 11;
-            this->label99->Text = L"Captain";
-            // 
-            // editsubtitle
-            // 
-            this->editsubtitle->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editsubtitle->Location = System::Drawing::Point(603, 388);
-            this->editsubtitle->Name = L"editsubtitle";
-            this->editsubtitle->Size = System::Drawing::Size(270, 41);
-            this->editsubtitle->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubtitle->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubtitle->StateCommon->Border->Color1 = System::Drawing::Color::White;
-            this->editsubtitle->StateCommon->Border->Color2 = System::Drawing::Color::White;
-            this->editsubtitle->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
-            this->editsubtitle->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubtitle->StateCommon->Border->Rounding = 10;
-            this->editsubtitle->StateCommon->Border->Width = 3;
-            this->editsubtitle->TabIndex = 326;
-            // 
-            // editsubcode
-            // 
-            this->editsubcode->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editsubcode->Location = System::Drawing::Point(1080, 395);
-            this->editsubcode->Name = L"editsubcode";
-            this->editsubcode->Size = System::Drawing::Size(268, 41);
-            this->editsubcode->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubcode->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubcode->StateCommon->Border->Color1 = System::Drawing::Color::White;
-            this->editsubcode->StateCommon->Border->Color2 = System::Drawing::Color::White;
-            this->editsubcode->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
-            this->editsubcode->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubcode->StateCommon->Border->Rounding = 10;
-            this->editsubcode->StateCommon->Border->Width = 3;
-            this->editsubcode->TabIndex = 327;
-            // 
-            // editsubeleyes
-            // 
-            this->editsubeleyes->Location = System::Drawing::Point(17, 13);
-            this->editsubeleyes->Name = L"editsubeleyes";
-            this->editsubeleyes->Size = System::Drawing::Size(58, 32);
-            this->editsubeleyes->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
-            this->editsubeleyes->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
-            this->editsubeleyes->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
-                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->editsubeleyes->TabIndex = 328;
-            this->editsubeleyes->Values->Text = L"YES";
-            // 
-            // editsubeleno
-            // 
-            this->editsubeleno->Location = System::Drawing::Point(145, 13);
-            this->editsubeleno->Name = L"editsubeleno";
-            this->editsubeleno->Size = System::Drawing::Size(56, 32);
-            this->editsubeleno->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
-            this->editsubeleno->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
-            this->editsubeleno->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
-                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->editsubeleno->TabIndex = 330;
-            this->editsubeleno->Values->Text = L"NO";
-            // 
             // MyForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(144, 144);
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Dpi;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->ClientSize = System::Drawing::Size(1946, 1106);
+            this->ClientSize = System::Drawing::Size(1924, 1050);
             this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->panel1);
-            this->Controls->Add(this->panel4);
+            this->Controls->Add(this->kryptonPanel6);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
             this->Controls->Add(this->classpanel);
@@ -8680,7 +8986,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->Controls->Add(this->addteacherpanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
-            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
+            this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->KeyPreview = true;
             this->Name = L"MyForm";
             this->Text = L"MyForm";
@@ -8706,16 +9012,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             this->panel7->ResumeLayout(false);
             this->panel7->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->EndInit();
-            this->panel4->ResumeLayout(false);
-            this->panel4->PerformLayout();
-            this->panel13->ResumeLayout(false);
-            this->panel13->PerformLayout();
-            this->panel11->ResumeLayout(false);
             this->editteacherpanel->ResumeLayout(false);
             this->editteacherpanel->PerformLayout();
             this->panel5->ResumeLayout(false);
@@ -8731,16 +9027,52 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editroomcapacity))->EndInit();
             this->editsubjectpanel->ResumeLayout(false);
             this->editsubjectpanel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonComboBox1))->EndInit();
+            this->panel13->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup->Panel))->EndInit();
+            this->editsubsearchgroup->Panel->ResumeLayout(false);
+            this->editsubsearchgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup))->EndInit();
+            this->editsubsearchgroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearch))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup->Panel))->EndInit();
+            this->editsubtitlegroup->Panel->ResumeLayout(false);
+            this->editsubtitlegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup))->EndInit();
+            this->editsubtitlegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel1))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup->Panel))->EndInit();
+            this->editsubelegroup->Panel->ResumeLayout(false);
+            this->editsubelegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup))->EndInit();
+            this->editsubelegroup->ResumeLayout(false);
+            this->panel10->ResumeLayout(false);
+            this->panel10->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup->Panel))->EndInit();
+            this->editsubnamegroup->Panel->ResumeLayout(false);
+            this->editsubnamegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup))->EndInit();
+            this->editsubnamegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel2))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->EndInit();
+            this->editsubcodegroup->Panel->ResumeLayout(false);
+            this->editsubcodegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup))->EndInit();
+            this->editsubcodegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel4))->EndInit();
             this->editsubelepanel->ResumeLayout(false);
             this->editsubelepanel->PerformLayout();
             this->editpanelsub->ResumeLayout(false);
             this->editpanelsub->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->EndInit();
-            this->panel10->ResumeLayout(false);
-            this->panel10->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel6))->EndInit();
+            this->kryptonPanel6->ResumeLayout(false);
+            this->kryptonPanel6->PerformLayout();
+            this->panel4->ResumeLayout(false);
+            this->panel4->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox8))->EndInit();
             this->settingspanel->ResumeLayout(false);
             this->settingspanel->PerformLayout();
             this->panel20->ResumeLayout(false);
@@ -8754,6 +9086,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
             this->panel1->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classcore))->EndInit();
             this->classpanel->ResumeLayout(false);
             this->classpanel->PerformLayout();
@@ -8818,11 +9152,57 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
         if (!Directory::Exists("timetables"))
         {
             System::IO::Directory::CreateDirectory("timetables");
-        }
+        } 
+        //Side panel
+        int panelWidth = (int)(this->ClientSize.Width * 0.165); 
+        panel1->Width = panelWidth;
+        //Profile
+        panel4->Width = panel1->Width;
+        int labelX =panel4->Width+12;
+        //logo
+        kryptonLabel1->Left = labelX;
+        //editsubpanel
+        int panelX = (this->ClientSize.Width - (panel13->Width)*1.5) / 2;
+        panel13->Left= panelX;
+        editsubtitlegroup->Top = editsubnamegroup->Bottom + 30;
+        editsubcodegroup->Top = editsubtitlegroup->Bottom + 30;
+        editsubelegroup->Top = editsubcodegroup->Bottom + 30;
+        //Settings button
+        int panelheight = (int)(this->ClientSize.Height * .85);
+        button17->Top = panelheight;
+        pictureBox11->Top = panelheight;
+        button17->Width = panel1->Width;
+        //Contact Button
+        button18->Top = button17->Top - 40 - button18->Height;
+        pictureBox12->Top = button18->Top;
+        button18->Width = panel1->Width;
+        //Other Buttons
+        Homebutton1->Width = panel1->Width;
+        button1->Width = panel1->Width;
+        button6->Width = panel1->Width;
+        button7->Width = panel1->Width;
+        button8->Width = panel1->Width;
+        button9->Width = panel1->Width;
+        button10->Width = panel1->Width; 
+        button11->Width = panel1->Width;
+        button12->Width = panel1->Width;
+        button4->Width = panel1->Width;
+        button10->Width = panel1->Width;
+        button5->Width = panel1->Width;
+        button13->Width = panel1->Width;
+        button14->Width = panel1->Width;
+        button15->Width = panel1->Width;
+        textBox4->Left = int(panel1->Width) * 0.80;
+        textBox5->Left = int(panel1->Width) * 0.80;
+        textBox6->Left = int(panel1->Width) * 0.80;
+        textBox7->Left = int(panel1->Width) * 0.80;
+        textBox8->Left = int(panel1->Width) * 0.80;
+        textBox9->Left = int(panel1->Width) * 0.80;
+        textBox10->Left = int(panel1->Width) * 0.80;
+        textBox11->Left = int(panel1->Width) * 0.80;
         Homepanel->BringToFront();
         panel1->BringToFront();
         DisplayCSVInComboBox(deptDataGridView, "details/dept_file.csv");
-        pictureBox12->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::pictureBox1_Paint);
         InitializeMatrix(addroomtablepanel, "room", "Free", 1);
         InitializeMatrix(editroomtablepanel, "editroom", "Free", 1);
         InitializeMatrix(teachertablepanel, "teacher", "Free", 1);
@@ -9937,22 +10317,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
             }
         }
     }
-    private: System::Void pictureBox10_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox10->Height += 5;
-        pictureBox10->Width += 5;
-    }
-    private: System::Void pictureBox10_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox10->Height -= 5;
-        pictureBox10->Width -= 5;
-    }
-    private: System::Void pictureBox9_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox9->Height += 5;
-        pictureBox9->Width += 5;
-    }
-    private: System::Void pictureBox9_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox9->Height -= 5;
-        pictureBox9->Width -= 5;
-    }
     private: System::Void pictureBox11_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
         pictureBox11->Height += 5;
         pictureBox11->Width += 5;
@@ -10002,16 +10366,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
         InitializeMatrix(editsubeletable, "editele", "Available", 2);
         editsubelepanel->Visible = false;
         editpanelsub->Top = editsubelepanel->Top;
-    }
-    private: System::Void pictureBox12_Click(System::Object^ sender, System::EventArgs^ e) {
-    }
-    private: System::Void pictureBox12_MouseEnter(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox12->Height += 2;
-        pictureBox12->Width += 2;
-    }
-    private: System::Void pictureBox12_MouseLeave(System::Object^ sender, System::EventArgs^ e) {
-        pictureBox12->Height -= 2;
-        pictureBox12->Width -= 2;
     }
     private: System::Void pictureBox9_Click(System::Object^ sender, System::EventArgs^ e) {
         this->WindowState = FormWindowState::Minimized;
@@ -10721,10 +11075,15 @@ private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ 
 private: System::Void dataGridView1_CellContentClick_2(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
     Process::Start("details/teacher_file.csv");
 }
-private: System::Void kryptonButton1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-    kryptonComboBox1->Text = "yes";
-}
 private: System::Void label101_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+
+
+private: System::Void kryptonGroupBox2_Panel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
+private: System::Void pictureBox2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void panel13_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 };
 }
