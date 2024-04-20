@@ -9487,7 +9487,7 @@ private: System::Windows::Forms::FolderBrowserDialog^ fbd;
                     string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
                     String^ year = classbatch->Text->ToString();
                     string YEAR = msclr::interop::marshal_as<string>(year);
-                    obj.name = Sec+YEAR+Branch;
+                    obj.name = Branch+Sec+YEAR;
                     allteachersfunction("details/teacher_file.csv", obj);
                     allroomsfunction("details/classroom.csv", obj);
                     //alloting default rooms
