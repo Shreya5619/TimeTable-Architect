@@ -56,9 +56,9 @@ namespace TTA_ui {
     private: System::Windows::Forms::DataGridView^ editsubeleteacher;
     private: System::Windows::Forms::DataGridViewComboBoxColumn^ editsubeleteachercombo;
     private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn10;
-    private: System::Windows::Forms::Label^ label95;
+
     private: System::Windows::Forms::Label^ label94;
-    private: System::Windows::Forms::ComboBox^ editsubcluster;
+
     private: System::Windows::Forms::Panel^ editpanelsub;
     private: System::Windows::Forms::Label^ label96;
     private: System::Windows::Forms::Label^ label97;
@@ -109,6 +109,15 @@ namespace TTA_ui {
     private: System::Windows::Forms::Label^ label15;
     private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubcode;
     private: System::Windows::Forms::Panel^ editsubjectpanel;
+
+
+
+
+
+
+    private: System::Windows::Forms::Label^ label95;
+    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox1;
+    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editsubcluster;
 
     public:
         int animationProgress = 0;
@@ -378,6 +387,20 @@ namespace TTA_ui {
                 comboBox->Items->Add(msclr::interop::marshal_as<String^>(it[i]));
             }
         }
+        void DisplayCSVInComboBoxkrypt(const string& filename, ComponentFactory::Krypton::Toolkit::KryptonComboBox^ comboBox) {
+            comboBox->Items->Clear();
+            vector<string> it;
+            vector<vector<string>> data = ReadCSVFile(filename);
+
+            for (const auto& row : data) {
+                it.push_back(replaceunderscore(row[0]));
+            }
+            std::sort(it.begin(), it.end());
+            for (int i = 0; i < it.size(); i++)
+            {
+                comboBox->Items->Add(msclr::interop::marshal_as<String^>(it[i]));
+            }
+        }
         void DisplayCSVInComboBoxsub(const string& filename,ComponentFactory::Krypton::Toolkit::KryptonComboBox^ comboBox) {
             comboBox->Items->Clear();
             vector<string> it;
@@ -405,7 +428,7 @@ namespace TTA_ui {
             }
 
         }
-        void DisplayCluster(const string& filename, ComboBox^ comboBox) {
+        void DisplayCluster(const string& filename, ComponentFactory::Krypton::Toolkit::KryptonComboBox^ comboBox) {
             comboBox->Items->Clear();
             vector<vector<string>> data = ReadCSVFile(filename);
 
@@ -2225,7 +2248,7 @@ namespace TTA_ui {
             return tt;
         }
 
-        vector<vector<vector<bool>>>valuetimetable(string clustername, DataGridView^ sedataGridView,ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubnames,ComboBox^ addsubclusts)
+        vector<vector<vector<bool>>>valuetimetable(string clustername, DataGridView^ sedataGridView,ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubnames, ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addsubclusts)
         {
             vector < vector < vector<bool>>>allt;
             vector<vector<bool>>tt;
@@ -2302,7 +2325,7 @@ namespace TTA_ui {
             }
             return output;
         }
-        void onOptionClickedit(ComboBox^ addsubclusters, DataGridView^ dgv, TableLayoutPanel^ t, String^ s,ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubnames)
+        void onOptionClickedit(ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addsubclusters, DataGridView^ dgv, TableLayoutPanel^ t, String^ s,ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubnames)
         {
             string name = replacewhitespace(msclr::interop::marshal_as<string>(addsubclusters->Text));
             vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
@@ -3106,8 +3129,8 @@ private: System::Windows::Forms::Button^ button18;
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle55 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle56 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle57 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle54 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle53 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle54 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->label49 = (gcnew System::Windows::Forms::Label());
             this->addsubcredits = (gcnew System::Windows::Forms::NumericUpDown());
             this->label43 = (gcnew System::Windows::Forms::Label());
@@ -3424,61 +3447,62 @@ private: System::Windows::Forms::Button^ button18;
             this->fbd = (gcnew System::Windows::Forms::FolderBrowserDialog());
             this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
             this->editsubeleteacher = (gcnew System::Windows::Forms::DataGridView());
-            this->dataGridViewButtonColumn10 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->editsubeleteachercombo = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
-            this->label95 = (gcnew System::Windows::Forms::Label());
+            this->dataGridViewButtonColumn10 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->label94 = (gcnew System::Windows::Forms::Label());
-            this->editsubcluster = (gcnew System::Windows::Forms::ComboBox());
             this->editpanelsub = (gcnew System::Windows::Forms::Panel());
-            this->editsubdelete = (gcnew System::Windows::Forms::Button());
-            this->editsubsave = (gcnew System::Windows::Forms::Button());
-            this->editsubbfactor = (gcnew System::Windows::Forms::NumericUpDown());
-            this->label100 = (gcnew System::Windows::Forms::Label());
-            this->editsubroomlist = (gcnew System::Windows::Forms::CheckedListBox());
-            this->editsubcredits = (gcnew System::Windows::Forms::NumericUpDown());
-            this->label97 = (gcnew System::Windows::Forms::Label());
             this->label96 = (gcnew System::Windows::Forms::Label());
+            this->label97 = (gcnew System::Windows::Forms::Label());
+            this->editsubcredits = (gcnew System::Windows::Forms::NumericUpDown());
+            this->editsubroomlist = (gcnew System::Windows::Forms::CheckedListBox());
+            this->label100 = (gcnew System::Windows::Forms::Label());
+            this->editsubbfactor = (gcnew System::Windows::Forms::NumericUpDown());
+            this->editsubsave = (gcnew System::Windows::Forms::Button());
+            this->editsubdelete = (gcnew System::Windows::Forms::Button());
             this->editsubelepanel = (gcnew System::Windows::Forms::Panel());
-            this->label164 = (gcnew System::Windows::Forms::Label());
-            this->label163 = (gcnew System::Windows::Forms::Label());
-            this->label162 = (gcnew System::Windows::Forms::Label());
-            this->label161 = (gcnew System::Windows::Forms::Label());
-            this->label160 = (gcnew System::Windows::Forms::Label());
-            this->label159 = (gcnew System::Windows::Forms::Label());
-            this->label158 = (gcnew System::Windows::Forms::Label());
-            this->label157 = (gcnew System::Windows::Forms::Label());
-            this->label156 = (gcnew System::Windows::Forms::Label());
-            this->label155 = (gcnew System::Windows::Forms::Label());
-            this->label154 = (gcnew System::Windows::Forms::Label());
-            this->label153 = (gcnew System::Windows::Forms::Label());
-            this->editsubeletable = (gcnew System::Windows::Forms::TableLayoutPanel());
-            this->panel40 = (gcnew System::Windows::Forms::Panel());
             this->panel39 = (gcnew System::Windows::Forms::Panel());
+            this->panel40 = (gcnew System::Windows::Forms::Panel());
+            this->editsubeletable = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->label153 = (gcnew System::Windows::Forms::Label());
+            this->label154 = (gcnew System::Windows::Forms::Label());
+            this->label155 = (gcnew System::Windows::Forms::Label());
+            this->label156 = (gcnew System::Windows::Forms::Label());
+            this->label157 = (gcnew System::Windows::Forms::Label());
+            this->label158 = (gcnew System::Windows::Forms::Label());
+            this->label159 = (gcnew System::Windows::Forms::Label());
+            this->label160 = (gcnew System::Windows::Forms::Label());
+            this->label161 = (gcnew System::Windows::Forms::Label());
+            this->label162 = (gcnew System::Windows::Forms::Label());
+            this->label163 = (gcnew System::Windows::Forms::Label());
+            this->label164 = (gcnew System::Windows::Forms::Label());
             this->button3 = (gcnew System::Windows::Forms::Button());
             this->panel13 = (gcnew System::Windows::Forms::Panel());
-            this->editsubcodegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->label15 = (gcnew System::Windows::Forms::Label());
-            this->kryptonPanel4 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
-            this->editsubnamegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->label93 = (gcnew System::Windows::Forms::Label());
-            this->kryptonPanel3 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
-            this->editsubelegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->panel10 = (gcnew System::Windows::Forms::Panel());
-            this->editsubeleno = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
-            this->editsubeleyes = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
-            this->label92 = (gcnew System::Windows::Forms::Label());
-            this->editsubtitlegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->label109 = (gcnew System::Windows::Forms::Label());
-            this->kryptonPanel1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
-            this->editsubsearchgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->editsubsearch = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
-            this->label99 = (gcnew System::Windows::Forms::Label());
-            this->editsubsearchbutton = (gcnew ComponentFactory::Krypton::Toolkit::KryptonButton());
             this->kryptonLabel2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonLabel());
-            this->editsubjectpanel = (gcnew System::Windows::Forms::Panel());
-            this->editsubcode = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
-            this->editsubname = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->editsubsearchgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->editsubsearchbutton = (gcnew ComponentFactory::Krypton::Toolkit::KryptonButton());
+            this->label99 = (gcnew System::Windows::Forms::Label());
+            this->editsubsearch = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
+            this->editsubtitlegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label109 = (gcnew System::Windows::Forms::Label());
             this->editsubtitle = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->editsubelegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->label92 = (gcnew System::Windows::Forms::Label());
+            this->panel10 = (gcnew System::Windows::Forms::Panel());
+            this->editsubeleyes = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->editsubeleno = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->editsubnamegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel3 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label93 = (gcnew System::Windows::Forms::Label());
+            this->editsubname = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->editsubcodegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel4 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label15 = (gcnew System::Windows::Forms::Label());
+            this->editsubcode = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->editsubjectpanel = (gcnew System::Windows::Forms::Panel());
+            this->label95 = (gcnew System::Windows::Forms::Label());
+            this->kryptonGroupBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->editsubcluster = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubcredits))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addsubbfactor))->BeginInit();
             this->addsubjectpanel->SuspendLayout();
@@ -3537,36 +3561,41 @@ private: System::Windows::Forms::Button^ button18;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->sectiondeletedatagridview))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->BeginInit();
             this->editpanelsub->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->BeginInit();
             this->editsubelepanel->SuspendLayout();
             this->panel13->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->BeginInit();
-            this->editsubcodegroup->Panel->SuspendLayout();
-            this->editsubcodegroup->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel4))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup->Panel))->BeginInit();
-            this->editsubnamegroup->Panel->SuspendLayout();
-            this->editsubnamegroup->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup->Panel))->BeginInit();
-            this->editsubelegroup->Panel->SuspendLayout();
-            this->editsubelegroup->SuspendLayout();
-            this->panel10->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup->Panel))->BeginInit();
-            this->editsubtitlegroup->Panel->SuspendLayout();
-            this->editsubtitlegroup->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel1))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup->Panel))->BeginInit();
             this->editsubsearchgroup->Panel->SuspendLayout();
             this->editsubsearchgroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearch))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup->Panel))->BeginInit();
+            this->editsubtitlegroup->Panel->SuspendLayout();
+            this->editsubtitlegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel1))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup->Panel))->BeginInit();
+            this->editsubelegroup->Panel->SuspendLayout();
+            this->editsubelegroup->SuspendLayout();
+            this->panel10->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup->Panel))->BeginInit();
+            this->editsubnamegroup->Panel->SuspendLayout();
+            this->editsubnamegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->BeginInit();
+            this->editsubcodegroup->Panel->SuspendLayout();
+            this->editsubcodegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel4))->BeginInit();
             this->editsubjectpanel->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1->Panel))->BeginInit();
+            this->kryptonGroupBox1->Panel->SuspendLayout();
+            this->kryptonGroupBox1->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcluster))->BeginInit();
             this->SuspendLayout();
             // 
             // label49
@@ -4021,7 +4050,7 @@ private: System::Windows::Forms::Button^ button18;
             this->addsubeleyes->AutoSize = true;
             this->addsubeleyes->Location = System::Drawing::Point(4, 21);
             this->addsubeleyes->Name = L"addsubeleyes";
-            this->addsubeleyes->Size = System::Drawing::Size(62, 24);
+            this->addsubeleyes->Size = System::Drawing::Size(50, 20);
             this->addsubeleyes->TabIndex = 2;
             this->addsubeleyes->TabStop = true;
             this->addsubeleyes->Text = L"Yes";
@@ -4033,7 +4062,7 @@ private: System::Windows::Forms::Button^ button18;
             this->addsubeleno->AutoSize = true;
             this->addsubeleno->Location = System::Drawing::Point(140, 21);
             this->addsubeleno->Name = L"addsubeleno";
-            this->addsubeleno->Size = System::Drawing::Size(54, 24);
+            this->addsubeleno->Size = System::Drawing::Size(46, 20);
             this->addsubeleno->TabIndex = 3;
             this->addsubeleno->TabStop = true;
             this->addsubeleno->Text = L"No";
@@ -4312,7 +4341,7 @@ private: System::Windows::Forms::Button^ button18;
             this->roomlabno->Location = System::Drawing::Point(148, 20);
             this->roomlabno->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->roomlabno->Name = L"roomlabno";
-            this->roomlabno->Size = System::Drawing::Size(54, 24);
+            this->roomlabno->Size = System::Drawing::Size(46, 20);
             this->roomlabno->TabIndex = 9;
             this->roomlabno->TabStop = true;
             this->roomlabno->Text = L"No";
@@ -4324,7 +4353,7 @@ private: System::Windows::Forms::Button^ button18;
             this->roomlabyes->Location = System::Drawing::Point(10, 18);
             this->roomlabyes->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->roomlabyes->Name = L"roomlabyes";
-            this->roomlabyes->Size = System::Drawing::Size(62, 24);
+            this->roomlabyes->Size = System::Drawing::Size(50, 20);
             this->roomlabyes->TabIndex = 8;
             this->roomlabyes->TabStop = true;
             this->roomlabyes->Text = L"Yes";
@@ -5301,7 +5330,7 @@ private: System::Windows::Forms::Button^ button18;
             this->editroomlabyes->Location = System::Drawing::Point(20, 16);
             this->editroomlabyes->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomlabyes->Name = L"editroomlabyes";
-            this->editroomlabyes->Size = System::Drawing::Size(62, 24);
+            this->editroomlabyes->Size = System::Drawing::Size(50, 20);
             this->editroomlabyes->TabIndex = 8;
             this->editroomlabyes->TabStop = true;
             this->editroomlabyes->Text = L"Yes";
@@ -5313,7 +5342,7 @@ private: System::Windows::Forms::Button^ button18;
             this->editroomlabno->Location = System::Drawing::Point(130, 14);
             this->editroomlabno->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomlabno->Name = L"editroomlabno";
-            this->editroomlabno->Size = System::Drawing::Size(54, 24);
+            this->editroomlabno->Size = System::Drawing::Size(46, 20);
             this->editroomlabno->TabIndex = 9;
             this->editroomlabno->TabStop = true;
             this->editroomlabno->Text = L"No";
@@ -5531,7 +5560,7 @@ private: System::Windows::Forms::Button^ button18;
             // 
             this->filepath->Location = System::Drawing::Point(414, 98);
             this->filepath->Name = L"filepath";
-            this->filepath->Size = System::Drawing::Size(378, 26);
+            this->filepath->Size = System::Drawing::Size(378, 20);
             this->filepath->TabIndex = 303;
             // 
             // button16
@@ -5549,7 +5578,7 @@ private: System::Windows::Forms::Button^ button18;
             this->label45->AutoSize = true;
             this->label45->Location = System::Drawing::Point(420, 63);
             this->label45->Name = L"label45";
-            this->label45->Size = System::Drawing::Size(73, 20);
+            this->label45->Size = System::Drawing::Size(49, 13);
             this->label45->TabIndex = 301;
             this->label45->Text = L"File PAth";
             // 
@@ -5762,7 +5791,7 @@ private: System::Windows::Forms::Button^ button18;
             this->label112->AutoSize = true;
             this->label112->Location = System::Drawing::Point(426, 627);
             this->label112->Name = L"label112";
-            this->label112->Size = System::Drawing::Size(152, 20);
+            this->label112->Size = System::Drawing::Size(103, 13);
             this->label112->TabIndex = 4;
             this->label112->Text = L"TimeTable Structure";
             // 
@@ -5781,7 +5810,7 @@ private: System::Windows::Forms::Button^ button18;
             this->label111->AutoSize = true;
             this->label111->Location = System::Drawing::Point(426, 420);
             this->label111->Name = L"label111";
-            this->label111->Size = System::Drawing::Size(88, 20);
+            this->label111->Size = System::Drawing::Size(59, 13);
             this->label111->TabIndex = 2;
             this->label111->Text = L"busyFactor";
             // 
@@ -5801,7 +5830,7 @@ private: System::Windows::Forms::Button^ button18;
             this->freefactor->AutoSize = true;
             this->freefactor->Location = System::Drawing::Point(420, 266);
             this->freefactor->Name = L"freefactor";
-            this->freefactor->Size = System::Drawing::Size(87, 20);
+            this->freefactor->Size = System::Drawing::Size(58, 13);
             this->freefactor->TabIndex = 0;
             this->freefactor->Text = L"free Factor";
             // 
@@ -6723,7 +6752,7 @@ private: System::Windows::Forms::Button^ button18;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->classsessions->Location = System::Drawing::Point(572, 1304);
             this->classsessions->Name = L"classsessions";
-            this->classsessions->Size = System::Drawing::Size(63, 26);
+            this->classsessions->Size = System::Drawing::Size(63, 20);
             this->classsessions->TabIndex = 313;
             // 
             // label44
@@ -6743,7 +6772,7 @@ private: System::Windows::Forms::Button^ button18;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->classbatches->Location = System::Drawing::Point(272, 1304);
             this->classbatches->Name = L"classbatches";
-            this->classbatches->Size = System::Drawing::Size(63, 26);
+            this->classbatches->Size = System::Drawing::Size(63, 20);
             this->classbatches->TabIndex = 309;
             // 
             // classlabcombo
@@ -8211,7 +8240,7 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubeleteacher->DefaultCellStyle = dataGridViewCellStyle55;
             this->editsubeleteacher->GridColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(196)),
                 static_cast<System::Int32>(static_cast<System::Byte>(211)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubeleteacher->Location = System::Drawing::Point(226, 1504);
+            this->editsubeleteacher->Location = System::Drawing::Point(261, 1732);
             this->editsubeleteacher->Margin = System::Windows::Forms::Padding(8, 4, 4, 4);
             this->editsubeleteacher->Name = L"editsubeleteacher";
             dataGridViewCellStyle56->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -8234,9 +8263,27 @@ private: System::Windows::Forms::Button^ button18;
             dataGridViewCellStyle57->SelectionForeColor = System::Drawing::Color::Black;
             this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle57;
             this->editsubeleteacher->RowTemplate->Height = 28;
-            this->editsubeleteacher->Size = System::Drawing::Size(735, 230);
+            this->editsubeleteacher->Size = System::Drawing::Size(444, 230);
             this->editsubeleteacher->TabIndex = 296;
             this->editsubeleteacher->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::editsubeleteacher_CellContentClick);
+            // 
+            // editsubeleteachercombo
+            // 
+            dataGridViewCellStyle53->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            dataGridViewCellStyle53->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle53->Padding = System::Windows::Forms::Padding(1);
+            dataGridViewCellStyle53->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(194)));
+            dataGridViewCellStyle53->SelectionForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle53->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+            this->editsubeleteachercombo->DefaultCellStyle = dataGridViewCellStyle53;
+            this->editsubeleteachercombo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->editsubeleteachercombo->HeaderText = L"Teacher Name";
+            this->editsubeleteachercombo->MinimumWidth = 30;
+            this->editsubeleteachercombo->Name = L"editsubeleteachercombo";
+            this->editsubeleteachercombo->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+            this->editsubeleteachercombo->Width = 350;
             // 
             // dataGridViewButtonColumn10
             // 
@@ -8257,60 +8304,17 @@ private: System::Windows::Forms::Button^ button18;
             this->dataGridViewButtonColumn10->Text = L"Delete";
             this->dataGridViewButtonColumn10->UseColumnTextForButtonValue = true;
             // 
-            // editsubeleteachercombo
-            // 
-            dataGridViewCellStyle53->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            dataGridViewCellStyle53->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle53->Padding = System::Windows::Forms::Padding(1);
-            dataGridViewCellStyle53->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(194)));
-            dataGridViewCellStyle53->SelectionForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle53->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-            this->editsubeleteachercombo->DefaultCellStyle = dataGridViewCellStyle53;
-            this->editsubeleteachercombo->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->editsubeleteachercombo->HeaderText = L"Teacher Name";
-            this->editsubeleteachercombo->MinimumWidth = 30;
-            this->editsubeleteachercombo->Name = L"editsubeleteachercombo";
-            this->editsubeleteachercombo->Resizable = System::Windows::Forms::DataGridViewTriState::True;
-            this->editsubeleteachercombo->Width = 350;
-            // 
-            // label95
-            // 
-            this->label95->AutoSize = true;
-            this->label95->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label95->Location = System::Drawing::Point(274, 1304);
-            this->label95->Name = L"label95";
-            this->label95->Size = System::Drawing::Size(152, 28);
-            this->label95->TabIndex = 294;
-            this->label95->Text = L"Name of Cluster";
-            // 
             // label94
             // 
             this->label94->AutoSize = true;
-            this->label94->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label94->BackColor = System::Drawing::Color::White;
+            this->label94->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label94->Location = System::Drawing::Point(218, 1450);
+            this->label94->Location = System::Drawing::Point(70, 160);
             this->label94->Name = L"label94";
-            this->label94->Size = System::Drawing::Size(330, 28);
+            this->label94->Size = System::Drawing::Size(349, 28);
             this->label94->TabIndex = 297;
             this->label94->Text = L"Teacher handling the elective subject";
-            // 
-            // editsubcluster
-            // 
-            this->editsubcluster->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::Suggest;
-            this->editsubcluster->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->editsubcluster->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->editsubcluster->FormattingEnabled = true;
-            this->editsubcluster->Location = System::Drawing::Point(278, 1352);
-            this->editsubcluster->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-            this->editsubcluster->Name = L"editsubcluster";
-            this->editsubcluster->Size = System::Drawing::Size(294, 36);
-            this->editsubcluster->TabIndex = 313;
-            this->editsubcluster->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPressAllowspace);
             // 
             // editpanelsub
             // 
@@ -8322,62 +8326,44 @@ private: System::Windows::Forms::Button^ button18;
             this->editpanelsub->Controls->Add(this->editsubbfactor);
             this->editpanelsub->Controls->Add(this->editsubsave);
             this->editpanelsub->Controls->Add(this->editsubdelete);
-            this->editpanelsub->Location = System::Drawing::Point(214, 2852);
+            this->editpanelsub->Location = System::Drawing::Point(249, 3080);
             this->editpanelsub->Name = L"editpanelsub";
             this->editpanelsub->Size = System::Drawing::Size(846, 1096);
             this->editpanelsub->TabIndex = 320;
             this->editpanelsub->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel37_Paint);
             // 
-            // editsubdelete
+            // label96
             // 
-            this->editsubdelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->editsubdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label96->AutoSize = true;
+            this->label96->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubdelete->Location = System::Drawing::Point(574, 578);
-            this->editsubdelete->Name = L"editsubdelete";
-            this->editsubdelete->Size = System::Drawing::Size(116, 58);
-            this->editsubdelete->TabIndex = 309;
-            this->editsubdelete->Text = L"Delete";
-            this->editsubdelete->UseVisualStyleBackColor = false;
-            this->editsubdelete->Click += gcnew System::EventHandler(this, &MyForm::editsubdelete_Click);
+            this->label96->Location = System::Drawing::Point(52, 188);
+            this->label96->Name = L"label96";
+            this->label96->Size = System::Drawing::Size(255, 28);
+            this->label96->TabIndex = 303;
+            this->label96->Text = L"Rooms to be used(optional)";
             // 
-            // editsubsave
+            // label97
             // 
-            this->editsubsave->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(230)));
-            this->editsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->label97->AutoSize = true;
+            this->label97->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubsave->Location = System::Drawing::Point(394, 578);
-            this->editsubsave->Name = L"editsubsave";
-            this->editsubsave->Size = System::Drawing::Size(116, 58);
-            this->editsubsave->TabIndex = 308;
-            this->editsubsave->Text = L"Save";
-            this->editsubsave->UseVisualStyleBackColor = false;
-            this->editsubsave->Click += gcnew System::EventHandler(this, &MyForm::editsubsave_Click);
+            this->label97->Location = System::Drawing::Point(57, 40);
+            this->label97->Name = L"label97";
+            this->label97->Size = System::Drawing::Size(125, 28);
+            this->label97->TabIndex = 302;
+            this->label97->Text = L"No of credits";
             // 
-            // editsubbfactor
+            // editsubcredits
             // 
-            this->editsubbfactor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+            this->editsubcredits->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
-            this->editsubbfactor->DecimalPlaces = 2;
-            this->editsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubcredits->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubbfactor->Location = System::Drawing::Point(58, 454);
-            this->editsubbfactor->Name = L"editsubbfactor";
-            this->editsubbfactor->Size = System::Drawing::Size(135, 34);
-            this->editsubbfactor->TabIndex = 307;
-            // 
-            // label100
-            // 
-            this->label100->AutoSize = true;
-            this->label100->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label100->Location = System::Drawing::Point(52, 412);
-            this->label100->Name = L"label100";
-            this->label100->Size = System::Drawing::Size(75, 28);
-            this->label100->TabIndex = 306;
-            this->label100->Text = L"bfactor";
+            this->editsubcredits->Location = System::Drawing::Point(82, 87);
+            this->editsubcredits->Name = L"editsubcredits";
+            this->editsubcredits->Size = System::Drawing::Size(123, 34);
+            this->editsubcredits->TabIndex = 301;
             // 
             // editsubroomlist
             // 
@@ -8395,38 +8381,56 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubroomlist->TabIndex = 304;
             this->editsubroomlist->ThreeDCheckBoxes = true;
             // 
-            // editsubcredits
+            // label100
             // 
-            this->editsubcredits->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+            this->label100->AutoSize = true;
+            this->label100->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label100->Location = System::Drawing::Point(52, 412);
+            this->label100->Name = L"label100";
+            this->label100->Size = System::Drawing::Size(75, 28);
+            this->label100->TabIndex = 306;
+            this->label100->Text = L"bfactor";
+            // 
+            // editsubbfactor
+            // 
+            this->editsubbfactor->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)));
-            this->editsubcredits->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubbfactor->DecimalPlaces = 2;
+            this->editsubbfactor->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubcredits->Location = System::Drawing::Point(82, 87);
-            this->editsubcredits->Name = L"editsubcredits";
-            this->editsubcredits->Size = System::Drawing::Size(123, 34);
-            this->editsubcredits->TabIndex = 301;
+            this->editsubbfactor->Location = System::Drawing::Point(58, 454);
+            this->editsubbfactor->Name = L"editsubbfactor";
+            this->editsubbfactor->Size = System::Drawing::Size(135, 34);
+            this->editsubbfactor->TabIndex = 307;
             // 
-            // label97
+            // editsubsave
             // 
-            this->label97->AutoSize = true;
-            this->label97->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubsave->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label97->Location = System::Drawing::Point(57, 40);
-            this->label97->Name = L"label97";
-            this->label97->Size = System::Drawing::Size(125, 28);
-            this->label97->TabIndex = 302;
-            this->label97->Text = L"No of credits";
+            this->editsubsave->Location = System::Drawing::Point(394, 578);
+            this->editsubsave->Name = L"editsubsave";
+            this->editsubsave->Size = System::Drawing::Size(116, 58);
+            this->editsubsave->TabIndex = 308;
+            this->editsubsave->Text = L"Save";
+            this->editsubsave->UseVisualStyleBackColor = false;
+            this->editsubsave->Click += gcnew System::EventHandler(this, &MyForm::editsubsave_Click);
             // 
-            // label96
+            // editsubdelete
             // 
-            this->label96->AutoSize = true;
-            this->label96->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->editsubdelete->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(179)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(230)));
+            this->editsubdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label96->Location = System::Drawing::Point(52, 188);
-            this->label96->Name = L"label96";
-            this->label96->Size = System::Drawing::Size(255, 28);
-            this->label96->TabIndex = 303;
-            this->label96->Text = L"Rooms to be used(optional)";
+            this->editsubdelete->Location = System::Drawing::Point(574, 578);
+            this->editsubdelete->Name = L"editsubdelete";
+            this->editsubdelete->Size = System::Drawing::Size(116, 58);
+            this->editsubdelete->TabIndex = 309;
+            this->editsubdelete->Text = L"Delete";
+            this->editsubdelete->UseVisualStyleBackColor = false;
+            this->editsubdelete->Click += gcnew System::EventHandler(this, &MyForm::editsubdelete_Click);
             // 
             // editsubelepanel
             // 
@@ -8445,142 +8449,28 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubelepanel->Controls->Add(this->label162);
             this->editsubelepanel->Controls->Add(this->label163);
             this->editsubelepanel->Controls->Add(this->label164);
-            this->editsubelepanel->Location = System::Drawing::Point(117, 1794);
+            this->editsubelepanel->Location = System::Drawing::Point(152, 2022);
             this->editsubelepanel->Name = L"editsubelepanel";
             this->editsubelepanel->Size = System::Drawing::Size(1184, 621);
             this->editsubelepanel->TabIndex = 311;
             // 
-            // label164
+            // panel39
             // 
-            this->label164->AutoSize = true;
-            this->label164->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label164->Location = System::Drawing::Point(40, 132);
-            this->label164->Name = L"label164";
-            this->label164->Size = System::Drawing::Size(85, 28);
-            this->label164->TabIndex = 261;
-            this->label164->Text = L"Monday";
+            this->panel39->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel39.BackgroundImage")));
+            this->panel39->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel39->Location = System::Drawing::Point(416, 112);
+            this->panel39->Name = L"panel39";
+            this->panel39->Size = System::Drawing::Size(44, 412);
+            this->panel39->TabIndex = 2;
             // 
-            // label163
+            // panel40
             // 
-            this->label163->AutoSize = true;
-            this->label163->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label163->Location = System::Drawing::Point(46, 201);
-            this->label163->Name = L"label163";
-            this->label163->Size = System::Drawing::Size(83, 28);
-            this->label163->TabIndex = 262;
-            this->label163->Text = L"Tuesday";
-            // 
-            // label162
-            // 
-            this->label162->AutoSize = true;
-            this->label162->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label162->Location = System::Drawing::Point(20, 280);
-            this->label162->Name = L"label162";
-            this->label162->Size = System::Drawing::Size(113, 28);
-            this->label162->TabIndex = 263;
-            this->label162->Text = L"Wednesday";
-            // 
-            // label161
-            // 
-            this->label161->AutoSize = true;
-            this->label161->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label161->Location = System::Drawing::Point(30, 342);
-            this->label161->Name = L"label161";
-            this->label161->Size = System::Drawing::Size(91, 28);
-            this->label161->TabIndex = 264;
-            this->label161->Text = L"Thursday";
-            // 
-            // label160
-            // 
-            this->label160->AutoSize = true;
-            this->label160->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label160->Location = System::Drawing::Point(44, 418);
-            this->label160->Name = L"label160";
-            this->label160->Size = System::Drawing::Size(66, 28);
-            this->label160->TabIndex = 265;
-            this->label160->Text = L"Friday";
-            // 
-            // label159
-            // 
-            this->label159->AutoSize = true;
-            this->label159->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label159->Location = System::Drawing::Point(44, 495);
-            this->label159->Name = L"label159";
-            this->label159->Size = System::Drawing::Size(90, 28);
-            this->label159->TabIndex = 266;
-            this->label159->Text = L"Saturday";
-            // 
-            // label158
-            // 
-            this->label158->AutoSize = true;
-            this->label158->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label158->Location = System::Drawing::Point(958, 68);
-            this->label158->Name = L"label158";
-            this->label158->Size = System::Drawing::Size(94, 28);
-            this->label158->TabIndex = 299;
-            this->label158->Text = L"3:30-4:30";
-            // 
-            // label157
-            // 
-            this->label157->AutoSize = true;
-            this->label157->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label157->Location = System::Drawing::Point(828, 68);
-            this->label157->Name = L"label157";
-            this->label157->Size = System::Drawing::Size(94, 28);
-            this->label157->TabIndex = 298;
-            this->label157->Text = L"2:30-3:30";
-            // 
-            // label156
-            // 
-            this->label156->AutoSize = true;
-            this->label156->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label156->Location = System::Drawing::Point(634, 72);
-            this->label156->Name = L"label156";
-            this->label156->Size = System::Drawing::Size(105, 28);
-            this->label156->TabIndex = 297;
-            this->label156->Text = L"12:30-1:30";
-            // 
-            // label155
-            // 
-            this->label155->AutoSize = true;
-            this->label155->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label155->Location = System::Drawing::Point(480, 72);
-            this->label155->Name = L"label155";
-            this->label155->Size = System::Drawing::Size(116, 28);
-            this->label155->TabIndex = 296;
-            this->label155->Text = L"11:30-12:30";
-            // 
-            // label154
-            // 
-            this->label154->AutoSize = true;
-            this->label154->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label154->Location = System::Drawing::Point(294, 72);
-            this->label154->Name = L"label154";
-            this->label154->Size = System::Drawing::Size(116, 28);
-            this->label154->TabIndex = 295;
-            this->label154->Text = L"10:00-11:00";
-            // 
-            // label153
-            // 
-            this->label153->AutoSize = true;
-            this->label153->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label153->Location = System::Drawing::Point(158, 72);
-            this->label153->Name = L"label153";
-            this->label153->Size = System::Drawing::Size(105, 28);
-            this->label153->TabIndex = 294;
-            this->label153->Text = L"9:00-10:00";
+            this->panel40->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel40.BackgroundImage")));
+            this->panel40->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel40->Location = System::Drawing::Point(758, 110);
+            this->panel40->Name = L"panel40";
+            this->panel40->Size = System::Drawing::Size(44, 436);
+            this->panel40->TabIndex = 1;
             // 
             // editsubeletable
             // 
@@ -8613,23 +8503,137 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubeletable->Size = System::Drawing::Size(950, 435);
             this->editsubeletable->TabIndex = 260;
             // 
-            // panel40
+            // label153
             // 
-            this->panel40->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel40.BackgroundImage")));
-            this->panel40->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel40->Location = System::Drawing::Point(758, 110);
-            this->panel40->Name = L"panel40";
-            this->panel40->Size = System::Drawing::Size(44, 436);
-            this->panel40->TabIndex = 1;
+            this->label153->AutoSize = true;
+            this->label153->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label153->Location = System::Drawing::Point(158, 72);
+            this->label153->Name = L"label153";
+            this->label153->Size = System::Drawing::Size(105, 28);
+            this->label153->TabIndex = 294;
+            this->label153->Text = L"9:00-10:00";
             // 
-            // panel39
+            // label154
             // 
-            this->panel39->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel39.BackgroundImage")));
-            this->panel39->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel39->Location = System::Drawing::Point(416, 112);
-            this->panel39->Name = L"panel39";
-            this->panel39->Size = System::Drawing::Size(44, 412);
-            this->panel39->TabIndex = 2;
+            this->label154->AutoSize = true;
+            this->label154->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label154->Location = System::Drawing::Point(294, 72);
+            this->label154->Name = L"label154";
+            this->label154->Size = System::Drawing::Size(116, 28);
+            this->label154->TabIndex = 295;
+            this->label154->Text = L"10:00-11:00";
+            // 
+            // label155
+            // 
+            this->label155->AutoSize = true;
+            this->label155->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label155->Location = System::Drawing::Point(480, 72);
+            this->label155->Name = L"label155";
+            this->label155->Size = System::Drawing::Size(116, 28);
+            this->label155->TabIndex = 296;
+            this->label155->Text = L"11:30-12:30";
+            // 
+            // label156
+            // 
+            this->label156->AutoSize = true;
+            this->label156->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label156->Location = System::Drawing::Point(634, 72);
+            this->label156->Name = L"label156";
+            this->label156->Size = System::Drawing::Size(105, 28);
+            this->label156->TabIndex = 297;
+            this->label156->Text = L"12:30-1:30";
+            // 
+            // label157
+            // 
+            this->label157->AutoSize = true;
+            this->label157->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label157->Location = System::Drawing::Point(828, 68);
+            this->label157->Name = L"label157";
+            this->label157->Size = System::Drawing::Size(94, 28);
+            this->label157->TabIndex = 298;
+            this->label157->Text = L"2:30-3:30";
+            // 
+            // label158
+            // 
+            this->label158->AutoSize = true;
+            this->label158->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label158->Location = System::Drawing::Point(958, 68);
+            this->label158->Name = L"label158";
+            this->label158->Size = System::Drawing::Size(94, 28);
+            this->label158->TabIndex = 299;
+            this->label158->Text = L"3:30-4:30";
+            // 
+            // label159
+            // 
+            this->label159->AutoSize = true;
+            this->label159->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label159->Location = System::Drawing::Point(44, 495);
+            this->label159->Name = L"label159";
+            this->label159->Size = System::Drawing::Size(90, 28);
+            this->label159->TabIndex = 266;
+            this->label159->Text = L"Saturday";
+            // 
+            // label160
+            // 
+            this->label160->AutoSize = true;
+            this->label160->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label160->Location = System::Drawing::Point(44, 418);
+            this->label160->Name = L"label160";
+            this->label160->Size = System::Drawing::Size(66, 28);
+            this->label160->TabIndex = 265;
+            this->label160->Text = L"Friday";
+            // 
+            // label161
+            // 
+            this->label161->AutoSize = true;
+            this->label161->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label161->Location = System::Drawing::Point(30, 342);
+            this->label161->Name = L"label161";
+            this->label161->Size = System::Drawing::Size(91, 28);
+            this->label161->TabIndex = 264;
+            this->label161->Text = L"Thursday";
+            // 
+            // label162
+            // 
+            this->label162->AutoSize = true;
+            this->label162->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label162->Location = System::Drawing::Point(20, 280);
+            this->label162->Name = L"label162";
+            this->label162->Size = System::Drawing::Size(113, 28);
+            this->label162->TabIndex = 263;
+            this->label162->Text = L"Wednesday";
+            // 
+            // label163
+            // 
+            this->label163->AutoSize = true;
+            this->label163->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label163->Location = System::Drawing::Point(46, 201);
+            this->label163->Name = L"label163";
+            this->label163->Size = System::Drawing::Size(83, 28);
+            this->label163->TabIndex = 262;
+            this->label163->Text = L"Tuesday";
+            // 
+            // label164
+            // 
+            this->label164->AutoSize = true;
+            this->label164->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label164->Location = System::Drawing::Point(40, 132);
+            this->label164->Name = L"label164";
+            this->label164->Size = System::Drawing::Size(85, 28);
+            this->label164->TabIndex = 261;
+            this->label164->Text = L"Monday";
             // 
             // button3
             // 
@@ -8637,7 +8641,7 @@ private: System::Windows::Forms::Button^ button18;
                 static_cast<System::Int32>(static_cast<System::Byte>(230)));
             this->button3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button3->Location = System::Drawing::Point(784, 1742);
+            this->button3->Location = System::Drawing::Point(819, 1970);
             this->button3->Name = L"button3";
             this->button3->Size = System::Drawing::Size(116, 46);
             this->button3->TabIndex = 310;
@@ -8653,226 +8657,22 @@ private: System::Windows::Forms::Button^ button18;
             this->panel13->Controls->Add(this->editsubelegroup);
             this->panel13->Controls->Add(this->editsubnamegroup);
             this->panel13->Controls->Add(this->editsubcodegroup);
-            this->panel13->Location = System::Drawing::Point(88, 89);
+            this->panel13->Location = System::Drawing::Point(147, 62);
             this->panel13->Name = L"panel13";
-            this->panel13->Size = System::Drawing::Size(1156, 1282);
+            this->panel13->Size = System::Drawing::Size(1156, 1468);
             this->panel13->TabIndex = 340;
             // 
-            // editsubcodegroup
+            // kryptonLabel2
             // 
-            this->editsubcodegroup->CaptionOverlap = 1;
-            this->editsubcodegroup->CaptionVisible = false;
-            this->editsubcodegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubcodegroup->Location = System::Drawing::Point(25, 906);
-            this->editsubcodegroup->Name = L"editsubcodegroup";
-            // 
-            // editsubcodegroup.Panel
-            // 
-            this->editsubcodegroup->Panel->Controls->Add(this->kryptonPanel4);
-            this->editsubcodegroup->Panel->Controls->Add(this->label15);
-            this->editsubcodegroup->Panel->Controls->Add(this->editsubcode);
-            this->editsubcodegroup->Size = System::Drawing::Size(1089, 194);
-            this->editsubcodegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->editsubcodegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->editsubcodegroup->StateCommon->Border->ColorAngle = 50;
-            this->editsubcodegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubcodegroup->StateCommon->Border->Rounding = 7;
-            this->editsubcodegroup->StateCommon->Border->Width = 1;
-            this->editsubcodegroup->TabIndex = 336;
-            // 
-            // label15
-            // 
-            this->label15->AutoSize = true;
-            this->label15->BackColor = System::Drawing::Color::White;
-            this->label15->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label15->ForeColor = System::Drawing::Color::Black;
-            this->label15->Location = System::Drawing::Point(93, 46);
-            this->label15->Name = L"label15";
-            this->label15->Size = System::Drawing::Size(132, 28);
-            this->label15->TabIndex = 327;
-            this->label15->Text = L"Subject Code";
-            // 
-            // kryptonPanel4
-            // 
-            this->kryptonPanel4->Location = System::Drawing::Point(99, 137);
-            this->kryptonPanel4->Name = L"kryptonPanel4";
-            this->kryptonPanel4->Size = System::Drawing::Size(470, 2);
-            this->kryptonPanel4->StateCommon->Color1 = System::Drawing::Color::Cyan;
-            this->kryptonPanel4->TabIndex = 329;
-            // 
-            // editsubnamegroup
-            // 
-            this->editsubnamegroup->CaptionOverlap = 1;
-            this->editsubnamegroup->CaptionVisible = false;
-            this->editsubnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubnamegroup->Location = System::Drawing::Point(25, 449);
-            this->editsubnamegroup->Name = L"editsubnamegroup";
-            // 
-            // editsubnamegroup.Panel
-            // 
-            this->editsubnamegroup->Panel->Controls->Add(this->kryptonPanel3);
-            this->editsubnamegroup->Panel->Controls->Add(this->label93);
-            this->editsubnamegroup->Panel->Controls->Add(this->editsubname);
-            this->editsubnamegroup->Size = System::Drawing::Size(1089, 194);
-            this->editsubnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->editsubnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+            this->kryptonLabel2->Location = System::Drawing::Point(427, 42);
+            this->kryptonLabel2->Name = L"kryptonLabel2";
+            this->kryptonLabel2->Size = System::Drawing::Size(217, 43);
+            this->kryptonLabel2->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->editsubnamegroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
-                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->editsubnamegroup->StateCommon->Border->ColorAngle = 50;
-            this->editsubnamegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubnamegroup->StateCommon->Border->Rounding = 9;
-            this->editsubnamegroup->StateCommon->Border->Width = 1;
-            this->editsubnamegroup->TabIndex = 337;
-            // 
-            // label93
-            // 
-            this->label93->AutoSize = true;
-            this->label93->BackColor = System::Drawing::Color::White;
-            this->label93->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label93->ForeColor = System::Drawing::Color::Black;
-            this->label93->Location = System::Drawing::Point(93, 30);
-            this->label93->Name = L"label93";
-            this->label93->Size = System::Drawing::Size(139, 28);
-            this->label93->TabIndex = 264;
-            this->label93->Text = L"Subject Name";
-            // 
-            // kryptonPanel3
-            // 
-            this->kryptonPanel3->Location = System::Drawing::Point(98, 110);
-            this->kryptonPanel3->Name = L"kryptonPanel3";
-            this->kryptonPanel3->Size = System::Drawing::Size(470, 2);
-            this->kryptonPanel3->StateCommon->Color1 = System::Drawing::Color::Cyan;
-            this->kryptonPanel3->TabIndex = 326;
-            // 
-            // editsubelegroup
-            // 
-            this->editsubelegroup->CaptionOverlap = 1;
-            this->editsubelegroup->CaptionVisible = false;
-            this->editsubelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubelegroup->Location = System::Drawing::Point(25, 1134);
-            this->editsubelegroup->Name = L"editsubelegroup";
-            // 
-            // editsubelegroup.Panel
-            // 
-            this->editsubelegroup->Panel->Controls->Add(this->label92);
-            this->editsubelegroup->Panel->Controls->Add(this->panel10);
-            this->editsubelegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::kryptonGroupBox2_Panel_Paint);
-            this->editsubelegroup->Size = System::Drawing::Size(1089, 194);
-            this->editsubelegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->editsubelegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->editsubelegroup->StateCommon->Border->ColorAngle = 50;
-            this->editsubelegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubelegroup->StateCommon->Border->Rounding = 7;
-            this->editsubelegroup->StateCommon->Border->Width = 1;
-            this->editsubelegroup->TabIndex = 339;
-            // 
-            // panel10
-            // 
-            this->panel10->BackColor = System::Drawing::Color::White;
-            this->panel10->Controls->Add(this->editsubeleyes);
-            this->panel10->Controls->Add(this->editsubeleno);
-            this->panel10->ForeColor = System::Drawing::Color::Black;
-            this->panel10->Location = System::Drawing::Point(162, 90);
-            this->panel10->Name = L"panel10";
-            this->panel10->Size = System::Drawing::Size(454, 60);
-            this->panel10->TabIndex = 267;
-            // 
-            // editsubeleno
-            // 
-            this->editsubeleno->Location = System::Drawing::Point(230, 14);
-            this->editsubeleno->Name = L"editsubeleno";
-            this->editsubeleno->Size = System::Drawing::Size(56, 32);
-            this->editsubeleno->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
-            this->editsubeleno->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
-            this->editsubeleno->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
-                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->editsubeleno->TabIndex = 330;
-            this->editsubeleno->Values->Text = L"NO";
-            // 
-            // editsubeleyes
-            // 
-            this->editsubeleyes->Location = System::Drawing::Point(16, 14);
-            this->editsubeleyes->Name = L"editsubeleyes";
-            this->editsubeleyes->Size = System::Drawing::Size(58, 32);
-            this->editsubeleyes->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
-            this->editsubeleyes->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
-            this->editsubeleyes->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
-                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->editsubeleyes->TabIndex = 328;
-            this->editsubeleyes->Values->Text = L"YES";
-            // 
-            // label92
-            // 
-            this->label92->AutoSize = true;
-            this->label92->BackColor = System::Drawing::Color::White;
-            this->label92->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label92->Location = System::Drawing::Point(111, 40);
-            this->label92->Name = L"label92";
-            this->label92->Size = System::Drawing::Size(156, 28);
-            this->label92->TabIndex = 266;
-            this->label92->Text = L"Is it an Elective\?";
-            // 
-            // editsubtitlegroup
-            // 
-            this->editsubtitlegroup->CaptionOverlap = 1;
-            this->editsubtitlegroup->CaptionVisible = false;
-            this->editsubtitlegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubtitlegroup->Location = System::Drawing::Point(25, 685);
-            this->editsubtitlegroup->Name = L"editsubtitlegroup";
-            // 
-            // editsubtitlegroup.Panel
-            // 
-            this->editsubtitlegroup->Panel->Controls->Add(this->kryptonPanel1);
-            this->editsubtitlegroup->Panel->Controls->Add(this->label109);
-            this->editsubtitlegroup->Panel->Controls->Add(this->editsubtitle);
-            this->editsubtitlegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubtitlegroup_Panel_Paint);
-            this->editsubtitlegroup->Size = System::Drawing::Size(1089, 194);
-            this->editsubtitlegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->editsubtitlegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->editsubtitlegroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
-                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->editsubtitlegroup->StateCommon->Border->ColorAngle = 50;
-            this->editsubtitlegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubtitlegroup->StateCommon->Border->Rounding = 7;
-            this->editsubtitlegroup->StateCommon->Border->Width = 1;
-            this->editsubtitlegroup->TabIndex = 338;
-            // 
-            // label109
-            // 
-            this->label109->AutoSize = true;
-            this->label109->BackColor = System::Drawing::Color::White;
-            this->label109->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label109->ForeColor = System::Drawing::Color::Black;
-            this->label109->Location = System::Drawing::Point(94, 39);
-            this->label109->Name = L"label109";
-            this->label109->Size = System::Drawing::Size(124, 28);
-            this->label109->TabIndex = 327;
-            this->label109->Text = L"Subject Title";
-            this->label109->Click += gcnew System::EventHandler(this, &MyForm::label109_Click);
-            // 
-            // kryptonPanel1
-            // 
-            this->kryptonPanel1->Location = System::Drawing::Point(101, 128);
-            this->kryptonPanel1->Name = L"kryptonPanel1";
-            this->kryptonPanel1->Size = System::Drawing::Size(470, 2);
-            this->kryptonPanel1->StateCommon->Color1 = System::Drawing::Color::Cyan;
-            this->kryptonPanel1->TabIndex = 329;
+            this->kryptonLabel2->StateCommon->ShortText->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
+            this->kryptonLabel2->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
+            this->kryptonLabel2->TabIndex = 2;
+            this->kryptonLabel2->Values->Text = L"Subject Details";
             // 
             // editsubsearchgroup
             // 
@@ -8898,6 +8698,48 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubsearchgroup->StateCommon->Border->Rounding = 10;
             this->editsubsearchgroup->StateCommon->Border->Width = 1;
             this->editsubsearchgroup->TabIndex = 340;
+            // 
+            // editsubsearchbutton
+            // 
+            this->editsubsearchbutton->ButtonStyle = ComponentFactory::Krypton::Toolkit::ButtonStyle::Custom1;
+            this->editsubsearchbutton->Location = System::Drawing::Point(986, 176);
+            this->editsubsearchbutton->Name = L"editsubsearchbutton";
+            this->editsubsearchbutton->Size = System::Drawing::Size(27, 27);
+            this->editsubsearchbutton->StateCommon->Back->Color1 = System::Drawing::Color::IndianRed;
+            this->editsubsearchbutton->StateCommon->Back->Color2 = System::Drawing::Color::Silver;
+            this->editsubsearchbutton->StateCommon->Back->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"editsubsearchbutton.StateCommon.Back.Image")));
+            this->editsubsearchbutton->StateCommon->Back->ImageAlign = ComponentFactory::Krypton::Toolkit::PaletteRectangleAlign::Control;
+            this->editsubsearchbutton->StateCommon->Back->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::Stretch;
+            this->editsubsearchbutton->StateCommon->Border->Color1 = System::Drawing::Color::Silver;
+            this->editsubsearchbutton->StateCommon->Border->Color2 = System::Drawing::Color::Silver;
+            this->editsubsearchbutton->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
+            this->editsubsearchbutton->StateCommon->Border->Draw = ComponentFactory::Krypton::Toolkit::InheritBool::False;
+            this->editsubsearchbutton->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubsearchbutton->StateCommon->Border->Rounding = 3;
+            this->editsubsearchbutton->StateNormal->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubsearchbutton->StateNormal->Back->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubsearchbutton->StatePressed->Back->Color1 = System::Drawing::Color::White;
+            this->editsubsearchbutton->StatePressed->Back->Color2 = System::Drawing::Color::White;
+            this->editsubsearchbutton->TabIndex = 324;
+            this->editsubsearchbutton->Values->Text = L"";
+            this->editsubsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editsubsearchbutton_Click);
+            // 
+            // label99
+            // 
+            this->label99->AutoSize = true;
+            this->label99->BackColor = System::Drawing::Color::White;
+            this->label99->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label99->ForeColor = System::Drawing::Color::Black;
+            this->label99->Location = System::Drawing::Point(372, 68);
+            this->label99->Name = L"label99";
+            this->label99->Size = System::Drawing::Size(241, 28);
+            this->label99->TabIndex = 264;
+            this->label99->Text = L"Search the Subject Name";
             // 
             // editsubsearch
             // 
@@ -8930,127 +8772,55 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubsearch->StateCommon->Item->Content->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
             this->editsubsearch->TabIndex = 323;
             // 
-            // label99
+            // editsubtitlegroup
             // 
-            this->label99->AutoSize = true;
-            this->label99->BackColor = System::Drawing::Color::White;
-            this->label99->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label99->ForeColor = System::Drawing::Color::Black;
-            this->label99->Location = System::Drawing::Point(372, 68);
-            this->label99->Name = L"label99";
-            this->label99->Size = System::Drawing::Size(241, 28);
-            this->label99->TabIndex = 264;
-            this->label99->Text = L"Search the Subject Name";
+            this->editsubtitlegroup->CaptionOverlap = 1;
+            this->editsubtitlegroup->CaptionVisible = false;
+            this->editsubtitlegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubtitlegroup->Location = System::Drawing::Point(25, 685);
+            this->editsubtitlegroup->Name = L"editsubtitlegroup";
             // 
-            // editsubsearchbutton
+            // editsubtitlegroup.Panel
             // 
-            this->editsubsearchbutton->ButtonStyle = ComponentFactory::Krypton::Toolkit::ButtonStyle::Custom1;
-            this->editsubsearchbutton->Location = System::Drawing::Point(986, 176);
-            this->editsubsearchbutton->Name = L"editsubsearchbutton";
-            this->editsubsearchbutton->Size = System::Drawing::Size(27, 27);
-            this->editsubsearchbutton->StateCommon->Back->Color1 = System::Drawing::Color::IndianRed;
-            this->editsubsearchbutton->StateCommon->Back->Color2 = System::Drawing::Color::Silver;
-            this->editsubsearchbutton->StateCommon->Back->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"editsubsearchbutton.StateCommon.Back.Image")));
-            this->editsubsearchbutton->StateCommon->Back->ImageAlign = ComponentFactory::Krypton::Toolkit::PaletteRectangleAlign::Control;
-            this->editsubsearchbutton->StateCommon->Back->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::Stretch;
-            this->editsubsearchbutton->StateCommon->Border->Color1 = System::Drawing::Color::Silver;
-            this->editsubsearchbutton->StateCommon->Border->Color2 = System::Drawing::Color::Silver;
-            this->editsubsearchbutton->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
-            this->editsubsearchbutton->StateCommon->Border->Draw = ComponentFactory::Krypton::Toolkit::InheritBool::False;
-            this->editsubsearchbutton->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubsearchbutton->StateCommon->Border->Rounding = 3;
-            this->editsubsearchbutton->StateNormal->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            this->editsubtitlegroup->Panel->Controls->Add(this->kryptonPanel1);
+            this->editsubtitlegroup->Panel->Controls->Add(this->label109);
+            this->editsubtitlegroup->Panel->Controls->Add(this->editsubtitle);
+            this->editsubtitlegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubtitlegroup_Panel_Paint);
+            this->editsubtitlegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubtitlegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubtitlegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->editsubsearchbutton->StateNormal->Back->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->editsubsearchbutton->StatePressed->Back->Color1 = System::Drawing::Color::White;
-            this->editsubsearchbutton->StatePressed->Back->Color2 = System::Drawing::Color::White;
-            this->editsubsearchbutton->TabIndex = 324;
-            this->editsubsearchbutton->Values->Text = L"";
-            this->editsubsearchbutton->Click += gcnew System::EventHandler(this, &MyForm::editsubsearchbutton_Click);
-            // 
-            // kryptonLabel2
-            // 
-            this->kryptonLabel2->Location = System::Drawing::Point(427, 42);
-            this->kryptonLabel2->Name = L"kryptonLabel2";
-            this->kryptonLabel2->Size = System::Drawing::Size(217, 43);
-            this->kryptonLabel2->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+            this->editsubtitlegroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->kryptonLabel2->StateCommon->ShortText->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
-            this->kryptonLabel2->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
-            this->kryptonLabel2->TabIndex = 2;
-            this->kryptonLabel2->Values->Text = L"Subject Details";
+            this->editsubtitlegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubtitlegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubtitlegroup->StateCommon->Border->Rounding = 7;
+            this->editsubtitlegroup->StateCommon->Border->Width = 1;
+            this->editsubtitlegroup->TabIndex = 338;
             // 
-            // editsubjectpanel
+            // kryptonPanel1
             // 
-            this->editsubjectpanel->AutoScroll = true;
-            this->editsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
-                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubjectpanel->Controls->Add(this->panel13);
-            this->editsubjectpanel->Controls->Add(this->button3);
-            this->editsubjectpanel->Controls->Add(this->editsubelepanel);
-            this->editsubjectpanel->Controls->Add(this->editpanelsub);
-            this->editsubjectpanel->Controls->Add(this->editsubcluster);
-            this->editsubjectpanel->Controls->Add(this->label94);
-            this->editsubjectpanel->Controls->Add(this->label95);
-            this->editsubjectpanel->Controls->Add(this->editsubeleteacher);
-            this->editsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->editsubjectpanel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            this->kryptonPanel1->Location = System::Drawing::Point(101, 128);
+            this->kryptonPanel1->Name = L"kryptonPanel1";
+            this->kryptonPanel1->Size = System::Drawing::Size(470, 2);
+            this->kryptonPanel1->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel1->TabIndex = 329;
+            // 
+            // label109
+            // 
+            this->label109->AutoSize = true;
+            this->label109->BackColor = System::Drawing::Color::White;
+            this->label109->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubjectpanel->Location = System::Drawing::Point(326, 76);
-            this->editsubjectpanel->Name = L"editsubjectpanel";
-            this->editsubjectpanel->Size = System::Drawing::Size(1598, 974);
-            this->editsubjectpanel->TabIndex = 259;
-            this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
-            // 
-            // editsubcode
-            // 
-            this->editsubcode->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editsubcode->Location = System::Drawing::Point(98, 92);
-            this->editsubcode->Name = L"editsubcode";
-            this->editsubcode->Size = System::Drawing::Size(440, 44);
-            this->editsubcode->StateActive->Back->Color1 = System::Drawing::Color::White;
-            this->editsubcode->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubcode->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubcode->StateCommon->Border->Color1 = System::Drawing::Color::White;
-            this->editsubcode->StateCommon->Border->Color2 = System::Drawing::Color::White;
-            this->editsubcode->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
-            this->editsubcode->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubcode->StateCommon->Border->Rounding = 10;
-            this->editsubcode->StateCommon->Border->Width = 3;
-            this->editsubcode->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-            this->editsubcode->TabIndex = 328;
-            // 
-            // editsubname
-            // 
-            this->editsubname->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editsubname->Location = System::Drawing::Point(105, 75);
-            this->editsubname->Name = L"editsubname";
-            this->editsubname->Size = System::Drawing::Size(440, 44);
-            this->editsubname->StateActive->Back->Color1 = System::Drawing::Color::White;
-            this->editsubname->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubname->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->editsubname->StateCommon->Border->Color1 = System::Drawing::Color::White;
-            this->editsubname->StateCommon->Border->Color2 = System::Drawing::Color::White;
-            this->editsubname->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
-            this->editsubname->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->editsubname->StateCommon->Border->Rounding = 10;
-            this->editsubname->StateCommon->Border->Width = 3;
-            this->editsubname->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-            this->editsubname->TabIndex = 325;
+            this->label109->ForeColor = System::Drawing::Color::Black;
+            this->label109->Location = System::Drawing::Point(94, 39);
+            this->label109->Name = L"label109";
+            this->label109->Size = System::Drawing::Size(124, 28);
+            this->label109->TabIndex = 327;
+            this->label109->Text = L"Subject Title";
+            this->label109->Click += gcnew System::EventHandler(this, &MyForm::label109_Click);
             // 
             // editsubtitle
             // 
@@ -9075,6 +8845,286 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubtitle->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
             this->editsubtitle->TabIndex = 328;
             this->editsubtitle->TextChanged += gcnew System::EventHandler(this, &MyForm::editsubtitle_TextChanged);
+            // 
+            // editsubelegroup
+            // 
+            this->editsubelegroup->CaptionOverlap = 1;
+            this->editsubelegroup->CaptionVisible = false;
+            this->editsubelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubelegroup->Location = System::Drawing::Point(25, 1134);
+            this->editsubelegroup->Name = L"editsubelegroup";
+            // 
+            // editsubelegroup.Panel
+            // 
+            this->editsubelegroup->Panel->Controls->Add(this->label92);
+            this->editsubelegroup->Panel->Controls->Add(this->panel10);
+            this->editsubelegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::kryptonGroupBox2_Panel_Paint);
+            this->editsubelegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubelegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubelegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubelegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubelegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubelegroup->StateCommon->Border->Rounding = 7;
+            this->editsubelegroup->StateCommon->Border->Width = 1;
+            this->editsubelegroup->TabIndex = 339;
+            // 
+            // label92
+            // 
+            this->label92->AutoSize = true;
+            this->label92->BackColor = System::Drawing::Color::White;
+            this->label92->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label92->Location = System::Drawing::Point(95, 44);
+            this->label92->Name = L"label92";
+            this->label92->Size = System::Drawing::Size(156, 28);
+            this->label92->TabIndex = 266;
+            this->label92->Text = L"Is it an Elective\?";
+            // 
+            // panel10
+            // 
+            this->panel10->BackColor = System::Drawing::Color::White;
+            this->panel10->Controls->Add(this->editsubeleyes);
+            this->panel10->Controls->Add(this->editsubeleno);
+            this->panel10->ForeColor = System::Drawing::Color::Black;
+            this->panel10->Location = System::Drawing::Point(162, 90);
+            this->panel10->Name = L"panel10";
+            this->panel10->Size = System::Drawing::Size(454, 60);
+            this->panel10->TabIndex = 267;
+            // 
+            // editsubeleyes
+            // 
+            this->editsubeleyes->Location = System::Drawing::Point(16, 14);
+            this->editsubeleyes->Name = L"editsubeleyes";
+            this->editsubeleyes->Size = System::Drawing::Size(58, 32);
+            this->editsubeleyes->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
+            this->editsubeleyes->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
+            this->editsubeleyes->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->editsubeleyes->TabIndex = 328;
+            this->editsubeleyes->Values->Text = L"YES";
+            // 
+            // editsubeleno
+            // 
+            this->editsubeleno->Location = System::Drawing::Point(230, 14);
+            this->editsubeleno->Name = L"editsubeleno";
+            this->editsubeleno->Size = System::Drawing::Size(56, 32);
+            this->editsubeleno->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
+            this->editsubeleno->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
+            this->editsubeleno->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->editsubeleno->TabIndex = 330;
+            this->editsubeleno->Values->Text = L"NO";
+            // 
+            // editsubnamegroup
+            // 
+            this->editsubnamegroup->CaptionOverlap = 1;
+            this->editsubnamegroup->CaptionVisible = false;
+            this->editsubnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubnamegroup->Location = System::Drawing::Point(25, 449);
+            this->editsubnamegroup->Name = L"editsubnamegroup";
+            // 
+            // editsubnamegroup.Panel
+            // 
+            this->editsubnamegroup->Panel->Controls->Add(this->kryptonPanel3);
+            this->editsubnamegroup->Panel->Controls->Add(this->label93);
+            this->editsubnamegroup->Panel->Controls->Add(this->editsubname);
+            this->editsubnamegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->editsubnamegroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->editsubnamegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubnamegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubnamegroup->StateCommon->Border->Rounding = 9;
+            this->editsubnamegroup->StateCommon->Border->Width = 1;
+            this->editsubnamegroup->TabIndex = 337;
+            // 
+            // kryptonPanel3
+            // 
+            this->kryptonPanel3->Location = System::Drawing::Point(98, 110);
+            this->kryptonPanel3->Name = L"kryptonPanel3";
+            this->kryptonPanel3->Size = System::Drawing::Size(470, 2);
+            this->kryptonPanel3->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel3->TabIndex = 326;
+            // 
+            // label93
+            // 
+            this->label93->AutoSize = true;
+            this->label93->BackColor = System::Drawing::Color::White;
+            this->label93->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label93->ForeColor = System::Drawing::Color::Black;
+            this->label93->Location = System::Drawing::Point(93, 30);
+            this->label93->Name = L"label93";
+            this->label93->Size = System::Drawing::Size(139, 28);
+            this->label93->TabIndex = 264;
+            this->label93->Text = L"Subject Name";
+            // 
+            // editsubname
+            // 
+            this->editsubname->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->editsubname->Location = System::Drawing::Point(105, 75);
+            this->editsubname->Name = L"editsubname";
+            this->editsubname->Size = System::Drawing::Size(440, 44);
+            this->editsubname->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->editsubname->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubname->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubname->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->editsubname->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->editsubname->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->editsubname->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubname->StateCommon->Border->Rounding = 10;
+            this->editsubname->StateCommon->Border->Width = 3;
+            this->editsubname->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->editsubname->TabIndex = 325;
+            // 
+            // editsubcodegroup
+            // 
+            this->editsubcodegroup->CaptionOverlap = 1;
+            this->editsubcodegroup->CaptionVisible = false;
+            this->editsubcodegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->editsubcodegroup->Location = System::Drawing::Point(25, 906);
+            this->editsubcodegroup->Name = L"editsubcodegroup";
+            // 
+            // editsubcodegroup.Panel
+            // 
+            this->editsubcodegroup->Panel->Controls->Add(this->kryptonPanel4);
+            this->editsubcodegroup->Panel->Controls->Add(this->label15);
+            this->editsubcodegroup->Panel->Controls->Add(this->editsubcode);
+            this->editsubcodegroup->Size = System::Drawing::Size(1089, 194);
+            this->editsubcodegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->editsubcodegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->editsubcodegroup->StateCommon->Border->ColorAngle = 50;
+            this->editsubcodegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubcodegroup->StateCommon->Border->Rounding = 7;
+            this->editsubcodegroup->StateCommon->Border->Width = 1;
+            this->editsubcodegroup->TabIndex = 336;
+            // 
+            // kryptonPanel4
+            // 
+            this->kryptonPanel4->Location = System::Drawing::Point(99, 137);
+            this->kryptonPanel4->Name = L"kryptonPanel4";
+            this->kryptonPanel4->Size = System::Drawing::Size(470, 2);
+            this->kryptonPanel4->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel4->TabIndex = 329;
+            // 
+            // label15
+            // 
+            this->label15->AutoSize = true;
+            this->label15->BackColor = System::Drawing::Color::White;
+            this->label15->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label15->ForeColor = System::Drawing::Color::Black;
+            this->label15->Location = System::Drawing::Point(93, 46);
+            this->label15->Name = L"label15";
+            this->label15->Size = System::Drawing::Size(132, 28);
+            this->label15->TabIndex = 327;
+            this->label15->Text = L"Subject Code";
+            // 
+            // editsubcode
+            // 
+            this->editsubcode->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->editsubcode->Location = System::Drawing::Point(98, 92);
+            this->editsubcode->Name = L"editsubcode";
+            this->editsubcode->Size = System::Drawing::Size(440, 44);
+            this->editsubcode->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->editsubcode->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubcode->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubcode->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->editsubcode->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->editsubcode->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->editsubcode->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->editsubcode->StateCommon->Border->Rounding = 10;
+            this->editsubcode->StateCommon->Border->Width = 3;
+            this->editsubcode->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->editsubcode->TabIndex = 328;
+            // 
+            // editsubjectpanel
+            // 
+            this->editsubjectpanel->AutoScroll = true;
+            this->editsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubjectpanel->Controls->Add(this->kryptonGroupBox1);
+            this->editsubjectpanel->Controls->Add(this->panel13);
+            this->editsubjectpanel->Controls->Add(this->button3);
+            this->editsubjectpanel->Controls->Add(this->editsubelepanel);
+            this->editsubjectpanel->Controls->Add(this->editpanelsub);
+            this->editsubjectpanel->Controls->Add(this->editsubeleteacher);
+            this->editsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->editsubjectpanel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->editsubjectpanel->Location = System::Drawing::Point(326, 76);
+            this->editsubjectpanel->Name = L"editsubjectpanel";
+            this->editsubjectpanel->Size = System::Drawing::Size(1598, 974);
+            this->editsubjectpanel->TabIndex = 259;
+            this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
+            // 
+            // label95
+            // 
+            this->label95->AutoSize = true;
+            this->label95->BackColor = System::Drawing::Color::White;
+            this->label95->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label95->Location = System::Drawing::Point(70, 34);
+            this->label95->Name = L"label95";
+            this->label95->Size = System::Drawing::Size(160, 28);
+            this->label95->TabIndex = 341;
+            this->label95->Text = L"Name of Cluster";
+            // 
+            // kryptonGroupBox1
+            // 
+            this->kryptonGroupBox1->CaptionOverlap = 1;
+            this->kryptonGroupBox1->CaptionVisible = false;
+            this->kryptonGroupBox1->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->kryptonGroupBox1->Location = System::Drawing::Point(780, 1569);
+            this->kryptonGroupBox1->Name = L"kryptonGroupBox1";
+            // 
+            // kryptonGroupBox1.Panel
+            // 
+            this->kryptonGroupBox1->Panel->Controls->Add(this->editsubcluster);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label95);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label94);
+            this->kryptonGroupBox1->Size = System::Drawing::Size(1089, 374);
+            this->kryptonGroupBox1->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonGroupBox1->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox1->StateCommon->Border->ColorAngle = 50;
+            this->kryptonGroupBox1->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonGroupBox1->StateCommon->Border->Rounding = 7;
+            this->kryptonGroupBox1->StateCommon->Border->Width = 1;
+            this->kryptonGroupBox1->TabIndex = 343;
+            // 
+            // editsubcluster
+            // 
+            this->editsubcluster->DropDownWidth = 342;
+            this->editsubcluster->Location = System::Drawing::Point(75, 93);
+            this->editsubcluster->Name = L"editsubcluster";
+            this->editsubcluster->Size = System::Drawing::Size(342, 29);
+            this->editsubcluster->StateCommon->DropBack->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->editsubcluster->StateCommon->DropBack->Color2 = System::Drawing::Color::Cyan;
+            this->editsubcluster->TabIndex = 342;
             // 
             // MyForm
             // 
@@ -9184,24 +9234,24 @@ private: System::Windows::Forms::Button^ button18;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubeleteacher))->EndInit();
             this->editpanelsub->ResumeLayout(false);
             this->editpanelsub->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcredits))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubbfactor))->EndInit();
             this->editsubelepanel->ResumeLayout(false);
             this->editsubelepanel->PerformLayout();
             this->panel13->ResumeLayout(false);
             this->panel13->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->EndInit();
-            this->editsubcodegroup->Panel->ResumeLayout(false);
-            this->editsubcodegroup->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup))->EndInit();
-            this->editsubcodegroup->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel4))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup->Panel))->EndInit();
-            this->editsubnamegroup->Panel->ResumeLayout(false);
-            this->editsubnamegroup->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup))->EndInit();
-            this->editsubnamegroup->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup->Panel))->EndInit();
+            this->editsubsearchgroup->Panel->ResumeLayout(false);
+            this->editsubsearchgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup))->EndInit();
+            this->editsubsearchgroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearch))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup->Panel))->EndInit();
+            this->editsubtitlegroup->Panel->ResumeLayout(false);
+            this->editsubtitlegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup))->EndInit();
+            this->editsubtitlegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel1))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubelegroup->Panel))->EndInit();
             this->editsubelegroup->Panel->ResumeLayout(false);
             this->editsubelegroup->Panel->PerformLayout();
@@ -9209,20 +9259,25 @@ private: System::Windows::Forms::Button^ button18;
             this->editsubelegroup->ResumeLayout(false);
             this->panel10->ResumeLayout(false);
             this->panel10->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup->Panel))->EndInit();
-            this->editsubtitlegroup->Panel->ResumeLayout(false);
-            this->editsubtitlegroup->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubtitlegroup))->EndInit();
-            this->editsubtitlegroup->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel1))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup->Panel))->EndInit();
-            this->editsubsearchgroup->Panel->ResumeLayout(false);
-            this->editsubsearchgroup->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearchgroup))->EndInit();
-            this->editsubsearchgroup->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubsearch))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup->Panel))->EndInit();
+            this->editsubnamegroup->Panel->ResumeLayout(false);
+            this->editsubnamegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubnamegroup))->EndInit();
+            this->editsubnamegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel3))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup->Panel))->EndInit();
+            this->editsubcodegroup->Panel->ResumeLayout(false);
+            this->editsubcodegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcodegroup))->EndInit();
+            this->editsubcodegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel4))->EndInit();
             this->editsubjectpanel->ResumeLayout(false);
-            this->editsubjectpanel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1->Panel))->EndInit();
+            this->kryptonGroupBox1->Panel->ResumeLayout(false);
+            this->kryptonGroupBox1->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1))->EndInit();
+            this->kryptonGroupBox1->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editsubcluster))->EndInit();
             this->ResumeLayout(false);
 
         }
@@ -9572,7 +9627,7 @@ private: System::Windows::Forms::Button^ button18;
         button5->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
-        DisplayCluster("details/Electivetimetable.csv", addsubcluster);
+        //DisplayCluster("details/Electivetimetable.csv", addsubcluster);
         InitializeMatrix(tableLayoutPanel1, "ele", "Available", 0);
         addsubeletablepanel->Visible = false;
         panelsub->Top = addsubeletablepanel->Top;
@@ -9607,8 +9662,8 @@ private: System::Windows::Forms::Button^ button18;
             }
             bool xflag = false;
             vector < vector<string>> data = ReadCSVFile("details/Electivetimetable.csv");
-            vector<vector<bool>>intersect = intersectionElective(valuetimetable("", sedataGridView,editsubname,addsubcluster));
-            for (int i = 0; i < 6; i++)
+     //       vector<vector<bool>>intersect = intersectionElective(valuetimetable("", sedataGridView,editsubname,addsubcluster));
+ /*           for (int i = 0; i < 6; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
@@ -9626,7 +9681,7 @@ private: System::Windows::Forms::Button^ button18;
                     }
 
                 }
-            }
+            }*/
         fl:
             {}
             if (xflag)
@@ -9869,7 +9924,7 @@ private: System::Windows::Forms::Button^ button18;
             }
         a:
             {}
-            DisplayCluster("details/Electivetimetable.csv", addsubcluster);
+            //DisplayCluster("details/Electivetimetable.csv", addsubcluster);
     }
     private: System::Void newaddsub_Click(System::Object^ sender, System::EventArgs^ e) {
         addsubname->Clear();
@@ -10444,7 +10499,7 @@ private: System::Windows::Forms::Button^ button18;
         editsubeleteachercombo->DisplayMember = "editsubeleteachercombo"; // Update to the correct column name
         editsubeleteachercombo->ValueMember = "editsubeleteachercombo";
         DisplayCSVInListBox("details/classroom.csv", editsubroomlist, 0);
-        DisplayCSVInComboBox1("details/Electivetimetable.csv", editsubcluster);
+        DisplayCSVInComboBoxkrypt("details/Electivetimetable.csv", editsubcluster);
         DisplayCSVInComboBoxsub("details/Electivetimetable.csv", editsubsearch);
         panel3->Height = button12->Height;
         panel3->Top = button12->Top;
