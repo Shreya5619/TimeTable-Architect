@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+sub1,f,f,f,f,f,
+f,sub1,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+
+
+TEACHERS
+No Teacher,f,f,f,f,f,
+f,No Teacher,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+f,f,f,f,f,f,
+
+
+ROOM
+cs102,NA,NA,NA,NA,NA,
+NA,cs102,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
