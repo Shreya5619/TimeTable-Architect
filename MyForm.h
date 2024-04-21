@@ -9818,7 +9818,7 @@ private: System::Windows::Forms::Button^ button18;
         panelsub->Top = addsubeletablepanel->Top;
     }
     private: System::Void addsubsave_Click(System::Object^ sender, System::EventArgs^ e) {
-
+       
         bool  flag = true;
         bool eleflag = true;
         if (String::IsNullOrEmpty(addsubname->Text))
