@@ -74,6 +74,48 @@ class settings {
         bool readData(std::string inp);
 };
 
+class logger {
+public:
+    std::string path;
+    void init() {
+        // Get the current system time
+        std::time_t currentTime = std::time(nullptr);
+
+        // Convert the system time to a string representation
+        std::string timeString = std::ctime(&currentTime);
+
+        // Print the current time
+        std::cout << timeString << std::endl;
+        //split timestring wiht spoaces
+        std::vector<std::string> timeVector;
+        std::string temp = "";
+        for (int i = 0; i < timeString.size(); i++) {
+            if (timeString[i] != ' ') {
+                temp.push_back(timeString[i]);
+            }
+            else {
+                timeVector.push_back(temp);
+                temp = "";
+            }
+        }
+        // Iterate through timeVector and print its elements
+        for (const auto& time : timeVector) {
+            path += time;
+        }
+    }
+    void log(std::string message) {
+        std::fstream file;
+        file.open("logs/" + path, std::ios::app);
+        if (file.is_open()) {
+            file << message << "\n";
+            file.close();
+        }
+        else {
+            // Failed to open the file
+            std::cout << "Failed to open the file." << std::endl;
+        }
+    }
+};
 class section {
 public:
     std::string name;
@@ -121,6 +163,7 @@ public:
     }
     std::string convertToString();
     bool readData(std::string inp);
+    bool deAllocate();//used to deallocate a class
     bool error_;
     std::string errorMessage;
     int _intersections;// a variable reserved for the findIntersection function. the fucntion will alter this number 
@@ -138,7 +181,7 @@ public:
     int freeFactorC = 25;//freefactor is addded if teacher is either free before or after the period
     int baseFactorC = 5;//this factor is added to all the subjects, it helps in choosing teachers that are already free over the others.
     float reductionIndexC = 1.2;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
-    bool deAllocate();
+    logger logs;//a logging object
 private:
     std::vector<int> bfactor;
     std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
@@ -150,46 +193,4 @@ private:
     std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
     std::vector<std::string> section::splitString(const std::string& str, char delimiter);
     std::vector<bool> labAllotment;
-};
-class logger {
-public:
-    std::string path;
-    void init() {
-        // Get the current system time
-        std::time_t currentTime = std::time(nullptr);
-
-        // Convert the system time to a string representation
-        std::string timeString = std::ctime(&currentTime);
-
-        // Print the current time
-        std::cout << timeString << std::endl;
-        //split timestring wiht spoaces
-        std::vector<std::string> timeVector;
-        std::string temp = "";
-        for (int i = 0; i < timeString.size(); i++) {
-            if (timeString[i] != ' ') {
-                temp.push_back(timeString[i]);
-            }
-            else {
-                timeVector.push_back(temp);
-                temp = "";
-            }
-        }
-        // Iterate through timeVector and print its elements
-        for (const auto& time : timeVector) {
-            path += time;
-        }
-    }
-    void log(std::string message) {
-        std::fstream file;
-        file.open("logs/" + path + ".txt", std::ios::app);
-        if (file.is_open()) {
-            file <<message<<"\n";
-            file.close();
-        }
-        else {
-            // Failed to open the file
-            std::cout << "Failed to open the file." << std::endl;
-        }
-    }
 };

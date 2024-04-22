@@ -6,6 +6,28 @@
 #include"initializer_list"
 // using namespace std;
 bool section::deAllocate() {
+    logs.log("deallocation");
+    for (auto day : timeTable) {
+        std::string temp;
+        for (auto period : day) {
+            temp += period + ", ";
+        }
+        logs.log(temp);
+    }
+    for (auto day : teacherTable) {
+        std::string temp;
+        for (auto period : day) {
+            temp += period + ", ";
+        }
+        logs.log(temp);
+    }
+    for (auto day : roomTable) {
+        std::string temp;
+        for (auto period : day) {
+            temp += period + ", ";
+        }
+        logs.log(temp);
+    }
     bool flag = 1;
     for (int day = 0; day < days; day++) {
         for (int period = 0; period < periods; period++) {
@@ -19,14 +41,6 @@ bool section::deAllocate() {
                     std::vector<std::string> temp = splitString(teacherTable[day][period], '|');
                     for (auto uname : temp) {
                         std::string name;
-                        /*for (auto character : uname) {
-                            if (character != '_') {
-                                name += character;
-                            }
-                            else {
-                                name += ' ';
-                            }
-                        }*/
                         teacher& currentT = returnTeacher(uname);
                         if (!error_) {
                             currentT.timeTable[day][period] = 0;
@@ -207,6 +221,24 @@ void section::addLab(std::vector<std::string> teacherList, subject Subject, int 
 
 //pass parameters as findInttersection({t1,t2,t3,t4},timeTableofStrings);t1 t2 t3 t4 are boolean datatype timetables. last paramm is optional
 std::vector<std::vector<bool>> section::findIntersection(std::vector<std::vector<std::vector<bool>>> inputs, std::vector<std::vector<std::string>> def) {
+    logs.log("inside find intersection");
+    for (auto blocks : inputs) {
+        for (auto day : blocks) {
+            std::string temp;
+            for (auto period : day) {
+                temp += period;
+            }
+            logs.log(temp);
+        }
+        logs.log("");
+    }
+    for (auto day : def) {
+        std::string temp;
+        for (auto period : day) {
+            temp += period;
+        }
+        logs.log(temp);
+    }
     std::vector<std::vector<bool>> output;//return type is a vector of vector of booleans
     std::vector<std::vector<int>> temp;//tempetrory vector that stores number of intersections
     _intersections = 0;
@@ -445,8 +477,33 @@ std::vector<std::string> section::splitString(const std::string& str, char delim
     return tokens;
 }
 void section::makeTIMETABLE() {
+    logs.log("inside Maketimetable");
+    logs.log("BFL: " + std::to_string(busyFactorL));
+    logs.log("FFL: " + std::to_string(freeFactorL));
+    logs.log("BFL: " + std::to_string(baseFactorL));
+    logs.log("BFC: " + std::to_string(busyFactorC));
+    logs.log("FFC: " + std::to_string(freeFactorC));
+    logs.log("BFC: " + std::to_string(baseFactorC));
+    logs.log("RIC: " + std::to_string(reductionIndexC));
+    logs.log("currTimetable: ");
+    for (auto day : timeTable) {
+        std::string temp;
+        for (auto period : day) {
+            temp += period + ", ";
+        }
+        logs.log(temp);
+    }
     //alloting labs
     for (int i = 0; i < labTeachers.size(); i++) {
+        logs.log("Lsub:"+ labSubjects[i].name);
+        for (auto teachers : labTeachers[i]) {
+            logs.log("teacher: " + teachers);
+        }
+        for (auto rooms : labSubjects[i].rooms) {
+            logs.log("rooms: " + rooms);
+        }
+        logs.log("Nt:" + std::to_string(noTeachersPerLab[i]));
+        logs.log("Nl:" + std::to_string(noOfLabs[i]));
         std::vector<std::vector<std::string>> allCombsTeachers = returnCombinations(labTeachers[i], noOfLabs[i] * noTeachersPerLab[i]);
         std::vector<std::vector<std::string>> allCombsRooms = returnCombinations(labSubjects[i].rooms, noOfLabs[i]);
         std::vector<std::vector<std::vector<std::string>>> allCombs;
@@ -656,10 +713,12 @@ void section::makeTIMETABLE() {
     room& defaultRoomP = returnRoom(defaultRooms[highestindexR]);
     room& defaultRoom = returnRoom(defaultRooms[highestindexR]);
     //coreteachers allocation
+    logs.log("Core teacher allocation");
     for (int subjects = 0; subjects < coreSubjects.size(); subjects++) {
         teacher& currTeacher = returnTeacher(coreTeachers[subjects]);
         subject currSubject = coreSubjects[subjects];
-        std::cout << "\ncurrent: " << currSubject.name << "\n";
+        logs.log("t:" + currTeacher.name);
+        logs.log("t:" + currSubject.name);
         std::vector<std::string>currDefaultRooms = defaultRooms;
         if (currSubject.rooms[0] == "0") {//check if subject has defult rooms
             if (highestindexR != -1) {//checking if room is alloted
