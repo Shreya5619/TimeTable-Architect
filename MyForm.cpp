@@ -6,9 +6,10 @@ std::vector<section> allsections;
 std::string searchteachername="";
 std::string searchroomname;
 std::string searchsubname;
+std::string editsublastpanel;
+std::string addsublastpanel;
 std::vector<std::vector<bool>> reserveMatrix;
 std::vector<std::vector<std::string>> labteachers;
-std::string lastpanel;
 [STAThreadAttribute]
 
 void main(array<String^>^ args) {
