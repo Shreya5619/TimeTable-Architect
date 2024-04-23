@@ -7,9 +7,12 @@ std::string searchteachername="";
 std::string searchroomname;
 std::string searchsubname;
 std::string editsublastpanel;
+std::string editteacherlastpanel;
 std::string addsublastpanel;
+std::string addteacherlastpanel;
 std::vector<std::vector<bool>> reserveMatrix;
 std::vector<std::vector<std::string>> labteachers;
+
 [STAThreadAttribute]
 
 void main(array<String^>^ args) {
