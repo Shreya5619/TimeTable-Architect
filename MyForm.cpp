@@ -7,6 +7,8 @@ std::string searchteachername="";
 std::string searchroomname;
 std::string searchsubname;
 std::string editsublastpanel;
+std::string addroomlastpanel;
+std::string editroomlastpanel;
 std::string editteacherlastpanel;
 std::string addsublastpanel;
 std::string addteacherlastpanel;

@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+Shreya,f,f,f,cc,cc,
+f,f,Shreya,f,f,f,
+f,f,f,s,f,f,
+f,f,f,f,f,f,
+s a,f,f,f,f,f,
+s a,f,Reserved,Reserved,sd dd,f,
+
+
+TEACHERS
+t1,f,f,f,t2|,t2|,
+f,f,t1,f,f,f,
+f,f,f,s,f,f,
+f,f,f,f,f,f,
+s a,f,f,f,f,f,
+s a,f,Reserved,Reserved,sd dd,f,
+
+
+ROOM
+cxb,NA,NA,NA,cs102|,cs102|,
+NA,NA,cxb,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
