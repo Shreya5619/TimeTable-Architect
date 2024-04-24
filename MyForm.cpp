@@ -11,6 +11,7 @@ std::string addroomlastpanel;
 std::string editroomlastpanel;
 std::string editteacherlastpanel;
 std::string addsublastpanel;
+std::string addclasslastpanel;
 std::string addteacherlastpanel;
 std::vector<std::vector<bool>> reserveMatrix;
 std::vector<std::vector<std::string>> labteachers;
