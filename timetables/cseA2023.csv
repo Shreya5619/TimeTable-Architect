@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+CD343AI,f,f,f,f,f,
+f,CD343AI,f,f,f,f,
+f,f,f,f,f,f,
+f,f,CD343AI,f,f,f,
+f,f,f,f,f,f,
+Reserved,Reserved,f,f,Reserved,Reserved,
+
+
+TEACHERS
+Dr. Sandhya. S,f,f,f,f,f,
+f,Dr. Sandhya. S,f,f,f,f,
+f,f,f,f,f,f,
+f,f,Dr. Sandhya. S,f,f,f,
+f,f,f,f,f,f,
+Reserved,Reserved,f,f,Reserved,Reserved,
+
+
+ROOM
+No Room,NA,NA,NA,NA,NA,
+NA,No Room,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,No Room,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
