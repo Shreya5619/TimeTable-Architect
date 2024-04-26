@@ -15,6 +15,7 @@ extern std::string editteacherlastpanel;
 extern std::string addteacherlastpanel;
 extern std::string editroomlastpanel;
 extern std::string addroomlastpanel;
+extern std::string addclasslastpanel;
 extern std::vector<std::vector<bool>>reserveMatrix;
 extern std::vector<std::vector<std::string>>labteachers;
 extern std::string editsublastpanel;
@@ -67,6 +68,8 @@ namespace TTA_ui {
             timer11->Tick += gcnew System::EventHandler(this, &MyForm::timer11_Tick);
             timer12->Interval = 50; // Set the interval for the timer (adjust as needed)
             timer12->Tick += gcnew System::EventHandler(this, &MyForm::timer12_Tick);
+            timer13->Interval = 50; // Set the interval for the timer (adjust as needed)
+            timer13->Tick += gcnew System::EventHandler(this, &MyForm::timer13_Tick);
         }
         System::Void EditingControlShowing(System::Object^ sender, System::Windows::Forms::DataGridViewEditingControlShowingEventArgs^ e)
         {
@@ -89,21 +92,6 @@ namespace TTA_ui {
     private: System::Windows::Forms::Button^ editsubsave;
     private: System::Windows::Forms::Button^ editsubdelete;
     private: System::Windows::Forms::Panel^ editsubelepanel;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ button3;
     private: System::Windows::Forms::Panel^ panel13;
     private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel2;
@@ -160,22 +148,6 @@ namespace TTA_ui {
     private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubeleyesgroup;
     private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ sedataGridView;
     private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addsubcluster;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ addsubclusteroptions;
     private: System::Windows::Forms::Label^ label178;
     private: System::Windows::Forms::Label^ label179;
@@ -310,21 +282,12 @@ namespace TTA_ui {
     private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel13;
     private: System::Windows::Forms::Label^ label63;
     private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addteachername;
-
-
-
-
     private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel9;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ deptgroup;
 
     private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ deptDataGridView;
     private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel8;
-
-
     private: System::Windows::Forms::Panel^ panel29;
-
-
-
     private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classbranchgroup;
     private: System::Windows::Forms::Label^ label82;
     private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ classbranch;
@@ -337,19 +300,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ deptgroup;
     private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ classbatch;
     private: System::Windows::Forms::Label^ label2;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classcoregroup;
-
-
     private: System::Windows::Forms::Label^ label37;
     private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classcore;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classelegroup;
-
-
-
-
     private: System::Windows::Forms::Label^ label36;
     private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classele;
-
-
     private: System::Windows::Forms::Button^ editteachersearchbutton;
     private: System::Windows::Forms::Panel^ panel6;
     private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomsearchgroup;
@@ -398,16 +353,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classelegroup;
     private: System::Windows::Forms::Timer^ timer4;
     private: System::Windows::Forms::Timer^ timer5;
 private: System::Windows::Forms::Timer^ timer6;
-
-
 private: System::Windows::Forms::Panel^ panel46;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn1;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox2;
 private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ sectiondeletedatagridview;
-
-
-
 private: System::Windows::Forms::Panel^ panel47;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ classcolumn;
 private: System::Windows::Forms::DataGridViewButtonColumn^ classdeletebutton;
@@ -437,11 +387,9 @@ private: System::Windows::Forms::Timer^ timer11;
 private: System::Windows::Forms::Timer^ timer12;
 private: System::Windows::Forms::Panel^ panel51;
 private: System::Windows::Forms::Label^ label155;
-
 private: System::Windows::Forms::Panel^ panel39;
 private: System::Windows::Forms::Panel^ panel40;
 private: System::Windows::Forms::TableLayoutPanel^ editsubeletable;
-
 private: System::Windows::Forms::Panel^ panel52;
 private: System::Windows::Forms::Label^ label75;
 private: System::Windows::Forms::Label^ label76;
@@ -461,12 +409,8 @@ private: System::Windows::Forms::DataGridViewComboBoxColumn^ csubject;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ cteacher;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn6;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classlabgroup;
-
 private: System::Windows::Forms::Label^ label154;
 private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classlabteachers;
-
-
-
 private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel14;
 private: System::Windows::Forms::Label^ label156;
 private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ classlabcombo;
@@ -475,50 +419,11 @@ private: System::Windows::Forms::Label^ label157;
 private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ classbatches;
 private: System::Windows::Forms::Label^ label39;
 private: ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox^ classlabroomlist;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 private: System::Windows::Forms::Label^ label44;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classresgroup;
-
-
-
-
 private: System::Windows::Forms::Panel^ panel50;
 private: System::Windows::Forms::Panel^ panel53;
 private: System::Windows::Forms::TableLayoutPanel^ classtablegen;
-
 private: System::Windows::Forms::Panel^ panel54;
 private: System::Windows::Forms::Label^ label98;
 private: System::Windows::Forms::Label^ label158;
@@ -534,11 +439,9 @@ private: System::Windows::Forms::Label^ label168;
 private: System::Windows::Forms::Label^ label169;
 private: System::Windows::Forms::Label^ label170;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classroomgroup;
-
 private: System::Windows::Forms::Label^ label35;
 private: ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox^ classdefaultrooms;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classgengroup;
-
 private: System::Windows::Forms::Panel^ panel8;
 private: System::Windows::Forms::Panel^ panel25;
 private: System::Windows::Forms::TableLayoutPanel^ classtablegen1;
@@ -556,23 +459,14 @@ private: System::Windows::Forms::Label^ label60;
 private: System::Windows::Forms::Label^ label61;
 private: System::Windows::Forms::Label^ label65;
 private: System::Windows::Forms::Label^ label135;
-
-
 private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classlab;
-
-
 private: System::Windows::Forms::Label^ label32;
-
-
-
-
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ lsubject;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn7;
+private: System::Windows::Forms::Panel^ panel27;
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher1;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn3;
-private: System::Windows::Forms::Panel^ panel27;
-
-
+private: System::Windows::Forms::Timer^ timer13;
     public:
         int animationProgress = 0;
     private: System::Void timer1_Tick_1(System::Object^ sender, System::EventArgs^ e) {
@@ -610,6 +504,43 @@ private: System::Windows::Forms::Panel^ panel27;
                animationProgress = 0;
                timer1->Start();
            }
+
+           System::Void timer13_Tick(System::Object^ sender, System::EventArgs^ e) {
+               ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubtitlegroup = dynamic_cast <ComponentFactory::Krypton::Toolkit::KryptonGroupBox^>(panel29->Controls[msclr::interop::marshal_as<String^>(addclasslastpanel)]);
+               animationProgress++;
+               // Update the border color based on the animation progress
+               if (animationProgress <= 2) {
+                   editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch90;
+
+                   editsubactivepanel->Height = int(editsubtitlegroup->Panel->Height * 0.25);
+               }
+               else if (animationProgress <= 4) {
+                   editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch50;
+                   editsubactivepanel->Height = int(editsubtitlegroup->Height * 0.5);
+               }
+               else if (animationProgress <= 5.5) {
+                   editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch33;
+                   editsubactivepanel->Height = int(editsubtitlegroup->Height * 0.6875);
+               }
+               else if (animationProgress <= 6.5) {
+                   editsubtitlegroup->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Switch25;
+                   editsubactivepanel->Height = int(editsubtitlegroup->Height * 0.8125);
+               }
+               // If the animation is complete, stop the timer
+               if (animationProgress >= 8) {
+
+                   editsubactivepanel->Height = int(editsubtitlegroup->Height);
+                   editsubtitlegroup->StateCommon->Border->Color1 = Color::FromArgb(0, 0, 77);
+                   editsubtitlegroup->StateCommon->Border->Color1 = Color::FromArgb(0, 0, 77);
+                   timer13->Stop();
+               }
+           }
+           // Method to start the animation
+           void StartAnimationaddclass() {
+               animationProgress = 0;
+               timer13->Start();
+           }
+
 
            System::Void timer7_Tick(System::Object^ sender, System::EventArgs^ e) {
                
@@ -917,6 +848,11 @@ private: System::Windows::Forms::Panel^ panel27;
                {
                    StartAnimation();
                    editsublastpanel = s;
+               }
+               else if (i == 7)
+               {
+                   StartAnimationaddclass();
+                   addclasslastpanel = s;
                }
            }
            void textBox_KeyDownClass(Object^ sender, KeyEventArgs^ e)
@@ -1838,6 +1774,7 @@ private: System::Windows::Forms::Panel^ panel27;
                    if (!ListBox->Items->Contains(msclr::interop::marshal_as<String^>(a[i])))
                        ListBox->Items->Add(msclr::interop::marshal_as<String^>(a[i]));
                }
+               ListBox->Items->Add("No Room");
            }
 
            void editcsvelectivee(const string filePath)
@@ -2844,7 +2781,7 @@ private: System::Windows::Forms::Panel^ panel27;
                     t.allRooms.push_back(obj);
                 }
                 room obj;
-                string line = "No_Room,0,0,nil";
+                string line = "No_Room,0,0,0";
                 for (int i = 0; i < 72; i++)
                 {
                     line += ",0";
@@ -2901,16 +2838,23 @@ private: System::Windows::Forms::Panel^ panel27;
             for each (int checkedIndex in classdefaultrooms->CheckedIndices)
             {
                 String^ itemRoom = classdefaultrooms->Items[checkedIndex]->ToString();
-                string ItemRoom = msclr::interop::marshal_as<string>(itemRoom);
-                vector < vector<string>>data = ReadCSVFile("details/classroom.csv");
-
-                for (const auto& row : data)
+                if (itemRoom == "No Room")
                 {
-                    if (!row.empty())
+                    drooms.push_back("No_Room");
+                }
+                else
+                {
+                    string ItemRoom = msclr::interop::marshal_as<string>(itemRoom);
+                    vector < vector<string>>data = ReadCSVFile("details/classroom.csv");
+
+                    for (const auto& row : data)
                     {
-                        if (ItemRoom == row[3])
+                        if (!row.empty())
                         {
-                            drooms.push_back(row[0]);
+                            if (ItemRoom == row[3])
+                            {
+                                drooms.push_back(row[0]);
+                            }
                         }
                     }
                 }
@@ -3147,7 +3091,7 @@ private: System::Windows::Forms::Panel^ panel27;
             }
         }
         System::Void KeyPressAllowspace(System::Object^ sender, KeyPressEventArgs^ e) {
-            if (!Char::IsLetter(e->KeyChar) && e->KeyChar != ' ' && e->KeyChar != (char)Keys::Back && e->KeyChar != (char)Keys::ControlKey && !Char::IsDigit(e->KeyChar)) {
+            if (!Char::IsLetter(e->KeyChar) && e->KeyChar != ' ' && e->KeyChar != '.' && e->KeyChar != (char)Keys::Back && e->KeyChar != (char)Keys::ControlKey && !Char::IsDigit(e->KeyChar)) {
                 e->Handled = true;
             }
         }
@@ -4055,10 +3999,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classreserve = (gcnew System::Windows::Forms::Button());
             this->classpanel = (gcnew System::Windows::Forms::Panel());
             this->panel29 = (gcnew System::Windows::Forms::Panel());
-            this->classroomgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->label35 = (gcnew System::Windows::Forms::Label());
-            this->classdefaultrooms = (gcnew ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox());
-            this->classresgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->panel27 = (gcnew System::Windows::Forms::Panel());
             this->classgengroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
             this->panel8 = (gcnew System::Windows::Forms::Panel());
             this->panel25 = (gcnew System::Windows::Forms::Panel());
@@ -4077,12 +4018,16 @@ private: System::Windows::Forms::Panel^ panel27;
             this->label61 = (gcnew System::Windows::Forms::Label());
             this->label65 = (gcnew System::Windows::Forms::Label());
             this->label135 = (gcnew System::Windows::Forms::Label());
+            this->classroomgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->label35 = (gcnew System::Windows::Forms::Label());
+            this->classdefaultrooms = (gcnew ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox());
+            this->label158 = (gcnew System::Windows::Forms::Label());
+            this->classresgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
             this->panel50 = (gcnew System::Windows::Forms::Panel());
             this->panel53 = (gcnew System::Windows::Forms::Panel());
             this->classtablegen = (gcnew System::Windows::Forms::TableLayoutPanel());
             this->panel54 = (gcnew System::Windows::Forms::Panel());
             this->label98 = (gcnew System::Windows::Forms::Label());
-            this->label158 = (gcnew System::Windows::Forms::Label());
             this->label159 = (gcnew System::Windows::Forms::Label());
             this->label160 = (gcnew System::Windows::Forms::Label());
             this->label161 = (gcnew System::Windows::Forms::Label());
@@ -4309,7 +4254,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->timer10 = (gcnew System::Windows::Forms::Timer(this->components));
             this->timer11 = (gcnew System::Windows::Forms::Timer(this->components));
             this->timer12 = (gcnew System::Windows::Forms::Timer(this->components));
-            this->panel27 = (gcnew System::Windows::Forms::Panel());
+            this->timer13 = (gcnew System::Windows::Forms::Timer(this->components));
             this->addsubjectpanel->SuspendLayout();
             this->panel11->SuspendLayout();
             this->panel48->SuspendLayout();
@@ -4425,6 +4370,11 @@ private: System::Windows::Forms::Panel^ panel27;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
             this->classpanel->SuspendLayout();
             this->panel29->SuspendLayout();
+            this->panel27->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->BeginInit();
+            this->classgengroup->Panel->SuspendLayout();
+            this->classgengroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classroomgroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classroomgroup->Panel))->BeginInit();
             this->classroomgroup->Panel->SuspendLayout();
@@ -4433,10 +4383,6 @@ private: System::Windows::Forms::Panel^ panel27;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup->Panel))->BeginInit();
             this->classresgroup->Panel->SuspendLayout();
             this->classresgroup->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->BeginInit();
-            this->classgengroup->Panel->SuspendLayout();
-            this->classgengroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabgroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabgroup->Panel))->BeginInit();
             this->classlabgroup->Panel->SuspendLayout();
@@ -4583,7 +4529,6 @@ private: System::Windows::Forms::Panel^ panel27;
             this->editroomnamegroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel11))->BeginInit();
             this->editroompanel->SuspendLayout();
-            this->panel27->SuspendLayout();
             this->SuspendLayout();
             // 
             // addsubjectpanel
@@ -4595,7 +4540,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->addsubjectpanel->Name = L"addsubjectpanel";
-            this->addsubjectpanel->Size = System::Drawing::Size(1924, 1050);
+            this->addsubjectpanel->Size = System::Drawing::Size(1924, 811);
             this->addsubjectpanel->TabIndex = 124;
             this->addsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addsubjectpanel_Paint);
             // 
@@ -5578,7 +5523,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->addclassroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addclassroompanel->Location = System::Drawing::Point(0, 0);
             this->addclassroompanel->Name = L"addclassroompanel";
-            this->addclassroompanel->Size = System::Drawing::Size(1924, 1050);
+            this->addclassroompanel->Size = System::Drawing::Size(1924, 811);
             this->addclassroompanel->TabIndex = 230;
             // 
             // panel7
@@ -6131,7 +6076,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->Homepanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->Homepanel->Location = System::Drawing::Point(0, 0);
             this->Homepanel->Name = L"Homepanel";
-            this->Homepanel->Size = System::Drawing::Size(1924, 1050);
+            this->Homepanel->Size = System::Drawing::Size(1924, 811);
             this->Homepanel->TabIndex = 258;
             // 
             // pictureBox1
@@ -6150,7 +6095,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editteacherpanel->Location = System::Drawing::Point(0, 0);
             this->editteacherpanel->Name = L"editteacherpanel";
-            this->editteacherpanel->Size = System::Drawing::Size(1924, 1050);
+            this->editteacherpanel->Size = System::Drawing::Size(1924, 811);
             this->editteacherpanel->TabIndex = 264;
             this->editteacherpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editteacherpanel_Paint);
             // 
@@ -6911,7 +6856,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->settingspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->settingspanel->Location = System::Drawing::Point(0, 0);
             this->settingspanel->Name = L"settingspanel";
-            this->settingspanel->Size = System::Drawing::Size(1924, 1050);
+            this->settingspanel->Size = System::Drawing::Size(1924, 811);
             this->settingspanel->TabIndex = 286;
             // 
             // filepath
@@ -7571,7 +7516,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->panel1->Dock = System::Windows::Forms::DockStyle::Left;
             this->panel1->Location = System::Drawing::Point(0, 76);
             this->panel1->Name = L"panel1";
-            this->panel1->Size = System::Drawing::Size(364, 974);
+            this->panel1->Size = System::Drawing::Size(364, 735);
             this->panel1->TabIndex = 259;
             // 
             // panel3
@@ -7794,7 +7739,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->classpanel->Location = System::Drawing::Point(364, 76);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1560, 974);
+            this->classpanel->Size = System::Drawing::Size(1560, 735);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -7812,106 +7757,22 @@ private: System::Windows::Forms::Panel^ panel27;
             this->panel29->Controls->Add(this->classbranchgroup);
             this->panel29->Controls->Add(this->kryptonLabel10);
             this->panel29->Controls->Add(this->classnamegroup);
-            this->panel29->Location = System::Drawing::Point(126, 82);
+            this->panel29->Location = System::Drawing::Point(126, 64);
             this->panel29->Name = L"panel29";
-            this->panel29->Size = System::Drawing::Size(1194, 4260);
+            this->panel29->Size = System::Drawing::Size(1194, 3989);
             this->panel29->TabIndex = 346;
             this->panel29->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel29_Paint);
             // 
-            // classroomgroup
+            // panel27
             // 
-            this->classroomgroup->CaptionOverlap = 1;
-            this->classroomgroup->CaptionVisible = false;
-            this->classroomgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classroomgroup->Location = System::Drawing::Point(21, 2822);
-            this->classroomgroup->Name = L"classroomgroup";
-            // 
-            // classroomgroup.Panel
-            // 
-            this->classroomgroup->Panel->Controls->Add(this->label35);
-            this->classroomgroup->Panel->Controls->Add(this->classdefaultrooms);
-            this->classroomgroup->Size = System::Drawing::Size(1127, 357);
-            this->classroomgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->classroomgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->classroomgroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
-                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->classroomgroup->StateCommon->Border->ColorAngle = 50;
-            this->classroomgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->classroomgroup->StateCommon->Border->Rounding = 7;
-            this->classroomgroup->StateCommon->Border->Width = 1;
-            this->classroomgroup->TabIndex = 349;
-            // 
-            // label35
-            // 
-            this->label35->AutoSize = true;
-            this->label35->BackColor = System::Drawing::Color::White;
-            this->label35->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label35->ForeColor = System::Drawing::Color::Black;
-            this->label35->Location = System::Drawing::Point(143, 43);
-            this->label35->Name = L"label35";
-            this->label35->Size = System::Drawing::Size(250, 28);
-            this->label35->TabIndex = 344;
-            this->label35->Text = L"Default Rooms to be used";
-            // 
-            // classdefaultrooms
-            // 
-            this->classdefaultrooms->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::InputControlRibbon;
-            this->classdefaultrooms->BorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ContextMenuItemSplit;
-            this->classdefaultrooms->CheckOnClick = true;
-            this->classdefaultrooms->Location = System::Drawing::Point(162, 110);
-            this->classdefaultrooms->Name = L"classdefaultrooms";
-            this->classdefaultrooms->Size = System::Drawing::Size(348, 182);
-            this->classdefaultrooms->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
-            this->classdefaultrooms->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->classdefaultrooms->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->classdefaultrooms->StateCommon->Border->Rounding = 5;
-            this->classdefaultrooms->StateCommon->Border->Width = 1;
-            this->classdefaultrooms->TabIndex = 343;
-            // 
-            // classresgroup
-            // 
-            this->classresgroup->CaptionOverlap = 1;
-            this->classresgroup->CaptionVisible = false;
-            this->classresgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classresgroup->Location = System::Drawing::Point(24, 3302);
-            this->classresgroup->Name = L"classresgroup";
-            // 
-            // classresgroup.Panel
-            // 
-            this->classresgroup->Panel->Controls->Add(this->panel50);
-            this->classresgroup->Panel->Controls->Add(this->panel53);
-            this->classresgroup->Panel->Controls->Add(this->classtablegen);
-            this->classresgroup->Panel->Controls->Add(this->panel54);
-            this->classresgroup->Panel->Controls->Add(this->label98);
-            this->classresgroup->Panel->Controls->Add(this->label159);
-            this->classresgroup->Panel->Controls->Add(this->label160);
-            this->classresgroup->Panel->Controls->Add(this->label161);
-            this->classresgroup->Panel->Controls->Add(this->label162);
-            this->classresgroup->Panel->Controls->Add(this->label163);
-            this->classresgroup->Panel->Controls->Add(this->label164);
-            this->classresgroup->Panel->Controls->Add(this->label166);
-            this->classresgroup->Panel->Controls->Add(this->label167);
-            this->classresgroup->Panel->Controls->Add(this->label168);
-            this->classresgroup->Panel->Controls->Add(this->label169);
-            this->classresgroup->Panel->Controls->Add(this->label170);
-            this->classresgroup->Size = System::Drawing::Size(1127, 642);
-            this->classresgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->classresgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->classresgroup->StateCommon->Border->ColorAngle = 50;
-            this->classresgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->classresgroup->StateCommon->Border->Rounding = 7;
-            this->classresgroup->StateCommon->Border->Width = 1;
-            this->classresgroup->TabIndex = 348;
+            this->panel27->Controls->Add(this->classgenerate);
+            this->panel27->Controls->Add(this->classclear);
+            this->panel27->Controls->Add(this->classsave);
+            this->panel27->Controls->Add(this->classreserve);
+            this->panel27->Location = System::Drawing::Point(233, 3194);
+            this->panel27->Name = L"panel27";
+            this->panel27->Size = System::Drawing::Size(917, 79);
+            this->panel27->TabIndex = 350;
             // 
             // classgengroup
             // 
@@ -7951,6 +7812,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classgengroup->StateCommon->Border->Rounding = 7;
             this->classgengroup->StateCommon->Border->Width = 1;
             this->classgengroup->TabIndex = 349;
+            this->classgengroup->Enter += gcnew System::EventHandler(this, &MyForm::classgengroup_Enter);
             // 
             // panel8
             // 
@@ -8170,6 +8032,116 @@ private: System::Windows::Forms::Panel^ panel27;
             this->label135->TabIndex = 299;
             this->label135->Text = L"3:30-4:30";
             // 
+            // classroomgroup
+            // 
+            this->classroomgroup->CaptionOverlap = 1;
+            this->classroomgroup->CaptionVisible = false;
+            this->classroomgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->classroomgroup->Location = System::Drawing::Point(21, 2822);
+            this->classroomgroup->Name = L"classroomgroup";
+            // 
+            // classroomgroup.Panel
+            // 
+            this->classroomgroup->Panel->Controls->Add(this->label35);
+            this->classroomgroup->Panel->Controls->Add(this->classdefaultrooms);
+            this->classroomgroup->Size = System::Drawing::Size(1127, 357);
+            this->classroomgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->classroomgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->classroomgroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->classroomgroup->StateCommon->Border->ColorAngle = 50;
+            this->classroomgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->classroomgroup->StateCommon->Border->Rounding = 7;
+            this->classroomgroup->StateCommon->Border->Width = 1;
+            this->classroomgroup->TabIndex = 349;
+            this->classroomgroup->Enter += gcnew System::EventHandler(this, &MyForm::classroomgroup_Enter);
+            // 
+            // label35
+            // 
+            this->label35->AutoSize = true;
+            this->label35->BackColor = System::Drawing::Color::White;
+            this->label35->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label35->ForeColor = System::Drawing::Color::Black;
+            this->label35->Location = System::Drawing::Point(143, 43);
+            this->label35->Name = L"label35";
+            this->label35->Size = System::Drawing::Size(250, 28);
+            this->label35->TabIndex = 344;
+            this->label35->Text = L"Default Rooms to be used";
+            // 
+            // classdefaultrooms
+            // 
+            this->classdefaultrooms->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::InputControlRibbon;
+            this->classdefaultrooms->BorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ContextMenuItemSplit;
+            this->classdefaultrooms->CheckOnClick = true;
+            this->classdefaultrooms->Location = System::Drawing::Point(162, 110);
+            this->classdefaultrooms->Name = L"classdefaultrooms";
+            this->classdefaultrooms->Size = System::Drawing::Size(348, 182);
+            this->classdefaultrooms->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
+            this->classdefaultrooms->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classdefaultrooms->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->classdefaultrooms->StateCommon->Border->Rounding = 5;
+            this->classdefaultrooms->StateCommon->Border->Width = 1;
+            this->classdefaultrooms->TabIndex = 343;
+            // 
+            // label158
+            // 
+            this->label158->AutoSize = true;
+            this->label158->BackColor = System::Drawing::Color::White;
+            this->label158->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label158->Location = System::Drawing::Point(108, 4000);
+            this->label158->Name = L"label158";
+            this->label158->Size = System::Drawing::Size(838, 28);
+            this->label158->TabIndex = 344;
+            this->label158->Text = L"Select the slots to be reserved and then click on generate to view the generated "
+                L"timetable";
+            // 
+            // classresgroup
+            // 
+            this->classresgroup->CaptionOverlap = 1;
+            this->classresgroup->CaptionVisible = false;
+            this->classresgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->classresgroup->Location = System::Drawing::Point(24, 3302);
+            this->classresgroup->Name = L"classresgroup";
+            // 
+            // classresgroup.Panel
+            // 
+            this->classresgroup->Panel->Controls->Add(this->panel50);
+            this->classresgroup->Panel->Controls->Add(this->panel53);
+            this->classresgroup->Panel->Controls->Add(this->classtablegen);
+            this->classresgroup->Panel->Controls->Add(this->panel54);
+            this->classresgroup->Panel->Controls->Add(this->label98);
+            this->classresgroup->Panel->Controls->Add(this->label159);
+            this->classresgroup->Panel->Controls->Add(this->label160);
+            this->classresgroup->Panel->Controls->Add(this->label161);
+            this->classresgroup->Panel->Controls->Add(this->label162);
+            this->classresgroup->Panel->Controls->Add(this->label163);
+            this->classresgroup->Panel->Controls->Add(this->label164);
+            this->classresgroup->Panel->Controls->Add(this->label166);
+            this->classresgroup->Panel->Controls->Add(this->label167);
+            this->classresgroup->Panel->Controls->Add(this->label168);
+            this->classresgroup->Panel->Controls->Add(this->label169);
+            this->classresgroup->Panel->Controls->Add(this->label170);
+            this->classresgroup->Size = System::Drawing::Size(1127, 642);
+            this->classresgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->classresgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->classresgroup->StateCommon->Border->ColorAngle = 50;
+            this->classresgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->classresgroup->StateCommon->Border->Rounding = 7;
+            this->classresgroup->StateCommon->Border->Width = 1;
+            this->classresgroup->TabIndex = 348;
+            this->classresgroup->Enter += gcnew System::EventHandler(this, &MyForm::classresgroup_Enter);
+            // 
             // panel50
             // 
             this->panel50->BackColor = System::Drawing::Color::White;
@@ -8243,19 +8215,6 @@ private: System::Windows::Forms::Panel^ panel27;
             this->label98->Size = System::Drawing::Size(85, 28);
             this->label98->TabIndex = 261;
             this->label98->Text = L"Monday";
-            // 
-            // label158
-            // 
-            this->label158->AutoSize = true;
-            this->label158->BackColor = System::Drawing::Color::White;
-            this->label158->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label158->Location = System::Drawing::Point(108, 4000);
-            this->label158->Name = L"label158";
-            this->label158->Size = System::Drawing::Size(838, 28);
-            this->label158->TabIndex = 344;
-            this->label158->Text = L"Select the slots to be reserved and then click on generate to view the generated "
-                L"timetable";
             // 
             // label159
             // 
@@ -8425,6 +8384,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classlabgroup->StateCommon->Border->Width = 1;
             this->classlabgroup->TabIndex = 347;
             this->classlabgroup->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::kryptonGroupBox1_Paint);
+            this->classlabgroup->Enter += gcnew System::EventHandler(this, &MyForm::classlabgroup_Enter);
             // 
             // classlab
             // 
@@ -8522,7 +8482,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classlabroomlist->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::InputControlRibbon;
             this->classlabroomlist->BorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ContextMenuItemSplit;
             this->classlabroomlist->CheckOnClick = true;
-            this->classlabroomlist->Location = System::Drawing::Point(713, 381);
+            this->classlabroomlist->Location = System::Drawing::Point(678, 379);
             this->classlabroomlist->Name = L"classlabroomlist";
             this->classlabroomlist->Size = System::Drawing::Size(348, 182);
             this->classlabroomlist->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
@@ -8542,7 +8502,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->label44->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label44->ForeColor = System::Drawing::Color::Black;
-            this->label44->Location = System::Drawing::Point(739, 318);
+            this->label44->Location = System::Drawing::Point(672, 320);
             this->label44->Name = L"label44";
             this->label44->Size = System::Drawing::Size(112, 28);
             this->label44->TabIndex = 352;
@@ -8564,7 +8524,7 @@ private: System::Windows::Forms::Panel^ panel27;
             // 
             // classsessions
             // 
-            this->classsessions->Location = System::Drawing::Point(722, 239);
+            this->classsessions->Location = System::Drawing::Point(677, 241);
             this->classsessions->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2020, 0, 0, 0 });
             this->classsessions->Name = L"classsessions";
             this->classsessions->Size = System::Drawing::Size(304, 30);
@@ -8572,6 +8532,7 @@ private: System::Windows::Forms::Panel^ panel27;
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
             this->classsessions->TabIndex = 351;
+            this->classsessions->ValueChanged += gcnew System::EventHandler(this, &MyForm::classsessions_ValueChanged);
             // 
             // label157
             // 
@@ -8580,7 +8541,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->label157->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label157->ForeColor = System::Drawing::Color::Black;
-            this->label157->Location = System::Drawing::Point(731, 175);
+            this->label157->Location = System::Drawing::Point(672, 175);
             this->label157->Name = L"label157";
             this->label157->Size = System::Drawing::Size(194, 28);
             this->label157->TabIndex = 350;
@@ -8701,7 +8662,14 @@ private: System::Windows::Forms::Panel^ panel27;
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
             dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::Black;
             this->classlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle6;
-            this->classlabteachers->RowTemplate->Height = 28;
+            this->classlabteachers->RowTemplate->DefaultCellStyle->BackColor = System::Drawing::Color::White;
+            this->classlabteachers->RowTemplate->DefaultCellStyle->ForeColor = System::Drawing::Color::Black;
+            this->classlabteachers->RowTemplate->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(242)),
+                static_cast<System::Int32>(static_cast<System::Byte>(242)), static_cast<System::Int32>(static_cast<System::Byte>(242)));
+            this->classlabteachers->RowTemplate->DefaultCellStyle->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlabteachers->RowTemplate->DividerHeight = 1;
+            this->classlabteachers->RowTemplate->Height = 25;
+            this->classlabteachers->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::False;
             this->classlabteachers->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classlabteachers->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
             this->classlabteachers->Size = System::Drawing::Size(540, 194);
@@ -8719,12 +8687,29 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classlabteachers->StateCommon->HeaderColumn->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->classlabteachers->StateCommon->HeaderColumn->Border->Rounding = 4;
             this->classlabteachers->StateCommon->HeaderColumn->Border->Width = 0;
             this->classlabteachers->StateCommon->HeaderColumn->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
                 System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
             this->classlabteachers->StateCommon->HeaderColumn->Content->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"classlabteachers.StateCommon.HeaderColumn.Content.Image")));
             this->classlabteachers->StateCommon->HeaderColumn->Content->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::Stretch;
             this->classlabteachers->StateCommon->HeaderColumn->Content->Padding = System::Windows::Forms::Padding(0);
+            this->classlabteachers->StatePressed->HeaderRow->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classlabteachers->StatePressed->HeaderRow->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classlabteachers->StatePressed->HeaderRow->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->classlabteachers->StatePressed->HeaderRow->Border->Rounding = 3;
+            this->classlabteachers->StatePressed->HeaderRow->Border->Width = 0;
+            this->classlabteachers->StateSelected->DataCell->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classlabteachers->StateSelected->DataCell->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->classlabteachers->StateSelected->DataCell->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
             this->classlabteachers->TabIndex = 343;
             this->classlabteachers->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellContentClick_1);
             // 
@@ -8736,7 +8721,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->Teacher1->MinimumWidth = 8;
             this->Teacher1->Name = L"Teacher1";
             this->Teacher1->Resizable = System::Windows::Forms::DataGridViewTriState::False;
-            this->Teacher1->Width = 250;
+            this->Teacher1->Width = 200;
             // 
             // dataGridViewButtonColumn3
             // 
@@ -8773,6 +8758,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classelegroup->StateCommon->Border->Rounding = 7;
             this->classelegroup->StateCommon->Border->Width = 1;
             this->classelegroup->TabIndex = 346;
+            this->classelegroup->Enter += gcnew System::EventHandler(this, &MyForm::classelegroup_Enter);
             // 
             // label36
             // 
@@ -8888,6 +8874,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classcoregroup->StateCommon->Border->Rounding = 7;
             this->classcoregroup->StateCommon->Border->Width = 1;
             this->classcoregroup->TabIndex = 345;
+            this->classcoregroup->Enter += gcnew System::EventHandler(this, &MyForm::classcoregroup_Enter);
             // 
             // label37
             // 
@@ -9018,6 +9005,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classbatchgroup->StateCommon->Border->Rounding = 7;
             this->classbatchgroup->StateCommon->Border->Width = 1;
             this->classbatchgroup->TabIndex = 343;
+            this->classbatchgroup->Enter += gcnew System::EventHandler(this, &MyForm::classbatchgroup_Enter);
             // 
             // classbatch
             // 
@@ -9070,6 +9058,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classbranchgroup->StateCommon->Border->Rounding = 7;
             this->classbranchgroup->StateCommon->Border->Width = 1;
             this->classbranchgroup->TabIndex = 342;
+            this->classbranchgroup->Enter += gcnew System::EventHandler(this, &MyForm::classbranchgroup_Enter);
             // 
             // label82
             // 
@@ -9121,6 +9110,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classnamegroup->Panel->Controls->Add(this->kryptonPanel15);
             this->classnamegroup->Panel->Controls->Add(this->label119);
             this->classnamegroup->Panel->Controls->Add(this->classname);
+            this->classnamegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::classnamegroup_Panel_Enter);
             this->classnamegroup->Size = System::Drawing::Size(1127, 194);
             this->classnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
@@ -9187,7 +9177,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->addteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addteacherpanel->Location = System::Drawing::Point(0, 0);
             this->addteacherpanel->Name = L"addteacherpanel";
-            this->addteacherpanel->Size = System::Drawing::Size(1924, 1050);
+            this->addteacherpanel->Size = System::Drawing::Size(1924, 811);
             this->addteacherpanel->TabIndex = 293;
             // 
             // panel16
@@ -9778,7 +9768,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
             this->panel2->Location = System::Drawing::Point(0, 0);
             this->panel2->Name = L"panel2";
-            this->panel2->Size = System::Drawing::Size(1924, 1050);
+            this->panel2->Size = System::Drawing::Size(1924, 811);
             this->panel2->TabIndex = 5;
             this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel2_Paint);
             // 
@@ -9920,7 +9910,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->deleteclasspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->deleteclasspanel->Location = System::Drawing::Point(0, 0);
             this->deleteclasspanel->Name = L"deleteclasspanel";
-            this->deleteclasspanel->Size = System::Drawing::Size(1924, 1050);
+            this->deleteclasspanel->Size = System::Drawing::Size(1924, 811);
             this->deleteclasspanel->TabIndex = 236;
             // 
             // panel47
@@ -11122,7 +11112,7 @@ private: System::Windows::Forms::Panel^ panel27;
                 static_cast<System::Byte>(0)));
             this->editsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->editsubjectpanel->Name = L"editsubjectpanel";
-            this->editsubjectpanel->Size = System::Drawing::Size(1924, 1050);
+            this->editsubjectpanel->Size = System::Drawing::Size(1924, 811);
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
             // 
@@ -11795,7 +11785,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->editroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editroompanel->Location = System::Drawing::Point(0, 0);
             this->editroompanel->Name = L"editroompanel";
-            this->editroompanel->Size = System::Drawing::Size(1924, 1050);
+            this->editroompanel->Size = System::Drawing::Size(1924, 811);
             this->editroompanel->TabIndex = 124;
             this->editroompanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editroompanel_Paint);
             // 
@@ -11815,16 +11805,9 @@ private: System::Windows::Forms::Panel^ panel27;
             // 
             this->timer6->Tick += gcnew System::EventHandler(this, &MyForm::timer6_Tick);
             // 
-            // panel27
+            // timer13
             // 
-            this->panel27->Controls->Add(this->classgenerate);
-            this->panel27->Controls->Add(this->classclear);
-            this->panel27->Controls->Add(this->classsave);
-            this->panel27->Controls->Add(this->classreserve);
-            this->panel27->Location = System::Drawing::Point(233, 3194);
-            this->panel27->Name = L"panel27";
-            this->panel27->Size = System::Drawing::Size(917, 79);
-            this->panel27->TabIndex = 350;
+            this->timer13->Interval = 50;
             // 
             // MyForm
             // 
@@ -11832,7 +11815,7 @@ private: System::Windows::Forms::Panel^ panel27;
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Dpi;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->ClientSize = System::Drawing::Size(1924, 1050);
+            this->ClientSize = System::Drawing::Size(1924, 811);
             this->Controls->Add(this->classpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->kryptonPanel6);
@@ -11996,6 +11979,12 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classpanel->ResumeLayout(false);
             this->panel29->ResumeLayout(false);
             this->panel29->PerformLayout();
+            this->panel27->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->EndInit();
+            this->classgengroup->Panel->ResumeLayout(false);
+            this->classgengroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->EndInit();
+            this->classgengroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classroomgroup->Panel))->EndInit();
             this->classroomgroup->Panel->ResumeLayout(false);
             this->classroomgroup->Panel->PerformLayout();
@@ -12006,11 +11995,6 @@ private: System::Windows::Forms::Panel^ panel27;
             this->classresgroup->Panel->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup))->EndInit();
             this->classresgroup->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->EndInit();
-            this->classgengroup->Panel->ResumeLayout(false);
-            this->classgengroup->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->EndInit();
-            this->classgengroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabgroup->Panel))->EndInit();
             this->classlabgroup->Panel->ResumeLayout(false);
             this->classlabgroup->Panel->PerformLayout();
@@ -12190,7 +12174,6 @@ private: System::Windows::Forms::Panel^ panel27;
             this->editroomnamegroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel11))->EndInit();
             this->editroompanel->ResumeLayout(false);
-            this->panel27->ResumeLayout(false);
             this->ResumeLayout(false);
 
         }
@@ -12238,9 +12221,9 @@ private: System::Windows::Forms::Panel^ panel27;
         {
             System::IO::Directory::CreateDirectory("timetables");
         }
-        if (!Directory::Exists("timetables"))
+        if (!Directory::Exists("logs"))
         {
-            System::IO::Directory::CreateDirectory("timetables");
+            System::IO::Directory::CreateDirectory("logs");
         }
         //username
         username->Left = int(panel4->Width / 3);
@@ -12312,6 +12295,13 @@ private: System::Windows::Forms::Panel^ panel27;
         editsubbfactorgroup->Top = editsubroomlistgroup->Bottom + 30;
         panel51->Top = editsubbfactorgroup->Bottom + 30;
         //add class
+        panel29->Left = int((this->ClientSize.Width - (panel29->Width) * 1.5) / 2);
+        classbranchgroup->Top = classnamegroup->Bottom + 30;
+        classbatchgroup->Top = classbranchgroup->Bottom + 30;
+        classcoregroup->Top = classbatchgroup->Bottom + 30;
+        classelegroup->Top = classcoregroup->Bottom + 30;
+        classlabgroup->Top = classelegroup->Bottom + 30;
+        classroomgroup->Top = classlabgroup->Bottom + 30;
         classgengroup->Height = 0;
         classresgroup->Height = 0;
         //delete class
@@ -13956,6 +13946,24 @@ private: System::Windows::Forms::Panel^ panel27;
     private: System::Void panelsub_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
     }
     private: System::Void button14_Click(System::Object^ sender, System::EventArgs^ e) {
+        try
+        {
+            ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ g = dynamic_cast <ComponentFactory::Krypton::Toolkit::KryptonGroupBox^>(panel29->Controls[msclr::interop::marshal_as<String^>(addclasslastpanel)]);
+            g->StateCommon->Border->Color1 = Color::FromArgb(224, 224, 224);
+            g->StateCommon->Border->Color2 = Color::FromArgb(224, 224, 224);
+        }
+        catch (...)
+        {
+        }
+        addclasslastpanel = "classnamegroup";
+        editsubactivepanel->Height = 0;
+        classnamegroup->Panel->Controls->Add(this->editsubactivepanel);
+        editsubactivepanel->Location = System::Drawing::Point(0, 0);
+        classnamegroup->StateCommon->Border->Color1 = Color::FromArgb(224, 224, 224);
+        classnamegroup->StateCommon->Border->Color2 = Color::FromArgb(0, 0, 77);
+        classnamegroup->SendToBack();
+        editsubactivepanel->BringToFront();
+        StartAnimationaddclass();
         button14->BackColor = Color::FromArgb(0, 0, 100);
         button4->BackColor = Color::FromArgb(0, 0, 77);
         button5->BackColor = Color::FromArgb(0, 0, 77);
@@ -13966,7 +13974,6 @@ private: System::Windows::Forms::Panel^ panel27;
         button7->BackColor = Color::FromArgb(0, 0, 77);
         classpanel->BringToFront();
         DisplayCSVInListBoxkrypt("details/classroom.csv", classlabroomlist, 0);
-        classlabroomlist->Items->Add("No Room");
         InitializeMatrix(classtablegen, "res", "Open", 3);
         InitializeMatrix(classtablegen1, "g", "free", -1);
         classbatch->Value = 2020;
@@ -14497,6 +14504,35 @@ private: System::Void panel29_Paint(System::Object^ sender, System::Windows::For
 private: System::Void classlab_CellContentClick_2(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
     deletebuttonlab (dataGridViewButtonColumn7, classlab, sender, e);
     editbuttonlab(lsubject, classlab, sender, e);
+}
+private: System::Void classnamegroup_Panel_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classnamegroup", classnamegroup, 7, addclasslastpanel);
+}
+private: System::Void classbranchgroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classbranchgroup", classbranchgroup, 7, addclasslastpanel);
+}
+private: System::Void classbatchgroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classbatchgroup", classbatchgroup, 7, addclasslastpanel);
+}
+private: System::Void classcoregroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classcoregroup", classcoregroup, 7, addclasslastpanel);
+}
+private: System::Void classelegroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classelegroup", classelegroup, 7, addclasslastpanel);
+}
+private: System::Void classlabgroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classlabgroup", classlabgroup, 7, addclasslastpanel);
+}
+private: System::Void classroomgroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classroomgroup", classroomgroup, 7, addclasslastpanel);
+}
+private: System::Void classresgroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classresgroup", classresgroup, 7, addclasslastpanel);
+}
+private: System::Void classgengroup_Enter(System::Object^ sender, System::EventArgs^ e) {
+    coloredpanel(panel29, "classgengroup", classgengroup, 7, addclasslastpanel);
+}
+private: System::Void classsessions_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }
