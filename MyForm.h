@@ -2414,16 +2414,22 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                                 }
                                 editsubeleteacher->Rows->Clear();
                                 vector<vector<string>>teachers = ReadCSVFile("details/teacher_file.csv");
+                                bool f = true;
                                 for (const auto& teach : teachers)
                                 {
                                     for (int n = 4; n < teach.size(); n += 2)
                                     {
                                         if (teach[n] == find)
                                         {
+                                            f = false;
                                             editsubeleteacher->Rows->Add(msclr::interop::marshal_as<String^>(replaceunderscore(teach[0])));
                                             break;
                                         }
                                     }
+                                }
+                                if (f)
+                                {
+                                    editsubeleteacher->Rows->Add("No Teacher");
                                 }
                                 goto out;
                             }
@@ -3197,84 +3203,19 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
     private: System::Windows::Forms::DataGridViewComboBoxColumn^ SubjectName;
     private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacher;
     private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn8;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Panel^ addsubjectpanel;
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ saveroom;
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ clearroom;
-
-
     private: System::Windows::Forms::Panel^ addclassroompanel;
     private: System::Windows::Forms::Panel^ Homepanel;
     private: System::Windows::Forms::PictureBox^ pictureBox1;
-
-
-
-
-
-
-
     private: System::Windows::Forms::Panel^ editteacherpanel;
     private: System::Windows::Forms::Label^ label62;
-
-
-
     private: System::Windows::Forms::Button^ editteachersave;
-
     private: System::Windows::Forms::Button^ editteacherdelete;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Panel^ settingspanel;
-
-
     private: System::Windows::Forms::TrackBar^ trackBar1;
     private: System::Windows::Forms::Label^ freefactor;
-
     private: System::Windows::Forms::Label^ label112;
     private: System::Windows::Forms::TrackBar^ trackBar2;
     private: System::Windows::Forms::Label^ label111;
@@ -3292,99 +3233,26 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
     private: System::Windows::Forms::Button^ button14;
     private: System::Windows::Forms::Button^ button13;
     private: System::Windows::Forms::Button^ Homebutton1;
-
     private: System::Windows::Forms::PictureBox^ pictureBox2;
     private: System::Windows::Forms::PictureBox^ pictureBox3;
     private: System::Windows::Forms::PictureBox^ pictureBox4;
     private: System::Windows::Forms::PictureBox^ pictureBox5;
     private: System::Windows::Forms::PictureBox^ pictureBox6;
     private: System::Windows::Forms::PictureBox^ pictureBox7;
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Panel^ panel1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ classgenerate;
     private: System::Windows::Forms::Button^ classsave;
     private: System::Windows::Forms::Button^ classclear;
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ classreserve;
     private: System::Windows::Forms::Panel^ classpanel;
     private: System::Windows::Forms::Panel^ panel9;
-
-
-
-
-
-
     private: System::Windows::Forms::Panel^ addteacherpanel;
     private: System::Windows::Forms::Panel^ panel17;
     private: System::Windows::Forms::Button^ addteachersave;
     private: System::Windows::Forms::Button^ addteachernew;
-
-
     private: System::Windows::Forms::Panel^ panel18;
-
     private: System::Windows::Forms::Panel^ panel20;
     private: System::Windows::Forms::TableLayoutPanel^ settingstable;
-
     private: System::Windows::Forms::Label^ label83;
     private: System::Windows::Forms::Label^ label84;
     private: System::Windows::Forms::Label^ label85;
@@ -3399,207 +3267,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
     private: System::Windows::Forms::Label^ label122;
     private: System::Windows::Forms::Panel^ panel22;
     private: System::Windows::Forms::Panel^ panel21;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ button2;
     private: System::Windows::Forms::Button^ button22;
     private: System::Windows::Forms::Panel^ panel2;
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Panel^ deleteclasspanel;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ classlabsave;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Panel^ textBox5;
     private: System::Windows::Forms::Panel^ textBox7;
     private: System::Windows::Forms::Panel^ textBox6;
@@ -3611,150 +3283,16 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
     private: System::Windows::Forms::Label^ label45;
     private: System::Windows::Forms::Button^ button16;
     private: System::Windows::Forms::TextBox^ filepath;
-
     private: System::Windows::Forms::FolderBrowserDialog^ fbd;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel6;
     private: System::Windows::Forms::Panel^ panel4;
     private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel1;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::PictureBox^ pictureBox11;
     private: System::Windows::Forms::Button^ button17;
     private: System::Windows::Forms::PictureBox^ pictureBox8;
     private: System::Windows::Forms::TextBox^ username;
-
-
-
     private: System::Windows::Forms::PictureBox^ pictureBox12;
     private: System::Windows::Forms::Button^ button18;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::ComponentModel::IContainer^ components;
     protected:
     private:
@@ -3772,22 +3310,22 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
         {
             this->components = (gcnew System::ComponentModel::Container());
             System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle17 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle18 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle19 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle20 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle21 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle22 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle23 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle24 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle25 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle26 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle27 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle28 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle29 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle30 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle31 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle32 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle13 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle14 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle15 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle16 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->addsubjectpanel = (gcnew System::Windows::Forms::Panel());
             this->panel11 = (gcnew System::Windows::Forms::Panel());
             this->panel48 = (gcnew System::Windows::Forms::Panel());
@@ -4542,7 +4080,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->addsubjectpanel->Name = L"addsubjectpanel";
-            this->addsubjectpanel->Size = System::Drawing::Size(1924, 1359);
+            this->addsubjectpanel->Size = System::Drawing::Size(1924, 1050);
             this->addsubjectpanel->TabIndex = 124;
             this->addsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addsubjectpanel_Paint);
             // 
@@ -4558,7 +4096,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel11->Controls->Add(this->addsubelegroup);
             this->panel11->Controls->Add(this->addsubnamegroup);
             this->panel11->Controls->Add(this->addsubcodegroup);
-            this->panel11->Location = System::Drawing::Point(195, -22);
+            this->panel11->Location = System::Drawing::Point(179, 13);
             this->panel11->Name = L"panel11";
             this->panel11->Size = System::Drawing::Size(1194, 2224);
             this->panel11->TabIndex = 341;
@@ -5008,13 +4546,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->sedataGridView->AllowUserToOrderColumns = true;
             this->sedataGridView->AllowUserToResizeColumns = false;
             this->sedataGridView->AllowUserToResizeRows = false;
-            dataGridViewCellStyle17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle17->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle17->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle17->SelectionForeColor = System::Drawing::Color::Black;
-            this->sedataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this->sedataGridView->ColumnHeadersHeight = 36;
             this->sedataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->TeacherName,
@@ -5030,11 +4568,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->sedataGridView->Name = L"sedataGridView";
             this->sedataGridView->RowHeadersVisible = false;
             this->sedataGridView->RowHeadersWidth = 62;
-            dataGridViewCellStyle18->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle18->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle18->SelectionForeColor = System::Drawing::Color::Black;
-            this->sedataGridView->RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->RowsDefaultCellStyle = dataGridViewCellStyle2;
             this->sedataGridView->RowTemplate->Height = 28;
             this->sedataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sedataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -5134,7 +4672,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             // 
             // kryptonLabel3
             // 
-            this->kryptonLabel3->Location = System::Drawing::Point(426, 53);
+            this->kryptonLabel3->Location = System::Drawing::Point(456, 49);
             this->kryptonLabel3->Name = L"kryptonLabel3";
             this->kryptonLabel3->Size = System::Drawing::Size(217, 43);
             this->kryptonLabel3->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -5525,11 +5063,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->addclassroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addclassroompanel->Location = System::Drawing::Point(0, 0);
             this->addclassroompanel->Name = L"addclassroompanel";
-            this->addclassroompanel->Size = System::Drawing::Size(1924, 1359);
+            this->addclassroompanel->Size = System::Drawing::Size(1924, 1050);
             this->addclassroompanel->TabIndex = 230;
+            this->addclassroompanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addclassroompanel_Paint);
             // 
             // panel7
             // 
+            this->panel7->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
             this->panel7->Controls->Add(this->kryptonGroupBox9);
             this->panel7->Controls->Add(this->panel9);
             this->panel7->Controls->Add(this->roomdeptgroup);
@@ -5537,7 +5077,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel7->Controls->Add(this->roomcapacitygroup);
             this->panel7->Controls->Add(this->roomlabgroup);
             this->panel7->Controls->Add(this->roomnamegroup);
-            this->panel7->Location = System::Drawing::Point(170, 18);
+            this->panel7->Location = System::Drawing::Point(179, 13);
             this->panel7->Name = L"panel7";
             this->panel7->Size = System::Drawing::Size(1194, 2180);
             this->panel7->TabIndex = 342;
@@ -5865,7 +5405,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             // 
             // kryptonLabel5
             // 
-            this->kryptonLabel5->Location = System::Drawing::Point(426, 53);
+            this->kryptonLabel5->Location = System::Drawing::Point(456, 49);
             this->kryptonLabel5->Name = L"kryptonLabel5";
             this->kryptonLabel5->Size = System::Drawing::Size(264, 43);
             this->kryptonLabel5->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -5907,8 +5447,6 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->roomcapacity->Location = System::Drawing::Point(98, 96);
             this->roomcapacity->Name = L"roomcapacity";
             this->roomcapacity->Size = System::Drawing::Size(304, 30);
-            this->roomcapacity->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
-            this->roomcapacity->StateCommon->Border->Color2 = System::Drawing::Color::Black;
             this->roomcapacity->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
@@ -6079,7 +5617,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->Homepanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->Homepanel->Location = System::Drawing::Point(0, 0);
             this->Homepanel->Name = L"Homepanel";
-            this->Homepanel->Size = System::Drawing::Size(1924, 1359);
+            this->Homepanel->Size = System::Drawing::Size(1924, 1050);
             this->Homepanel->TabIndex = 258;
             // 
             // pictureBox1
@@ -6098,7 +5636,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editteacherpanel->Location = System::Drawing::Point(0, 0);
             this->editteacherpanel->Name = L"editteacherpanel";
-            this->editteacherpanel->Size = System::Drawing::Size(1924, 1359);
+            this->editteacherpanel->Size = System::Drawing::Size(1924, 1050);
             this->editteacherpanel->TabIndex = 264;
             this->editteacherpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editteacherpanel_Paint);
             // 
@@ -6112,7 +5650,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel5->Controls->Add(this->editteacherdepartmentgroup);
             this->panel5->Controls->Add(this->kryptonLabel4);
             this->panel5->Controls->Add(this->editteachernamegroup);
-            this->panel5->Location = System::Drawing::Point(148, 23);
+            this->panel5->Location = System::Drawing::Point(179, 13);
             this->panel5->Name = L"panel5";
             this->panel5->Size = System::Drawing::Size(1194, 2207);
             this->panel5->TabIndex = 344;
@@ -6122,7 +5660,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editteacheremailidgroup->CaptionOverlap = 1;
             this->editteacheremailidgroup->CaptionVisible = false;
             this->editteacheremailidgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteacheremailidgroup->Location = System::Drawing::Point(49, 947);
+            this->editteacheremailidgroup->Location = System::Drawing::Point(23, 947);
             this->editteacheremailidgroup->Name = L"editteacheremailidgroup";
             // 
             // editteacheremailidgroup.Panel
@@ -6195,7 +5733,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editteachersearchgroup->CaptionOverlap = 1;
             this->editteachersearchgroup->CaptionVisible = false;
             this->editteachersearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteachersearchgroup->Location = System::Drawing::Point(49, 142);
+            this->editteachersearchgroup->Location = System::Drawing::Point(23, 168);
             this->editteachersearchgroup->Name = L"editteachersearchgroup";
             // 
             // editteachersearchgroup.Panel
@@ -6328,7 +5866,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editteachertablegroup->CaptionOverlap = 1;
             this->editteachertablegroup->CaptionVisible = false;
             this->editteachertablegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteachertablegroup->Location = System::Drawing::Point(39, 1262);
+            this->editteachertablegroup->Location = System::Drawing::Point(23, 1262);
             this->editteachertablegroup->Name = L"editteachertablegroup";
             // 
             // editteachertablegroup.Panel
@@ -6627,7 +6165,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editteacherdepartmentgroup->CaptionOverlap = 1;
             this->editteacherdepartmentgroup->CaptionVisible = false;
             this->editteacherdepartmentgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteacherdepartmentgroup->Location = System::Drawing::Point(49, 695);
+            this->editteacherdepartmentgroup->Location = System::Drawing::Point(23, 695);
             this->editteacherdepartmentgroup->Name = L"editteacherdepartmentgroup";
             // 
             // editteacherdepartmentgroup.Panel
@@ -6689,7 +6227,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editteachernamegroup->CaptionOverlap = 1;
             this->editteachernamegroup->CaptionVisible = false;
             this->editteachernamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteachernamegroup->Location = System::Drawing::Point(54, 451);
+            this->editteachernamegroup->Location = System::Drawing::Point(23, 451);
             this->editteachernamegroup->Name = L"editteachernamegroup";
             // 
             // editteachernamegroup.Panel
@@ -6859,7 +6397,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->settingspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->settingspanel->Location = System::Drawing::Point(0, 0);
             this->settingspanel->Name = L"settingspanel";
-            this->settingspanel->Size = System::Drawing::Size(1924, 1359);
+            this->settingspanel->Size = System::Drawing::Size(1924, 1050);
             this->settingspanel->TabIndex = 286;
             // 
             // filepath
@@ -7519,7 +7057,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel1->Dock = System::Windows::Forms::DockStyle::Left;
             this->panel1->Location = System::Drawing::Point(0, 76);
             this->panel1->Name = L"panel1";
-            this->panel1->Size = System::Drawing::Size(364, 1283);
+            this->panel1->Size = System::Drawing::Size(364, 974);
             this->panel1->TabIndex = 259;
             // 
             // panel3
@@ -7742,7 +7280,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1924, 1359);
+            this->classpanel->Size = System::Drawing::Size(1924, 1050);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -7760,7 +7298,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel29->Controls->Add(this->classbranchgroup);
             this->panel29->Controls->Add(this->kryptonLabel10);
             this->panel29->Controls->Add(this->classnamegroup);
-            this->panel29->Location = System::Drawing::Point(126, 64);
+            this->panel29->Location = System::Drawing::Point(179, 13);
             this->panel29->Name = L"panel29";
             this->panel29->Size = System::Drawing::Size(1194, 3989);
             this->panel29->TabIndex = 346;
@@ -8111,7 +7649,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classresgroup->CaptionOverlap = 1;
             this->classresgroup->CaptionVisible = false;
             this->classresgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classresgroup->Location = System::Drawing::Point(24, 3302);
+            this->classresgroup->Location = System::Drawing::Point(23, 3302);
             this->classresgroup->Name = L"classresgroup";
             // 
             // classresgroup.Panel
@@ -8356,7 +7894,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classlabgroup->CaptionOverlap = 1;
             this->classlabgroup->CaptionVisible = false;
             this->classlabgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classlabgroup->Location = System::Drawing::Point(24, 1707);
+            this->classlabgroup->Location = System::Drawing::Point(23, 1707);
             this->classlabgroup->Name = L"classlabgroup";
             // 
             // classlabgroup.Panel
@@ -8394,13 +7932,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classlab->AllowUserToOrderColumns = true;
             this->classlab->AllowUserToResizeColumns = false;
             this->classlab->AllowUserToResizeRows = false;
-            dataGridViewCellStyle19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle19->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle19->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle3->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle19->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlab->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlab->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this->classlab->ColumnHeadersHeight = 36;
             this->classlab->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->lsubject, this->dataGridViewButtonColumn7 });
             this->classlab->GridStyles->Style = ComponentFactory::Krypton::Toolkit::DataGridViewStyle::Sheet;
@@ -8413,11 +7951,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classlab->Name = L"classlab";
             this->classlab->RowHeadersVisible = false;
             this->classlab->RowHeadersWidth = 62;
-            dataGridViewCellStyle20->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle20->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle4->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle20->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlab->RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlab->RowsDefaultCellStyle = dataGridViewCellStyle4;
             this->classlab->RowTemplate->Height = 28;
             this->classlab->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classlab->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -8638,13 +8176,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classlabteachers->AllowUserToOrderColumns = true;
             this->classlabteachers->AllowUserToResizeColumns = false;
             this->classlabteachers->AllowUserToResizeRows = false;
-            dataGridViewCellStyle21->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle21->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle21->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle5->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle21->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this->classlabteachers->ColumnHeadersHeight = 36;
             this->classlabteachers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->Teacher1,
@@ -8660,11 +8198,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classlabteachers->Name = L"classlabteachers";
             this->classlabteachers->RowHeadersVisible = false;
             this->classlabteachers->RowHeadersWidth = 62;
-            dataGridViewCellStyle22->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle22->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle6->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle22->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle6;
             this->classlabteachers->RowTemplate->DefaultCellStyle->BackColor = System::Drawing::Color::White;
             this->classlabteachers->RowTemplate->DefaultCellStyle->ForeColor = System::Drawing::Color::Black;
             this->classlabteachers->RowTemplate->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(242)),
@@ -8743,7 +8281,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classelegroup->CaptionOverlap = 1;
             this->classelegroup->CaptionVisible = false;
             this->classelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classelegroup->Location = System::Drawing::Point(24, 1283);
+            this->classelegroup->Location = System::Drawing::Point(23, 1283);
             this->classelegroup->Name = L"classelegroup";
             // 
             // classelegroup.Panel
@@ -8781,13 +8319,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classele->AllowUserToOrderColumns = true;
             this->classele->AllowUserToResizeColumns = false;
             this->classele->AllowUserToResizeRows = false;
-            dataGridViewCellStyle23->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle23->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle23->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle7->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle7->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle23->SelectionForeColor = System::Drawing::Color::Black;
-            this->classele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7->SelectionForeColor = System::Drawing::Color::Black;
+            this->classele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this->classele->ColumnHeadersHeight = 36;
             this->classele->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->esubject, this->dataGridViewButtonColumn5 });
             this->classele->GridStyles->Style = ComponentFactory::Krypton::Toolkit::DataGridViewStyle::Sheet;
@@ -8800,11 +8338,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classele->Name = L"classele";
             this->classele->RowHeadersVisible = false;
             this->classele->RowHeadersWidth = 62;
-            dataGridViewCellStyle24->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle24->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle8->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle8->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle24->SelectionForeColor = System::Drawing::Color::Black;
-            this->classele->RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8->SelectionForeColor = System::Drawing::Color::Black;
+            this->classele->RowsDefaultCellStyle = dataGridViewCellStyle8;
             this->classele->RowTemplate->Height = 28;
             this->classele->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classele->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -8859,7 +8397,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classcoregroup->CaptionOverlap = 1;
             this->classcoregroup->CaptionVisible = false;
             this->classcoregroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classcoregroup->Location = System::Drawing::Point(24, 883);
+            this->classcoregroup->Location = System::Drawing::Point(23, 883);
             this->classcoregroup->Name = L"classcoregroup";
             // 
             // classcoregroup.Panel
@@ -8898,13 +8436,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classcore->AllowUserToOrderColumns = true;
             this->classcore->AllowUserToResizeColumns = false;
             this->classcore->AllowUserToResizeRows = false;
-            dataGridViewCellStyle25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle25->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle25->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle9->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle9->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle25->SelectionForeColor = System::Drawing::Color::Black;
-            this->classcore->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle9->SelectionForeColor = System::Drawing::Color::Black;
+            this->classcore->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this->classcore->ColumnHeadersHeight = 36;
             this->classcore->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
                 this->csubject, this->cteacher,
@@ -8920,11 +8458,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classcore->Name = L"classcore";
             this->classcore->RowHeadersVisible = false;
             this->classcore->RowHeadersWidth = 62;
-            dataGridViewCellStyle26->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle26->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle10->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle10->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle26->SelectionForeColor = System::Drawing::Color::Black;
-            this->classcore->RowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle10->SelectionForeColor = System::Drawing::Color::Black;
+            this->classcore->RowsDefaultCellStyle = dataGridViewCellStyle10;
             this->classcore->RowTemplate->Height = 28;
             this->classcore->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classcore->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -8988,7 +8526,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classbatchgroup->CaptionOverlap = 1;
             this->classbatchgroup->CaptionVisible = false;
             this->classbatchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classbatchgroup->Location = System::Drawing::Point(24, 632);
+            this->classbatchgroup->Location = System::Drawing::Point(23, 632);
             this->classbatchgroup->Name = L"classbatchgroup";
             // 
             // classbatchgroup.Panel
@@ -9041,7 +8579,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classbranchgroup->CaptionOverlap = 1;
             this->classbranchgroup->CaptionVisible = false;
             this->classbranchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classbranchgroup->Location = System::Drawing::Point(24, 381);
+            this->classbranchgroup->Location = System::Drawing::Point(23, 381);
             this->classbranchgroup->Name = L"classbranchgroup";
             // 
             // classbranchgroup.Panel
@@ -9105,7 +8643,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->classnamegroup->CaptionOverlap = 1;
             this->classnamegroup->CaptionVisible = false;
             this->classnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classnamegroup->Location = System::Drawing::Point(29, 137);
+            this->classnamegroup->Location = System::Drawing::Point(23, 168);
             this->classnamegroup->Name = L"classnamegroup";
             // 
             // classnamegroup.Panel
@@ -9180,7 +8718,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->addteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addteacherpanel->Location = System::Drawing::Point(0, 0);
             this->addteacherpanel->Name = L"addteacherpanel";
-            this->addteacherpanel->Size = System::Drawing::Size(1924, 1359);
+            this->addteacherpanel->Size = System::Drawing::Size(1924, 1050);
             this->addteacherpanel->TabIndex = 293;
             // 
             // panel16
@@ -9192,7 +8730,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel16->Controls->Add(this->addteacherdepartmentgroup);
             this->panel16->Controls->Add(this->kryptonLabel7);
             this->panel16->Controls->Add(this->addteachernamegroup);
-            this->panel16->Location = System::Drawing::Point(447, 36);
+            this->panel16->Location = System::Drawing::Point(179, 13);
             this->panel16->Name = L"panel16";
             this->panel16->Size = System::Drawing::Size(1194, 1834);
             this->panel16->TabIndex = 345;
@@ -9202,7 +8740,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->addteacheremailidgroup->CaptionOverlap = 1;
             this->addteacheremailidgroup->CaptionVisible = false;
             this->addteacheremailidgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteacheremailidgroup->Location = System::Drawing::Point(24, 633);
+            this->addteacheremailidgroup->Location = System::Drawing::Point(23, 633);
             this->addteacheremailidgroup->Name = L"addteacheremailidgroup";
             // 
             // addteacheremailidgroup.Panel
@@ -9313,7 +8851,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->addteachertablegroup->CaptionOverlap = 1;
             this->addteachertablegroup->CaptionVisible = false;
             this->addteachertablegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteachertablegroup->Location = System::Drawing::Point(14, 948);
+            this->addteachertablegroup->Location = System::Drawing::Point(23, 948);
             this->addteachertablegroup->Name = L"addteachertablegroup";
             // 
             // addteachertablegroup.Panel
@@ -9606,7 +9144,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->addteacherdepartmentgroup->CaptionOverlap = 1;
             this->addteacherdepartmentgroup->CaptionVisible = false;
             this->addteacherdepartmentgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteacherdepartmentgroup->Location = System::Drawing::Point(24, 381);
+            this->addteacherdepartmentgroup->Location = System::Drawing::Point(23, 381);
             this->addteacherdepartmentgroup->Name = L"addteacherdepartmentgroup";
             // 
             // addteacherdepartmentgroup.Panel
@@ -9667,7 +9205,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->addteachernamegroup->CaptionOverlap = 1;
             this->addteachernamegroup->CaptionVisible = false;
             this->addteachernamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteachernamegroup->Location = System::Drawing::Point(29, 137);
+            this->addteachernamegroup->Location = System::Drawing::Point(23, 168);
             this->addteachernamegroup->Name = L"addteachernamegroup";
             // 
             // addteachernamegroup.Panel
@@ -9741,7 +9279,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button2->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button2->Location = System::Drawing::Point(767, 592);
+            this->button2->Location = System::Drawing::Point(759, 655);
             this->button2->Name = L"button2";
             this->button2->Size = System::Drawing::Size(130, 58);
             this->button2->TabIndex = 234;
@@ -9755,7 +9293,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button22->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button22->Location = System::Drawing::Point(979, 591);
+            this->button22->Location = System::Drawing::Point(991, 654);
             this->button22->Name = L"button22";
             this->button22->Size = System::Drawing::Size(130, 58);
             this->button22->TabIndex = 235;
@@ -9771,7 +9309,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
             this->panel2->Location = System::Drawing::Point(0, 0);
             this->panel2->Name = L"panel2";
-            this->panel2->Size = System::Drawing::Size(1924, 1359);
+            this->panel2->Size = System::Drawing::Size(1924, 1050);
             this->panel2->TabIndex = 5;
             this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel2_Paint);
             // 
@@ -9781,14 +9319,14 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel46->Controls->Add(this->deptgroup);
             this->panel46->Controls->Add(this->button22);
             this->panel46->Controls->Add(this->button2);
-            this->panel46->Location = System::Drawing::Point(152, 54);
+            this->panel46->Location = System::Drawing::Point(179, 13);
             this->panel46->Name = L"panel46";
-            this->panel46->Size = System::Drawing::Size(1186, 672);
+            this->panel46->Size = System::Drawing::Size(1194, 730);
             this->panel46->TabIndex = 348;
             // 
             // kryptonLabel9
             // 
-            this->kryptonLabel9->Location = System::Drawing::Point(420, 16);
+            this->kryptonLabel9->Location = System::Drawing::Point(456, 49);
             this->kryptonLabel9->Name = L"kryptonLabel9";
             this->kryptonLabel9->Size = System::Drawing::Size(234, 43);
             this->kryptonLabel9->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -9803,7 +9341,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->deptgroup->CaptionOverlap = 1;
             this->deptgroup->CaptionVisible = false;
             this->deptgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->deptgroup->Location = System::Drawing::Point(15, 124);
+            this->deptgroup->Location = System::Drawing::Point(23, 168);
             this->deptgroup->Name = L"deptgroup";
             // 
             // deptgroup.Panel
@@ -9828,13 +9366,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->deptDataGridView->AllowUserToOrderColumns = true;
             this->deptDataGridView->AllowUserToResizeColumns = false;
             this->deptDataGridView->AllowUserToResizeRows = false;
-            dataGridViewCellStyle27->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle27->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle27->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
+            dataGridViewCellStyle11->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle11->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle27->SelectionForeColor = System::Drawing::Color::Black;
-            this->deptDataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle11->SelectionForeColor = System::Drawing::Color::Black;
+            this->deptDataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this->deptDataGridView->ColumnHeadersHeight = 36;
             this->deptDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->deptDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -9851,13 +9389,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->deptDataGridView->Name = L"deptDataGridView";
             this->deptDataGridView->RowHeadersVisible = false;
             this->deptDataGridView->RowHeadersWidth = 62;
-            dataGridViewCellStyle28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            dataGridViewCellStyle28->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle28->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle12->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle12->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle28->SelectionForeColor = System::Drawing::Color::Black;
-            this->deptDataGridView->RowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle12->SelectionForeColor = System::Drawing::Color::Black;
+            this->deptDataGridView->RowsDefaultCellStyle = dataGridViewCellStyle12;
             this->deptDataGridView->RowTemplate->Height = 28;
             this->deptDataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->deptDataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -9913,21 +9451,21 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->deleteclasspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->deleteclasspanel->Location = System::Drawing::Point(0, 0);
             this->deleteclasspanel->Name = L"deleteclasspanel";
-            this->deleteclasspanel->Size = System::Drawing::Size(1924, 1359);
+            this->deleteclasspanel->Size = System::Drawing::Size(1924, 1050);
             this->deleteclasspanel->TabIndex = 236;
             // 
             // panel47
             // 
             this->panel47->Controls->Add(this->kryptonLabel8);
             this->panel47->Controls->Add(this->kryptonGroupBox2);
-            this->panel47->Location = System::Drawing::Point(167, 35);
+            this->panel47->Location = System::Drawing::Point(179, 13);
             this->panel47->Name = L"panel47";
-            this->panel47->Size = System::Drawing::Size(1175, 528);
+            this->panel47->Size = System::Drawing::Size(1194, 683);
             this->panel47->TabIndex = 348;
             // 
             // kryptonLabel8
             // 
-            this->kryptonLabel8->Location = System::Drawing::Point(485, 18);
+            this->kryptonLabel8->Location = System::Drawing::Point(456, 49);
             this->kryptonLabel8->Name = L"kryptonLabel8";
             this->kryptonLabel8->Size = System::Drawing::Size(129, 43);
             this->kryptonLabel8->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -9942,7 +9480,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->kryptonGroupBox2->CaptionOverlap = 1;
             this->kryptonGroupBox2->CaptionVisible = false;
             this->kryptonGroupBox2->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox2->Location = System::Drawing::Point(25, 106);
+            this->kryptonGroupBox2->Location = System::Drawing::Point(23, 168);
             this->kryptonGroupBox2->Name = L"kryptonGroupBox2";
             // 
             // kryptonGroupBox2.Panel
@@ -9967,13 +9505,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->sectiondeletedatagridview->AllowUserToOrderColumns = true;
             this->sectiondeletedatagridview->AllowUserToResizeColumns = false;
             this->sectiondeletedatagridview->AllowUserToResizeRows = false;
-            dataGridViewCellStyle29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle29->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle29->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
+            dataGridViewCellStyle13->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle13->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle29->SelectionForeColor = System::Drawing::Color::Black;
-            this->sectiondeletedatagridview->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle13->SelectionForeColor = System::Drawing::Color::Black;
+            this->sectiondeletedatagridview->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this->sectiondeletedatagridview->ColumnHeadersHeight = 36;
             this->sectiondeletedatagridview->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->sectiondeletedatagridview->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -9990,13 +9528,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->sectiondeletedatagridview->Name = L"sectiondeletedatagridview";
             this->sectiondeletedatagridview->RowHeadersVisible = false;
             this->sectiondeletedatagridview->RowHeadersWidth = 62;
-            dataGridViewCellStyle30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            dataGridViewCellStyle30->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle30->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle14->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle14->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle30->SelectionForeColor = System::Drawing::Color::Black;
-            this->sectiondeletedatagridview->RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle14->SelectionForeColor = System::Drawing::Color::Black;
+            this->sectiondeletedatagridview->RowsDefaultCellStyle = dataGridViewCellStyle14;
             this->sectiondeletedatagridview->RowTemplate->Height = 28;
             this->sectiondeletedatagridview->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sectiondeletedatagridview->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -10066,7 +9604,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubbfactorgroup->CaptionOverlap = 1;
             this->editsubbfactorgroup->CaptionVisible = false;
             this->editsubbfactorgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubbfactorgroup->Location = System::Drawing::Point(31, 2945);
+            this->editsubbfactorgroup->Location = System::Drawing::Point(23, 2945);
             this->editsubbfactorgroup->Name = L"editsubbfactorgroup";
             // 
             // editsubbfactorgroup.Panel
@@ -10148,7 +9686,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubroomlistgroup->CaptionOverlap = 1;
             this->editsubroomlistgroup->CaptionVisible = false;
             this->editsubroomlistgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubroomlistgroup->Location = System::Drawing::Point(31, 2542);
+            this->editsubroomlistgroup->Location = System::Drawing::Point(23, 2542);
             this->editsubroomlistgroup->Name = L"editsubroomlistgroup";
             // 
             // editsubroomlistgroup.Panel
@@ -10234,7 +9772,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubcreditsgroup->CaptionOverlap = 1;
             this->editsubcreditsgroup->CaptionVisible = false;
             this->editsubcreditsgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubcreditsgroup->Location = System::Drawing::Point(31, 2318);
+            this->editsubcreditsgroup->Location = System::Drawing::Point(23, 2318);
             this->editsubcreditsgroup->Name = L"editsubcreditsgroup";
             // 
             // editsubcreditsgroup.Panel
@@ -10553,9 +10091,9 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel13->Controls->Add(this->editsubelegroup);
             this->panel13->Controls->Add(this->editsubnamegroup);
             this->panel13->Controls->Add(this->editsubcodegroup);
-            this->panel13->Location = System::Drawing::Point(147, 62);
+            this->panel13->Location = System::Drawing::Point(179, 13);
             this->panel13->Name = L"panel13";
-            this->panel13->Size = System::Drawing::Size(1194, 2555);
+            this->panel13->Size = System::Drawing::Size(1194, 2587);
             this->panel13->TabIndex = 340;
             // 
             // panel51
@@ -10572,7 +10110,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubeleyesgroup->CaptionOverlap = 1;
             this->editsubeleyesgroup->CaptionVisible = false;
             this->editsubeleyesgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubeleyesgroup->Location = System::Drawing::Point(31, 1357);
+            this->editsubeleyesgroup->Location = System::Drawing::Point(23, 1357);
             this->editsubeleyesgroup->Name = L"editsubeleyesgroup";
             // 
             // editsubeleyesgroup.Panel
@@ -10601,13 +10139,13 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubeleteacher->AllowUserToOrderColumns = true;
             this->editsubeleteacher->AllowUserToResizeColumns = false;
             this->editsubeleteacher->AllowUserToResizeRows = false;
-            dataGridViewCellStyle31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+            dataGridViewCellStyle15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle31->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle31->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+            dataGridViewCellStyle15->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle15->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle31->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubeleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle15->SelectionForeColor = System::Drawing::Color::Black;
+            this->editsubeleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this->editsubeleteacher->ColumnHeadersHeight = 36;
             this->editsubeleteacher->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->editsubeleteacher->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -10624,11 +10162,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubeleteacher->Name = L"editsubeleteacher";
             this->editsubeleteacher->RowHeadersVisible = false;
             this->editsubeleteacher->RowHeadersWidth = 62;
-            dataGridViewCellStyle32->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle32->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle16->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle16->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle32->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle16->SelectionForeColor = System::Drawing::Color::Black;
+            this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle16;
             this->editsubeleteacher->RowTemplate->Height = 28;
             this->editsubeleteacher->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->editsubeleteacher->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -10705,7 +10243,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             // 
             // kryptonLabel2
             // 
-            this->kryptonLabel2->Location = System::Drawing::Point(427, 42);
+            this->kryptonLabel2->Location = System::Drawing::Point(456, 49);
             this->kryptonLabel2->Name = L"kryptonLabel2";
             this->kryptonLabel2->Size = System::Drawing::Size(217, 43);
             this->kryptonLabel2->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -10720,7 +10258,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubsearchgroup->CaptionOverlap = 1;
             this->editsubsearchgroup->CaptionVisible = false;
             this->editsubsearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubsearchgroup->Location = System::Drawing::Point(31, 141);
+            this->editsubsearchgroup->Location = System::Drawing::Point(23, 168);
             this->editsubsearchgroup->Name = L"editsubsearchgroup";
             // 
             // editsubsearchgroup.Panel
@@ -10819,7 +10357,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubtitlegroup->CaptionOverlap = 1;
             this->editsubtitlegroup->CaptionVisible = false;
             this->editsubtitlegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubtitlegroup->Location = System::Drawing::Point(31, 685);
+            this->editsubtitlegroup->Location = System::Drawing::Point(23, 685);
             this->editsubtitlegroup->Name = L"editsubtitlegroup";
             // 
             // editsubtitlegroup.Panel
@@ -10895,7 +10433,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubelegroup->CaptionOverlap = 1;
             this->editsubelegroup->CaptionVisible = false;
             this->editsubelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubelegroup->Location = System::Drawing::Point(31, 1134);
+            this->editsubelegroup->Location = System::Drawing::Point(23, 1134);
             this->editsubelegroup->Name = L"editsubelegroup";
             // 
             // editsubelegroup.Panel
@@ -10970,7 +10508,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubnamegroup->CaptionOverlap = 1;
             this->editsubnamegroup->CaptionVisible = false;
             this->editsubnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubnamegroup->Location = System::Drawing::Point(31, 449);
+            this->editsubnamegroup->Location = System::Drawing::Point(23, 458);
             this->editsubnamegroup->Name = L"editsubnamegroup";
             // 
             // editsubnamegroup.Panel
@@ -11043,7 +10581,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editsubcodegroup->CaptionOverlap = 1;
             this->editsubcodegroup->CaptionVisible = false;
             this->editsubcodegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubcodegroup->Location = System::Drawing::Point(31, 906);
+            this->editsubcodegroup->Location = System::Drawing::Point(23, 906);
             this->editsubcodegroup->Name = L"editsubcodegroup";
             // 
             // editsubcodegroup.Panel
@@ -11120,7 +10658,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                 static_cast<System::Byte>(0)));
             this->editsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->editsubjectpanel->Name = L"editsubjectpanel";
-            this->editsubjectpanel->Size = System::Drawing::Size(2886, 2039);
+            this->editsubjectpanel->Size = System::Drawing::Size(1924, 1050);
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
             // 
@@ -11138,7 +10676,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->panel6->Controls->Add(this->editroomcapacitygroup);
             this->panel6->Controls->Add(this->editroomlabgroup);
             this->panel6->Controls->Add(this->editroomnamegroup);
-            this->panel6->Location = System::Drawing::Point(148, 9);
+            this->panel6->Location = System::Drawing::Point(179, 13);
             this->panel6->Name = L"panel6";
             this->panel6->Size = System::Drawing::Size(1194, 2451);
             this->panel6->TabIndex = 343;
@@ -11148,7 +10686,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editroomsearchgroup->CaptionOverlap = 1;
             this->editroomsearchgroup->CaptionVisible = false;
             this->editroomsearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomsearchgroup->Location = System::Drawing::Point(49, 142);
+            this->editroomsearchgroup->Location = System::Drawing::Point(23, 168);
             this->editroomsearchgroup->Name = L"editroomsearchgroup";
             // 
             // editroomsearchgroup.Panel
@@ -11237,7 +10775,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->kryptonGroupBox10->CaptionOverlap = 1;
             this->kryptonGroupBox10->CaptionVisible = false;
             this->kryptonGroupBox10->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox10->Location = System::Drawing::Point(49, 1519);
+            this->kryptonGroupBox10->Location = System::Drawing::Point(23, 1519);
             this->kryptonGroupBox10->Name = L"kryptonGroupBox10";
             // 
             // kryptonGroupBox10.Panel
@@ -11532,7 +11070,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editroomdepartmentgroup->CaptionOverlap = 1;
             this->editroomdepartmentgroup->CaptionVisible = false;
             this->editroomdepartmentgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomdepartmentgroup->Location = System::Drawing::Point(49, 1210);
+            this->editroomdepartmentgroup->Location = System::Drawing::Point(23, 1210);
             this->editroomdepartmentgroup->Name = L"editroomdepartmentgroup";
             // 
             // editroomdepartmentgroup.Panel
@@ -11593,7 +11131,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editroomcapacitygroup->CaptionOverlap = 1;
             this->editroomcapacitygroup->CaptionVisible = false;
             this->editroomcapacitygroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomcapacitygroup->Location = System::Drawing::Point(49, 728);
+            this->editroomcapacitygroup->Location = System::Drawing::Point(23, 728);
             this->editroomcapacitygroup->Name = L"editroomcapacitygroup";
             // 
             // editroomcapacitygroup.Panel
@@ -11620,8 +11158,6 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editroomcapacity->Location = System::Drawing::Point(98, 96);
             this->editroomcapacity->Name = L"editroomcapacity";
             this->editroomcapacity->Size = System::Drawing::Size(304, 30);
-            this->editroomcapacity->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
-            this->editroomcapacity->StateCommon->Border->Color2 = System::Drawing::Color::Black;
             this->editroomcapacity->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
@@ -11645,7 +11181,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editroomlabgroup->CaptionOverlap = 1;
             this->editroomlabgroup->CaptionVisible = false;
             this->editroomlabgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomlabgroup->Location = System::Drawing::Point(49, 968);
+            this->editroomlabgroup->Location = System::Drawing::Point(23, 968);
             this->editroomlabgroup->Name = L"editroomlabgroup";
             // 
             // editroomlabgroup.Panel
@@ -11717,7 +11253,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editroomnamegroup->CaptionOverlap = 1;
             this->editroomnamegroup->CaptionVisible = false;
             this->editroomnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomnamegroup->Location = System::Drawing::Point(49, 475);
+            this->editroomnamegroup->Location = System::Drawing::Point(23, 475);
             this->editroomnamegroup->Name = L"editroomnamegroup";
             // 
             // editroomnamegroup.Panel
@@ -11792,7 +11328,7 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->editroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editroompanel->Location = System::Drawing::Point(0, 0);
             this->editroompanel->Name = L"editroompanel";
-            this->editroompanel->Size = System::Drawing::Size(1924, 1359);
+            this->editroompanel->Size = System::Drawing::Size(1924, 1050);
             this->editroompanel->TabIndex = 124;
             this->editroompanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editroompanel_Paint);
             // 
@@ -11822,10 +11358,11 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Dpi;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->ClientSize = System::Drawing::Size(1924, 1359);
+            this->ClientSize = System::Drawing::Size(1924, 1050);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->kryptonPanel6);
             this->Controls->Add(this->editsubactivepanel);
+            this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
             this->Controls->Add(this->classpanel);
@@ -11836,11 +11373,10 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             this->Controls->Add(this->addteacherpanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
-            this->Controls->Add(this->editsubjectpanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->KeyPreview = true;
             this->Name = L"MyForm";
-            this->Text = L"MyForm";
+            this->Text = L"TimeTable Architect";
             this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
             this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
             this->addsubjectpanel->ResumeLayout(false);
@@ -13912,6 +13448,10 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
             labcreate(labteachers, obj);
 
             obj.makeTIMETABLE();
+            if (obj.errorMessage != "")
+            {
+                MessageBox::Show(msclr::interop::marshal_as<String^>(obj.errorMessage), "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+            }
             for (int i = 0; i < obj.timeTable.size(); i++)
             {
                 for (int j = 0; j < obj.timeTable[i].size(); j++)
@@ -13937,11 +13477,21 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
         classbatch->Value = 2020;
         classname->Clear();
         classbranch->Text = "";
+        classcore->Rows->Clear();
         classlab->Rows->Clear();
         classele->Rows->Clear();
+        classsessions->Value = 0;
+        classbatches->Value = 0;
+        classlabcombo->Text = "";
+        classlabteachers->Rows->Clear();
         for (int i = classdefaultrooms->Items->Count - 1; i >= 0; i--) {
             classdefaultrooms->SetItemChecked(i, false);
         }
+        for (int i = classlabroomlist->Items->Count - 1; i >= 0; i--) {
+            classlabroomlist->SetItemChecked(i, false);
+        }
+        classresgroup->Height = 0;
+        classgengroup->Height = 0;
     }
     private: System::Void button22_Click(System::Object^ sender, System::EventArgs^ e) {
         deptDataGridView->Rows->Clear();
@@ -14047,6 +13597,8 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                     {
                         for (auto t : obj.allTeachers)
                         {
+                            if (t.name == "No_Teacher")
+                                continue;
                             files << t.convertToString() << "\n";
                         }
 
@@ -14059,6 +13611,8 @@ private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonCol
                     {
                         for (auto t : obj.allRooms)
                         {
+                            if (t.name == "No_Room")
+                                continue;
                             fils << t.convertToString() << "\n";
                         }
 
@@ -14544,6 +14098,8 @@ private: System::Void classgengroup_Enter(System::Object^ sender, System::EventA
     coloredpanel(panel29, "classgengroup", classgengroup, 7, addclasslastpanel);
 }
 private: System::Void classsessions_ValueChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void addclassroompanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 };
 }
