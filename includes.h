@@ -182,6 +182,7 @@ public:
     int baseFactorC = 5;//this factor is added to all the subjects, it helps in choosing teachers that are already free over the others.
     float reductionIndexC = 1.2;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
     logger logs;//a logging object
+    bool compactLab = 1;//This determines if the lab allotment will be in compact form or a more distributed optimised timetable
 private:
     std::vector<int> bfactor;
     std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
@@ -192,5 +193,5 @@ private:
     std::vector<std::vector<int>> findWeightageLab(std::vector < std::vector<bool>> inp, std::vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
     std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
     std::vector<std::string> section::splitString(const std::string& str, char delimiter);
-    std::vector<bool> labAllotment;
+    std::vector<bool> labAllotment;//a vector that represents if a lab has been alloted on that day or no
 };
