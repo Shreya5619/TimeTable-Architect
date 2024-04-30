@@ -35,6 +35,7 @@ bool section::deAllocate() {
                 teacher& currentT = returnTeacher(teacherTable[day][period]);
                 if (!error_) {
                     currentT.timeTable[day][period] = 0;
+                    currentT.timeTableName[day][period] = "0";
                 }
                 else {
                     //handle lab and esc
@@ -44,21 +45,25 @@ bool section::deAllocate() {
                         teacher& currentT = returnTeacher(uname);
                         if (!error_) {
                             currentT.timeTable[day][period] = 0;
+                            currentT.timeTableName[day][period] = "0";
                         }
                     }
                 }
                 room& currentR = returnRoom(roomTable[day][period]);
                 if (!error_) {
                     currentR.timeTable[day][period] = 0;
+                    currentR.timeTableName[day][period] = "0";
                 }
                 else {
                     std::vector<std::string> temp = splitString(roomTable[day][period], '|');
                     for (auto r : temp) {
                         room& currentR = returnRoom(r);
-                        if (!error_)
+                        if (!error_) {
                             currentR.timeTable[day][period] = 0;
+                            currentR.timeTableName[day][period] = "0";
+                        }
                     }
-                    //handle
+                    //handled
                 }
             }
         }
