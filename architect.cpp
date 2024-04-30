@@ -595,6 +595,11 @@ void section::makeTIMETABLE() {
             }
         }
         std::cout << "index: " << index << " indexscore " << indexScore << "\n";
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                interSectionList[index][i][j] /= timeAllotment[j];
+            }
+        }
         //if credits satisfied
         if (indexScore != -1) {
             //here allotment starts
@@ -639,6 +644,8 @@ void section::makeTIMETABLE() {
                        }
                        //if highest is in top 'credits' rank
                        if (highest >= tops[0] && credCount && !labAllotment[k]) {
+                           timeAllotment[highestindex] = reductionIndexL;
+                           timeAllotment[highestindex + 1] = reductionIndexL;
                            //assgign timetable name
                            timeTable[k][highestindex] = labSubjects[i].name;
                            timeTable[k][highestindex + 1] = labSubjects[i].name;

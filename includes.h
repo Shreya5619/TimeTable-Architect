@@ -160,6 +160,8 @@ public:
         std::vector<bool>temp(days, 0);
         labAllotment = temp;
         formattedOutput = "TIME DAY,9:00-10:00,10:00-11:00,,11:30-12:30,12:30-1:30,,2:30-3:30,3:30-4:30\n";
+        std::vector<float> temp2(periods, 1);
+        timeAllotment = temp2;
     }
     std::string convertToString();
     bool readData(std::string inp);
@@ -175,14 +177,14 @@ public:
     int busyFactorL = 10;//busy factor is addded if teacher is either busy before or after the period.
     int freeFactorL = 25;//freefactor is addded if teacher is either free before or after the period
     int baseFactorL = 5;//it helps in choosing teachers that are already free over the others.
-
+    float reductionIndexL = 1.1;
     //the following factors are used by findWeightageCore for scoring which periods to use for allotment. change the following to adjust allotment
     int busyFactorC = 10;//busy factor is addded if teacher is either busy before or after the period.
     int freeFactorC = 25;//freefactor is addded if teacher is either free before or after the period
     int baseFactorC = 5;//this factor is added to all the subjects, it helps in choosing teachers that are already free over the others.
-    float reductionIndexC = 1.2;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
+    float reductionIndexC = 1.1;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
     logger logs;//a logging object
-    bool compactLab = 1;//This determines if the lab allotment will be in compact form or a more distributed optimised timetable
+    bool compactLab = 0;//This determines if the lab allotment will be in compact form or a more distributed optimised timetable
 private:
     std::vector<int> bfactor;
     std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
@@ -194,4 +196,5 @@ private:
     std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
     std::vector<std::string> section::splitString(const std::string& str, char delimiter);
     std::vector<bool> labAllotment;//a vector that represents if a lab has been alloted on that day or no
+    std::vector<float> timeAllotment;//a vector that represents if a lab has been alloted on that time any day. Discourages allotment on same time
 };
