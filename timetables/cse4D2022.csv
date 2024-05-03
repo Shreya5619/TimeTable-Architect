@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+CY245AT,XX242AT,HS248AT,CS344AI,CS241AT,CD343AI,
+IOT/IOT/DAA,IOT/IOT/DAA,f,f,CY245AT,CS241AT,
+CS241AT,CD343AI,f,CS344AI,HS247XL,HS247XL,
+DAA/DAA/IOT,DAA/DAA/IOT,CY245AT,CD343AI,HS248AT,CS344AI,
+f,f,f,f,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+Prof. Sneha M,XX242AT,Dr. Hemavathy R.,Dr. K Badari Nath,Dr. Krishnappa H K,Dr. Jyoti Shetty,
+Prof. Neethu S|Dr. Manas M N|Ms. SAVITRI KULKARNI|,Prof. Neethu S|Dr. Manas M N|Ms. SAVITRI KULKARNI|,f,f,Prof. Sneha M,Dr. Krishnappa H K,
+Dr. Krishnappa H K,Dr. Jyoti Shetty,f,Dr. K Badari Nath,HS247XL,HS247XL,
+Prof. Anitha Sandeep|Dr. Sandhya. S|Dr. Mohana|,Prof. Anitha Sandeep|Dr. Sandhya. S|Dr. Mohana|,Prof. Sneha M,Dr. Jyoti Shetty,Dr. Hemavathy R.,Dr. K Badari Nath,
+f,f,f,f,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+CS lab 10 behind CH,NA,CS lab 1 near bank,CS lab 1 near bank,CS lab 10 behind CH,CS lab 10 behind CH,
+CS Lab 8 library|No Room|No Room|,CS Lab 8 library|No Room|No Room|,NA,NA,CS lab 10 behind CH,CS lab 10 behind CH,
+CS lab 10 behind CH,CS lab 10 behind CH,NA,CS lab 1 near bank,NA,NA,
+CS Lab 7 library|CS Lab 8 library|CS lab 4 near bank|,CS Lab 7 library|CS Lab 8 library|CS lab 4 near bank|,CS lab 10 behind CH,CS lab 10 behind CH,CS lab 10 behind CH,CS lab 10 behind CH,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+

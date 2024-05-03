@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+CS241AT,XX242AT,CD343AI,CY245AT,DAA/DAA/IOT,DAA/DAA/IOT,
+IOT/IOT/DAA,IOT/IOT/DAA,CS241AT,HS248AT,CY245AT,f,
+CD343AI,CS241AT,CS344AI,f,HS247XL,HS247XL,
+CS344AI,CD343AI,HS248AT,f,f,f,
+CY245AT,CS344AI,f,f,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+Dr. Krishnappa H K,XX242AT,Dr. Suma B,Dr. Minal Moharir,Dr. Chethana R Murthy|Dr. Suma B|Dr. K Badari Nath|,Dr. Chethana R Murthy|Dr. Suma B|Dr. K Badari Nath|,
+Dr.Sindhu D V|Prof Srividya M S|Dr. Jyoti Shetty|,Dr.Sindhu D V|Prof Srividya M S|Dr. Jyoti Shetty|,Dr. Krishnappa H K,Prof. Ganashree K C,Dr. Minal Moharir,f,
+Dr. Suma B,Dr. Krishnappa H K,Dr. K Badari Nath,f,HS247XL,HS247XL,
+Dr. K Badari Nath,Dr. Suma B,Prof. Ganashree K C,f,f,f,
+Dr. Minal Moharir,Dr. K Badari Nath,f,f,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+CS Lab 5 near bank,NA,CS Lab 5 near bank,CS Lab 5 near bank,CS Lab 7 library|CS Lab 8 library|CS lab 3 near bank|,CS Lab 7 library|CS Lab 8 library|CS lab 3 near bank|,
+CS Lab 7 library|CS lab 3 near bank|CS lab 4 near bank|,CS Lab 7 library|CS lab 3 near bank|CS lab 4 near bank|,CS Lab 5 near bank,CS Lab 5 near bank,CS Lab 5 near bank,NA,
+CS Lab 5 near bank,CS Lab 5 near bank,CS Lab 5 near bank,NA,NA,NA,
+CS Lab 5 near bank,CS Lab 5 near bank,CS Lab 5 near bank,NA,NA,NA,
+CS Lab 5 near bank,CS Lab 5 near bank,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+

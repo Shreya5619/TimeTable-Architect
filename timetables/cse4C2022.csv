@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+CS241AT,XX242AT,IOT/IOT/DAA,IOT/IOT/DAA,CS344AI,f,
+CD343AI,CS241AT,CS344AI,f,f,f,
+CY245AT,CD343AI,CS241AT,HS248AT,HS247XL,HS247XL,
+HS248AT,CY245AT,CS344AI,f,DAA/DAA/IOT,DAA/DAA/IOT,
+f,f,CY245AT,CD343AI,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+Prof. Anitha Sandeep,XX242AT,Prof. Apoorva Uday Kumar Chate|Dr.Sindhu D V|Prof. Ganashree K C|,Prof. Apoorva Uday Kumar Chate|Dr.Sindhu D V|Prof. Ganashree K C|,Prof Srividya M S,f,
+Prof. Ganashree K C,Prof. Anitha Sandeep,Prof Srividya M S,f,f,f,
+Dr. Deepamala N,Prof. Ganashree K C,Prof. Anitha Sandeep,Prof. Manonmani S,HS247XL,HS247XL,
+Prof. Manonmani S,Dr. Deepamala N,Prof Srividya M S,f,Prof. Anitha Sandeep|Dr. Vishalakshi Prabhu H|Dr. Manas M N|,Prof. Anitha Sandeep|Dr. Vishalakshi Prabhu H|Dr. Manas M N|,
+f,f,Dr. Deepamala N,Prof. Ganashree K C,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+CS lab 2 near bank,NA,CS lab 2 near bank|CS lab 3 near bank|CS lab 4 near bank|,CS lab 2 near bank|CS lab 3 near bank|CS lab 4 near bank|,CS lab 2 near bank,NA,
+CS lab 2 near bank,CS lab 2 near bank,CS lab 4 near bank,NA,NA,NA,
+CS lab 2 near bank,CS lab 2 near bank,CS lab 2 near bank,CS lab 2 near bank,NA,NA,
+CS lab 2 near bank,CS lab 2 near bank,CS lab 2 near bank,NA,CS Lab 5 near bank|CS Lab 6 near bank|CS lab 3 near bank|,CS Lab 5 near bank|CS Lab 6 near bank|CS lab 3 near bank|,
+NA,NA,CS lab 2 near bank,CS lab 2 near bank,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+

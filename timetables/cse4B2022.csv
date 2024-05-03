@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+CS241AT,XX242AT,CD343AI,CY245AT,CS344AI,f,
+CD343AI,CS241AT,HS248AT,CS344AI,DAA/DAA/IOT,DAA/DAA/IOT,
+IOT/IOT/DAA,IOT/IOT/DAA,CS241AT,f,HS247XL,HS247XL,
+CY245AT,CD343AI,CS344AI,f,f,f,
+HS248AT,CY245AT,f,f,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+Prof. Smriti Srivastava,XX242AT,Dr. Chethana R Murthy,Dr. Pavithra H,Dr.Sindhu D V,f,
+Dr. Chethana R Murthy,Prof. Smriti Srivastava,Prof. Neethu S,Dr.Sindhu D V,Dr. Jyoti Shetty|Dr. Suma B|Prof Srividya M S|,Dr. Jyoti Shetty|Dr. Suma B|Prof Srividya M S|,
+Dr.Sindhu D V|Dr. Mohana|Dr. Vishalakshi Prabhu H|,Dr.Sindhu D V|Dr. Mohana|Dr. Vishalakshi Prabhu H|,Prof. Smriti Srivastava,f,HS247XL,HS247XL,
+Dr. Pavithra H,Dr. Chethana R Murthy,Dr.Sindhu D V,f,f,f,
+Prof. Neethu S,Dr. Pavithra H,f,f,XX242AT,XX242AT,
+HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+CS Lab 6 near bank,NA,CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,NA,
+CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,CS lab 1 near bank|CS lab 2 near bank|CS lab 4 near bank|,CS lab 1 near bank|CS lab 2 near bank|CS lab 4 near bank|,
+CS lab 1 near bank|CS lab 3 near bank|CS lab 4 near bank|,CS lab 1 near bank|CS lab 3 near bank|CS lab 4 near bank|,CS Lab 6 near bank,NA,NA,NA,
+CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,NA,NA,NA,
+CS Lab 6 near bank,CS Lab 6 near bank,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
