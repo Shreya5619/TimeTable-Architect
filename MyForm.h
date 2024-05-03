@@ -506,6 +506,9 @@ private: System::Windows::Forms::Label^ label45;
 private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ freefactor;
 private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ compactlabs;
 private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
+private: System::Windows::Forms::Label^ label83;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
+
 
 
 
@@ -2059,13 +2062,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
 
                                 if (button != nullptr)
                                 {
-                                    if (button->Text == "Busy")
-                                    {
-                                        file << "1,0";
-                                    }
-                                    else if (button->Text == "Free")
+                                    if (button->Text == "Free" || button->Text == "free")
                                     {
                                         file << "0,0";
+                                    }
+                                    else
+                                    {
+                                        file << "1,"<<replacewhitespace(msclr::interop::marshal_as<string>(button->Text));
                                     }
                                     if (i != 36)
                                     {
@@ -3182,6 +3185,29 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
                 }
             }
         }
+        void Button_ClickFreeBusyedit(Object^ sender, EventArgs^ e) {
+            Button^ clickedButton = dynamic_cast<Button^>(sender);
+            if (clickedButton != nullptr) {
+                // Toggle the text of the clicked button
+                if (editteachertt->Text == "")
+                {
+                    MessageBox::Show("Enter the Name to be displayed", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                }
+                else
+                {
+                    if (clickedButton->Text != editteachertt->Text)
+                    {
+                        clickedButton->Text = editteachertt->Text;
+                        clickedButton->BackColor = Color::FromArgb(160, 252, 255);
+                    }
+                    else
+                    {
+                        clickedButton->Text = "Free";
+                        clickedButton->BackColor = Color::FromArgb(210, 255, 255);
+                    }
+                }
+            }
+        }
         void InitializeMatrix(TableLayoutPanel^ tableLayoutPanel, String^ s, String^ Texts, int x) {
 
             // Clear existing buttons if any
@@ -3218,6 +3244,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
                             button->Click += gcnew EventHandler(this, &MyForm::Button_clickEditEle);
                         if (x == 3)
                             button->Click += gcnew EventHandler(this, &MyForm::Button_clicks);
+                        if (x == 4)
+                            button->Click += gcnew EventHandler(this, &MyForm::Button_ClickFreeBusyedit);
                         tableLayoutPanel->Controls->Add(button, j, i);
                     }
                 }
@@ -3859,6 +3887,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->timer11 = (gcnew System::Windows::Forms::Timer(this->components));
             this->timer12 = (gcnew System::Windows::Forms::Timer(this->components));
             this->timer13 = (gcnew System::Windows::Forms::Timer(this->components));
+            this->editteachertt = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
+            this->label83 = (gcnew System::Windows::Forms::Label());
             this->addsubjectpanel->SuspendLayout();
             this->panel11->SuspendLayout();
             this->panel48->SuspendLayout();
@@ -4148,6 +4178,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->editroomnamegroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel11))->BeginInit();
             this->editroompanel->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertt))->BeginInit();
             this->SuspendLayout();
             // 
             // addsubjectpanel
@@ -5713,9 +5744,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->editteacherpanel->AutoScroll = true;
             this->editteacherpanel->Controls->Add(this->panel5);
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->editteacherpanel->Location = System::Drawing::Point(0, 0);
+            this->editteacherpanel->Location = System::Drawing::Point(364, 76);
             this->editteacherpanel->Name = L"editteacherpanel";
-            this->editteacherpanel->Size = System::Drawing::Size(1924, 1050);
+            this->editteacherpanel->Size = System::Drawing::Size(1560, 974);
             this->editteacherpanel->TabIndex = 264;
             this->editteacherpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editteacherpanel_Paint);
             // 
@@ -5909,7 +5940,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             // 
             this->panel18->Controls->Add(this->editteacherdelete);
             this->panel18->Controls->Add(this->editteachersave);
-            this->panel18->Location = System::Drawing::Point(689, 1977);
+            this->panel18->Location = System::Drawing::Point(701, 2060);
             this->panel18->Name = L"panel18";
             this->panel18->Size = System::Drawing::Size(406, 116);
             this->panel18->TabIndex = 291;
@@ -5952,6 +5983,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             // 
             // editteachertablegroup.Panel
             // 
+            this->editteachertablegroup->Panel->Controls->Add(this->label83);
+            this->editteachertablegroup->Panel->Controls->Add(this->editteachertt);
             this->editteachertablegroup->Panel->Controls->Add(this->panel19);
             this->editteachertablegroup->Panel->Controls->Add(this->panel23);
             this->editteachertablegroup->Panel->Controls->Add(this->editteachertablepanel);
@@ -5970,7 +6003,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->editteachertablegroup->Panel->Controls->Add(this->label19);
             this->editteachertablegroup->Panel->Controls->Add(this->label20);
             this->editteachertablegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editteachertablegroup_Panel_Enter);
-            this->editteachertablegroup->Size = System::Drawing::Size(1127, 642);
+            this->editteachertablegroup->Size = System::Drawing::Size(1127, 735);
             this->editteachertablegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editteachertablegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5987,7 +6020,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->panel19->BackColor = System::Drawing::Color::White;
             this->panel19->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel19.BackgroundImage")));
             this->panel19->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel19->Location = System::Drawing::Point(743, 159);
+            this->panel19->Location = System::Drawing::Point(749, 253);
             this->panel19->Name = L"panel19";
             this->panel19->Size = System::Drawing::Size(44, 420);
             this->panel19->TabIndex = 1;
@@ -5997,7 +6030,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->panel23->BackColor = System::Drawing::Color::White;
             this->panel23->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel23.BackgroundImage")));
             this->panel23->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel23->Location = System::Drawing::Point(408, 159);
+            this->panel23->Location = System::Drawing::Point(414, 253);
             this->panel23->Name = L"panel23";
             this->panel23->Size = System::Drawing::Size(44, 430);
             this->panel23->TabIndex = 300;
@@ -6022,7 +6055,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
                 16.66887F)));
             this->editteachertablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->editteachertablepanel->Location = System::Drawing::Point(121, 159);
+            this->editteachertablepanel->Location = System::Drawing::Point(127, 253);
             this->editteachertablepanel->Name = L"editteachertablepanel";
             this->editteachertablepanel->RowCount = 6;
             this->editteachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent,
@@ -6045,7 +6078,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->panel24->BackColor = System::Drawing::Color::White;
             this->panel24->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel24.BackgroundImage")));
             this->panel24->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel24->Location = System::Drawing::Point(397, 159);
+            this->panel24->Location = System::Drawing::Point(403, 253);
             this->panel24->Name = L"panel24";
             this->panel24->Size = System::Drawing::Size(82, 412);
             this->panel24->TabIndex = 2;
@@ -6056,7 +6089,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label7->BackColor = System::Drawing::Color::White;
             this->label7->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label7->Location = System::Drawing::Point(21, 179);
+            this->label7->Location = System::Drawing::Point(27, 273);
             this->label7->Name = L"label7";
             this->label7->Size = System::Drawing::Size(85, 28);
             this->label7->TabIndex = 261;
@@ -6080,7 +6113,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label8->BackColor = System::Drawing::Color::White;
             this->label8->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label8->Location = System::Drawing::Point(27, 248);
+            this->label8->Location = System::Drawing::Point(33, 342);
             this->label8->Name = L"label8";
             this->label8->Size = System::Drawing::Size(83, 28);
             this->label8->TabIndex = 262;
@@ -6092,7 +6125,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label9->BackColor = System::Drawing::Color::White;
             this->label9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label9->Location = System::Drawing::Point(139, 119);
+            this->label9->Location = System::Drawing::Point(145, 213);
             this->label9->Name = L"label9";
             this->label9->Size = System::Drawing::Size(105, 28);
             this->label9->TabIndex = 294;
@@ -6104,7 +6137,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label10->BackColor = System::Drawing::Color::White;
             this->label10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label10->Location = System::Drawing::Point(11, 325);
+            this->label10->Location = System::Drawing::Point(17, 419);
             this->label10->Name = L"label10";
             this->label10->Size = System::Drawing::Size(113, 28);
             this->label10->TabIndex = 263;
@@ -6116,7 +6149,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label11->BackColor = System::Drawing::Color::White;
             this->label11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label11->Location = System::Drawing::Point(275, 119);
+            this->label11->Location = System::Drawing::Point(281, 213);
             this->label11->Name = L"label11";
             this->label11->Size = System::Drawing::Size(116, 28);
             this->label11->TabIndex = 295;
@@ -6128,7 +6161,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label12->BackColor = System::Drawing::Color::White;
             this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label12->Location = System::Drawing::Point(11, 389);
+            this->label12->Location = System::Drawing::Point(17, 483);
             this->label12->Name = L"label12";
             this->label12->Size = System::Drawing::Size(91, 28);
             this->label12->TabIndex = 264;
@@ -6140,7 +6173,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label14->BackColor = System::Drawing::Color::White;
             this->label14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label14->Location = System::Drawing::Point(461, 119);
+            this->label14->Location = System::Drawing::Point(467, 213);
             this->label14->Name = L"label14";
             this->label14->Size = System::Drawing::Size(116, 28);
             this->label14->TabIndex = 296;
@@ -6152,7 +6185,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label16->BackColor = System::Drawing::Color::White;
             this->label16->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label16->Location = System::Drawing::Point(25, 465);
+            this->label16->Location = System::Drawing::Point(31, 559);
             this->label16->Name = L"label16";
             this->label16->Size = System::Drawing::Size(66, 28);
             this->label16->TabIndex = 265;
@@ -6164,7 +6197,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label17->BackColor = System::Drawing::Color::White;
             this->label17->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label17->Location = System::Drawing::Point(615, 119);
+            this->label17->Location = System::Drawing::Point(621, 213);
             this->label17->Name = L"label17";
             this->label17->Size = System::Drawing::Size(105, 28);
             this->label17->TabIndex = 297;
@@ -6176,7 +6209,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label18->BackColor = System::Drawing::Color::White;
             this->label18->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label18->Location = System::Drawing::Point(25, 542);
+            this->label18->Location = System::Drawing::Point(31, 636);
             this->label18->Name = L"label18";
             this->label18->Size = System::Drawing::Size(90, 28);
             this->label18->TabIndex = 266;
@@ -6188,7 +6221,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label19->BackColor = System::Drawing::Color::White;
             this->label19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label19->Location = System::Drawing::Point(809, 115);
+            this->label19->Location = System::Drawing::Point(815, 209);
             this->label19->Name = L"label19";
             this->label19->Size = System::Drawing::Size(94, 28);
             this->label19->TabIndex = 298;
@@ -6200,7 +6233,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->label20->BackColor = System::Drawing::Color::White;
             this->label20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label20->Location = System::Drawing::Point(939, 115);
+            this->label20->Location = System::Drawing::Point(945, 209);
             this->label20->Name = L"label20";
             this->label20->Size = System::Drawing::Size(94, 28);
             this->label20->TabIndex = 299;
@@ -7567,9 +7600,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->classpanel->Controls->Add(this->panel29);
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->classpanel->Location = System::Drawing::Point(364, 76);
+            this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1560, 974);
+            this->classpanel->Size = System::Drawing::Size(1924, 1050);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -11659,6 +11692,26 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             // 
             this->timer13->Interval = 50;
             // 
+            // editteachertt
+            // 
+            this->editteachertt->DropDownWidth = 410;
+            this->editteachertt->Location = System::Drawing::Point(127, 147);
+            this->editteachertt->Name = L"editteachertt";
+            this->editteachertt->Size = System::Drawing::Size(410, 29);
+            this->editteachertt->TabIndex = 345;
+            // 
+            // label83
+            // 
+            this->label83->AutoSize = true;
+            this->label83->BackColor = System::Drawing::Color::White;
+            this->label83->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label83->Location = System::Drawing::Point(122, 101);
+            this->label83->Name = L"label83";
+            this->label83->Size = System::Drawing::Size(749, 28);
+            this->label83->TabIndex = 346;
+            this->label83->Text = L"Enter the name you want to display in the timetable and then select the timeslot";
+            // 
             // MyForm
             // 
             this->AutoScaleDimensions = System::Drawing::SizeF(144, 144);
@@ -11666,12 +11719,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1924, 1050);
-            this->Controls->Add(this->classpanel);
+            this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->kryptonPanel6);
             this->Controls->Add(this->editsubactivepanel);
-            this->Controls->Add(this->deleteclasspanel);
-            this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel2);
             this->Controls->Add(this->settingspanel);
             this->Controls->Add(this->addteacherpanel);
@@ -11680,6 +11731,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->Controls->Add(this->editsubjectpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->classpanel);
+            this->Controls->Add(this->deleteclasspanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -12043,6 +12096,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             this->editroomnamegroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel11))->EndInit();
             this->editroompanel->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertt))->EndInit();
             this->ResumeLayout(false);
 
         }
@@ -12213,7 +12267,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
         InitializeMatrix(addroomtablepanel, "room", "Free", 1);
         InitializeMatrix(editroomtablepanel, "editroom", "Free", 1);
         InitializeMatrix(teachertablepanel, "teacher", "Free", 1);
-        InitializeMatrix(editteachertablepanel, "editteacher", "Free", 1);
+        InitializeMatrix(editteachertablepanel, "editteacher", "Free", 4);
         InitializeMatrix(editsubeletable, "editele", "Available", 2);
     }
 
@@ -13106,6 +13160,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
         button14->BackColor = Color::FromArgb(0, 0, 77);
         DisplayCSVInComboBoxkrypt("details/dept_file.csv", editteacherdepartment);
         DisplayCSVInComboBoxkrypt("details/teacher_file.csv", teachersearch);
+        DisplayCSVInComboBoxkrypt("details/section.csv", editteachertt);
     }
     private: System::Void richTextBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
     }
@@ -13601,12 +13656,12 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
             MessageBox::Show("Section Name not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
-        if (String::IsNullOrEmpty(classbatch->Text))
+        else if (String::IsNullOrEmpty(classbatch->Text))
         {
             MessageBox::Show("Batch(Year of admission not filled)", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
         }
-        if (String::IsNullOrEmpty(classbranch->Text))
+        else if (String::IsNullOrEmpty(classbranch->Text))
         {
             MessageBox::Show("Branch not filled", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
             flag = false;
@@ -13641,73 +13696,80 @@ private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
 
         if (flag) {
             //
-            section obj;
-            for (int i = 0; i < classele->RowCount; i++)
+            if (searchname(replacewhitespace(msclr::interop::marshal_as<string>(classbranch->Text))+ replacewhitespace(msclr::interop::marshal_as<string>(classname->Text)) + replacewhitespace(msclr::interop::marshal_as<string>(classbatch->Text)), "details/section.csv", 0))
             {
-                if (classele->Rows[i]->Cells[0]->Value != nullptr)
+                MessageBox::Show("Section already exists", "Error", MessageBoxButtons::OK, MessageBoxIcon::Information);
+            }
+            else
+            {
+                section obj;
+                for (int i = 0; i < classele->RowCount; i++)
                 {
-                    vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
-                    for (auto name : rowsOfElectives) {
-                        if (name[0] == replacewhitespace(msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString())))
-                        {
-                            for (int ptr = 1; ptr < name.size(); ptr++) {
-                                if (name[ptr] != "0")
-                                {
-                                    int day = (ptr - 1) / 6;
-                                    int period = (ptr - 1) % 6;
-                                    obj.block(day, period, name[ptr], name[ptr]);
+                    if (classele->Rows[i]->Cells[0]->Value != nullptr)
+                    {
+                        vector<vector<string>> rowsOfElectives = ReadCSVFile("details/electivetimetable.csv");
+                        for (auto name : rowsOfElectives) {
+                            if (name[0] == replacewhitespace(msclr::interop::marshal_as<string>(classele->Rows[i]->Cells[0]->Value->ToString())))
+                            {
+                                for (int ptr = 1; ptr < name.size(); ptr++) {
+                                    if (name[ptr] != "0")
+                                    {
+                                        int day = (ptr - 1) / 6;
+                                        int period = (ptr - 1) % 6;
+                                        obj.block(day, period, name[ptr], name[ptr]);
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            for (int x = 0; x < 6; x++)
-            {
-                for (int y = 0; y < 6; y++)
+                for (int x = 0; x < 6; x++)
                 {
-                    Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", x * 6 + y + 1)]);
-                    if (button->Text == "Reserved")
+                    for (int y = 0; y < 6; y++)
                     {
-                        obj.block(x, y, "Reserved", "Reserved");
+                        Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", x * 6 + y + 1)]);
+                        if (button->Text == "Reserved")
+                        {
+                            obj.block(x, y, "Reserved", "Reserved");
+                        }
                     }
                 }
-            }
-            InitializeMatrix(classtablegen1, "g", "free", -1);
-            classresgroup->Height = 0;
-            classgengroup->Height = 500;
+                InitializeMatrix(classtablegen1, "g", "free", -1);
+                classresgroup->Height = 0;
+                classgengroup->Height = 500;
                 classgengroup->Top = panel27->Bottom + 30;;
-            String^ sec = (classname)->Text->ToString();
-            string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
-            String^ branch = classbranch->Text->ToString();
-            string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
-            String^ year = classbatch->Text->ToString();
-            string YEAR = msclr::interop::marshal_as<string>(year);
+                String^ sec = (classname)->Text->ToString();
+                string Sec = replacewhitespace(msclr::interop::marshal_as<string>(sec));
+                String^ branch = classbranch->Text->ToString();
+                string Branch = replacewhitespace(msclr::interop::marshal_as<string>(branch));
+                String^ year = classbatch->Text->ToString();
+                string YEAR = msclr::interop::marshal_as<string>(year);
 
-            obj.name = Sec + YEAR + Branch;
-            allteachersfunction("details/teacher_file.csv", obj);
-            allroomsfunction("details/classroom.csv", obj);
-            //alloting default rooms
-            defaultroomallot(obj);
-            //alloting core teacher and subjects
-            loadcore(obj);
-            if (compactlabs->Checked)
-                obj.compactLab = true;
-            labcreate(labteachers, obj);
-            obj.makeTIMETABLE();
-            if (obj.errorMessage != "")
-            {
-                MessageBox::Show(msclr::interop::marshal_as<String^>(obj.errorMessage), "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-            }
-            for (int i = 0; i < obj.timeTable.size(); i++)
-            {
-                for (int j = 0; j < obj.timeTable[i].size(); j++)
+                obj.name = Branch+ Sec + YEAR;
+                allteachersfunction("details/teacher_file.csv", obj);
+                allroomsfunction("details/classroom.csv", obj);
+                //alloting default rooms
+                defaultroomallot(obj);
+                //alloting core teacher and subjects
+                loadcore(obj);
+                if (compactlabs->Checked)
+                    obj.compactLab = true;
+                labcreate(labteachers, obj);
+                obj.makeTIMETABLE();
+                if (obj.errorMessage != "")
                 {
-                    Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
-                    if (obj.timeTable[i][j] != "f")
-                        button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(obj.timeTable[i][j]));
-                    else
-                        button->Text = "free";
+                    MessageBox::Show(msclr::interop::marshal_as<String^>(obj.errorMessage), "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+                }
+                for (int i = 0; i < obj.timeTable.size(); i++)
+                {
+                    for (int j = 0; j < obj.timeTable[i].size(); j++)
+                    {
+                        Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
+                        if (obj.timeTable[i][j] != "f")
+                            button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(obj.timeTable[i][j]));
+                        else
+                            button->Text = "free";
+                    }
                 }
             }
         }
