@@ -21,6 +21,7 @@ extern std::vector<std::vector<std::string>>labteachers;
 extern std::string editsublastpanel;
 extern std::string addsublastpanel;
 section l;
+
 namespace TTA_ui {
     using namespace std;
     using namespace System::IO;
@@ -284,7 +285,6 @@ namespace TTA_ui {
     private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addteachername;
     private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel9;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ deptgroup;
-
     private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ deptDataGridView;
     private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel8;
     private: System::Windows::Forms::Panel^ panel29;
@@ -501,18 +501,59 @@ private: System::Windows::Forms::Label^ label172;
 private: System::Windows::Forms::Label^ label173;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox5;
 private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ busyfactor;
-
 private: System::Windows::Forms::Label^ label45;
 private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ freefactor;
 private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ compactlabs;
 private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ classoptrooms;
 private: System::Windows::Forms::Label^ label83;
 private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
-
-
-
-
-
+private: System::Windows::Forms::Label^ label84;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addteachertt;
+private: System::Windows::Forms::Panel^ panel20;
+private: System::Windows::Forms::Panel^ panel21;
+private: System::Windows::Forms::PictureBox^ pictureBox9;
+private: System::Windows::Forms::Button^ button20;
+private: System::Windows::Forms::Button^ button24;
+private: System::Windows::Forms::Button^ button25;
+private: System::Windows::Forms::Panel^ Labaddpanel;
+private: System::Windows::Forms::Panel^ panel22;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox1;
+private: System::Windows::Forms::Panel^ panel55;
+private: System::Windows::Forms::Panel^ panel60;
+private: System::Windows::Forms::Label^ label85;
+private: System::Windows::Forms::TableLayoutPanel^ tableLayoutPanel2;
+private: System::Windows::Forms::Panel^ panel61;
+private: System::Windows::Forms::Label^ label86;
+private: System::Windows::Forms::Label^ label87;
+private: System::Windows::Forms::Label^ label88;
+private: System::Windows::Forms::Label^ label89;
+private: System::Windows::Forms::Label^ label90;
+private: System::Windows::Forms::Label^ label91;
+private: System::Windows::Forms::Label^ label102;
+private: System::Windows::Forms::Label^ label111;
+private: System::Windows::Forms::Label^ label121;
+private: System::Windows::Forms::Label^ label122;
+private: System::Windows::Forms::Label^ label136;
+private: System::Windows::Forms::Label^ label174;
+private: System::Windows::Forms::Panel^ panel62;
+private: System::Windows::Forms::Button^ button30;
+private: System::Windows::Forms::Button^ button31;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox7;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ kryptonComboBox1;
+private: System::Windows::Forms::Label^ label176;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel12;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox8;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown2;
+private: System::Windows::Forms::Label^ label177;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox11;
+private: System::Windows::Forms::Label^ label180;
+private: System::Windows::Forms::Panel^ panel63;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ kryptonRadioButton1;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ kryptonRadioButton2;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox12;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel16;
+private: System::Windows::Forms::Label^ label186;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
     public:
         int animationProgress = 0;
     private: System::Void timer1_Tick_1(System::Object^ sender, System::EventArgs^ e) {
@@ -1288,36 +1329,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
 
                }
            }
-
-           void Button_click(Object^ sender, EventArgs^ e)
-           {
-               Button^ clickedButton = dynamic_cast<Button^>(sender);
-               if (clickedButton != nullptr) {
-                   // Toggle the text of the clicked button
-                   if (clickedButton->Text == "Available")
-                   {
-                       clickedButton->Text = addsubname->Text;
-                       clickedButton->BackColor = Color::FromArgb(160, 252, 255);
-                   }
-                   else if (clickedButton->Text == addsubname->Text)
-                   {
-                       clickedButton->Text = "Available";
-                       clickedButton->BackColor = Color::FromArgb(210, 255, 255);
-                   }
-                   else if (clickedButton->Text == "free")
-                   {
-                       clickedButton->Text = "Busy";
-                       clickedButton->BackColor = Color::FromArgb(160, 252, 255);
-                   }
-                   else if (clickedButton->Text == "Busy")
-                   {
-                       clickedButton->Text = "free";
-                       clickedButton->BackColor = Color::FromArgb(210, 255, 255);
-                   }
-
-               }
-           }
-
            void Button_clicks(Object^ sender, EventArgs^ e)
            {
                Button^ clickedButton = dynamic_cast<Button^>(sender);
@@ -1438,13 +1449,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                                Button^ button = dynamic_cast<Button^>(addroomtablepanel->Controls[String::Format("buttonteacher{0}", tagValue)]);
                                if (button != nullptr)
                                {
-                                   if (button->Text == "Busy")
-                                   {
-                                       x += "1,0";
-                                   }
-                                   else if (button->Text == "Free")
+                                   if (button->Text == "Free")
                                    {
                                        x += "0,0";
+                                   }
+                                   else 
+                                   {
+                                       x += "1,"+replacewhitespace(msclr::interop::marshal_as<string>(button->Text));
                                    }
                                    if (i != 36)
                                    {
@@ -1480,13 +1491,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                                Button^ button = dynamic_cast<Button^>(teachertablepanel->Controls[String::Format("buttonteacher{0}", tagValue)]);
                                if (button != nullptr)
                                {
-                                   if (button->Text == "Busy")
+                                   if (button->Text == "Free")
                                    {
-                                       outputFile << "1,0";
+                                       outputFile<< "0,0";
                                    }
-                                   else if (button->Text == "Free")
+                                   else
                                    {
-                                       outputFile << "0,0";
+                                       outputFile<<"1," + replacewhitespace(msclr::interop::marshal_as<string>(button->Text));
                                    }
                                    if (i != 36)
                                    {
@@ -3185,27 +3196,87 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 }
             }
         }
-        void Button_ClickFreeBusyedit(Object^ sender, EventArgs^ e) {
-            Button^ clickedButton = dynamic_cast<Button^>(sender);
-            if (clickedButton != nullptr) {
-                // Toggle the text of the clicked button
-                if (editteachertt->Text == "")
-                {
-                    MessageBox::Show("Enter the Name to be displayed", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
-                }
-                else
-                {
-                    if (clickedButton->Text != editteachertt->Text)
+        void Button_Clickteacheredit(Object^ sender, EventArgs^ e) {
+            try
+            {
+                Button^ clickedButton = dynamic_cast<Button^>(sender);
+                if (clickedButton != nullptr) {
+                    // Toggle the text of the clicked button
+                    if (editteachertt->Text == "")
                     {
-                        clickedButton->Text = editteachertt->Text;
-                        clickedButton->BackColor = Color::FromArgb(160, 252, 255);
+                        MessageBox::Show("Enter the Name to be displayed", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
                     }
                     else
                     {
-                        clickedButton->Text = "Free";
-                        clickedButton->BackColor = Color::FromArgb(210, 255, 255);
+                        if (clickedButton->Text != editteachertt->Text)
+                        {
+                            clickedButton->Text = editteachertt->Text;
+                            clickedButton->BackColor = Color::FromArgb(160, 252, 255);
+                        }
+                        else
+                        {
+                            int s = std::stoi(msclr::interop::marshal_as<string>(clickedButton->Name).erase(0, 17));
+                            vector < vector<string>> data = ReadCSVFile("details/teacher_file.csv");
+                            for (const auto& row : data)
+                            {
+                                if (row[0] == searchteachername)
+                                {
+                                    if (row[2 * s + 1] == "0")
+                                    {
+                                        clickedButton->Text = "Free";
+                                        clickedButton->BackColor = Color::FromArgb(210, 255, 255);
+                                    }
+                                    else
+                                    {
+                                        if (row[2 * s + 2] == "0")
+                                        {
+                                            clickedButton->Text = "Busy";
+                                        }
+                                        else
+                                        {
+                                            clickedButton->Text = msclr::interop::marshal_as<String^>(replaceunderscore(row[2 * s + 2]));
+                                        }
+                                        clickedButton->BackColor = Color::FromArgb(160, 252, 255);
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+            }
+            catch (...)
+            {
+                
+            }
+        }
+        void Button_Clickteacher(Object^ sender, EventArgs^ e) {
+            try
+            {
+                Button^ clickedButton = dynamic_cast<Button^>(sender);
+                if (clickedButton != nullptr) {
+                    // Toggle the text of the clicked button
+                    if (addteachertt->Text == "")
+                    {
+                        MessageBox::Show("Enter the Name to be displayed", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                    }
+                    else
+                    {
+                        if (clickedButton->Text != addteachertt->Text)
+                        {
+                            clickedButton->Text = addteachertt->Text;
+                            clickedButton->BackColor = Color::FromArgb(160, 252, 255);
+                        }
+                        else
+                        {
+                            clickedButton->Text = "Free";
+                            clickedButton->BackColor = Color::FromArgb(210, 255, 255);
+                        }
+                    }
+                }
+            }
+            catch (...)
+            {
+
             }
         }
         void InitializeMatrix(TableLayoutPanel^ tableLayoutPanel, String^ s, String^ Texts, int x) {
@@ -3238,14 +3309,16 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                         tableLayoutPanel->Controls->Add(button, j, i);
                         if (x == 0)
                             button->Click += gcnew EventHandler(this, &MyForm::Button_clickEle);
-                        if (x == 1)
+                        else if (x == 1)
                             button->Click += gcnew EventHandler(this, &MyForm::Button_ClickFreeBusy);
-                        if (x == 2)
+                        else if (x == 2)
                             button->Click += gcnew EventHandler(this, &MyForm::Button_clickEditEle);
-                        if (x == 3)
+                        else if (x == 3)
                             button->Click += gcnew EventHandler(this, &MyForm::Button_clicks);
-                        if (x == 4)
-                            button->Click += gcnew EventHandler(this, &MyForm::Button_ClickFreeBusyedit);
+                        else if (x == 4)
+                            button->Click += gcnew EventHandler(this, &MyForm::Button_Clickteacheredit);
+                        else if (x == 5)
+                            button->Click += gcnew EventHandler(this, &MyForm::Button_Clickteacher);
                         tableLayoutPanel->Controls->Add(button, j, i);
                     }
                 }
@@ -3293,11 +3366,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
     private: System::Windows::Forms::Button^ editteachersave;
     private: System::Windows::Forms::Button^ editteacherdelete;
     private: System::Windows::Forms::Panel^ settingspanel;
-
-
     private: System::Windows::Forms::Label^ label112;
-
-
     private: System::Windows::Forms::Button^ button1;
     private: System::Windows::Forms::Button^ button6;
     private: System::Windows::Forms::Button^ button9;
@@ -3311,7 +3380,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
     private: System::Windows::Forms::Button^ button15;
     private: System::Windows::Forms::Button^ button14;
     private: System::Windows::Forms::Button^ button13;
-
     private: System::Windows::Forms::PictureBox^ pictureBox2;
     private: System::Windows::Forms::PictureBox^ pictureBox3;
     private: System::Windows::Forms::PictureBox^ pictureBox4;
@@ -3330,22 +3398,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
     private: System::Windows::Forms::Button^ addteachersave;
     private: System::Windows::Forms::Button^ addteachernew;
     private: System::Windows::Forms::Panel^ panel18;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private: System::Windows::Forms::Button^ button2;
     private: System::Windows::Forms::Button^ button22;
     private: System::Windows::Forms::Panel^ panel2;
@@ -3359,9 +3411,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
     private: System::Windows::Forms::Panel^ textBox4;
     private: System::Windows::Forms::Panel^ textBox9;
     private: System::Windows::Forms::Panel^ textBox8;
-
     private: System::Windows::Forms::Button^ button16;
-
     private: System::Windows::Forms::FolderBrowserDialog^ fbd;
     private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel6;
     private: System::Windows::Forms::Panel^ panel4;
@@ -3519,6 +3569,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteacherdelete = (gcnew System::Windows::Forms::Button());
             this->editteachersave = (gcnew System::Windows::Forms::Button());
             this->editteachertablegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->label83 = (gcnew System::Windows::Forms::Label());
+            this->editteachertt = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
             this->panel19 = (gcnew System::Windows::Forms::Panel());
             this->panel23 = (gcnew System::Windows::Forms::Panel());
             this->editteachertablepanel = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -3610,6 +3662,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->pictureBox6 = (gcnew System::Windows::Forms::PictureBox());
             this->pictureBox7 = (gcnew System::Windows::Forms::PictureBox());
             this->panel1 = (gcnew System::Windows::Forms::Panel());
+            this->panel20 = (gcnew System::Windows::Forms::Panel());
+            this->panel21 = (gcnew System::Windows::Forms::Panel());
+            this->pictureBox9 = (gcnew System::Windows::Forms::PictureBox());
+            this->button20 = (gcnew System::Windows::Forms::Button());
+            this->button24 = (gcnew System::Windows::Forms::Button());
             this->panel3 = (gcnew System::Windows::Forms::Button());
             this->pictureBox12 = (gcnew System::Windows::Forms::PictureBox());
             this->button18 = (gcnew System::Windows::Forms::Button());
@@ -3623,6 +3680,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->textBox8 = (gcnew System::Windows::Forms::Panel());
             this->Homebutton1 = (gcnew System::Windows::Forms::Button());
             this->textBox6 = (gcnew System::Windows::Forms::Panel());
+            this->button25 = (gcnew System::Windows::Forms::Button());
             this->classgenerate = (gcnew System::Windows::Forms::Button());
             this->classsave = (gcnew System::Windows::Forms::Button());
             this->classclear = (gcnew System::Windows::Forms::Button());
@@ -3722,6 +3780,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteachersave = (gcnew System::Windows::Forms::Button());
             this->addteachernew = (gcnew System::Windows::Forms::Button());
             this->addteachertablegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->label84 = (gcnew System::Windows::Forms::Label());
+            this->addteachertt = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
             this->panel30 = (gcnew System::Windows::Forms::Panel());
             this->panel31 = (gcnew System::Windows::Forms::Panel());
             this->teachertablepanel = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -3887,8 +3947,45 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->timer11 = (gcnew System::Windows::Forms::Timer(this->components));
             this->timer12 = (gcnew System::Windows::Forms::Timer(this->components));
             this->timer13 = (gcnew System::Windows::Forms::Timer(this->components));
-            this->editteachertt = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
-            this->label83 = (gcnew System::Windows::Forms::Label());
+            this->Labaddpanel = (gcnew System::Windows::Forms::Panel());
+            this->panel22 = (gcnew System::Windows::Forms::Panel());
+            this->kryptonGroupBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->panel55 = (gcnew System::Windows::Forms::Panel());
+            this->panel60 = (gcnew System::Windows::Forms::Panel());
+            this->label85 = (gcnew System::Windows::Forms::Label());
+            this->tableLayoutPanel2 = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->panel61 = (gcnew System::Windows::Forms::Panel());
+            this->label86 = (gcnew System::Windows::Forms::Label());
+            this->label87 = (gcnew System::Windows::Forms::Label());
+            this->label88 = (gcnew System::Windows::Forms::Label());
+            this->label89 = (gcnew System::Windows::Forms::Label());
+            this->label90 = (gcnew System::Windows::Forms::Label());
+            this->label91 = (gcnew System::Windows::Forms::Label());
+            this->label102 = (gcnew System::Windows::Forms::Label());
+            this->label111 = (gcnew System::Windows::Forms::Label());
+            this->label121 = (gcnew System::Windows::Forms::Label());
+            this->label122 = (gcnew System::Windows::Forms::Label());
+            this->label136 = (gcnew System::Windows::Forms::Label());
+            this->label174 = (gcnew System::Windows::Forms::Label());
+            this->panel62 = (gcnew System::Windows::Forms::Panel());
+            this->button30 = (gcnew System::Windows::Forms::Button());
+            this->button31 = (gcnew System::Windows::Forms::Button());
+            this->kryptonGroupBox7 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonComboBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
+            this->label176 = (gcnew System::Windows::Forms::Label());
+            this->kryptonLabel12 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonLabel());
+            this->kryptonGroupBox8 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonNumericUpDown2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown());
+            this->label177 = (gcnew System::Windows::Forms::Label());
+            this->kryptonGroupBox11 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->label180 = (gcnew System::Windows::Forms::Label());
+            this->panel63 = (gcnew System::Windows::Forms::Panel());
+            this->kryptonRadioButton1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->kryptonRadioButton2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->kryptonGroupBox12 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel16 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label186 = (gcnew System::Windows::Forms::Label());
+            this->kryptonTextBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
             this->addsubjectpanel->SuspendLayout();
             this->panel11->SuspendLayout();
             this->panel48->SuspendLayout();
@@ -3974,6 +4071,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertablegroup->Panel))->BeginInit();
             this->editteachertablegroup->Panel->SuspendLayout();
             this->editteachertablegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertt))->BeginInit();
             this->panel28->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteacherdepartmentgroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteacherdepartmentgroup->Panel))->BeginInit();
@@ -4015,6 +4113,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->BeginInit();
             this->panel1->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->BeginInit();
             this->classpanel->SuspendLayout();
@@ -4075,6 +4174,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteachertablegroup->Panel))->BeginInit();
             this->addteachertablegroup->Panel->SuspendLayout();
             this->addteachertablegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteachertt))->BeginInit();
             this->panel35->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteacherdepartmentgroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteacherdepartmentgroup->Panel))->BeginInit();
@@ -4178,7 +4278,32 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomnamegroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel11))->BeginInit();
             this->editroompanel->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertt))->BeginInit();
+            this->Labaddpanel->SuspendLayout();
+            this->panel22->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1->Panel))->BeginInit();
+            this->kryptonGroupBox1->Panel->SuspendLayout();
+            this->kryptonGroupBox1->SuspendLayout();
+            this->panel62->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7->Panel))->BeginInit();
+            this->kryptonGroupBox7->Panel->SuspendLayout();
+            this->kryptonGroupBox7->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonComboBox1))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8->Panel))->BeginInit();
+            this->kryptonGroupBox8->Panel->SuspendLayout();
+            this->kryptonGroupBox8->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11->Panel))->BeginInit();
+            this->kryptonGroupBox11->Panel->SuspendLayout();
+            this->kryptonGroupBox11->SuspendLayout();
+            this->panel63->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12->Panel))->BeginInit();
+            this->kryptonGroupBox12->Panel->SuspendLayout();
+            this->kryptonGroupBox12->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel16))->BeginInit();
             this->SuspendLayout();
             // 
             // addsubjectpanel
@@ -4190,7 +4315,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->addsubjectpanel->Name = L"addsubjectpanel";
-            this->addsubjectpanel->Size = System::Drawing::Size(1924, 1050);
+            this->addsubjectpanel->Size = System::Drawing::Size(1806, 1050);
             this->addsubjectpanel->TabIndex = 124;
             this->addsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addsubjectpanel_Paint);
             // 
@@ -4206,7 +4331,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel11->Controls->Add(this->addsubelegroup);
             this->panel11->Controls->Add(this->addsubnamegroup);
             this->panel11->Controls->Add(this->addsubcodegroup);
-            this->panel11->Location = System::Drawing::Point(179, 13);
+            this->panel11->Location = System::Drawing::Point(178, 14);
             this->panel11->Name = L"panel11";
             this->panel11->Size = System::Drawing::Size(1194, 2224);
             this->panel11->TabIndex = 341;
@@ -4215,9 +4340,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel48->Controls->Add(this->button19);
             this->panel48->Controls->Add(this->addsubsave);
-            this->panel48->Location = System::Drawing::Point(646, 3221);
+            this->panel48->Location = System::Drawing::Point(646, 3220);
             this->panel48->Name = L"panel48";
-            this->panel48->Size = System::Drawing::Size(461, 136);
+            this->panel48->Size = System::Drawing::Size(460, 136);
             this->panel48->TabIndex = 345;
             // 
             // button19
@@ -4226,7 +4351,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button19->Location = System::Drawing::Point(253, 27);
+            this->button19->Location = System::Drawing::Point(254, 27);
             this->button19->Name = L"button19";
             this->button19->Size = System::Drawing::Size(154, 58);
             this->button19->TabIndex = 309;
@@ -4253,7 +4378,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubbfactorgroup->CaptionOverlap = 1;
             this->addsubbfactorgroup->CaptionVisible = false;
             this->addsubbfactorgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addsubbfactorgroup->Location = System::Drawing::Point(23, 2986);
+            this->addsubbfactorgroup->Location = System::Drawing::Point(22, 2986);
             this->addsubbfactorgroup->Name = L"addsubbfactorgroup";
             // 
             // addsubbfactorgroup.Panel
@@ -4262,7 +4387,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubbfactorgroup->Panel->Controls->Add(this->label96);
             this->addsubbfactorgroup->Panel->Controls->Add(this->kryptonNumericUpDown3);
             this->addsubbfactorgroup->Panel->Controls->Add(this->label100);
-            this->addsubbfactorgroup->Size = System::Drawing::Size(1127, 194);
+            this->addsubbfactorgroup->Size = System::Drawing::Size(1126, 194);
             this->addsubbfactorgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubbfactorgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -4342,7 +4467,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->addsubroomlistgroup->Panel->Controls->Add(this->label152);
             this->addsubroomlistgroup->Panel->Controls->Add(this->addsubroomlist);
-            this->addsubroomlistgroup->Size = System::Drawing::Size(1127, 357);
+            this->addsubroomlistgroup->Size = System::Drawing::Size(1126, 357);
             this->addsubroomlistgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubroomlistgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -4364,7 +4489,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label152->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label152->ForeColor = System::Drawing::Color::Black;
-            this->label152->Location = System::Drawing::Point(143, 43);
+            this->label152->Location = System::Drawing::Point(142, 44);
             this->label152->Name = L"label152";
             this->label152->Size = System::Drawing::Size(267, 28);
             this->label152->TabIndex = 344;
@@ -4377,6 +4502,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubroomlist->CheckOnClick = true;
             this->addsubroomlist->Location = System::Drawing::Point(162, 110);
             this->addsubroomlist->Name = L"addsubroomlist";
+            this->addsubroomlist->Padding = System::Windows::Forms::Padding(2);
             this->addsubroomlist->Size = System::Drawing::Size(348, 182);
             this->addsubroomlist->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
             this->addsubroomlist->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
@@ -4393,7 +4519,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubeleyesgroup->CaptionOverlap = 1;
             this->addsubeleyesgroup->CaptionVisible = false;
             this->addsubeleyesgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addsubeleyesgroup->Location = System::Drawing::Point(29, 1167);
+            this->addsubeleyesgroup->Location = System::Drawing::Point(28, 1167);
             this->addsubeleyesgroup->Name = L"addsubeleyesgroup";
             // 
             // addsubeleyesgroup.Panel
@@ -4420,7 +4546,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubeleyesgroup->Panel->Controls->Add(this->addsubclusteroptions);
             this->addsubeleyesgroup->Panel->Controls->Add(this->label178);
             this->addsubeleyesgroup->Panel->Controls->Add(this->label179);
-            this->addsubeleyesgroup->Size = System::Drawing::Size(1127, 1159);
+            this->addsubeleyesgroup->Size = System::Drawing::Size(1126, 1160);
             this->addsubeleyesgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubeleyesgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -4450,7 +4576,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel38->BackColor = System::Drawing::Color::White;
             this->panel38->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel38.BackgroundImage")));
             this->panel38->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel38->Location = System::Drawing::Point(762, 701);
+            this->panel38->Location = System::Drawing::Point(762, 700);
             this->panel38->Name = L"panel38";
             this->panel38->Size = System::Drawing::Size(44, 420);
             this->panel38->TabIndex = 344;
@@ -4460,7 +4586,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel41->BackColor = System::Drawing::Color::White;
             this->panel41->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel41.BackgroundImage")));
             this->panel41->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel41->Location = System::Drawing::Point(427, 701);
+            this->panel41->Location = System::Drawing::Point(428, 700);
             this->panel41->Name = L"panel41";
             this->panel41->Size = System::Drawing::Size(44, 430);
             this->panel41->TabIndex = 359;
@@ -4485,7 +4611,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->tableLayoutPanel1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->tableLayoutPanel1->Location = System::Drawing::Point(140, 701);
+            this->tableLayoutPanel1->Location = System::Drawing::Point(140, 700);
             this->tableLayoutPanel1->Name = L"tableLayoutPanel1";
             this->tableLayoutPanel1->RowCount = 6;
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -4494,7 +4620,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->tableLayoutPanel1->Size = System::Drawing::Size(950, 431);
+            this->tableLayoutPanel1->Size = System::Drawing::Size(950, 430);
             this->tableLayoutPanel1->TabIndex = 346;
             // 
             // panel49
@@ -4502,7 +4628,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel49->BackColor = System::Drawing::Color::White;
             this->panel49->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel49.BackgroundImage")));
             this->panel49->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel49->Location = System::Drawing::Point(416, 701);
+            this->panel49->Location = System::Drawing::Point(416, 700);
             this->panel49->Name = L"panel49";
             this->panel49->Size = System::Drawing::Size(82, 412);
             this->panel49->TabIndex = 345;
@@ -4513,7 +4639,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label13->BackColor = System::Drawing::Color::White;
             this->label13->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label13->Location = System::Drawing::Point(40, 721);
+            this->label13->Location = System::Drawing::Point(40, 722);
             this->label13->Name = L"label13";
             this->label13->Size = System::Drawing::Size(85, 28);
             this->label13->TabIndex = 347;
@@ -4537,7 +4663,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label38->BackColor = System::Drawing::Color::White;
             this->label38->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label38->Location = System::Drawing::Point(158, 661);
+            this->label38->Location = System::Drawing::Point(158, 662);
             this->label38->Name = L"label38";
             this->label38->Size = System::Drawing::Size(105, 28);
             this->label38->TabIndex = 353;
@@ -4561,7 +4687,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label66->BackColor = System::Drawing::Color::White;
             this->label66->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label66->Location = System::Drawing::Point(294, 661);
+            this->label66->Location = System::Drawing::Point(294, 662);
             this->label66->Name = L"label66";
             this->label66->Size = System::Drawing::Size(116, 28);
             this->label66->TabIndex = 354;
@@ -4573,7 +4699,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label67->BackColor = System::Drawing::Color::White;
             this->label67->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label67->Location = System::Drawing::Point(30, 931);
+            this->label67->Location = System::Drawing::Point(30, 932);
             this->label67->Name = L"label67";
             this->label67->Size = System::Drawing::Size(91, 28);
             this->label67->TabIndex = 350;
@@ -4585,7 +4711,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label68->BackColor = System::Drawing::Color::White;
             this->label68->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label68->Location = System::Drawing::Point(480, 661);
+            this->label68->Location = System::Drawing::Point(480, 662);
             this->label68->Name = L"label68";
             this->label68->Size = System::Drawing::Size(116, 28);
             this->label68->TabIndex = 355;
@@ -4597,7 +4723,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label69->BackColor = System::Drawing::Color::White;
             this->label69->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label69->Location = System::Drawing::Point(44, 1007);
+            this->label69->Location = System::Drawing::Point(44, 1006);
             this->label69->Name = L"label69";
             this->label69->Size = System::Drawing::Size(66, 28);
             this->label69->TabIndex = 351;
@@ -4609,7 +4735,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label70->BackColor = System::Drawing::Color::White;
             this->label70->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label70->Location = System::Drawing::Point(634, 661);
+            this->label70->Location = System::Drawing::Point(634, 662);
             this->label70->Name = L"label70";
             this->label70->Size = System::Drawing::Size(105, 28);
             this->label70->TabIndex = 356;
@@ -4674,7 +4800,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->sedataGridView->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->sedataGridView->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->sedataGridView->HideOuterBorders = true;
-            this->sedataGridView->Location = System::Drawing::Point(71, 204);
+            this->sedataGridView->Location = System::Drawing::Point(70, 204);
             this->sedataGridView->Name = L"sedataGridView";
             this->sedataGridView->RowHeadersVisible = false;
             this->sedataGridView->RowHeadersWidth = 62;
@@ -4686,7 +4812,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->sedataGridView->RowTemplate->Height = 28;
             this->sedataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sedataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->sedataGridView->Size = System::Drawing::Size(865, 224);
+            this->sedataGridView->Size = System::Drawing::Size(866, 224);
             this->sedataGridView->StateCommon->Background->Color1 = System::Drawing::Color::White;
             this->sedataGridView->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
             this->sedataGridView->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
@@ -4748,7 +4874,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->addsubclusteroptions->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addsubclusteroptions->Location = System::Drawing::Point(727, 444);
+            this->addsubclusteroptions->Location = System::Drawing::Point(728, 444);
             this->addsubclusteroptions->Name = L"addsubclusteroptions";
             this->addsubclusteroptions->Size = System::Drawing::Size(154, 46);
             this->addsubclusteroptions->TabIndex = 310;
@@ -4782,7 +4908,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonLabel3
             // 
-            this->kryptonLabel3->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel3->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel3->Name = L"kryptonLabel3";
             this->kryptonLabel3->Size = System::Drawing::Size(217, 43);
             this->kryptonLabel3->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -4797,14 +4923,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubcreditsgroup->CaptionOverlap = 1;
             this->addsubcreditsgroup->CaptionVisible = false;
             this->addsubcreditsgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addsubcreditsgroup->Location = System::Drawing::Point(23, 2358);
+            this->addsubcreditsgroup->Location = System::Drawing::Point(22, 2358);
             this->addsubcreditsgroup->Name = L"addsubcreditsgroup";
             // 
             // addsubcreditsgroup.Panel
             // 
             this->addsubcreditsgroup->Panel->Controls->Add(this->addsubcredits);
             this->addsubcreditsgroup->Panel->Controls->Add(this->label181);
-            this->addsubcreditsgroup->Size = System::Drawing::Size(1127, 194);
+            this->addsubcreditsgroup->Size = System::Drawing::Size(1126, 194);
             this->addsubcreditsgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubcreditsgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -4850,7 +4976,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubtitlegroup->CaptionOverlap = 1;
             this->addsubtitlegroup->CaptionVisible = false;
             this->addsubtitlegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addsubtitlegroup->Location = System::Drawing::Point(23, 404);
+            this->addsubtitlegroup->Location = System::Drawing::Point(22, 404);
             this->addsubtitlegroup->Name = L"addsubtitlegroup";
             // 
             // addsubtitlegroup.Panel
@@ -4859,7 +4985,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubtitlegroup->Panel->Controls->Add(this->label182);
             this->addsubtitlegroup->Panel->Controls->Add(this->addsubtitle);
             this->addsubtitlegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::addsubtitlegroup_Panel_Enter);
-            this->addsubtitlegroup->Size = System::Drawing::Size(1127, 194);
+            this->addsubtitlegroup->Size = System::Drawing::Size(1126, 194);
             this->addsubtitlegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubtitlegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -4875,7 +5001,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel2
             // 
-            this->kryptonPanel2->Location = System::Drawing::Point(101, 128);
+            this->kryptonPanel2->Location = System::Drawing::Point(100, 128);
             this->kryptonPanel2->Name = L"kryptonPanel2";
             this->kryptonPanel2->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel2->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -4923,14 +5049,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubelegroup->CaptionOverlap = 1;
             this->addsubelegroup->CaptionVisible = false;
             this->addsubelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addsubelegroup->Location = System::Drawing::Point(23, 853);
+            this->addsubelegroup->Location = System::Drawing::Point(22, 854);
             this->addsubelegroup->Name = L"addsubelegroup";
             // 
             // addsubelegroup.Panel
             // 
             this->addsubelegroup->Panel->Controls->Add(this->label183);
             this->addsubelegroup->Panel->Controls->Add(this->panel42);
-            this->addsubelegroup->Size = System::Drawing::Size(1127, 194);
+            this->addsubelegroup->Size = System::Drawing::Size(1126, 194);
             this->addsubelegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubelegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -4949,7 +5075,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label183->BackColor = System::Drawing::Color::White;
             this->label183->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label183->Location = System::Drawing::Point(95, 44);
+            this->label183->Location = System::Drawing::Point(94, 44);
             this->label183->Name = L"label183";
             this->label183->Size = System::Drawing::Size(376, 28);
             this->label183->TabIndex = 266;
@@ -4997,7 +5123,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubnamegroup->CaptionOverlap = 1;
             this->addsubnamegroup->CaptionVisible = false;
             this->addsubnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addsubnamegroup->Location = System::Drawing::Point(23, 168);
+            this->addsubnamegroup->Location = System::Drawing::Point(22, 168);
             this->addsubnamegroup->Name = L"addsubnamegroup";
             // 
             // addsubnamegroup.Panel
@@ -5006,7 +5132,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubnamegroup->Panel->Controls->Add(this->label184);
             this->addsubnamegroup->Panel->Controls->Add(this->addsubname);
             this->addsubnamegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::addsubnamegroup_Panel_Enter);
-            this->addsubnamegroup->Size = System::Drawing::Size(1127, 194);
+            this->addsubnamegroup->Size = System::Drawing::Size(1126, 194);
             this->addsubnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5022,7 +5148,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel5
             // 
-            this->kryptonPanel5->Location = System::Drawing::Point(97, 119);
+            this->kryptonPanel5->Location = System::Drawing::Point(98, 118);
             this->kryptonPanel5->Name = L"kryptonPanel5";
             this->kryptonPanel5->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel5->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -5070,7 +5196,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubcodegroup->CaptionOverlap = 1;
             this->addsubcodegroup->CaptionVisible = false;
             this->addsubcodegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addsubcodegroup->Location = System::Drawing::Point(23, 625);
+            this->addsubcodegroup->Location = System::Drawing::Point(22, 626);
             this->addsubcodegroup->Name = L"addsubcodegroup";
             // 
             // addsubcodegroup.Panel
@@ -5078,7 +5204,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addsubcodegroup->Panel->Controls->Add(this->kryptonPanel7);
             this->addsubcodegroup->Panel->Controls->Add(this->label185);
             this->addsubcodegroup->Panel->Controls->Add(this->addsubcode);
-            this->addsubcodegroup->Size = System::Drawing::Size(1127, 194);
+            this->addsubcodegroup->Size = System::Drawing::Size(1126, 194);
             this->addsubcodegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addsubcodegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5092,7 +5218,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel7
             // 
-            this->kryptonPanel7->Location = System::Drawing::Point(99, 137);
+            this->kryptonPanel7->Location = System::Drawing::Point(99, 136);
             this->kryptonPanel7->Name = L"kryptonPanel7";
             this->kryptonPanel7->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel7->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -5141,7 +5267,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->saveroom->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->saveroom->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->saveroom->Location = System::Drawing::Point(19, 45);
+            this->saveroom->Location = System::Drawing::Point(20, 45);
             this->saveroom->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->saveroom->Name = L"saveroom";
             this->saveroom->Size = System::Drawing::Size(154, 58);
@@ -5173,7 +5299,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addclassroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addclassroompanel->Location = System::Drawing::Point(0, 0);
             this->addclassroompanel->Name = L"addclassroompanel";
-            this->addclassroompanel->Size = System::Drawing::Size(1924, 1050);
+            this->addclassroompanel->Size = System::Drawing::Size(1806, 1050);
             this->addclassroompanel->TabIndex = 230;
             this->addclassroompanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::addclassroompanel_Paint);
             // 
@@ -5187,7 +5313,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel7->Controls->Add(this->roomcapacitygroup);
             this->panel7->Controls->Add(this->roomlabgroup);
             this->panel7->Controls->Add(this->roomnamegroup);
-            this->panel7->Location = System::Drawing::Point(179, 13);
+            this->panel7->Location = System::Drawing::Point(178, 14);
             this->panel7->Name = L"panel7";
             this->panel7->Size = System::Drawing::Size(1194, 2180);
             this->panel7->TabIndex = 342;
@@ -5198,7 +5324,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox9->CaptionOverlap = 1;
             this->kryptonGroupBox9->CaptionVisible = false;
             this->kryptonGroupBox9->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox9->Location = System::Drawing::Point(25, 1212);
+            this->kryptonGroupBox9->Location = System::Drawing::Point(26, 1212);
             this->kryptonGroupBox9->Name = L"kryptonGroupBox9";
             // 
             // kryptonGroupBox9.Panel
@@ -5220,7 +5346,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox9->Panel->Controls->Add(this->label129);
             this->kryptonGroupBox9->Panel->Controls->Add(this->label127);
             this->kryptonGroupBox9->Panel->Controls->Add(this->label128);
-            this->kryptonGroupBox9->Size = System::Drawing::Size(1127, 642);
+            this->kryptonGroupBox9->Size = System::Drawing::Size(1126, 642);
             this->kryptonGroupBox9->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->kryptonGroupBox9->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5285,7 +5411,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->addroomtablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->addroomtablepanel->Location = System::Drawing::Point(113, 146);
+            this->addroomtablepanel->Location = System::Drawing::Point(112, 146);
             this->addroomtablepanel->Name = L"addroomtablepanel";
             this->addroomtablepanel->RowCount = 6;
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -5294,7 +5420,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->addroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->addroomtablepanel->Size = System::Drawing::Size(950, 431);
+            this->addroomtablepanel->Size = System::Drawing::Size(950, 430);
             this->addroomtablepanel->TabIndex = 260;
             // 
             // panel43
@@ -5302,7 +5428,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel43->BackColor = System::Drawing::Color::White;
             this->panel43->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel43.BackgroundImage")));
             this->panel43->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel43->Location = System::Drawing::Point(389, 146);
+            this->panel43->Location = System::Drawing::Point(388, 146);
             this->panel43->Name = L"panel43";
             this->panel43->Size = System::Drawing::Size(82, 412);
             this->panel43->TabIndex = 2;
@@ -5313,7 +5439,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label134->BackColor = System::Drawing::Color::White;
             this->label134->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label134->Location = System::Drawing::Point(13, 166);
+            this->label134->Location = System::Drawing::Point(14, 166);
             this->label134->Name = L"label134";
             this->label134->Size = System::Drawing::Size(85, 28);
             this->label134->TabIndex = 261;
@@ -5325,7 +5451,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label133->BackColor = System::Drawing::Color::White;
             this->label133->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label133->Location = System::Drawing::Point(19, 235);
+            this->label133->Location = System::Drawing::Point(20, 236);
             this->label133->Name = L"label133";
             this->label133->Size = System::Drawing::Size(83, 28);
             this->label133->TabIndex = 262;
@@ -5337,7 +5463,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label29->BackColor = System::Drawing::Color::White;
             this->label29->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label29->Location = System::Drawing::Point(131, 106);
+            this->label29->Location = System::Drawing::Point(130, 106);
             this->label29->Name = L"label29";
             this->label29->Size = System::Drawing::Size(105, 28);
             this->label29->TabIndex = 294;
@@ -5397,7 +5523,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label130->BackColor = System::Drawing::Color::White;
             this->label130->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label130->Location = System::Drawing::Point(17, 452);
+            this->label130->Location = System::Drawing::Point(16, 452);
             this->label130->Name = L"label130";
             this->label130->Size = System::Drawing::Size(66, 28);
             this->label130->TabIndex = 265;
@@ -5409,7 +5535,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label126->BackColor = System::Drawing::Color::White;
             this->label126->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label126->Location = System::Drawing::Point(607, 106);
+            this->label126->Location = System::Drawing::Point(608, 106);
             this->label126->Name = L"label126";
             this->label126->Size = System::Drawing::Size(105, 28);
             this->label126->TabIndex = 297;
@@ -5421,7 +5547,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label129->BackColor = System::Drawing::Color::White;
             this->label129->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label129->Location = System::Drawing::Point(17, 529);
+            this->label129->Location = System::Drawing::Point(16, 530);
             this->label129->Name = L"label129";
             this->label129->Size = System::Drawing::Size(90, 28);
             this->label129->TabIndex = 266;
@@ -5445,7 +5571,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label128->BackColor = System::Drawing::Color::White;
             this->label128->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label128->Location = System::Drawing::Point(931, 102);
+            this->label128->Location = System::Drawing::Point(932, 102);
             this->label128->Name = L"label128";
             this->label128->Size = System::Drawing::Size(94, 28);
             this->label128->TabIndex = 299;
@@ -5455,7 +5581,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel9->Controls->Add(this->clearroom);
             this->panel9->Controls->Add(this->saveroom);
-            this->panel9->Location = System::Drawing::Point(725, 1879);
+            this->panel9->Location = System::Drawing::Point(724, 1880);
             this->panel9->Name = L"panel9";
             this->panel9->Size = System::Drawing::Size(414, 156);
             this->panel9->TabIndex = 124;
@@ -5465,14 +5591,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->roomdeptgroup->CaptionOverlap = 1;
             this->roomdeptgroup->CaptionVisible = false;
             this->roomdeptgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->roomdeptgroup->Location = System::Drawing::Point(23, 903);
+            this->roomdeptgroup->Location = System::Drawing::Point(22, 903);
             this->roomdeptgroup->Name = L"roomdeptgroup";
             // 
             // roomdeptgroup.Panel
             // 
             this->roomdeptgroup->Panel->Controls->Add(this->roomdept);
             this->roomdeptgroup->Panel->Controls->Add(this->label28);
-            this->roomdeptgroup->Size = System::Drawing::Size(1127, 194);
+            this->roomdeptgroup->Size = System::Drawing::Size(1126, 194);
             this->roomdeptgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->roomdeptgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5506,7 +5632,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label28->BackColor = System::Drawing::Color::White;
             this->label28->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label28->Location = System::Drawing::Point(94, 41);
+            this->label28->Location = System::Drawing::Point(94, 40);
             this->label28->Name = L"label28";
             this->label28->Size = System::Drawing::Size(122, 28);
             this->label28->TabIndex = 343;
@@ -5515,7 +5641,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonLabel5
             // 
-            this->kryptonLabel5->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel5->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel5->Name = L"kryptonLabel5";
             this->kryptonLabel5->Size = System::Drawing::Size(264, 43);
             this->kryptonLabel5->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -5530,14 +5656,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->roomcapacitygroup->CaptionOverlap = 1;
             this->roomcapacitygroup->CaptionVisible = false;
             this->roomcapacitygroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->roomcapacitygroup->Location = System::Drawing::Point(23, 421);
+            this->roomcapacitygroup->Location = System::Drawing::Point(22, 422);
             this->roomcapacitygroup->Name = L"roomcapacitygroup";
             // 
             // roomcapacitygroup.Panel
             // 
             this->roomcapacitygroup->Panel->Controls->Add(this->roomcapacity);
             this->roomcapacitygroup->Panel->Controls->Add(this->label187);
-            this->roomcapacitygroup->Size = System::Drawing::Size(1127, 194);
+            this->roomcapacitygroup->Size = System::Drawing::Size(1126, 194);
             this->roomcapacitygroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->roomcapacitygroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5580,14 +5706,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->roomlabgroup->CaptionOverlap = 1;
             this->roomlabgroup->CaptionVisible = false;
             this->roomlabgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->roomlabgroup->Location = System::Drawing::Point(22, 661);
+            this->roomlabgroup->Location = System::Drawing::Point(22, 662);
             this->roomlabgroup->Name = L"roomlabgroup";
             // 
             // roomlabgroup.Panel
             // 
             this->roomlabgroup->Panel->Controls->Add(this->label189);
             this->roomlabgroup->Panel->Controls->Add(this->panel44);
-            this->roomlabgroup->Size = System::Drawing::Size(1127, 194);
+            this->roomlabgroup->Size = System::Drawing::Size(1126, 194);
             this->roomlabgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->roomlabgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5606,7 +5732,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label189->BackColor = System::Drawing::Color::White;
             this->label189->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label189->Location = System::Drawing::Point(95, 44);
+            this->label189->Location = System::Drawing::Point(94, 44);
             this->label189->Name = L"label189";
             this->label189->Size = System::Drawing::Size(108, 28);
             this->label189->TabIndex = 266;
@@ -5652,7 +5778,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->roomnamegroup->CaptionOverlap = 1;
             this->roomnamegroup->CaptionVisible = false;
             this->roomnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->roomnamegroup->Location = System::Drawing::Point(23, 168);
+            this->roomnamegroup->Location = System::Drawing::Point(22, 168);
             this->roomnamegroup->Name = L"roomnamegroup";
             // 
             // roomnamegroup.Panel
@@ -5660,7 +5786,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->roomnamegroup->Panel->Controls->Add(this->kryptonPanel12);
             this->roomnamegroup->Panel->Controls->Add(this->label190);
             this->roomnamegroup->Panel->Controls->Add(this->roomname);
-            this->roomnamegroup->Size = System::Drawing::Size(1127, 194);
+            this->roomnamegroup->Size = System::Drawing::Size(1126, 194);
             this->roomnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->roomnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5677,7 +5803,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel12
             // 
-            this->kryptonPanel12->Location = System::Drawing::Point(97, 119);
+            this->kryptonPanel12->Location = System::Drawing::Point(98, 118);
             this->kryptonPanel12->Name = L"kryptonPanel12";
             this->kryptonPanel12->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel12->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -5727,7 +5853,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->Homepanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->Homepanel->Location = System::Drawing::Point(0, 0);
             this->Homepanel->Name = L"Homepanel";
-            this->Homepanel->Size = System::Drawing::Size(1924, 1050);
+            this->Homepanel->Size = System::Drawing::Size(1806, 1050);
             this->Homepanel->TabIndex = 258;
             // 
             // pictureBox1
@@ -5744,9 +5870,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteacherpanel->AutoScroll = true;
             this->editteacherpanel->Controls->Add(this->panel5);
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->editteacherpanel->Location = System::Drawing::Point(364, 76);
+            this->editteacherpanel->Location = System::Drawing::Point(0, 0);
             this->editteacherpanel->Name = L"editteacherpanel";
-            this->editteacherpanel->Size = System::Drawing::Size(1560, 974);
+            this->editteacherpanel->Size = System::Drawing::Size(1806, 1050);
             this->editteacherpanel->TabIndex = 264;
             this->editteacherpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editteacherpanel_Paint);
             // 
@@ -5760,9 +5886,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel5->Controls->Add(this->editteacherdepartmentgroup);
             this->panel5->Controls->Add(this->kryptonLabel4);
             this->panel5->Controls->Add(this->editteachernamegroup);
-            this->panel5->Location = System::Drawing::Point(179, 13);
+            this->panel5->Location = System::Drawing::Point(178, 14);
             this->panel5->Name = L"panel5";
-            this->panel5->Size = System::Drawing::Size(1194, 2207);
+            this->panel5->Size = System::Drawing::Size(1194, 2206);
             this->panel5->TabIndex = 344;
             // 
             // editteacheremailidgroup
@@ -5770,7 +5896,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteacheremailidgroup->CaptionOverlap = 1;
             this->editteacheremailidgroup->CaptionVisible = false;
             this->editteacheremailidgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteacheremailidgroup->Location = System::Drawing::Point(23, 947);
+            this->editteacheremailidgroup->Location = System::Drawing::Point(22, 946);
             this->editteacheremailidgroup->Name = L"editteacheremailidgroup";
             // 
             // editteacheremailidgroup.Panel
@@ -5779,7 +5905,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteacheremailidgroup->Panel->Controls->Add(this->label23);
             this->editteacheremailidgroup->Panel->Controls->Add(this->editteacheremailid);
             this->editteacheremailidgroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editteacheremailidgroup_Panel_Enter);
-            this->editteacheremailidgroup->Size = System::Drawing::Size(1127, 194);
+            this->editteacheremailidgroup->Size = System::Drawing::Size(1126, 194);
             this->editteacheremailidgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editteacheremailidgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5795,7 +5921,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel9
             // 
-            this->kryptonPanel9->Location = System::Drawing::Point(91, 121);
+            this->kryptonPanel9->Location = System::Drawing::Point(92, 122);
             this->kryptonPanel9->Name = L"kryptonPanel9";
             this->kryptonPanel9->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel9->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -5817,7 +5943,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // editteacheremailid
             // 
             this->editteacheremailid->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editteacheremailid->Location = System::Drawing::Point(97, 79);
+            this->editteacheremailid->Location = System::Drawing::Point(98, 80);
             this->editteacheremailid->Name = L"editteacheremailid";
             this->editteacheremailid->Size = System::Drawing::Size(478, 44);
             this->editteacheremailid->StateActive->Back->Color1 = System::Drawing::Color::White;
@@ -5843,7 +5969,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachersearchgroup->CaptionOverlap = 1;
             this->editteachersearchgroup->CaptionVisible = false;
             this->editteachersearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteachersearchgroup->Location = System::Drawing::Point(23, 168);
+            this->editteachersearchgroup->Location = System::Drawing::Point(22, 168);
             this->editteachersearchgroup->Name = L"editteachersearchgroup";
             // 
             // editteachersearchgroup.Panel
@@ -5851,7 +5977,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachersearchgroup->Panel->Controls->Add(this->editteachersearchbutton);
             this->editteachersearchgroup->Panel->Controls->Add(this->label6);
             this->editteachersearchgroup->Panel->Controls->Add(this->teachersearch);
-            this->editteachersearchgroup->Size = System::Drawing::Size(1127, 260);
+            this->editteachersearchgroup->Size = System::Drawing::Size(1126, 260);
             this->editteachersearchgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editteachersearchgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -5871,7 +5997,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachersearchbutton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->editteachersearchbutton->FlatAppearance->BorderSize = 0;
             this->editteachersearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->editteachersearchbutton->Location = System::Drawing::Point(767, 126);
+            this->editteachersearchbutton->Location = System::Drawing::Point(766, 126);
             this->editteachersearchbutton->Name = L"editteachersearchbutton";
             this->editteachersearchbutton->Size = System::Drawing::Size(28, 28);
             this->editteachersearchbutton->TabIndex = 345;
@@ -5900,7 +6026,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->teachersearch->DropDownWidth = 356;
             this->teachersearch->Location = System::Drawing::Point(236, 122);
             this->teachersearch->Name = L"teachersearch";
-            this->teachersearch->Size = System::Drawing::Size(563, 34);
+            this->teachersearch->Size = System::Drawing::Size(562, 34);
             this->teachersearch->Sorted = true;
             this->teachersearch->StateCommon->ComboBox->Back->Color1 = System::Drawing::Color::White;
             this->teachersearch->StateCommon->ComboBox->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
@@ -5940,7 +6066,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel18->Controls->Add(this->editteacherdelete);
             this->panel18->Controls->Add(this->editteachersave);
-            this->panel18->Location = System::Drawing::Point(701, 2060);
+            this->panel18->Location = System::Drawing::Point(700, 2060);
             this->panel18->Name = L"panel18";
             this->panel18->Size = System::Drawing::Size(406, 116);
             this->panel18->TabIndex = 291;
@@ -5978,7 +6104,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachertablegroup->CaptionOverlap = 1;
             this->editteachertablegroup->CaptionVisible = false;
             this->editteachertablegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteachertablegroup->Location = System::Drawing::Point(23, 1262);
+            this->editteachertablegroup->Location = System::Drawing::Point(22, 1262);
             this->editteachertablegroup->Name = L"editteachertablegroup";
             // 
             // editteachertablegroup.Panel
@@ -6003,7 +6129,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachertablegroup->Panel->Controls->Add(this->label19);
             this->editteachertablegroup->Panel->Controls->Add(this->label20);
             this->editteachertablegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editteachertablegroup_Panel_Enter);
-            this->editteachertablegroup->Size = System::Drawing::Size(1127, 735);
+            this->editteachertablegroup->Size = System::Drawing::Size(1126, 735);
             this->editteachertablegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editteachertablegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -6015,12 +6141,34 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachertablegroup->StateCommon->Border->Width = 1;
             this->editteachertablegroup->TabIndex = 346;
             // 
+            // label83
+            // 
+            this->label83->AutoSize = true;
+            this->label83->BackColor = System::Drawing::Color::White;
+            this->label83->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label83->Location = System::Drawing::Point(122, 100);
+            this->label83->Name = L"label83";
+            this->label83->Size = System::Drawing::Size(749, 28);
+            this->label83->TabIndex = 346;
+            this->label83->Text = L"Enter the name you want to display in the timetable and then select the timeslot";
+            // 
+            // editteachertt
+            // 
+            this->editteachertt->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+            this->editteachertt->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
+            this->editteachertt->DropDownWidth = 410;
+            this->editteachertt->Location = System::Drawing::Point(128, 147);
+            this->editteachertt->Name = L"editteachertt";
+            this->editteachertt->Size = System::Drawing::Size(410, 29);
+            this->editteachertt->TabIndex = 345;
+            // 
             // panel19
             // 
             this->panel19->BackColor = System::Drawing::Color::White;
             this->panel19->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel19.BackgroundImage")));
             this->panel19->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel19->Location = System::Drawing::Point(749, 253);
+            this->panel19->Location = System::Drawing::Point(748, 254);
             this->panel19->Name = L"panel19";
             this->panel19->Size = System::Drawing::Size(44, 420);
             this->panel19->TabIndex = 1;
@@ -6030,7 +6178,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel23->BackColor = System::Drawing::Color::White;
             this->panel23->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel23.BackgroundImage")));
             this->panel23->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel23->Location = System::Drawing::Point(414, 253);
+            this->panel23->Location = System::Drawing::Point(414, 254);
             this->panel23->Name = L"panel23";
             this->panel23->Size = System::Drawing::Size(44, 430);
             this->panel23->TabIndex = 300;
@@ -6055,7 +6203,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->editteachertablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->editteachertablepanel->Location = System::Drawing::Point(127, 253);
+            this->editteachertablepanel->Location = System::Drawing::Point(128, 254);
             this->editteachertablepanel->Name = L"editteachertablepanel";
             this->editteachertablepanel->RowCount = 6;
             this->editteachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent,
@@ -6070,7 +6218,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66666F)));
             this->editteachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent,
                 16.66667F)));
-            this->editteachertablepanel->Size = System::Drawing::Size(950, 431);
+            this->editteachertablepanel->Size = System::Drawing::Size(950, 430);
             this->editteachertablepanel->TabIndex = 260;
             // 
             // panel24
@@ -6078,7 +6226,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel24->BackColor = System::Drawing::Color::White;
             this->panel24->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel24.BackgroundImage")));
             this->panel24->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel24->Location = System::Drawing::Point(403, 253);
+            this->panel24->Location = System::Drawing::Point(404, 254);
             this->panel24->Name = L"panel24";
             this->panel24->Size = System::Drawing::Size(82, 412);
             this->panel24->TabIndex = 2;
@@ -6125,7 +6273,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label9->BackColor = System::Drawing::Color::White;
             this->label9->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label9->Location = System::Drawing::Point(145, 213);
+            this->label9->Location = System::Drawing::Point(146, 213);
             this->label9->Name = L"label9";
             this->label9->Size = System::Drawing::Size(105, 28);
             this->label9->TabIndex = 294;
@@ -6137,7 +6285,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label10->BackColor = System::Drawing::Color::White;
             this->label10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label10->Location = System::Drawing::Point(17, 419);
+            this->label10->Location = System::Drawing::Point(16, 418);
             this->label10->Name = L"label10";
             this->label10->Size = System::Drawing::Size(113, 28);
             this->label10->TabIndex = 263;
@@ -6149,7 +6297,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label11->BackColor = System::Drawing::Color::White;
             this->label11->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label11->Location = System::Drawing::Point(281, 213);
+            this->label11->Location = System::Drawing::Point(280, 213);
             this->label11->Name = L"label11";
             this->label11->Size = System::Drawing::Size(116, 28);
             this->label11->TabIndex = 295;
@@ -6161,7 +6309,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label12->BackColor = System::Drawing::Color::White;
             this->label12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label12->Location = System::Drawing::Point(17, 483);
+            this->label12->Location = System::Drawing::Point(16, 483);
             this->label12->Name = L"label12";
             this->label12->Size = System::Drawing::Size(91, 28);
             this->label12->TabIndex = 264;
@@ -6173,7 +6321,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label14->BackColor = System::Drawing::Color::White;
             this->label14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label14->Location = System::Drawing::Point(467, 213);
+            this->label14->Location = System::Drawing::Point(466, 213);
             this->label14->Name = L"label14";
             this->label14->Size = System::Drawing::Size(116, 28);
             this->label14->TabIndex = 296;
@@ -6185,7 +6333,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label16->BackColor = System::Drawing::Color::White;
             this->label16->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label16->Location = System::Drawing::Point(31, 559);
+            this->label16->Location = System::Drawing::Point(32, 560);
             this->label16->Name = L"label16";
             this->label16->Size = System::Drawing::Size(66, 28);
             this->label16->TabIndex = 265;
@@ -6209,7 +6357,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label18->BackColor = System::Drawing::Color::White;
             this->label18->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label18->Location = System::Drawing::Point(31, 636);
+            this->label18->Location = System::Drawing::Point(32, 636);
             this->label18->Name = L"label18";
             this->label18->Size = System::Drawing::Size(90, 28);
             this->label18->TabIndex = 266;
@@ -6221,7 +6369,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label19->BackColor = System::Drawing::Color::White;
             this->label19->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label19->Location = System::Drawing::Point(815, 209);
+            this->label19->Location = System::Drawing::Point(814, 208);
             this->label19->Name = L"label19";
             this->label19->Size = System::Drawing::Size(94, 28);
             this->label19->TabIndex = 298;
@@ -6233,7 +6381,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label20->BackColor = System::Drawing::Color::White;
             this->label20->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label20->Location = System::Drawing::Point(945, 209);
+            this->label20->Location = System::Drawing::Point(945, 208);
             this->label20->Name = L"label20";
             this->label20->Size = System::Drawing::Size(94, 28);
             this->label20->TabIndex = 299;
@@ -6243,9 +6391,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel28->Controls->Add(this->button21);
             this->panel28->Controls->Add(this->button23);
-            this->panel28->Location = System::Drawing::Point(709, 2211);
+            this->panel28->Location = System::Drawing::Point(710, 2211);
             this->panel28->Name = L"panel28";
-            this->panel28->Size = System::Drawing::Size(502, 137);
+            this->panel28->Size = System::Drawing::Size(502, 136);
             this->panel28->TabIndex = 295;
             // 
             // button21
@@ -6266,7 +6414,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button23->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button23->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->button23->Location = System::Drawing::Point(49, 38);
+            this->button23->Location = System::Drawing::Point(50, 38);
             this->button23->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->button23->Name = L"button23";
             this->button23->Size = System::Drawing::Size(154, 58);
@@ -6279,7 +6427,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteacherdepartmentgroup->CaptionOverlap = 1;
             this->editteacherdepartmentgroup->CaptionVisible = false;
             this->editteacherdepartmentgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteacherdepartmentgroup->Location = System::Drawing::Point(23, 695);
+            this->editteacherdepartmentgroup->Location = System::Drawing::Point(22, 694);
             this->editteacherdepartmentgroup->Name = L"editteacherdepartmentgroup";
             // 
             // editteacherdepartmentgroup.Panel
@@ -6287,7 +6435,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteacherdepartmentgroup->Panel->Controls->Add(this->label22);
             this->editteacherdepartmentgroup->Panel->Controls->Add(this->editteacherdepartment);
             this->editteacherdepartmentgroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editteacherdepartmentgroup_Panel_Enter);
-            this->editteacherdepartmentgroup->Size = System::Drawing::Size(1127, 194);
+            this->editteacherdepartmentgroup->Size = System::Drawing::Size(1126, 194);
             this->editteacherdepartmentgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editteacherdepartmentgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -6307,7 +6455,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label22->BackColor = System::Drawing::Color::White;
             this->label22->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label22->Location = System::Drawing::Point(94, 41);
+            this->label22->Location = System::Drawing::Point(94, 40);
             this->label22->Name = L"label22";
             this->label22->Size = System::Drawing::Size(122, 28);
             this->label22->TabIndex = 343;
@@ -6316,9 +6464,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // editteacherdepartment
             // 
             this->editteacherdepartment->DropDownWidth = 342;
-            this->editteacherdepartment->Location = System::Drawing::Point(87, 95);
+            this->editteacherdepartment->Location = System::Drawing::Point(87, 94);
             this->editteacherdepartment->Name = L"editteacherdepartment";
-            this->editteacherdepartment->Size = System::Drawing::Size(563, 29);
+            this->editteacherdepartment->Size = System::Drawing::Size(562, 29);
             this->editteacherdepartment->StateCommon->DropBack->Color1 = System::Drawing::Color::Cyan;
             this->editteacherdepartment->StateCommon->DropBack->Color2 = System::Drawing::Color::Cyan;
             this->editteacherdepartment->TabIndex = 344;
@@ -6326,7 +6474,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonLabel4
             // 
-            this->kryptonLabel4->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel4->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel4->Name = L"kryptonLabel4";
             this->kryptonLabel4->Size = System::Drawing::Size(223, 43);
             this->kryptonLabel4->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -6341,7 +6489,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachernamegroup->CaptionOverlap = 1;
             this->editteachernamegroup->CaptionVisible = false;
             this->editteachernamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editteachernamegroup->Location = System::Drawing::Point(23, 451);
+            this->editteachernamegroup->Location = System::Drawing::Point(22, 452);
             this->editteachernamegroup->Name = L"editteachernamegroup";
             // 
             // editteachernamegroup.Panel
@@ -6350,7 +6498,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachernamegroup->Panel->Controls->Add(this->label25);
             this->editteachernamegroup->Panel->Controls->Add(this->editteachername);
             this->editteachernamegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editteachernamegroup_Panel_Enter);
-            this->editteachernamegroup->Size = System::Drawing::Size(1127, 194);
+            this->editteachernamegroup->Size = System::Drawing::Size(1126, 194);
             this->editteachernamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editteachernamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -6366,7 +6514,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel8
             // 
-            this->kryptonPanel8->Location = System::Drawing::Point(91, 121);
+            this->kryptonPanel8->Location = System::Drawing::Point(92, 122);
             this->kryptonPanel8->Name = L"kryptonPanel8";
             this->kryptonPanel8->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel8->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -6388,7 +6536,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // editteachername
             // 
             this->editteachername->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editteachername->Location = System::Drawing::Point(97, 79);
+            this->editteachername->Location = System::Drawing::Point(98, 80);
             this->editteachername->Name = L"editteachername";
             this->editteachername->Size = System::Drawing::Size(478, 44);
             this->editteachername->StateActive->Back->Color1 = System::Drawing::Color::White;
@@ -6411,7 +6559,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // editsubactivepanel
             // 
-            this->editsubactivepanel->Location = System::Drawing::Point(427, 179);
+            this->editsubactivepanel->Location = System::Drawing::Point(428, 178);
             this->editsubactivepanel->Name = L"editsubactivepanel";
             this->editsubactivepanel->Size = System::Drawing::Size(8, 147);
             this->editsubactivepanel->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -6431,7 +6579,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonPanel6->Dock = System::Windows::Forms::DockStyle::Top;
             this->kryptonPanel6->Location = System::Drawing::Point(0, 0);
             this->kryptonPanel6->Name = L"kryptonPanel6";
-            this->kryptonPanel6->Size = System::Drawing::Size(1924, 76);
+            this->kryptonPanel6->Size = System::Drawing::Size(1806, 76);
             this->kryptonPanel6->StateCommon->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
                 static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->kryptonPanel6->TabIndex = 338;
@@ -6480,7 +6628,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->pictureBox8->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox8.Image")));
             this->pictureBox8->Location = System::Drawing::Point(15, 8);
             this->pictureBox8->Name = L"pictureBox8";
-            this->pictureBox8->Size = System::Drawing::Size(125, 64);
+            this->pictureBox8->Size = System::Drawing::Size(124, 64);
             this->pictureBox8->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
             this->pictureBox8->TabIndex = 340;
             this->pictureBox8->TabStop = false;
@@ -6491,7 +6639,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox7->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox7.BackgroundImage")));
             this->textBox7->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox7->Location = System::Drawing::Point(278, 412);
+            this->textBox7->Location = System::Drawing::Point(278, 364);
             this->textBox7->Name = L"textBox7";
             this->textBox7->Size = System::Drawing::Size(62, 22);
             this->textBox7->TabIndex = 322;
@@ -6504,7 +6652,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->settingspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->settingspanel->Location = System::Drawing::Point(0, 0);
             this->settingspanel->Name = L"settingspanel";
-            this->settingspanel->Size = System::Drawing::Size(1924, 1050);
+            this->settingspanel->Size = System::Drawing::Size(1806, 1050);
             this->settingspanel->TabIndex = 286;
             // 
             // panel36
@@ -6516,7 +6664,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel36->Controls->Add(this->panel59);
             this->panel36->Controls->Add(this->kryptonLabel11);
             this->panel36->Controls->Add(this->kryptonGroupBox6);
-            this->panel36->Location = System::Drawing::Point(179, 13);
+            this->panel36->Location = System::Drawing::Point(178, 14);
             this->panel36->Name = L"panel36";
             this->panel36->Size = System::Drawing::Size(1194, 1678);
             this->panel36->TabIndex = 345;
@@ -6526,14 +6674,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox5->CaptionOverlap = 1;
             this->kryptonGroupBox5->CaptionVisible = false;
             this->kryptonGroupBox5->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox5->Location = System::Drawing::Point(23, 598);
+            this->kryptonGroupBox5->Location = System::Drawing::Point(22, 598);
             this->kryptonGroupBox5->Name = L"kryptonGroupBox5";
             // 
             // kryptonGroupBox5.Panel
             // 
             this->kryptonGroupBox5->Panel->Controls->Add(this->busyfactor);
             this->kryptonGroupBox5->Panel->Controls->Add(this->label45);
-            this->kryptonGroupBox5->Size = System::Drawing::Size(1127, 194);
+            this->kryptonGroupBox5->Size = System::Drawing::Size(1126, 194);
             this->kryptonGroupBox5->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->kryptonGroupBox5->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -6550,7 +6698,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // busyfactor
             // 
             this->busyfactor->DecimalPlaces = 1;
-            this->busyfactor->Location = System::Drawing::Point(98, 85);
+            this->busyfactor->Location = System::Drawing::Point(98, 86);
             this->busyfactor->Name = L"busyfactor";
             this->busyfactor->Size = System::Drawing::Size(328, 30);
             this->busyfactor->TabIndex = 265;
@@ -6575,7 +6723,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->settingssave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->settingssave->Location = System::Drawing::Point(877, 1554);
+            this->settingssave->Location = System::Drawing::Point(878, 1554);
             this->settingssave->Name = L"settingssave";
             this->settingssave->Size = System::Drawing::Size(154, 58);
             this->settingssave->TabIndex = 273;
@@ -6588,7 +6736,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox3->CaptionOverlap = 1;
             this->kryptonGroupBox3->CaptionVisible = false;
             this->kryptonGroupBox3->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox3->Location = System::Drawing::Point(23, 168);
+            this->kryptonGroupBox3->Location = System::Drawing::Point(22, 168);
             this->kryptonGroupBox3->Name = L"kryptonGroupBox3";
             // 
             // kryptonGroupBox3.Panel
@@ -6596,7 +6744,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox3->Panel->Controls->Add(this->filepath);
             this->kryptonGroupBox3->Panel->Controls->Add(this->label137);
             this->kryptonGroupBox3->Panel->Controls->Add(this->button16);
-            this->kryptonGroupBox3->Size = System::Drawing::Size(1127, 194);
+            this->kryptonGroupBox3->Size = System::Drawing::Size(1126, 194);
             this->kryptonGroupBox3->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->kryptonGroupBox3->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -6610,9 +6758,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // filepath
             // 
-            this->filepath->Location = System::Drawing::Point(65, 94);
+            this->filepath->Location = System::Drawing::Point(64, 94);
             this->filepath->Name = L"filepath";
-            this->filepath->Size = System::Drawing::Size(449, 32);
+            this->filepath->Size = System::Drawing::Size(448, 32);
             this->filepath->TabIndex = 265;
             this->filepath->Text = L"Path";
             // 
@@ -6623,7 +6771,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label137->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label137->ForeColor = System::Drawing::Color::Black;
-            this->label137->Location = System::Drawing::Point(47, 42);
+            this->label137->Location = System::Drawing::Point(46, 42);
             this->label137->Name = L"label137";
             this->label137->Size = System::Drawing::Size(650, 28);
             this->label137->TabIndex = 264;
@@ -6631,7 +6779,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // button16
             // 
-            this->button16->Location = System::Drawing::Point(535, 94);
+            this->button16->Location = System::Drawing::Point(536, 94);
             this->button16->Name = L"button16";
             this->button16->Size = System::Drawing::Size(130, 33);
             this->button16->TabIndex = 302;
@@ -6644,7 +6792,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox4->CaptionOverlap = 1;
             this->kryptonGroupBox4->CaptionVisible = false;
             this->kryptonGroupBox4->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox4->Location = System::Drawing::Point(23, 844);
+            this->kryptonGroupBox4->Location = System::Drawing::Point(22, 844);
             this->kryptonGroupBox4->Name = L"kryptonGroupBox4";
             // 
             // kryptonGroupBox4.Panel
@@ -6666,7 +6814,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox4->Panel->Controls->Add(this->label171);
             this->kryptonGroupBox4->Panel->Controls->Add(this->label172);
             this->kryptonGroupBox4->Panel->Controls->Add(this->label173);
-            this->kryptonGroupBox4->Size = System::Drawing::Size(1127, 642);
+            this->kryptonGroupBox4->Size = System::Drawing::Size(1126, 642);
             this->kryptonGroupBox4->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->kryptonGroupBox4->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -6683,7 +6831,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel56->BackColor = System::Drawing::Color::White;
             this->panel56->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel56.BackgroundImage")));
             this->panel56->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel56->Location = System::Drawing::Point(743, 159);
+            this->panel56->Location = System::Drawing::Point(742, 159);
             this->panel56->Name = L"panel56";
             this->panel56->Size = System::Drawing::Size(44, 420);
             this->panel56->TabIndex = 1;
@@ -6718,7 +6866,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->settingstable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->settingstable->Location = System::Drawing::Point(121, 159);
+            this->settingstable->Location = System::Drawing::Point(122, 159);
             this->settingstable->Name = L"settingstable";
             this->settingstable->RowCount = 6;
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -6727,7 +6875,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->settingstable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->settingstable->Size = System::Drawing::Size(950, 431);
+            this->settingstable->Size = System::Drawing::Size(950, 430);
             this->settingstable->TabIndex = 260;
             // 
             // panel58
@@ -6735,7 +6883,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel58->BackColor = System::Drawing::Color::White;
             this->panel58->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel58.BackgroundImage")));
             this->panel58->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel58->Location = System::Drawing::Point(397, 159);
+            this->panel58->Location = System::Drawing::Point(398, 159);
             this->panel58->Name = L"panel58";
             this->panel58->Size = System::Drawing::Size(82, 412);
             this->panel58->TabIndex = 2;
@@ -6746,7 +6894,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label138->BackColor = System::Drawing::Color::White;
             this->label138->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label138->Location = System::Drawing::Point(21, 179);
+            this->label138->Location = System::Drawing::Point(21, 178);
             this->label138->Name = L"label138";
             this->label138->Size = System::Drawing::Size(85, 28);
             this->label138->TabIndex = 261;
@@ -6782,7 +6930,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label141->BackColor = System::Drawing::Color::White;
             this->label141->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label141->Location = System::Drawing::Point(139, 119);
+            this->label141->Location = System::Drawing::Point(140, 118);
             this->label141->Name = L"label141";
             this->label141->Size = System::Drawing::Size(105, 28);
             this->label141->TabIndex = 294;
@@ -6794,7 +6942,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label142->BackColor = System::Drawing::Color::White;
             this->label142->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label142->Location = System::Drawing::Point(11, 325);
+            this->label142->Location = System::Drawing::Point(10, 326);
             this->label142->Name = L"label142";
             this->label142->Size = System::Drawing::Size(113, 28);
             this->label142->TabIndex = 263;
@@ -6806,7 +6954,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label143->BackColor = System::Drawing::Color::White;
             this->label143->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label143->Location = System::Drawing::Point(275, 119);
+            this->label143->Location = System::Drawing::Point(274, 118);
             this->label143->Name = L"label143";
             this->label143->Size = System::Drawing::Size(116, 28);
             this->label143->TabIndex = 295;
@@ -6818,7 +6966,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label144->BackColor = System::Drawing::Color::White;
             this->label144->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label144->Location = System::Drawing::Point(11, 389);
+            this->label144->Location = System::Drawing::Point(10, 388);
             this->label144->Name = L"label144";
             this->label144->Size = System::Drawing::Size(91, 28);
             this->label144->TabIndex = 264;
@@ -6830,7 +6978,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label145->BackColor = System::Drawing::Color::White;
             this->label145->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label145->Location = System::Drawing::Point(461, 119);
+            this->label145->Location = System::Drawing::Point(460, 118);
             this->label145->Name = L"label145";
             this->label145->Size = System::Drawing::Size(116, 28);
             this->label145->TabIndex = 296;
@@ -6842,7 +6990,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label146->BackColor = System::Drawing::Color::White;
             this->label146->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label146->Location = System::Drawing::Point(25, 465);
+            this->label146->Location = System::Drawing::Point(26, 465);
             this->label146->Name = L"label146";
             this->label146->Size = System::Drawing::Size(66, 28);
             this->label146->TabIndex = 265;
@@ -6854,7 +7002,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label165->BackColor = System::Drawing::Color::White;
             this->label165->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label165->Location = System::Drawing::Point(615, 119);
+            this->label165->Location = System::Drawing::Point(615, 118);
             this->label165->Name = L"label165";
             this->label165->Size = System::Drawing::Size(105, 28);
             this->label165->TabIndex = 297;
@@ -6866,7 +7014,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label171->BackColor = System::Drawing::Color::White;
             this->label171->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label171->Location = System::Drawing::Point(25, 542);
+            this->label171->Location = System::Drawing::Point(26, 542);
             this->label171->Name = L"label171";
             this->label171->Size = System::Drawing::Size(90, 28);
             this->label171->TabIndex = 266;
@@ -6878,7 +7026,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label172->BackColor = System::Drawing::Color::White;
             this->label172->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label172->Location = System::Drawing::Point(809, 115);
+            this->label172->Location = System::Drawing::Point(808, 116);
             this->label172->Name = L"label172";
             this->label172->Size = System::Drawing::Size(94, 28);
             this->label172->TabIndex = 298;
@@ -6890,7 +7038,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label173->BackColor = System::Drawing::Color::White;
             this->label173->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label173->Location = System::Drawing::Point(939, 115);
+            this->label173->Location = System::Drawing::Point(939, 116);
             this->label173->Name = L"label173";
             this->label173->Size = System::Drawing::Size(94, 28);
             this->label173->TabIndex = 299;
@@ -6900,9 +7048,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel59->Controls->Add(this->button28);
             this->panel59->Controls->Add(this->button29);
-            this->panel59->Location = System::Drawing::Point(709, 2211);
+            this->panel59->Location = System::Drawing::Point(710, 2211);
             this->panel59->Name = L"panel59";
-            this->panel59->Size = System::Drawing::Size(502, 137);
+            this->panel59->Size = System::Drawing::Size(502, 136);
             this->panel59->TabIndex = 295;
             // 
             // button28
@@ -6923,7 +7071,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button29->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->button29->Location = System::Drawing::Point(49, 38);
+            this->button29->Location = System::Drawing::Point(50, 38);
             this->button29->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->button29->Name = L"button29";
             this->button29->Size = System::Drawing::Size(154, 58);
@@ -6933,7 +7081,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonLabel11
             // 
-            this->kryptonLabel11->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel11->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel11->Name = L"kryptonLabel11";
             this->kryptonLabel11->Size = System::Drawing::Size(126, 43);
             this->kryptonLabel11->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -6948,14 +7096,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox6->CaptionOverlap = 1;
             this->kryptonGroupBox6->CaptionVisible = false;
             this->kryptonGroupBox6->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox6->Location = System::Drawing::Point(23, 391);
+            this->kryptonGroupBox6->Location = System::Drawing::Point(22, 392);
             this->kryptonGroupBox6->Name = L"kryptonGroupBox6";
             // 
             // kryptonGroupBox6.Panel
             // 
             this->kryptonGroupBox6->Panel->Controls->Add(this->freefactor);
             this->kryptonGroupBox6->Panel->Controls->Add(this->label175);
-            this->kryptonGroupBox6->Size = System::Drawing::Size(1127, 194);
+            this->kryptonGroupBox6->Size = System::Drawing::Size(1126, 194);
             this->kryptonGroupBox6->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->kryptonGroupBox6->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -6972,7 +7120,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // freefactor
             // 
             this->freefactor->DecimalPlaces = 1;
-            this->freefactor->Location = System::Drawing::Point(98, 85);
+            this->freefactor->Location = System::Drawing::Point(98, 86);
             this->freefactor->Name = L"freefactor";
             this->freefactor->Size = System::Drawing::Size(328, 30);
             this->freefactor->TabIndex = 265;
@@ -7016,7 +7164,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button1->Location = System::Drawing::Point(0, 195);
+            this->button1->Location = System::Drawing::Point(0, 142);
             this->button1->Name = L"button1";
             this->button1->Size = System::Drawing::Size(362, 44);
             this->button1->TabIndex = 2;
@@ -7040,9 +7188,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->button6->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button6->Location = System::Drawing::Point(0, 300);
+            this->button6->Location = System::Drawing::Point(0, 248);
             this->button6->Name = L"button6";
-            this->button6->Size = System::Drawing::Size(365, 44);
+            this->button6->Size = System::Drawing::Size(364, 44);
             this->button6->TabIndex = 12;
             this->button6->Text = L"   Classrooms";
             this->button6->UseVisualStyleBackColor = false;
@@ -7064,7 +7212,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->button9->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button9->Location = System::Drawing::Point(0, 406);
+            this->button9->Location = System::Drawing::Point(0, 351);
             this->button9->Name = L"button9";
             this->button9->Size = System::Drawing::Size(368, 44);
             this->button9->TabIndex = 12;
@@ -7079,10 +7227,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button5->FlatAppearance->BorderSize = 0;
             this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button5->ForeColor = System::Drawing::Color::White;
-            this->button5->Location = System::Drawing::Point(3, 344);
+            this->button5->Location = System::Drawing::Point(3, 291);
             this->button5->Margin = System::Windows::Forms::Padding(0);
             this->button5->Name = L"button5";
-            this->button5->Size = System::Drawing::Size(359, 34);
+            this->button5->Size = System::Drawing::Size(358, 30);
             this->button5->TabIndex = 13;
             this->button5->Text = L"      Add";
             this->button5->UseVisualStyleBackColor = false;
@@ -7096,10 +7244,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button8->FlatAppearance->BorderSize = 0;
             this->button8->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button8->ForeColor = System::Drawing::Color::White;
-            this->button8->Location = System::Drawing::Point(3, 450);
+            this->button8->Location = System::Drawing::Point(3, 394);
             this->button8->Margin = System::Windows::Forms::Padding(0);
             this->button8->Name = L"button8";
-            this->button8->Size = System::Drawing::Size(362, 34);
+            this->button8->Size = System::Drawing::Size(362, 30);
             this->button8->TabIndex = 13;
             this->button8->Text = L"     Add\r\n";
             this->button8->UseVisualStyleBackColor = false;
@@ -7113,10 +7261,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button4->FlatAppearance->BorderSize = 0;
             this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button4->ForeColor = System::Drawing::Color::White;
-            this->button4->Location = System::Drawing::Point(3, 374);
+            this->button4->Location = System::Drawing::Point(3, 318);
             this->button4->Margin = System::Windows::Forms::Padding(0);
             this->button4->Name = L"button4";
-            this->button4->Size = System::Drawing::Size(362, 34);
+            this->button4->Size = System::Drawing::Size(362, 30);
             this->button4->TabIndex = 14;
             this->button4->Text = L"      Edit\r\n";
             this->button4->UseVisualStyleBackColor = false;
@@ -7130,10 +7278,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button7->FlatAppearance->BorderSize = 0;
             this->button7->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button7->ForeColor = System::Drawing::Color::White;
-            this->button7->Location = System::Drawing::Point(0, 474);
+            this->button7->Location = System::Drawing::Point(0, 422);
             this->button7->Margin = System::Windows::Forms::Padding(0);
             this->button7->Name = L"button7";
-            this->button7->Size = System::Drawing::Size(365, 34);
+            this->button7->Size = System::Drawing::Size(364, 30);
             this->button7->TabIndex = 14;
             this->button7->Text = L"       Edit";
             this->button7->UseVisualStyleBackColor = false;
@@ -7156,7 +7304,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->button12->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button12->Location = System::Drawing::Point(0, 512);
+            this->button12->Location = System::Drawing::Point(0, 454);
             this->button12->Name = L"button12";
             this->button12->Size = System::Drawing::Size(368, 44);
             this->button12->TabIndex = 17;
@@ -7171,10 +7319,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button11->FlatAppearance->BorderSize = 0;
             this->button11->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button11->ForeColor = System::Drawing::Color::White;
-            this->button11->Location = System::Drawing::Point(0, 558);
+            this->button11->Location = System::Drawing::Point(0, 500);
             this->button11->Margin = System::Windows::Forms::Padding(0);
             this->button11->Name = L"button11";
-            this->button11->Size = System::Drawing::Size(366, 34);
+            this->button11->Size = System::Drawing::Size(366, 30);
             this->button11->TabIndex = 18;
             this->button11->Text = L"     Add";
             this->button11->UseVisualStyleBackColor = false;
@@ -7188,10 +7336,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button10->FlatAppearance->BorderSize = 0;
             this->button10->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button10->ForeColor = System::Drawing::Color::White;
-            this->button10->Location = System::Drawing::Point(0, 588);
+            this->button10->Location = System::Drawing::Point(0, 526);
             this->button10->Margin = System::Windows::Forms::Padding(0);
             this->button10->Name = L"button10";
-            this->button10->Size = System::Drawing::Size(365, 34);
+            this->button10->Size = System::Drawing::Size(364, 30);
             this->button10->TabIndex = 19;
             this->button10->Text = L"      Edit";
             this->button10->UseVisualStyleBackColor = false;
@@ -7214,7 +7362,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->button15->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button15->Location = System::Drawing::Point(3, 620);
+            this->button15->Location = System::Drawing::Point(3, 663);
             this->button15->Name = L"button15";
             this->button15->Size = System::Drawing::Size(360, 44);
             this->button15->TabIndex = 22;
@@ -7229,10 +7377,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button14->FlatAppearance->BorderSize = 0;
             this->button14->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button14->ForeColor = System::Drawing::Color::White;
-            this->button14->Location = System::Drawing::Point(0, 663);
+            this->button14->Location = System::Drawing::Point(0, 706);
             this->button14->Margin = System::Windows::Forms::Padding(0);
             this->button14->Name = L"button14";
-            this->button14->Size = System::Drawing::Size(362, 34);
+            this->button14->Size = System::Drawing::Size(362, 30);
             this->button14->TabIndex = 23;
             this->button14->Text = L"     Add";
             this->button14->UseVisualStyleBackColor = false;
@@ -7246,10 +7394,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button13->FlatAppearance->BorderSize = 0;
             this->button13->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
             this->button13->ForeColor = System::Drawing::Color::White;
-            this->button13->Location = System::Drawing::Point(0, 694);
+            this->button13->Location = System::Drawing::Point(0, 734);
             this->button13->Margin = System::Windows::Forms::Padding(0);
             this->button13->Name = L"button13";
-            this->button13->Size = System::Drawing::Size(360, 34);
+            this->button13->Size = System::Drawing::Size(360, 30);
             this->button13->TabIndex = 24;
             this->button13->Text = L"        Delete";
             this->button13->UseVisualStyleBackColor = false;
@@ -7259,7 +7407,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox2
             // 
             this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-            this->pictureBox2->Location = System::Drawing::Point(60, 86);
+            this->pictureBox2->Location = System::Drawing::Point(60, 39);
             this->pictureBox2->Name = L"pictureBox2";
             this->pictureBox2->Size = System::Drawing::Size(40, 44);
             this->pictureBox2->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7269,7 +7417,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox3
             // 
             this->pictureBox3->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox3.Image")));
-            this->pictureBox3->Location = System::Drawing::Point(60, 195);
+            this->pictureBox3->Location = System::Drawing::Point(60, 142);
             this->pictureBox3->Name = L"pictureBox3";
             this->pictureBox3->Size = System::Drawing::Size(40, 44);
             this->pictureBox3->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7279,7 +7427,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox4
             // 
             this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-            this->pictureBox4->Location = System::Drawing::Point(60, 300);
+            this->pictureBox4->Location = System::Drawing::Point(60, 248);
             this->pictureBox4->Name = L"pictureBox4";
             this->pictureBox4->Size = System::Drawing::Size(40, 44);
             this->pictureBox4->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7289,7 +7437,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox5
             // 
             this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-            this->pictureBox5->Location = System::Drawing::Point(60, 406);
+            this->pictureBox5->Location = System::Drawing::Point(60, 351);
             this->pictureBox5->Name = L"pictureBox5";
             this->pictureBox5->Size = System::Drawing::Size(40, 44);
             this->pictureBox5->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7299,7 +7447,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox6
             // 
             this->pictureBox6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.Image")));
-            this->pictureBox6->Location = System::Drawing::Point(60, 511);
+            this->pictureBox6->Location = System::Drawing::Point(60, 454);
             this->pictureBox6->Name = L"pictureBox6";
             this->pictureBox6->Size = System::Drawing::Size(40, 44);
             this->pictureBox6->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7309,7 +7457,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox7
             // 
             this->pictureBox7->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox7.Image")));
-            this->pictureBox7->Location = System::Drawing::Point(60, 620);
+            this->pictureBox7->Location = System::Drawing::Point(60, 663);
             this->pictureBox7->Name = L"pictureBox7";
             this->pictureBox7->Size = System::Drawing::Size(40, 44);
             this->pictureBox7->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7320,6 +7468,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->panel1->Controls->Add(this->panel20);
+            this->panel1->Controls->Add(this->panel21);
+            this->panel1->Controls->Add(this->pictureBox9);
+            this->panel1->Controls->Add(this->button20);
+            this->panel1->Controls->Add(this->button24);
             this->panel1->Controls->Add(this->panel3);
             this->panel1->Controls->Add(this->pictureBox12);
             this->panel1->Controls->Add(this->button18);
@@ -7353,15 +7506,82 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel1->Controls->Add(this->button9);
             this->panel1->Controls->Add(this->button6);
             this->panel1->Controls->Add(this->button1);
+            this->panel1->Controls->Add(this->button25);
             this->panel1->Dock = System::Windows::Forms::DockStyle::Left;
             this->panel1->Location = System::Drawing::Point(0, 76);
             this->panel1->Name = L"panel1";
             this->panel1->Size = System::Drawing::Size(364, 974);
             this->panel1->TabIndex = 259;
             // 
+            // panel20
+            // 
+            this->panel20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->panel20->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel20.BackgroundImage")));
+            this->panel20->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel20->Location = System::Drawing::Point(280, 568);
+            this->panel20->Name = L"panel20";
+            this->panel20->Size = System::Drawing::Size(62, 22);
+            this->panel20->TabIndex = 346;
+            // 
+            // panel21
+            // 
+            this->panel21->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->panel21->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel21.BackgroundImage")));
+            this->panel21->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel21->Location = System::Drawing::Point(284, 568);
+            this->panel21->Name = L"panel21";
+            this->panel21->Size = System::Drawing::Size(62, 22);
+            this->panel21->TabIndex = 347;
+            // 
+            // pictureBox9
+            // 
+            this->pictureBox9->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox9.Image")));
+            this->pictureBox9->Location = System::Drawing::Point(60, 560);
+            this->pictureBox9->Name = L"pictureBox9";
+            this->pictureBox9->Size = System::Drawing::Size(40, 44);
+            this->pictureBox9->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox9->TabIndex = 345;
+            this->pictureBox9->TabStop = false;
+            // 
+            // button20
+            // 
+            this->button20->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button20->FlatAppearance->BorderSize = 0;
+            this->button20->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button20->ForeColor = System::Drawing::Color::White;
+            this->button20->Location = System::Drawing::Point(0, 630);
+            this->button20->Margin = System::Windows::Forms::Padding(0);
+            this->button20->Name = L"button20";
+            this->button20->Size = System::Drawing::Size(364, 30);
+            this->button20->TabIndex = 344;
+            this->button20->Text = L"      Edit";
+            this->button20->UseVisualStyleBackColor = false;
+            this->button20->Visible = false;
+            this->button20->Click += gcnew System::EventHandler(this, &MyForm::button20_Click);
+            // 
+            // button24
+            // 
+            this->button24->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button24->FlatAppearance->BorderSize = 0;
+            this->button24->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button24->ForeColor = System::Drawing::Color::White;
+            this->button24->Location = System::Drawing::Point(0, 603);
+            this->button24->Margin = System::Windows::Forms::Padding(0);
+            this->button24->Name = L"button24";
+            this->button24->Size = System::Drawing::Size(366, 30);
+            this->button24->TabIndex = 343;
+            this->button24->Text = L"     Add";
+            this->button24->UseVisualStyleBackColor = false;
+            this->button24->Visible = false;
+            this->button24->Click += gcnew System::EventHandler(this, &MyForm::button24_Click);
+            // 
             // panel3
             // 
-            this->panel3->Location = System::Drawing::Point(26, 86);
+            this->panel3->Location = System::Drawing::Point(26, 39);
             this->panel3->Name = L"panel3";
             this->panel3->Size = System::Drawing::Size(8, 44);
             this->panel3->TabIndex = 341;
@@ -7371,7 +7591,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox12
             // 
             this->pictureBox12->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox12.Image")));
-            this->pictureBox12->Location = System::Drawing::Point(60, 740);
+            this->pictureBox12->Location = System::Drawing::Point(60, 840);
             this->pictureBox12->Name = L"pictureBox12";
             this->pictureBox12->Size = System::Drawing::Size(40, 44);
             this->pictureBox12->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7394,7 +7614,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->button18->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button18->Location = System::Drawing::Point(3, 740);
+            this->button18->Location = System::Drawing::Point(3, 840);
             this->button18->Name = L"button18";
             this->button18->Size = System::Drawing::Size(364, 44);
             this->button18->TabIndex = 327;
@@ -7404,7 +7624,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // pictureBox11
             // 
             this->pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
-            this->pictureBox11->Location = System::Drawing::Point(60, 808);
+            this->pictureBox11->Location = System::Drawing::Point(60, 908);
             this->pictureBox11->Name = L"pictureBox11";
             this->pictureBox11->Size = System::Drawing::Size(40, 44);
             this->pictureBox11->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
@@ -7430,9 +7650,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->button17->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button17->Location = System::Drawing::Point(3, 808);
+            this->button17->Location = System::Drawing::Point(3, 908);
             this->button17->Name = L"button17";
-            this->button17->Size = System::Drawing::Size(359, 44);
+            this->button17->Size = System::Drawing::Size(358, 44);
             this->button17->TabIndex = 325;
             this->button17->Text = L"Settings";
             this->button17->UseVisualStyleBackColor = false;
@@ -7443,7 +7663,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox5->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox5.BackgroundImage")));
             this->textBox5->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox5->Location = System::Drawing::Point(282, 306);
+            this->textBox5->Location = System::Drawing::Point(282, 260);
             this->textBox5->Name = L"textBox5";
             this->textBox5->Size = System::Drawing::Size(62, 22);
             this->textBox5->TabIndex = 321;
@@ -7454,7 +7674,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox9->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox9.BackgroundImage")));
             this->textBox9->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox9->Location = System::Drawing::Point(270, 520);
+            this->textBox9->Location = System::Drawing::Point(278, 466);
             this->textBox9->Name = L"textBox9";
             this->textBox9->Size = System::Drawing::Size(62, 22);
             this->textBox9->TabIndex = 323;
@@ -7465,7 +7685,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox11->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox11.BackgroundImage")));
             this->textBox11->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox11->Location = System::Drawing::Point(276, 627);
+            this->textBox11->Location = System::Drawing::Point(280, 676);
             this->textBox11->Name = L"textBox11";
             this->textBox11->Size = System::Drawing::Size(62, 22);
             this->textBox11->TabIndex = 323;
@@ -7476,7 +7696,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox4.BackgroundImage")));
             this->textBox4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox4->Location = System::Drawing::Point(285, 308);
+            this->textBox4->Location = System::Drawing::Point(285, 261);
             this->textBox4->Name = L"textBox4";
             this->textBox4->Size = System::Drawing::Size(62, 22);
             this->textBox4->TabIndex = 324;
@@ -7487,7 +7707,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox10->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox10.BackgroundImage")));
             this->textBox10->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox10->Location = System::Drawing::Point(278, 627);
+            this->textBox10->Location = System::Drawing::Point(284, 676);
             this->textBox10->Name = L"textBox10";
             this->textBox10->Size = System::Drawing::Size(62, 22);
             this->textBox10->TabIndex = 323;
@@ -7498,7 +7718,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox8.BackgroundImage")));
             this->textBox8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox8->Location = System::Drawing::Point(274, 520);
+            this->textBox8->Location = System::Drawing::Point(280, 466);
             this->textBox8->Name = L"textBox8";
             this->textBox8->Size = System::Drawing::Size(62, 22);
             this->textBox8->TabIndex = 324;
@@ -7518,9 +7738,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->Homebutton1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->Homebutton1->Location = System::Drawing::Point(3, 86);
+            this->Homebutton1->Location = System::Drawing::Point(3, 39);
             this->Homebutton1->Name = L"Homebutton1";
-            this->Homebutton1->Size = System::Drawing::Size(359, 44);
+            this->Homebutton1->Size = System::Drawing::Size(358, 44);
             this->Homebutton1->TabIndex = 26;
             this->Homebutton1->Text = L"    Home";
             this->Homebutton1->UseVisualStyleBackColor = false;
@@ -7532,10 +7752,34 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(77)));
             this->textBox6->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"textBox6.BackgroundImage")));
             this->textBox6->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->textBox6->Location = System::Drawing::Point(280, 412);
+            this->textBox6->Location = System::Drawing::Point(280, 364);
             this->textBox6->Name = L"textBox6";
             this->textBox6->Size = System::Drawing::Size(62, 22);
             this->textBox6->TabIndex = 324;
+            // 
+            // button25
+            // 
+            this->button25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button25->FlatAppearance->BorderColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(102)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(204)));
+            this->button25->FlatAppearance->BorderSize = 0;
+            this->button25->FlatAppearance->MouseDownBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button25->FlatAppearance->MouseOverBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->button25->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->button25->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 11, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->button25->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(128)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button25->Location = System::Drawing::Point(0, 560);
+            this->button25->Name = L"button25";
+            this->button25->Size = System::Drawing::Size(368, 44);
+            this->button25->TabIndex = 342;
+            this->button25->Text = L"Labs";
+            this->button25->UseVisualStyleBackColor = false;
+            this->button25->Click += gcnew System::EventHandler(this, &MyForm::button25_Click);
             // 
             // classgenerate
             // 
@@ -7557,7 +7801,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->classsave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->classsave->Location = System::Drawing::Point(511, 9);
+            this->classsave->Location = System::Drawing::Point(512, 9);
             this->classsave->Name = L"classsave";
             this->classsave->Size = System::Drawing::Size(154, 58);
             this->classsave->TabIndex = 247;
@@ -7602,7 +7846,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1924, 1050);
+            this->classpanel->Size = System::Drawing::Size(1806, 1050);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -7620,9 +7864,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel29->Controls->Add(this->classbranchgroup);
             this->panel29->Controls->Add(this->kryptonLabel10);
             this->panel29->Controls->Add(this->classnamegroup);
-            this->panel29->Location = System::Drawing::Point(179, 13);
+            this->panel29->Location = System::Drawing::Point(178, 14);
             this->panel29->Name = L"panel29";
-            this->panel29->Size = System::Drawing::Size(1194, 3989);
+            this->panel29->Size = System::Drawing::Size(1194, 3988);
             this->panel29->TabIndex = 346;
             this->panel29->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel29_Paint);
             // 
@@ -7632,9 +7876,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel27->Controls->Add(this->classclear);
             this->panel27->Controls->Add(this->classsave);
             this->panel27->Controls->Add(this->classreserve);
-            this->panel27->Location = System::Drawing::Point(233, 3194);
+            this->panel27->Location = System::Drawing::Point(232, 3194);
             this->panel27->Name = L"panel27";
-            this->panel27->Size = System::Drawing::Size(917, 79);
+            this->panel27->Size = System::Drawing::Size(916, 80);
             this->panel27->TabIndex = 350;
             // 
             // classgengroup
@@ -7642,7 +7886,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classgengroup->CaptionOverlap = 1;
             this->classgengroup->CaptionVisible = false;
             this->classgengroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classgengroup->Location = System::Drawing::Point(27, 3985);
+            this->classgengroup->Location = System::Drawing::Point(27, 3986);
             this->classgengroup->Name = L"classgengroup";
             // 
             // classgengroup.Panel
@@ -7664,7 +7908,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classgengroup->Panel->Controls->Add(this->label61);
             this->classgengroup->Panel->Controls->Add(this->label65);
             this->classgengroup->Panel->Controls->Add(this->label135);
-            this->classgengroup->Size = System::Drawing::Size(1127, 642);
+            this->classgengroup->Size = System::Drawing::Size(1126, 642);
             this->classgengroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classgengroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -7682,7 +7926,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel8->BackColor = System::Drawing::Color::White;
             this->panel8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel8.BackgroundImage")));
             this->panel8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel8->Location = System::Drawing::Point(743, 159);
+            this->panel8->Location = System::Drawing::Point(742, 159);
             this->panel8->Name = L"panel8";
             this->panel8->Size = System::Drawing::Size(44, 420);
             this->panel8->TabIndex = 1;
@@ -7717,7 +7961,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->classtablegen1->Location = System::Drawing::Point(121, 159);
+            this->classtablegen1->Location = System::Drawing::Point(122, 159);
             this->classtablegen1->Name = L"classtablegen1";
             this->classtablegen1->RowCount = 6;
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -7726,7 +7970,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->Size = System::Drawing::Size(950, 431);
+            this->classtablegen1->Size = System::Drawing::Size(950, 430);
             this->classtablegen1->TabIndex = 260;
             // 
             // panel26
@@ -7734,7 +7978,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel26->BackColor = System::Drawing::Color::White;
             this->panel26->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel26.BackgroundImage")));
             this->panel26->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel26->Location = System::Drawing::Point(397, 159);
+            this->panel26->Location = System::Drawing::Point(398, 159);
             this->panel26->Name = L"panel26";
             this->panel26->Size = System::Drawing::Size(82, 412);
             this->panel26->TabIndex = 2;
@@ -7745,7 +7989,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label34->BackColor = System::Drawing::Color::White;
             this->label34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label34->Location = System::Drawing::Point(21, 179);
+            this->label34->Location = System::Drawing::Point(21, 178);
             this->label34->Name = L"label34";
             this->label34->Size = System::Drawing::Size(85, 28);
             this->label34->TabIndex = 261;
@@ -7781,7 +8025,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label54->BackColor = System::Drawing::Color::White;
             this->label54->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label54->Location = System::Drawing::Point(139, 119);
+            this->label54->Location = System::Drawing::Point(140, 118);
             this->label54->Name = L"label54";
             this->label54->Size = System::Drawing::Size(105, 28);
             this->label54->TabIndex = 294;
@@ -7793,7 +8037,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label55->BackColor = System::Drawing::Color::White;
             this->label55->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label55->Location = System::Drawing::Point(11, 325);
+            this->label55->Location = System::Drawing::Point(10, 326);
             this->label55->Name = L"label55";
             this->label55->Size = System::Drawing::Size(113, 28);
             this->label55->TabIndex = 263;
@@ -7805,7 +8049,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label56->BackColor = System::Drawing::Color::White;
             this->label56->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label56->Location = System::Drawing::Point(275, 119);
+            this->label56->Location = System::Drawing::Point(274, 118);
             this->label56->Name = L"label56";
             this->label56->Size = System::Drawing::Size(116, 28);
             this->label56->TabIndex = 295;
@@ -7817,7 +8061,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label57->BackColor = System::Drawing::Color::White;
             this->label57->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label57->Location = System::Drawing::Point(11, 389);
+            this->label57->Location = System::Drawing::Point(10, 388);
             this->label57->Name = L"label57";
             this->label57->Size = System::Drawing::Size(91, 28);
             this->label57->TabIndex = 264;
@@ -7829,7 +8073,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label58->BackColor = System::Drawing::Color::White;
             this->label58->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label58->Location = System::Drawing::Point(461, 119);
+            this->label58->Location = System::Drawing::Point(460, 118);
             this->label58->Name = L"label58";
             this->label58->Size = System::Drawing::Size(116, 28);
             this->label58->TabIndex = 296;
@@ -7841,7 +8085,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label59->BackColor = System::Drawing::Color::White;
             this->label59->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label59->Location = System::Drawing::Point(25, 465);
+            this->label59->Location = System::Drawing::Point(26, 465);
             this->label59->Name = L"label59";
             this->label59->Size = System::Drawing::Size(66, 28);
             this->label59->TabIndex = 265;
@@ -7853,7 +8097,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label60->BackColor = System::Drawing::Color::White;
             this->label60->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label60->Location = System::Drawing::Point(615, 119);
+            this->label60->Location = System::Drawing::Point(615, 118);
             this->label60->Name = L"label60";
             this->label60->Size = System::Drawing::Size(105, 28);
             this->label60->TabIndex = 297;
@@ -7865,7 +8109,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label61->BackColor = System::Drawing::Color::White;
             this->label61->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label61->Location = System::Drawing::Point(25, 542);
+            this->label61->Location = System::Drawing::Point(26, 542);
             this->label61->Name = L"label61";
             this->label61->Size = System::Drawing::Size(90, 28);
             this->label61->TabIndex = 266;
@@ -7877,7 +8121,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label65->BackColor = System::Drawing::Color::White;
             this->label65->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label65->Location = System::Drawing::Point(809, 115);
+            this->label65->Location = System::Drawing::Point(808, 116);
             this->label65->Name = L"label65";
             this->label65->Size = System::Drawing::Size(94, 28);
             this->label65->TabIndex = 298;
@@ -7889,7 +8133,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label135->BackColor = System::Drawing::Color::White;
             this->label135->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label135->Location = System::Drawing::Point(939, 115);
+            this->label135->Location = System::Drawing::Point(939, 116);
             this->label135->Name = L"label135";
             this->label135->Size = System::Drawing::Size(94, 28);
             this->label135->TabIndex = 299;
@@ -7907,7 +8151,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->classroomgroup->Panel->Controls->Add(this->label35);
             this->classroomgroup->Panel->Controls->Add(this->classdefaultrooms);
-            this->classroomgroup->Size = System::Drawing::Size(1127, 357);
+            this->classroomgroup->Size = System::Drawing::Size(1126, 357);
             this->classroomgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classroomgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -7929,7 +8173,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label35->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label35->ForeColor = System::Drawing::Color::Black;
-            this->label35->Location = System::Drawing::Point(143, 43);
+            this->label35->Location = System::Drawing::Point(142, 44);
             this->label35->Name = L"label35";
             this->label35->Size = System::Drawing::Size(250, 28);
             this->label35->TabIndex = 344;
@@ -7942,6 +8186,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classdefaultrooms->CheckOnClick = true;
             this->classdefaultrooms->Location = System::Drawing::Point(162, 110);
             this->classdefaultrooms->Name = L"classdefaultrooms";
+            this->classdefaultrooms->Padding = System::Windows::Forms::Padding(2);
             this->classdefaultrooms->Size = System::Drawing::Size(348, 182);
             this->classdefaultrooms->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
             this->classdefaultrooms->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
@@ -7971,7 +8216,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classresgroup->CaptionOverlap = 1;
             this->classresgroup->CaptionVisible = false;
             this->classresgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classresgroup->Location = System::Drawing::Point(23, 3302);
+            this->classresgroup->Location = System::Drawing::Point(22, 3302);
             this->classresgroup->Name = L"classresgroup";
             // 
             // classresgroup.Panel
@@ -7992,7 +8237,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classresgroup->Panel->Controls->Add(this->label168);
             this->classresgroup->Panel->Controls->Add(this->label169);
             this->classresgroup->Panel->Controls->Add(this->label170);
-            this->classresgroup->Size = System::Drawing::Size(1127, 642);
+            this->classresgroup->Size = System::Drawing::Size(1126, 642);
             this->classresgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classresgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -8010,7 +8255,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel50->BackColor = System::Drawing::Color::White;
             this->panel50->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel50.BackgroundImage")));
             this->panel50->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel50->Location = System::Drawing::Point(743, 159);
+            this->panel50->Location = System::Drawing::Point(742, 159);
             this->panel50->Name = L"panel50";
             this->panel50->Size = System::Drawing::Size(44, 420);
             this->panel50->TabIndex = 1;
@@ -8045,7 +8290,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->classtablegen->Location = System::Drawing::Point(121, 159);
+            this->classtablegen->Location = System::Drawing::Point(122, 159);
             this->classtablegen->Name = L"classtablegen";
             this->classtablegen->RowCount = 6;
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -8054,7 +8299,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen->Size = System::Drawing::Size(950, 431);
+            this->classtablegen->Size = System::Drawing::Size(950, 430);
             this->classtablegen->TabIndex = 260;
             // 
             // panel54
@@ -8062,7 +8307,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel54->BackColor = System::Drawing::Color::White;
             this->panel54->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel54.BackgroundImage")));
             this->panel54->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel54->Location = System::Drawing::Point(397, 159);
+            this->panel54->Location = System::Drawing::Point(398, 159);
             this->panel54->Name = L"panel54";
             this->panel54->Size = System::Drawing::Size(82, 412);
             this->panel54->TabIndex = 2;
@@ -8073,7 +8318,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label98->BackColor = System::Drawing::Color::White;
             this->label98->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label98->Location = System::Drawing::Point(21, 179);
+            this->label98->Location = System::Drawing::Point(21, 178);
             this->label98->Name = L"label98";
             this->label98->Size = System::Drawing::Size(85, 28);
             this->label98->TabIndex = 261;
@@ -8097,7 +8342,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label160->BackColor = System::Drawing::Color::White;
             this->label160->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label160->Location = System::Drawing::Point(139, 119);
+            this->label160->Location = System::Drawing::Point(140, 118);
             this->label160->Name = L"label160";
             this->label160->Size = System::Drawing::Size(105, 28);
             this->label160->TabIndex = 294;
@@ -8109,7 +8354,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label161->BackColor = System::Drawing::Color::White;
             this->label161->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label161->Location = System::Drawing::Point(11, 325);
+            this->label161->Location = System::Drawing::Point(10, 326);
             this->label161->Name = L"label161";
             this->label161->Size = System::Drawing::Size(113, 28);
             this->label161->TabIndex = 263;
@@ -8121,7 +8366,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label162->BackColor = System::Drawing::Color::White;
             this->label162->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label162->Location = System::Drawing::Point(275, 119);
+            this->label162->Location = System::Drawing::Point(274, 118);
             this->label162->Name = L"label162";
             this->label162->Size = System::Drawing::Size(116, 28);
             this->label162->TabIndex = 295;
@@ -8133,7 +8378,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label163->BackColor = System::Drawing::Color::White;
             this->label163->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label163->Location = System::Drawing::Point(11, 389);
+            this->label163->Location = System::Drawing::Point(10, 388);
             this->label163->Name = L"label163";
             this->label163->Size = System::Drawing::Size(91, 28);
             this->label163->TabIndex = 264;
@@ -8145,7 +8390,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label164->BackColor = System::Drawing::Color::White;
             this->label164->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label164->Location = System::Drawing::Point(461, 119);
+            this->label164->Location = System::Drawing::Point(460, 118);
             this->label164->Name = L"label164";
             this->label164->Size = System::Drawing::Size(116, 28);
             this->label164->TabIndex = 296;
@@ -8157,7 +8402,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label166->BackColor = System::Drawing::Color::White;
             this->label166->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label166->Location = System::Drawing::Point(25, 465);
+            this->label166->Location = System::Drawing::Point(26, 465);
             this->label166->Name = L"label166";
             this->label166->Size = System::Drawing::Size(66, 28);
             this->label166->TabIndex = 265;
@@ -8169,7 +8414,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label167->BackColor = System::Drawing::Color::White;
             this->label167->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label167->Location = System::Drawing::Point(615, 119);
+            this->label167->Location = System::Drawing::Point(615, 118);
             this->label167->Name = L"label167";
             this->label167->Size = System::Drawing::Size(105, 28);
             this->label167->TabIndex = 297;
@@ -8181,7 +8426,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label168->BackColor = System::Drawing::Color::White;
             this->label168->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label168->Location = System::Drawing::Point(25, 542);
+            this->label168->Location = System::Drawing::Point(26, 542);
             this->label168->Name = L"label168";
             this->label168->Size = System::Drawing::Size(90, 28);
             this->label168->TabIndex = 266;
@@ -8193,7 +8438,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label169->BackColor = System::Drawing::Color::White;
             this->label169->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label169->Location = System::Drawing::Point(809, 115);
+            this->label169->Location = System::Drawing::Point(808, 116);
             this->label169->Name = L"label169";
             this->label169->Size = System::Drawing::Size(94, 28);
             this->label169->TabIndex = 298;
@@ -8205,7 +8450,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label170->BackColor = System::Drawing::Color::White;
             this->label170->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label170->Location = System::Drawing::Point(939, 115);
+            this->label170->Location = System::Drawing::Point(939, 116);
             this->label170->Name = L"label170";
             this->label170->Size = System::Drawing::Size(94, 28);
             this->label170->TabIndex = 299;
@@ -8216,7 +8461,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classlabgroup->CaptionOverlap = 1;
             this->classlabgroup->CaptionVisible = false;
             this->classlabgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classlabgroup->Location = System::Drawing::Point(23, 1707);
+            this->classlabgroup->Location = System::Drawing::Point(22, 1707);
             this->classlabgroup->Name = L"classlabgroup";
             // 
             // classlabgroup.Panel
@@ -8237,7 +8482,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classlabgroup->Panel->Controls->Add(this->classlabcombo);
             this->classlabgroup->Panel->Controls->Add(this->label154);
             this->classlabgroup->Panel->Controls->Add(this->classlabteachers);
-            this->classlabgroup->Size = System::Drawing::Size(1127, 1100);
+            this->classlabgroup->Size = System::Drawing::Size(1126, 1100);
             this->classlabgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classlabgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -8253,7 +8498,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // classoptrooms
             // 
-            this->classoptrooms->Location = System::Drawing::Point(677, 580);
+            this->classoptrooms->Location = System::Drawing::Point(676, 580);
             this->classoptrooms->Name = L"classoptrooms";
             this->classoptrooms->Size = System::Drawing::Size(321, 29);
             this->classoptrooms->TabIndex = 357;
@@ -8261,7 +8506,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // compactlabs
             // 
-            this->compactlabs->Location = System::Drawing::Point(119, 1036);
+            this->compactlabs->Location = System::Drawing::Point(118, 1036);
             this->compactlabs->Name = L"compactlabs";
             this->compactlabs->Size = System::Drawing::Size(137, 29);
             this->compactlabs->TabIndex = 356;
@@ -8287,7 +8532,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classlab->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->classlab->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->classlab->HideOuterBorders = true;
-            this->classlab->Location = System::Drawing::Point(119, 816);
+            this->classlab->Location = System::Drawing::Point(118, 816);
             this->classlab->Name = L"classlab";
             this->classlab->RowHeadersVisible = false;
             this->classlab->RowHeadersWidth = 62;
@@ -8352,7 +8597,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label32->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label32->ForeColor = System::Drawing::Color::Black;
-            this->label32->Location = System::Drawing::Point(385, 767);
+            this->label32->Location = System::Drawing::Point(386, 766);
             this->label32->Name = L"label32";
             this->label32->Size = System::Drawing::Size(257, 28);
             this->label32->TabIndex = 354;
@@ -8363,8 +8608,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classlabroomlist->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::InputControlRibbon;
             this->classlabroomlist->BorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ContextMenuItemSplit;
             this->classlabroomlist->CheckOnClick = true;
-            this->classlabroomlist->Location = System::Drawing::Point(678, 379);
+            this->classlabroomlist->Location = System::Drawing::Point(678, 380);
             this->classlabroomlist->Name = L"classlabroomlist";
+            this->classlabroomlist->Padding = System::Windows::Forms::Padding(2);
             this->classlabroomlist->Size = System::Drawing::Size(348, 182);
             this->classlabroomlist->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
             this->classlabroomlist->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
@@ -8405,7 +8651,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // classsessions
             // 
-            this->classsessions->Location = System::Drawing::Point(677, 241);
+            this->classsessions->Location = System::Drawing::Point(676, 242);
             this->classsessions->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2020, 0, 0, 0 });
             this->classsessions->Name = L"classsessions";
             this->classsessions->Size = System::Drawing::Size(304, 30);
@@ -8422,7 +8668,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label157->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label157->ForeColor = System::Drawing::Color::Black;
-            this->label157->Location = System::Drawing::Point(672, 175);
+            this->label157->Location = System::Drawing::Point(672, 176);
             this->label157->Name = L"label157";
             this->label157->Size = System::Drawing::Size(194, 28);
             this->label157->TabIndex = 350;
@@ -8446,7 +8692,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label39->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label39->ForeColor = System::Drawing::Color::Black;
-            this->label39->Location = System::Drawing::Point(101, 191);
+            this->label39->Location = System::Drawing::Point(100, 190);
             this->label39->Name = L"label39";
             this->label39->Size = System::Drawing::Size(188, 28);
             this->label39->TabIndex = 348;
@@ -8454,7 +8700,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel14
             // 
-            this->kryptonPanel14->Location = System::Drawing::Point(99, 139);
+            this->kryptonPanel14->Location = System::Drawing::Point(99, 140);
             this->kryptonPanel14->Name = L"kryptonPanel14";
             this->kryptonPanel14->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel14->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -8467,7 +8713,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label156->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label156->ForeColor = System::Drawing::Color::Black;
-            this->label156->Location = System::Drawing::Point(101, 48);
+            this->label156->Location = System::Drawing::Point(100, 48);
             this->label156->Name = L"label156";
             this->label156->Size = System::Drawing::Size(177, 28);
             this->label156->TabIndex = 345;
@@ -8476,7 +8722,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // classlabcombo
             // 
             this->classlabcombo->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->classlabcombo->Location = System::Drawing::Point(105, 97);
+            this->classlabcombo->Location = System::Drawing::Point(105, 98);
             this->classlabcombo->Name = L"classlabcombo";
             this->classlabcombo->Size = System::Drawing::Size(478, 44);
             this->classlabcombo->StateActive->Back->Color1 = System::Drawing::Color::White;
@@ -8621,14 +8867,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classelegroup->CaptionOverlap = 1;
             this->classelegroup->CaptionVisible = false;
             this->classelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classelegroup->Location = System::Drawing::Point(23, 1283);
+            this->classelegroup->Location = System::Drawing::Point(22, 1282);
             this->classelegroup->Name = L"classelegroup";
             // 
             // classelegroup.Panel
             // 
             this->classelegroup->Panel->Controls->Add(this->label36);
             this->classelegroup->Panel->Controls->Add(this->classele);
-            this->classelegroup->Size = System::Drawing::Size(1127, 346);
+            this->classelegroup->Size = System::Drawing::Size(1126, 346);
             this->classelegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classelegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -8674,7 +8920,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classele->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->classele->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->classele->HideOuterBorders = true;
-            this->classele->Location = System::Drawing::Point(135, 113);
+            this->classele->Location = System::Drawing::Point(135, 112);
             this->classele->Name = L"classele";
             this->classele->RowHeadersVisible = false;
             this->classele->RowHeadersWidth = 62;
@@ -8686,7 +8932,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classele->RowTemplate->Height = 28;
             this->classele->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classele->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->classele->Size = System::Drawing::Size(865, 194);
+            this->classele->Size = System::Drawing::Size(866, 194);
             this->classele->StateCommon->Background->Color1 = System::Drawing::Color::White;
             this->classele->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
             this->classele->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
@@ -8737,14 +8983,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classcoregroup->CaptionOverlap = 1;
             this->classcoregroup->CaptionVisible = false;
             this->classcoregroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classcoregroup->Location = System::Drawing::Point(23, 883);
+            this->classcoregroup->Location = System::Drawing::Point(22, 884);
             this->classcoregroup->Name = L"classcoregroup";
             // 
             // classcoregroup.Panel
             // 
             this->classcoregroup->Panel->Controls->Add(this->label37);
             this->classcoregroup->Panel->Controls->Add(this->classcore);
-            this->classcoregroup->Size = System::Drawing::Size(1127, 346);
+            this->classcoregroup->Size = System::Drawing::Size(1126, 346);
             this->classcoregroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classcoregroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -8764,7 +9010,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label37->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label37->ForeColor = System::Drawing::Color::Black;
-            this->label37->Location = System::Drawing::Point(64, 41);
+            this->label37->Location = System::Drawing::Point(64, 40);
             this->label37->Name = L"label37";
             this->label37->Size = System::Drawing::Size(1037, 28);
             this->label37->TabIndex = 344;
@@ -8794,7 +9040,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classcore->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->classcore->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->classcore->HideOuterBorders = true;
-            this->classcore->Location = System::Drawing::Point(135, 113);
+            this->classcore->Location = System::Drawing::Point(135, 112);
             this->classcore->Name = L"classcore";
             this->classcore->RowHeadersVisible = false;
             this->classcore->RowHeadersWidth = 62;
@@ -8806,7 +9052,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classcore->RowTemplate->Height = 28;
             this->classcore->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classcore->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->classcore->Size = System::Drawing::Size(865, 194);
+            this->classcore->Size = System::Drawing::Size(866, 194);
             this->classcore->StateCommon->Background->Color1 = System::Drawing::Color::White;
             this->classcore->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
             this->classcore->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
@@ -8866,14 +9112,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classbatchgroup->CaptionOverlap = 1;
             this->classbatchgroup->CaptionVisible = false;
             this->classbatchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classbatchgroup->Location = System::Drawing::Point(23, 632);
+            this->classbatchgroup->Location = System::Drawing::Point(22, 632);
             this->classbatchgroup->Name = L"classbatchgroup";
             // 
             // classbatchgroup.Panel
             // 
             this->classbatchgroup->Panel->Controls->Add(this->classbatch);
             this->classbatchgroup->Panel->Controls->Add(this->label2);
-            this->classbatchgroup->Size = System::Drawing::Size(1127, 194);
+            this->classbatchgroup->Size = System::Drawing::Size(1126, 194);
             this->classbatchgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classbatchgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -8919,14 +9165,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classbranchgroup->CaptionOverlap = 1;
             this->classbranchgroup->CaptionVisible = false;
             this->classbranchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classbranchgroup->Location = System::Drawing::Point(23, 381);
+            this->classbranchgroup->Location = System::Drawing::Point(22, 381);
             this->classbranchgroup->Name = L"classbranchgroup";
             // 
             // classbranchgroup.Panel
             // 
             this->classbranchgroup->Panel->Controls->Add(this->label82);
             this->classbranchgroup->Panel->Controls->Add(this->classbranch);
-            this->classbranchgroup->Size = System::Drawing::Size(1127, 194);
+            this->classbranchgroup->Size = System::Drawing::Size(1126, 194);
             this->classbranchgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classbranchgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -8947,7 +9193,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label82->BackColor = System::Drawing::Color::White;
             this->label82->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label82->Location = System::Drawing::Point(94, 41);
+            this->label82->Location = System::Drawing::Point(94, 40);
             this->label82->Name = L"label82";
             this->label82->Size = System::Drawing::Size(125, 28);
             this->label82->TabIndex = 343;
@@ -8956,9 +9202,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // classbranch
             // 
             this->classbranch->DropDownWidth = 342;
-            this->classbranch->Location = System::Drawing::Point(87, 95);
+            this->classbranch->Location = System::Drawing::Point(87, 94);
             this->classbranch->Name = L"classbranch";
-            this->classbranch->Size = System::Drawing::Size(563, 29);
+            this->classbranch->Size = System::Drawing::Size(562, 29);
             this->classbranch->StateCommon->DropBack->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->classbranch->StateCommon->DropBack->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
@@ -8968,7 +9214,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonLabel10
             // 
-            this->kryptonLabel10->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel10->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel10->Name = L"kryptonLabel10";
             this->kryptonLabel10->Size = System::Drawing::Size(184, 43);
             this->kryptonLabel10->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -8983,7 +9229,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classnamegroup->CaptionOverlap = 1;
             this->classnamegroup->CaptionVisible = false;
             this->classnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classnamegroup->Location = System::Drawing::Point(23, 168);
+            this->classnamegroup->Location = System::Drawing::Point(22, 168);
             this->classnamegroup->Name = L"classnamegroup";
             // 
             // classnamegroup.Panel
@@ -8992,7 +9238,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->classnamegroup->Panel->Controls->Add(this->label119);
             this->classnamegroup->Panel->Controls->Add(this->classname);
             this->classnamegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::classnamegroup_Panel_Enter);
-            this->classnamegroup->Size = System::Drawing::Size(1127, 194);
+            this->classnamegroup->Size = System::Drawing::Size(1126, 194);
             this->classnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->classnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -9008,7 +9254,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel15
             // 
-            this->kryptonPanel15->Location = System::Drawing::Point(91, 121);
+            this->kryptonPanel15->Location = System::Drawing::Point(92, 122);
             this->kryptonPanel15->Name = L"kryptonPanel15";
             this->kryptonPanel15->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel15->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -9030,7 +9276,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // classname
             // 
             this->classname->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->classname->Location = System::Drawing::Point(97, 79);
+            this->classname->Location = System::Drawing::Point(98, 80);
             this->classname->Name = L"classname";
             this->classname->Size = System::Drawing::Size(478, 44);
             this->classname->StateActive->Back->Color1 = System::Drawing::Color::White;
@@ -9058,7 +9304,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addteacherpanel->Location = System::Drawing::Point(0, 0);
             this->addteacherpanel->Name = L"addteacherpanel";
-            this->addteacherpanel->Size = System::Drawing::Size(1924, 1050);
+            this->addteacherpanel->Size = System::Drawing::Size(1806, 1050);
             this->addteacherpanel->TabIndex = 293;
             // 
             // panel16
@@ -9070,7 +9316,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel16->Controls->Add(this->addteacherdepartmentgroup);
             this->panel16->Controls->Add(this->kryptonLabel7);
             this->panel16->Controls->Add(this->addteachernamegroup);
-            this->panel16->Location = System::Drawing::Point(179, 13);
+            this->panel16->Location = System::Drawing::Point(178, 14);
             this->panel16->Name = L"panel16";
             this->panel16->Size = System::Drawing::Size(1194, 1834);
             this->panel16->TabIndex = 345;
@@ -9080,7 +9326,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteacheremailidgroup->CaptionOverlap = 1;
             this->addteacheremailidgroup->CaptionVisible = false;
             this->addteacheremailidgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteacheremailidgroup->Location = System::Drawing::Point(23, 633);
+            this->addteacheremailidgroup->Location = System::Drawing::Point(22, 633);
             this->addteacheremailidgroup->Name = L"addteacheremailidgroup";
             // 
             // addteacheremailidgroup.Panel
@@ -9088,7 +9334,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteacheremailidgroup->Panel->Controls->Add(this->kryptonPanel10);
             this->addteacheremailidgroup->Panel->Controls->Add(this->label1);
             this->addteacheremailidgroup->Panel->Controls->Add(this->addteacheremailid);
-            this->addteacheremailidgroup->Size = System::Drawing::Size(1127, 194);
+            this->addteacheremailidgroup->Size = System::Drawing::Size(1126, 194);
             this->addteacheremailidgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addteacheremailidgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -9104,7 +9350,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel10
             // 
-            this->kryptonPanel10->Location = System::Drawing::Point(91, 121);
+            this->kryptonPanel10->Location = System::Drawing::Point(92, 122);
             this->kryptonPanel10->Name = L"kryptonPanel10";
             this->kryptonPanel10->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel10->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -9126,7 +9372,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // addteacheremailid
             // 
             this->addteacheremailid->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->addteacheremailid->Location = System::Drawing::Point(97, 79);
+            this->addteacheremailid->Location = System::Drawing::Point(98, 80);
             this->addteacheremailid->Name = L"addteacheremailid";
             this->addteacheremailid->Size = System::Drawing::Size(478, 44);
             this->addteacheremailid->StateActive->Back->Color1 = System::Drawing::Color::White;
@@ -9153,7 +9399,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel17->Controls->Add(this->addteachersave);
             this->panel17->Controls->Add(this->addteachernew);
-            this->panel17->Location = System::Drawing::Point(676, 1649);
+            this->panel17->Location = System::Drawing::Point(682, 1720);
             this->panel17->Name = L"panel17";
             this->panel17->Size = System::Drawing::Size(444, 110);
             this->panel17->TabIndex = 298;
@@ -9178,7 +9424,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->addteachernew->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->addteachernew->Location = System::Drawing::Point(252, 29);
+            this->addteachernew->Location = System::Drawing::Point(252, 28);
             this->addteachernew->Name = L"addteachernew";
             this->addteachernew->Size = System::Drawing::Size(154, 58);
             this->addteachernew->TabIndex = 272;
@@ -9191,11 +9437,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteachertablegroup->CaptionOverlap = 1;
             this->addteachertablegroup->CaptionVisible = false;
             this->addteachertablegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteachertablegroup->Location = System::Drawing::Point(23, 948);
+            this->addteachertablegroup->Location = System::Drawing::Point(22, 948);
             this->addteachertablegroup->Name = L"addteachertablegroup";
             // 
             // addteachertablegroup.Panel
             // 
+            this->addteachertablegroup->Panel->Controls->Add(this->label84);
+            this->addteachertablegroup->Panel->Controls->Add(this->addteachertt);
             this->addteachertablegroup->Panel->Controls->Add(this->panel30);
             this->addteachertablegroup->Panel->Controls->Add(this->panel31);
             this->addteachertablegroup->Panel->Controls->Add(this->teachertablepanel);
@@ -9214,7 +9462,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteachertablegroup->Panel->Controls->Add(this->label48);
             this->addteachertablegroup->Panel->Controls->Add(this->label49);
             this->addteachertablegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::addteachertablegroup_Panel_Enter);
-            this->addteachertablegroup->Size = System::Drawing::Size(1127, 642);
+            this->addteachertablegroup->Size = System::Drawing::Size(1126, 726);
             this->addteachertablegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addteachertablegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -9226,12 +9474,34 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteachertablegroup->StateCommon->Border->Width = 1;
             this->addteachertablegroup->TabIndex = 346;
             // 
+            // label84
+            // 
+            this->label84->AutoSize = true;
+            this->label84->BackColor = System::Drawing::Color::White;
+            this->label84->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label84->Location = System::Drawing::Point(122, 84);
+            this->label84->Name = L"label84";
+            this->label84->Size = System::Drawing::Size(749, 28);
+            this->label84->TabIndex = 348;
+            this->label84->Text = L"Enter the name you want to display in the timetable and then select the timeslot";
+            // 
+            // addteachertt
+            // 
+            this->addteachertt->AutoCompleteMode = System::Windows::Forms::AutoCompleteMode::SuggestAppend;
+            this->addteachertt->AutoCompleteSource = System::Windows::Forms::AutoCompleteSource::ListItems;
+            this->addteachertt->DropDownWidth = 410;
+            this->addteachertt->Location = System::Drawing::Point(134, 132);
+            this->addteachertt->Name = L"addteachertt";
+            this->addteachertt->Size = System::Drawing::Size(410, 29);
+            this->addteachertt->TabIndex = 347;
+            // 
             // panel30
             // 
             this->panel30->BackColor = System::Drawing::Color::White;
             this->panel30->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel30.BackgroundImage")));
             this->panel30->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel30->Location = System::Drawing::Point(764, 156);
+            this->panel30->Location = System::Drawing::Point(754, 244);
             this->panel30->Name = L"panel30";
             this->panel30->Size = System::Drawing::Size(44, 420);
             this->panel30->TabIndex = 1;
@@ -9241,7 +9511,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel31->BackColor = System::Drawing::Color::White;
             this->panel31->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel31.BackgroundImage")));
             this->panel31->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel31->Location = System::Drawing::Point(429, 156);
+            this->panel31->Location = System::Drawing::Point(420, 244);
             this->panel31->Name = L"panel31";
             this->panel31->Size = System::Drawing::Size(44, 430);
             this->panel31->TabIndex = 300;
@@ -9266,7 +9536,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->teachertablepanel->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->teachertablepanel->Location = System::Drawing::Point(142, 156);
+            this->teachertablepanel->Location = System::Drawing::Point(134, 244);
             this->teachertablepanel->Name = L"teachertablepanel";
             this->teachertablepanel->RowCount = 6;
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -9275,7 +9545,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->teachertablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->teachertablepanel->Size = System::Drawing::Size(950, 431);
+            this->teachertablepanel->Size = System::Drawing::Size(950, 430);
             this->teachertablepanel->TabIndex = 260;
             // 
             // panel32
@@ -9283,7 +9553,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel32->BackColor = System::Drawing::Color::White;
             this->panel32->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel32.BackgroundImage")));
             this->panel32->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel32->Location = System::Drawing::Point(418, 156);
+            this->panel32->Location = System::Drawing::Point(410, 244);
             this->panel32->Name = L"panel32";
             this->panel32->Size = System::Drawing::Size(82, 412);
             this->panel32->TabIndex = 2;
@@ -9306,7 +9576,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label3->BackColor = System::Drawing::Color::White;
             this->label3->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label3->Location = System::Drawing::Point(42, 176);
+            this->label3->Location = System::Drawing::Point(33, 266);
             this->label3->Name = L"label3";
             this->label3->Size = System::Drawing::Size(85, 28);
             this->label3->TabIndex = 261;
@@ -9318,7 +9588,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label24->BackColor = System::Drawing::Color::White;
             this->label24->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label24->Location = System::Drawing::Point(48, 245);
+            this->label24->Location = System::Drawing::Point(39, 334);
             this->label24->Name = L"label24";
             this->label24->Size = System::Drawing::Size(83, 28);
             this->label24->TabIndex = 262;
@@ -9330,7 +9600,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label26->BackColor = System::Drawing::Color::White;
             this->label26->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label26->Location = System::Drawing::Point(160, 116);
+            this->label26->Location = System::Drawing::Point(152, 206);
             this->label26->Name = L"label26";
             this->label26->Size = System::Drawing::Size(105, 28);
             this->label26->TabIndex = 294;
@@ -9342,7 +9612,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label27->BackColor = System::Drawing::Color::White;
             this->label27->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label27->Location = System::Drawing::Point(32, 322);
+            this->label27->Location = System::Drawing::Point(22, 411);
             this->label27->Name = L"label27";
             this->label27->Size = System::Drawing::Size(113, 28);
             this->label27->TabIndex = 263;
@@ -9354,7 +9624,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label40->BackColor = System::Drawing::Color::White;
             this->label40->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label40->Location = System::Drawing::Point(296, 116);
+            this->label40->Location = System::Drawing::Point(286, 206);
             this->label40->Name = L"label40";
             this->label40->Size = System::Drawing::Size(116, 28);
             this->label40->TabIndex = 295;
@@ -9366,7 +9636,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label41->BackColor = System::Drawing::Color::White;
             this->label41->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label41->Location = System::Drawing::Point(32, 386);
+            this->label41->Location = System::Drawing::Point(22, 476);
             this->label41->Name = L"label41";
             this->label41->Size = System::Drawing::Size(91, 28);
             this->label41->TabIndex = 264;
@@ -9378,7 +9648,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label42->BackColor = System::Drawing::Color::White;
             this->label42->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label42->Location = System::Drawing::Point(482, 116);
+            this->label42->Location = System::Drawing::Point(472, 206);
             this->label42->Name = L"label42";
             this->label42->Size = System::Drawing::Size(116, 28);
             this->label42->TabIndex = 296;
@@ -9390,7 +9660,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label43->BackColor = System::Drawing::Color::White;
             this->label43->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label43->Location = System::Drawing::Point(46, 462);
+            this->label43->Location = System::Drawing::Point(38, 550);
             this->label43->Name = L"label43";
             this->label43->Size = System::Drawing::Size(66, 28);
             this->label43->TabIndex = 265;
@@ -9402,7 +9672,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label46->BackColor = System::Drawing::Color::White;
             this->label46->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label46->Location = System::Drawing::Point(636, 116);
+            this->label46->Location = System::Drawing::Point(627, 206);
             this->label46->Name = L"label46";
             this->label46->Size = System::Drawing::Size(105, 28);
             this->label46->TabIndex = 297;
@@ -9414,7 +9684,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label47->BackColor = System::Drawing::Color::White;
             this->label47->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label47->Location = System::Drawing::Point(46, 539);
+            this->label47->Location = System::Drawing::Point(38, 628);
             this->label47->Name = L"label47";
             this->label47->Size = System::Drawing::Size(90, 28);
             this->label47->TabIndex = 266;
@@ -9426,7 +9696,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label48->BackColor = System::Drawing::Color::White;
             this->label48->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label48->Location = System::Drawing::Point(830, 112);
+            this->label48->Location = System::Drawing::Point(820, 201);
             this->label48->Name = L"label48";
             this->label48->Size = System::Drawing::Size(94, 28);
             this->label48->TabIndex = 298;
@@ -9438,7 +9708,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label49->BackColor = System::Drawing::Color::White;
             this->label49->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label49->Location = System::Drawing::Point(960, 112);
+            this->label49->Location = System::Drawing::Point(951, 201);
             this->label49->Name = L"label49";
             this->label49->Size = System::Drawing::Size(94, 28);
             this->label49->TabIndex = 299;
@@ -9448,9 +9718,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->panel35->Controls->Add(this->button26);
             this->panel35->Controls->Add(this->button27);
-            this->panel35->Location = System::Drawing::Point(709, 2211);
+            this->panel35->Location = System::Drawing::Point(710, 2211);
             this->panel35->Name = L"panel35";
-            this->panel35->Size = System::Drawing::Size(502, 137);
+            this->panel35->Size = System::Drawing::Size(502, 136);
             this->panel35->TabIndex = 295;
             // 
             // button26
@@ -9471,7 +9741,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->button27->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button27->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->button27->Location = System::Drawing::Point(49, 38);
+            this->button27->Location = System::Drawing::Point(50, 38);
             this->button27->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->button27->Name = L"button27";
             this->button27->Size = System::Drawing::Size(154, 58);
@@ -9484,7 +9754,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteacherdepartmentgroup->CaptionOverlap = 1;
             this->addteacherdepartmentgroup->CaptionVisible = false;
             this->addteacherdepartmentgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteacherdepartmentgroup->Location = System::Drawing::Point(23, 381);
+            this->addteacherdepartmentgroup->Location = System::Drawing::Point(22, 381);
             this->addteacherdepartmentgroup->Name = L"addteacherdepartmentgroup";
             // 
             // addteacherdepartmentgroup.Panel
@@ -9492,7 +9762,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteacherdepartmentgroup->Panel->Controls->Add(this->label51);
             this->addteacherdepartmentgroup->Panel->Controls->Add(this->addteacherdepartment);
             this->addteacherdepartmentgroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::addteacherdepartmentgroup_Panel_Enter);
-            this->addteacherdepartmentgroup->Size = System::Drawing::Size(1127, 194);
+            this->addteacherdepartmentgroup->Size = System::Drawing::Size(1126, 194);
             this->addteacherdepartmentgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addteacherdepartmentgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -9512,7 +9782,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label51->BackColor = System::Drawing::Color::White;
             this->label51->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label51->Location = System::Drawing::Point(94, 41);
+            this->label51->Location = System::Drawing::Point(94, 40);
             this->label51->Name = L"label51";
             this->label51->Size = System::Drawing::Size(122, 28);
             this->label51->TabIndex = 343;
@@ -9521,16 +9791,16 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // addteacherdepartment
             // 
             this->addteacherdepartment->DropDownWidth = 342;
-            this->addteacherdepartment->Location = System::Drawing::Point(87, 95);
+            this->addteacherdepartment->Location = System::Drawing::Point(87, 94);
             this->addteacherdepartment->Name = L"addteacherdepartment";
-            this->addteacherdepartment->Size = System::Drawing::Size(563, 29);
+            this->addteacherdepartment->Size = System::Drawing::Size(562, 29);
             this->addteacherdepartment->StateCommon->DropBack->Color1 = System::Drawing::Color::Cyan;
             this->addteacherdepartment->StateCommon->DropBack->Color2 = System::Drawing::Color::Cyan;
             this->addteacherdepartment->TabIndex = 344;
             // 
             // kryptonLabel7
             // 
-            this->kryptonLabel7->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel7->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel7->Name = L"kryptonLabel7";
             this->kryptonLabel7->Size = System::Drawing::Size(223, 43);
             this->kryptonLabel7->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -9545,7 +9815,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteachernamegroup->CaptionOverlap = 1;
             this->addteachernamegroup->CaptionVisible = false;
             this->addteachernamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->addteachernamegroup->Location = System::Drawing::Point(23, 168);
+            this->addteachernamegroup->Location = System::Drawing::Point(22, 168);
             this->addteachernamegroup->Name = L"addteachernamegroup";
             // 
             // addteachernamegroup.Panel
@@ -9554,7 +9824,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteachernamegroup->Panel->Controls->Add(this->label63);
             this->addteachernamegroup->Panel->Controls->Add(this->addteachername);
             this->addteachernamegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::addteachernamegroup_Panel_Enter);
-            this->addteachernamegroup->Size = System::Drawing::Size(1127, 194);
+            this->addteachernamegroup->Size = System::Drawing::Size(1126, 194);
             this->addteachernamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->addteachernamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -9570,7 +9840,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel13
             // 
-            this->kryptonPanel13->Location = System::Drawing::Point(91, 121);
+            this->kryptonPanel13->Location = System::Drawing::Point(92, 122);
             this->kryptonPanel13->Name = L"kryptonPanel13";
             this->kryptonPanel13->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel13->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -9592,7 +9862,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // addteachername
             // 
             this->addteachername->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->addteachername->Location = System::Drawing::Point(97, 79);
+            this->addteachername->Location = System::Drawing::Point(98, 80);
             this->addteachername->Name = L"addteachername";
             this->addteachername->Size = System::Drawing::Size(478, 44);
             this->addteachername->StateActive->Back->Color1 = System::Drawing::Color::White;
@@ -9619,7 +9889,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button2->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button2->Location = System::Drawing::Point(759, 655);
+            this->button2->Location = System::Drawing::Point(759, 656);
             this->button2->Name = L"button2";
             this->button2->Size = System::Drawing::Size(130, 58);
             this->button2->TabIndex = 234;
@@ -9633,7 +9903,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->button22->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->button22->Location = System::Drawing::Point(991, 654);
+            this->button22->Location = System::Drawing::Point(992, 654);
             this->button22->Name = L"button22";
             this->button22->Size = System::Drawing::Size(130, 58);
             this->button22->TabIndex = 235;
@@ -9649,7 +9919,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
             this->panel2->Location = System::Drawing::Point(0, 0);
             this->panel2->Name = L"panel2";
-            this->panel2->Size = System::Drawing::Size(1924, 1050);
+            this->panel2->Size = System::Drawing::Size(1806, 1050);
             this->panel2->TabIndex = 5;
             this->panel2->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel2_Paint);
             // 
@@ -9659,14 +9929,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel46->Controls->Add(this->deptgroup);
             this->panel46->Controls->Add(this->button22);
             this->panel46->Controls->Add(this->button2);
-            this->panel46->Location = System::Drawing::Point(179, 13);
+            this->panel46->Location = System::Drawing::Point(178, 14);
             this->panel46->Name = L"panel46";
             this->panel46->Size = System::Drawing::Size(1194, 730);
             this->panel46->TabIndex = 348;
             // 
             // kryptonLabel9
             // 
-            this->kryptonLabel9->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel9->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel9->Name = L"kryptonLabel9";
             this->kryptonLabel9->Size = System::Drawing::Size(234, 43);
             this->kryptonLabel9->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -9681,13 +9951,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->deptgroup->CaptionOverlap = 1;
             this->deptgroup->CaptionVisible = false;
             this->deptgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->deptgroup->Location = System::Drawing::Point(23, 168);
+            this->deptgroup->Location = System::Drawing::Point(22, 168);
             this->deptgroup->Name = L"deptgroup";
             // 
             // deptgroup.Panel
             // 
             this->deptgroup->Panel->Controls->Add(this->deptDataGridView);
-            this->deptgroup->Size = System::Drawing::Size(1127, 398);
+            this->deptgroup->Size = System::Drawing::Size(1126, 398);
             this->deptgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->deptgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
@@ -9725,7 +9995,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->deptDataGridView->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->deptDataGridView->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->deptDataGridView->HideOuterBorders = true;
-            this->deptDataGridView->Location = System::Drawing::Point(161, 75);
+            this->deptDataGridView->Location = System::Drawing::Point(160, 75);
             this->deptDataGridView->Name = L"deptDataGridView";
             this->deptDataGridView->RowHeadersVisible = false;
             this->deptDataGridView->RowHeadersWidth = 62;
@@ -9739,7 +10009,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->deptDataGridView->RowTemplate->Height = 28;
             this->deptDataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->deptDataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->deptDataGridView->Size = System::Drawing::Size(865, 244);
+            this->deptDataGridView->Size = System::Drawing::Size(866, 244);
             this->deptDataGridView->StateCommon->Background->Color1 = System::Drawing::Color::White;
             this->deptDataGridView->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
             this->deptDataGridView->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
@@ -9791,21 +10061,21 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->deleteclasspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->deleteclasspanel->Location = System::Drawing::Point(0, 0);
             this->deleteclasspanel->Name = L"deleteclasspanel";
-            this->deleteclasspanel->Size = System::Drawing::Size(1924, 1050);
+            this->deleteclasspanel->Size = System::Drawing::Size(1806, 1050);
             this->deleteclasspanel->TabIndex = 236;
             // 
             // panel47
             // 
             this->panel47->Controls->Add(this->kryptonLabel8);
             this->panel47->Controls->Add(this->kryptonGroupBox2);
-            this->panel47->Location = System::Drawing::Point(179, 13);
+            this->panel47->Location = System::Drawing::Point(178, 14);
             this->panel47->Name = L"panel47";
-            this->panel47->Size = System::Drawing::Size(1194, 683);
+            this->panel47->Size = System::Drawing::Size(1194, 682);
             this->panel47->TabIndex = 348;
             // 
             // kryptonLabel8
             // 
-            this->kryptonLabel8->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel8->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel8->Name = L"kryptonLabel8";
             this->kryptonLabel8->Size = System::Drawing::Size(129, 43);
             this->kryptonLabel8->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -9820,13 +10090,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox2->CaptionOverlap = 1;
             this->kryptonGroupBox2->CaptionVisible = false;
             this->kryptonGroupBox2->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox2->Location = System::Drawing::Point(23, 168);
+            this->kryptonGroupBox2->Location = System::Drawing::Point(22, 168);
             this->kryptonGroupBox2->Name = L"kryptonGroupBox2";
             // 
             // kryptonGroupBox2.Panel
             // 
             this->kryptonGroupBox2->Panel->Controls->Add(this->sectiondeletedatagridview);
-            this->kryptonGroupBox2->Size = System::Drawing::Size(1127, 398);
+            this->kryptonGroupBox2->Size = System::Drawing::Size(1126, 398);
             this->kryptonGroupBox2->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->kryptonGroupBox2->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
@@ -9864,7 +10134,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->sectiondeletedatagridview->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->sectiondeletedatagridview->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->sectiondeletedatagridview->HideOuterBorders = true;
-            this->sectiondeletedatagridview->Location = System::Drawing::Point(161, 75);
+            this->sectiondeletedatagridview->Location = System::Drawing::Point(160, 75);
             this->sectiondeletedatagridview->Name = L"sectiondeletedatagridview";
             this->sectiondeletedatagridview->RowHeadersVisible = false;
             this->sectiondeletedatagridview->RowHeadersWidth = 62;
@@ -9878,7 +10148,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->sectiondeletedatagridview->RowTemplate->Height = 28;
             this->sectiondeletedatagridview->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sectiondeletedatagridview->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->sectiondeletedatagridview->Size = System::Drawing::Size(865, 244);
+            this->sectiondeletedatagridview->Size = System::Drawing::Size(866, 244);
             this->sectiondeletedatagridview->StateCommon->Background->Color1 = System::Drawing::Color::White;
             this->sectiondeletedatagridview->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
             this->sectiondeletedatagridview->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
@@ -9944,7 +10214,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubbfactorgroup->CaptionOverlap = 1;
             this->editsubbfactorgroup->CaptionVisible = false;
             this->editsubbfactorgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubbfactorgroup->Location = System::Drawing::Point(23, 2945);
+            this->editsubbfactorgroup->Location = System::Drawing::Point(22, 2944);
             this->editsubbfactorgroup->Name = L"editsubbfactorgroup";
             // 
             // editsubbfactorgroup.Panel
@@ -9953,7 +10223,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubbfactorgroup->Panel->Controls->Add(this->label110);
             this->editsubbfactorgroup->Panel->Controls->Add(this->kryptonNumericUpDown1);
             this->editsubbfactorgroup->Panel->Controls->Add(this->label97);
-            this->editsubbfactorgroup->Size = System::Drawing::Size(1127, 194);
+            this->editsubbfactorgroup->Size = System::Drawing::Size(1126, 194);
             this->editsubbfactorgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubbfactorgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10026,14 +10296,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubroomlistgroup->CaptionOverlap = 1;
             this->editsubroomlistgroup->CaptionVisible = false;
             this->editsubroomlistgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubroomlistgroup->Location = System::Drawing::Point(23, 2542);
+            this->editsubroomlistgroup->Location = System::Drawing::Point(22, 2542);
             this->editsubroomlistgroup->Name = L"editsubroomlistgroup";
             // 
             // editsubroomlistgroup.Panel
             // 
             this->editsubroomlistgroup->Panel->Controls->Add(this->label150);
             this->editsubroomlistgroup->Panel->Controls->Add(this->editsubroomlist);
-            this->editsubroomlistgroup->Size = System::Drawing::Size(1127, 357);
+            this->editsubroomlistgroup->Size = System::Drawing::Size(1126, 357);
             this->editsubroomlistgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubroomlistgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10054,7 +10324,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label150->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
             this->label150->ForeColor = System::Drawing::Color::Black;
-            this->label150->Location = System::Drawing::Point(143, 43);
+            this->label150->Location = System::Drawing::Point(142, 44);
             this->label150->Name = L"label150";
             this->label150->Size = System::Drawing::Size(267, 28);
             this->label150->TabIndex = 344;
@@ -10067,6 +10337,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubroomlist->CheckOnClick = true;
             this->editsubroomlist->Location = System::Drawing::Point(162, 110);
             this->editsubroomlist->Name = L"editsubroomlist";
+            this->editsubroomlist->Padding = System::Windows::Forms::Padding(2);
             this->editsubroomlist->Size = System::Drawing::Size(348, 182);
             this->editsubroomlist->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
             this->editsubroomlist->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
@@ -10085,7 +10356,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->editsubdelete->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubdelete->Location = System::Drawing::Point(268, 35);
+            this->editsubdelete->Location = System::Drawing::Point(268, 34);
             this->editsubdelete->Name = L"editsubdelete";
             this->editsubdelete->Size = System::Drawing::Size(154, 58);
             this->editsubdelete->TabIndex = 309;
@@ -10099,7 +10370,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->editsubsave->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->editsubsave->Location = System::Drawing::Point(69, 35);
+            this->editsubsave->Location = System::Drawing::Point(69, 34);
             this->editsubsave->Name = L"editsubsave";
             this->editsubsave->Size = System::Drawing::Size(154, 58);
             this->editsubsave->TabIndex = 308;
@@ -10112,14 +10383,14 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubcreditsgroup->CaptionOverlap = 1;
             this->editsubcreditsgroup->CaptionVisible = false;
             this->editsubcreditsgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubcreditsgroup->Location = System::Drawing::Point(23, 2318);
+            this->editsubcreditsgroup->Location = System::Drawing::Point(22, 2318);
             this->editsubcreditsgroup->Name = L"editsubcreditsgroup";
             // 
             // editsubcreditsgroup.Panel
             // 
             this->editsubcreditsgroup->Panel->Controls->Add(this->editsubcredits);
             this->editsubcreditsgroup->Panel->Controls->Add(this->label101);
-            this->editsubcreditsgroup->Size = System::Drawing::Size(1127, 194);
+            this->editsubcreditsgroup->Size = System::Drawing::Size(1126, 194);
             this->editsubcreditsgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubcreditsgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10180,9 +10451,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubelepanel->Controls->Add(this->label149);
             this->editsubelepanel->Controls->Add(this->label151);
             this->editsubelepanel->Controls->Add(this->label153);
-            this->editsubelepanel->Location = System::Drawing::Point(10, 475);
+            this->editsubelepanel->Location = System::Drawing::Point(10, 476);
             this->editsubelepanel->Name = L"editsubelepanel";
-            this->editsubelepanel->Size = System::Drawing::Size(1096, 641);
+            this->editsubelepanel->Size = System::Drawing::Size(1096, 640);
             this->editsubelepanel->TabIndex = 311;
             // 
             // label155
@@ -10203,7 +10474,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel39->BackColor = System::Drawing::Color::White;
             this->panel39->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel39.BackgroundImage")));
             this->panel39->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel39->Location = System::Drawing::Point(743, 185);
+            this->panel39->Location = System::Drawing::Point(742, 184);
             this->panel39->Name = L"panel39";
             this->panel39->Size = System::Drawing::Size(44, 420);
             this->panel39->TabIndex = 301;
@@ -10213,7 +10484,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel40->BackColor = System::Drawing::Color::White;
             this->panel40->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel40.BackgroundImage")));
             this->panel40->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel40->Location = System::Drawing::Point(408, 185);
+            this->panel40->Location = System::Drawing::Point(408, 184);
             this->panel40->Name = L"panel40";
             this->panel40->Size = System::Drawing::Size(44, 430);
             this->panel40->TabIndex = 316;
@@ -10238,7 +10509,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 16.66887F)));
             this->editsubeletable->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
                 16.66976F)));
-            this->editsubeletable->Location = System::Drawing::Point(121, 185);
+            this->editsubeletable->Location = System::Drawing::Point(122, 184);
             this->editsubeletable->Name = L"editsubeletable";
             this->editsubeletable->RowCount = 6;
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -10247,7 +10518,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editsubeletable->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->editsubeletable->Size = System::Drawing::Size(950, 431);
+            this->editsubeletable->Size = System::Drawing::Size(950, 430);
             this->editsubeletable->TabIndex = 303;
             // 
             // panel52
@@ -10255,7 +10526,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel52->BackColor = System::Drawing::Color::White;
             this->panel52->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel52.BackgroundImage")));
             this->panel52->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel52->Location = System::Drawing::Point(397, 185);
+            this->panel52->Location = System::Drawing::Point(398, 184);
             this->panel52->Name = L"panel52";
             this->panel52->Size = System::Drawing::Size(82, 412);
             this->panel52->TabIndex = 302;
@@ -10266,7 +10537,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label75->BackColor = System::Drawing::Color::White;
             this->label75->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label75->Location = System::Drawing::Point(21, 205);
+            this->label75->Location = System::Drawing::Point(21, 206);
             this->label75->Name = L"label75";
             this->label75->Size = System::Drawing::Size(85, 28);
             this->label75->TabIndex = 304;
@@ -10290,7 +10561,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label77->BackColor = System::Drawing::Color::White;
             this->label77->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label77->Location = System::Drawing::Point(139, 145);
+            this->label77->Location = System::Drawing::Point(140, 146);
             this->label77->Name = L"label77";
             this->label77->Size = System::Drawing::Size(105, 28);
             this->label77->TabIndex = 310;
@@ -10302,7 +10573,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label120->BackColor = System::Drawing::Color::White;
             this->label120->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label120->Location = System::Drawing::Point(11, 351);
+            this->label120->Location = System::Drawing::Point(10, 351);
             this->label120->Name = L"label120";
             this->label120->Size = System::Drawing::Size(113, 28);
             this->label120->TabIndex = 306;
@@ -10314,7 +10585,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label123->BackColor = System::Drawing::Color::White;
             this->label123->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label123->Location = System::Drawing::Point(275, 145);
+            this->label123->Location = System::Drawing::Point(274, 146);
             this->label123->Name = L"label123";
             this->label123->Size = System::Drawing::Size(116, 28);
             this->label123->TabIndex = 311;
@@ -10326,7 +10597,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label124->BackColor = System::Drawing::Color::White;
             this->label124->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label124->Location = System::Drawing::Point(11, 415);
+            this->label124->Location = System::Drawing::Point(10, 416);
             this->label124->Name = L"label124";
             this->label124->Size = System::Drawing::Size(91, 28);
             this->label124->TabIndex = 307;
@@ -10338,7 +10609,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label125->BackColor = System::Drawing::Color::White;
             this->label125->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label125->Location = System::Drawing::Point(461, 145);
+            this->label125->Location = System::Drawing::Point(460, 146);
             this->label125->Name = L"label125";
             this->label125->Size = System::Drawing::Size(116, 28);
             this->label125->TabIndex = 312;
@@ -10350,7 +10621,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label147->BackColor = System::Drawing::Color::White;
             this->label147->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label147->Location = System::Drawing::Point(25, 491);
+            this->label147->Location = System::Drawing::Point(26, 490);
             this->label147->Name = L"label147";
             this->label147->Size = System::Drawing::Size(66, 28);
             this->label147->TabIndex = 308;
@@ -10362,7 +10633,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label148->BackColor = System::Drawing::Color::White;
             this->label148->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label148->Location = System::Drawing::Point(615, 145);
+            this->label148->Location = System::Drawing::Point(615, 146);
             this->label148->Name = L"label148";
             this->label148->Size = System::Drawing::Size(105, 28);
             this->label148->TabIndex = 313;
@@ -10374,7 +10645,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label149->BackColor = System::Drawing::Color::White;
             this->label149->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label149->Location = System::Drawing::Point(26, 547);
+            this->label149->Location = System::Drawing::Point(26, 548);
             this->label149->Name = L"label149";
             this->label149->Size = System::Drawing::Size(90, 28);
             this->label149->TabIndex = 309;
@@ -10386,7 +10657,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label151->BackColor = System::Drawing::Color::White;
             this->label151->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label151->Location = System::Drawing::Point(809, 141);
+            this->label151->Location = System::Drawing::Point(808, 141);
             this->label151->Name = L"label151";
             this->label151->Size = System::Drawing::Size(94, 28);
             this->label151->TabIndex = 314;
@@ -10431,18 +10702,18 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel13->Controls->Add(this->editsubelegroup);
             this->panel13->Controls->Add(this->editsubnamegroup);
             this->panel13->Controls->Add(this->editsubcodegroup);
-            this->panel13->Location = System::Drawing::Point(179, 13);
+            this->panel13->Location = System::Drawing::Point(178, 14);
             this->panel13->Name = L"panel13";
-            this->panel13->Size = System::Drawing::Size(1194, 2587);
+            this->panel13->Size = System::Drawing::Size(1194, 2588);
             this->panel13->TabIndex = 340;
             // 
             // panel51
             // 
             this->panel51->Controls->Add(this->editsubdelete);
             this->panel51->Controls->Add(this->editsubsave);
-            this->panel51->Location = System::Drawing::Point(631, 3164);
+            this->panel51->Location = System::Drawing::Point(632, 3164);
             this->panel51->Name = L"panel51";
-            this->panel51->Size = System::Drawing::Size(455, 147);
+            this->panel51->Size = System::Drawing::Size(454, 147);
             this->panel51->TabIndex = 345;
             // 
             // editsubeleyesgroup
@@ -10450,7 +10721,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubeleyesgroup->CaptionOverlap = 1;
             this->editsubeleyesgroup->CaptionVisible = false;
             this->editsubeleyesgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubeleyesgroup->Location = System::Drawing::Point(23, 1357);
+            this->editsubeleyesgroup->Location = System::Drawing::Point(22, 1358);
             this->editsubeleyesgroup->Name = L"editsubeleyesgroup";
             // 
             // editsubeleyesgroup.Panel
@@ -10462,7 +10733,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubeleyesgroup->Panel->Controls->Add(this->label95);
             this->editsubeleyesgroup->Panel->Controls->Add(this->label94);
             this->editsubeleyesgroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editsubeleyesgroup_Panel_Enter);
-            this->editsubeleyesgroup->Size = System::Drawing::Size(1127, 1155);
+            this->editsubeleyesgroup->Size = System::Drawing::Size(1126, 1155);
             this->editsubeleyesgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubeleyesgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10498,7 +10769,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubeleteacher->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->editsubeleteacher->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
             this->editsubeleteacher->HideOuterBorders = true;
-            this->editsubeleteacher->Location = System::Drawing::Point(71, 204);
+            this->editsubeleteacher->Location = System::Drawing::Point(70, 204);
             this->editsubeleteacher->Name = L"editsubeleteacher";
             this->editsubeleteacher->RowHeadersVisible = false;
             this->editsubeleteacher->RowHeadersWidth = 62;
@@ -10510,7 +10781,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubeleteacher->RowTemplate->Height = 28;
             this->editsubeleteacher->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->editsubeleteacher->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
-            this->editsubeleteacher->Size = System::Drawing::Size(865, 194);
+            this->editsubeleteacher->Size = System::Drawing::Size(866, 194);
             this->editsubeleteacher->StateCommon->Background->Color1 = System::Drawing::Color::White;
             this->editsubeleteacher->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
             this->editsubeleteacher->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
@@ -10583,7 +10854,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonLabel2
             // 
-            this->kryptonLabel2->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel2->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel2->Name = L"kryptonLabel2";
             this->kryptonLabel2->Size = System::Drawing::Size(217, 43);
             this->kryptonLabel2->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -10598,7 +10869,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubsearchgroup->CaptionOverlap = 1;
             this->editsubsearchgroup->CaptionVisible = false;
             this->editsubsearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubsearchgroup->Location = System::Drawing::Point(23, 168);
+            this->editsubsearchgroup->Location = System::Drawing::Point(22, 168);
             this->editsubsearchgroup->Name = L"editsubsearchgroup";
             // 
             // editsubsearchgroup.Panel
@@ -10606,7 +10877,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubsearchgroup->Panel->Controls->Add(this->editsubsearchbutton);
             this->editsubsearchgroup->Panel->Controls->Add(this->label99);
             this->editsubsearchgroup->Panel->Controls->Add(this->editsubsearch);
-            this->editsubsearchgroup->Size = System::Drawing::Size(1127, 260);
+            this->editsubsearchgroup->Size = System::Drawing::Size(1126, 260);
             this->editsubsearchgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubsearchgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10621,7 +10892,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // editsubsearchbutton
             // 
             this->editsubsearchbutton->ButtonStyle = ComponentFactory::Krypton::Toolkit::ButtonStyle::Custom1;
-            this->editsubsearchbutton->Location = System::Drawing::Point(767, 126);
+            this->editsubsearchbutton->Location = System::Drawing::Point(766, 126);
             this->editsubsearchbutton->Name = L"editsubsearchbutton";
             this->editsubsearchbutton->Size = System::Drawing::Size(28, 28);
             this->editsubsearchbutton->StateCommon->Back->Color1 = System::Drawing::Color::White;
@@ -10667,7 +10938,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubsearch->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
             this->editsubsearch->Location = System::Drawing::Point(236, 122);
             this->editsubsearch->Name = L"editsubsearch";
-            this->editsubsearch->Size = System::Drawing::Size(563, 34);
+            this->editsubsearch->Size = System::Drawing::Size(562, 34);
             this->editsubsearch->StateCommon->ComboBox->Back->Color1 = System::Drawing::Color::White;
             this->editsubsearch->StateCommon->ComboBox->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
@@ -10697,7 +10968,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubtitlegroup->CaptionOverlap = 1;
             this->editsubtitlegroup->CaptionVisible = false;
             this->editsubtitlegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubtitlegroup->Location = System::Drawing::Point(23, 685);
+            this->editsubtitlegroup->Location = System::Drawing::Point(22, 686);
             this->editsubtitlegroup->Name = L"editsubtitlegroup";
             // 
             // editsubtitlegroup.Panel
@@ -10706,7 +10977,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubtitlegroup->Panel->Controls->Add(this->label109);
             this->editsubtitlegroup->Panel->Controls->Add(this->editsubtitle);
             this->editsubtitlegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubtitlegroup_Panel_Paint);
-            this->editsubtitlegroup->Size = System::Drawing::Size(1127, 194);
+            this->editsubtitlegroup->Size = System::Drawing::Size(1126, 194);
             this->editsubtitlegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubtitlegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10722,7 +10993,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel1
             // 
-            this->kryptonPanel1->Location = System::Drawing::Point(101, 128);
+            this->kryptonPanel1->Location = System::Drawing::Point(100, 128);
             this->kryptonPanel1->Name = L"kryptonPanel1";
             this->kryptonPanel1->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel1->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -10773,7 +11044,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubelegroup->CaptionOverlap = 1;
             this->editsubelegroup->CaptionVisible = false;
             this->editsubelegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubelegroup->Location = System::Drawing::Point(23, 1134);
+            this->editsubelegroup->Location = System::Drawing::Point(22, 1134);
             this->editsubelegroup->Name = L"editsubelegroup";
             // 
             // editsubelegroup.Panel
@@ -10781,7 +11052,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubelegroup->Panel->Controls->Add(this->label92);
             this->editsubelegroup->Panel->Controls->Add(this->panel10);
             this->editsubelegroup->Panel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::kryptonGroupBox2_Panel_Paint);
-            this->editsubelegroup->Size = System::Drawing::Size(1127, 194);
+            this->editsubelegroup->Size = System::Drawing::Size(1126, 194);
             this->editsubelegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubelegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10799,7 +11070,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label92->BackColor = System::Drawing::Color::White;
             this->label92->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label92->Location = System::Drawing::Point(95, 44);
+            this->label92->Location = System::Drawing::Point(94, 44);
             this->label92->Name = L"label92";
             this->label92->Size = System::Drawing::Size(156, 28);
             this->label92->TabIndex = 266;
@@ -10848,7 +11119,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubnamegroup->CaptionOverlap = 1;
             this->editsubnamegroup->CaptionVisible = false;
             this->editsubnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubnamegroup->Location = System::Drawing::Point(23, 458);
+            this->editsubnamegroup->Location = System::Drawing::Point(22, 458);
             this->editsubnamegroup->Name = L"editsubnamegroup";
             // 
             // editsubnamegroup.Panel
@@ -10856,7 +11127,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubnamegroup->Panel->Controls->Add(this->kryptonPanel3);
             this->editsubnamegroup->Panel->Controls->Add(this->label93);
             this->editsubnamegroup->Panel->Controls->Add(this->editsubname);
-            this->editsubnamegroup->Size = System::Drawing::Size(1127, 194);
+            this->editsubnamegroup->Size = System::Drawing::Size(1126, 194);
             this->editsubnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10872,7 +11143,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel3
             // 
-            this->kryptonPanel3->Location = System::Drawing::Point(97, 119);
+            this->kryptonPanel3->Location = System::Drawing::Point(98, 118);
             this->kryptonPanel3->Name = L"kryptonPanel3";
             this->kryptonPanel3->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel3->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -10921,7 +11192,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubcodegroup->CaptionOverlap = 1;
             this->editsubcodegroup->CaptionVisible = false;
             this->editsubcodegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editsubcodegroup->Location = System::Drawing::Point(23, 906);
+            this->editsubcodegroup->Location = System::Drawing::Point(22, 906);
             this->editsubcodegroup->Name = L"editsubcodegroup";
             // 
             // editsubcodegroup.Panel
@@ -10929,7 +11200,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editsubcodegroup->Panel->Controls->Add(this->kryptonPanel4);
             this->editsubcodegroup->Panel->Controls->Add(this->label15);
             this->editsubcodegroup->Panel->Controls->Add(this->editsubcode);
-            this->editsubcodegroup->Size = System::Drawing::Size(1127, 194);
+            this->editsubcodegroup->Size = System::Drawing::Size(1126, 194);
             this->editsubcodegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editsubcodegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -10943,7 +11214,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel4
             // 
-            this->kryptonPanel4->Location = System::Drawing::Point(99, 137);
+            this->kryptonPanel4->Location = System::Drawing::Point(99, 136);
             this->kryptonPanel4->Name = L"kryptonPanel4";
             this->kryptonPanel4->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel4->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -10998,7 +11269,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
                 static_cast<System::Byte>(0)));
             this->editsubjectpanel->Location = System::Drawing::Point(0, 0);
             this->editsubjectpanel->Name = L"editsubjectpanel";
-            this->editsubjectpanel->Size = System::Drawing::Size(1924, 1050);
+            this->editsubjectpanel->Size = System::Drawing::Size(1806, 1050);
             this->editsubjectpanel->TabIndex = 259;
             this->editsubjectpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editsubjectpanel_Paint);
             // 
@@ -11016,7 +11287,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel6->Controls->Add(this->editroomcapacitygroup);
             this->panel6->Controls->Add(this->editroomlabgroup);
             this->panel6->Controls->Add(this->editroomnamegroup);
-            this->panel6->Location = System::Drawing::Point(179, 13);
+            this->panel6->Location = System::Drawing::Point(178, 14);
             this->panel6->Name = L"panel6";
             this->panel6->Size = System::Drawing::Size(1194, 2451);
             this->panel6->TabIndex = 343;
@@ -11026,7 +11297,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomsearchgroup->CaptionOverlap = 1;
             this->editroomsearchgroup->CaptionVisible = false;
             this->editroomsearchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomsearchgroup->Location = System::Drawing::Point(23, 168);
+            this->editroomsearchgroup->Location = System::Drawing::Point(22, 168);
             this->editroomsearchgroup->Name = L"editroomsearchgroup";
             // 
             // editroomsearchgroup.Panel
@@ -11034,7 +11305,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomsearchgroup->Panel->Controls->Add(this->label242);
             this->editroomsearchgroup->Panel->Controls->Add(this->editroomsearchbutton);
             this->editroomsearchgroup->Panel->Controls->Add(this->editroomsearch);
-            this->editroomsearchgroup->Size = System::Drawing::Size(1127, 260);
+            this->editroomsearchgroup->Size = System::Drawing::Size(1126, 260);
             this->editroomsearchgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editroomsearchgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -11066,7 +11337,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomsearchbutton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
             this->editroomsearchbutton->FlatAppearance->BorderSize = 0;
             this->editroomsearchbutton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-            this->editroomsearchbutton->Location = System::Drawing::Point(767, 126);
+            this->editroomsearchbutton->Location = System::Drawing::Point(766, 126);
             this->editroomsearchbutton->Name = L"editroomsearchbutton";
             this->editroomsearchbutton->Size = System::Drawing::Size(28, 28);
             this->editroomsearchbutton->TabIndex = 292;
@@ -11083,7 +11354,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomsearch->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
             this->editroomsearch->Location = System::Drawing::Point(236, 122);
             this->editroomsearch->Name = L"editroomsearch";
-            this->editroomsearch->Size = System::Drawing::Size(563, 34);
+            this->editroomsearch->Size = System::Drawing::Size(562, 34);
             this->editroomsearch->StateCommon->ComboBox->Back->Color1 = System::Drawing::Color::White;
             this->editroomsearch->StateCommon->ComboBox->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
@@ -11115,7 +11386,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox10->CaptionOverlap = 1;
             this->kryptonGroupBox10->CaptionVisible = false;
             this->kryptonGroupBox10->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox10->Location = System::Drawing::Point(23, 1519);
+            this->kryptonGroupBox10->Location = System::Drawing::Point(22, 1520);
             this->kryptonGroupBox10->Name = L"kryptonGroupBox10";
             // 
             // kryptonGroupBox10.Panel
@@ -11138,7 +11409,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->kryptonGroupBox10->Panel->Controls->Add(this->label108);
             this->kryptonGroupBox10->Panel->Controls->Add(this->label113);
             this->kryptonGroupBox10->Panel->Enter += gcnew System::EventHandler(this, &MyForm::kryptonGroupBox10_Panel_Enter);
-            this->kryptonGroupBox10->Size = System::Drawing::Size(1127, 642);
+            this->kryptonGroupBox10->Size = System::Drawing::Size(1126, 642);
             this->kryptonGroupBox10->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->kryptonGroupBox10->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -11165,7 +11436,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel33->BackColor = System::Drawing::Color::White;
             this->panel33->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel33.BackgroundImage")));
             this->panel33->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel33->Location = System::Drawing::Point(425, 141);
+            this->panel33->Location = System::Drawing::Point(424, 141);
             this->panel33->Name = L"panel33";
             this->panel33->Size = System::Drawing::Size(44, 430);
             this->panel33->TabIndex = 300;
@@ -11199,7 +11470,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
             this->editroomtablepanel->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->editroomtablepanel->Size = System::Drawing::Size(950, 431);
+            this->editroomtablepanel->Size = System::Drawing::Size(950, 430);
             this->editroomtablepanel->TabIndex = 260;
             // 
             // label114
@@ -11230,7 +11501,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label4->BackColor = System::Drawing::Color::White;
             this->label4->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label4->Location = System::Drawing::Point(38, 161);
+            this->label4->Location = System::Drawing::Point(38, 160);
             this->label4->Name = L"label4";
             this->label4->Size = System::Drawing::Size(85, 28);
             this->label4->TabIndex = 261;
@@ -11254,7 +11525,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label79->BackColor = System::Drawing::Color::White;
             this->label79->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label79->Location = System::Drawing::Point(156, 101);
+            this->label79->Location = System::Drawing::Point(156, 100);
             this->label79->Name = L"label79";
             this->label79->Size = System::Drawing::Size(105, 28);
             this->label79->TabIndex = 294;
@@ -11266,7 +11537,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label80->BackColor = System::Drawing::Color::White;
             this->label80->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label80->Location = System::Drawing::Point(28, 307);
+            this->label80->Location = System::Drawing::Point(28, 308);
             this->label80->Name = L"label80";
             this->label80->Size = System::Drawing::Size(113, 28);
             this->label80->TabIndex = 263;
@@ -11278,7 +11549,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label81->BackColor = System::Drawing::Color::White;
             this->label81->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label81->Location = System::Drawing::Point(292, 101);
+            this->label81->Location = System::Drawing::Point(292, 100);
             this->label81->Name = L"label81";
             this->label81->Size = System::Drawing::Size(116, 28);
             this->label81->TabIndex = 295;
@@ -11290,7 +11561,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label103->BackColor = System::Drawing::Color::White;
             this->label103->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label103->Location = System::Drawing::Point(28, 371);
+            this->label103->Location = System::Drawing::Point(28, 370);
             this->label103->Name = L"label103";
             this->label103->Size = System::Drawing::Size(91, 28);
             this->label103->TabIndex = 264;
@@ -11302,7 +11573,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label104->BackColor = System::Drawing::Color::White;
             this->label104->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label104->Location = System::Drawing::Point(478, 101);
+            this->label104->Location = System::Drawing::Point(478, 100);
             this->label104->Name = L"label104";
             this->label104->Size = System::Drawing::Size(116, 28);
             this->label104->TabIndex = 296;
@@ -11326,7 +11597,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label106->BackColor = System::Drawing::Color::White;
             this->label106->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label106->Location = System::Drawing::Point(632, 101);
+            this->label106->Location = System::Drawing::Point(632, 100);
             this->label106->Name = L"label106";
             this->label106->Size = System::Drawing::Size(105, 28);
             this->label106->TabIndex = 297;
@@ -11350,7 +11621,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label108->BackColor = System::Drawing::Color::White;
             this->label108->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label108->Location = System::Drawing::Point(826, 97);
+            this->label108->Location = System::Drawing::Point(826, 98);
             this->label108->Name = L"label108";
             this->label108->Size = System::Drawing::Size(94, 28);
             this->label108->TabIndex = 298;
@@ -11362,7 +11633,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label113->BackColor = System::Drawing::Color::White;
             this->label113->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label113->Location = System::Drawing::Point(956, 97);
+            this->label113->Location = System::Drawing::Point(956, 98);
             this->label113->Name = L"label113";
             this->label113->Size = System::Drawing::Size(94, 28);
             this->label113->TabIndex = 299;
@@ -11374,7 +11645,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->panel14->Controls->Add(this->editroomsave);
             this->panel14->Location = System::Drawing::Point(675, 2192);
             this->panel14->Name = L"panel14";
-            this->panel14->Size = System::Drawing::Size(502, 137);
+            this->panel14->Size = System::Drawing::Size(502, 136);
             this->panel14->TabIndex = 295;
             // 
             // editroomdelete
@@ -11396,7 +11667,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomsave->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->editroomsave->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->editroomsave->Location = System::Drawing::Point(53, 39);
+            this->editroomsave->Location = System::Drawing::Point(52, 39);
             this->editroomsave->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
             this->editroomsave->Name = L"editroomsave";
             this->editroomsave->Size = System::Drawing::Size(154, 58);
@@ -11410,7 +11681,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomdepartmentgroup->CaptionOverlap = 1;
             this->editroomdepartmentgroup->CaptionVisible = false;
             this->editroomdepartmentgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomdepartmentgroup->Location = System::Drawing::Point(23, 1210);
+            this->editroomdepartmentgroup->Location = System::Drawing::Point(22, 1210);
             this->editroomdepartmentgroup->Name = L"editroomdepartmentgroup";
             // 
             // editroomdepartmentgroup.Panel
@@ -11418,7 +11689,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomdepartmentgroup->Panel->Controls->Add(this->label115);
             this->editroomdepartmentgroup->Panel->Controls->Add(this->editroomdepartment);
             this->editroomdepartmentgroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editroomdepartmentgroup_Panel_Enter);
-            this->editroomdepartmentgroup->Size = System::Drawing::Size(1127, 194);
+            this->editroomdepartmentgroup->Size = System::Drawing::Size(1126, 194);
             this->editroomdepartmentgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editroomdepartmentgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -11438,7 +11709,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label115->BackColor = System::Drawing::Color::White;
             this->label115->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label115->Location = System::Drawing::Point(94, 41);
+            this->label115->Location = System::Drawing::Point(94, 40);
             this->label115->Name = L"label115";
             this->label115->Size = System::Drawing::Size(122, 28);
             this->label115->TabIndex = 343;
@@ -11447,16 +11718,16 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // editroomdepartment
             // 
             this->editroomdepartment->DropDownWidth = 342;
-            this->editroomdepartment->Location = System::Drawing::Point(87, 95);
+            this->editroomdepartment->Location = System::Drawing::Point(87, 94);
             this->editroomdepartment->Name = L"editroomdepartment";
-            this->editroomdepartment->Size = System::Drawing::Size(563, 29);
+            this->editroomdepartment->Size = System::Drawing::Size(562, 29);
             this->editroomdepartment->StateCommon->DropBack->Color1 = System::Drawing::Color::Cyan;
             this->editroomdepartment->StateCommon->DropBack->Color2 = System::Drawing::Color::Cyan;
             this->editroomdepartment->TabIndex = 344;
             // 
             // kryptonLabel6
             // 
-            this->kryptonLabel6->Location = System::Drawing::Point(456, 49);
+            this->kryptonLabel6->Location = System::Drawing::Point(456, 50);
             this->kryptonLabel6->Name = L"kryptonLabel6";
             this->kryptonLabel6->Size = System::Drawing::Size(264, 43);
             this->kryptonLabel6->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
@@ -11471,7 +11742,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomcapacitygroup->CaptionOverlap = 1;
             this->editroomcapacitygroup->CaptionVisible = false;
             this->editroomcapacitygroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomcapacitygroup->Location = System::Drawing::Point(23, 728);
+            this->editroomcapacitygroup->Location = System::Drawing::Point(22, 728);
             this->editroomcapacitygroup->Name = L"editroomcapacitygroup";
             // 
             // editroomcapacitygroup.Panel
@@ -11479,7 +11750,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomcapacitygroup->Panel->Controls->Add(this->editroomcapacity);
             this->editroomcapacitygroup->Panel->Controls->Add(this->label116);
             this->editroomcapacitygroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editroomcapacitygroup_Panel_Enter);
-            this->editroomcapacitygroup->Size = System::Drawing::Size(1127, 194);
+            this->editroomcapacitygroup->Size = System::Drawing::Size(1126, 194);
             this->editroomcapacitygroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editroomcapacitygroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -11521,7 +11792,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomlabgroup->CaptionOverlap = 1;
             this->editroomlabgroup->CaptionVisible = false;
             this->editroomlabgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomlabgroup->Location = System::Drawing::Point(23, 968);
+            this->editroomlabgroup->Location = System::Drawing::Point(22, 968);
             this->editroomlabgroup->Name = L"editroomlabgroup";
             // 
             // editroomlabgroup.Panel
@@ -11529,7 +11800,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomlabgroup->Panel->Controls->Add(this->label117);
             this->editroomlabgroup->Panel->Controls->Add(this->panel45);
             this->editroomlabgroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editroomlabgroup_Panel_Enter);
-            this->editroomlabgroup->Size = System::Drawing::Size(1127, 194);
+            this->editroomlabgroup->Size = System::Drawing::Size(1126, 194);
             this->editroomlabgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editroomlabgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -11547,7 +11818,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->label117->BackColor = System::Drawing::Color::White;
             this->label117->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label117->Location = System::Drawing::Point(95, 44);
+            this->label117->Location = System::Drawing::Point(94, 44);
             this->label117->Name = L"label117";
             this->label117->Size = System::Drawing::Size(108, 28);
             this->label117->TabIndex = 266;
@@ -11593,7 +11864,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomnamegroup->CaptionOverlap = 1;
             this->editroomnamegroup->CaptionVisible = false;
             this->editroomnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->editroomnamegroup->Location = System::Drawing::Point(23, 475);
+            this->editroomnamegroup->Location = System::Drawing::Point(22, 476);
             this->editroomnamegroup->Name = L"editroomnamegroup";
             // 
             // editroomnamegroup.Panel
@@ -11602,7 +11873,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomnamegroup->Panel->Controls->Add(this->label118);
             this->editroomnamegroup->Panel->Controls->Add(this->editroomname);
             this->editroomnamegroup->Panel->Enter += gcnew System::EventHandler(this, &MyForm::editroomnamegroup_Panel_Enter);
-            this->editroomnamegroup->Size = System::Drawing::Size(1127, 194);
+            this->editroomnamegroup->Size = System::Drawing::Size(1126, 194);
             this->editroomnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
             this->editroomnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
@@ -11618,7 +11889,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             // kryptonPanel11
             // 
-            this->kryptonPanel11->Location = System::Drawing::Point(91, 121);
+            this->kryptonPanel11->Location = System::Drawing::Point(92, 122);
             this->kryptonPanel11->Name = L"kryptonPanel11";
             this->kryptonPanel11->Size = System::Drawing::Size(508, 2);
             this->kryptonPanel11->StateCommon->Color1 = System::Drawing::Color::Cyan;
@@ -11640,7 +11911,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // editroomname
             // 
             this->editroomname->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->editroomname->Location = System::Drawing::Point(97, 79);
+            this->editroomname->Location = System::Drawing::Point(98, 80);
             this->editroomname->Name = L"editroomname";
             this->editroomname->Size = System::Drawing::Size(478, 44);
             this->editroomname->StateActive->Back->Color1 = System::Drawing::Color::White;
@@ -11668,7 +11939,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editroompanel->Location = System::Drawing::Point(0, 0);
             this->editroompanel->Name = L"editroompanel";
-            this->editroompanel->Size = System::Drawing::Size(1924, 1050);
+            this->editroompanel->Size = System::Drawing::Size(1806, 1050);
             this->editroompanel->TabIndex = 124;
             this->editroompanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::editroompanel_Paint);
             // 
@@ -11692,25 +11963,575 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             // 
             this->timer13->Interval = 50;
             // 
-            // editteachertt
+            // Labaddpanel
             // 
-            this->editteachertt->DropDownWidth = 410;
-            this->editteachertt->Location = System::Drawing::Point(127, 147);
-            this->editteachertt->Name = L"editteachertt";
-            this->editteachertt->Size = System::Drawing::Size(410, 29);
-            this->editteachertt->TabIndex = 345;
+            this->Labaddpanel->Controls->Add(this->panel22);
+            this->Labaddpanel->Dock = System::Windows::Forms::DockStyle::Fill;
+            this->Labaddpanel->Location = System::Drawing::Point(0, 0);
+            this->Labaddpanel->Name = L"Labaddpanel";
+            this->Labaddpanel->Size = System::Drawing::Size(1806, 1050);
+            this->Labaddpanel->TabIndex = 346;
+            this->Labaddpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::Labaddpanel_Paint);
             // 
-            // label83
+            // panel22
             // 
-            this->label83->AutoSize = true;
-            this->label83->BackColor = System::Drawing::Color::White;
-            this->label83->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+            this->panel22->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+            this->panel22->Controls->Add(this->kryptonGroupBox1);
+            this->panel22->Controls->Add(this->panel62);
+            this->panel22->Controls->Add(this->kryptonGroupBox7);
+            this->panel22->Controls->Add(this->kryptonLabel12);
+            this->panel22->Controls->Add(this->kryptonGroupBox8);
+            this->panel22->Controls->Add(this->kryptonGroupBox11);
+            this->panel22->Controls->Add(this->kryptonGroupBox12);
+            this->panel22->Location = System::Drawing::Point(178, 14);
+            this->panel22->Name = L"panel22";
+            this->panel22->Size = System::Drawing::Size(1194, 2180);
+            this->panel22->TabIndex = 343;
+            // 
+            // kryptonGroupBox1
+            // 
+            this->kryptonGroupBox1->CaptionOverlap = 1;
+            this->kryptonGroupBox1->CaptionVisible = false;
+            this->kryptonGroupBox1->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->kryptonGroupBox1->Location = System::Drawing::Point(26, 1212);
+            this->kryptonGroupBox1->Name = L"kryptonGroupBox1";
+            // 
+            // kryptonGroupBox1.Panel
+            // 
+            this->kryptonGroupBox1->Panel->Controls->Add(this->panel55);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->panel60);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label85);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->tableLayoutPanel2);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->panel61);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label86);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label87);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label88);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label89);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label90);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label91);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label102);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label111);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label121);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label122);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label136);
+            this->kryptonGroupBox1->Panel->Controls->Add(this->label174);
+            this->kryptonGroupBox1->Size = System::Drawing::Size(1126, 642);
+            this->kryptonGroupBox1->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonGroupBox1->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox1->StateCommon->Border->ColorAngle = 50;
+            this->kryptonGroupBox1->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonGroupBox1->StateCommon->Border->Rounding = 7;
+            this->kryptonGroupBox1->StateCommon->Border->Width = 1;
+            this->kryptonGroupBox1->TabIndex = 346;
+            // 
+            // panel55
+            // 
+            this->panel55->BackColor = System::Drawing::Color::White;
+            this->panel55->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel55.BackgroundImage")));
+            this->panel55->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel55->Location = System::Drawing::Point(735, 146);
+            this->panel55->Name = L"panel55";
+            this->panel55->Size = System::Drawing::Size(44, 420);
+            this->panel55->TabIndex = 1;
+            // 
+            // panel60
+            // 
+            this->panel60->BackColor = System::Drawing::Color::White;
+            this->panel60->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel60.BackgroundImage")));
+            this->panel60->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel60->Location = System::Drawing::Point(400, 146);
+            this->panel60->Name = L"panel60";
+            this->panel60->Size = System::Drawing::Size(44, 430);
+            this->panel60->TabIndex = 300;
+            // 
+            // label85
+            // 
+            this->label85->AutoSize = true;
+            this->label85->BackColor = System::Drawing::Color::White;
+            this->label85->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label83->Location = System::Drawing::Point(122, 101);
-            this->label83->Name = L"label83";
-            this->label83->Size = System::Drawing::Size(749, 28);
-            this->label83->TabIndex = 346;
-            this->label83->Text = L"Enter the name you want to display in the timetable and then select the timeslot";
+            this->label85->Location = System::Drawing::Point(98, 36);
+            this->label85->Name = L"label85";
+            this->label85->Size = System::Drawing::Size(154, 28);
+            this->label85->TabIndex = 344;
+            this->label85->Text = L"Room Schedule";
+            // 
+            // tableLayoutPanel2
+            // 
+            this->tableLayoutPanel2->BackColor = System::Drawing::Color::White;
+            this->tableLayoutPanel2->ColumnCount = 8;
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66743F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66686F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66887F)));
+            this->tableLayoutPanel2->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66976F)));
+            this->tableLayoutPanel2->Location = System::Drawing::Point(112, 146);
+            this->tableLayoutPanel2->Name = L"tableLayoutPanel2";
+            this->tableLayoutPanel2->RowCount = 6;
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->tableLayoutPanel2->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->tableLayoutPanel2->Size = System::Drawing::Size(950, 430);
+            this->tableLayoutPanel2->TabIndex = 260;
+            // 
+            // panel61
+            // 
+            this->panel61->BackColor = System::Drawing::Color::White;
+            this->panel61->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel61.BackgroundImage")));
+            this->panel61->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel61->Location = System::Drawing::Point(388, 146);
+            this->panel61->Name = L"panel61";
+            this->panel61->Size = System::Drawing::Size(82, 412);
+            this->panel61->TabIndex = 2;
+            // 
+            // label86
+            // 
+            this->label86->AutoSize = true;
+            this->label86->BackColor = System::Drawing::Color::White;
+            this->label86->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label86->Location = System::Drawing::Point(14, 166);
+            this->label86->Name = L"label86";
+            this->label86->Size = System::Drawing::Size(85, 28);
+            this->label86->TabIndex = 261;
+            this->label86->Text = L"Monday";
+            // 
+            // label87
+            // 
+            this->label87->AutoSize = true;
+            this->label87->BackColor = System::Drawing::Color::White;
+            this->label87->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label87->Location = System::Drawing::Point(20, 236);
+            this->label87->Name = L"label87";
+            this->label87->Size = System::Drawing::Size(83, 28);
+            this->label87->TabIndex = 262;
+            this->label87->Text = L"Tuesday";
+            // 
+            // label88
+            // 
+            this->label88->AutoSize = true;
+            this->label88->BackColor = System::Drawing::Color::White;
+            this->label88->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label88->Location = System::Drawing::Point(130, 106);
+            this->label88->Name = L"label88";
+            this->label88->Size = System::Drawing::Size(105, 28);
+            this->label88->TabIndex = 294;
+            this->label88->Text = L"9:00-10:00";
+            // 
+            // label89
+            // 
+            this->label89->AutoSize = true;
+            this->label89->BackColor = System::Drawing::Color::White;
+            this->label89->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label89->Location = System::Drawing::Point(3, 312);
+            this->label89->Name = L"label89";
+            this->label89->Size = System::Drawing::Size(113, 28);
+            this->label89->TabIndex = 263;
+            this->label89->Text = L"Wednesday";
+            // 
+            // label90
+            // 
+            this->label90->AutoSize = true;
+            this->label90->BackColor = System::Drawing::Color::White;
+            this->label90->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label90->Location = System::Drawing::Point(267, 106);
+            this->label90->Name = L"label90";
+            this->label90->Size = System::Drawing::Size(116, 28);
+            this->label90->TabIndex = 295;
+            this->label90->Text = L"10:00-11:00";
+            // 
+            // label91
+            // 
+            this->label91->AutoSize = true;
+            this->label91->BackColor = System::Drawing::Color::White;
+            this->label91->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label91->Location = System::Drawing::Point(3, 376);
+            this->label91->Name = L"label91";
+            this->label91->Size = System::Drawing::Size(91, 28);
+            this->label91->TabIndex = 264;
+            this->label91->Text = L"Thursday";
+            // 
+            // label102
+            // 
+            this->label102->AutoSize = true;
+            this->label102->BackColor = System::Drawing::Color::White;
+            this->label102->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label102->Location = System::Drawing::Point(453, 106);
+            this->label102->Name = L"label102";
+            this->label102->Size = System::Drawing::Size(116, 28);
+            this->label102->TabIndex = 296;
+            this->label102->Text = L"11:30-12:30";
+            // 
+            // label111
+            // 
+            this->label111->AutoSize = true;
+            this->label111->BackColor = System::Drawing::Color::White;
+            this->label111->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label111->Location = System::Drawing::Point(16, 452);
+            this->label111->Name = L"label111";
+            this->label111->Size = System::Drawing::Size(66, 28);
+            this->label111->TabIndex = 265;
+            this->label111->Text = L"Friday";
+            // 
+            // label121
+            // 
+            this->label121->AutoSize = true;
+            this->label121->BackColor = System::Drawing::Color::White;
+            this->label121->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label121->Location = System::Drawing::Point(608, 106);
+            this->label121->Name = L"label121";
+            this->label121->Size = System::Drawing::Size(105, 28);
+            this->label121->TabIndex = 297;
+            this->label121->Text = L"12:30-1:30";
+            // 
+            // label122
+            // 
+            this->label122->AutoSize = true;
+            this->label122->BackColor = System::Drawing::Color::White;
+            this->label122->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label122->Location = System::Drawing::Point(16, 530);
+            this->label122->Name = L"label122";
+            this->label122->Size = System::Drawing::Size(90, 28);
+            this->label122->TabIndex = 266;
+            this->label122->Text = L"Saturday";
+            // 
+            // label136
+            // 
+            this->label136->AutoSize = true;
+            this->label136->BackColor = System::Drawing::Color::White;
+            this->label136->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label136->Location = System::Drawing::Point(801, 102);
+            this->label136->Name = L"label136";
+            this->label136->Size = System::Drawing::Size(94, 28);
+            this->label136->TabIndex = 298;
+            this->label136->Text = L"2:30-3:30";
+            // 
+            // label174
+            // 
+            this->label174->AutoSize = true;
+            this->label174->BackColor = System::Drawing::Color::White;
+            this->label174->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label174->Location = System::Drawing::Point(932, 102);
+            this->label174->Name = L"label174";
+            this->label174->Size = System::Drawing::Size(94, 28);
+            this->label174->TabIndex = 299;
+            this->label174->Text = L"3:30-4:30";
+            // 
+            // panel62
+            // 
+            this->panel62->Controls->Add(this->button30);
+            this->panel62->Controls->Add(this->button31);
+            this->panel62->Location = System::Drawing::Point(724, 1880);
+            this->panel62->Name = L"panel62";
+            this->panel62->Size = System::Drawing::Size(414, 156);
+            this->panel62->TabIndex = 124;
+            // 
+            // button30
+            // 
+            this->button30->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button30->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
+            this->button30->Location = System::Drawing::Point(252, 45);
+            this->button30->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+            this->button30->Name = L"button30";
+            this->button30->Size = System::Drawing::Size(154, 58);
+            this->button30->TabIndex = 122;
+            this->button30->Text = L"Clear";
+            this->button30->UseVisualStyleBackColor = false;
+            // 
+            // button31
+            // 
+            this->button31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button31->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
+            this->button31->Location = System::Drawing::Point(20, 45);
+            this->button31->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
+            this->button31->Name = L"button31";
+            this->button31->Size = System::Drawing::Size(154, 58);
+            this->button31->TabIndex = 66;
+            this->button31->Text = L"Save";
+            this->button31->UseVisualStyleBackColor = false;
+            // 
+            // kryptonGroupBox7
+            // 
+            this->kryptonGroupBox7->CaptionOverlap = 1;
+            this->kryptonGroupBox7->CaptionVisible = false;
+            this->kryptonGroupBox7->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->kryptonGroupBox7->Location = System::Drawing::Point(22, 903);
+            this->kryptonGroupBox7->Name = L"kryptonGroupBox7";
+            // 
+            // kryptonGroupBox7.Panel
+            // 
+            this->kryptonGroupBox7->Panel->Controls->Add(this->kryptonComboBox1);
+            this->kryptonGroupBox7->Panel->Controls->Add(this->label176);
+            this->kryptonGroupBox7->Size = System::Drawing::Size(1126, 194);
+            this->kryptonGroupBox7->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonGroupBox7->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox7->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->kryptonGroupBox7->StateCommon->Border->ColorAngle = 50;
+            this->kryptonGroupBox7->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonGroupBox7->StateCommon->Border->Rounding = 7;
+            this->kryptonGroupBox7->StateCommon->Border->Width = 1;
+            this->kryptonGroupBox7->TabIndex = 342;
+            // 
+            // kryptonComboBox1
+            // 
+            this->kryptonComboBox1->DropDownWidth = 342;
+            this->kryptonComboBox1->Location = System::Drawing::Point(99, 100);
+            this->kryptonComboBox1->Name = L"kryptonComboBox1";
+            this->kryptonComboBox1->Size = System::Drawing::Size(508, 29);
+            this->kryptonComboBox1->StateCommon->DropBack->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->kryptonComboBox1->StateCommon->DropBack->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->kryptonComboBox1->TabIndex = 344;
+            // 
+            // label176
+            // 
+            this->label176->AutoSize = true;
+            this->label176->BackColor = System::Drawing::Color::White;
+            this->label176->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label176->Location = System::Drawing::Point(94, 40);
+            this->label176->Name = L"label176";
+            this->label176->Size = System::Drawing::Size(122, 28);
+            this->label176->TabIndex = 343;
+            this->label176->Text = L"Department";
+            // 
+            // kryptonLabel12
+            // 
+            this->kryptonLabel12->Location = System::Drawing::Point(456, 50);
+            this->kryptonLabel12->Name = L"kryptonLabel12";
+            this->kryptonLabel12->Size = System::Drawing::Size(165, 43);
+            this->kryptonLabel12->StateCommon->ShortText->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->kryptonLabel12->StateCommon->ShortText->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::Dashed;
+            this->kryptonLabel12->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 14, System::Drawing::FontStyle::Bold));
+            this->kryptonLabel12->TabIndex = 2;
+            this->kryptonLabel12->Values->Text = L"Lab Details";
+            // 
+            // kryptonGroupBox8
+            // 
+            this->kryptonGroupBox8->CaptionOverlap = 1;
+            this->kryptonGroupBox8->CaptionVisible = false;
+            this->kryptonGroupBox8->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->kryptonGroupBox8->Location = System::Drawing::Point(22, 422);
+            this->kryptonGroupBox8->Name = L"kryptonGroupBox8";
+            // 
+            // kryptonGroupBox8.Panel
+            // 
+            this->kryptonGroupBox8->Panel->Controls->Add(this->kryptonNumericUpDown2);
+            this->kryptonGroupBox8->Panel->Controls->Add(this->label177);
+            this->kryptonGroupBox8->Size = System::Drawing::Size(1126, 194);
+            this->kryptonGroupBox8->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonGroupBox8->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox8->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->kryptonGroupBox8->StateCommon->Border->ColorAngle = 50;
+            this->kryptonGroupBox8->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonGroupBox8->StateCommon->Border->Rounding = 7;
+            this->kryptonGroupBox8->StateCommon->Border->Width = 1;
+            this->kryptonGroupBox8->TabIndex = 341;
+            // 
+            // kryptonNumericUpDown2
+            // 
+            this->kryptonNumericUpDown2->Location = System::Drawing::Point(98, 96);
+            this->kryptonNumericUpDown2->Name = L"kryptonNumericUpDown2";
+            this->kryptonNumericUpDown2->Size = System::Drawing::Size(304, 30);
+            this->kryptonNumericUpDown2->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonNumericUpDown2->TabIndex = 328;
+            // 
+            // label177
+            // 
+            this->label177->AutoSize = true;
+            this->label177->BackColor = System::Drawing::Color::White;
+            this->label177->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label177->ForeColor = System::Drawing::Color::Black;
+            this->label177->Location = System::Drawing::Point(94, 39);
+            this->label177->Name = L"label177";
+            this->label177->Size = System::Drawing::Size(146, 28);
+            this->label177->TabIndex = 327;
+            this->label177->Text = L"Room Capacity";
+            // 
+            // kryptonGroupBox11
+            // 
+            this->kryptonGroupBox11->CaptionOverlap = 1;
+            this->kryptonGroupBox11->CaptionVisible = false;
+            this->kryptonGroupBox11->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->kryptonGroupBox11->Location = System::Drawing::Point(22, 662);
+            this->kryptonGroupBox11->Name = L"kryptonGroupBox11";
+            // 
+            // kryptonGroupBox11.Panel
+            // 
+            this->kryptonGroupBox11->Panel->Controls->Add(this->label180);
+            this->kryptonGroupBox11->Panel->Controls->Add(this->panel63);
+            this->kryptonGroupBox11->Size = System::Drawing::Size(1126, 194);
+            this->kryptonGroupBox11->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonGroupBox11->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox11->StateCommon->Border->ColorAngle = 50;
+            this->kryptonGroupBox11->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonGroupBox11->StateCommon->Border->Rounding = 7;
+            this->kryptonGroupBox11->StateCommon->Border->Width = 1;
+            this->kryptonGroupBox11->TabIndex = 339;
+            // 
+            // label180
+            // 
+            this->label180->AutoSize = true;
+            this->label180->BackColor = System::Drawing::Color::White;
+            this->label180->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label180->Location = System::Drawing::Point(94, 44);
+            this->label180->Name = L"label180";
+            this->label180->Size = System::Drawing::Size(108, 28);
+            this->label180->TabIndex = 266;
+            this->label180->Text = L"Is it a Lab\?";
+            // 
+            // panel63
+            // 
+            this->panel63->BackColor = System::Drawing::Color::White;
+            this->panel63->Controls->Add(this->kryptonRadioButton1);
+            this->panel63->Controls->Add(this->kryptonRadioButton2);
+            this->panel63->ForeColor = System::Drawing::Color::Black;
+            this->panel63->Location = System::Drawing::Point(162, 90);
+            this->panel63->Name = L"panel63";
+            this->panel63->Size = System::Drawing::Size(492, 60);
+            this->panel63->TabIndex = 267;
+            // 
+            // kryptonRadioButton1
+            // 
+            this->kryptonRadioButton1->Location = System::Drawing::Point(16, 14);
+            this->kryptonRadioButton1->Name = L"kryptonRadioButton1";
+            this->kryptonRadioButton1->Size = System::Drawing::Size(58, 32);
+            this->kryptonRadioButton1->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
+            this->kryptonRadioButton1->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
+            this->kryptonRadioButton1->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->kryptonRadioButton1->TabIndex = 328;
+            this->kryptonRadioButton1->Values->Text = L"YES";
+            // 
+            // kryptonRadioButton2
+            // 
+            this->kryptonRadioButton2->Location = System::Drawing::Point(230, 14);
+            this->kryptonRadioButton2->Name = L"kryptonRadioButton2";
+            this->kryptonRadioButton2->Size = System::Drawing::Size(56, 32);
+            this->kryptonRadioButton2->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
+            this->kryptonRadioButton2->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
+            this->kryptonRadioButton2->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->kryptonRadioButton2->TabIndex = 330;
+            this->kryptonRadioButton2->Values->Text = L"NO";
+            // 
+            // kryptonGroupBox12
+            // 
+            this->kryptonGroupBox12->CaptionOverlap = 1;
+            this->kryptonGroupBox12->CaptionVisible = false;
+            this->kryptonGroupBox12->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->kryptonGroupBox12->Location = System::Drawing::Point(22, 168);
+            this->kryptonGroupBox12->Name = L"kryptonGroupBox12";
+            // 
+            // kryptonGroupBox12.Panel
+            // 
+            this->kryptonGroupBox12->Panel->Controls->Add(this->kryptonPanel16);
+            this->kryptonGroupBox12->Panel->Controls->Add(this->label186);
+            this->kryptonGroupBox12->Panel->Controls->Add(this->kryptonTextBox1);
+            this->kryptonGroupBox12->Size = System::Drawing::Size(1126, 194);
+            this->kryptonGroupBox12->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonGroupBox12->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox12->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox12->StateCommon->Border->ColorAngle = 50;
+            this->kryptonGroupBox12->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonGroupBox12->StateCommon->Border->Rounding = 9;
+            this->kryptonGroupBox12->StateCommon->Border->Width = 1;
+            this->kryptonGroupBox12->TabIndex = 337;
+            // 
+            // kryptonPanel16
+            // 
+            this->kryptonPanel16->Location = System::Drawing::Point(98, 118);
+            this->kryptonPanel16->Name = L"kryptonPanel16";
+            this->kryptonPanel16->Size = System::Drawing::Size(508, 2);
+            this->kryptonPanel16->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel16->TabIndex = 326;
+            // 
+            // label186
+            // 
+            this->label186->AutoSize = true;
+            this->label186->BackColor = System::Drawing::Color::White;
+            this->label186->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label186->ForeColor = System::Drawing::Color::Black;
+            this->label186->Location = System::Drawing::Point(93, 30);
+            this->label186->Name = L"label186";
+            this->label186->Size = System::Drawing::Size(211, 28);
+            this->label186->TabIndex = 264;
+            this->label186->Text = L"Enter the Batch Name";
+            // 
+            // kryptonTextBox1
+            // 
+            this->kryptonTextBox1->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->kryptonTextBox1->Location = System::Drawing::Point(105, 75);
+            this->kryptonTextBox1->Name = L"kryptonTextBox1";
+            this->kryptonTextBox1->Size = System::Drawing::Size(478, 44);
+            this->kryptonTextBox1->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonTextBox1->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonTextBox1->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->kryptonTextBox1->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->kryptonTextBox1->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->kryptonTextBox1->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->kryptonTextBox1->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonTextBox1->StateCommon->Border->Rounding = 10;
+            this->kryptonTextBox1->StateCommon->Border->Width = 3;
+            this->kryptonTextBox1->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->kryptonTextBox1->TabIndex = 325;
             // 
             // MyForm
             // 
@@ -11718,21 +12539,22 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Dpi;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->ClientSize = System::Drawing::Size(1924, 1050);
-            this->Controls->Add(this->editteacherpanel);
+            this->ClientSize = System::Drawing::Size(1806, 1050);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->kryptonPanel6);
             this->Controls->Add(this->editsubactivepanel);
+            this->Controls->Add(this->addclassroompanel);
+            this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->classpanel);
+            this->Controls->Add(this->deleteclasspanel);
+            this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel2);
             this->Controls->Add(this->settingspanel);
             this->Controls->Add(this->addteacherpanel);
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
             this->Controls->Add(this->editsubjectpanel);
-            this->Controls->Add(this->addclassroompanel);
-            this->Controls->Add(this->Homepanel);
-            this->Controls->Add(this->classpanel);
-            this->Controls->Add(this->deleteclasspanel);
+            this->Controls->Add(this->Labaddpanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -11845,6 +12667,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editteachertablegroup->Panel->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertablegroup))->EndInit();
             this->editteachertablegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertt))->EndInit();
             this->panel28->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteacherdepartmentgroup->Panel))->EndInit();
             this->editteacherdepartmentgroup->Panel->ResumeLayout(false);
@@ -11896,6 +12719,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox6))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
             this->panel1->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox9))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox12))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox11))->EndInit();
             this->classpanel->ResumeLayout(false);
@@ -11969,6 +12793,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->addteachertablegroup->Panel->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteachertablegroup))->EndInit();
             this->addteachertablegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteachertt))->EndInit();
             this->panel35->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteacherdepartmentgroup->Panel))->EndInit();
             this->addteacherdepartmentgroup->Panel->ResumeLayout(false);
@@ -12096,7 +12921,39 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
             this->editroomnamegroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel11))->EndInit();
             this->editroompanel->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->editteachertt))->EndInit();
+            this->Labaddpanel->ResumeLayout(false);
+            this->panel22->ResumeLayout(false);
+            this->panel22->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1->Panel))->EndInit();
+            this->kryptonGroupBox1->Panel->ResumeLayout(false);
+            this->kryptonGroupBox1->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1))->EndInit();
+            this->kryptonGroupBox1->ResumeLayout(false);
+            this->panel62->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7->Panel))->EndInit();
+            this->kryptonGroupBox7->Panel->ResumeLayout(false);
+            this->kryptonGroupBox7->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7))->EndInit();
+            this->kryptonGroupBox7->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonComboBox1))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8->Panel))->EndInit();
+            this->kryptonGroupBox8->Panel->ResumeLayout(false);
+            this->kryptonGroupBox8->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8))->EndInit();
+            this->kryptonGroupBox8->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11->Panel))->EndInit();
+            this->kryptonGroupBox11->Panel->ResumeLayout(false);
+            this->kryptonGroupBox11->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11))->EndInit();
+            this->kryptonGroupBox11->ResumeLayout(false);
+            this->panel63->ResumeLayout(false);
+            this->panel63->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12->Panel))->EndInit();
+            this->kryptonGroupBox12->Panel->ResumeLayout(false);
+            this->kryptonGroupBox12->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12))->EndInit();
+            this->kryptonGroupBox12->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel16))->EndInit();
             this->ResumeLayout(false);
 
         }
@@ -12120,6 +12977,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button7->Visible = false;
         textBox6->Visible = false;
         textBox7->Visible = true;
+        //close lab suboptions
+        button24->Visible = false;
+        button20->Visible = false;
+        panel21->Visible = false;
+        panel20->Visible = true;
         //close class suboptions
         button14->Visible = false;
         button13->Visible = false;
@@ -12230,12 +13092,12 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         //delete class
         panel47->Left = int((this->ClientSize.Width - (panel47->Width) * 1.5) / 2);
         //Settings button
-        int panelheight = (int)(this->ClientSize.Height * .85);
+        int panelheight = (int)(this->ClientSize.Height * .87);
         button17->Top = panelheight;
         pictureBox11->Top = panelheight;
         button17->Width = panel1->Width;
         //Contact Button
-        button18->Top = button17->Top - 40 - button18->Height;
+        button18->Top = button17->Top - 30 - button18->Height;
         pictureBox12->Top = button18->Top;
         button18->Width = panel1->Width;
         //Other Buttons
@@ -12254,19 +13116,24 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button13->Width = panel1->Width;
         button14->Width = panel1->Width;
         button15->Width = panel1->Width;
+        button20->Width = panel1->Width;
+        button24->Width = panel1->Width;
+        button25->Width = panel1->Width;
         textBox4->Left = int(panel1->Width) * 0.80;
         textBox5->Left = int(panel1->Width) * 0.80;
         textBox6->Left = int(panel1->Width) * 0.80;
         textBox7->Left = int(panel1->Width) * 0.80;
         textBox8->Left = int(panel1->Width) * 0.80;
         textBox9->Left = int(panel1->Width) * 0.80;
+        panel20->Left = int(panel1->Width) * 0.80;
+        panel21->Left = int(panel1->Width) * 0.80;
         textBox10->Left = int(panel1->Width) * 0.80;
         textBox11->Left = int(panel1->Width) * 0.80;
         Homepanel->BringToFront();
         panel1->BringToFront();
         InitializeMatrix(addroomtablepanel, "room", "Free", 1);
         InitializeMatrix(editroomtablepanel, "editroom", "Free", 1);
-        InitializeMatrix(teachertablepanel, "teacher", "Free", 1);
+        InitializeMatrix(teachertablepanel, "teacher", "Free", 5);
         InitializeMatrix(editteachertablepanel, "editteacher", "Free", 4);
         InitializeMatrix(editsubeletable, "editele", "Available", 2);
     }
@@ -12303,6 +13170,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button13->Visible = false;
         textBox10->Visible = false;
         textBox11->Visible = true;
+        //close lab suboptions
+        button24->Visible = false;
+        button20->Visible = false;
+        panel21->Visible = false;
+        panel20->Visible = true;
     }
     private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
         if (button8->Visible == false)
@@ -12336,6 +13208,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button13->Visible = false;
         textBox10->Visible = false;
         textBox11->Visible = true;
+        //close lab suboptions
+        button24->Visible = false;
+        button20->Visible = false;
+        panel21->Visible = false;
+        panel20->Visible = true;
     }
     private: System::Void textBox4_TextChanged(System::Object^ sender, System::EventArgs^ e) {
     }
@@ -12370,6 +13247,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button11->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
     }
     private: System::Void button18_Click(System::Object^ sender, System::EventArgs^ e) {
         panel3->Height = Homebutton1->Height;
@@ -12389,7 +13268,12 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button10->Visible = false;
         button11->Visible = false;
         textBox8->Visible = false;
-        textBox9->Visible = true;
+        textBox9->Visible = true;  
+        //close lab suboptions
+        button24->Visible = false;
+        button20->Visible = false;
+        panel21->Visible = false;
+        panel20->Visible = true;
         //close class suboptions
         button14->Visible = false;
         button13->Visible = false;
@@ -12429,6 +13313,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button13->Visible = false;
         textBox10->Visible = false;
         textBox11->Visible = true;
+        //close lab suboptions
+        button24->Visible = false;
+        button20->Visible = false;
+        panel21->Visible = false;
+        panel20->Visible = true;
     }
 
     private: System::Void panel4_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
@@ -12470,6 +13359,10 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button11->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
+        panel20->BackColor = Color::FromArgb(0, 0, 77);
+        panel21->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
     }
     private: System::Void button2_Click_1(System::Object^ sender, System::EventArgs^ e) {
         string filePath = "details/dept_file.csv";
@@ -12551,6 +13444,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button5->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
         DisplayCluster("details/Electivetimetable.csv", addsubcluster);
         InitializeMatrix(tableLayoutPanel1, "ele", "Available", 0);
 
@@ -12933,6 +13828,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button7->Visible = false;
         textBox6->Visible = false;
         textBox7->Visible = true;
+        //close lab suboptions
+        button24->Visible = false;
+        button20->Visible = false;
+        panel21->Visible = false;
+        panel20->Visible = true;
     }
     private: System::Void classcore_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
         deletebutton(dataGridViewButtonColumn6, classcore, sender, e);
@@ -13158,6 +14058,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button11->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
         DisplayCSVInComboBoxkrypt("details/dept_file.csv", editteacherdepartment);
         DisplayCSVInComboBoxkrypt("details/teacher_file.csv", teachersearch);
         DisplayCSVInComboBoxkrypt("details/section.csv", editteachertt);
@@ -13259,6 +14161,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button10->BackColor = Color::FromArgb(0, 0, 77);
         button11->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
         DisplayCSVInComboBoxkrypt("details/dept_file.csv", editroomdepartment);
         DisplayCSVInComboBoxkrypt("details/classroom.csv", editroomsearch);
@@ -13393,6 +14297,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button11->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
         DisplayCluster("details/Electivetimetable.csv", editsubcluster);
         //
         InitializeMatrix(editsubeletable, "editele", "Available", 2);
@@ -13838,6 +14744,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button11->BackColor = Color::FromArgb(0, 0, 77);
         button13->BackColor = Color::FromArgb(0, 0, 77);
         button7->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
         classpanel->BringToFront();
         DisplayCSVInListBoxkrypt("details/classroom.csv", classlabroomlist, 0);
         classlabroomlist->Items->Add("No Room");
@@ -13944,6 +14852,8 @@ private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteachertt;
         button11->BackColor = Color::FromArgb(0, 0, 77);
         button7->BackColor = Color::FromArgb(0, 0, 77);
         button14->BackColor = Color::FromArgb(0, 0, 77);
+        button20->BackColor = Color::FromArgb(0, 0, 77);
+        button24->BackColor = Color::FromArgb(0, 0, 77);
         deleteclasspanel->BringToFront();
         kryptonGroupBox2->Panel->Controls->Add(this->editsubactivepanel);
         editsubactivepanel->Location = System::Drawing::Point(0, 0);
@@ -14415,5 +15325,71 @@ private: System::Void button16_Click(System::Object^ sender, System::EventArgs^ 
         filepath->Text = fbd->SelectedPath;
     }
 }      
+private: System::Void button25_Click(System::Object^ sender, System::EventArgs^ e) {
+    if (button24->Visible == false)
+    {
+        button24->Visible = true;
+        button20->Visible = true;
+        panel20->Visible = false;
+        panel21->Visible = true;
+    }
+
+    else
+    {
+        button24->Visible = false;
+        button20->Visible = false;
+        panel21->Visible = false;
+        panel20->Visible = true;
+    }
+    panel3->Height = button25->Height;
+    panel3->Top = button25->Top;
+    //close classroom suboptions
+    button5->Visible = false;
+    button4->Visible = false;
+    textBox4->Visible = false;
+    textBox5->Visible = true;
+    //close teachers suboption
+    button8->Visible = false;
+    button7->Visible = false;
+    textBox6->Visible = false;
+    textBox7->Visible = true;
+    //close subject suboption
+    button10->Visible = false;
+    button11->Visible = false;
+    textBox8->Visible = false;
+    textBox9->Visible = true;
+    //close class suboptions
+    button14->Visible = false;
+    button13->Visible = false;
+    textBox10->Visible = false;
+    textBox11->Visible = true;
+}
+private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) {
+    Labaddpanel->BringToFront();
+    button24->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button20->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+}
+private: System::Void button20_Click(System::Object^ sender, System::EventArgs^ e) {
+    button20->BackColor = Color::FromArgb(0, 0, 100);
+    button4->BackColor = Color::FromArgb(0, 0, 77);
+    button5->BackColor = Color::FromArgb(0, 0, 77);
+    button8->BackColor = Color::FromArgb(0, 0, 77);
+    button10->BackColor = Color::FromArgb(0, 0, 77);
+    button11->BackColor = Color::FromArgb(0, 0, 77);
+    button13->BackColor = Color::FromArgb(0, 0, 77);
+    button7->BackColor = Color::FromArgb(0, 0, 77);
+    button14->BackColor = Color::FromArgb(0, 0, 77);
+    button24->BackColor = Color::FromArgb(0, 0, 77);
+}
+private: System::Void Labaddpanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+}
 };
 }
