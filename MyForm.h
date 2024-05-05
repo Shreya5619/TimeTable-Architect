@@ -535,25 +535,81 @@ private: System::Windows::Forms::Label^ label121;
 private: System::Windows::Forms::Label^ label122;
 private: System::Windows::Forms::Label^ label136;
 private: System::Windows::Forms::Label^ label174;
-private: System::Windows::Forms::Panel^ panel62;
-private: System::Windows::Forms::Button^ button30;
-private: System::Windows::Forms::Button^ button31;
-private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox7;
-private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ kryptonComboBox1;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addlabteachersgroup;
+
+
+
+
+
+
 private: System::Windows::Forms::Label^ label176;
 private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel12;
-private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox8;
-private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown2;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addlabnamegroup;
+
+
 private: System::Windows::Forms::Label^ label177;
-private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox11;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addlabnobatchesgroup;
+
 private: System::Windows::Forms::Label^ label180;
-private: System::Windows::Forms::Panel^ panel63;
-private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ kryptonRadioButton1;
-private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ kryptonRadioButton2;
-private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox12;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addlabbatchgroup;
+
+
+
+
 private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel16;
 private: System::Windows::Forms::Label^ label186;
-private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addlabbatch;
+
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox13;
+private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ kryptonCheckBox1;
+private: ComponentFactory::Krypton::Toolkit::KryptonCheckBox^ kryptonCheckBox2;
+private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ kryptonDataGridView1;
+private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn2;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn2;
+private: System::Windows::Forms::Label^ label188;
+
+private: System::Windows::Forms::Label^ label191;
+private: System::Windows::Forms::Button^ button32;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown4;
+private: System::Windows::Forms::Label^ label192;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown5;
+private: System::Windows::Forms::Label^ label193;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel17;
+private: System::Windows::Forms::Label^ label194;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox2;
+private: System::Windows::Forms::Label^ label195;
+private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ addlabteachers;
+
+
+
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel18;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addlabname;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ addlabnobatches;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addlabsessionsgroup;
+
+
+
+
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ addlabsessions;
+
+private: System::Windows::Forms::Label^ label196;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ dataGridViewComboBoxColumn1;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn9;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addlaboptgroup;
+
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ addlaboptno;
+
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ addlaboptyes;
+
+private: System::Windows::Forms::Label^ label198;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addlabroomsgroup;
+
+private: ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox^ addlabrooms;
+
+private: System::Windows::Forms::Label^ label197;
+private: System::Windows::Forms::Panel^ addlaboptpanel;
+private: System::Windows::Forms::Button^ button30;
+
     public:
         int animationProgress = 0;
     private: System::Void timer1_Tick_1(System::Object^ sender, System::EventArgs^ e) {
@@ -3439,22 +3495,26 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
         {
             this->components = (gcnew System::ComponentModel::Container());
             System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle13 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle14 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle15 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle16 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle17 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle18 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle19 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle20 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle21 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle22 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle23 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle24 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle25 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle26 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle27 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle28 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle29 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle30 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle31 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle32 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->addsubjectpanel = (gcnew System::Windows::Forms::Panel());
             this->panel11 = (gcnew System::Windows::Forms::Panel());
             this->panel48 = (gcnew System::Windows::Forms::Panel());
@@ -3949,6 +4009,35 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->timer13 = (gcnew System::Windows::Forms::Timer(this->components));
             this->Labaddpanel = (gcnew System::Windows::Forms::Panel());
             this->panel22 = (gcnew System::Windows::Forms::Panel());
+            this->button30 = (gcnew System::Windows::Forms::Button());
+            this->addlaboptgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->addlaboptpanel = (gcnew System::Windows::Forms::Panel());
+            this->addlaboptno = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->addlaboptyes = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
+            this->label198 = (gcnew System::Windows::Forms::Label());
+            this->addlabroomsgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->addlabrooms = (gcnew ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox());
+            this->label197 = (gcnew System::Windows::Forms::Label());
+            this->addlabsessionsgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->addlabsessions = (gcnew ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown());
+            this->label196 = (gcnew System::Windows::Forms::Label());
+            this->kryptonGroupBox13 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonCheckBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonCheckBox());
+            this->kryptonCheckBox2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonCheckBox());
+            this->kryptonDataGridView1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonDataGridView());
+            this->dataGridViewTextBoxColumn2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+            this->dataGridViewButtonColumn2 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
+            this->label188 = (gcnew System::Windows::Forms::Label());
+            this->label191 = (gcnew System::Windows::Forms::Label());
+            this->button32 = (gcnew System::Windows::Forms::Button());
+            this->kryptonNumericUpDown4 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown());
+            this->label192 = (gcnew System::Windows::Forms::Label());
+            this->kryptonNumericUpDown5 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown());
+            this->label193 = (gcnew System::Windows::Forms::Label());
+            this->kryptonPanel17 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->label194 = (gcnew System::Windows::Forms::Label());
+            this->kryptonTextBox2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->label195 = (gcnew System::Windows::Forms::Label());
             this->kryptonGroupBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
             this->panel55 = (gcnew System::Windows::Forms::Panel());
             this->panel60 = (gcnew System::Windows::Forms::Panel());
@@ -3967,25 +4056,23 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->label122 = (gcnew System::Windows::Forms::Label());
             this->label136 = (gcnew System::Windows::Forms::Label());
             this->label174 = (gcnew System::Windows::Forms::Label());
-            this->panel62 = (gcnew System::Windows::Forms::Panel());
-            this->button30 = (gcnew System::Windows::Forms::Button());
-            this->button31 = (gcnew System::Windows::Forms::Button());
-            this->kryptonGroupBox7 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->kryptonComboBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonComboBox());
+            this->addlabteachersgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
             this->label176 = (gcnew System::Windows::Forms::Label());
+            this->addlabteachers = (gcnew ComponentFactory::Krypton::Toolkit::KryptonDataGridView());
+            this->dataGridViewComboBoxColumn1 = (gcnew System::Windows::Forms::DataGridViewComboBoxColumn());
+            this->dataGridViewButtonColumn9 = (gcnew System::Windows::Forms::DataGridViewButtonColumn());
             this->kryptonLabel12 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonLabel());
-            this->kryptonGroupBox8 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->kryptonNumericUpDown2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown());
+            this->addlabnamegroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->kryptonPanel18 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
+            this->addlabname = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
             this->label177 = (gcnew System::Windows::Forms::Label());
-            this->kryptonGroupBox11 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->addlabnobatchesgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->addlabnobatches = (gcnew ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown());
             this->label180 = (gcnew System::Windows::Forms::Label());
-            this->panel63 = (gcnew System::Windows::Forms::Panel());
-            this->kryptonRadioButton1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
-            this->kryptonRadioButton2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonRadioButton());
-            this->kryptonGroupBox12 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->addlabbatchgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
             this->kryptonPanel16 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
             this->label186 = (gcnew System::Windows::Forms::Label());
-            this->kryptonTextBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->addlabbatch = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
             this->addsubjectpanel->SuspendLayout();
             this->panel11->SuspendLayout();
             this->panel48->SuspendLayout();
@@ -4280,29 +4367,47 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->editroompanel->SuspendLayout();
             this->Labaddpanel->SuspendLayout();
             this->panel22->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlaboptgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlaboptgroup->Panel))->BeginInit();
+            this->addlaboptgroup->Panel->SuspendLayout();
+            this->addlaboptgroup->SuspendLayout();
+            this->addlaboptpanel->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabroomsgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabroomsgroup->Panel))->BeginInit();
+            this->addlabroomsgroup->Panel->SuspendLayout();
+            this->addlabroomsgroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabsessionsgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabsessionsgroup->Panel))->BeginInit();
+            this->addlabsessionsgroup->Panel->SuspendLayout();
+            this->addlabsessionsgroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox13))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox13->Panel))->BeginInit();
+            this->kryptonGroupBox13->Panel->SuspendLayout();
+            this->kryptonGroupBox13->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonDataGridView1))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel17))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1->Panel))->BeginInit();
             this->kryptonGroupBox1->Panel->SuspendLayout();
             this->kryptonGroupBox1->SuspendLayout();
-            this->panel62->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7->Panel))->BeginInit();
-            this->kryptonGroupBox7->Panel->SuspendLayout();
-            this->kryptonGroupBox7->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonComboBox1))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8->Panel))->BeginInit();
-            this->kryptonGroupBox8->Panel->SuspendLayout();
-            this->kryptonGroupBox8->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11->Panel))->BeginInit();
-            this->kryptonGroupBox11->Panel->SuspendLayout();
-            this->kryptonGroupBox11->SuspendLayout();
-            this->panel63->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12->Panel))->BeginInit();
-            this->kryptonGroupBox12->Panel->SuspendLayout();
-            this->kryptonGroupBox12->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabteachersgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabteachersgroup->Panel))->BeginInit();
+            this->addlabteachersgroup->Panel->SuspendLayout();
+            this->addlabteachersgroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabteachers))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnamegroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnamegroup->Panel))->BeginInit();
+            this->addlabnamegroup->Panel->SuspendLayout();
+            this->addlabnamegroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel18))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnobatchesgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnobatchesgroup->Panel))->BeginInit();
+            this->addlabnobatchesgroup->Panel->SuspendLayout();
+            this->addlabnobatchesgroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabbatchgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabbatchgroup->Panel))->BeginInit();
+            this->addlabbatchgroup->Panel->SuspendLayout();
+            this->addlabbatchgroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel16))->BeginInit();
             this->SuspendLayout();
             // 
@@ -4782,13 +4887,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->sedataGridView->AllowUserToOrderColumns = true;
             this->sedataGridView->AllowUserToResizeColumns = false;
             this->sedataGridView->AllowUserToResizeRows = false;
-            dataGridViewCellStyle17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle17->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle17->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle17->SelectionForeColor = System::Drawing::Color::Black;
-            this->sedataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this->sedataGridView->ColumnHeadersHeight = 36;
             this->sedataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->TeacherName,
@@ -4804,11 +4909,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->sedataGridView->Name = L"sedataGridView";
             this->sedataGridView->RowHeadersVisible = false;
             this->sedataGridView->RowHeadersWidth = 62;
-            dataGridViewCellStyle18->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle18->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle18->SelectionForeColor = System::Drawing::Color::Black;
-            this->sedataGridView->RowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->RowsDefaultCellStyle = dataGridViewCellStyle2;
             this->sedataGridView->RowTemplate->Height = 28;
             this->sedataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sedataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -8517,13 +8622,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classlab->AllowUserToOrderColumns = true;
             this->classlab->AllowUserToResizeColumns = false;
             this->classlab->AllowUserToResizeRows = false;
-            dataGridViewCellStyle19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle19->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle19->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle3->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle19->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlab->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle3->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlab->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this->classlab->ColumnHeadersHeight = 36;
             this->classlab->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->lsubject, this->dataGridViewButtonColumn7 });
             this->classlab->GridStyles->Style = ComponentFactory::Krypton::Toolkit::DataGridViewStyle::Sheet;
@@ -8536,11 +8641,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classlab->Name = L"classlab";
             this->classlab->RowHeadersVisible = false;
             this->classlab->RowHeadersWidth = 62;
-            dataGridViewCellStyle20->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle20->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle4->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle20->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlab->RowsDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlab->RowsDefaultCellStyle = dataGridViewCellStyle4;
             this->classlab->RowTemplate->Height = 28;
             this->classlab->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classlab->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -8762,13 +8867,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classlabteachers->AllowUserToOrderColumns = true;
             this->classlabteachers->AllowUserToResizeColumns = false;
             this->classlabteachers->AllowUserToResizeRows = false;
-            dataGridViewCellStyle21->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle21->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle21->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle5->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle21->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this->classlabteachers->ColumnHeadersHeight = 36;
             this->classlabteachers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->Teacher1,
@@ -8784,11 +8889,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classlabteachers->Name = L"classlabteachers";
             this->classlabteachers->RowHeadersVisible = false;
             this->classlabteachers->RowHeadersWidth = 62;
-            dataGridViewCellStyle22->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle22->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle6->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle22->SelectionForeColor = System::Drawing::Color::Black;
-            this->classlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::Black;
+            this->classlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle6;
             this->classlabteachers->RowTemplate->DefaultCellStyle->BackColor = System::Drawing::Color::White;
             this->classlabteachers->RowTemplate->DefaultCellStyle->ForeColor = System::Drawing::Color::Black;
             this->classlabteachers->RowTemplate->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(242)),
@@ -8905,13 +9010,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classele->AllowUserToOrderColumns = true;
             this->classele->AllowUserToResizeColumns = false;
             this->classele->AllowUserToResizeRows = false;
-            dataGridViewCellStyle23->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle23->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle23->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle7->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle7->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle23->SelectionForeColor = System::Drawing::Color::Black;
-            this->classele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle7->SelectionForeColor = System::Drawing::Color::Black;
+            this->classele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this->classele->ColumnHeadersHeight = 36;
             this->classele->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->esubject, this->dataGridViewButtonColumn5 });
             this->classele->GridStyles->Style = ComponentFactory::Krypton::Toolkit::DataGridViewStyle::Sheet;
@@ -8924,11 +9029,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classele->Name = L"classele";
             this->classele->RowHeadersVisible = false;
             this->classele->RowHeadersWidth = 62;
-            dataGridViewCellStyle24->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle24->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle8->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle8->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle24->SelectionForeColor = System::Drawing::Color::Black;
-            this->classele->RowsDefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle8->SelectionForeColor = System::Drawing::Color::Black;
+            this->classele->RowsDefaultCellStyle = dataGridViewCellStyle8;
             this->classele->RowTemplate->Height = 28;
             this->classele->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classele->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -9022,13 +9127,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classcore->AllowUserToOrderColumns = true;
             this->classcore->AllowUserToResizeColumns = false;
             this->classcore->AllowUserToResizeRows = false;
-            dataGridViewCellStyle25->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle25->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle25->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle9->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle9->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle25->SelectionForeColor = System::Drawing::Color::Black;
-            this->classcore->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle9->SelectionForeColor = System::Drawing::Color::Black;
+            this->classcore->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this->classcore->ColumnHeadersHeight = 36;
             this->classcore->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
                 this->csubject, this->cteacher,
@@ -9044,11 +9149,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->classcore->Name = L"classcore";
             this->classcore->RowHeadersVisible = false;
             this->classcore->RowHeadersWidth = 62;
-            dataGridViewCellStyle26->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle26->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle10->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle10->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle26->SelectionForeColor = System::Drawing::Color::Black;
-            this->classcore->RowsDefaultCellStyle = dataGridViewCellStyle26;
+            dataGridViewCellStyle10->SelectionForeColor = System::Drawing::Color::Black;
+            this->classcore->RowsDefaultCellStyle = dataGridViewCellStyle10;
             this->classcore->RowTemplate->Height = 28;
             this->classcore->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classcore->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -9976,13 +10081,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->deptDataGridView->AllowUserToOrderColumns = true;
             this->deptDataGridView->AllowUserToResizeColumns = false;
             this->deptDataGridView->AllowUserToResizeRows = false;
-            dataGridViewCellStyle27->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle27->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle27->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
+            dataGridViewCellStyle11->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle11->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle27->SelectionForeColor = System::Drawing::Color::Black;
-            this->deptDataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle11->SelectionForeColor = System::Drawing::Color::Black;
+            this->deptDataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this->deptDataGridView->ColumnHeadersHeight = 36;
             this->deptDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->deptDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -9999,13 +10104,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->deptDataGridView->Name = L"deptDataGridView";
             this->deptDataGridView->RowHeadersVisible = false;
             this->deptDataGridView->RowHeadersWidth = 62;
-            dataGridViewCellStyle28->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            dataGridViewCellStyle28->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle28->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle12->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle12->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle28->SelectionForeColor = System::Drawing::Color::Black;
-            this->deptDataGridView->RowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle12->SelectionForeColor = System::Drawing::Color::Black;
+            this->deptDataGridView->RowsDefaultCellStyle = dataGridViewCellStyle12;
             this->deptDataGridView->RowTemplate->Height = 28;
             this->deptDataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->deptDataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -10115,13 +10220,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->sectiondeletedatagridview->AllowUserToOrderColumns = true;
             this->sectiondeletedatagridview->AllowUserToResizeColumns = false;
             this->sectiondeletedatagridview->AllowUserToResizeRows = false;
-            dataGridViewCellStyle29->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle29->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle29->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
+            dataGridViewCellStyle13->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle13->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle29->SelectionForeColor = System::Drawing::Color::Black;
-            this->sectiondeletedatagridview->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle29;
+            dataGridViewCellStyle13->SelectionForeColor = System::Drawing::Color::Black;
+            this->sectiondeletedatagridview->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this->sectiondeletedatagridview->ColumnHeadersHeight = 36;
             this->sectiondeletedatagridview->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->sectiondeletedatagridview->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -10138,13 +10243,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->sectiondeletedatagridview->Name = L"sectiondeletedatagridview";
             this->sectiondeletedatagridview->RowHeadersVisible = false;
             this->sectiondeletedatagridview->RowHeadersWidth = 62;
-            dataGridViewCellStyle30->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle14->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            dataGridViewCellStyle30->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle30->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle14->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle14->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle30->SelectionForeColor = System::Drawing::Color::Black;
-            this->sectiondeletedatagridview->RowsDefaultCellStyle = dataGridViewCellStyle30;
+            dataGridViewCellStyle14->SelectionForeColor = System::Drawing::Color::Black;
+            this->sectiondeletedatagridview->RowsDefaultCellStyle = dataGridViewCellStyle14;
             this->sectiondeletedatagridview->RowTemplate->Height = 28;
             this->sectiondeletedatagridview->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sectiondeletedatagridview->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -10750,13 +10855,13 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->editsubeleteacher->AllowUserToOrderColumns = true;
             this->editsubeleteacher->AllowUserToResizeColumns = false;
             this->editsubeleteacher->AllowUserToResizeRows = false;
-            dataGridViewCellStyle31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+            dataGridViewCellStyle15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle31->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle31->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+            dataGridViewCellStyle15->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle15->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle31->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubeleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle15->SelectionForeColor = System::Drawing::Color::Black;
+            this->editsubeleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this->editsubeleteacher->ColumnHeadersHeight = 36;
             this->editsubeleteacher->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->editsubeleteacher->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -10773,11 +10878,11 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->editsubeleteacher->Name = L"editsubeleteacher";
             this->editsubeleteacher->RowHeadersVisible = false;
             this->editsubeleteacher->RowHeadersWidth = 62;
-            dataGridViewCellStyle32->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle32->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle16->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle16->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle32->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle16->SelectionForeColor = System::Drawing::Color::Black;
+            this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle16;
             this->editsubeleteacher->RowTemplate->Height = 28;
             this->editsubeleteacher->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->editsubeleteacher->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -11965,35 +12070,487 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             // 
             // Labaddpanel
             // 
+            this->Labaddpanel->AutoScroll = true;
             this->Labaddpanel->Controls->Add(this->panel22);
             this->Labaddpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->Labaddpanel->Location = System::Drawing::Point(0, 0);
+            this->Labaddpanel->Location = System::Drawing::Point(364, 76);
             this->Labaddpanel->Name = L"Labaddpanel";
-            this->Labaddpanel->Size = System::Drawing::Size(1806, 1050);
+            this->Labaddpanel->Size = System::Drawing::Size(1442, 974);
             this->Labaddpanel->TabIndex = 346;
             this->Labaddpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::Labaddpanel_Paint);
             // 
             // panel22
             // 
             this->panel22->AutoSizeMode = System::Windows::Forms::AutoSizeMode::GrowAndShrink;
+            this->panel22->Controls->Add(this->button30);
+            this->panel22->Controls->Add(this->addlaboptgroup);
+            this->panel22->Controls->Add(this->addlabroomsgroup);
+            this->panel22->Controls->Add(this->addlabsessionsgroup);
+            this->panel22->Controls->Add(this->kryptonGroupBox13);
             this->panel22->Controls->Add(this->kryptonGroupBox1);
-            this->panel22->Controls->Add(this->panel62);
-            this->panel22->Controls->Add(this->kryptonGroupBox7);
+            this->panel22->Controls->Add(this->addlabteachersgroup);
             this->panel22->Controls->Add(this->kryptonLabel12);
-            this->panel22->Controls->Add(this->kryptonGroupBox8);
-            this->panel22->Controls->Add(this->kryptonGroupBox11);
-            this->panel22->Controls->Add(this->kryptonGroupBox12);
+            this->panel22->Controls->Add(this->addlabnamegroup);
+            this->panel22->Controls->Add(this->addlabnobatchesgroup);
+            this->panel22->Controls->Add(this->addlabbatchgroup);
             this->panel22->Location = System::Drawing::Point(178, 14);
             this->panel22->Name = L"panel22";
-            this->panel22->Size = System::Drawing::Size(1194, 2180);
+            this->panel22->Size = System::Drawing::Size(1194, 3225);
             this->panel22->TabIndex = 343;
+            // 
+            // button30
+            // 
+            this->button30->Location = System::Drawing::Point(849, 2123);
+            this->button30->Name = L"button30";
+            this->button30->Size = System::Drawing::Size(94, 53);
+            this->button30->TabIndex = 352;
+            this->button30->Text = L"button30";
+            this->button30->UseVisualStyleBackColor = true;
+            // 
+            // addlaboptgroup
+            // 
+            this->addlaboptgroup->CaptionOverlap = 1;
+            this->addlaboptgroup->CaptionVisible = false;
+            this->addlaboptgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->addlaboptgroup->Location = System::Drawing::Point(22, 1499);
+            this->addlaboptgroup->Name = L"addlaboptgroup";
+            // 
+            // addlaboptgroup.Panel
+            // 
+            this->addlaboptgroup->Panel->Controls->Add(this->addlaboptpanel);
+            this->addlaboptgroup->Panel->Controls->Add(this->label198);
+            this->addlaboptgroup->Size = System::Drawing::Size(1126, 194);
+            this->addlaboptgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->addlaboptgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->addlaboptgroup->StateCommon->Border->ColorAngle = 50;
+            this->addlaboptgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlaboptgroup->StateCommon->Border->Rounding = 7;
+            this->addlaboptgroup->StateCommon->Border->Width = 1;
+            this->addlaboptgroup->TabIndex = 351;
+            // 
+            // addlaboptpanel
+            // 
+            this->addlaboptpanel->BackColor = System::Drawing::Color::White;
+            this->addlaboptpanel->Controls->Add(this->addlaboptno);
+            this->addlaboptpanel->Controls->Add(this->addlaboptyes);
+            this->addlaboptpanel->Location = System::Drawing::Point(116, 87);
+            this->addlaboptpanel->Name = L"addlaboptpanel";
+            this->addlaboptpanel->Size = System::Drawing::Size(273, 56);
+            this->addlaboptpanel->TabIndex = 269;
+            // 
+            // addlaboptno
+            // 
+            this->addlaboptno->Location = System::Drawing::Point(188, 14);
+            this->addlaboptno->Name = L"addlaboptno";
+            this->addlaboptno->Size = System::Drawing::Size(49, 29);
+            this->addlaboptno->TabIndex = 268;
+            this->addlaboptno->Values->Text = L"No";
+            // 
+            // addlaboptyes
+            // 
+            this->addlaboptyes->Location = System::Drawing::Point(43, 14);
+            this->addlaboptyes->Name = L"addlaboptyes";
+            this->addlaboptyes->Size = System::Drawing::Size(52, 29);
+            this->addlaboptyes->TabIndex = 267;
+            this->addlaboptyes->Values->Text = L"Yes";
+            // 
+            // label198
+            // 
+            this->label198->AutoSize = true;
+            this->label198->BackColor = System::Drawing::Color::White;
+            this->label198->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label198->Location = System::Drawing::Point(94, 44);
+            this->label198->Name = L"label198";
+            this->label198->Size = System::Drawing::Size(537, 28);
+            this->label198->TabIndex = 266;
+            this->label198->Text = L"Do you want optimal rooms to be selected automatically\?";
+            // 
+            // addlabroomsgroup
+            // 
+            this->addlabroomsgroup->CaptionOverlap = 1;
+            this->addlabroomsgroup->CaptionVisible = false;
+            this->addlabroomsgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->addlabroomsgroup->Location = System::Drawing::Point(22, 1735);
+            this->addlabroomsgroup->Name = L"addlabroomsgroup";
+            // 
+            // addlabroomsgroup.Panel
+            // 
+            this->addlabroomsgroup->Panel->Controls->Add(this->addlabrooms);
+            this->addlabroomsgroup->Panel->Controls->Add(this->label197);
+            this->addlabroomsgroup->Size = System::Drawing::Size(1126, 346);
+            this->addlabroomsgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->addlabroomsgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->addlabroomsgroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+                static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
+            this->addlabroomsgroup->StateCommon->Border->ColorAngle = 50;
+            this->addlabroomsgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlabroomsgroup->StateCommon->Border->Rounding = 7;
+            this->addlabroomsgroup->StateCommon->Border->Width = 1;
+            this->addlabroomsgroup->TabIndex = 350;
+            // 
+            // addlabrooms
+            // 
+            this->addlabrooms->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::InputControlRibbon;
+            this->addlabrooms->BorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ContextMenuItemSplit;
+            this->addlabrooms->CheckOnClick = true;
+            this->addlabrooms->Location = System::Drawing::Point(98, 110);
+            this->addlabrooms->Name = L"addlabrooms";
+            this->addlabrooms->Padding = System::Windows::Forms::Padding(2);
+            this->addlabrooms->Size = System::Drawing::Size(348, 182);
+            this->addlabrooms->StateCommon->Border->Color1 = System::Drawing::Color::Cyan;
+            this->addlabrooms->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabrooms->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlabrooms->StateCommon->Border->Rounding = 5;
+            this->addlabrooms->StateCommon->Border->Width = 1;
+            this->addlabrooms->TabIndex = 354;
+            // 
+            // label197
+            // 
+            this->label197->AutoSize = true;
+            this->label197->BackColor = System::Drawing::Color::White;
+            this->label197->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label197->Location = System::Drawing::Point(94, 40);
+            this->label197->Name = L"label197";
+            this->label197->Size = System::Drawing::Size(204, 28);
+            this->label197->TabIndex = 343;
+            this->label197->Text = L"Select the Lab rooms";
+            // 
+            // addlabsessionsgroup
+            // 
+            this->addlabsessionsgroup->CaptionOverlap = 1;
+            this->addlabsessionsgroup->CaptionVisible = false;
+            this->addlabsessionsgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->addlabsessionsgroup->Location = System::Drawing::Point(22, 885);
+            this->addlabsessionsgroup->Name = L"addlabsessionsgroup";
+            // 
+            // addlabsessionsgroup.Panel
+            // 
+            this->addlabsessionsgroup->Panel->Controls->Add(this->addlabsessions);
+            this->addlabsessionsgroup->Panel->Controls->Add(this->label196);
+            this->addlabsessionsgroup->Size = System::Drawing::Size(1126, 194);
+            this->addlabsessionsgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->addlabsessionsgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->addlabsessionsgroup->StateCommon->Border->ColorAngle = 50;
+            this->addlabsessionsgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlabsessionsgroup->StateCommon->Border->Rounding = 7;
+            this->addlabsessionsgroup->StateCommon->Border->Width = 1;
+            this->addlabsessionsgroup->TabIndex = 349;
+            // 
+            // addlabsessions
+            // 
+            this->addlabsessions->Location = System::Drawing::Point(106, 101);
+            this->addlabsessions->Name = L"addlabsessions";
+            this->addlabsessions->Size = System::Drawing::Size(490, 30);
+            this->addlabsessions->TabIndex = 267;
+            // 
+            // label196
+            // 
+            this->label196->AutoSize = true;
+            this->label196->BackColor = System::Drawing::Color::White;
+            this->label196->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label196->Location = System::Drawing::Point(94, 44);
+            this->label196->Name = L"label196";
+            this->label196->Size = System::Drawing::Size(384, 28);
+            this->label196->TabIndex = 266;
+            this->label196->Text = L"Enter the Number of Sessions of the Lab";
+            // 
+            // kryptonGroupBox13
+            // 
+            this->kryptonGroupBox13->CaptionOverlap = 1;
+            this->kryptonGroupBox13->CaptionVisible = false;
+            this->kryptonGroupBox13->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->kryptonGroupBox13->Location = System::Drawing::Point(39, 2591);
+            this->kryptonGroupBox13->Name = L"kryptonGroupBox13";
+            // 
+            // kryptonGroupBox13.Panel
+            // 
+            this->kryptonGroupBox13->Panel->Controls->Add(this->kryptonCheckBox1);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->kryptonCheckBox2);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->kryptonDataGridView1);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->label188);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->label191);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->button32);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->kryptonNumericUpDown4);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->label192);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->kryptonNumericUpDown5);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->label193);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->kryptonPanel17);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->label194);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->kryptonTextBox2);
+            this->kryptonGroupBox13->Panel->Controls->Add(this->label195);
+            this->kryptonGroupBox13->Size = System::Drawing::Size(1126, 1100);
+            this->kryptonGroupBox13->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonGroupBox13->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->kryptonGroupBox13->StateCommon->Border->ColorAngle = 50;
+            this->kryptonGroupBox13->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonGroupBox13->StateCommon->Border->Rounding = 7;
+            this->kryptonGroupBox13->StateCommon->Border->Width = 1;
+            this->kryptonGroupBox13->TabIndex = 348;
+            // 
+            // kryptonCheckBox1
+            // 
+            this->kryptonCheckBox1->Location = System::Drawing::Point(676, 580);
+            this->kryptonCheckBox1->Name = L"kryptonCheckBox1";
+            this->kryptonCheckBox1->Size = System::Drawing::Size(321, 29);
+            this->kryptonCheckBox1->TabIndex = 357;
+            this->kryptonCheckBox1->Values->Text = L"Select optimal rooms automatically\?";
+            // 
+            // kryptonCheckBox2
+            // 
+            this->kryptonCheckBox2->Location = System::Drawing::Point(118, 1036);
+            this->kryptonCheckBox2->Name = L"kryptonCheckBox2";
+            this->kryptonCheckBox2->Size = System::Drawing::Size(137, 29);
+            this->kryptonCheckBox2->TabIndex = 356;
+            this->kryptonCheckBox2->Values->Text = L"Compact labs";
+            // 
+            // kryptonDataGridView1
+            // 
+            this->kryptonDataGridView1->AllowUserToOrderColumns = true;
+            this->kryptonDataGridView1->AllowUserToResizeColumns = false;
+            this->kryptonDataGridView1->AllowUserToResizeRows = false;
+            dataGridViewCellStyle17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle17->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle17->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle17->SelectionForeColor = System::Drawing::Color::Black;
+            this->kryptonDataGridView1->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            this->kryptonDataGridView1->ColumnHeadersHeight = 36;
+            this->kryptonDataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+                this->dataGridViewTextBoxColumn2,
+                    this->dataGridViewButtonColumn2
+            });
+            this->kryptonDataGridView1->GridStyles->Style = ComponentFactory::Krypton::Toolkit::DataGridViewStyle::Sheet;
+            this->kryptonDataGridView1->GridStyles->StyleBackground = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
+            this->kryptonDataGridView1->GridStyles->StyleColumn = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
+            this->kryptonDataGridView1->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
+            this->kryptonDataGridView1->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
+            this->kryptonDataGridView1->HideOuterBorders = true;
+            this->kryptonDataGridView1->Location = System::Drawing::Point(118, 816);
+            this->kryptonDataGridView1->Name = L"kryptonDataGridView1";
+            this->kryptonDataGridView1->RowHeadersVisible = false;
+            this->kryptonDataGridView1->RowHeadersWidth = 62;
+            dataGridViewCellStyle18->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle18->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle18->SelectionForeColor = System::Drawing::Color::Black;
+            this->kryptonDataGridView1->RowsDefaultCellStyle = dataGridViewCellStyle18;
+            this->kryptonDataGridView1->RowTemplate->Height = 28;
+            this->kryptonDataGridView1->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+            this->kryptonDataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->kryptonDataGridView1->Size = System::Drawing::Size(784, 194);
+            this->kryptonDataGridView1->StateCommon->Background->Color1 = System::Drawing::Color::White;
+            this->kryptonDataGridView1->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
+            this->kryptonDataGridView1->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->kryptonDataGridView1->StateCommon->DataCell->Content->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kryptonDataGridView1.StateCommon.DataCell.Content.Image")));
+            this->kryptonDataGridView1->StateCommon->DataCell->Content->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::CenterMiddle;
+            this->kryptonDataGridView1->StateCommon->DataCell->Content->TextV = ComponentFactory::Krypton::Toolkit::PaletteRelativeAlign::Far;
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Back->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Border->Width = 0;
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Content->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"kryptonDataGridView1.StateCommon.HeaderColumn.Content.Image")));
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Content->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::Stretch;
+            this->kryptonDataGridView1->StateCommon->HeaderColumn->Content->Padding = System::Windows::Forms::Padding(0);
+            this->kryptonDataGridView1->TabIndex = 355;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this->dataGridViewTextBoxColumn2->HeaderText = L"Subjects";
+            this->dataGridViewTextBoxColumn2->MinimumWidth = 8;
+            this->dataGridViewTextBoxColumn2->Name = L"dataGridViewTextBoxColumn2";
+            this->dataGridViewTextBoxColumn2->ReadOnly = true;
+            this->dataGridViewTextBoxColumn2->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+            this->dataGridViewTextBoxColumn2->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::NotSortable;
+            this->dataGridViewTextBoxColumn2->Width = 250;
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this->dataGridViewButtonColumn2->HeaderText = L"";
+            this->dataGridViewButtonColumn2->MinimumWidth = 8;
+            this->dataGridViewButtonColumn2->Name = L"dataGridViewButtonColumn2";
+            this->dataGridViewButtonColumn2->ReadOnly = true;
+            this->dataGridViewButtonColumn2->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+            this->dataGridViewButtonColumn2->Text = L"Delete";
+            this->dataGridViewButtonColumn2->ToolTipText = L"Delete";
+            this->dataGridViewButtonColumn2->UseColumnTextForButtonValue = true;
+            this->dataGridViewButtonColumn2->Width = 150;
+            // 
+            // label188
+            // 
+            this->label188->AutoSize = true;
+            this->label188->BackColor = System::Drawing::Color::White;
+            this->label188->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label188->ForeColor = System::Drawing::Color::Black;
+            this->label188->Location = System::Drawing::Point(386, 766);
+            this->label188->Name = L"label188";
+            this->label188->Size = System::Drawing::Size(257, 28);
+            this->label188->TabIndex = 354;
+            this->label188->Text = L"Lab Subjects applicable are";
+            // 
+            // label191
+            // 
+            this->label191->AutoSize = true;
+            this->label191->BackColor = System::Drawing::Color::White;
+            this->label191->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label191->ForeColor = System::Drawing::Color::Black;
+            this->label191->Location = System::Drawing::Point(672, 320);
+            this->label191->Name = L"label191";
+            this->label191->Size = System::Drawing::Size(112, 28);
+            this->label191->TabIndex = 352;
+            this->label191->Text = L"Lab Rooms";
+            // 
+            // button32
+            // 
+            this->button32->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->button32->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->button32->Location = System::Drawing::Point(891, 628);
+            this->button32->Name = L"button32";
+            this->button32->Size = System::Drawing::Size(154, 58);
+            this->button32->TabIndex = 261;
+            this->button32->Text = L"Save";
+            this->button32->UseVisualStyleBackColor = false;
+            // 
+            // kryptonNumericUpDown4
+            // 
+            this->kryptonNumericUpDown4->Location = System::Drawing::Point(676, 242);
+            this->kryptonNumericUpDown4->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2020, 0, 0, 0 });
+            this->kryptonNumericUpDown4->Name = L"kryptonNumericUpDown4";
+            this->kryptonNumericUpDown4->Size = System::Drawing::Size(304, 30);
+            this->kryptonNumericUpDown4->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonNumericUpDown4->TabIndex = 351;
+            // 
+            // label192
+            // 
+            this->label192->AutoSize = true;
+            this->label192->BackColor = System::Drawing::Color::White;
+            this->label192->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label192->ForeColor = System::Drawing::Color::Black;
+            this->label192->Location = System::Drawing::Point(672, 176);
+            this->label192->Name = L"label192";
+            this->label192->Size = System::Drawing::Size(194, 28);
+            this->label192->TabIndex = 350;
+            this->label192->Text = L"Number of sessions";
+            // 
+            // kryptonNumericUpDown5
+            // 
+            this->kryptonNumericUpDown5->Location = System::Drawing::Point(106, 243);
+            this->kryptonNumericUpDown5->Maximum = System::Decimal(gcnew cli::array< System::Int32 >(4) { 2020, 0, 0, 0 });
+            this->kryptonNumericUpDown5->Name = L"kryptonNumericUpDown5";
+            this->kryptonNumericUpDown5->Size = System::Drawing::Size(304, 30);
+            this->kryptonNumericUpDown5->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonNumericUpDown5->TabIndex = 349;
+            // 
+            // label193
+            // 
+            this->label193->AutoSize = true;
+            this->label193->BackColor = System::Drawing::Color::White;
+            this->label193->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label193->ForeColor = System::Drawing::Color::Black;
+            this->label193->Location = System::Drawing::Point(100, 190);
+            this->label193->Name = L"label193";
+            this->label193->Size = System::Drawing::Size(188, 28);
+            this->label193->TabIndex = 348;
+            this->label193->Text = L"Number of batches";
+            // 
+            // kryptonPanel17
+            // 
+            this->kryptonPanel17->Location = System::Drawing::Point(99, 140);
+            this->kryptonPanel17->Name = L"kryptonPanel17";
+            this->kryptonPanel17->Size = System::Drawing::Size(508, 2);
+            this->kryptonPanel17->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel17->TabIndex = 347;
+            // 
+            // label194
+            // 
+            this->label194->AutoSize = true;
+            this->label194->BackColor = System::Drawing::Color::White;
+            this->label194->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label194->ForeColor = System::Drawing::Color::Black;
+            this->label194->Location = System::Drawing::Point(100, 48);
+            this->label194->Name = L"label194";
+            this->label194->Size = System::Drawing::Size(177, 28);
+            this->label194->TabIndex = 345;
+            this->label194->Text = L"Lab Subject Name";
+            // 
+            // kryptonTextBox2
+            // 
+            this->kryptonTextBox2->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->kryptonTextBox2->Location = System::Drawing::Point(105, 98);
+            this->kryptonTextBox2->Name = L"kryptonTextBox2";
+            this->kryptonTextBox2->Size = System::Drawing::Size(478, 44);
+            this->kryptonTextBox2->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->kryptonTextBox2->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonTextBox2->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->kryptonTextBox2->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->kryptonTextBox2->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->kryptonTextBox2->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->kryptonTextBox2->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->kryptonTextBox2->StateCommon->Border->Rounding = 10;
+            this->kryptonTextBox2->StateCommon->Border->Width = 3;
+            this->kryptonTextBox2->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->kryptonTextBox2->TabIndex = 346;
+            // 
+            // label195
+            // 
+            this->label195->AutoSize = true;
+            this->label195->BackColor = System::Drawing::Color::White;
+            this->label195->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label195->ForeColor = System::Drawing::Color::Black;
+            this->label195->Location = System::Drawing::Point(100, 310);
+            this->label195->Name = L"label195";
+            this->label195->Size = System::Drawing::Size(348, 28);
+            this->label195->TabIndex = 344;
+            this->label195->Text = L"Electives and Common-time subjects";
             // 
             // kryptonGroupBox1
             // 
             this->kryptonGroupBox1->CaptionOverlap = 1;
             this->kryptonGroupBox1->CaptionVisible = false;
             this->kryptonGroupBox1->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox1->Location = System::Drawing::Point(26, 1212);
+            this->kryptonGroupBox1->Location = System::Drawing::Point(39, 2375);
             this->kryptonGroupBox1->Name = L"kryptonGroupBox1";
             // 
             // kryptonGroupBox1.Panel
@@ -12245,78 +12802,31 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->label174->TabIndex = 299;
             this->label174->Text = L"3:30-4:30";
             // 
-            // panel62
+            // addlabteachersgroup
             // 
-            this->panel62->Controls->Add(this->button30);
-            this->panel62->Controls->Add(this->button31);
-            this->panel62->Location = System::Drawing::Point(724, 1880);
-            this->panel62->Name = L"panel62";
-            this->panel62->Size = System::Drawing::Size(414, 156);
-            this->panel62->TabIndex = 124;
+            this->addlabteachersgroup->CaptionOverlap = 1;
+            this->addlabteachersgroup->CaptionVisible = false;
+            this->addlabteachersgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->addlabteachersgroup->Location = System::Drawing::Point(22, 1114);
+            this->addlabteachersgroup->Name = L"addlabteachersgroup";
             // 
-            // button30
+            // addlabteachersgroup.Panel
             // 
-            this->button30->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button30->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->button30->Location = System::Drawing::Point(252, 45);
-            this->button30->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-            this->button30->Name = L"button30";
-            this->button30->Size = System::Drawing::Size(154, 58);
-            this->button30->TabIndex = 122;
-            this->button30->Text = L"Clear";
-            this->button30->UseVisualStyleBackColor = false;
-            // 
-            // button31
-            // 
-            this->button31->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
-                static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->button31->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold));
-            this->button31->Location = System::Drawing::Point(20, 45);
-            this->button31->Margin = System::Windows::Forms::Padding(3, 4, 3, 4);
-            this->button31->Name = L"button31";
-            this->button31->Size = System::Drawing::Size(154, 58);
-            this->button31->TabIndex = 66;
-            this->button31->Text = L"Save";
-            this->button31->UseVisualStyleBackColor = false;
-            // 
-            // kryptonGroupBox7
-            // 
-            this->kryptonGroupBox7->CaptionOverlap = 1;
-            this->kryptonGroupBox7->CaptionVisible = false;
-            this->kryptonGroupBox7->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox7->Location = System::Drawing::Point(22, 903);
-            this->kryptonGroupBox7->Name = L"kryptonGroupBox7";
-            // 
-            // kryptonGroupBox7.Panel
-            // 
-            this->kryptonGroupBox7->Panel->Controls->Add(this->kryptonComboBox1);
-            this->kryptonGroupBox7->Panel->Controls->Add(this->label176);
-            this->kryptonGroupBox7->Size = System::Drawing::Size(1126, 194);
-            this->kryptonGroupBox7->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->kryptonGroupBox7->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            this->addlabteachersgroup->Panel->Controls->Add(this->label176);
+            this->addlabteachersgroup->Panel->Controls->Add(this->addlabteachers);
+            this->addlabteachersgroup->Size = System::Drawing::Size(1126, 346);
+            this->addlabteachersgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->addlabteachersgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->kryptonGroupBox7->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+            this->addlabteachersgroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->kryptonGroupBox7->StateCommon->Border->ColorAngle = 50;
-            this->kryptonGroupBox7->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->addlabteachersgroup->StateCommon->Border->ColorAngle = 50;
+            this->addlabteachersgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonGroupBox7->StateCommon->Border->Rounding = 7;
-            this->kryptonGroupBox7->StateCommon->Border->Width = 1;
-            this->kryptonGroupBox7->TabIndex = 342;
-            // 
-            // kryptonComboBox1
-            // 
-            this->kryptonComboBox1->DropDownWidth = 342;
-            this->kryptonComboBox1->Location = System::Drawing::Point(99, 100);
-            this->kryptonComboBox1->Name = L"kryptonComboBox1";
-            this->kryptonComboBox1->Size = System::Drawing::Size(508, 29);
-            this->kryptonComboBox1->StateCommon->DropBack->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
-                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->kryptonComboBox1->StateCommon->DropBack->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
-                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->kryptonComboBox1->TabIndex = 344;
+            this->addlabteachersgroup->StateCommon->Border->Rounding = 7;
+            this->addlabteachersgroup->StateCommon->Border->Width = 1;
+            this->addlabteachersgroup->TabIndex = 342;
             // 
             // label176
             // 
@@ -12326,9 +12836,113 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
                 static_cast<System::Byte>(0)));
             this->label176->Location = System::Drawing::Point(94, 40);
             this->label176->Name = L"label176";
-            this->label176->Size = System::Drawing::Size(122, 28);
+            this->label176->Size = System::Drawing::Size(254, 28);
             this->label176->TabIndex = 343;
-            this->label176->Text = L"Department";
+            this->label176->Text = L"Teachers handling the labs";
+            // 
+            // addlabteachers
+            // 
+            this->addlabteachers->AllowUserToOrderColumns = true;
+            this->addlabteachers->AllowUserToResizeColumns = false;
+            this->addlabteachers->AllowUserToResizeRows = false;
+            dataGridViewCellStyle19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle19->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle19->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            dataGridViewCellStyle19->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
+            this->addlabteachers->ColumnHeadersHeight = 36;
+            this->addlabteachers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
+                this->dataGridViewComboBoxColumn1,
+                    this->dataGridViewButtonColumn9
+            });
+            this->addlabteachers->GridStyles->Style = ComponentFactory::Krypton::Toolkit::DataGridViewStyle::Sheet;
+            this->addlabteachers->GridStyles->StyleBackground = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
+            this->addlabteachers->GridStyles->StyleColumn = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
+            this->addlabteachers->GridStyles->StyleDataCells = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
+            this->addlabteachers->GridStyles->StyleRow = ComponentFactory::Krypton::Toolkit::GridStyle::Sheet;
+            this->addlabteachers->HideOuterBorders = true;
+            this->addlabteachers->Location = System::Drawing::Point(106, 105);
+            this->addlabteachers->Name = L"addlabteachers";
+            this->addlabteachers->RowHeadersVisible = false;
+            this->addlabteachers->RowHeadersWidth = 62;
+            dataGridViewCellStyle20->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle20->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            dataGridViewCellStyle20->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle20;
+            this->addlabteachers->RowTemplate->DefaultCellStyle->BackColor = System::Drawing::Color::White;
+            this->addlabteachers->RowTemplate->DefaultCellStyle->ForeColor = System::Drawing::Color::Black;
+            this->addlabteachers->RowTemplate->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(242)),
+                static_cast<System::Int32>(static_cast<System::Byte>(242)), static_cast<System::Int32>(static_cast<System::Byte>(242)));
+            this->addlabteachers->RowTemplate->DefaultCellStyle->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabteachers->RowTemplate->DividerHeight = 1;
+            this->addlabteachers->RowTemplate->Height = 25;
+            this->addlabteachers->RowTemplate->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+            this->addlabteachers->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
+            this->addlabteachers->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
+            this->addlabteachers->Size = System::Drawing::Size(588, 194);
+            this->addlabteachers->StateCommon->Background->Color1 = System::Drawing::Color::White;
+            this->addlabteachers->StateCommon->BackStyle = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
+            this->addlabteachers->StateCommon->DataCell->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->addlabteachers->StateCommon->DataCell->Content->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addlabteachers.StateCommon.DataCell.Content.Image")));
+            this->addlabteachers->StateCommon->DataCell->Content->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::CenterMiddle;
+            this->addlabteachers->StateCommon->DataCell->Content->TextV = ComponentFactory::Krypton::Toolkit::PaletteRelativeAlign::Far;
+            this->addlabteachers->StateCommon->HeaderColumn->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabteachers->StateCommon->HeaderColumn->Back->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabteachers->StateCommon->HeaderColumn->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlabteachers->StateCommon->HeaderColumn->Border->Rounding = 4;
+            this->addlabteachers->StateCommon->HeaderColumn->Border->Width = 0;
+            this->addlabteachers->StateCommon->HeaderColumn->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
+                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
+            this->addlabteachers->StateCommon->HeaderColumn->Content->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"addlabteachers.StateCommon.HeaderColumn.Content.Image")));
+            this->addlabteachers->StateCommon->HeaderColumn->Content->ImageStyle = ComponentFactory::Krypton::Toolkit::PaletteImageStyle::Stretch;
+            this->addlabteachers->StateCommon->HeaderColumn->Content->Padding = System::Windows::Forms::Padding(0);
+            this->addlabteachers->StatePressed->HeaderRow->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabteachers->StatePressed->HeaderRow->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabteachers->StatePressed->HeaderRow->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlabteachers->StatePressed->HeaderRow->Border->Rounding = 3;
+            this->addlabteachers->StatePressed->HeaderRow->Border->Width = 0;
+            this->addlabteachers->StateSelected->DataCell->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabteachers->StateSelected->DataCell->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(192)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabteachers->StateSelected->DataCell->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlabteachers->TabIndex = 343;
+            // 
+            // dataGridViewComboBoxColumn1
+            // 
+            this->dataGridViewComboBoxColumn1->DisplayStyle = System::Windows::Forms::DataGridViewComboBoxDisplayStyle::ComboBox;
+            this->dataGridViewComboBoxColumn1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+            this->dataGridViewComboBoxColumn1->HeaderText = L"Teachers";
+            this->dataGridViewComboBoxColumn1->MinimumWidth = 8;
+            this->dataGridViewComboBoxColumn1->Name = L"dataGridViewComboBoxColumn1";
+            this->dataGridViewComboBoxColumn1->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+            this->dataGridViewComboBoxColumn1->Width = 350;
+            // 
+            // dataGridViewButtonColumn9
+            // 
+            this->dataGridViewButtonColumn9->HeaderText = L"";
+            this->dataGridViewButtonColumn9->MinimumWidth = 8;
+            this->dataGridViewButtonColumn9->Name = L"dataGridViewButtonColumn9";
+            this->dataGridViewButtonColumn9->ReadOnly = true;
+            this->dataGridViewButtonColumn9->Resizable = System::Windows::Forms::DataGridViewTriState::False;
+            this->dataGridViewButtonColumn9->Text = L"Delete";
+            this->dataGridViewButtonColumn9->ToolTipText = L"Delete";
+            this->dataGridViewButtonColumn9->UseColumnTextForButtonValue = true;
+            this->dataGridViewButtonColumn9->Width = 150;
             // 
             // kryptonLabel12
             // 
@@ -12342,41 +12956,63 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->kryptonLabel12->TabIndex = 2;
             this->kryptonLabel12->Values->Text = L"Lab Details";
             // 
-            // kryptonGroupBox8
+            // addlabnamegroup
             // 
-            this->kryptonGroupBox8->CaptionOverlap = 1;
-            this->kryptonGroupBox8->CaptionVisible = false;
-            this->kryptonGroupBox8->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox8->Location = System::Drawing::Point(22, 422);
-            this->kryptonGroupBox8->Name = L"kryptonGroupBox8";
+            this->addlabnamegroup->CaptionOverlap = 1;
+            this->addlabnamegroup->CaptionVisible = false;
+            this->addlabnamegroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->addlabnamegroup->Location = System::Drawing::Point(22, 422);
+            this->addlabnamegroup->Name = L"addlabnamegroup";
             // 
-            // kryptonGroupBox8.Panel
+            // addlabnamegroup.Panel
             // 
-            this->kryptonGroupBox8->Panel->Controls->Add(this->kryptonNumericUpDown2);
-            this->kryptonGroupBox8->Panel->Controls->Add(this->label177);
-            this->kryptonGroupBox8->Size = System::Drawing::Size(1126, 194);
-            this->kryptonGroupBox8->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->kryptonGroupBox8->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            this->addlabnamegroup->Panel->Controls->Add(this->kryptonPanel18);
+            this->addlabnamegroup->Panel->Controls->Add(this->addlabname);
+            this->addlabnamegroup->Panel->Controls->Add(this->label177);
+            this->addlabnamegroup->Size = System::Drawing::Size(1126, 194);
+            this->addlabnamegroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->addlabnamegroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->kryptonGroupBox8->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
+            this->addlabnamegroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(0)),
                 static_cast<System::Int32>(static_cast<System::Byte>(0)), static_cast<System::Int32>(static_cast<System::Byte>(77)));
-            this->kryptonGroupBox8->StateCommon->Border->ColorAngle = 50;
-            this->kryptonGroupBox8->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->addlabnamegroup->StateCommon->Border->ColorAngle = 50;
+            this->addlabnamegroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonGroupBox8->StateCommon->Border->Rounding = 7;
-            this->kryptonGroupBox8->StateCommon->Border->Width = 1;
-            this->kryptonGroupBox8->TabIndex = 341;
+            this->addlabnamegroup->StateCommon->Border->Rounding = 7;
+            this->addlabnamegroup->StateCommon->Border->Width = 1;
+            this->addlabnamegroup->TabIndex = 341;
             // 
-            // kryptonNumericUpDown2
+            // kryptonPanel18
             // 
-            this->kryptonNumericUpDown2->Location = System::Drawing::Point(98, 96);
-            this->kryptonNumericUpDown2->Name = L"kryptonNumericUpDown2";
-            this->kryptonNumericUpDown2->Size = System::Drawing::Size(304, 30);
-            this->kryptonNumericUpDown2->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->kryptonPanel18->Location = System::Drawing::Point(99, 119);
+            this->kryptonPanel18->Name = L"kryptonPanel18";
+            this->kryptonPanel18->Size = System::Drawing::Size(508, 2);
+            this->kryptonPanel18->StateCommon->Color1 = System::Drawing::Color::Cyan;
+            this->kryptonPanel18->TabIndex = 329;
+            // 
+            // addlabname
+            // 
+            this->addlabname->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->addlabname->Location = System::Drawing::Point(106, 76);
+            this->addlabname->Name = L"addlabname";
+            this->addlabname->Size = System::Drawing::Size(478, 44);
+            this->addlabname->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->addlabname->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonNumericUpDown2->TabIndex = 328;
+            this->addlabname->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+            this->addlabname->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->addlabname->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->addlabname->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->addlabname->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->addlabname->StateCommon->Border->Rounding = 10;
+            this->addlabname->StateCommon->Border->Width = 3;
+            this->addlabname->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->addlabname->TabIndex = 328;
             // 
             // label177
             // 
@@ -12387,33 +13023,40 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->label177->ForeColor = System::Drawing::Color::Black;
             this->label177->Location = System::Drawing::Point(94, 39);
             this->label177->Name = L"label177";
-            this->label177->Size = System::Drawing::Size(146, 28);
+            this->label177->Size = System::Drawing::Size(266, 28);
             this->label177->TabIndex = 327;
-            this->label177->Text = L"Room Capacity";
+            this->label177->Text = L"Enter the Lab Subject Name";
             // 
-            // kryptonGroupBox11
+            // addlabnobatchesgroup
             // 
-            this->kryptonGroupBox11->CaptionOverlap = 1;
-            this->kryptonGroupBox11->CaptionVisible = false;
-            this->kryptonGroupBox11->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox11->Location = System::Drawing::Point(22, 662);
-            this->kryptonGroupBox11->Name = L"kryptonGroupBox11";
+            this->addlabnobatchesgroup->CaptionOverlap = 1;
+            this->addlabnobatchesgroup->CaptionVisible = false;
+            this->addlabnobatchesgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->addlabnobatchesgroup->Location = System::Drawing::Point(22, 662);
+            this->addlabnobatchesgroup->Name = L"addlabnobatchesgroup";
             // 
-            // kryptonGroupBox11.Panel
+            // addlabnobatchesgroup.Panel
             // 
-            this->kryptonGroupBox11->Panel->Controls->Add(this->label180);
-            this->kryptonGroupBox11->Panel->Controls->Add(this->panel63);
-            this->kryptonGroupBox11->Size = System::Drawing::Size(1126, 194);
-            this->kryptonGroupBox11->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->kryptonGroupBox11->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            this->addlabnobatchesgroup->Panel->Controls->Add(this->addlabnobatches);
+            this->addlabnobatchesgroup->Panel->Controls->Add(this->label180);
+            this->addlabnobatchesgroup->Size = System::Drawing::Size(1126, 194);
+            this->addlabnobatchesgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->addlabnobatchesgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->kryptonGroupBox11->StateCommon->Border->ColorAngle = 50;
-            this->kryptonGroupBox11->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->addlabnobatchesgroup->StateCommon->Border->ColorAngle = 50;
+            this->addlabnobatchesgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonGroupBox11->StateCommon->Border->Rounding = 7;
-            this->kryptonGroupBox11->StateCommon->Border->Width = 1;
-            this->kryptonGroupBox11->TabIndex = 339;
+            this->addlabnobatchesgroup->StateCommon->Border->Rounding = 7;
+            this->addlabnobatchesgroup->StateCommon->Border->Width = 1;
+            this->addlabnobatchesgroup->TabIndex = 339;
+            // 
+            // addlabnobatches
+            // 
+            this->addlabnobatches->Location = System::Drawing::Point(106, 101);
+            this->addlabnobatches->Name = L"addlabnobatches";
+            this->addlabnobatches->Size = System::Drawing::Size(490, 30);
+            this->addlabnobatches->TabIndex = 267;
             // 
             // label180
             // 
@@ -12423,71 +13066,36 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
                 static_cast<System::Byte>(0)));
             this->label180->Location = System::Drawing::Point(94, 44);
             this->label180->Name = L"label180";
-            this->label180->Size = System::Drawing::Size(108, 28);
+            this->label180->Size = System::Drawing::Size(277, 28);
             this->label180->TabIndex = 266;
-            this->label180->Text = L"Is it a Lab\?";
+            this->label180->Text = L"Enter the Number of Batches";
             // 
-            // panel63
+            // addlabbatchgroup
             // 
-            this->panel63->BackColor = System::Drawing::Color::White;
-            this->panel63->Controls->Add(this->kryptonRadioButton1);
-            this->panel63->Controls->Add(this->kryptonRadioButton2);
-            this->panel63->ForeColor = System::Drawing::Color::Black;
-            this->panel63->Location = System::Drawing::Point(162, 90);
-            this->panel63->Name = L"panel63";
-            this->panel63->Size = System::Drawing::Size(492, 60);
-            this->panel63->TabIndex = 267;
+            this->addlabbatchgroup->CaptionOverlap = 1;
+            this->addlabbatchgroup->CaptionVisible = false;
+            this->addlabbatchgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->addlabbatchgroup->Location = System::Drawing::Point(22, 168);
+            this->addlabbatchgroup->Name = L"addlabbatchgroup";
             // 
-            // kryptonRadioButton1
+            // addlabbatchgroup.Panel
             // 
-            this->kryptonRadioButton1->Location = System::Drawing::Point(16, 14);
-            this->kryptonRadioButton1->Name = L"kryptonRadioButton1";
-            this->kryptonRadioButton1->Size = System::Drawing::Size(58, 32);
-            this->kryptonRadioButton1->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
-            this->kryptonRadioButton1->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
-            this->kryptonRadioButton1->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
-                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->kryptonRadioButton1->TabIndex = 328;
-            this->kryptonRadioButton1->Values->Text = L"YES";
-            // 
-            // kryptonRadioButton2
-            // 
-            this->kryptonRadioButton2->Location = System::Drawing::Point(230, 14);
-            this->kryptonRadioButton2->Name = L"kryptonRadioButton2";
-            this->kryptonRadioButton2->Size = System::Drawing::Size(56, 32);
-            this->kryptonRadioButton2->StateCommon->ShortText->Color1 = System::Drawing::Color::Black;
-            this->kryptonRadioButton2->StateCommon->ShortText->Color2 = System::Drawing::Color::Black;
-            this->kryptonRadioButton2->StateCommon->ShortText->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular,
-                System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(0)));
-            this->kryptonRadioButton2->TabIndex = 330;
-            this->kryptonRadioButton2->Values->Text = L"NO";
-            // 
-            // kryptonGroupBox12
-            // 
-            this->kryptonGroupBox12->CaptionOverlap = 1;
-            this->kryptonGroupBox12->CaptionVisible = false;
-            this->kryptonGroupBox12->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->kryptonGroupBox12->Location = System::Drawing::Point(22, 168);
-            this->kryptonGroupBox12->Name = L"kryptonGroupBox12";
-            // 
-            // kryptonGroupBox12.Panel
-            // 
-            this->kryptonGroupBox12->Panel->Controls->Add(this->kryptonPanel16);
-            this->kryptonGroupBox12->Panel->Controls->Add(this->label186);
-            this->kryptonGroupBox12->Panel->Controls->Add(this->kryptonTextBox1);
-            this->kryptonGroupBox12->Size = System::Drawing::Size(1126, 194);
-            this->kryptonGroupBox12->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->kryptonGroupBox12->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            this->addlabbatchgroup->Panel->Controls->Add(this->kryptonPanel16);
+            this->addlabbatchgroup->Panel->Controls->Add(this->label186);
+            this->addlabbatchgroup->Panel->Controls->Add(this->addlabbatch);
+            this->addlabbatchgroup->Size = System::Drawing::Size(1126, 194);
+            this->addlabbatchgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->addlabbatchgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->kryptonGroupBox12->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            this->addlabbatchgroup->StateCommon->Border->Color2 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->kryptonGroupBox12->StateCommon->Border->ColorAngle = 50;
-            this->kryptonGroupBox12->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->addlabbatchgroup->StateCommon->Border->ColorAngle = 50;
+            this->addlabbatchgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonGroupBox12->StateCommon->Border->Rounding = 9;
-            this->kryptonGroupBox12->StateCommon->Border->Width = 1;
-            this->kryptonGroupBox12->TabIndex = 337;
+            this->addlabbatchgroup->StateCommon->Border->Rounding = 9;
+            this->addlabbatchgroup->StateCommon->Border->Width = 1;
+            this->addlabbatchgroup->TabIndex = 337;
             // 
             // kryptonPanel16
             // 
@@ -12510,28 +13118,28 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->label186->TabIndex = 264;
             this->label186->Text = L"Enter the Batch Name";
             // 
-            // kryptonTextBox1
+            // addlabbatch
             // 
-            this->kryptonTextBox1->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
-            this->kryptonTextBox1->Location = System::Drawing::Point(105, 75);
-            this->kryptonTextBox1->Name = L"kryptonTextBox1";
-            this->kryptonTextBox1->Size = System::Drawing::Size(478, 44);
-            this->kryptonTextBox1->StateActive->Back->Color1 = System::Drawing::Color::White;
-            this->kryptonTextBox1->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->addlabbatch->InputControlStyle = ComponentFactory::Krypton::Toolkit::InputControlStyle::Ribbon;
+            this->addlabbatch->Location = System::Drawing::Point(105, 75);
+            this->addlabbatch->Name = L"addlabbatch";
+            this->addlabbatch->Size = System::Drawing::Size(478, 44);
+            this->addlabbatch->StateActive->Back->Color1 = System::Drawing::Color::White;
+            this->addlabbatch->StateActive->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonTextBox1->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+            this->addlabbatch->StateCommon->Back->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            this->kryptonTextBox1->StateCommon->Border->Color1 = System::Drawing::Color::White;
-            this->kryptonTextBox1->StateCommon->Border->Color2 = System::Drawing::Color::White;
-            this->kryptonTextBox1->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
-            this->kryptonTextBox1->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+            this->addlabbatch->StateCommon->Border->Color1 = System::Drawing::Color::White;
+            this->addlabbatch->StateCommon->Border->Color2 = System::Drawing::Color::White;
+            this->addlabbatch->StateCommon->Border->ColorStyle = ComponentFactory::Krypton::Toolkit::PaletteColorStyle::GlassFade;
+            this->addlabbatch->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
                 | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->kryptonTextBox1->StateCommon->Border->Rounding = 10;
-            this->kryptonTextBox1->StateCommon->Border->Width = 3;
-            this->kryptonTextBox1->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
-            this->kryptonTextBox1->TabIndex = 325;
+            this->addlabbatch->StateCommon->Border->Rounding = 10;
+            this->addlabbatch->StateCommon->Border->Width = 3;
+            this->addlabbatch->StateCommon->Content->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10));
+            this->addlabbatch->TabIndex = 325;
             // 
             // MyForm
             // 
@@ -12540,6 +13148,7 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1806, 1050);
+            this->Controls->Add(this->Labaddpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->kryptonPanel6);
             this->Controls->Add(this->editsubactivepanel);
@@ -12554,7 +13163,6 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
             this->Controls->Add(this->editsubjectpanel);
-            this->Controls->Add(this->Labaddpanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -12924,35 +13532,57 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
             this->Labaddpanel->ResumeLayout(false);
             this->panel22->ResumeLayout(false);
             this->panel22->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlaboptgroup->Panel))->EndInit();
+            this->addlaboptgroup->Panel->ResumeLayout(false);
+            this->addlaboptgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlaboptgroup))->EndInit();
+            this->addlaboptgroup->ResumeLayout(false);
+            this->addlaboptpanel->ResumeLayout(false);
+            this->addlaboptpanel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabroomsgroup->Panel))->EndInit();
+            this->addlabroomsgroup->Panel->ResumeLayout(false);
+            this->addlabroomsgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabroomsgroup))->EndInit();
+            this->addlabroomsgroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabsessionsgroup->Panel))->EndInit();
+            this->addlabsessionsgroup->Panel->ResumeLayout(false);
+            this->addlabsessionsgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabsessionsgroup))->EndInit();
+            this->addlabsessionsgroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox13->Panel))->EndInit();
+            this->kryptonGroupBox13->Panel->ResumeLayout(false);
+            this->kryptonGroupBox13->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox13))->EndInit();
+            this->kryptonGroupBox13->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonDataGridView1))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel17))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1->Panel))->EndInit();
             this->kryptonGroupBox1->Panel->ResumeLayout(false);
             this->kryptonGroupBox1->Panel->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox1))->EndInit();
             this->kryptonGroupBox1->ResumeLayout(false);
-            this->panel62->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7->Panel))->EndInit();
-            this->kryptonGroupBox7->Panel->ResumeLayout(false);
-            this->kryptonGroupBox7->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox7))->EndInit();
-            this->kryptonGroupBox7->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonComboBox1))->EndInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8->Panel))->EndInit();
-            this->kryptonGroupBox8->Panel->ResumeLayout(false);
-            this->kryptonGroupBox8->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox8))->EndInit();
-            this->kryptonGroupBox8->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11->Panel))->EndInit();
-            this->kryptonGroupBox11->Panel->ResumeLayout(false);
-            this->kryptonGroupBox11->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox11))->EndInit();
-            this->kryptonGroupBox11->ResumeLayout(false);
-            this->panel63->ResumeLayout(false);
-            this->panel63->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12->Panel))->EndInit();
-            this->kryptonGroupBox12->Panel->ResumeLayout(false);
-            this->kryptonGroupBox12->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonGroupBox12))->EndInit();
-            this->kryptonGroupBox12->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabteachersgroup->Panel))->EndInit();
+            this->addlabteachersgroup->Panel->ResumeLayout(false);
+            this->addlabteachersgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabteachersgroup))->EndInit();
+            this->addlabteachersgroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabteachers))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnamegroup->Panel))->EndInit();
+            this->addlabnamegroup->Panel->ResumeLayout(false);
+            this->addlabnamegroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnamegroup))->EndInit();
+            this->addlabnamegroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel18))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnobatchesgroup->Panel))->EndInit();
+            this->addlabnobatchesgroup->Panel->ResumeLayout(false);
+            this->addlabnobatchesgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabnobatchesgroup))->EndInit();
+            this->addlabnobatchesgroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabbatchgroup->Panel))->EndInit();
+            this->addlabbatchgroup->Panel->ResumeLayout(false);
+            this->addlabbatchgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabbatchgroup))->EndInit();
+            this->addlabbatchgroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel16))->EndInit();
             this->ResumeLayout(false);
 
@@ -13599,8 +14229,9 @@ private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
                             }
                             if (rows[i] == find)
                             {
-                                if (MessageBox::Show("Elective already exists.", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::No)
+                                if (MessageBox::Show("Elective already exists.Do you want to replace it.", "Message", MessageBoxButtons::YesNo, MessageBoxIcon::Warning) == System::Windows::Forms::DialogResult::No)
                                 {
+                                    file.close();
                                     goto a;
                                 }
                             }
