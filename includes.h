@@ -1,6 +1,7 @@
 #pragma once
 #include<string>
 #include<vector>
+#include<ctime>
 #include"configs.cpp"
 class subject {
 public:
@@ -73,6 +74,48 @@ class settings {
         bool readData(std::string inp);
 };
 
+class logger {
+public:
+    std::string path;
+    void init() {
+        // Get the current system time
+        std::time_t currentTime = std::time(nullptr);
+
+        // Convert the system time to a string representation
+        std::string timeString = std::ctime(&currentTime);
+
+        // Print the current time
+        std::cout << timeString << std::endl;
+        //split timestring wiht spoaces
+        std::vector<std::string> timeVector;
+        std::string temp = "";
+        for (int i = 0; i < timeString.size(); i++) {
+            if (timeString[i] != ' ') {
+                temp.push_back(timeString[i]);
+            }
+            else {
+                timeVector.push_back(temp);
+                temp = "";
+            }
+        }
+        // Iterate through timeVector and print its elements
+        for (const auto& time : timeVector) {
+            path += time;
+        }
+    }
+    void log(std::string message) {
+        std::fstream file;
+        file.open("logs/" + path, std::ios::app);
+        if (file.is_open()) {
+            file << message << "\n";
+            file.close();
+        }
+        else {
+            // Failed to open the file
+            std::cout << "Failed to open the file." << std::endl;
+        }
+    }
+};
 class section {
 public:
     std::string name;
@@ -117,9 +160,12 @@ public:
         std::vector<bool>temp(days, 0);
         labAllotment = temp;
         formattedOutput = "TIME DAY,9:00-10:00,10:00-11:00,,11:30-12:30,12:30-1:30,,2:30-3:30,3:30-4:30\n";
+        std::vector<float> temp2(periods, 1);
+        timeAllotment = temp2;
     }
     std::string convertToString();
     bool readData(std::string inp);
+    bool deAllocate();//used to deallocate a class
     bool error_;
     std::string errorMessage;
     int _intersections;// a variable reserved for the findIntersection function. the fucntion will alter this number 
@@ -131,13 +177,14 @@ public:
     int busyFactorL = 10;//busy factor is addded if teacher is either busy before or after the period.
     int freeFactorL = 25;//freefactor is addded if teacher is either free before or after the period
     int baseFactorL = 5;//it helps in choosing teachers that are already free over the others.
-
+    float reductionIndexL = 1.1;
     //the following factors are used by findWeightageCore for scoring which periods to use for allotment. change the following to adjust allotment
     int busyFactorC = 10;//busy factor is addded if teacher is either busy before or after the period.
     int freeFactorC = 25;//freefactor is addded if teacher is either free before or after the period
     int baseFactorC = 5;//this factor is added to all the subjects, it helps in choosing teachers that are already free over the others.
     float reductionIndexC = 1.1;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
-    bool deAllocate();
+    logger logs;//a logging object
+    bool compactLab = 0;//This determines if the lab allotment will be in compact form or a more distributed optimised timetable
 private:
     std::vector<int> bfactor;
     std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
@@ -148,5 +195,6 @@ private:
     std::vector<std::vector<int>> findWeightageLab(std::vector < std::vector<bool>> inp, std::vector<teacher> teachers);//fucntion returns a matrix of weightAge for each intersection. 
     std::vector<std::vector<int>> findWeightageCore(std::vector < std::vector<bool>> inp, teacher teachers);//fucntion returns a matrix of weightAge for each intersection.
     std::vector<std::string> section::splitString(const std::string& str, char delimiter);
-    std::vector<bool> labAllotment;
+    std::vector<bool> labAllotment;//a vector that represents if a lab has been alloted on that day or no
+    std::vector<float> timeAllotment;//a vector that represents if a lab has been alloted on that time any day. Discourages allotment on same time
 };
