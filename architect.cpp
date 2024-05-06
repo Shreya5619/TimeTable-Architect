@@ -4,6 +4,49 @@
 #include<fstream>
 #include"includes.h"
 #include"initializer_list"
+std::vector<std::vector<float>> section::suggestTimeCore(std::string sub) {
+    //check if core
+    int i;
+    bool found = 0;
+    for (i = 0; i < coreSubjects.size(); i++) {
+        if (sub == coreSubjects[i].name) {
+            found = 1;
+            break;
+        }
+    }
+    if (found) {
+        std::vector<std::vector<float>> returnVal(6,std::vector<float>(6, 0));
+        std::vector<std::vector<std::vector<bool>>> listIntersection;
+        teacher t = returnTeacher(coreTeachers[i]);
+        if(!error_)
+            listIntersection.push_back(t.timeTable);
+        for (auto rom : coreSubjects[i].rooms) {
+            room r = returnRoom(rom);
+            if (!error_)
+                listIntersection.push_back(r.timeTable);
+        }
+        std::vector<std::vector<int>> WeightedinterSection =findWeightageCore( findIntersection(listIntersection),t);
+        int highest = 0;
+        for (auto day : WeightedinterSection) {
+            for (auto period : day) {
+                if (period > highest) {
+                    highest=period;
+                }
+            }
+        }
+        if (highest != 0) {
+            for (int i = 0; i < days; i++) {
+                for (int j = 0; j < periods; j++) {
+                    returnVal[i][j] = (float)WeightedinterSection[i][j] / highest;
+                }
+            }
+        }
+        return returnVal;
+    }
+    else {
+        //check if lab
+    }
+}
 // using namespace std;
 bool section::deAllocate() {
     logs.log("deallocation");

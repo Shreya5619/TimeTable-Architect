@@ -166,6 +166,7 @@ public:
     std::string convertToString();
     bool readData(std::string inp);
     bool deAllocate();//used to deallocate a class
+    std::vector<std::vector<float>> suggestTimeCore(std::string sub);
     bool error_;
     std::string errorMessage;
     int _intersections;// a variable reserved for the findIntersection function. the fucntion will alter this number 
@@ -185,6 +186,7 @@ public:
     float reductionIndexC = 1.1;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
     logger logs;//a logging object
     bool compactLab = 0;//This determines if the lab allotment will be in compact form or a more distributed optimised timetable
+
 private:
     std::vector<int> bfactor;
     std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
