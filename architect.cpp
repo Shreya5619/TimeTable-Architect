@@ -43,10 +43,48 @@ std::vector<std::vector<float>> section::suggestTimeCore(std::string sub) {
         }
         return returnVal;
     }
-    else {
-        //check if lab
-    }
 }
+std::vector<std::vector<float>> section::suggestTimeLab(std::vector<std::string> teacherList, std::vector<std::string> roomList) {
+    std::vector<std::vector<float>> returnVal(6, std::vector<float>(6, 0));
+    std::vector<teacher> teacherListO;
+    for (auto teacherName : teacherList) {
+        teacher temp = returnTeacher(teacherName);
+        if (!error_)
+            teacherListO.push_back(temp);
+    }
+    std::vector<room> roomListO;
+    for (auto roomName : roomList) {
+        room temp = returnRoom(roomName);
+        if (!error_)
+            roomListO.push_back(temp);
+    }
+    std::vector<std::vector<std::vector<bool>>> heap;
+    for (auto teachert : teacherListO) {
+        heap.push_back(teachert.timeTable);
+    }
+    for (auto roomr : roomListO) {
+        heap.push_back(roomr.timeTable);
+    }
+    std::vector<std::vector<bool>> intersections = findIntersection(heap);
+    std::vector<std::vector<int>> WeightedinterSection = findWeightageLab(intersections,teacherListO);
+    int highest = 0;
+    for (auto day : WeightedinterSection) {
+        for (auto period : day) {
+            if (period > highest) {
+                highest = period;
+            }
+        }
+    }
+    if (highest != 0) {
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                returnVal[i][j] = (float)WeightedinterSection[i][j] / highest;
+            }
+        }
+    }
+    return returnVal;
+}
+
 // using namespace std;
 bool section::deAllocate() {
     logs.log("deallocation");
