@@ -84,7 +84,69 @@ std::vector<std::vector<float>> section::suggestTimeLab(std::vector<std::string>
     }
     return returnVal;
 }
-
+bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
+    std::string subName = timeTable[dayi][periodi];
+    std::string teacherName = teacherTable[dayi][periodi];
+    std::string roomName = roomTable[dayi][periodi];
+    teacher& t = returnTeacher(teacherName);
+    if (error_) {
+        errorMessage += "Couldnt find" + teacherName + "\n";
+        return 0;
+    }
+    room& r = returnRoom(roomName);
+    if (error_) {
+        errorMessage += "Couldnt find" + roomName + "\n";
+        return 0;
+    }
+    if (!r.timeTable[dayf][periodf]) {
+        r.timeTable[dayf][periodf] = 1;
+        r.timeTableName[dayf][periodf] = name;
+        roomTable[dayf][periodf] = r.name;
+    }
+    else {
+        room& roomDef = returnRoom(defaultRoomName);
+        if (error_) {
+            errorMessage += "Couldnt find" + defaultRoomName + "\n";
+            return 0;
+            return 0;
+        }
+        if (!roomDef.timeTable[dayf][periodf]) {
+            roomDef.timeTable[dayf][periodf] = 1;
+            roomDef.timeTableName[dayf][periodf] = name;
+            roomTable[dayf][periodf] = roomDef.name;
+        }
+        else {
+            bool alloted = 0;
+            for (auto& currRoom : allRooms) {
+                if (!currRoom.timeTable[dayf][periodf]) {
+                    currRoom.timeTable[dayf][periodf] = 1;
+                    currRoom.timeTableName[dayf][periodf] = name;
+                    roomTable[dayf][periodf] = currRoom.name;
+                    alloted = 1;
+                    break;
+                }
+            }
+            if (!alloted) {
+                roomTable[dayf][periodf] = "Couldnt allot";
+            }
+        }
+    }
+    //changes to be made in timeTable
+    timeTable[dayi][periodi] = "f";
+    timeTable[dayf][periodf] = subName;
+    //changes in teacherTable and teachers timetable
+    teacherTable[dayi][periodi] = "f";
+    teacherTable[dayf][periodf] = teacherName;
+    t.timeTable[dayi][periodi] = 0;
+    t.timeTableName[dayi][periodi] = "0";
+    t.timeTable[dayf][periodf] = 1;
+    t.timeTableName[dayf][periodf] = name;
+    //freeing room
+    roomTable[dayi][periodi] = "NA";
+    r.timeTable[dayi][periodi] = 0;
+    r.timeTableName[dayi][periodi] = "0";
+    return 1;
+}
 // using namespace std;
 bool section::deAllocate() {
     logs.log("deallocation");
@@ -253,9 +315,10 @@ void section::addCore(std::string Teacher, subject Subject) {
     coreTeachers.push_back(Teacher);
     coreSubjects.push_back(Subject);
 }
-void section::block(int i, int j, std::string Teacher, std::string Subject) {
+void section::block(int i, int j, std::string Teacher, std::string Subject,std::string Room) {
     timeTable[i][j] = Teacher;
     teacherTable[i][j] = Subject;
+    roomTable[i][j] = Room;
 }
 room& section::returnRoom(std::string name) {
     error_ = false;
@@ -875,6 +938,7 @@ void section::makeTIMETABLE() {
         }
     }
     room& defaultRoomP = returnRoom(defaultRooms[highestindexR]);
+    defaultRoomName = defaultRoomP.name;
     room& defaultRoom = returnRoom(defaultRooms[highestindexR]);
     //coreteachers allocation
     logs.log("Core teacher allocation");
