@@ -169,6 +169,8 @@ public:
     std::vector<std::vector<float>> suggestTimeCore(std::string sub);
     std::vector<std::vector<float>> suggestTimeLab(std::vector<std::string> teacherList,std::vector<std::string> roomList);
     bool moveCore(int dayi,int periodi, int dayf, int periodf);
+    bool moveLab(int dayi, int periodi, int dayf, int periodf);
+    bool clear();
     bool error_;
     std::string errorMessage;
     int _intersections;// a variable reserved for the findIntersection function. the fucntion will alter this number 
