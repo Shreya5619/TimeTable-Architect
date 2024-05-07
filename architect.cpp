@@ -4,66 +4,326 @@
 #include<fstream>
 #include"includes.h"
 #include"initializer_list"
+std::vector<std::vector<float>> section::suggestTimeCore(std::string sub) {
+    //check if core
+    int i;
+    bool found = 0;
+    for (i = 0; i < coreSubjects.size(); i++) {
+        if (sub == coreSubjects[i].name) {
+            found = 1;
+            break;
+        }
+    }
+    if (found) {
+        std::vector<std::vector<float>> returnVal(6, std::vector<float>(6, 0));
+        std::vector<std::vector<std::vector<bool>>> listIntersection;
+        teacher t = returnTeacher(coreTeachers[i]);
+        if (!error_)
+            listIntersection.push_back(t.timeTable);
+        for (auto rom : coreSubjects[i].rooms) {
+            room r = returnRoom(rom);
+            if (!error_)
+                listIntersection.push_back(r.timeTable);
+        }
+        std::vector<std::vector<int>> WeightedinterSection = findWeightageCore(findIntersection(listIntersection), t);
+        int highest = 0;
+        for (auto day : WeightedinterSection) {
+            for (auto period : day) {
+                if (period > highest) {
+                    highest = period;
+                }
+            }
+        }
+        if (highest != 0) {
+            for (int i = 0; i < days; i++) {
+                for (int j = 0; j < periods; j++) {
+                    returnVal[i][j] = (float)WeightedinterSection[i][j] / highest;
+                }
+            }
+        }
+        return returnVal;
+    }
+}
+std::vector<std::vector<float>> section::suggestTimeLab(std::vector<std::string> teacherList, std::vector<std::string> roomList) {
+    std::vector<std::vector<float>> returnVal(6, std::vector<float>(6, 0));
+    std::vector<teacher> teacherListO;
+    for (auto teacherName : teacherList) {
+        teacher temp = returnTeacher(teacherName);
+        if (!error_)
+            teacherListO.push_back(temp);
+    }
+    std::vector<room> roomListO;
+    for (auto roomName : roomList) {
+        room temp = returnRoom(roomName);
+        if (!error_)
+            roomListO.push_back(temp);
+    }
+    std::vector<std::vector<std::vector<bool>>> heap;
+    for (auto teachert : teacherListO) {
+        heap.push_back(teachert.timeTable);
+    }
+    for (auto roomr : roomListO) {
+        heap.push_back(roomr.timeTable);
+    }
+    std::vector<std::vector<bool>> intersections = findIntersection(heap);
+    std::vector<std::vector<int>> WeightedinterSection = findWeightageLab(intersections, teacherListO);
+    int highest = 0;
+    for (auto day : WeightedinterSection) {
+        for (auto period : day) {
+            if (period > highest) {
+                highest = period;
+            }
+        }
+    }
+    if (highest != 0) {
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                returnVal[i][j] = (float)WeightedinterSection[i][j] / highest;
+            }
+        }
+    }
+    return returnVal;
+}
+bool section::clear() {
+    name = "";
+    for (auto& day : timeTable) {
+        for (auto& period : day) {
+            period = "f";
+        }
+    }
+    for (auto& day : teacherTable) {
+        for (auto& period : day) {
+            period = "f";
+        }
+    }
+    for (auto& day : roomTable) {
+        for (auto& period : day) {
+            period = "NA";
+        }
+    }
+    allTeachers = {};
+    coreTeachers = {};
+    coreSubjects = {};
+    labTeachers = {};
+    noOfLabs = {};
+    noTeachersPerLab = {};
+    allRooms = {};
+    defaultRooms = {};
+    labSubjects = {};
+    errorMessage = "";
+    log = "cleared";
+    bfactor = {};
+    std::vector<bool>temp(days, 0);
+    labAllotment = temp;
+    formattedOutput = "TIME DAY,9:00-10:00,10:00-11:00,,11:30-12:30,12:30-1:30,,2:30-3:30,3:30-4:30\n";
+    std::vector<float> temp2(periods, 1);
+    timeAllotment = temp2;
+    defaultRoomName = "";
+    return 1;
+}
+bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
+    std::string subName = timeTable[dayi][periodi];
+    std::string teacherName = teacherTable[dayi][periodi];
+    std::string roomName = roomTable[dayi][periodi];
+    teacher& t = returnTeacher(teacherName);
+    if (error_) {
+        errorMessage += "Couldnt find" + teacherName + "\n";
+        return 0;
+    }
+    room& r = returnRoom(roomName);
+    if (error_) {
+        errorMessage += "Couldnt find" + roomName + "\n";
+        return 0;
+    }
+    if (!r.timeTable[dayf][periodf]) {
+        r.timeTable[dayf][periodf] = 1;
+        r.timeTableName[dayf][periodf] = name;
+        roomTable[dayf][periodf] = r.name;
+    }
+    else {
+        room& roomDef = returnRoom(defaultRoomName);
+        if (error_) {
+            errorMessage += "Couldnt find" + defaultRoomName + "\n";
+            return 0;
+            return 0;
+        }
+        if (!roomDef.timeTable[dayf][periodf]) {
+            roomDef.timeTable[dayf][periodf] = 1;
+            roomDef.timeTableName[dayf][periodf] = name;
+            roomTable[dayf][periodf] = roomDef.name;
+        }
+        else {
+            bool alloted = 0;
+            for (auto& currRoom : allRooms) {
+                if (!currRoom.timeTable[dayf][periodf]) {
+                    currRoom.timeTable[dayf][periodf] = 1;
+                    currRoom.timeTableName[dayf][periodf] = name;
+                    roomTable[dayf][periodf] = currRoom.name;
+                    alloted = 1;
+                    break;
+                }
+            }
+            if (!alloted) {
+                roomTable[dayf][periodf] = "Couldnt allot";
+            }
+        }
+    }
+    //changes to be made in timeTable
+    timeTable[dayi][periodi] = "f";
+    timeTable[dayf][periodf] = subName;
+    //changes in teacherTable and teachers timetable
+    teacherTable[dayi][periodi] = "f";
+    teacherTable[dayf][periodf] = teacherName;
+    t.timeTable[dayi][periodi] = 0;
+    t.timeTableName[dayi][periodi] = "0";
+    t.timeTable[dayf][periodf] = 1;
+    t.timeTableName[dayf][periodf] = name;
+    //freeing room
+    roomTable[dayi][periodi] = "NA";
+    r.timeTable[dayi][periodi] = 0;
+    r.timeTableName[dayi][periodi] = "0";
+    return 1;
+}
+bool section::moveLab(int dayi, int periodi, int dayf, int periodf) {
+    if (periodi % 2) {
+        periodi--;
+    }
+    if (periodf % 2) {
+        periodf--;
+    }
+    std::string subjectName = timeTable[dayi][periodi];
+    std::string teacherNameList = teacherTable[dayi][periodi];
+    std::string roomNameList = roomTable[dayi][periodi];
+    std::vector<std::string> teacherNames = splitString(teacherNameList, '|');
+    std::vector<std::string> roomNames = splitString(roomNameList, '|');
+    std::vector<teacher> teachers;
+    std::vector<room> rooms;
+    for (auto names : roomNames) {
+        room& roomC = returnRoom(names);
+        if (!error_) {
+            roomC.timeTable[dayi][periodi] = 0;
+            roomC.timeTableName[dayi][periodi] = "0";
+            roomC.timeTable[dayi][periodi + 1] = 0;
+            roomC.timeTableName[dayi][periodi + 1] = "0";
+            roomC.timeTable[dayf][periodf] = 1;
+            roomC.timeTableName[dayf][periodf] = name;
+            roomC.timeTable[dayf][periodf + 1] = 1;
+            roomC.timeTableName[dayf][periodf + 1] = name;
+        }
+    }
+    for (auto names : teacherNames) {
+        teacher& teacherC = returnTeacher(names);
+        if (!error_) {
+            teacherC.timeTable[dayi][periodi] = 0;
+            teacherC.timeTableName[dayi][periodi] = "0";
+            teacherC.timeTable[dayi][periodi + 1] = 0;
+            teacherC.timeTableName[dayi][periodi + 1] = "0";
+            teacherC.timeTable[dayf][periodf] = 1;
+            teacherC.timeTableName[dayf][periodf] = name;
+            teacherC.timeTable[dayf][periodf + 1] = 1;
+            teacherC.timeTableName[dayf][periodf + 1] = name;
+        }
+    }
+    //deallocating
+    timeTable[dayi][periodi] = "f";
+    teacherTable[dayi][periodi] = "f";
+    roomTable[dayi][periodi] = "NA";
+    timeTable[dayi][++periodi] = "f";
+    teacherTable[dayi][periodi] = "f";
+    roomTable[dayi][periodi] = "NA";
+
+    //allocating
+    timeTable[dayf][periodf] = subjectName;
+    teacherTable[dayf][periodf] = teacherNameList;
+    roomTable[dayf][periodf] = roomNameList;
+    timeTable[dayf][++periodf] = subjectName;
+    teacherTable[dayf][periodf] = teacherNameList;
+    roomTable[dayf][periodf] = roomNameList;
+
+    return 1;
+}
 // using namespace std;
 bool section::deAllocate() {
     logs.log("deallocation");
-    for (auto day : timeTable) {
-        std::string temp;
-        for (auto period : day) {
-            temp += period + ", ";
-        }
-        logs.log(temp);
-    }
-    for (auto day : teacherTable) {
-        std::string temp;
-        for (auto period : day) {
-            temp += period + ", ";
-        }
-        logs.log(temp);
-    }
-    for (auto day : roomTable) {
-        std::string temp;
-        for (auto period : day) {
-            temp += period + ", ";
-        }
-        logs.log(temp);
-    }
-    bool flag = 1;
-    for (int day = 0; day < days; day++) {
-        for (int period = 0; period < periods; period++) {
-            if (timeTable[day][period] != "f") {
-                teacher& currentT = returnTeacher(teacherTable[day][period]);
-                if (!error_) {
-                    currentT.timeTable[day][period] = 0;
-                    currentT.timeTableName[day][period] = "0";
+    //for (auto day : timeTable) {
+    //    std::string temp;
+    //    for (auto period : day) {
+    //        temp += period + ", ";
+    //    }
+    //    logs.log(temp);
+    //}
+    //for (auto day : teacherTable) {
+    //    std::string temp;
+    //    for (auto period : day) {
+    //        temp += period + ", ";
+    //    }
+    //    logs.log(temp);
+    //}
+    //for (auto day : roomTable) {
+    //    std::string temp;
+    //    for (auto period : day) {
+    //        temp += period + ", ";
+    //    }
+    //    logs.log(temp);
+    //}
+    //bool flag = 1;
+    //for (int day = 0; day < days; day++) {
+    //    for (int period = 0; period < periods; period++) {
+    //        if (timeTable[day][period] != "f") {
+    //            teacher& currentT = returnTeacher(teacherTable[day][period]);
+    //            if (!error_) {
+    //                currentT.timeTable[day][period] = 0;
+    //                currentT.timeTableName[day][period] = "0";
+    //            }
+    //            else {
+    //                //handle lab and esc
+    //                std::vector<std::string> temp = splitString(teacherTable[day][period], '|');
+    //                for (auto uname : temp) {
+    //                    std::string name;
+    //                    teacher& currentT = returnTeacher(uname);
+    //                    if (!error_) {
+    //                        currentT.timeTable[day][period] = 0;
+    //                        currentT.timeTableName[day][period] = "0";
+    //                    }
+    //                }
+    //            }
+    //            room& currentR = returnRoom(roomTable[day][period]);
+    //            if (!error_) {
+    //                currentR.timeTable[day][period] = 0;
+    //                currentR.timeTableName[day][period] = "0";
+    //            }
+    //            else {
+    //                std::vector<std::string> temp = splitString(roomTable[day][period], '|');
+    //                for (auto r : temp) {
+    //                    room& currentR = returnRoom(r);
+    //                    if (!error_) {
+    //                        currentR.timeTable[day][period] = 0;
+    //                        currentR.timeTableName[day][period] = "0";
+    //                    }
+    //                }
+    //                //handled
+    //            }
+    //        }
+    //    }
+    //}
+    //iterating through all teachers and finding the particular classes name,if found make zero
+    for (auto& teacher : allTeachers) {
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                if (teacher.timeTableName[i][j] == name) {
+                    teacher.timeTable[i][j] = 0;
+                    teacher.timeTableName[i][j] = "0";
                 }
-                else {
-                    //handle lab and esc
-                    std::vector<std::string> temp = splitString(teacherTable[day][period], '|');
-                    for (auto uname : temp) {
-                        std::string name;
-                        teacher& currentT = returnTeacher(uname);
-                        if (!error_) {
-                            currentT.timeTable[day][period] = 0;
-                            currentT.timeTableName[day][period] = "0";
-                        }
-                    }
-                }
-                room& currentR = returnRoom(roomTable[day][period]);
-                if (!error_) {
-                    currentR.timeTable[day][period] = 0;
-                    currentR.timeTableName[day][period] = "0";
-                }
-                else {
-                    std::vector<std::string> temp = splitString(roomTable[day][period], '|');
-                    for (auto r : temp) {
-                        room& currentR = returnRoom(r);
-                        if (!error_) {
-                            currentR.timeTable[day][period] = 0;
-                            currentR.timeTableName[day][period] = "0";
-                        }
-                    }
-                    //handled
+            }
+        }
+    }
+    //same for rooms
+    for (auto& room : allRooms) {
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                if (room.timeTableName[i][j] == name) {
+                    room.timeTable[i][j] = 0;
+                    room.timeTableName[i][j] = "0";
                 }
             }
         }
@@ -150,9 +410,10 @@ void section::addCore(std::string Teacher, subject Subject) {
     coreTeachers.push_back(Teacher);
     coreSubjects.push_back(Subject);
 }
-void section::block(int i, int j, std::string Teacher, std::string Subject) {
+void section::block(int i, int j, std::string Teacher, std::string Subject, std::string Room) {
     timeTable[i][j] = Teacher;
     teacherTable[i][j] = Subject;
+    roomTable[i][j] = Room;
 }
 room& section::returnRoom(std::string name) {
     error_ = false;
@@ -262,7 +523,6 @@ std::vector<std::vector<bool>> section::findIntersection(std::vector<std::vector
             }
         }
     }
-
     for (int i = 0; i < days; i++) {
         std::vector<bool>tempp;
         bool alloted = 0;
@@ -773,6 +1033,7 @@ void section::makeTIMETABLE() {
         }
     }
     room& defaultRoomP = returnRoom(defaultRooms[highestindexR]);
+    defaultRoomName = defaultRoomP.name;
     room& defaultRoom = returnRoom(defaultRooms[highestindexR]);
     //coreteachers allocation
     logs.log("Core teacher allocation");

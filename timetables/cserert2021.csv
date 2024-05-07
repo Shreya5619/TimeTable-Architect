@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+21HS61B,f,f,f,f,f,
+f,XX232AT,f,f,f,f,
+f,21HS61B,f,f,HS247XL,HS247XL,
+f,f,21HS61B,f,f,f,
+f,f,f,f,XX232AT,XX232AT,
+HS247XL,HS247XL,f,f,f,f,
+
+
+TEACHERS
+Mohana,f,f,f,f,f,
+f,XX232AT,f,f,f,f,
+f,Mohana,f,f,HS247XL,HS247XL,
+f,f,Mohana,f,f,f,
+f,f,f,f,XX232AT,XX232AT,
+HS247XL,HS247XL,f,f,f,f,
+
+
+ROOM
+CS Lab 5 near bank,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,CS Lab 5 near bank,NA,NA,NA,NA,
+NA,NA,CS Lab 5 near bank,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+

@@ -1,29 +1,29 @@
 TIMETABLE
 
 SUBJECTS
-CS241AT,f,f,f,f,f,
-f,f,f,f,f,f,
-f,CS241AT,f,f,f,f,
-f,f,CS241AT,f,f,f,
 f,f,f,f,f,f,
 f,f,f,f,f,f,
+f,21CS63,f,f,f,f,
+f,f,21CS63,f,f,f,
+f,f,f,f,f,f,
+21CS63,f,f,f,f,f,
 
 
 TEACHERS
-Prof.Shweta Babu Prasad,f,f,f,f,f,
-f,f,f,f,f,f,
-f,Prof.Shweta Babu Prasad,f,f,f,f,
-f,f,Prof.Shweta Babu Prasad,f,f,f,
 f,f,f,f,f,f,
 f,f,f,f,f,f,
+f,Dr. Vinay V Hegde,f,f,f,f,
+f,f,Dr. Vinay V Hegde,f,f,f,
+f,f,f,f,f,f,
+Dr. Vinay V Hegde,f,f,f,f,f,
 
 
 ROOM
-No Room,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
 NA,NA,NA,NA,NA,NA,
 NA,No Room,NA,NA,NA,NA,
 NA,NA,No Room,NA,NA,NA,
 NA,NA,NA,NA,NA,NA,
-NA,NA,NA,NA,NA,NA,
+No Room,NA,NA,NA,NA,NA,
 
 
