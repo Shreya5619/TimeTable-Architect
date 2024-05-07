@@ -119,6 +119,7 @@ bool section::clear() {
     std::vector<float> temp2(periods, 1);
     timeAllotment = temp2;
 	defaultRoomName = "";
+	return 1;
 }
 bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
     std::string subName = timeTable[dayi][periodi];
