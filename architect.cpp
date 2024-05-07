@@ -84,6 +84,42 @@ std::vector<std::vector<float>> section::suggestTimeLab(std::vector<std::string>
     }
     return returnVal;
 }
+bool section::clear() {
+    name = "";
+	for (auto& day : timeTable) {
+		for (auto& period : day) {
+			period = "f";
+		}
+	}
+	for (auto& day : teacherTable) {
+		for (auto& period : day) {
+			period = "f";
+		}
+	}
+    for (auto& day : roomTable) {
+        for (auto& period : day) {
+            period = "NA";
+        }
+    }
+    allTeachers={};
+	coreTeachers = {};
+	coreSubjects = {};
+	labTeachers = {};
+	noOfLabs = {};
+	noTeachersPerLab = {};
+	allRooms = {};
+	defaultRooms = {};
+	labSubjects = {};
+	errorMessage = "";
+    log = "cleared";
+	bfactor = {}; 
+    std::vector<bool>temp(days, 0);
+    labAllotment = temp;
+    formattedOutput = "TIME DAY,9:00-10:00,10:00-11:00,,11:30-12:30,12:30-1:30,,2:30-3:30,3:30-4:30\n";
+    std::vector<float> temp2(periods, 1);
+    timeAllotment = temp2;
+	defaultRoomName = "";
+}
 bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
     std::string subName = timeTable[dayi][periodi];
     std::string teacherName = teacherTable[dayi][periodi];
@@ -146,6 +182,14 @@ bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
     r.timeTable[dayi][periodi] = 0;
     r.timeTableName[dayi][periodi] = "0";
     return 1;
+}
+bool section::moveLab(int dayi, int periodi, int dayf, int periodf) {
+    if (periodi % 2) {
+        periodi--;
+    }
+    std::string subjectName = timeTable[dayi][periodi];
+	std::string teacherNameList = teacherTable[dayi][periodi];
+	std::string roomNameList = roomTable[dayi][periodi];
 }
 // using namespace std;
 bool section::deAllocate() {
