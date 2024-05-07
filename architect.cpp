@@ -119,7 +119,7 @@ bool section::clear() {
     std::vector<float> temp2(periods, 1);
     timeAllotment = temp2;
 	defaultRoomName = "";
-	return 1;
+    return 1;
 }
 bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
     std::string subName = timeTable[dayi][periodi];
@@ -188,9 +188,59 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf) {
     if (periodi % 2) {
         periodi--;
     }
+    if (periodf % 2) {
+        periodf--;
+    }
     std::string subjectName = timeTable[dayi][periodi];
 	std::string teacherNameList = teacherTable[dayi][periodi];
 	std::string roomNameList = roomTable[dayi][periodi];
+	std::vector<std::string> teacherNames = splitString(teacherNameList, '|');
+	std::vector<std::string> roomNames = splitString(roomNameList, '|');
+	std::vector<teacher> teachers;
+	std::vector<room> rooms;
+    for (auto names : roomNames) {
+		room &roomC = returnRoom(names);
+        if (!error_) {
+            roomC.timeTable[dayi][periodi] = 0;
+            roomC.timeTableName[dayi][periodi] = "0";
+            roomC.timeTable[dayi][periodi+1] = 0;
+            roomC.timeTableName[dayi][periodi+1] = "0";
+            roomC.timeTable[dayf][periodf] = 1;
+            roomC.timeTableName[dayf][periodf] = name;
+            roomC.timeTable[dayf][periodf+1] = 1;
+            roomC.timeTableName[dayf][periodf+1] = name;
+        }
+	}
+    for (auto names : teacherNames) {
+		teacher &teacherC = returnTeacher(names);
+        if (!error_) {
+            teacherC.timeTable[dayi][periodi] = 0;
+            teacherC.timeTableName[dayi][periodi] = "0";
+			teacherC.timeTable[dayi][periodi + 1] = 0;
+			teacherC.timeTableName[dayi][periodi + 1] = "0";
+            teacherC.timeTable[dayf][periodf] = 1;
+            teacherC.timeTableName[dayf][periodf] = name;
+            teacherC.timeTable[dayf][periodf+1] = 1;
+            teacherC.timeTableName[dayf][periodf+1] = name;
+        }
+	}
+    //deallocating
+    timeTable[dayi][periodi] = "f";
+    teacherTable[dayi][periodi] = "f";
+    roomTable[dayi][periodi] = "NA";
+    timeTable[dayi][++periodi] = "f";
+    teacherTable[dayi][periodi] = "f";
+    roomTable[dayi][periodi] = "NA";
+    
+    //allocating
+    timeTable[dayf][periodf] = subjectName;
+    teacherTable[dayf][periodf] = teacherNameList;
+    roomTable[dayf][periodf] = roomNameList;
+    timeTable[dayf][++periodf] = subjectName;
+    teacherTable[dayf][periodf] = teacherNameList;
+    roomTable[dayf][periodf] = roomNameList;
+ 
+	return 1;
 }
 // using namespace std;
 bool section::deAllocate() {
