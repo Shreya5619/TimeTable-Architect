@@ -112,7 +112,7 @@ bool section::clear() {
     labSubjects = {};
     errorMessage = "";
     log = "cleared";
-    bfactor = {};
+    bfactor =std::vector<int>(days,0);
     std::vector<bool>temp(days, 0);
     labAllotment = temp;
     formattedOutput = "TIME DAY,9:00-10:00,10:00-11:00,,11:30-12:30,12:30-1:30,,2:30-3:30,3:30-4:30\n";

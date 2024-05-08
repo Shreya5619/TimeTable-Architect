@@ -15111,6 +15111,7 @@ private: System::Windows::Forms::Label^ label39;
             }
             else
             {
+                obj.clear();
                 for (int i = 0; i < classele->RowCount; i++)
                 {
                     if (classele->Rows[i]->Cells[0]->Value != nullptr)
