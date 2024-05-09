@@ -21,8 +21,7 @@ extern std::vector<std::vector<std::string>>labteachers;
 extern std::string editsublastpanel;
 extern std::string addsublastpanel;
 section l;
-section obj;
-bool labyesno;
+section obj,labobj;
 int dayi=0,periodi=0,dayf=0,periodf=0;
 
 namespace TTA_ui {
@@ -91,270 +90,269 @@ namespace TTA_ui {
             catch(...)
             { }
         }
-
-    private: System::Windows::Forms::Timer^ timer1;
-    private: ComponentFactory::Krypton::Toolkit::KryptonButton^ editsubactivepanel;
-    private: System::Windows::Forms::Label^ label94;
-    private: System::Windows::Forms::Button^ editsubsave;
-    private: System::Windows::Forms::Button^ editsubdelete;
-    private: System::Windows::Forms::Panel^ editsubelepanel;
-    private: System::Windows::Forms::Button^ button3;
-    private: System::Windows::Forms::Panel^ panel13;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel2;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubsearchgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonButton^ editsubsearchbutton;
-    private: System::Windows::Forms::Label^ label99;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editsubsearch;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubtitlegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel1;
-    private: System::Windows::Forms::Label^ label109;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubtitle;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubelegroup;
-    private: System::Windows::Forms::Label^ label92;
-    private: System::Windows::Forms::Panel^ panel10;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleyes;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubnamegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel3;
-    private: System::Windows::Forms::Label^ label93;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubname;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubcodegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel4;
-    private: System::Windows::Forms::Label^ label15;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubcode;
-    private: System::Windows::Forms::Panel^ editsubjectpanel;
-    private: System::Windows::Forms::Label^ label95;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubeleyesgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editsubcluster;
-    private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ editsubeleteacher;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubcreditsgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ editsubcredits;
-    private: System::Windows::Forms::Label^ label101;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubbfactorgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown1;
-    private: System::Windows::Forms::Label^ label97;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubroomlistgroup;
-    private: System::Windows::Forms::Label^ label150;
-    private: ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox^ editsubroomlist;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ editsubbfactor;
-    private: System::Windows::Forms::Label^ label110;
-    private: System::Windows::Forms::Button^ panel3;
-    private: System::Windows::Forms::Panel^ panel11;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubbfactorgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ addsubbfactor;
-    private: System::Windows::Forms::Label^ label96;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown3;
-    private: System::Windows::Forms::Label^ label100;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubroomlistgroup;
-    private: System::Windows::Forms::Label^ label152;
-    private: ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox^ addsubroomlist;
-    private: System::Windows::Forms::Button^ button19;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubeleyesgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ sedataGridView;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addsubcluster;
-    private: System::Windows::Forms::Button^ addsubclusteroptions;
-    private: System::Windows::Forms::Label^ label178;
-    private: System::Windows::Forms::Label^ label179;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel3;
-    private: System::Windows::Forms::Button^ addsubsave;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubcreditsgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ addsubcredits;
-    private: System::Windows::Forms::Label^ label181;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubtitlegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
-    private: System::Windows::Forms::Label^ label182;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubtitle;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubelegroup;
-    private: System::Windows::Forms::Label^ label183;
-    private: System::Windows::Forms::Panel^ panel42;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ addsubeleyes;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ addsubeleno;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubnamegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel5;
-    private: System::Windows::Forms::Label^ label184;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubname;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubcodegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel7;
-    private: System::Windows::Forms::Label^ label185;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubcode;
-    private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
-    private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn4;
-    private: System::Windows::Forms::Timer^ timer2;
-    private: System::Windows::Forms::Panel^ panel7;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomdeptgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel5;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomcapacitygroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ roomcapacity;
-    private: System::Windows::Forms::Label^ label187;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomlabgroup;
-    private: System::Windows::Forms::Label^ label189;
-    private: System::Windows::Forms::Panel^ panel44;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ roomlabyes;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ roomlabno;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomnamegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel12;
-    private: System::Windows::Forms::Label^ label190;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ roomname;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ roomdept;
-    private: System::Windows::Forms::Label^ label28;
-    private: System::Windows::Forms::Label^ label5;
-    private: System::Windows::Forms::Panel^ panel37;
-    private: System::Windows::Forms::Panel^ panel43;
-    private: System::Windows::Forms::TableLayoutPanel^ addroomtablepanel;
-    private: System::Windows::Forms::Label^ label29;
-    private: System::Windows::Forms::Label^ label30;
-    private: System::Windows::Forms::Label^ label31;
-    private: System::Windows::Forms::Label^ label126;
-    private: System::Windows::Forms::Label^ label127;
-    private: System::Windows::Forms::Label^ label128;
-    private: System::Windows::Forms::Label^ label129;
-    private: System::Windows::Forms::Label^ label130;
-    private: System::Windows::Forms::Label^ label131;
-    private: System::Windows::Forms::Label^ label132;
-    private: System::Windows::Forms::Label^ label133;
-    private: System::Windows::Forms::Label^ label134;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox9;
-    private: System::Windows::Forms::Panel^ panel12;
-    private: System::Windows::Forms::Panel^ panel5;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteachersearchgroup;
-    private: System::Windows::Forms::Label^ label6;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ teachersearch;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteachertablegroup;
-    private: System::Windows::Forms::Panel^ panel19;
-    private: System::Windows::Forms::Panel^ panel23;
-    private: System::Windows::Forms::TableLayoutPanel^ editteachertablepanel;
-    private: System::Windows::Forms::Panel^ panel24;
-    private: System::Windows::Forms::Label^ label7;
-    private: System::Windows::Forms::Label^ label8;
-    private: System::Windows::Forms::Label^ label9;
-    private: System::Windows::Forms::Label^ label10;
-    private: System::Windows::Forms::Label^ label11;
-    private: System::Windows::Forms::Label^ label12;
-    private: System::Windows::Forms::Label^ label14;
-    private: System::Windows::Forms::Label^ label16;
-    private: System::Windows::Forms::Label^ label17;
-    private: System::Windows::Forms::Label^ label18;
-    private: System::Windows::Forms::Label^ label19;
-    private: System::Windows::Forms::Label^ label20;
-    private: System::Windows::Forms::Panel^ panel28;
-    private: System::Windows::Forms::Button^ button21;
-    private: System::Windows::Forms::Button^ button23;
-    private: System::Windows::Forms::Label^ label21;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteacherdepartmentgroup;
-    private: System::Windows::Forms::Label^ label22;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteacherdepartment;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel4;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteachernamegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel8;
-    private: System::Windows::Forms::Label^ label25;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editteachername;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteacheremailidgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel9;
-    private: System::Windows::Forms::Label^ label23;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editteacheremailid;
-    private: System::Windows::Forms::Panel^ panel16;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteacheremailidgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel10;
-    private: System::Windows::Forms::Label^ label1;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addteacheremailid;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteachertablegroup;
-    private: System::Windows::Forms::Panel^ panel30;
-    private: System::Windows::Forms::Panel^ panel31;
-    private: System::Windows::Forms::TableLayoutPanel^ teachertablepanel;
-    private: System::Windows::Forms::Panel^ panel32;
-    private: System::Windows::Forms::Label^ label3;
-    private: System::Windows::Forms::Label^ label24;
-    private: System::Windows::Forms::Label^ label26;
-    private: System::Windows::Forms::Label^ label27;
-    private: System::Windows::Forms::Label^ label40;
-    private: System::Windows::Forms::Label^ label41;
-    private: System::Windows::Forms::Label^ label42;
-    private: System::Windows::Forms::Label^ label43;
-    private: System::Windows::Forms::Label^ label46;
-    private: System::Windows::Forms::Label^ label47;
-    private: System::Windows::Forms::Label^ label48;
-    private: System::Windows::Forms::Label^ label49;
-    private: System::Windows::Forms::Panel^ panel35;
-    private: System::Windows::Forms::Button^ button26;
-    private: System::Windows::Forms::Button^ button27;
-    private: System::Windows::Forms::Label^ label50;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteacherdepartmentgroup;
-    private: System::Windows::Forms::Label^ label51;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addteacherdepartment;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel7;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteachernamegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel13;
-    private: System::Windows::Forms::Label^ label63;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addteachername;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel9;
+private: System::Windows::Forms::Timer^ timer1;
+private: ComponentFactory::Krypton::Toolkit::KryptonButton^ editsubactivepanel;
+private: System::Windows::Forms::Label^ label94;
+private: System::Windows::Forms::Button^ editsubsave;
+private: System::Windows::Forms::Button^ editsubdelete;
+private: System::Windows::Forms::Panel^ editsubelepanel;
+private: System::Windows::Forms::Button^ button3;
+private: System::Windows::Forms::Panel^ panel13;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel2;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubsearchgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonButton^ editsubsearchbutton;
+private: System::Windows::Forms::Label^ label99;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editsubsearch;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubtitlegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel1;
+private: System::Windows::Forms::Label^ label109;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubtitle;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubelegroup;
+private: System::Windows::Forms::Label^ label92;
+private: System::Windows::Forms::Panel^ panel10;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleyes;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editsubeleno;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubnamegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel3;
+private: System::Windows::Forms::Label^ label93;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubname;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubcodegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel4;
+private: System::Windows::Forms::Label^ label15;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editsubcode;
+private: System::Windows::Forms::Panel^ editsubjectpanel;
+private: System::Windows::Forms::Label^ label95;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubeleyesgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editsubcluster;
+private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ editsubeleteacher;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubcreditsgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ editsubcredits;
+private: System::Windows::Forms::Label^ label101;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubbfactorgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown1;
+private: System::Windows::Forms::Label^ label97;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubroomlistgroup;
+private: System::Windows::Forms::Label^ label150;
+private: ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox^ editsubroomlist;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ editsubbfactor;
+private: System::Windows::Forms::Label^ label110;
+private: System::Windows::Forms::Button^ panel3;
+private: System::Windows::Forms::Panel^ panel11;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubbfactorgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ addsubbfactor;
+private: System::Windows::Forms::Label^ label96;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ kryptonNumericUpDown3;
+private: System::Windows::Forms::Label^ label100;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubroomlistgroup;
+private: System::Windows::Forms::Label^ label152;
+private: ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox^ addsubroomlist;
+private: System::Windows::Forms::Button^ button19;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubeleyesgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ sedataGridView;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addsubcluster;
+private: System::Windows::Forms::Button^ addsubclusteroptions;
+private: System::Windows::Forms::Label^ label178;
+private: System::Windows::Forms::Label^ label179;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel3;
+private: System::Windows::Forms::Button^ addsubsave;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubcreditsgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ addsubcredits;
+private: System::Windows::Forms::Label^ label181;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubtitlegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel2;
+private: System::Windows::Forms::Label^ label182;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubtitle;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubelegroup;
+private: System::Windows::Forms::Label^ label183;
+private: System::Windows::Forms::Panel^ panel42;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ addsubeleyes;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ addsubeleno;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubnamegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel5;
+private: System::Windows::Forms::Label^ label184;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubname;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addsubcodegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel7;
+private: System::Windows::Forms::Label^ label185;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addsubcode;
+private: System::Windows::Forms::DataGridViewComboBoxColumn^ TeacherName;
+private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn4;
+private: System::Windows::Forms::Timer^ timer2;
+private: System::Windows::Forms::Panel^ panel7;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomdeptgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel5;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomcapacitygroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ roomcapacity;
+private: System::Windows::Forms::Label^ label187;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomlabgroup;
+private: System::Windows::Forms::Label^ label189;
+private: System::Windows::Forms::Panel^ panel44;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ roomlabyes;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ roomlabno;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ roomnamegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel12;
+private: System::Windows::Forms::Label^ label190;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ roomname;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ roomdept;
+private: System::Windows::Forms::Label^ label28;
+private: System::Windows::Forms::Label^ label5;
+private: System::Windows::Forms::Panel^ panel37;
+private: System::Windows::Forms::Panel^ panel43;
+private: System::Windows::Forms::TableLayoutPanel^ addroomtablepanel;
+private: System::Windows::Forms::Label^ label29;
+private: System::Windows::Forms::Label^ label30;
+private: System::Windows::Forms::Label^ label31;
+private: System::Windows::Forms::Label^ label126;
+private: System::Windows::Forms::Label^ label127;
+private: System::Windows::Forms::Label^ label128;
+private: System::Windows::Forms::Label^ label129;
+private: System::Windows::Forms::Label^ label130;
+private: System::Windows::Forms::Label^ label131;
+private: System::Windows::Forms::Label^ label132;
+private: System::Windows::Forms::Label^ label133;
+private: System::Windows::Forms::Label^ label134;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox9;
+private: System::Windows::Forms::Panel^ panel12;
+private: System::Windows::Forms::Panel^ panel5;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteachersearchgroup;
+private: System::Windows::Forms::Label^ label6;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ teachersearch;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteachertablegroup;
+private: System::Windows::Forms::Panel^ panel19;
+private: System::Windows::Forms::Panel^ panel23;
+private: System::Windows::Forms::TableLayoutPanel^ editteachertablepanel;
+private: System::Windows::Forms::Panel^ panel24;
+private: System::Windows::Forms::Label^ label7;
+private: System::Windows::Forms::Label^ label8;
+private: System::Windows::Forms::Label^ label9;
+private: System::Windows::Forms::Label^ label10;
+private: System::Windows::Forms::Label^ label11;
+private: System::Windows::Forms::Label^ label12;
+private: System::Windows::Forms::Label^ label14;
+private: System::Windows::Forms::Label^ label16;
+private: System::Windows::Forms::Label^ label17;
+private: System::Windows::Forms::Label^ label18;
+private: System::Windows::Forms::Label^ label19;
+private: System::Windows::Forms::Label^ label20;
+private: System::Windows::Forms::Panel^ panel28;
+private: System::Windows::Forms::Button^ button21;
+private: System::Windows::Forms::Button^ button23;
+private: System::Windows::Forms::Label^ label21;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteacherdepartmentgroup;
+private: System::Windows::Forms::Label^ label22;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editteacherdepartment;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel4;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteachernamegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel8;
+private: System::Windows::Forms::Label^ label25;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editteachername;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editteacheremailidgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel9;
+private: System::Windows::Forms::Label^ label23;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editteacheremailid;
+private: System::Windows::Forms::Panel^ panel16;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteacheremailidgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel10;
+private: System::Windows::Forms::Label^ label1;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addteacheremailid;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteachertablegroup;
+private: System::Windows::Forms::Panel^ panel30;
+private: System::Windows::Forms::Panel^ panel31;
+private: System::Windows::Forms::TableLayoutPanel^ teachertablepanel;
+private: System::Windows::Forms::Panel^ panel32;
+private: System::Windows::Forms::Label^ label3;
+private: System::Windows::Forms::Label^ label24;
+private: System::Windows::Forms::Label^ label26;
+private: System::Windows::Forms::Label^ label27;
+private: System::Windows::Forms::Label^ label40;
+private: System::Windows::Forms::Label^ label41;
+private: System::Windows::Forms::Label^ label42;
+private: System::Windows::Forms::Label^ label43;
+private: System::Windows::Forms::Label^ label46;
+private: System::Windows::Forms::Label^ label47;
+private: System::Windows::Forms::Label^ label48;
+private: System::Windows::Forms::Label^ label49;
+private: System::Windows::Forms::Panel^ panel35;
+private: System::Windows::Forms::Button^ button26;
+private: System::Windows::Forms::Button^ button27;
+private: System::Windows::Forms::Label^ label50;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteacherdepartmentgroup;
+private: System::Windows::Forms::Label^ label51;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ addteacherdepartment;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel7;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ addteachernamegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel13;
+private: System::Windows::Forms::Label^ label63;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ addteachername;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel9;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ deptgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ deptDataGridView;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel8;
-    private: System::Windows::Forms::Panel^ panel29;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classbranchgroup;
-    private: System::Windows::Forms::Label^ label82;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ classbranch;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel10;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classnamegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel15;
-    private: System::Windows::Forms::Label^ label119;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ classname;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classbatchgroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ classbatch;
-    private: System::Windows::Forms::Label^ label2;
+private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ deptDataGridView;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel8;
+private: System::Windows::Forms::Panel^ panel29;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classbranchgroup;
+private: System::Windows::Forms::Label^ label82;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ classbranch;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel10;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classnamegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel15;
+private: System::Windows::Forms::Label^ label119;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ classname;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classbatchgroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ classbatch;
+private: System::Windows::Forms::Label^ label2;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classcoregroup;
-    private: System::Windows::Forms::Label^ label37;
-    private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classcore;
+private: System::Windows::Forms::Label^ label37;
+private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classcore;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classelegroup;
-    private: System::Windows::Forms::Label^ label36;
-    private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classele;
-    private: System::Windows::Forms::Button^ editteachersearchbutton;
-    private: System::Windows::Forms::Panel^ panel6;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomsearchgroup;
-    private: System::Windows::Forms::Label^ label242;
-    private: System::Windows::Forms::Button^ editroomsearchbutton;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editroomsearch;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox10;
-    private: System::Windows::Forms::Panel^ panel15;
-    private: System::Windows::Forms::Panel^ panel33;
-    private: System::Windows::Forms::TableLayoutPanel^ editroomtablepanel;
-    private: System::Windows::Forms::Panel^ panel34;
-    private: System::Windows::Forms::Label^ label4;
-    private: System::Windows::Forms::Label^ label78;
-    private: System::Windows::Forms::Label^ label79;
-    private: System::Windows::Forms::Label^ label80;
-    private: System::Windows::Forms::Label^ label81;
-    private: System::Windows::Forms::Label^ label103;
-    private: System::Windows::Forms::Label^ label104;
-    private: System::Windows::Forms::Label^ label105;
-    private: System::Windows::Forms::Label^ label106;
-    private: System::Windows::Forms::Label^ label107;
-    private: System::Windows::Forms::Label^ label108;
-    private: System::Windows::Forms::Label^ label113;
-    private: System::Windows::Forms::Panel^ panel14;
-    private: System::Windows::Forms::Button^ editroomdelete;
-    private: System::Windows::Forms::Button^ editroomsave;
-    private: System::Windows::Forms::Label^ label114;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomdepartmentgroup;
-    private: System::Windows::Forms::Label^ label115;
-    private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editroomdepartment;
-    private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel6;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomcapacitygroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ editroomcapacity;
-    private: System::Windows::Forms::Label^ label116;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomlabgroup;
-    private: System::Windows::Forms::Label^ label117;
-    private: System::Windows::Forms::Panel^ panel45;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editroomlabyes;
-    private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editroomlabno;
-    private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomnamegroup;
-    private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel11;
-    private: System::Windows::Forms::Label^ label118;
-    private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editroomname;
-    private: System::Windows::Forms::Panel^ editroompanel;
-    private: System::Windows::Forms::Timer^ timer3;
-    private: System::Windows::Forms::Timer^ timer4;
-    private: System::Windows::Forms::Timer^ timer5;
+private: System::Windows::Forms::Label^ label36;
+private: ComponentFactory::Krypton::Toolkit::KryptonDataGridView^ classele;
+private: System::Windows::Forms::Button^ editteachersearchbutton;
+private: System::Windows::Forms::Panel^ panel6;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomsearchgroup;
+private: System::Windows::Forms::Label^ label242;
+private: System::Windows::Forms::Button^ editroomsearchbutton;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editroomsearch;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ kryptonGroupBox10;
+private: System::Windows::Forms::Panel^ panel15;
+private: System::Windows::Forms::Panel^ panel33;
+private: System::Windows::Forms::TableLayoutPanel^ editroomtablepanel;
+private: System::Windows::Forms::Panel^ panel34;
+private: System::Windows::Forms::Label^ label4;
+private: System::Windows::Forms::Label^ label78;
+private: System::Windows::Forms::Label^ label79;
+private: System::Windows::Forms::Label^ label80;
+private: System::Windows::Forms::Label^ label81;
+private: System::Windows::Forms::Label^ label103;
+private: System::Windows::Forms::Label^ label104;
+private: System::Windows::Forms::Label^ label105;
+private: System::Windows::Forms::Label^ label106;
+private: System::Windows::Forms::Label^ label107;
+private: System::Windows::Forms::Label^ label108;
+private: System::Windows::Forms::Label^ label113;
+private: System::Windows::Forms::Panel^ panel14;
+private: System::Windows::Forms::Button^ editroomdelete;
+private: System::Windows::Forms::Button^ editroomsave;
+private: System::Windows::Forms::Label^ label114;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomdepartmentgroup;
+private: System::Windows::Forms::Label^ label115;
+private: ComponentFactory::Krypton::Toolkit::KryptonComboBox^ editroomdepartment;
+private: ComponentFactory::Krypton::Toolkit::KryptonLabel^ kryptonLabel6;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomcapacitygroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonNumericUpDown^ editroomcapacity;
+private: System::Windows::Forms::Label^ label116;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomlabgroup;
+private: System::Windows::Forms::Label^ label117;
+private: System::Windows::Forms::Panel^ panel45;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editroomlabyes;
+private: ComponentFactory::Krypton::Toolkit::KryptonRadioButton^ editroomlabno;
+private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editroomnamegroup;
+private: ComponentFactory::Krypton::Toolkit::KryptonPanel^ kryptonPanel11;
+private: System::Windows::Forms::Label^ label118;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ editroomname;
+private: System::Windows::Forms::Panel^ editroompanel;
+private: System::Windows::Forms::Timer^ timer3;
+private: System::Windows::Forms::Timer^ timer4;
+private: System::Windows::Forms::Timer^ timer5;
 private: System::Windows::Forms::Timer^ timer6;
 private: System::Windows::Forms::Panel^ panel46;
 private: System::Windows::Forms::DataGridViewTextBoxColumn^ dataGridViewTextBoxColumn1;
@@ -417,7 +415,6 @@ private: System::Windows::Forms::Panel^ panel53;
 private: System::Windows::Forms::TableLayoutPanel^ classtablegen;
 private: System::Windows::Forms::Panel^ panel54;
 private: System::Windows::Forms::Label^ label98;
-private: System::Windows::Forms::Label^ label158;
 private: System::Windows::Forms::Label^ label159;
 private: System::Windows::Forms::Label^ label160;
 private: System::Windows::Forms::Label^ label161;
@@ -567,8 +564,6 @@ private: System::Windows::Forms::Label^ label206;
 private: System::Windows::Forms::Label^ label207;
 private: System::Windows::Forms::Button^ addlabgenerate;
 private: System::Windows::Forms::Label^ label192;
-
-
 private: System::Windows::Forms::DataGridViewComboBoxColumn^ esubjectl;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn11;
 private: ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ classlabgroup;
@@ -580,8 +575,15 @@ private: System::Windows::Forms::DataGridViewComboBoxColumn^ Teacherl;
 private: System::Windows::Forms::DataGridViewButtonColumn^ dataGridViewButtonColumn9;
 private: System::Windows::Forms::ToolTip^ toolTip1;
 private: System::Windows::Forms::Panel^ panel66;
+private: System::Windows::Forms::PictureBox^ pictureBox10;
+private: System::Windows::Forms::Label^ label44;
 private: System::Windows::Forms::Label^ label39;
-    public:
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox1;
+private: System::Windows::Forms::Label^ label52;
+private: System::Windows::Forms::Label^ label154;
+private: System::Windows::Forms::Label^ label156;
+private: ComponentFactory::Krypton::Toolkit::KryptonTextBox^ kryptonTextBox2;
+private: System::Windows::Forms::PictureBox^ pictureBox13;
         int animationProgress = 0;
     private: System::Void timer1_Tick_1(System::Object^ sender, System::EventArgs^ e) {
         ComponentFactory::Krypton::Toolkit::KryptonGroupBox^ editsubtitlegroup = dynamic_cast <ComponentFactory::Krypton::Toolkit::KryptonGroupBox^>(panel13->Controls[msclr::interop::marshal_as<String^>(editsublastpanel)]);
@@ -1423,14 +1425,14 @@ private: System::Windows::Forms::Label^ label39;
 
            void change(Button^ clickedButton)
            { // Toggle the text of the clicked button
-               if (clickedButton->Text == "free")
+               if (clickedButton->Text == "Free")
                {
                    clickedButton->Text = "Busy";
                    clickedButton->BackColor = Color::FromArgb(160, 252, 255);
                }
                else
                {
-                   clickedButton->Text = "free";
+                   clickedButton->Text = "Free";
                    clickedButton->BackColor = Color::FromArgb(210, 255, 255);
                }
            }
@@ -2100,7 +2102,7 @@ private: System::Windows::Forms::Label^ label39;
 
                                 if (button != nullptr)
                                 {
-                                    if (button->Text == "Free" || button->Text == "free")
+                                    if (button->Text == "Free" || button->Text == "Free")
                                     {
                                         file << "0,0";
                                     }
@@ -3121,7 +3123,7 @@ private: System::Windows::Forms::Label^ label39;
                 }
                 temp.push_back(tempp);
             }
-            for (std::vector<std::vector<bool>> each : inputs) {//incrementing when timetable free
+            for (std::vector<std::vector<bool>> each : inputs) {//incrementing when timetable Free
                 for (int i = 0; i < each.size(); i++) {
                     for (int j = 0; j < each[i].size(); j++) {
                         temp[i][j] += !each[i][j];
@@ -3223,7 +3225,7 @@ private: System::Windows::Forms::Label^ label39;
                 }
             }
         }
-        void Button_Clickaddlab(Object^ sender, EventArgs^ e) {
+        void Button_Clickaddlabres(Object^ sender, EventArgs^ e) {
             Button^ clickedButton = dynamic_cast<Button^>(sender);
             if (clickedButton != nullptr) {
                 // Toggle the text of the clicked button
@@ -3329,83 +3331,42 @@ private: System::Windows::Forms::Label^ label39;
                 Button^ clickedButton = dynamic_cast<Button^>(sender);
                 int s = std::stoi(msclr::interop::marshal_as<string>(clickedButton->Name).erase(0, 7));
                 if (clickedButton != nullptr) {
-                    if (label39->Text == "Click on the subject you want to replace")
+                    if (label39->Text == "Click on the core subject you want to replace")
                     {
-                        dayi = s / 6;
-                        periodi = (s - 1) % 6;
-                        label39->Text = "Select the timeslot where you want to replace the subject";
                         if (searchname(replacewhitespace(msclr::interop::marshal_as<string>(clickedButton->Text)), "details/subject_file.csv", 0))
                         {
-                            labyesno = false;
+                            kryptonTextBox1->Text = clickedButton->Text;
+                            pictureBox10->Visible = true;
+                            dayi = (s-1) / 6;
+                            periodi = (s - 1) % 6;
+                            label39->Text = "Select the timeslot where you want to replace the subject";
                             vector<vector<float>>coreval = obj.suggestTimeCore(replacewhitespace(msclr::interop::marshal_as<string>(clickedButton->Text)));
                             for (int i = 0; i < 6; i++)
                             {
                                 for (int j = 0; j < 6; j++)
                                 {
                                     Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
-                                    int x = 240 - (coreval[i][j] * 100);
-                                    button->BackColor = Color::FromArgb(x, 240, x);
+                                    int x = 245 - (coreval[i][j] * 100);
+                                    button->BackColor = Color::FromArgb(x, 245, x);
                                 }
                             }
                         }
                         else
                         {
-                            vector<vector<string>> lab = ReadCSVFile("details/lab.csv");
-                            for (const auto& r : lab)
-                            {
-                                if (r[(s-1)*3+1]==replacewhitespace(msclr::interop::marshal_as<string>(clickedButton->Text)))
-                                {
-                                    labyesno = true;
-                                    vector<string> teacherla,roomla;
-                                    string str="";
-                                    for (const char& a : r[(s - 1) * 3 + 2])
-                                    {
-                                        if (a == '|')
-                                        {
-                                           teacherla .push_back(str);
-                                            str = "";
-                                        }
-                                        else
-                                        {
-                                            str += a;
-                                        }
-                                    }
-                                    str = "";
-                                    for (const char& a : r[(s - 1) * 3 + 3])
-                                    {
-                                        if (a == '|')
-                                        {
-                                            roomla.push_back(str);
-                                            str = "";
-                                        }
-                                        else
-                                        {
-                                            str += a;
-                                        }
-                                    }
-                                    vector<vector<float>>coreval = obj.suggestTimeLab(teacherla,roomla);
-                                    for (int i = 0; i < 6; i++)
-                                    {
-                                        for (int j = 0; j < 6; j++)
-                                        {
-                                            Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
-                                            int x = 240 - (coreval[i][j] * 100);
-                                            button->BackColor = Color::FromArgb(x, 240, x);
-                                        }
-                                    }
-                                }
-                            }
-                            
+                            MessageBox::Show("Only core subjects can be replaced", "Message", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
                         }
+                    }
+                    else if (clickedButton->BackColor == Color::FromArgb(245, 245, 245))
+                    {
+                        MessageBox::Show("Selected subject cannot be replaced here", "Message", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
                     }
                     else
                     {
+                        kryptonTextBox1->Text = "";
+                        pictureBox10->Visible = false;
                         dayf = (s-1) / 6;
                         periodf = (s - 1) % 6;
-                        if (labyesno)
-                            obj.moveLab(dayi, periodi, dayf, periodf);
-                        else
-                            obj.moveCore(dayi,periodi,dayf,periodf);
+                        obj.moveCore(dayi, periodi, dayf, periodf);
                         for (int i = 0; i < 6; i++)
                         {
                             for (int j = 0; j < 6; j++)
@@ -3418,15 +3379,14 @@ private: System::Windows::Forms::Label^ label39;
                                 }
                                 else
                                 {
-                                    button->Text = "free";
+                                    button->Text = "Free";
                                     button->BackColor = Color::FromArgb(190, 252, 255);
                                 }
-                                string s = "Teacher :" + obj.teacherTable[i][j] + "\nRoom :" + obj.roomTable[i][j];
-                                ToolTip^ toolTip1 = gcnew ToolTip();
+                                string s = replaceunderscore("Teacher :" + obj.teacherTable[i][j] + "\nRoom :" + obj.roomTable[i][j]);
                                 toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
                             }
                         }
-                        label39->Text = "Click on the subject you want to replace";
+                        label39->Text = "Click on the core subject you want to replace";
                     }
                 }
             }
@@ -3434,6 +3394,103 @@ private: System::Windows::Forms::Label^ label39;
             {
 
             }
+        }
+        void Button_Clickaddlab(Object^ sender, EventArgs^ e)
+        {
+            try
+            {
+                Button^ clickedButton = dynamic_cast<Button^>(sender);
+                int s = std::stoi(msclr::interop::marshal_as<string>(clickedButton->Name).erase(0, 15));
+                if (clickedButton != nullptr) {
+                    if (label156->Text == "Click on the lab subject you want to replace")
+                    {
+                        if (clickedButton->Text!="Free" && clickedButton->Text != "Blocked")
+                        {
+                            kryptonTextBox2->Text = clickedButton->Text;
+                            pictureBox13->Visible = true;
+                            dayi = (s - 1) / 6;
+                            periodi = (s - 1) % 6;
+                            label156->Text = "Select the timeslot where you want to replace the subject";
+                            vector<string> teachlab, roomlab;
+                            string str = "";
+                            for (const char& a : labobj.teacherTable[dayi][periodi])
+                            {
+                                if (a == '|')
+                                {
+                                    teachlab.push_back(str);
+                                    str = "";
+                                }
+                                else
+                                {
+                                    str += a;
+                                }
+                            }
+                            str = "";
+                            for (const char& a : labobj.roomTable[dayi][periodi])
+                            {
+                                if (a == '|')
+                                {
+                                    roomlab.push_back(str);
+                                    str = "";
+                                }
+                                else
+                                {
+                                    str += a;
+                                }
+                            }
+                            vector<vector<float>>labval = labobj.suggestTimeLab(teachlab,roomlab);
+                            for (int i = 0; i < 6; i++)
+                            {
+                                for (int j = 0; j < 6; j++)
+                                {
+                                    Button^ button = dynamic_cast<Button^>(addlabgen->Controls[String::Format("buttonaddlabgen{0}", 6 * i + j + 1)]);
+                                    int x = 245 - (labval[i][j] * 100);
+                                    button->BackColor = Color::FromArgb(x, 245, x);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            MessageBox::Show("Only lab subjects can be replaced", "Message", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+                        }
+                    }
+                    else if (clickedButton->BackColor == Color::FromArgb(245, 245, 245))
+                    {
+                        MessageBox::Show("Selected subject cannot be replaced here", "Message", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+                    }
+                    else
+                    {
+                        kryptonTextBox2->Text = "";
+                        pictureBox13->Visible = false;
+                        dayf = (s - 1) / 6;
+                        periodf = (s - 1) % 6;
+                        labobj.moveLab(dayi, periodi, dayf, periodf);
+                        for (int i = 0; i < 6; i++)
+                        {
+                            for (int j = 0; j < 6; j++)
+                            {
+                                Button^ button = dynamic_cast<Button^>(addlabgen->Controls[String::Format("buttonaddlabgen{0}", 6 * i + j + 1)]);
+                                if (labobj.timeTable[i][j] != "f" && labobj.timeTable[i][j] != "Blocked")
+                                {
+                                    button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(labobj.timeTable[i][j]));
+                                    button->BackColor = Color::FromArgb(160, 250, 255);
+                                    string s = replaceunderscore( "Teacher :" + labobj.teacherTable[i][j] + "\nRoom :" + labobj.roomTable[i][j]);
+                                    toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
+
+                                }
+                                else
+                                {
+                                    button->Text = "Free";
+                                    button->BackColor = Color::FromArgb(190, 250, 255);
+                                }
+                            }
+                        }
+                        label39->Text = "Click on the lab subject you want to replace";
+                    }
+                }
+            }
+            catch(...)
+            { }
         }
         void InitializeMatrix(TableLayoutPanel^ tableLayoutPanel, String^ s, String^ Texts, int x) {
 
@@ -3476,9 +3533,11 @@ private: System::Windows::Forms::Label^ label39;
                         else if (x == 5)
                             button->Click += gcnew EventHandler(this, &MyForm::Button_Clickteacher);
                         else if (x == 6)
-                            button->Click += gcnew EventHandler(this, &MyForm::Button_Clickaddlab);
+                            button->Click += gcnew EventHandler(this, &MyForm::Button_Clickaddlabres);
                         else if (x == 7)
                             button->Click += gcnew EventHandler(this, &MyForm::Button_Clickgen);
+                        else if (x == 8)
+                            button->Click += gcnew EventHandler(this, &MyForm::Button_Clickaddlab);
                         tableLayoutPanel->Controls->Add(button, j, i);
                     }
                 }
@@ -3493,7 +3552,7 @@ private: System::Windows::Forms::Label^ label39;
                     Button^ button = dynamic_cast<Button^>(classtablegen->Controls[String::Format("buttonres{0}", i)]);
                     button->Text = "Reserved";
                     Button^ button1 = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", i)]);
-                    button1->Text = "free";
+                    button1->Text = "Free";
                 }
                 catch (...) {
 
@@ -3599,26 +3658,26 @@ private: System::Windows::Forms::Label^ label39;
         {
             this->components = (gcnew System::ComponentModel::Container());
             System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle81 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle82 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle83 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle84 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle85 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle86 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle87 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle88 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle89 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle90 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle91 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle92 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle93 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle94 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle95 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle96 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle97 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle98 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle99 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle100 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle3 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle4 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle7 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle8 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle9 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle10 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle11 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle12 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle13 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle14 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle15 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle16 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle17 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle18 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle19 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+            System::Windows::Forms::DataGridViewCellStyle^ dataGridViewCellStyle20 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
             this->addsubjectpanel = (gcnew System::Windows::Forms::Panel());
             this->panel11 = (gcnew System::Windows::Forms::Panel());
             this->panel48 = (gcnew System::Windows::Forms::Panel());
@@ -3852,45 +3911,9 @@ private: System::Windows::Forms::Label^ label39;
             this->classpanel = (gcnew System::Windows::Forms::Panel());
             this->panel29 = (gcnew System::Windows::Forms::Panel());
             this->panel27 = (gcnew System::Windows::Forms::Panel());
-            this->classgengroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->panel8 = (gcnew System::Windows::Forms::Panel());
-            this->panel25 = (gcnew System::Windows::Forms::Panel());
-            this->classtablegen1 = (gcnew System::Windows::Forms::TableLayoutPanel());
-            this->panel26 = (gcnew System::Windows::Forms::Panel());
-            this->label34 = (gcnew System::Windows::Forms::Label());
-            this->label53 = (gcnew System::Windows::Forms::Label());
-            this->label54 = (gcnew System::Windows::Forms::Label());
-            this->label55 = (gcnew System::Windows::Forms::Label());
-            this->label56 = (gcnew System::Windows::Forms::Label());
-            this->label57 = (gcnew System::Windows::Forms::Label());
-            this->label58 = (gcnew System::Windows::Forms::Label());
-            this->label59 = (gcnew System::Windows::Forms::Label());
-            this->label60 = (gcnew System::Windows::Forms::Label());
-            this->label61 = (gcnew System::Windows::Forms::Label());
-            this->label65 = (gcnew System::Windows::Forms::Label());
-            this->label135 = (gcnew System::Windows::Forms::Label());
             this->classroomgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
             this->label35 = (gcnew System::Windows::Forms::Label());
             this->classdefaultrooms = (gcnew ComponentFactory::Krypton::Toolkit::KryptonCheckedListBox());
-            this->label158 = (gcnew System::Windows::Forms::Label());
-            this->classresgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
-            this->label39 = (gcnew System::Windows::Forms::Label());
-            this->panel50 = (gcnew System::Windows::Forms::Panel());
-            this->panel53 = (gcnew System::Windows::Forms::Panel());
-            this->classtablegen = (gcnew System::Windows::Forms::TableLayoutPanel());
-            this->panel54 = (gcnew System::Windows::Forms::Panel());
-            this->label98 = (gcnew System::Windows::Forms::Label());
-            this->label159 = (gcnew System::Windows::Forms::Label());
-            this->label160 = (gcnew System::Windows::Forms::Label());
-            this->label161 = (gcnew System::Windows::Forms::Label());
-            this->label162 = (gcnew System::Windows::Forms::Label());
-            this->label163 = (gcnew System::Windows::Forms::Label());
-            this->label164 = (gcnew System::Windows::Forms::Label());
-            this->label166 = (gcnew System::Windows::Forms::Label());
-            this->label167 = (gcnew System::Windows::Forms::Label());
-            this->label168 = (gcnew System::Windows::Forms::Label());
-            this->label169 = (gcnew System::Windows::Forms::Label());
-            this->label170 = (gcnew System::Windows::Forms::Label());
             this->classlabgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
             this->label32 = (gcnew System::Windows::Forms::Label());
             this->kryptonDataGridView1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonDataGridView());
@@ -3918,6 +3941,45 @@ private: System::Windows::Forms::Label^ label39;
             this->kryptonPanel15 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonPanel());
             this->label119 = (gcnew System::Windows::Forms::Label());
             this->classname = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->classresgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->label52 = (gcnew System::Windows::Forms::Label());
+            this->panel50 = (gcnew System::Windows::Forms::Panel());
+            this->panel53 = (gcnew System::Windows::Forms::Panel());
+            this->classtablegen = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->panel54 = (gcnew System::Windows::Forms::Panel());
+            this->label98 = (gcnew System::Windows::Forms::Label());
+            this->label159 = (gcnew System::Windows::Forms::Label());
+            this->label160 = (gcnew System::Windows::Forms::Label());
+            this->label161 = (gcnew System::Windows::Forms::Label());
+            this->label162 = (gcnew System::Windows::Forms::Label());
+            this->label163 = (gcnew System::Windows::Forms::Label());
+            this->label164 = (gcnew System::Windows::Forms::Label());
+            this->label166 = (gcnew System::Windows::Forms::Label());
+            this->label167 = (gcnew System::Windows::Forms::Label());
+            this->label168 = (gcnew System::Windows::Forms::Label());
+            this->label169 = (gcnew System::Windows::Forms::Label());
+            this->label170 = (gcnew System::Windows::Forms::Label());
+            this->classgengroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->pictureBox10 = (gcnew System::Windows::Forms::PictureBox());
+            this->label44 = (gcnew System::Windows::Forms::Label());
+            this->label39 = (gcnew System::Windows::Forms::Label());
+            this->kryptonTextBox1 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
+            this->panel8 = (gcnew System::Windows::Forms::Panel());
+            this->panel25 = (gcnew System::Windows::Forms::Panel());
+            this->classtablegen1 = (gcnew System::Windows::Forms::TableLayoutPanel());
+            this->panel26 = (gcnew System::Windows::Forms::Panel());
+            this->label34 = (gcnew System::Windows::Forms::Label());
+            this->label53 = (gcnew System::Windows::Forms::Label());
+            this->label54 = (gcnew System::Windows::Forms::Label());
+            this->label55 = (gcnew System::Windows::Forms::Label());
+            this->label56 = (gcnew System::Windows::Forms::Label());
+            this->label57 = (gcnew System::Windows::Forms::Label());
+            this->label58 = (gcnew System::Windows::Forms::Label());
+            this->label59 = (gcnew System::Windows::Forms::Label());
+            this->label60 = (gcnew System::Windows::Forms::Label());
+            this->label61 = (gcnew System::Windows::Forms::Label());
+            this->label65 = (gcnew System::Windows::Forms::Label());
+            this->label135 = (gcnew System::Windows::Forms::Label());
             this->addteacherpanel = (gcnew System::Windows::Forms::Panel());
             this->panel16 = (gcnew System::Windows::Forms::Panel());
             this->addteacheremailidgroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
@@ -4101,6 +4163,10 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabgenerate = (gcnew System::Windows::Forms::Button());
             this->addlabsave = (gcnew System::Windows::Forms::Button());
             this->addlabgengroup = (gcnew ComponentFactory::Krypton::Toolkit::KryptonGroupBox());
+            this->pictureBox13 = (gcnew System::Windows::Forms::PictureBox());
+            this->label154 = (gcnew System::Windows::Forms::Label());
+            this->label156 = (gcnew System::Windows::Forms::Label());
+            this->kryptonTextBox2 = (gcnew ComponentFactory::Krypton::Toolkit::KryptonTextBox());
             this->panel63 = (gcnew System::Windows::Forms::Panel());
             this->panel64 = (gcnew System::Windows::Forms::Panel());
             this->addlabgen = (gcnew System::Windows::Forms::TableLayoutPanel());
@@ -4304,18 +4370,10 @@ private: System::Windows::Forms::Label^ label39;
             this->classpanel->SuspendLayout();
             this->panel29->SuspendLayout();
             this->panel27->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->BeginInit();
-            this->classgengroup->Panel->SuspendLayout();
-            this->classgengroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classroomgroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classroomgroup->Panel))->BeginInit();
             this->classroomgroup->Panel->SuspendLayout();
             this->classroomgroup->SuspendLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup))->BeginInit();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup->Panel))->BeginInit();
-            this->classresgroup->Panel->SuspendLayout();
-            this->classresgroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabgroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabgroup->Panel))->BeginInit();
             this->classlabgroup->Panel->SuspendLayout();
@@ -4345,6 +4403,15 @@ private: System::Windows::Forms::Label^ label39;
             this->classnamegroup->Panel->SuspendLayout();
             this->classnamegroup->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel15))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup->Panel))->BeginInit();
+            this->classresgroup->Panel->SuspendLayout();
+            this->classresgroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->BeginInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->BeginInit();
+            this->classgengroup->Panel->SuspendLayout();
+            this->classgengroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->BeginInit();
             this->addteacherpanel->SuspendLayout();
             this->panel16->SuspendLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addteacheremailidgroup))->BeginInit();
@@ -4468,6 +4535,7 @@ private: System::Windows::Forms::Label^ label39;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabgengroup->Panel))->BeginInit();
             this->addlabgengroup->Panel->SuspendLayout();
             this->addlabgengroup->SuspendLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabelegroup))->BeginInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabelegroup->Panel))->BeginInit();
             this->addlabelegroup->Panel->SuspendLayout();
@@ -4499,7 +4567,7 @@ private: System::Windows::Forms::Label^ label39;
             // addsubjectpanel
             // 
             this->addsubjectpanel->AutoScroll = true;
-            this->addsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->addsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->addsubjectpanel->Controls->Add(this->panel11);
             this->addsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -4972,13 +5040,13 @@ private: System::Windows::Forms::Label^ label39;
             this->sedataGridView->AllowUserToOrderColumns = true;
             this->sedataGridView->AllowUserToResizeColumns = false;
             this->sedataGridView->AllowUserToResizeRows = false;
-            dataGridViewCellStyle81->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle1->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle81->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle81->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle1->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle1->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle81->SelectionForeColor = System::Drawing::Color::Black;
-            this->sedataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle81;
+            dataGridViewCellStyle1->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this->sedataGridView->ColumnHeadersHeight = 36;
             this->sedataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->TeacherName,
@@ -4994,11 +5062,11 @@ private: System::Windows::Forms::Label^ label39;
             this->sedataGridView->Name = L"sedataGridView";
             this->sedataGridView->RowHeadersVisible = false;
             this->sedataGridView->RowHeadersWidth = 62;
-            dataGridViewCellStyle82->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle82->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle2->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle2->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle82->SelectionForeColor = System::Drawing::Color::Black;
-            this->sedataGridView->RowsDefaultCellStyle = dataGridViewCellStyle82;
+            dataGridViewCellStyle2->SelectionForeColor = System::Drawing::Color::Black;
+            this->sedataGridView->RowsDefaultCellStyle = dataGridViewCellStyle2;
             this->sedataGridView->RowTemplate->Height = 28;
             this->sedataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sedataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -5484,7 +5552,7 @@ private: System::Windows::Forms::Label^ label39;
             // 
             this->addclassroompanel->AutoScroll = true;
             this->addclassroompanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
-                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->addclassroompanel->Controls->Add(this->panel7);
             this->addclassroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addclassroompanel->Location = System::Drawing::Point(0, 0);
@@ -6038,7 +6106,7 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // Homepanel
             // 
-            this->Homepanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
+            this->Homepanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->Homepanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->Homepanel->Location = System::Drawing::Point(0, 0);
@@ -6058,6 +6126,8 @@ private: System::Windows::Forms::Label^ label39;
             // editteacherpanel
             // 
             this->editteacherpanel->AutoScroll = true;
+            this->editteacherpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->editteacherpanel->Controls->Add(this->panel5);
             this->editteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editteacherpanel->Location = System::Drawing::Point(0, 0);
@@ -6771,7 +6841,7 @@ private: System::Windows::Forms::Label^ label39;
             this->kryptonPanel6->Name = L"kryptonPanel6";
             this->kryptonPanel6->Size = System::Drawing::Size(1806, 76);
             this->kryptonPanel6->StateCommon->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
-                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->kryptonPanel6->TabIndex = 338;
             // 
             // kryptonLabel1
@@ -6837,6 +6907,8 @@ private: System::Windows::Forms::Label^ label39;
             // settingspanel
             // 
             this->settingspanel->AutoScroll = true;
+            this->settingspanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->settingspanel->Controls->Add(this->panel36);
             this->settingspanel->Controls->Add(this->label112);
             this->settingspanel->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -8030,23 +8102,20 @@ private: System::Windows::Forms::Label^ label39;
             // classpanel
             // 
             this->classpanel->AutoScroll = true;
-            this->classpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(252)),
+            this->classpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->classpanel->Controls->Add(this->panel29);
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->classpanel->Location = System::Drawing::Point(364, 76);
+            this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1442, 974);
+            this->classpanel->Size = System::Drawing::Size(1806, 1050);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
             // panel29
             // 
             this->panel29->Controls->Add(this->panel27);
-            this->panel29->Controls->Add(this->classgengroup);
             this->panel29->Controls->Add(this->classroomgroup);
-            this->panel29->Controls->Add(this->label158);
-            this->panel29->Controls->Add(this->classresgroup);
             this->panel29->Controls->Add(this->classlabgroup);
             this->panel29->Controls->Add(this->classelegroup);
             this->panel29->Controls->Add(this->classcoregroup);
@@ -8054,9 +8123,11 @@ private: System::Windows::Forms::Label^ label39;
             this->panel29->Controls->Add(this->classbranchgroup);
             this->panel29->Controls->Add(this->kryptonLabel10);
             this->panel29->Controls->Add(this->classnamegroup);
+            this->panel29->Controls->Add(this->classresgroup);
+            this->panel29->Controls->Add(this->classgengroup);
             this->panel29->Location = System::Drawing::Point(178, 14);
             this->panel29->Name = L"panel29";
-            this->panel29->Size = System::Drawing::Size(1194, 3296);
+            this->panel29->Size = System::Drawing::Size(1171, 3259);
             this->panel29->TabIndex = 346;
             this->panel29->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel29_Paint);
             // 
@@ -8071,251 +8142,6 @@ private: System::Windows::Forms::Label^ label39;
             this->panel27->Size = System::Drawing::Size(916, 80);
             this->panel27->TabIndex = 350;
             // 
-            // classgengroup
-            // 
-            this->classgengroup->CaptionOverlap = 1;
-            this->classgengroup->CaptionVisible = false;
-            this->classgengroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classgengroup->Location = System::Drawing::Point(27, 3986);
-            this->classgengroup->Name = L"classgengroup";
-            // 
-            // classgengroup.Panel
-            // 
-            this->classgengroup->Panel->Controls->Add(this->panel8);
-            this->classgengroup->Panel->Controls->Add(this->panel25);
-            this->classgengroup->Panel->Controls->Add(this->classtablegen1);
-            this->classgengroup->Panel->Controls->Add(this->panel26);
-            this->classgengroup->Panel->Controls->Add(this->label34);
-            this->classgengroup->Panel->Controls->Add(this->label53);
-            this->classgengroup->Panel->Controls->Add(this->label54);
-            this->classgengroup->Panel->Controls->Add(this->label55);
-            this->classgengroup->Panel->Controls->Add(this->label56);
-            this->classgengroup->Panel->Controls->Add(this->label57);
-            this->classgengroup->Panel->Controls->Add(this->label58);
-            this->classgengroup->Panel->Controls->Add(this->label59);
-            this->classgengroup->Panel->Controls->Add(this->label60);
-            this->classgengroup->Panel->Controls->Add(this->label61);
-            this->classgengroup->Panel->Controls->Add(this->label65);
-            this->classgengroup->Panel->Controls->Add(this->label135);
-            this->classgengroup->Size = System::Drawing::Size(1126, 642);
-            this->classgengroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->classgengroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->classgengroup->StateCommon->Border->ColorAngle = 50;
-            this->classgengroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->classgengroup->StateCommon->Border->Rounding = 7;
-            this->classgengroup->StateCommon->Border->Width = 1;
-            this->classgengroup->TabIndex = 349;
-            this->classgengroup->Enter += gcnew System::EventHandler(this, &MyForm::classgengroup_Enter);
-            // 
-            // panel8
-            // 
-            this->panel8->BackColor = System::Drawing::Color::White;
-            this->panel8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel8.BackgroundImage")));
-            this->panel8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel8->Location = System::Drawing::Point(742, 159);
-            this->panel8->Name = L"panel8";
-            this->panel8->Size = System::Drawing::Size(44, 420);
-            this->panel8->TabIndex = 1;
-            // 
-            // panel25
-            // 
-            this->panel25->BackColor = System::Drawing::Color::White;
-            this->panel25->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel25.BackgroundImage")));
-            this->panel25->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel25->Location = System::Drawing::Point(408, 159);
-            this->panel25->Name = L"panel25";
-            this->panel25->Size = System::Drawing::Size(44, 430);
-            this->panel25->TabIndex = 300;
-            // 
-            // classtablegen1
-            // 
-            this->classtablegen1->BackColor = System::Drawing::Color::White;
-            this->classtablegen1->ColumnCount = 8;
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66354F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66743F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
-                50)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66354F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66686F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
-                50)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66887F)));
-            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66976F)));
-            this->classtablegen1->Location = System::Drawing::Point(122, 159);
-            this->classtablegen1->Name = L"classtablegen1";
-            this->classtablegen1->RowCount = 6;
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen1->Size = System::Drawing::Size(950, 430);
-            this->classtablegen1->TabIndex = 260;
-            // 
-            // panel26
-            // 
-            this->panel26->BackColor = System::Drawing::Color::White;
-            this->panel26->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel26.BackgroundImage")));
-            this->panel26->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel26->Location = System::Drawing::Point(398, 159);
-            this->panel26->Name = L"panel26";
-            this->panel26->Size = System::Drawing::Size(82, 412);
-            this->panel26->TabIndex = 2;
-            // 
-            // label34
-            // 
-            this->label34->AutoSize = true;
-            this->label34->BackColor = System::Drawing::Color::White;
-            this->label34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label34->Location = System::Drawing::Point(21, 178);
-            this->label34->Name = L"label34";
-            this->label34->Size = System::Drawing::Size(85, 28);
-            this->label34->TabIndex = 261;
-            this->label34->Text = L"Monday";
-            // 
-            // label53
-            // 
-            this->label53->AutoSize = true;
-            this->label53->BackColor = System::Drawing::Color::White;
-            this->label53->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label53->Location = System::Drawing::Point(27, 248);
-            this->label53->Name = L"label53";
-            this->label53->Size = System::Drawing::Size(83, 28);
-            this->label53->TabIndex = 262;
-            this->label53->Text = L"Tuesday";
-            // 
-            // label54
-            // 
-            this->label54->AutoSize = true;
-            this->label54->BackColor = System::Drawing::Color::White;
-            this->label54->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label54->Location = System::Drawing::Point(140, 118);
-            this->label54->Name = L"label54";
-            this->label54->Size = System::Drawing::Size(105, 28);
-            this->label54->TabIndex = 294;
-            this->label54->Text = L"9:00-10:00";
-            // 
-            // label55
-            // 
-            this->label55->AutoSize = true;
-            this->label55->BackColor = System::Drawing::Color::White;
-            this->label55->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label55->Location = System::Drawing::Point(10, 326);
-            this->label55->Name = L"label55";
-            this->label55->Size = System::Drawing::Size(113, 28);
-            this->label55->TabIndex = 263;
-            this->label55->Text = L"Wednesday";
-            // 
-            // label56
-            // 
-            this->label56->AutoSize = true;
-            this->label56->BackColor = System::Drawing::Color::White;
-            this->label56->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label56->Location = System::Drawing::Point(274, 118);
-            this->label56->Name = L"label56";
-            this->label56->Size = System::Drawing::Size(116, 28);
-            this->label56->TabIndex = 295;
-            this->label56->Text = L"10:00-11:00";
-            // 
-            // label57
-            // 
-            this->label57->AutoSize = true;
-            this->label57->BackColor = System::Drawing::Color::White;
-            this->label57->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label57->Location = System::Drawing::Point(10, 388);
-            this->label57->Name = L"label57";
-            this->label57->Size = System::Drawing::Size(91, 28);
-            this->label57->TabIndex = 264;
-            this->label57->Text = L"Thursday";
-            // 
-            // label58
-            // 
-            this->label58->AutoSize = true;
-            this->label58->BackColor = System::Drawing::Color::White;
-            this->label58->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label58->Location = System::Drawing::Point(460, 118);
-            this->label58->Name = L"label58";
-            this->label58->Size = System::Drawing::Size(116, 28);
-            this->label58->TabIndex = 296;
-            this->label58->Text = L"11:30-12:30";
-            // 
-            // label59
-            // 
-            this->label59->AutoSize = true;
-            this->label59->BackColor = System::Drawing::Color::White;
-            this->label59->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label59->Location = System::Drawing::Point(26, 465);
-            this->label59->Name = L"label59";
-            this->label59->Size = System::Drawing::Size(66, 28);
-            this->label59->TabIndex = 265;
-            this->label59->Text = L"Friday";
-            // 
-            // label60
-            // 
-            this->label60->AutoSize = true;
-            this->label60->BackColor = System::Drawing::Color::White;
-            this->label60->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label60->Location = System::Drawing::Point(615, 118);
-            this->label60->Name = L"label60";
-            this->label60->Size = System::Drawing::Size(105, 28);
-            this->label60->TabIndex = 297;
-            this->label60->Text = L"12:30-1:30";
-            // 
-            // label61
-            // 
-            this->label61->AutoSize = true;
-            this->label61->BackColor = System::Drawing::Color::White;
-            this->label61->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label61->Location = System::Drawing::Point(26, 542);
-            this->label61->Name = L"label61";
-            this->label61->Size = System::Drawing::Size(90, 28);
-            this->label61->TabIndex = 266;
-            this->label61->Text = L"Saturday";
-            // 
-            // label65
-            // 
-            this->label65->AutoSize = true;
-            this->label65->BackColor = System::Drawing::Color::White;
-            this->label65->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label65->Location = System::Drawing::Point(808, 116);
-            this->label65->Name = L"label65";
-            this->label65->Size = System::Drawing::Size(94, 28);
-            this->label65->TabIndex = 298;
-            this->label65->Text = L"2:30-3:30";
-            // 
-            // label135
-            // 
-            this->label135->AutoSize = true;
-            this->label135->BackColor = System::Drawing::Color::White;
-            this->label135->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label135->Location = System::Drawing::Point(939, 116);
-            this->label135->Name = L"label135";
-            this->label135->Size = System::Drawing::Size(94, 28);
-            this->label135->TabIndex = 299;
-            this->label135->Text = L"3:30-4:30";
-            // 
             // classroomgroup
             // 
             this->classroomgroup->CaptionOverlap = 1;
@@ -8326,7 +8152,6 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // classroomgroup.Panel
             // 
-            this->classroomgroup->Panel->Controls->Add(this->label39);
             this->classroomgroup->Panel->Controls->Add(this->label35);
             this->classroomgroup->Panel->Controls->Add(this->classdefaultrooms);
             this->classroomgroup->Size = System::Drawing::Size(1126, 357);
@@ -8376,277 +8201,6 @@ private: System::Windows::Forms::Label^ label39;
             this->classdefaultrooms->StateCommon->Border->Width = 1;
             this->classdefaultrooms->TabIndex = 343;
             // 
-            // label158
-            // 
-            this->label158->AutoSize = true;
-            this->label158->BackColor = System::Drawing::Color::White;
-            this->label158->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label158->Location = System::Drawing::Point(108, 4000);
-            this->label158->Name = L"label158";
-            this->label158->Size = System::Drawing::Size(838, 28);
-            this->label158->TabIndex = 344;
-            this->label158->Text = L"Select the slots to be reserved and then click on generate to view the generated "
-                L"timetable";
-            // 
-            // classresgroup
-            // 
-            this->classresgroup->CaptionOverlap = 1;
-            this->classresgroup->CaptionVisible = false;
-            this->classresgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
-            this->classresgroup->Location = System::Drawing::Point(22, 2624);
-            this->classresgroup->Name = L"classresgroup";
-            // 
-            // classresgroup.Panel
-            // 
-            this->classresgroup->Panel->Controls->Add(this->panel50);
-            this->classresgroup->Panel->Controls->Add(this->panel53);
-            this->classresgroup->Panel->Controls->Add(this->classtablegen);
-            this->classresgroup->Panel->Controls->Add(this->panel54);
-            this->classresgroup->Panel->Controls->Add(this->label98);
-            this->classresgroup->Panel->Controls->Add(this->label159);
-            this->classresgroup->Panel->Controls->Add(this->label160);
-            this->classresgroup->Panel->Controls->Add(this->label161);
-            this->classresgroup->Panel->Controls->Add(this->label162);
-            this->classresgroup->Panel->Controls->Add(this->label163);
-            this->classresgroup->Panel->Controls->Add(this->label164);
-            this->classresgroup->Panel->Controls->Add(this->label166);
-            this->classresgroup->Panel->Controls->Add(this->label167);
-            this->classresgroup->Panel->Controls->Add(this->label168);
-            this->classresgroup->Panel->Controls->Add(this->label169);
-            this->classresgroup->Panel->Controls->Add(this->label170);
-            this->classresgroup->Size = System::Drawing::Size(1126, 642);
-            this->classresgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
-            this->classresgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
-                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            this->classresgroup->StateCommon->Border->ColorAngle = 50;
-            this->classresgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
-                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
-            this->classresgroup->StateCommon->Border->Rounding = 7;
-            this->classresgroup->StateCommon->Border->Width = 1;
-            this->classresgroup->TabIndex = 348;
-            this->classresgroup->Enter += gcnew System::EventHandler(this, &MyForm::classresgroup_Enter);
-            // 
-            // label39
-            // 
-            this->label39->AutoSize = true;
-            this->label39->BackColor = System::Drawing::Color::White;
-            this->label39->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label39->ForeColor = System::Drawing::Color::Black;
-            this->label39->Location = System::Drawing::Point(587, 253);
-            this->label39->Name = L"label39";
-            this->label39->Size = System::Drawing::Size(377, 28);
-            this->label39->TabIndex = 347;
-            this->label39->Text = L"Click on the subject you want to replace";
-            // 
-            // panel50
-            // 
-            this->panel50->BackColor = System::Drawing::Color::White;
-            this->panel50->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel50.BackgroundImage")));
-            this->panel50->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel50->Location = System::Drawing::Point(742, 159);
-            this->panel50->Name = L"panel50";
-            this->panel50->Size = System::Drawing::Size(44, 420);
-            this->panel50->TabIndex = 1;
-            // 
-            // panel53
-            // 
-            this->panel53->BackColor = System::Drawing::Color::White;
-            this->panel53->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel53.BackgroundImage")));
-            this->panel53->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel53->Location = System::Drawing::Point(408, 159);
-            this->panel53->Name = L"panel53";
-            this->panel53->Size = System::Drawing::Size(44, 430);
-            this->panel53->TabIndex = 300;
-            // 
-            // classtablegen
-            // 
-            this->classtablegen->BackColor = System::Drawing::Color::White;
-            this->classtablegen->ColumnCount = 8;
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66354F)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66743F)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
-                50)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66354F)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66686F)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
-                50)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66887F)));
-            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
-                16.66976F)));
-            this->classtablegen->Location = System::Drawing::Point(122, 159);
-            this->classtablegen->Name = L"classtablegen";
-            this->classtablegen->RowCount = 6;
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
-            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
-            this->classtablegen->Size = System::Drawing::Size(950, 430);
-            this->classtablegen->TabIndex = 260;
-            // 
-            // panel54
-            // 
-            this->panel54->BackColor = System::Drawing::Color::White;
-            this->panel54->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel54.BackgroundImage")));
-            this->panel54->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel54->Location = System::Drawing::Point(398, 159);
-            this->panel54->Name = L"panel54";
-            this->panel54->Size = System::Drawing::Size(82, 412);
-            this->panel54->TabIndex = 2;
-            // 
-            // label98
-            // 
-            this->label98->AutoSize = true;
-            this->label98->BackColor = System::Drawing::Color::White;
-            this->label98->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label98->Location = System::Drawing::Point(21, 178);
-            this->label98->Name = L"label98";
-            this->label98->Size = System::Drawing::Size(85, 28);
-            this->label98->TabIndex = 261;
-            this->label98->Text = L"Monday";
-            // 
-            // label159
-            // 
-            this->label159->AutoSize = true;
-            this->label159->BackColor = System::Drawing::Color::White;
-            this->label159->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label159->Location = System::Drawing::Point(27, 248);
-            this->label159->Name = L"label159";
-            this->label159->Size = System::Drawing::Size(83, 28);
-            this->label159->TabIndex = 262;
-            this->label159->Text = L"Tuesday";
-            // 
-            // label160
-            // 
-            this->label160->AutoSize = true;
-            this->label160->BackColor = System::Drawing::Color::White;
-            this->label160->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label160->Location = System::Drawing::Point(140, 118);
-            this->label160->Name = L"label160";
-            this->label160->Size = System::Drawing::Size(105, 28);
-            this->label160->TabIndex = 294;
-            this->label160->Text = L"9:00-10:00";
-            // 
-            // label161
-            // 
-            this->label161->AutoSize = true;
-            this->label161->BackColor = System::Drawing::Color::White;
-            this->label161->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label161->Location = System::Drawing::Point(10, 326);
-            this->label161->Name = L"label161";
-            this->label161->Size = System::Drawing::Size(113, 28);
-            this->label161->TabIndex = 263;
-            this->label161->Text = L"Wednesday";
-            // 
-            // label162
-            // 
-            this->label162->AutoSize = true;
-            this->label162->BackColor = System::Drawing::Color::White;
-            this->label162->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label162->Location = System::Drawing::Point(274, 118);
-            this->label162->Name = L"label162";
-            this->label162->Size = System::Drawing::Size(116, 28);
-            this->label162->TabIndex = 295;
-            this->label162->Text = L"10:00-11:00";
-            // 
-            // label163
-            // 
-            this->label163->AutoSize = true;
-            this->label163->BackColor = System::Drawing::Color::White;
-            this->label163->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label163->Location = System::Drawing::Point(10, 388);
-            this->label163->Name = L"label163";
-            this->label163->Size = System::Drawing::Size(91, 28);
-            this->label163->TabIndex = 264;
-            this->label163->Text = L"Thursday";
-            // 
-            // label164
-            // 
-            this->label164->AutoSize = true;
-            this->label164->BackColor = System::Drawing::Color::White;
-            this->label164->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label164->Location = System::Drawing::Point(460, 118);
-            this->label164->Name = L"label164";
-            this->label164->Size = System::Drawing::Size(116, 28);
-            this->label164->TabIndex = 296;
-            this->label164->Text = L"11:30-12:30";
-            // 
-            // label166
-            // 
-            this->label166->AutoSize = true;
-            this->label166->BackColor = System::Drawing::Color::White;
-            this->label166->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label166->Location = System::Drawing::Point(26, 465);
-            this->label166->Name = L"label166";
-            this->label166->Size = System::Drawing::Size(66, 28);
-            this->label166->TabIndex = 265;
-            this->label166->Text = L"Friday";
-            // 
-            // label167
-            // 
-            this->label167->AutoSize = true;
-            this->label167->BackColor = System::Drawing::Color::White;
-            this->label167->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label167->Location = System::Drawing::Point(615, 118);
-            this->label167->Name = L"label167";
-            this->label167->Size = System::Drawing::Size(105, 28);
-            this->label167->TabIndex = 297;
-            this->label167->Text = L"12:30-1:30";
-            // 
-            // label168
-            // 
-            this->label168->AutoSize = true;
-            this->label168->BackColor = System::Drawing::Color::White;
-            this->label168->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label168->Location = System::Drawing::Point(26, 542);
-            this->label168->Name = L"label168";
-            this->label168->Size = System::Drawing::Size(90, 28);
-            this->label168->TabIndex = 266;
-            this->label168->Text = L"Saturday";
-            // 
-            // label169
-            // 
-            this->label169->AutoSize = true;
-            this->label169->BackColor = System::Drawing::Color::White;
-            this->label169->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label169->Location = System::Drawing::Point(808, 116);
-            this->label169->Name = L"label169";
-            this->label169->Size = System::Drawing::Size(94, 28);
-            this->label169->TabIndex = 298;
-            this->label169->Text = L"2:30-3:30";
-            // 
-            // label170
-            // 
-            this->label170->AutoSize = true;
-            this->label170->BackColor = System::Drawing::Color::White;
-            this->label170->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-                static_cast<System::Byte>(0)));
-            this->label170->Location = System::Drawing::Point(939, 116);
-            this->label170->Name = L"label170";
-            this->label170->Size = System::Drawing::Size(94, 28);
-            this->label170->TabIndex = 299;
-            this->label170->Text = L"3:30-4:30";
-            // 
             // classlabgroup
             // 
             this->classlabgroup->CaptionOverlap = 1;
@@ -8688,17 +8242,17 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // kryptonDataGridView1
             // 
-            this->kryptonDataGridView1->AllowUserToOrderColumns = true;
             this->kryptonDataGridView1->AllowUserToResizeColumns = false;
             this->kryptonDataGridView1->AllowUserToResizeRows = false;
-            dataGridViewCellStyle83->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle3->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle83->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle83->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle3->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle3->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle83->SelectionForeColor = System::Drawing::Color::Black;
-            this->kryptonDataGridView1->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle83;
+            dataGridViewCellStyle3->SelectionForeColor = System::Drawing::Color::Black;
+            this->kryptonDataGridView1->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this->kryptonDataGridView1->ColumnHeadersHeight = 36;
+            this->kryptonDataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->kryptonDataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->classlabbatch,
                     this->dataGridViewButtonColumn3
@@ -8713,11 +8267,11 @@ private: System::Windows::Forms::Label^ label39;
             this->kryptonDataGridView1->Name = L"kryptonDataGridView1";
             this->kryptonDataGridView1->RowHeadersVisible = false;
             this->kryptonDataGridView1->RowHeadersWidth = 62;
-            dataGridViewCellStyle84->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle84->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle4->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle4->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle84->SelectionForeColor = System::Drawing::Color::Black;
-            this->kryptonDataGridView1->RowsDefaultCellStyle = dataGridViewCellStyle84;
+            dataGridViewCellStyle4->SelectionForeColor = System::Drawing::Color::Black;
+            this->kryptonDataGridView1->RowsDefaultCellStyle = dataGridViewCellStyle4;
             this->kryptonDataGridView1->RowTemplate->Height = 28;
             this->kryptonDataGridView1->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->kryptonDataGridView1->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -8807,17 +8361,17 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // classele
             // 
-            this->classele->AllowUserToOrderColumns = true;
             this->classele->AllowUserToResizeColumns = false;
             this->classele->AllowUserToResizeRows = false;
-            dataGridViewCellStyle85->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle5->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle85->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle85->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle5->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle5->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle85->SelectionForeColor = System::Drawing::Color::Black;
-            this->classele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle5->SelectionForeColor = System::Drawing::Color::Black;
+            this->classele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this->classele->ColumnHeadersHeight = 36;
+            this->classele->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->classele->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->esubject, this->dataGridViewButtonColumn5 });
             this->classele->GridStyles->Style = ComponentFactory::Krypton::Toolkit::DataGridViewStyle::Sheet;
             this->classele->GridStyles->StyleBackground = ComponentFactory::Krypton::Toolkit::PaletteBackStyle::GridBackgroundSheet;
@@ -8829,11 +8383,11 @@ private: System::Windows::Forms::Label^ label39;
             this->classele->Name = L"classele";
             this->classele->RowHeadersVisible = false;
             this->classele->RowHeadersWidth = 62;
-            dataGridViewCellStyle86->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle86->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle6->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle6->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle86->SelectionForeColor = System::Drawing::Color::Black;
-            this->classele->RowsDefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle6->SelectionForeColor = System::Drawing::Color::Black;
+            this->classele->RowsDefaultCellStyle = dataGridViewCellStyle6;
             this->classele->RowTemplate->Height = 28;
             this->classele->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classele->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -8924,17 +8478,17 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // classcore
             // 
-            this->classcore->AllowUserToOrderColumns = true;
             this->classcore->AllowUserToResizeColumns = false;
             this->classcore->AllowUserToResizeRows = false;
-            dataGridViewCellStyle87->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle7->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle87->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle87->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle7->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle7->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle87->SelectionForeColor = System::Drawing::Color::Black;
-            this->classcore->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle7->SelectionForeColor = System::Drawing::Color::Black;
+            this->classcore->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this->classcore->ColumnHeadersHeight = 36;
+            this->classcore->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->classcore->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(3) {
                 this->csubject, this->cteacher,
                     this->dataGridViewButtonColumn6
@@ -8949,11 +8503,11 @@ private: System::Windows::Forms::Label^ label39;
             this->classcore->Name = L"classcore";
             this->classcore->RowHeadersVisible = false;
             this->classcore->RowHeadersWidth = 62;
-            dataGridViewCellStyle88->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle88->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle8->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle8->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle88->SelectionForeColor = System::Drawing::Color::Black;
-            this->classcore->RowsDefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle8->SelectionForeColor = System::Drawing::Color::Black;
+            this->classcore->RowsDefaultCellStyle = dataGridViewCellStyle8;
             this->classcore->RowTemplate->Height = 28;
             this->classcore->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->classcore->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -9202,9 +8756,567 @@ private: System::Windows::Forms::Label^ label39;
             this->classname->TabIndex = 325;
             this->classname->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::KeyPress);
             // 
+            // classresgroup
+            // 
+            this->classresgroup->CaptionOverlap = 1;
+            this->classresgroup->CaptionVisible = false;
+            this->classresgroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->classresgroup->Location = System::Drawing::Point(22, 2624);
+            this->classresgroup->Name = L"classresgroup";
+            // 
+            // classresgroup.Panel
+            // 
+            this->classresgroup->Panel->Controls->Add(this->label52);
+            this->classresgroup->Panel->Controls->Add(this->panel50);
+            this->classresgroup->Panel->Controls->Add(this->panel53);
+            this->classresgroup->Panel->Controls->Add(this->classtablegen);
+            this->classresgroup->Panel->Controls->Add(this->panel54);
+            this->classresgroup->Panel->Controls->Add(this->label98);
+            this->classresgroup->Panel->Controls->Add(this->label159);
+            this->classresgroup->Panel->Controls->Add(this->label160);
+            this->classresgroup->Panel->Controls->Add(this->label161);
+            this->classresgroup->Panel->Controls->Add(this->label162);
+            this->classresgroup->Panel->Controls->Add(this->label163);
+            this->classresgroup->Panel->Controls->Add(this->label164);
+            this->classresgroup->Panel->Controls->Add(this->label166);
+            this->classresgroup->Panel->Controls->Add(this->label167);
+            this->classresgroup->Panel->Controls->Add(this->label168);
+            this->classresgroup->Panel->Controls->Add(this->label169);
+            this->classresgroup->Panel->Controls->Add(this->label170);
+            this->classresgroup->Size = System::Drawing::Size(1126, 617);
+            this->classresgroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->classresgroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->classresgroup->StateCommon->Border->ColorAngle = 50;
+            this->classresgroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->classresgroup->StateCommon->Border->Rounding = 7;
+            this->classresgroup->StateCommon->Border->Width = 1;
+            this->classresgroup->TabIndex = 348;
+            this->classresgroup->Enter += gcnew System::EventHandler(this, &MyForm::classresgroup_Enter);
+            // 
+            // label52
+            // 
+            this->label52->AutoSize = true;
+            this->label52->BackColor = System::Drawing::Color::White;
+            this->label52->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label52->ForeColor = System::Drawing::Color::Black;
+            this->label52->Location = System::Drawing::Point(122, 41);
+            this->label52->Name = L"label52";
+            this->label52->Size = System::Drawing::Size(388, 28);
+            this->label52->TabIndex = 345;
+            this->label52->Text = L"Click on the timeslot you want to reserve";
+            // 
+            // panel50
+            // 
+            this->panel50->BackColor = System::Drawing::Color::White;
+            this->panel50->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel50.BackgroundImage")));
+            this->panel50->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel50->Location = System::Drawing::Point(747, 140);
+            this->panel50->Name = L"panel50";
+            this->panel50->Size = System::Drawing::Size(44, 420);
+            this->panel50->TabIndex = 1;
+            // 
+            // panel53
+            // 
+            this->panel53->BackColor = System::Drawing::Color::White;
+            this->panel53->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel53.BackgroundImage")));
+            this->panel53->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel53->Location = System::Drawing::Point(413, 140);
+            this->panel53->Name = L"panel53";
+            this->panel53->Size = System::Drawing::Size(44, 430);
+            this->panel53->TabIndex = 300;
+            // 
+            // classtablegen
+            // 
+            this->classtablegen->BackColor = System::Drawing::Color::White;
+            this->classtablegen->ColumnCount = 8;
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66743F)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66686F)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66887F)));
+            this->classtablegen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66976F)));
+            this->classtablegen->Location = System::Drawing::Point(127, 140);
+            this->classtablegen->Name = L"classtablegen";
+            this->classtablegen->RowCount = 6;
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->classtablegen->Size = System::Drawing::Size(950, 430);
+            this->classtablegen->TabIndex = 260;
+            // 
+            // panel54
+            // 
+            this->panel54->BackColor = System::Drawing::Color::White;
+            this->panel54->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel54.BackgroundImage")));
+            this->panel54->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel54->Location = System::Drawing::Point(403, 140);
+            this->panel54->Name = L"panel54";
+            this->panel54->Size = System::Drawing::Size(82, 412);
+            this->panel54->TabIndex = 2;
+            // 
+            // label98
+            // 
+            this->label98->AutoSize = true;
+            this->label98->BackColor = System::Drawing::Color::White;
+            this->label98->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label98->Location = System::Drawing::Point(26, 159);
+            this->label98->Name = L"label98";
+            this->label98->Size = System::Drawing::Size(85, 28);
+            this->label98->TabIndex = 261;
+            this->label98->Text = L"Monday";
+            // 
+            // label159
+            // 
+            this->label159->AutoSize = true;
+            this->label159->BackColor = System::Drawing::Color::White;
+            this->label159->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label159->Location = System::Drawing::Point(32, 229);
+            this->label159->Name = L"label159";
+            this->label159->Size = System::Drawing::Size(83, 28);
+            this->label159->TabIndex = 262;
+            this->label159->Text = L"Tuesday";
+            // 
+            // label160
+            // 
+            this->label160->AutoSize = true;
+            this->label160->BackColor = System::Drawing::Color::White;
+            this->label160->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label160->Location = System::Drawing::Point(145, 99);
+            this->label160->Name = L"label160";
+            this->label160->Size = System::Drawing::Size(105, 28);
+            this->label160->TabIndex = 294;
+            this->label160->Text = L"9:00-10:00";
+            // 
+            // label161
+            // 
+            this->label161->AutoSize = true;
+            this->label161->BackColor = System::Drawing::Color::White;
+            this->label161->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label161->Location = System::Drawing::Point(15, 307);
+            this->label161->Name = L"label161";
+            this->label161->Size = System::Drawing::Size(113, 28);
+            this->label161->TabIndex = 263;
+            this->label161->Text = L"Wednesday";
+            // 
+            // label162
+            // 
+            this->label162->AutoSize = true;
+            this->label162->BackColor = System::Drawing::Color::White;
+            this->label162->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label162->Location = System::Drawing::Point(279, 99);
+            this->label162->Name = L"label162";
+            this->label162->Size = System::Drawing::Size(116, 28);
+            this->label162->TabIndex = 295;
+            this->label162->Text = L"10:00-11:00";
+            // 
+            // label163
+            // 
+            this->label163->AutoSize = true;
+            this->label163->BackColor = System::Drawing::Color::White;
+            this->label163->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label163->Location = System::Drawing::Point(15, 369);
+            this->label163->Name = L"label163";
+            this->label163->Size = System::Drawing::Size(91, 28);
+            this->label163->TabIndex = 264;
+            this->label163->Text = L"Thursday";
+            // 
+            // label164
+            // 
+            this->label164->AutoSize = true;
+            this->label164->BackColor = System::Drawing::Color::White;
+            this->label164->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label164->Location = System::Drawing::Point(465, 99);
+            this->label164->Name = L"label164";
+            this->label164->Size = System::Drawing::Size(116, 28);
+            this->label164->TabIndex = 296;
+            this->label164->Text = L"11:30-12:30";
+            // 
+            // label166
+            // 
+            this->label166->AutoSize = true;
+            this->label166->BackColor = System::Drawing::Color::White;
+            this->label166->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label166->Location = System::Drawing::Point(31, 446);
+            this->label166->Name = L"label166";
+            this->label166->Size = System::Drawing::Size(66, 28);
+            this->label166->TabIndex = 265;
+            this->label166->Text = L"Friday";
+            // 
+            // label167
+            // 
+            this->label167->AutoSize = true;
+            this->label167->BackColor = System::Drawing::Color::White;
+            this->label167->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label167->Location = System::Drawing::Point(620, 99);
+            this->label167->Name = L"label167";
+            this->label167->Size = System::Drawing::Size(105, 28);
+            this->label167->TabIndex = 297;
+            this->label167->Text = L"12:30-1:30";
+            // 
+            // label168
+            // 
+            this->label168->AutoSize = true;
+            this->label168->BackColor = System::Drawing::Color::White;
+            this->label168->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label168->Location = System::Drawing::Point(31, 523);
+            this->label168->Name = L"label168";
+            this->label168->Size = System::Drawing::Size(90, 28);
+            this->label168->TabIndex = 266;
+            this->label168->Text = L"Saturday";
+            // 
+            // label169
+            // 
+            this->label169->AutoSize = true;
+            this->label169->BackColor = System::Drawing::Color::White;
+            this->label169->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label169->Location = System::Drawing::Point(813, 97);
+            this->label169->Name = L"label169";
+            this->label169->Size = System::Drawing::Size(94, 28);
+            this->label169->TabIndex = 298;
+            this->label169->Text = L"2:30-3:30";
+            // 
+            // label170
+            // 
+            this->label170->AutoSize = true;
+            this->label170->BackColor = System::Drawing::Color::White;
+            this->label170->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label170->Location = System::Drawing::Point(944, 97);
+            this->label170->Name = L"label170";
+            this->label170->Size = System::Drawing::Size(94, 28);
+            this->label170->TabIndex = 299;
+            this->label170->Text = L"3:30-4:30";
+            // 
+            // classgengroup
+            // 
+            this->classgengroup->CaptionOverlap = 1;
+            this->classgengroup->CaptionVisible = false;
+            this->classgengroup->GroupBorderStyle = ComponentFactory::Krypton::Toolkit::PaletteBorderStyle::ButtonCustom2;
+            this->classgengroup->Location = System::Drawing::Point(22, 3351);
+            this->classgengroup->Name = L"classgengroup";
+            // 
+            // classgengroup.Panel
+            // 
+            this->classgengroup->Panel->Controls->Add(this->pictureBox10);
+            this->classgengroup->Panel->Controls->Add(this->label44);
+            this->classgengroup->Panel->Controls->Add(this->label39);
+            this->classgengroup->Panel->Controls->Add(this->kryptonTextBox1);
+            this->classgengroup->Panel->Controls->Add(this->panel8);
+            this->classgengroup->Panel->Controls->Add(this->panel25);
+            this->classgengroup->Panel->Controls->Add(this->classtablegen1);
+            this->classgengroup->Panel->Controls->Add(this->panel26);
+            this->classgengroup->Panel->Controls->Add(this->label34);
+            this->classgengroup->Panel->Controls->Add(this->label53);
+            this->classgengroup->Panel->Controls->Add(this->label54);
+            this->classgengroup->Panel->Controls->Add(this->label55);
+            this->classgengroup->Panel->Controls->Add(this->label56);
+            this->classgengroup->Panel->Controls->Add(this->label57);
+            this->classgengroup->Panel->Controls->Add(this->label58);
+            this->classgengroup->Panel->Controls->Add(this->label59);
+            this->classgengroup->Panel->Controls->Add(this->label60);
+            this->classgengroup->Panel->Controls->Add(this->label61);
+            this->classgengroup->Panel->Controls->Add(this->label65);
+            this->classgengroup->Panel->Controls->Add(this->label135);
+            this->classgengroup->Size = System::Drawing::Size(1126, 664);
+            this->classgengroup->StateCommon->Back->Color1 = System::Drawing::Color::White;
+            this->classgengroup->StateCommon->Border->Color1 = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+                static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
+            this->classgengroup->StateCommon->Border->ColorAngle = 50;
+            this->classgengroup->StateCommon->Border->DrawBorders = static_cast<ComponentFactory::Krypton::Toolkit::PaletteDrawBorders>((((ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Top | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Bottom)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Left)
+                | ComponentFactory::Krypton::Toolkit::PaletteDrawBorders::Right));
+            this->classgengroup->StateCommon->Border->Rounding = 7;
+            this->classgengroup->StateCommon->Border->Width = 1;
+            this->classgengroup->TabIndex = 349;
+            this->classgengroup->Enter += gcnew System::EventHandler(this, &MyForm::classgengroup_Enter);
+            // 
+            // pictureBox10
+            // 
+            this->pictureBox10->BackColor = System::Drawing::Color::White;
+            this->pictureBox10->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox10.Image")));
+            this->pictureBox10->Location = System::Drawing::Point(969, 86);
+            this->pictureBox10->Name = L"pictureBox10";
+            this->pictureBox10->Size = System::Drawing::Size(22, 22);
+            this->pictureBox10->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox10->TabIndex = 351;
+            this->pictureBox10->TabStop = false;
+            this->toolTip1->SetToolTip(this->pictureBox10, L"Cancel");
+            this->pictureBox10->Visible = false;
+            this->pictureBox10->Click += gcnew System::EventHandler(this, &MyForm::pictureBox10_Click_1);
+            // 
+            // label44
+            // 
+            this->label44->AutoSize = true;
+            this->label44->BackColor = System::Drawing::Color::White;
+            this->label44->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label44->ForeColor = System::Drawing::Color::Black;
+            this->label44->Location = System::Drawing::Point(715, 42);
+            this->label44->Name = L"label44";
+            this->label44->Size = System::Drawing::Size(145, 28);
+            this->label44->TabIndex = 350;
+            this->label44->Text = L"Subject to edit";
+            // 
+            // label39
+            // 
+            this->label39->AutoSize = true;
+            this->label39->BackColor = System::Drawing::Color::White;
+            this->label39->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label39->ForeColor = System::Drawing::Color::Black;
+            this->label39->Location = System::Drawing::Point(123, 42);
+            this->label39->Name = L"label39";
+            this->label39->Size = System::Drawing::Size(422, 28);
+            this->label39->TabIndex = 349;
+            this->label39->Text = L"Click on the core subject you want to replace";
+            // 
+            // kryptonTextBox1
+            // 
+            this->kryptonTextBox1->Location = System::Drawing::Point(715, 84);
+            this->kryptonTextBox1->Name = L"kryptonTextBox1";
+            this->kryptonTextBox1->ReadOnly = true;
+            this->kryptonTextBox1->Size = System::Drawing::Size(287, 31);
+            this->kryptonTextBox1->TabIndex = 348;
+            // 
+            // panel8
+            // 
+            this->panel8->BackColor = System::Drawing::Color::White;
+            this->panel8->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel8.BackgroundImage")));
+            this->panel8->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel8->Location = System::Drawing::Point(747, 199);
+            this->panel8->Name = L"panel8";
+            this->panel8->Size = System::Drawing::Size(44, 420);
+            this->panel8->TabIndex = 1;
+            // 
+            // panel25
+            // 
+            this->panel25->BackColor = System::Drawing::Color::White;
+            this->panel25->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel25.BackgroundImage")));
+            this->panel25->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel25->Location = System::Drawing::Point(413, 199);
+            this->panel25->Name = L"panel25";
+            this->panel25->Size = System::Drawing::Size(44, 430);
+            this->panel25->TabIndex = 300;
+            // 
+            // classtablegen1
+            // 
+            this->classtablegen1->BackColor = System::Drawing::Color::White;
+            this->classtablegen1->ColumnCount = 8;
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66743F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66354F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66686F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute,
+                50)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66887F)));
+            this->classtablegen1->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent,
+                16.66976F)));
+            this->classtablegen1->Location = System::Drawing::Point(127, 199);
+            this->classtablegen1->Name = L"classtablegen1";
+            this->classtablegen1->RowCount = 6;
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66666F)));
+            this->classtablegen1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
+            this->classtablegen1->Size = System::Drawing::Size(950, 430);
+            this->classtablegen1->TabIndex = 260;
+            // 
+            // panel26
+            // 
+            this->panel26->BackColor = System::Drawing::Color::White;
+            this->panel26->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel26.BackgroundImage")));
+            this->panel26->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
+            this->panel26->Location = System::Drawing::Point(403, 199);
+            this->panel26->Name = L"panel26";
+            this->panel26->Size = System::Drawing::Size(82, 412);
+            this->panel26->TabIndex = 2;
+            // 
+            // label34
+            // 
+            this->label34->AutoSize = true;
+            this->label34->BackColor = System::Drawing::Color::White;
+            this->label34->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label34->Location = System::Drawing::Point(26, 218);
+            this->label34->Name = L"label34";
+            this->label34->Size = System::Drawing::Size(85, 28);
+            this->label34->TabIndex = 261;
+            this->label34->Text = L"Monday";
+            // 
+            // label53
+            // 
+            this->label53->AutoSize = true;
+            this->label53->BackColor = System::Drawing::Color::White;
+            this->label53->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label53->Location = System::Drawing::Point(32, 288);
+            this->label53->Name = L"label53";
+            this->label53->Size = System::Drawing::Size(83, 28);
+            this->label53->TabIndex = 262;
+            this->label53->Text = L"Tuesday";
+            // 
+            // label54
+            // 
+            this->label54->AutoSize = true;
+            this->label54->BackColor = System::Drawing::Color::White;
+            this->label54->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label54->Location = System::Drawing::Point(145, 158);
+            this->label54->Name = L"label54";
+            this->label54->Size = System::Drawing::Size(105, 28);
+            this->label54->TabIndex = 294;
+            this->label54->Text = L"9:00-10:00";
+            // 
+            // label55
+            // 
+            this->label55->AutoSize = true;
+            this->label55->BackColor = System::Drawing::Color::White;
+            this->label55->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label55->Location = System::Drawing::Point(15, 366);
+            this->label55->Name = L"label55";
+            this->label55->Size = System::Drawing::Size(113, 28);
+            this->label55->TabIndex = 263;
+            this->label55->Text = L"Wednesday";
+            // 
+            // label56
+            // 
+            this->label56->AutoSize = true;
+            this->label56->BackColor = System::Drawing::Color::White;
+            this->label56->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label56->Location = System::Drawing::Point(279, 158);
+            this->label56->Name = L"label56";
+            this->label56->Size = System::Drawing::Size(116, 28);
+            this->label56->TabIndex = 295;
+            this->label56->Text = L"10:00-11:00";
+            // 
+            // label57
+            // 
+            this->label57->AutoSize = true;
+            this->label57->BackColor = System::Drawing::Color::White;
+            this->label57->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label57->Location = System::Drawing::Point(15, 428);
+            this->label57->Name = L"label57";
+            this->label57->Size = System::Drawing::Size(91, 28);
+            this->label57->TabIndex = 264;
+            this->label57->Text = L"Thursday";
+            // 
+            // label58
+            // 
+            this->label58->AutoSize = true;
+            this->label58->BackColor = System::Drawing::Color::White;
+            this->label58->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label58->Location = System::Drawing::Point(465, 158);
+            this->label58->Name = L"label58";
+            this->label58->Size = System::Drawing::Size(116, 28);
+            this->label58->TabIndex = 296;
+            this->label58->Text = L"11:30-12:30";
+            // 
+            // label59
+            // 
+            this->label59->AutoSize = true;
+            this->label59->BackColor = System::Drawing::Color::White;
+            this->label59->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label59->Location = System::Drawing::Point(31, 505);
+            this->label59->Name = L"label59";
+            this->label59->Size = System::Drawing::Size(66, 28);
+            this->label59->TabIndex = 265;
+            this->label59->Text = L"Friday";
+            // 
+            // label60
+            // 
+            this->label60->AutoSize = true;
+            this->label60->BackColor = System::Drawing::Color::White;
+            this->label60->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label60->Location = System::Drawing::Point(620, 158);
+            this->label60->Name = L"label60";
+            this->label60->Size = System::Drawing::Size(105, 28);
+            this->label60->TabIndex = 297;
+            this->label60->Text = L"12:30-1:30";
+            // 
+            // label61
+            // 
+            this->label61->AutoSize = true;
+            this->label61->BackColor = System::Drawing::Color::White;
+            this->label61->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label61->Location = System::Drawing::Point(31, 582);
+            this->label61->Name = L"label61";
+            this->label61->Size = System::Drawing::Size(90, 28);
+            this->label61->TabIndex = 266;
+            this->label61->Text = L"Saturday";
+            // 
+            // label65
+            // 
+            this->label65->AutoSize = true;
+            this->label65->BackColor = System::Drawing::Color::White;
+            this->label65->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label65->Location = System::Drawing::Point(813, 156);
+            this->label65->Name = L"label65";
+            this->label65->Size = System::Drawing::Size(94, 28);
+            this->label65->TabIndex = 298;
+            this->label65->Text = L"2:30-3:30";
+            // 
+            // label135
+            // 
+            this->label135->AutoSize = true;
+            this->label135->BackColor = System::Drawing::Color::White;
+            this->label135->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label135->Location = System::Drawing::Point(944, 156);
+            this->label135->Name = L"label135";
+            this->label135->Size = System::Drawing::Size(94, 28);
+            this->label135->TabIndex = 299;
+            this->label135->Text = L"3:30-4:30";
+            // 
             // addteacherpanel
             // 
             this->addteacherpanel->AutoScroll = true;
+            this->addteacherpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->addteacherpanel->Controls->Add(this->panel16);
             this->addteacherpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->addteacherpanel->Location = System::Drawing::Point(0, 0);
@@ -9818,7 +9930,7 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // panel2
             // 
-            this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
+            this->panel2->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->panel2->Controls->Add(this->panel46);
             this->panel2->Dock = System::Windows::Forms::DockStyle::Fill;
@@ -9881,13 +9993,13 @@ private: System::Windows::Forms::Label^ label39;
             this->deptDataGridView->AllowUserToOrderColumns = true;
             this->deptDataGridView->AllowUserToResizeColumns = false;
             this->deptDataGridView->AllowUserToResizeRows = false;
-            dataGridViewCellStyle89->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle9->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle89->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle89->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
+            dataGridViewCellStyle9->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle9->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle89->SelectionForeColor = System::Drawing::Color::Black;
-            this->deptDataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle89;
+            dataGridViewCellStyle9->SelectionForeColor = System::Drawing::Color::Black;
+            this->deptDataGridView->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this->deptDataGridView->ColumnHeadersHeight = 36;
             this->deptDataGridView->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->deptDataGridView->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -9904,13 +10016,13 @@ private: System::Windows::Forms::Label^ label39;
             this->deptDataGridView->Name = L"deptDataGridView";
             this->deptDataGridView->RowHeadersVisible = false;
             this->deptDataGridView->RowHeadersWidth = 62;
-            dataGridViewCellStyle90->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle10->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            dataGridViewCellStyle90->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle90->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle10->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle10->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle90->SelectionForeColor = System::Drawing::Color::Black;
-            this->deptDataGridView->RowsDefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle10->SelectionForeColor = System::Drawing::Color::Black;
+            this->deptDataGridView->RowsDefaultCellStyle = dataGridViewCellStyle10;
             this->deptDataGridView->RowTemplate->Height = 28;
             this->deptDataGridView->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->deptDataGridView->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -9962,6 +10074,8 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // deleteclasspanel
             // 
+            this->deleteclasspanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->deleteclasspanel->Controls->Add(this->panel47);
             this->deleteclasspanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->deleteclasspanel->Location = System::Drawing::Point(0, 0);
@@ -10020,13 +10134,13 @@ private: System::Windows::Forms::Label^ label39;
             this->sectiondeletedatagridview->AllowUserToOrderColumns = true;
             this->sectiondeletedatagridview->AllowUserToResizeColumns = false;
             this->sectiondeletedatagridview->AllowUserToResizeRows = false;
-            dataGridViewCellStyle91->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle11->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle91->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle91->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
+            dataGridViewCellStyle11->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle11->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(170)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle91->SelectionForeColor = System::Drawing::Color::Black;
-            this->sectiondeletedatagridview->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle91;
+            dataGridViewCellStyle11->SelectionForeColor = System::Drawing::Color::Black;
+            this->sectiondeletedatagridview->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this->sectiondeletedatagridview->ColumnHeadersHeight = 36;
             this->sectiondeletedatagridview->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->sectiondeletedatagridview->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -10043,13 +10157,13 @@ private: System::Windows::Forms::Label^ label39;
             this->sectiondeletedatagridview->Name = L"sectiondeletedatagridview";
             this->sectiondeletedatagridview->RowHeadersVisible = false;
             this->sectiondeletedatagridview->RowHeadersWidth = 62;
-            dataGridViewCellStyle92->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+            dataGridViewCellStyle12->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            dataGridViewCellStyle92->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle92->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle12->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle12->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle92->SelectionForeColor = System::Drawing::Color::Black;
-            this->sectiondeletedatagridview->RowsDefaultCellStyle = dataGridViewCellStyle92;
+            dataGridViewCellStyle12->SelectionForeColor = System::Drawing::Color::Black;
+            this->sectiondeletedatagridview->RowsDefaultCellStyle = dataGridViewCellStyle12;
             this->sectiondeletedatagridview->RowTemplate->Height = 28;
             this->sectiondeletedatagridview->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->sectiondeletedatagridview->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -10655,13 +10769,13 @@ private: System::Windows::Forms::Label^ label39;
             this->editsubeleteacher->AllowUserToOrderColumns = true;
             this->editsubeleteacher->AllowUserToResizeColumns = false;
             this->editsubeleteacher->AllowUserToResizeRows = false;
-            dataGridViewCellStyle93->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+            dataGridViewCellStyle13->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle93->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle93->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
+            dataGridViewCellStyle13->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle13->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(160)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle93->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubeleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle93;
+            dataGridViewCellStyle13->SelectionForeColor = System::Drawing::Color::Black;
+            this->editsubeleteacher->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this->editsubeleteacher->ColumnHeadersHeight = 36;
             this->editsubeleteacher->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::DisableResizing;
             this->editsubeleteacher->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
@@ -10678,11 +10792,11 @@ private: System::Windows::Forms::Label^ label39;
             this->editsubeleteacher->Name = L"editsubeleteacher";
             this->editsubeleteacher->RowHeadersVisible = false;
             this->editsubeleteacher->RowHeadersWidth = 62;
-            dataGridViewCellStyle94->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle94->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle14->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle14->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle94->SelectionForeColor = System::Drawing::Color::Black;
-            this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle14->SelectionForeColor = System::Drawing::Color::Black;
+            this->editsubeleteacher->RowsDefaultCellStyle = dataGridViewCellStyle14;
             this->editsubeleteacher->RowTemplate->Height = 28;
             this->editsubeleteacher->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->editsubeleteacher->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -11167,7 +11281,7 @@ private: System::Windows::Forms::Label^ label39;
             // 
             this->editsubjectpanel->AutoScroll = true;
             this->editsubjectpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)),
-                static_cast<System::Int32>(static_cast<System::Byte>(252)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
+                static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->editsubjectpanel->Controls->Add(this->panel13);
             this->editsubjectpanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editsubjectpanel->Font = (gcnew System::Drawing::Font(L"Segoe UI", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -11840,6 +11954,8 @@ private: System::Windows::Forms::Label^ label39;
             // editroompanel
             // 
             this->editroompanel->AutoScroll = true;
+            this->editroompanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->editroompanel->Controls->Add(this->panel6);
             this->editroompanel->Dock = System::Windows::Forms::DockStyle::Fill;
             this->editroompanel->Location = System::Drawing::Point(0, 0);
@@ -11871,11 +11987,13 @@ private: System::Windows::Forms::Label^ label39;
             // Labaddpanel
             // 
             this->Labaddpanel->AutoScroll = true;
+            this->Labaddpanel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(250)),
+                static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->Labaddpanel->Controls->Add(this->panel22);
             this->Labaddpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->Labaddpanel->Location = System::Drawing::Point(0, 0);
+            this->Labaddpanel->Location = System::Drawing::Point(364, 76);
             this->Labaddpanel->Name = L"Labaddpanel";
-            this->Labaddpanel->Size = System::Drawing::Size(1806, 1050);
+            this->Labaddpanel->Size = System::Drawing::Size(1442, 974);
             this->Labaddpanel->TabIndex = 346;
             this->Labaddpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::Labaddpanel_Paint);
             // 
@@ -11942,6 +12060,10 @@ private: System::Windows::Forms::Label^ label39;
             // 
             // addlabgengroup.Panel
             // 
+            this->addlabgengroup->Panel->Controls->Add(this->pictureBox13);
+            this->addlabgengroup->Panel->Controls->Add(this->label154);
+            this->addlabgengroup->Panel->Controls->Add(this->label156);
+            this->addlabgengroup->Panel->Controls->Add(this->kryptonTextBox2);
             this->addlabgengroup->Panel->Controls->Add(this->panel63);
             this->addlabgengroup->Panel->Controls->Add(this->panel64);
             this->addlabgengroup->Panel->Controls->Add(this->addlabgen);
@@ -11970,12 +12092,58 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabgengroup->StateCommon->Border->Width = 1;
             this->addlabgengroup->TabIndex = 353;
             // 
+            // pictureBox13
+            // 
+            this->pictureBox13->BackColor = System::Drawing::Color::White;
+            this->pictureBox13->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox13.Image")));
+            this->pictureBox13->Location = System::Drawing::Point(977, 82);
+            this->pictureBox13->Name = L"pictureBox13";
+            this->pictureBox13->Size = System::Drawing::Size(25, 25);
+            this->pictureBox13->SizeMode = System::Windows::Forms::PictureBoxSizeMode::Zoom;
+            this->pictureBox13->TabIndex = 354;
+            this->pictureBox13->TabStop = false;
+            this->pictureBox13->Visible = false;
+            // 
+            // label154
+            // 
+            this->label154->AutoSize = true;
+            this->label154->BackColor = System::Drawing::Color::White;
+            this->label154->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label154->ForeColor = System::Drawing::Color::Black;
+            this->label154->Location = System::Drawing::Point(721, 35);
+            this->label154->Name = L"label154";
+            this->label154->Size = System::Drawing::Size(145, 28);
+            this->label154->TabIndex = 353;
+            this->label154->Text = L"Subject to edit";
+            // 
+            // label156
+            // 
+            this->label156->AutoSize = true;
+            this->label156->BackColor = System::Drawing::Color::White;
+            this->label156->Font = (gcnew System::Drawing::Font(L"Segoe UI Semibold", 10, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+                static_cast<System::Byte>(0)));
+            this->label156->ForeColor = System::Drawing::Color::Black;
+            this->label156->Location = System::Drawing::Point(115, 29);
+            this->label156->Name = L"label156";
+            this->label156->Size = System::Drawing::Size(410, 28);
+            this->label156->TabIndex = 352;
+            this->label156->Text = L"Click on the lab subject you want to replace";
+            // 
+            // kryptonTextBox2
+            // 
+            this->kryptonTextBox2->Location = System::Drawing::Point(726, 81);
+            this->kryptonTextBox2->Name = L"kryptonTextBox2";
+            this->kryptonTextBox2->ReadOnly = true;
+            this->kryptonTextBox2->Size = System::Drawing::Size(287, 31);
+            this->kryptonTextBox2->TabIndex = 351;
+            // 
             // panel63
             // 
             this->panel63->BackColor = System::Drawing::Color::White;
             this->panel63->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel63.BackgroundImage")));
             this->panel63->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel63->Location = System::Drawing::Point(735, 146);
+            this->panel63->Location = System::Drawing::Point(757, 184);
             this->panel63->Name = L"panel63";
             this->panel63->Size = System::Drawing::Size(44, 420);
             this->panel63->TabIndex = 1;
@@ -11985,7 +12153,7 @@ private: System::Windows::Forms::Label^ label39;
             this->panel64->BackColor = System::Drawing::Color::White;
             this->panel64->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel64.BackgroundImage")));
             this->panel64->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel64->Location = System::Drawing::Point(400, 146);
+            this->panel64->Location = System::Drawing::Point(422, 184);
             this->panel64->Name = L"panel64";
             this->panel64->Size = System::Drawing::Size(44, 430);
             this->panel64->TabIndex = 300;
@@ -12002,7 +12170,7 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabgen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Absolute, 50)));
             this->addlabgen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66887F)));
             this->addlabgen->ColumnStyles->Add((gcnew System::Windows::Forms::ColumnStyle(System::Windows::Forms::SizeType::Percent, 16.66976F)));
-            this->addlabgen->Location = System::Drawing::Point(112, 146);
+            this->addlabgen->Location = System::Drawing::Point(134, 184);
             this->addlabgen->Name = L"addlabgen";
             this->addlabgen->RowCount = 6;
             this->addlabgen->RowStyles->Add((gcnew System::Windows::Forms::RowStyle(System::Windows::Forms::SizeType::Percent, 16.66667F)));
@@ -12019,7 +12187,7 @@ private: System::Windows::Forms::Label^ label39;
             this->panel65->BackColor = System::Drawing::Color::White;
             this->panel65->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"panel65.BackgroundImage")));
             this->panel65->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
-            this->panel65->Location = System::Drawing::Point(388, 146);
+            this->panel65->Location = System::Drawing::Point(410, 184);
             this->panel65->Name = L"panel65";
             this->panel65->Size = System::Drawing::Size(82, 412);
             this->panel65->TabIndex = 2;
@@ -12030,7 +12198,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label196->BackColor = System::Drawing::Color::White;
             this->label196->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label196->Location = System::Drawing::Point(14, 166);
+            this->label196->Location = System::Drawing::Point(36, 204);
             this->label196->Name = L"label196";
             this->label196->Size = System::Drawing::Size(85, 28);
             this->label196->TabIndex = 261;
@@ -12042,7 +12210,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label197->BackColor = System::Drawing::Color::White;
             this->label197->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label197->Location = System::Drawing::Point(20, 236);
+            this->label197->Location = System::Drawing::Point(42, 274);
             this->label197->Name = L"label197";
             this->label197->Size = System::Drawing::Size(83, 28);
             this->label197->TabIndex = 262;
@@ -12054,7 +12222,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label198->BackColor = System::Drawing::Color::White;
             this->label198->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label198->Location = System::Drawing::Point(130, 106);
+            this->label198->Location = System::Drawing::Point(152, 144);
             this->label198->Name = L"label198";
             this->label198->Size = System::Drawing::Size(105, 28);
             this->label198->TabIndex = 294;
@@ -12066,7 +12234,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label199->BackColor = System::Drawing::Color::White;
             this->label199->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label199->Location = System::Drawing::Point(3, 312);
+            this->label199->Location = System::Drawing::Point(25, 350);
             this->label199->Name = L"label199";
             this->label199->Size = System::Drawing::Size(113, 28);
             this->label199->TabIndex = 263;
@@ -12078,7 +12246,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label200->BackColor = System::Drawing::Color::White;
             this->label200->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label200->Location = System::Drawing::Point(267, 106);
+            this->label200->Location = System::Drawing::Point(289, 144);
             this->label200->Name = L"label200";
             this->label200->Size = System::Drawing::Size(116, 28);
             this->label200->TabIndex = 295;
@@ -12090,7 +12258,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label201->BackColor = System::Drawing::Color::White;
             this->label201->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label201->Location = System::Drawing::Point(3, 376);
+            this->label201->Location = System::Drawing::Point(25, 414);
             this->label201->Name = L"label201";
             this->label201->Size = System::Drawing::Size(91, 28);
             this->label201->TabIndex = 264;
@@ -12102,7 +12270,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label202->BackColor = System::Drawing::Color::White;
             this->label202->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label202->Location = System::Drawing::Point(453, 106);
+            this->label202->Location = System::Drawing::Point(475, 144);
             this->label202->Name = L"label202";
             this->label202->Size = System::Drawing::Size(116, 28);
             this->label202->TabIndex = 296;
@@ -12114,7 +12282,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label203->BackColor = System::Drawing::Color::White;
             this->label203->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label203->Location = System::Drawing::Point(16, 452);
+            this->label203->Location = System::Drawing::Point(38, 490);
             this->label203->Name = L"label203";
             this->label203->Size = System::Drawing::Size(66, 28);
             this->label203->TabIndex = 265;
@@ -12126,7 +12294,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label204->BackColor = System::Drawing::Color::White;
             this->label204->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label204->Location = System::Drawing::Point(608, 106);
+            this->label204->Location = System::Drawing::Point(630, 144);
             this->label204->Name = L"label204";
             this->label204->Size = System::Drawing::Size(105, 28);
             this->label204->TabIndex = 297;
@@ -12138,7 +12306,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label205->BackColor = System::Drawing::Color::White;
             this->label205->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label205->Location = System::Drawing::Point(16, 530);
+            this->label205->Location = System::Drawing::Point(38, 568);
             this->label205->Name = L"label205";
             this->label205->Size = System::Drawing::Size(90, 28);
             this->label205->TabIndex = 266;
@@ -12150,7 +12318,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label206->BackColor = System::Drawing::Color::White;
             this->label206->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label206->Location = System::Drawing::Point(801, 102);
+            this->label206->Location = System::Drawing::Point(823, 140);
             this->label206->Name = L"label206";
             this->label206->Size = System::Drawing::Size(94, 28);
             this->label206->TabIndex = 298;
@@ -12162,7 +12330,7 @@ private: System::Windows::Forms::Label^ label39;
             this->label207->BackColor = System::Drawing::Color::White;
             this->label207->Font = (gcnew System::Drawing::Font(L"Segoe UI", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
                 static_cast<System::Byte>(0)));
-            this->label207->Location = System::Drawing::Point(932, 102);
+            this->label207->Location = System::Drawing::Point(954, 140);
             this->label207->Name = L"label207";
             this->label207->Size = System::Drawing::Size(94, 28);
             this->label207->TabIndex = 299;
@@ -12210,13 +12378,13 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabele->AllowUserToOrderColumns = true;
             this->addlabele->AllowUserToResizeColumns = false;
             this->addlabele->AllowUserToResizeRows = false;
-            dataGridViewCellStyle95->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle15->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle95->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle95->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle15->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle15->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle95->SelectionForeColor = System::Drawing::Color::Black;
-            this->addlabele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle15->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabele->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
             this->addlabele->ColumnHeadersHeight = 36;
             this->addlabele->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->esubjectl,
@@ -12232,11 +12400,11 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabele->Name = L"addlabele";
             this->addlabele->RowHeadersVisible = false;
             this->addlabele->RowHeadersWidth = 62;
-            dataGridViewCellStyle96->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle96->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle16->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle16->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle96->SelectionForeColor = System::Drawing::Color::Black;
-            this->addlabele->RowsDefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle16->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabele->RowsDefaultCellStyle = dataGridViewCellStyle16;
             this->addlabele->RowTemplate->Height = 28;
             this->addlabele->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->addlabele->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -12421,13 +12589,13 @@ private: System::Windows::Forms::Label^ label39;
             // 
             this->addlabsub->AllowUserToResizeColumns = false;
             this->addlabsub->AllowUserToResizeRows = false;
-            dataGridViewCellStyle97->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle17->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle97->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle97->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle17->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle17->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle97->SelectionForeColor = System::Drawing::Color::Black;
-            this->addlabsub->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle97;
+            dataGridViewCellStyle17->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabsub->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
             this->addlabsub->ColumnHeadersHeight = 36;
             this->addlabsub->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->dataGridViewTextBoxColumn2,
@@ -12444,11 +12612,11 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabsub->ReadOnly = true;
             this->addlabsub->RowHeadersVisible = false;
             this->addlabsub->RowHeadersWidth = 62;
-            dataGridViewCellStyle98->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle98->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle18->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle18->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle98->SelectionForeColor = System::Drawing::Color::Black;
-            this->addlabsub->RowsDefaultCellStyle = dataGridViewCellStyle98;
+            dataGridViewCellStyle18->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabsub->RowsDefaultCellStyle = dataGridViewCellStyle18;
             this->addlabsub->RowTemplate->Height = 28;
             this->addlabsub->ScrollBars = System::Windows::Forms::ScrollBars::Vertical;
             this->addlabsub->SelectionMode = System::Windows::Forms::DataGridViewSelectionMode::FullRowSelect;
@@ -12655,13 +12823,13 @@ private: System::Windows::Forms::Label^ label39;
             // 
             this->addlabteachers->AllowUserToResizeColumns = false;
             this->addlabteachers->AllowUserToResizeRows = false;
-            dataGridViewCellStyle99->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
+            dataGridViewCellStyle19->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(210)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle99->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle99->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
+            dataGridViewCellStyle19->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle19->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(180)),
                 static_cast<System::Int32>(static_cast<System::Byte>(250)), static_cast<System::Int32>(static_cast<System::Byte>(255)));
-            dataGridViewCellStyle99->SelectionForeColor = System::Drawing::Color::Black;
-            this->addlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle99;
+            dataGridViewCellStyle19->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabteachers->AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             this->addlabteachers->ColumnHeadersHeight = 36;
             this->addlabteachers->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) {
                 this->Teacherl,
@@ -12677,11 +12845,11 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabteachers->Name = L"addlabteachers";
             this->addlabteachers->RowHeadersVisible = false;
             this->addlabteachers->RowHeadersWidth = 62;
-            dataGridViewCellStyle100->ForeColor = System::Drawing::Color::Black;
-            dataGridViewCellStyle100->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
+            dataGridViewCellStyle20->ForeColor = System::Drawing::Color::Black;
+            dataGridViewCellStyle20->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(224)),
                 static_cast<System::Int32>(static_cast<System::Byte>(224)), static_cast<System::Int32>(static_cast<System::Byte>(224)));
-            dataGridViewCellStyle100->SelectionForeColor = System::Drawing::Color::Black;
-            this->addlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle100;
+            dataGridViewCellStyle20->SelectionForeColor = System::Drawing::Color::Black;
+            this->addlabteachers->RowsDefaultCellStyle = dataGridViewCellStyle20;
             this->addlabteachers->RowTemplate->DefaultCellStyle->BackColor = System::Drawing::Color::White;
             this->addlabteachers->RowTemplate->DefaultCellStyle->ForeColor = System::Drawing::Color::Black;
             this->addlabteachers->RowTemplate->DefaultCellStyle->SelectionBackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(242)),
@@ -13100,10 +13268,13 @@ private: System::Windows::Forms::Label^ label39;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1806, 1050);
-            this->Controls->Add(this->classpanel);
+            this->Controls->Add(this->Labaddpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->kryptonPanel6);
             this->Controls->Add(this->editsubactivepanel);
+            this->Controls->Add(this->addclassroompanel);
+            this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->deleteclasspanel);
             this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->panel2);
@@ -13112,9 +13283,6 @@ private: System::Windows::Forms::Label^ label39;
             this->Controls->Add(this->addsubjectpanel);
             this->Controls->Add(this->editroompanel);
             this->Controls->Add(this->editsubjectpanel);
-            this->Controls->Add(this->Labaddpanel);
-            this->Controls->Add(this->addclassroompanel);
-            this->Controls->Add(this->Homepanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -13286,21 +13454,11 @@ private: System::Windows::Forms::Label^ label39;
             this->panel29->ResumeLayout(false);
             this->panel29->PerformLayout();
             this->panel27->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->EndInit();
-            this->classgengroup->Panel->ResumeLayout(false);
-            this->classgengroup->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->EndInit();
-            this->classgengroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classroomgroup->Panel))->EndInit();
             this->classroomgroup->Panel->ResumeLayout(false);
             this->classroomgroup->Panel->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classroomgroup))->EndInit();
             this->classroomgroup->ResumeLayout(false);
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup->Panel))->EndInit();
-            this->classresgroup->Panel->ResumeLayout(false);
-            this->classresgroup->Panel->PerformLayout();
-            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup))->EndInit();
-            this->classresgroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classlabgroup->Panel))->EndInit();
             this->classlabgroup->Panel->ResumeLayout(false);
             this->classlabgroup->Panel->PerformLayout();
@@ -13336,6 +13494,17 @@ private: System::Windows::Forms::Label^ label39;
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classnamegroup))->EndInit();
             this->classnamegroup->ResumeLayout(false);
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->kryptonPanel15))->EndInit();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup->Panel))->EndInit();
+            this->classresgroup->Panel->ResumeLayout(false);
+            this->classresgroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classresgroup))->EndInit();
+            this->classresgroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup->Panel))->EndInit();
+            this->classgengroup->Panel->ResumeLayout(false);
+            this->classgengroup->Panel->PerformLayout();
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->classgengroup))->EndInit();
+            this->classgengroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox10))->EndInit();
             this->addteacherpanel->ResumeLayout(false);
             this->panel16->ResumeLayout(false);
             this->panel16->PerformLayout();
@@ -13488,6 +13657,7 @@ private: System::Windows::Forms::Label^ label39;
             this->addlabgengroup->Panel->PerformLayout();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabgengroup))->EndInit();
             this->addlabgengroup->ResumeLayout(false);
+            (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox13))->EndInit();
             (cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->addlabelegroup->Panel))->EndInit();
             this->addlabelegroup->Panel->ResumeLayout(false);
             this->addlabelegroup->Panel->PerformLayout();
@@ -15166,7 +15336,7 @@ private: System::Windows::Forms::Label^ label39;
                         }
                     }
                 }
-                InitializeMatrix(classtablegen1, "g", "free", 7);
+                InitializeMatrix(classtablegen1, "g", "Free", 7);
                 classresgroup->Height = 0;
                 classgengroup->Height = 500;
                 classgengroup->Top = panel27->Bottom + 30;;
@@ -15197,8 +15367,8 @@ private: System::Windows::Forms::Label^ label39;
                         if (obj.timeTable[i][j] != "f")
                             button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(obj.timeTable[i][j]));
                         else
-                            button->Text = "free";
-                        string s ="Teacher :" +obj.teacherTable[i][j]+"\nRoom :" + obj.roomTable[i][j];
+                            button->Text = "Free";
+                        string s =replaceunderscore("Teacher :" +obj.teacherTable[i][j]+"\nRoom :" + obj.roomTable[i][j]);
                         ToolTip^ toolTip1 = gcnew ToolTip();
                         toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
                     }
@@ -15266,7 +15436,7 @@ private: System::Windows::Forms::Label^ label39;
         button24->BackColor = Color::FromArgb(0, 0, 77);
         classpanel->BringToFront();
         InitializeMatrix(classtablegen, "res", "Open", 3);
-        InitializeMatrix(classtablegen1, "g", "free", 7);
+        InitializeMatrix(classtablegen1, "g", "Free", 7);
         DisplayCSVInComboBoxkrypt("details/dept_file.csv", classbranch);
         DisplayCSVInListBoxkrypt("details/classroom.csv", classdefaultrooms, 3);
         classdefaultrooms->Items->Add("No Room");
@@ -15779,7 +15949,7 @@ private: System::Void button25_Click(System::Object^ sender, System::EventArgs^ 
     esubjectl->DisplayMember = "esubjectl"; // Update to the correct column name
     esubjectl->ValueMember = "esubjectl";
     InitializeMatrix(addlabres, "addlabres", "Available", 6);
-    InitializeMatrix(addlabgen, "addlabgen", "Free", -1);
+    InitializeMatrix(addlabgen, "addlabgen", "Free",8);
     addlabgengroup->Height = 0;
 }
 private: System::Void button24_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -15923,7 +16093,7 @@ private: System::Void addlabgenerate_Click(System::Object^ sender, System::Event
     }
 
     if (flag) {
-            section obj;
+            labobj.clear();
             for (int i = 0; i < addlabele->RowCount; i++)
             {
                 if (addlabele->Rows[i]->Cells[0]->Value != nullptr)
@@ -15937,7 +16107,7 @@ private: System::Void addlabgenerate_Click(System::Object^ sender, System::Event
                                 {
                                     int day = (ptr - 1) / 6;
                                     int period = (ptr - 1) % 6;
-                                    obj.block(day, period, name[ptr], name[ptr]);
+                                    labobj.block(day, period,"Blocked","Blocked");
                                 }
                             }
                         }
@@ -15951,44 +16121,44 @@ private: System::Void addlabgenerate_Click(System::Object^ sender, System::Event
                     Button^ button = dynamic_cast<Button^>(addlabres->Controls[String::Format("buttonaddlabres{0}", x * 6 + y + 1)]);
                     if (button->Text == "Blocked")
                     {
-                        obj.block(x, y, "Blocked", "Blocked");
+                        labobj.block(x, y, "Blocked", "Blocked");
                     }
                 }
             }
-            InitializeMatrix(addlabgen, "addlabgen", "Free", -1);
-            obj.name = msclr::interop::marshal_as<string>(addlabbatch->Text);
-            allteachersfunction("details/teacher_file.csv", obj);
-            allroomsfunction("details/classroom.csv", obj);
+            InitializeMatrix(addlabgen, "addlabgen", "Free",8);
+            labobj.name = msclr::interop::marshal_as<string>(addlabbatch->Text);
+            allteachersfunction("details/teacher_file.csv", labobj);
+            allroomsfunction("details/classroom.csv", labobj);
             if (addlabcompyes->Checked)
-                obj.compactLab = true;
+                labobj.compactLab = true;
             else
-                obj.compactLab = false;
-            labcreate(labteachers, obj);
+                labobj.compactLab = false;
+            labcreate(labteachers, labobj);
             vector<string> drooms;
             drooms.push_back("No_Room");
-            obj.defaultRooms = drooms;
-            obj.makeTIMETABLE();
-            if (obj.errorMessage != "")
+            labobj.defaultRooms = drooms;
+            labobj.makeTIMETABLE();
+            if (labobj.errorMessage != "")
             {
-                MessageBox::Show(msclr::interop::marshal_as<String^>(obj.errorMessage), "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+                MessageBox::Show(msclr::interop::marshal_as<String^>(labobj.errorMessage), "Warning", MessageBoxButtons::OK, MessageBoxIcon::Warning);
             }
             addlabgengroup->Height = 500;
-            for (int i = 0; i < obj.timeTable.size(); i++)
+            for (int i = 0; i < labobj.timeTable.size(); i++)
             {
-                for (int j = 0; j < obj.timeTable[i].size(); j++)
+                for (int j = 0; j < labobj.timeTable[i].size(); j++)
                 {
                     Button^ button = dynamic_cast<Button^>(addlabgen->Controls[String::Format("buttonaddlabgen{0}", 6 * i + j + 1)]);
-                    if (obj.timeTable[i][j] != "f" && obj.timeTable[i][j]!="Blocked")
+                    if (labobj.timeTable[i][j] != "f" && labobj.timeTable[i][j]!="Blocked")
                     {
-                        button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(obj.timeTable[i][j]));
+                        button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(labobj.timeTable[i][j]));
                         button->BackColor = Color::FromArgb(160, 252, 255); 
-                        string s = "Teacher :" + obj.teacherTable[i][j] + "\nRoom :" + obj.roomTable[i][j];
+                        string s = replaceunderscore("Teacher :" + labobj.teacherTable[i][j] + "\nRoom :" + labobj.roomTable[i][j]);
                         ToolTip^ toolTip1 = gcnew ToolTip();
                         toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
 
                     }
                     else
-                        button->Text = "free";
+                        button->Text = "Free";
                 }
             }
     }
@@ -16094,6 +16264,30 @@ private: System::Void addlabsave_Click(System::Object^ sender, System::EventArgs
 }
 private: System::Void kryptonDataGridView1_CellContentClick_2(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
     deletebuttonkrypt(dataGridViewButtonColumn3, kryptonDataGridView1, sender, e);
+}
+private: System::Void pictureBox10_Click_1(System::Object^ sender, System::EventArgs^ e) {
+    kryptonTextBox1->Clear();
+    pictureBox10->Visible = false;
+    for (int i = 0; i < 6; i++)
+    {
+        for (int j = 0; j < 6; j++)
+        {
+            Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
+            if (obj.timeTable[i][j] != "f")
+            {
+                button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(obj.timeTable[i][j]));
+                button->BackColor = Color::FromArgb(160, 252, 255);
+            }
+            else
+            {
+                button->Text = "Free";
+                button->BackColor = Color::FromArgb(190, 252, 255);
+            }
+            string s = replaceunderscore("Teacher :" + obj.teacherTable[i][j] + "\nRoom :" + obj.roomTable[i][j]);
+            toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
+        }
+    }
+    label39->Text = "Click on the core subject you want to replace";
 }
 };
 }
