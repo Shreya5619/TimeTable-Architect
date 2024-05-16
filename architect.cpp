@@ -5,7 +5,6 @@
 #include"includes.h"
 #include"initializer_list"
 std::vector<std::vector<float>> section::suggestTimeCore(std::string sub) {
-    //check if core
     int i;
     bool found = 0;
     for (i = 0; i < coreSubjects.size(); i++) {
@@ -20,12 +19,23 @@ std::vector<std::vector<float>> section::suggestTimeCore(std::string sub) {
         teacher t = returnTeacher(coreTeachers[i]);
         if(!error_)
             listIntersection.push_back(t.timeTable);
+        std::vector<std::vector<bool>> antiIntersection;
         for (auto rom : coreSubjects[i].rooms) {
             room r = returnRoom(rom);
             if (!error_)
-                listIntersection.push_back(r.timeTable);
+                for (int i = 0; i < days; i++) {
+                    for (int j = 0; j < periods; j++) {
+                        antiIntersection[i][j] = antiIntersection[i][j] || !r.timeTable[i][j];
+                    }
+                }
         }
-        std::vector<std::vector<int>> WeightedinterSection =findWeightageCore( findIntersection(listIntersection),t);
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                antiIntersection[i][j] = !antiIntersection[i][j];
+            }
+        }
+        listIntersection.push_back(antiIntersection);
+        std::vector<std::vector<int>> WeightedinterSection =findWeightageCore(findIntersection(listIntersection),t);
         int highest = 0;
         for (auto day : WeightedinterSection) {
             for (auto period : day) {
@@ -121,6 +131,70 @@ bool section::clear() {
 	defaultRoomName = "";
     return 1;
 }
+bool section::moveCoreUnalloted(std::string sub, int dayf, int periodf) {
+    int i;
+    bool found = 0;
+    for (i = 0; i < coreSubjects.size(); i++) {
+        if (sub == coreSubjects[i].name) {
+            found = 1;
+            break;
+        }
+    }
+    if (found) {
+        teacher &t = returnTeacher(coreTeachers[i]);
+        if (!error_) {
+            t.timeTable[dayf][periodf] = 1;
+            t.timeTableName[dayf][periodf] = name;
+            teacherTable[dayf][periodf] = t.name;
+        }
+        if (coreSubjects[i].rooms.size()) {
+            bool found = 1;
+            for (auto rooms : coreSubjects[i].rooms) {
+                room& r = returnRoom(rooms);
+                if (!r.timeTable[dayf][periodf]) {
+                    r.timeTable[dayf][periodf] = 1;
+                    r.timeTableName[dayf][periodf] = name;
+                    roomTable[dayf][periodf] = rooms;
+                    found = 1;
+                    break;
+                }
+            }
+            if (!found) {
+                roomTable[dayf][periodf] = "NAlloted";
+                errorMessage += "\n Couldnt allot room for " + coreSubjects[i].name;
+            }
+        }
+        else {
+            room& roomDef = returnRoom(defaultRoomName);
+            if (!error_) {
+                if (!roomDef.timeTable[dayf][periodf]) {
+                    roomDef.timeTable[dayf][periodf] = 1;
+                    roomDef.timeTableName[dayf][periodf] = name;
+                    roomTable[dayf][periodf] = roomDef.name;
+                }
+                else {
+                    bool alloted = 0;
+                    for (auto roomName : defaultRooms) {
+                        room& currRoom = returnRoom(defaultRoomName);
+                        if (!currRoom.timeTable[dayf][periodf]) {
+                            currRoom.timeTable[dayf][periodf] = 1;
+                            currRoom.timeTableName[dayf][periodf] = name;
+                            roomTable[dayf][periodf] = currRoom.name;
+                            alloted = 1;
+                            break;
+                        }
+                    }
+                    if (!alloted) {
+                        roomTable[dayf][periodf] = "Couldnt allot";
+                    }
+                }
+            }
+        }
+        timeTable[dayf][periodf] = sub;
+        return 1;
+    }
+    return 0;
+}
 bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
     std::string subName = timeTable[dayi][periodi];
     std::string teacherName = teacherTable[dayi][periodi];
@@ -141,30 +215,50 @@ bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
         roomTable[dayf][periodf] = r.name;
     }
     else {
-        room& roomDef = returnRoom(defaultRoomName);
-        if (error_) {
-            errorMessage += "Couldnt find" + defaultRoomName + "\n";
-            return 0;
-            return 0;
-        }
-        if (!roomDef.timeTable[dayf][periodf]) {
-            roomDef.timeTable[dayf][periodf] = 1;
-            roomDef.timeTableName[dayf][periodf] = name;
-            roomTable[dayf][periodf] = roomDef.name;
-        }
-        else {
-            bool alloted = 0;
-            for (auto& currRoom : allRooms) {
-                if (!currRoom.timeTable[dayf][periodf]) {
-                    currRoom.timeTable[dayf][periodf] = 1;
-                    currRoom.timeTableName[dayf][periodf] = name;
-                    roomTable[dayf][periodf] = currRoom.name;
-                    alloted = 1;
-                    break;
+        subject s = returnSubject(subName);
+        if (returnSubject(subName).rooms.size()) {
+            room& prevRoom = returnRoom(roomTable[dayi][periodi]);
+            if (!error_) {
+                prevRoom.timeTable[dayi][periodi] = 0;
+                roomTable[dayi][periodi] = "NA";
+                for (auto rooms : s.rooms) {
+                    room& roomO = returnRoom(rooms);
+                    if (!roomO.timeTable[dayf][periodf]) {
+                        roomO.timeTable[dayf][periodf] = 1;
+                        roomO.timeTableName[dayf][periodf] = name;
+                        roomTable[dayf][periodf] = roomO.name;
+                        break;
+                    }
                 }
             }
-            if (!alloted) {
-                roomTable[dayf][periodf] = "Couldnt allot";
+        }
+        else {
+            room& roomDef = returnRoom(defaultRoomName);
+            if (error_) {
+                errorMessage += "Couldnt find" + defaultRoomName + "\n";
+                return 0;
+            }
+            if (!roomDef.timeTable[dayf][periodf]) {
+                roomDef.timeTable[dayf][periodf] = 1;
+                roomDef.timeTableName[dayf][periodf] = name;
+                roomTable[dayf][periodf] = roomDef.name;
+            }
+            else {
+                bool alloted = 0;
+                for (auto roomName : defaultRooms) {
+                    room& currRoom = returnRoom(defaultRoomName);
+                    if (!currRoom.timeTable[dayf][periodf]) {
+                        currRoom.timeTable[dayf][periodf] = 1;
+                        currRoom.timeTableName[dayf][periodf] = name;
+                        roomTable[dayf][periodf] = currRoom.name;
+                        alloted = 1;
+                        break;
+                    }
+                }
+                if (!alloted) {
+                    roomTable[dayf][periodf] = "Couldnt allot";
+                    errorMessage += "\nCoudlnt allot rooms for " + subName;
+                }
             }
         }
     }
@@ -1009,6 +1103,7 @@ void section::makeTIMETABLE() {
         }
         else {
             errorMessage += "collision occured when alloting " + labSubjects[i].name + "  \n";
+            errorLabs.push_back(labSubjects[i].name);
         }
     }
     //find preferred clasroom
@@ -1471,6 +1566,7 @@ void section::makeTIMETABLE() {
                         if (credCount) {
                             //if exectution reaches here it means that we cant allot with the current input combination.
                             errorMessage += std::to_string(credCount) + " session for " + currSubject.name + " couldnt be alloted.";
+                            errorCore.push_back(currSubject.name);
                         }
                     }
                 }
