@@ -19,7 +19,7 @@ std::vector<std::vector<float>> section::suggestTimeCore(std::string sub) {
         teacher t = returnTeacher(coreTeachers[i]);
         if(!error_)
             listIntersection.push_back(t.timeTable);
-        std::vector<std::vector<bool>> antiIntersection;
+        std::vector<std::vector<bool>> antiIntersection(days,std::vector<bool>(periods,0));
         for (auto rom : coreSubjects[i].rooms) {
             room r = returnRoom(rom);
             if (!error_)
