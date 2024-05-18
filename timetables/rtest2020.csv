@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+CD343AI,f,ff,ff,f,f,
+f,XX232AT,f,f,f,f,
+f,CD343AI,f,f,HS247XL,HS247XL,
+f,f,f,f,f,f,
+f,f,CD343AI,f,XX232AT,XX232AT,
+HS247XL,HS247XL,f,f,f,f,
+
+
+TEACHERS
+Prof. Deepika Dash,f,ff,ff,f,f,
+f,XX232AT,f,f,f,f,
+f,Prof. Deepika Dash,f,f,HS247XL,HS247XL,
+f,f,f,f,f,f,
+f,f,Prof. Deepika Dash,f,XX232AT,XX232AT,
+HS247XL,HS247XL,f,f,f,f,
+
+
+ROOM
+NA,NA,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,No Room,NA,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+NA,NA,No Room,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
