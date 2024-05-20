@@ -166,10 +166,11 @@ public:
     bool readData(std::string inp);
     bool deAllocate();//used to deallocate a class
     std::vector<std::vector<float>> suggestTimeCore(std::string sub);
-    std::vector<std::vector<float>> suggestTimeLab(std::vector<std::string> teacherList,std::vector<std::string> roomList);
+    std::vector<std::vector<float>> suggestTimeLab(std::vector<std::string> teacherList,std::vector<std::string> roomList,int noLabsPerSession);
     bool moveCore(int dayi,int periodi, int dayf, int periodf);
-    bool moveLab(int dayi, int periodi, int dayf, int periodf);
+    bool moveLab(int dayi, int periodi, int dayf, int periodf,int numberLabsPerSession);
     bool moveCoreUnalloted(std::string sub,int dayf,int periodf);
+    bool moveLabUnallocated(std::string sub,int dayf,int periodf,int noLabsPerSession);
     bool clear();
     bool error_;
     std::string errorMessage;
