@@ -78,7 +78,7 @@ std::vector<std::vector<float>> section::suggestTimeLab(std::vector<std::string>
     for (auto roomr : roomListO) {
         for (int i = 0; i < days;i++) {
             for (int j = 0; j < periods;j++) {
-                intersectionRooms[i][j] += roomr.timeTable[i][j];
+                intersectionRooms[i][j] += !roomr.timeTable[i][j];
             }
         }
     }
@@ -90,6 +90,7 @@ std::vector<std::vector<float>> section::suggestTimeLab(std::vector<std::string>
             }
         }
     }
+	heap.push_back(intersection);
     std::vector<std::vector<bool>> intersections = findIntersection(heap);
     std::vector<std::vector<int>> WeightedinterSection = findWeightageLab(intersections,teacherListO);
     int highest = 0;
@@ -314,15 +315,17 @@ bool section::moveLabUnallocated(std::string sub, int dayf, int periodf,int noLa
     }
     std::string roomNames;
     for (auto rooms : labSubjects[i].rooms) {
-        room& r = returnRoom(rooms);
-        r.timeTable[dayf][periodf] = 1;
-        r.timeTableName[dayf][periodf] = name;
-        r.timeTable[dayf][periodf+1] = 1;
-        r.timeTableName[dayf][periodf+1] = name;
-        roomNames += r.name + "|";
-        noLabsPerSession--;
         if (!noLabsPerSession)
             break;
+        room& r = returnRoom(rooms);
+        if (!r.timeTable[dayf][periodf] && !r.timeTable[dayf][periodf + 1]) {
+            r.timeTable[dayf][periodf] = 1;
+            r.timeTableName[dayf][periodf] = name;
+            r.timeTable[dayf][periodf + 1] = 1;
+            r.timeTableName[dayf][periodf + 1] = name;
+            roomNames += r.name + "|";
+            noLabsPerSession--;
+        }
     }
     timeTable[dayf][periodf] = sub;
     teacherTable[dayf][periodf] = teacherNames;
@@ -346,6 +349,8 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf,int noLabsPer
 	std::vector<teacher> teachers;
 	std::vector<room> rooms;
     bool allFree = true;
+
+	//iterating through all rooms alloted and making them free in that particular slot
     for (auto names : roomNames) {
 		room &roomC = returnRoom(names);
         if (!error_) {
@@ -353,7 +358,7 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf,int noLabsPer
             roomC.timeTableName[dayi][periodi] = "0";
             roomC.timeTable[dayi][periodi+1] = 0;
             roomC.timeTableName[dayi][periodi+1] = "0";
-            if (roomC.timeTable[dayf][periodf]) {
+            if (roomC.timeTable[dayf][periodf] || roomC.timeTable[dayf][periodf+1]) {
                 allFree = false;
             }
             /*
@@ -363,6 +368,7 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf,int noLabsPer
             roomC.timeTableName[dayf][periodf+1] = name;*/
         }
 	}
+	//if rooms previously alloted are free in the new slot, then allot the old rooms in new slot
     if (allFree) {
         for (auto names : roomNames) {
             room& roomC = returnRoom(names);
@@ -383,15 +389,17 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf,int noLabsPer
         }
         roomNameList = "";
         for (auto rooms : labSubjects[i].rooms) {
-            room& r = returnRoom(rooms);
-            r.timeTable[dayf][periodf] = 1;
-            r.timeTableName[dayf][periodf] = name;
-            r.timeTable[dayf][periodf + 1] = 1;
-            r.timeTableName[dayf][periodf + 1] = name;
-            roomNameList += r.name + "|";
-            noLabsPerSession--;
             if (!noLabsPerSession)
                 break;
+            room& r = returnRoom(rooms);
+            if (!r.timeTable[dayf][periodf] && !r.timeTable[dayf][periodf+1]) {
+				r.timeTable[dayf][periodf] = 1;
+				r.timeTableName[dayf][periodf] = name;
+				r.timeTable[dayf][periodf + 1] = 1;
+				r.timeTableName[dayf][periodf + 1] = name;
+				roomNameList += r.name + "|";
+				noLabsPerSession--;
+            }
         }
     }
     for (auto names : teacherNames) {
