@@ -333,6 +333,7 @@ bool section::moveLabUnallocated(std::string sub, int dayf, int periodf, int noL
     timeTable[dayf][periodf] = sub;
     teacherTable[dayf][periodf] = teacherNames;
     roomTable[dayf][periodf] = roomNames;
+    return 1;
 }
 bool section::moveLab(int dayi, int periodi, int dayf, int periodf, int noLabsPerSession) {
     if (periodi % 2) {

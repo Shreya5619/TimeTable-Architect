@@ -3595,7 +3595,7 @@ private: System::Windows::Forms::ComboBox^ classunallot;
                                     else
                                     {
                                         button->Text = "Free";
-                                        button->BackColor = Color::FromArgb(190, 252, 255);
+                                        button->BackColor = Color::FromArgb(210, 255, 255);
                                     }
                                     string s = replaceunderscore("Teacher :" + obj.teacherTable[i][j] + "\nRoom :" + obj.roomTable[i][j]);
                                     toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
@@ -3628,7 +3628,7 @@ private: System::Windows::Forms::ComboBox^ classunallot;
                                 else
                                 {
                                     button->Text = "Free";
-                                    button->BackColor = Color::FromArgb(190, 252, 255);
+                                    button->BackColor = Color::FromArgb(210, 255, 255);
                                 }
                                 string s = replaceunderscore("Teacher :" + obj.teacherTable[i][j] + "\nRoom :" + obj.roomTable[i][j]);
                                 toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
@@ -3751,15 +3751,14 @@ private: System::Windows::Forms::ComboBox^ classunallot;
                                 {
                                     button->Text = msclr::interop::marshal_as<String^>(replaceunderscore(labobj.timeTable[i][j]));
                                     button->BackColor = Color::FromArgb(160, 250, 255);
-                                    string s = replaceunderscore( "Teacher :" + labobj.teacherTable[i][j] + "\nRoom :" + labobj.roomTable[i][j]);
-                                    toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
-
                                 }
                                 else
                                 {
                                     button->Text = "Free";
-                                    button->BackColor = Color::FromArgb(190, 250, 255);
+                                    button->BackColor = Color::FromArgb(210, 255, 255);
                                 }
+                                string s = replaceunderscore("Teacher :" + labobj.teacherTable[i][j] + "\nRoom :" + labobj.roomTable[i][j]);
+                                toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
                             }
                         }
                         label156->Text = "Click on the lab subject you want to replace";
@@ -16837,7 +16836,7 @@ private: System::Void pictureBox10_Click_1(System::Object^ sender, System::Event
             else
             {
                 button->Text = "Free";
-                button->BackColor = Color::FromArgb(190, 252, 255);
+                button->BackColor = Color::FromArgb(210, 255, 255);
             }
             string s = replaceunderscore("Teacher :" + obj.teacherTable[i][j] + "\nRoom :" + obj.roomTable[i][j]);
             toolTip1->SetToolTip(button, msclr::interop::marshal_as<String^>(s));
@@ -16926,7 +16925,17 @@ private: System::Void classunallot_SelectedIndexChanged(System::Object^ sender, 
             classunallot->Items->Add(msclr::interop::marshal_as<String^>(replaceunderscore(obj.errorCore[i])));
         }
         classunallot->Items->Add("Clear");
-        
+        for (int i = 0; i < 6; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                Button^ button = dynamic_cast<Button^>(classtablegen1->Controls[String::Format("buttong{0}", 6 * i + j + 1)]);
+                if (button->Text == "Free")
+                    button->BackColor = Color::FromArgb(210, 255, 255);
+                else
+                    button->BackColor = Color::FromArgb(160, 255, 255);
+            }
+        }
     }
     else
     {
