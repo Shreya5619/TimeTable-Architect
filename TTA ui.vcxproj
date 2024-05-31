@@ -146,6 +146,7 @@
     <ClCompile Include="teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Functions.h" />
     <ClInclude Include="includes.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>

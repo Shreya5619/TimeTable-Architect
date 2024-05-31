@@ -21,7 +21,6 @@ public:
         bFactor = 0;
     };
 };
-
 class teacher {
 public:
     std::string name;//name of teacher
@@ -167,9 +166,11 @@ public:
     bool readData(std::string inp);
     bool deAllocate();//used to deallocate a class
     std::vector<std::vector<float>> suggestTimeCore(std::string sub);
-    std::vector<std::vector<float>> suggestTimeLab(std::vector<std::string> teacherList, std::vector<std::string> roomList);
+    std::vector<std::vector<float>> suggestTimeLab(std::vector<std::string> teacherList, std::vector<std::string> roomList, int noLabsPerSession);
     bool moveCore(int dayi, int periodi, int dayf, int periodf);
-    bool moveLab(int dayi, int periodi, int dayf, int periodf);
+    bool moveLab(int dayi, int periodi, int dayf, int periodf, int numberLabsPerSession);
+    bool moveCoreUnalloted(std::string sub, int dayf, int periodf);
+    bool moveLabUnallocated(std::string sub, int dayf, int periodf, int noLabsPerSession);
     bool clear();
     bool error_;
     std::string errorMessage;
@@ -190,7 +191,8 @@ public:
     float reductionIndexC = 1.1;//this factor is used to discourage alloting same class same time again.Score of all the possible intersections in the same time are divided by this factor.
     logger logs;//a logging object
     bool compactLab = 0;//This determines if the lab allotment will be in compact form or a more distributed optimised timetable
-
+    std::vector<std::string>  errorLabs;
+    std::vector<std::string> errorCore;
 private:
     std::vector<int> bfactor;
     std::vector<std::vector<std::string>> returnCombinations(std::vector<std::string> comb, int required);
