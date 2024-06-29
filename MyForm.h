@@ -3322,13 +3322,14 @@ private: System::Windows::Forms::ComboBox^ classunallot;
                 Button^ clickedButton = dynamic_cast<Button^>(sender);
                 if (clickedButton != nullptr) {
                     // Toggle the text of the clicked button
-                    if (editteachertt->Text == "")
+                    if (editteachertt->Text == "" && clickedButton->Text != "Free")
                     {
-                        MessageBox::Show("Enter the Name to be displayed", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                        clickedButton->Text = "Free";
+                        clickedButton->BackColor = Color::FromArgb(210, 255, 255);
                     }
                     else
                     {
-                        if (clickedButton->Text != editteachertt->Text)
+                        if (clickedButton->Text != editteachertt->Text && editteachertt->Text != "")
                         {
                             clickedButton->Text = editteachertt->Text;
                             clickedButton->BackColor = Color::FromArgb(160, 252, 255);
@@ -3368,13 +3369,14 @@ private: System::Windows::Forms::ComboBox^ classunallot;
                 Button^ clickedButton = dynamic_cast<Button^>(sender);
                 if (clickedButton != nullptr) {
                     // Toggle the text of the clicked button
-                    if (editroomtt->Text == "")
+                    if (editroomtt->Text == "" && clickedButton->Text != "Free")
                     {
-                        MessageBox::Show("Enter the Name to be displayed", "Message", MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
+                        clickedButton->Text = "Free";
+                        clickedButton->BackColor = Color::FromArgb(210, 255, 255);
                     }
                     else
                     {
-                        if (clickedButton->Text != editroomtt->Text)
+                        if (clickedButton->Text != editroomtt->Text && editroomtt->Text != "")
                         {
                             clickedButton->Text = editroomtt->Text;
                             clickedButton->BackColor = Color::FromArgb(160, 252, 255);
@@ -3710,7 +3712,6 @@ private: System::Windows::Forms::ComboBox^ classunallot;
                                 }
 
                             }
-                            //
                          
                             for (int i = 0; i < 6; i++)
                             {
@@ -8455,9 +8456,9 @@ private: System::Windows::Forms::ComboBox^ classunallot;
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->classpanel->Controls->Add(this->panel29);
             this->classpanel->Dock = System::Windows::Forms::DockStyle::Fill;
-            this->classpanel->Location = System::Drawing::Point(364, 76);
+            this->classpanel->Location = System::Drawing::Point(0, 0);
             this->classpanel->Name = L"classpanel";
-            this->classpanel->Size = System::Drawing::Size(1442, 974);
+            this->classpanel->Size = System::Drawing::Size(1806, 1050);
             this->classpanel->TabIndex = 230;
             this->classpanel->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::panel5_Paint_1);
             // 
@@ -9457,7 +9458,7 @@ private: System::Windows::Forms::ComboBox^ classunallot;
             this->label39->ForeColor = System::Drawing::Color::Black;
             this->label39->Location = System::Drawing::Point(65, 43);
             this->label39->Name = L"label39";
-            this->label39->Size = System::Drawing::Size(422, 28);
+            this->label39->Size = System::Drawing::Size(377, 28);
             this->label39->TabIndex = 349;
             this->label39->Text = L"Click on the subject you want to replace";
             // 
@@ -13823,11 +13824,9 @@ private: System::Windows::Forms::ComboBox^ classunallot;
             this->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(230)), static_cast<System::Int32>(static_cast<System::Byte>(255)),
                 static_cast<System::Int32>(static_cast<System::Byte>(255)));
             this->ClientSize = System::Drawing::Size(1806, 1050);
-            this->Controls->Add(this->classpanel);
             this->Controls->Add(this->panel1);
             this->Controls->Add(this->kryptonPanel6);
             this->Controls->Add(this->editsubactivepanel);
-            this->Controls->Add(this->deleteclasspanel);
             this->Controls->Add(this->editteacherpanel);
             this->Controls->Add(this->editlabpanel);
             this->Controls->Add(this->panel2);
@@ -13839,6 +13838,8 @@ private: System::Windows::Forms::ComboBox^ classunallot;
             this->Controls->Add(this->Labaddpanel);
             this->Controls->Add(this->addclassroompanel);
             this->Controls->Add(this->Homepanel);
+            this->Controls->Add(this->classpanel);
+            this->Controls->Add(this->deleteclasspanel);
             this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::FixedSingle;
             this->KeyPreview = true;
             this->Name = L"MyForm";
@@ -16953,6 +16954,8 @@ private: System::Void classunallot_SelectedIndexChanged(System::Object^ sender, 
         }
 
     }
+}
+private: System::Void editteachertablepanel_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 }
 };
 }
