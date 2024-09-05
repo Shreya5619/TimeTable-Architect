@@ -294,6 +294,7 @@ bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
     r.timeTableName[dayi][periodi] = "0";
     return 1;
 }
+
 bool section::moveLabUnallocated(std::string sub, int dayf, int periodf, int noLabsPerSession) {
     if (periodf % 2) {
         periodf--;
@@ -890,6 +891,9 @@ void section::makeTIMETABLE() {
         logs.log(temp);
     }
     //alloting labs
+    //keep track of how many collisions have occured.
+    int labCollisions = 0;
+repeat:
     for (int i = 0; i < labTeachers.size(); i++) {
         logs.log("Lsub:" + labSubjects[i].name);
         for (auto teachers : labTeachers[i]) {
@@ -1140,6 +1144,40 @@ void section::makeTIMETABLE() {
         }
         else {
             errorMessage += "collision occured when alloting " + labSubjects[i].name + "  \n";
+            //if collision size lesser that labTeachers.size(), then more permutations can be done with labTeachers.
+            if (++labCollisions < labTeachers.size()) {
+                //shuffle labTeachers
+                std::vector<std::string> temp = labTeachers[labTeachers.size() - 1];
+                labTeachers.pop_back();
+                labTeachers.insert(labTeachers.begin(), temp);
+                //free all alloted teachers.
+                for (auto teachers : allTeachers) {
+                    for (int i = 0; i < days; i++) {
+                        for (int j = 0; j < periods; j++) {
+                            if (teachers.timeTableName[i][j] == name) {
+                                teachers.timeTable[i][j] = 0;
+                                teachers.timeTableName[i][j] = "0";
+                            }
+                        }
+                    }
+                }
+                // free all alloted rooms.
+                for (auto rooms : allRooms) {
+                    for (int i = 0; i < days; i++) {
+                        for (int j = 0; j < periods; j++) {
+                            if (rooms.timeTableName[i][j] == name) {
+                                rooms.timeTable[i][j] = 0;
+                                rooms.timeTableName[i][j] = "0";
+                            }
+                        }
+                    }
+                }
+                //iterate through all labs, wherever name of particular class found remove it
+                //clear timetable
+                clear();
+                goto repeat;
+            }
+
             errorLabs.push_back(labSubjects[i].name);
         }
     }
@@ -1654,4 +1692,34 @@ void section::makeTIMETABLE() {
         }
         formattedOutput += "\n";
     }
+}
+std::string section::getConsolidatedRoom() {
+    std::string CSV = "m1,m2,m3,m4,m5,m6,t1,t2,t3,t4,t5,t6,w1,ww2,w3,w4,w5,w5,t1,t2,t3,t4,t5,t6,f1,f2,f3,f4,f5,f6,s1,s2,s3,s4,s5,s6\n";
+    std::vector<std::vector<std::string>> consolidatedTable(periods * days);
+    for (room Room : allRooms) {
+        for (int i = 0; i < days; i++) {
+            for (int j = 0; j < periods; j++) {
+                if (!Room.timeTable[i][j]) {
+                    consolidatedTable[i * periods + j].push_back(Room.name);
+                }
+            }
+        }
+    }
+    for (int k = 0; k < 1000; k++) {
+        bool found = false;
+        for (int i = 0; i < days * periods; i++) {
+            if (consolidatedTable[i].size() >= k) {
+                found = true;
+                CSV += consolidatedTable[i][k] + ",";
+            }
+            else {
+                CSV += ",";
+            }
+        }
+        if (!found) {
+            break;
+        }
+        CSV += "\n";
+    }
+    return CSV;
 }

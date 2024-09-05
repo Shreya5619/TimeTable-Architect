@@ -31,6 +31,7 @@ public:
 
     bool readData(std::string inp);//function which converts std::string input from teacherdata to the objects data
     std::string convertToString();//reverse of above
+    std::string convertToCSV();
     void showTimeTable();
     teacher() {
         std::vector<bool> a(periods);
@@ -53,6 +54,7 @@ public:
     bool readData(std::string inp);
     void showTimeTable();
     std::string convertToString();
+    std::string convertToCSV();
     room() {
         std::vector<bool> a(periods);
         std::vector<std::string> b(periods, "");
@@ -171,6 +173,7 @@ public:
     bool moveLab(int dayi, int periodi, int dayf, int periodf, int numberLabsPerSession);
     bool moveCoreUnalloted(std::string sub, int dayf, int periodf);
     bool moveLabUnallocated(std::string sub, int dayf, int periodf, int noLabsPerSession);
+    std::string getConsolidatedRoom();
     bool clear();
     bool error_;
     std::string errorMessage;

@@ -1,29 +1,29 @@
 TIMETABLE
 
 SUBJECTS
-CS241AT,XX242AT,CD343AI,CY245AT,CS344AI,f,
-CD343AI,CS241AT,HS248AT,CS344AI,DAA/DAA/IOT,DAA/DAA/IOT,
-IOT/IOT/DAA,IOT/IOT/DAA,CS241AT,f,HS247XL,HS247XL,
-CY245AT,CD343AI,CS344AI,f,f,f,
-HS248AT,CY245AT,f,f,XX242AT,XX242AT,
-HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+CS344AI,CY245AT,CD343AI,Reserved,IOT/IOT/DAA,IOT/IOT/DAA,
+CD343AI,XX242AT,CS344AI,Reserved,f,f,
+CY245AT,HS248AT,CS241AT,Reserved,HS247XL,HS247XL,
+CS241AT,HS248AT,DAA/DAA/IOT,DAA/DAA/IOT,f,f,
+CY245AT,CS344AI,CD343AI,CS241AT,XX242AT,XX242AT,
+HS247XL ,HS247XL ,HS247XL ,f,f,f,
 
 
 TEACHERS
-Prof. Smriti Srivastava,XX242AT,Dr. Chethana R Murthy,Dr. Pavithra H,Dr.Sindhu D V,f,
-Dr. Chethana R Murthy,Prof. Smriti Srivastava,Prof. Neethu S,Dr.Sindhu D V,Dr. Jyoti Shetty|Dr. Suma B|Prof Srividya M S|,Dr. Jyoti Shetty|Dr. Suma B|Prof Srividya M S|,
-Dr.Sindhu D V|Dr. Mohana|Dr. Vishalakshi Prabhu H|,Dr.Sindhu D V|Dr. Mohana|Dr. Vishalakshi Prabhu H|,Prof. Smriti Srivastava,f,HS247XL,HS247XL,
-Dr. Pavithra H,Dr. Chethana R Murthy,Dr.Sindhu D V,f,f,f,
-Prof. Neethu S,Dr. Pavithra H,f,f,XX242AT,XX242AT,
-HS247XL,HS247XL,Reserved,Reserved,Reserved,Reserved,
+Dr.Sindhu D V,Dr. Pavithra H,Dr. Chethana R Murthy,Reserved,IOT/IOT/DAA,IOT/IOT/DAA,
+Dr. Chethana R Murthy,XX242AT,Dr.Sindhu D V,Reserved,f,f,
+Dr. Pavithra H,Prof. Neethu S,Prof. Smriti Srivastava,Reserved,HS247XL,HS247XL,
+Prof. Smriti Srivastava,Prof. Neethu S,DAA/DAA/IOT,DAA/DAA/IOT,f,f,
+Dr. Pavithra H,Dr.Sindhu D V,Dr. Chethana R Murthy,Prof. Smriti Srivastava,XX242AT,XX242AT,
+HS247XL ,HS247XL ,HS247XL ,f,f,f,
 
 
 ROOM
-CS Lab 6 near bank,NA,CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,NA,
-CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,CS lab 1 near bank|CS lab 2 near bank|CS lab 4 near bank|,CS lab 1 near bank|CS lab 2 near bank|CS lab 4 near bank|,
-CS lab 1 near bank|CS lab 3 near bank|CS lab 4 near bank|,CS lab 1 near bank|CS lab 3 near bank|CS lab 4 near bank|,CS Lab 6 near bank,NA,NA,NA,
-CS Lab 6 near bank,CS Lab 6 near bank,CS Lab 6 near bank,NA,NA,NA,
-CS Lab 6 near bank,CS Lab 6 near bank,NA,NA,NA,NA,
+RVU302,RVU302,RVU302,NA,NA,NA,
+RVU302,NA,RVU302,NA,NA,NA,
+RVU302,RVU302,RVU302,NA,NA,NA,
+RVU302,RVU302,NA,NA,NA,NA,
+RVU302,RVU302,RVU302,RVU302,NA,NA,
 NA,NA,NA,NA,NA,NA,
 
 

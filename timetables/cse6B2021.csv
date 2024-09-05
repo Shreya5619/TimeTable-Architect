@@ -1,0 +1,29 @@
+TIMETABLE
+
+SUBJECTS
+21HS61B,21IE66FX,21CS64DX,21CS64DX,Reserved,Reserved,
+21CS63,21IS62,CD/CD/SE,CD/CD/SE,f,f,
+21CS65EX,21CS65EX,21IS62,Reserved,SE/SE/CD,SE/SE/CD,
+21IS62,21CS63,21HS61B,Reserved,21IE66FX,21IE66FX,
+21CS63,21CS65EX,21HS61B,21CS64DX,f,f,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+TEACHERS
+Dr. Manas M N,21IE66FX,21CS64DX,21CS64DX,Reserved,Reserved,
+Prof. Deepika Dash,Dr. Shanta Rangaswamy,CD/CD/SE,CD/CD/SE,f,f,
+21CS65EX,21CS65EX,Dr. Shanta Rangaswamy,Reserved,SE/SE/CD,SE/SE/CD,
+Dr. Shanta Rangaswamy,Prof. Deepika Dash,Dr. Manas M N,Reserved,21IE66FX,21IE66FX,
+Prof. Deepika Dash,21CS65EX,Dr. Manas M N,21CS64DX,f,f,
+Reserved,Reserved,Reserved,Reserved,Reserved,Reserved,
+
+
+ROOM
+RVU102,NA,NA,NA,NA,NA,
+RVU102,RVU102,NA,NA,NA,NA,
+NA,NA,RVU102,NA,NA,NA,
+RVU102,RVU102,RVU102,NA,NA,NA,
+RVU102,NA,RVU102,NA,NA,NA,
+NA,NA,NA,NA,NA,NA,
+
+
