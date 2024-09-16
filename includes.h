@@ -136,6 +136,7 @@ public:
 
     std::vector<room> allRooms;
     std::vector<std::string> defaultRooms;
+    std::string defaultRoomC;
     std::vector<std::vector<std::string>> timeTable;
     std::vector<std::vector<std::string>> teacherTable;
     std::vector<std::vector<std::string>> roomTable;

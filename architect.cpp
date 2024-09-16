@@ -1183,6 +1183,7 @@ repeat:
     }
     //find preferred clasroom
     std::vector<int> scoreRoom;
+    bool found = false;
     for (auto currClass : defaultRooms) {
         int score = 0;
         room curr = returnRoom(currClass);
@@ -1193,7 +1194,15 @@ repeat:
                 }
             }
         }
+        if (curr.name == defaultRoomC) {
+            score += 10;
+            found = true;
+        }
         scoreRoom.push_back(score);
+    }
+    if (!found) {
+        defaultRooms.push_back(defaultRoomC);
+        scoreRoom.push_back(30);
     }
     int highestR = 0, highestindexR = -1;
     for (int i = 0; i < scoreRoom.size(); i++) {
