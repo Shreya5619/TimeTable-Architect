@@ -32,7 +32,7 @@ For an in-depth understanding of the logic behind the backend:
   - This application is fully coded in **C++** using the **WinForms framework** for the frontend.
 - **Team Members**: 
   - **Shreya**: Responsible for the frontend development.
-  - **Vineeth**: Responsible for backend algorithms and overall logic.
+  - **Vineeth**: Responsible for backend algorithms.
 
 ---
 
