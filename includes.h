@@ -31,10 +31,11 @@ public:
 
     bool readData(std::string inp);//function which converts std::string input from teacherdata to the objects data
     std::string convertToString();//reverse of above
+    std::string convertToCSV();
     void showTimeTable();
     teacher() {
         std::vector<bool> a(periods);
-        std::vector<std::string> b(periods,"");
+        std::vector<std::string> b(periods, "");
         for (int i = 0; i < days; i++) {
             timeTable.push_back(a);
             timeTableName.push_back(b);
@@ -53,9 +54,10 @@ public:
     bool readData(std::string inp);
     void showTimeTable();
     std::string convertToString();
+    std::string convertToCSV();
     room() {
         std::vector<bool> a(periods);
-        std::vector<std::string> b(periods,"");
+        std::vector<std::string> b(periods, "");
         for (int i = 0; i < days; i++) {
             timeTable.push_back(a);
             timeTableName.push_back(b);
@@ -64,13 +66,13 @@ public:
 };
 
 class settings {
-    public:
-        std::string path;
-        int freeFactor=0;
-        float reductionIndex = 0;
-        std::vector<std::vector<bool>> defaultReserve;
-        std::string convertToString();
-        bool readData(std::string inp);
+public:
+    std::string path;
+    int freeFactor = 0;
+    float reductionIndex = 0;
+    std::vector<std::vector<bool>> defaultReserve;
+    std::string convertToString();
+    bool readData(std::string inp);
 };
 
 class logger {
@@ -134,12 +136,14 @@ public:
 
     std::vector<room> allRooms;
     std::vector<std::string> defaultRooms;
+    std::string defaultRoomC;
     std::vector<std::vector<std::string>> timeTable;
     std::vector<std::vector<std::string>> teacherTable;
     std::vector<std::vector<std::string>> roomTable;
     std::string formattedOutput;
 
-    void block(int i, int j, std::string Teacher, std::string Subject,std::string Room="NA");
+    void block(int i, int j, std::string Teacher, std::string Subject, std::string Room = "NA");
+
     void makeTIMETABLE();
     void showTimeTable();
     void showTeacherTable();
@@ -166,11 +170,12 @@ public:
     bool readData(std::string inp);
     bool deAllocate();//used to deallocate a class
     std::vector<std::vector<float>> suggestTimeCore(std::string sub);
-    std::vector<std::vector<float>> suggestTimeLab(std::vector<std::string> teacherList,std::vector<std::string> roomList,int noLabsPerSession);
-    bool moveCore(int dayi,int periodi, int dayf, int periodf);
-    bool moveLab(int dayi, int periodi, int dayf, int periodf,int numberLabsPerSession);
-    bool moveCoreUnalloted(std::string sub,int dayf,int periodf);
-    bool moveLabUnallocated(std::string sub,int dayf,int periodf,int noLabsPerSession);
+    std::vector<std::vector<float>> suggestTimeLab(std::vector<std::string> teacherList, std::vector<std::string> roomList, int noLabsPerSession);
+    bool moveCore(int dayi, int periodi, int dayf, int periodf);
+    bool moveLab(int dayi, int periodi, int dayf, int periodf, int numberLabsPerSession);
+    bool moveCoreUnalloted(std::string sub, int dayf, int periodf);
+    bool moveLabUnallocated(std::string sub, int dayf, int periodf, int noLabsPerSession);
+    std::string getConsolidatedRoom();
     bool clear();
     bool error_;
     std::string errorMessage;
