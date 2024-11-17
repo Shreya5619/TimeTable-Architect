@@ -893,7 +893,6 @@ void section::makeTIMETABLE() {
     //alloting labs
     //keep track of how many collisions have occured.
     int labCollisions = 0;
-repeat:
     for (int i = 0; i < labTeachers.size(); i++) {
         logs.log("Lsub:" + labSubjects[i].name);
         for (auto teachers : labTeachers[i]) {
@@ -1144,40 +1143,6 @@ repeat:
         }
         else {
             errorMessage += "collision occured when alloting " + labSubjects[i].name + "  \n";
-            //if collision size lesser that labTeachers.size(), then more permutations can be done with labTeachers.
-            if (++labCollisions < labTeachers.size()) {
-                //shuffle labTeachers
-                std::vector<std::string> temp = labTeachers[labTeachers.size() - 1];
-                labTeachers.pop_back();
-                labTeachers.insert(labTeachers.begin(), temp);
-                //free all alloted teachers.
-                for (auto teachers : allTeachers) {
-                    for (int i = 0; i < days; i++) {
-                        for (int j = 0; j < periods; j++) {
-                            if (teachers.timeTableName[i][j] == name) {
-                                teachers.timeTable[i][j] = 0;
-                                teachers.timeTableName[i][j] = "0";
-                            }
-                        }
-                    }
-                }
-                // free all alloted rooms.
-                for (auto rooms : allRooms) {
-                    for (int i = 0; i < days; i++) {
-                        for (int j = 0; j < periods; j++) {
-                            if (rooms.timeTableName[i][j] == name) {
-                                rooms.timeTable[i][j] = 0;
-                                rooms.timeTableName[i][j] = "0";
-                            }
-                        }
-                    }
-                }
-                //iterate through all labs, wherever name of particular class found remove it
-                //clear timetable
-                clear();
-                goto repeat;
-            }
-
             errorLabs.push_back(labSubjects[i].name);
         }
     }
@@ -1200,7 +1165,7 @@ repeat:
         }
         scoreRoom.push_back(score);
     }
-    if (!found) {
+    if (!found && defaultRoomC != "NULL") {
         defaultRooms.push_back(defaultRoomC);
         scoreRoom.push_back(30);
     }
