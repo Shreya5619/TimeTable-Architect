@@ -143,6 +143,7 @@ public:
     std::string formattedOutput;
 
     void block(int i, int j, std::string Teacher, std::string Subject, std::string Room = "NA");
+
     void makeTIMETABLE();
     void showTimeTable();
     void showTeacherTable();

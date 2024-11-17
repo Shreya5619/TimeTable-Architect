@@ -158,6 +158,7 @@ bool section::moveCoreUnalloted(std::string sub, int dayf, int periodf) {
     }
     if (found) {
         teacher& t = returnTeacher(coreTeachers[i]);
+
         if (!error_) {
             t.timeTable[dayf][periodf] = 1;
             t.timeTableName[dayf][periodf] = name;
@@ -294,14 +295,16 @@ bool section::moveCore(int dayi, int periodi, int dayf, int periodf) {
     r.timeTableName[dayi][periodi] = "0";
     return 1;
 }
-
 bool section::moveLabUnallocated(std::string sub, int dayf, int periodf, int noLabsPerSession) {
+
     if (periodf % 2) {
         periodf--;
     }
     int i = 0;
     for (; i < labSubjects.size(); i++) {
+
         if (sub == labSubjects[i].name) {
+
             break;
         }
     }
@@ -312,6 +315,7 @@ bool section::moveLabUnallocated(std::string sub, int dayf, int periodf, int noL
         t.timeTableName[dayf][periodf] = name;
         t.timeTable[dayf][periodf + 1] = 1;
         t.timeTableName[dayf][periodf + 1] = name;
+
         teacherNames += t.name + "|";
     }
     std::string roomNames;
@@ -361,6 +365,7 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf, int noLabsPe
             roomC.timeTable[dayi][periodi + 1] = 0;
             roomC.timeTableName[dayi][periodi + 1] = "0";
             if (roomC.timeTable[dayf][periodf] || roomC.timeTable[dayf][periodf + 1]) {
+
                 allFree = false;
             }
             /*
@@ -424,7 +429,6 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf, int noLabsPe
     timeTable[dayi][++periodi] = "f";
     teacherTable[dayi][periodi] = "f";
     roomTable[dayi][periodi] = "NA";
-
     //allocating
     timeTable[dayf][periodf] = subjectName;
     teacherTable[dayf][periodf] = teacherNameList;
@@ -432,8 +436,8 @@ bool section::moveLab(int dayi, int periodi, int dayf, int periodf, int noLabsPe
     timeTable[dayf][++periodf] = subjectName;
     teacherTable[dayf][periodf] = teacherNameList;
     roomTable[dayf][periodf] = roomNameList;
-
     return 1;
+
 }
 // using namespace std;
 bool section::deAllocate() {
@@ -895,6 +899,7 @@ void section::makeTIMETABLE() {
     int labCollisions = 0;
     for (int i = 0; i < labTeachers.size(); i++) {
         logs.log("Lsub:" + labSubjects[i].name);
+
         for (auto teachers : labTeachers[i]) {
             logs.log("teacher: " + teachers);
         }
